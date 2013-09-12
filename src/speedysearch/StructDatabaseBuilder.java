@@ -14,7 +14,7 @@ public class StructDatabaseBuilder{
 	
 	public static void buildStructDatabase( String filename ) throws CDKException, IOException{
 		IteratingSDFReader molecule_database =new IteratingSDFReader(
-			        													new FileReader( filename), 
+			        													new FileReader( filename ), 
 			        													DefaultChemObjectBuilder.getInstance()
 			        												);
 		String out_filename = "Struct_" + filename;
