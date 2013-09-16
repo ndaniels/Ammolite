@@ -1,6 +1,7 @@
 package speedysearch;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,19 +18,24 @@ import org.openscience.cdk.io.iterator.IteratingSDFReader;
 public class StructCompressor {
 	private Hashtable<IAtomContainer, ArrayList<IAtomContainer> > found_structs;
 	
-	public StructCompressor(String mol_db_name) throws IOException, CDKException{
+	public StructCompressor(String mol_db_folder_name) throws IOException, CDKException{
 		
 		int init_capacity = 1000*1000; // Initial capacity of 1,000,000. Still a lot less than the 60,000,000 molecules
 		found_structs = new Hashtable<IAtomContainer, ArrayList<IAtomContainer>>( init_capacity );
 		
-		IteratingSDFReader molecule_database =new IteratingSDFReader(
-																		new FileReader( mol_db_name ), 
-																		DefaultChemObjectBuilder.getInstance()
-																	);
-		checkDatabaseForIsomorphicStructs( molecule_database );
-		molecule_database.close();
+		File directory = new File( mol_db_folder_name );
+		File[] contents = directory.listFiles();
 		
-		String out_filename = "compressed_struct_" + mol_db_name;
+		for(File f: contents){
+			IteratingSDFReader molecule_database =new IteratingSDFReader(
+																			new FileReader( f ), 
+																			DefaultChemObjectBuilder.getInstance()
+																		);
+			checkDatabaseForIsomorphicStructs( molecule_database );
+			molecule_database.close();
+		}
+		
+		String out_filename = "compressed_struct_" + mol_db_folder_name;
 		produceClusteredDatabase( out_filename );
 		
 		
