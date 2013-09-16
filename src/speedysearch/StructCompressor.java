@@ -14,6 +14,7 @@ import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.io.SDFWriter;
 import org.openscience.cdk.io.iterator.IteratingSDFReader;
+import org.openscience.cdk.isomorphism.matchers.RGroup;
 
 public class StructCompressor {
 	private Hashtable<IAtomContainer, ArrayList<IAtomContainer> > found_structs;
@@ -43,7 +44,7 @@ public class StructCompressor {
 	}
 	
 	private void checkDatabaseForIsomorphicStructs( IteratingSDFReader molecule_database ){
-		
+		RGroup r = new RGroup();
         while( molecule_database.hasNext() ){
         	IAtomContainer molecule = molecule_database.next();
         	MoleculeStruct structure = new MoleculeStruct( molecule );
