@@ -12,6 +12,7 @@ public class SpeedySearch {
 	 */
 	public static void main(String[] args) {
 		try {
+			System.out.println("Compressing database...");
 			StructCompressor compressor = new StructCompressor( args[0] );
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
