@@ -24,16 +24,16 @@ public class MoleculeStruct extends AtomContainer
 		super( new AtomContainer(AtomContainerManipulator.removeHydrogens(base)) );
 		
 		Iterator<IAtom> atoms = this.atoms().iterator();
-		for( IAtom atom = atoms.next(); atoms.hasNext(); atom = atoms.next() )
-		{
+		while( atoms.hasNext() ){
+			IAtom atom = atoms.next();
 			atom.setAtomTypeName("C");
 		}
 		
 		int max_atom_count = 0;
 		int min_atom_count = 1000;
 		Iterator<IBond> bonds = this.bonds().iterator();
-		for( IBond bond = bonds.next(); bonds.hasNext(); bond = bonds.next() )
-		{
+		while( bonds.hasNext() ){
+			IBond bond = bonds.next();
 			if(bond.getAtomCount() > max_atom_count){
 				max_atom_count = bond.getAtomCount();
 			}
@@ -44,7 +44,9 @@ public class MoleculeStruct extends AtomContainer
 		}
 		
 		hash_code = 1000000 * max_atom_count + 10000 * min_atom_count + 100 * this.bondCount + this.atomCount;
+
 	}
+	
 
 	
 	@Override

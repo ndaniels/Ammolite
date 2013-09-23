@@ -7,11 +7,11 @@
     <property name="jar.dir"     	value="${build.dir}/jar"/>
     <property name="lib.dir" 		value="lib" />
 
-    <property name="main-class"  	value="MolSearch"/>
+    <property name="main-class"  	value="speedysearch.MolSearch"/>
 
 	<path id="build.classpath">
     	<fileset dir="${lib.dir}">
-      		<include name="**/*.jar" />
+      		<include name="*.jar" />
     	</fileset>
   	</path>
 
@@ -19,17 +19,19 @@
         <delete dir="${build.dir}"/>
     </target>
 
+
   	
     <target name="compile">
-        <mkdir dir="${classes.dir}"/>
-        <javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="build.classpath" />
+        <mkdir dir="${build.dir}"/>
+        <javac source="1.6" target="1.6" srcdir="${src.dir}" destdir="${build.dir}" classpathref="build.classpath" />
     </target>
 
     <target name="jar" depends="compile">
         <mkdir dir="${jar.dir}"/>
-        <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+        <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${build.dir}" >
             <manifest>
                 <attribute name="Main-Class" value="${main-class}"/>
+                <attribute name="Class-Path" value="../../lib/cdk-1.4.19.jar ../../lib/SMSD20130819.jar"/>
             </manifest>
         </jar>
     </target>

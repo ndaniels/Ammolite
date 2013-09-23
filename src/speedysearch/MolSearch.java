@@ -11,8 +11,11 @@ public class MolSearch {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("Running MolSearch");
-		if(args[0].equals("--compress")){
+		if( args.length == 0){
+			System.out.println("Welcome to MolSearch");
+		}
+		else if(args[0].equals("--compress")){
+			
 			compress_database( args[1] );
 		}
 
