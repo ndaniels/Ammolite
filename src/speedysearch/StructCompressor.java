@@ -50,6 +50,9 @@ public class StructCompressor {
 			System.out.println("Scanning " +  f.getName());
 			checkDatabaseForIsomorphicStructs( molecule_database );
 			molecule_database.close();
+			System.out.println("Scanned " + molecules +" molecules");
+			System.out.println("Found " + structures +" unique structures");
+			System.out.println("Found " + matches +" molecules with matching structures");
 		}
 		
 		String out_filename = "compressed_structs.sdf";
