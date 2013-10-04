@@ -5,5 +5,8 @@
 	<classpathentry kind="lib" path="/usr/share/java/cdk-1.4.19.jar"/>
 	<classpathentry kind="lib" path="/usr/share/java/java-atk-wrapper.jar"/>
 	<classpathentry kind="lib" path="/usr/share/java/xmlParserAPIs.jar"/>
+	<classpathentry kind="lib" path="lib/cdk-1.4.19.jar"/>
+	<classpathentry kind="lib" path="lib/SMSD20130819.jar"/>
+	<classpathentry kind="lib" path="lib/sspace-2.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -31,7 +31,7 @@
         <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${build.dir}" >
             <manifest>
                 <attribute name="Main-Class" value="${main-class}"/>
-                <attribute name="Class-Path" value="../../lib/cdk-1.4.19.jar ../../lib/SMSD20130819.jar"/>
+                <attribute name="Class-Path" value="../../lib/cdk-1.4.19.jar ../../lib/SMSD20130819.jar ../../lib/trove-3.0.2.jar ../../lib/sspace-2.0.1.jar"/>
             </manifest>
         </jar>
     </target>

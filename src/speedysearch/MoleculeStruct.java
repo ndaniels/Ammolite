@@ -1,11 +1,19 @@
 package speedysearch;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
+
+import edu.ucla.sspace.graph.Edge;
+import edu.ucla.sspace.graph.SparseUndirectedGraph;
+import edu.ucla.sspace.graph.SimpleEdge;
+import edu.ucla.sspace.graph.Graph;
+import edu.ucla.sspace.graph.isomorphism.AbstractIsomorphismTester;
 
 /**
  * A class representing the structure of a molecule.
@@ -18,15 +26,19 @@ public class MoleculeStruct extends AtomContainer
 	private int hash_code;
 	
 	private static final long serialVersionUID = 1L;
+	private ArrayList<String> mol_ids;
+	private SparseUndirectedGraph graph;
 
 	public MoleculeStruct( IAtomContainer base )
 	{	
 		super( new AtomContainer(AtomContainerManipulator.removeHydrogens(base)) );
+		mol_ids = new ArrayList<String>();
 		
 		Iterator<IAtom> atoms = this.atoms().iterator();
 		while( atoms.hasNext() ){
 			IAtom atom = atoms.next();
-			atom.setAtomTypeName("C");
+			atom.setAtomTypeName("S");
+			atom.setSymbol("C");
 		}
 		
 		int max_atom_count = 0;
@@ -44,7 +56,46 @@ public class MoleculeStruct extends AtomContainer
 		}
 		
 		hash_code = 1000000 * max_atom_count + 10000 * min_atom_count + 100 * this.bondCount + this.atomCount;
+		this.mol_ids.add( this.getID() );
+		this.setID( "struct_" + this.getID());
 
+	}
+	
+	private void makeGraph(IAtomContainer base){
+		graph = new SparseUndirectedGraph();
+		for(int i=0; i<base.getAtomCount(); i++){
+			graph.add(i);
+			for(int j=0; j<i; j++){
+				if( base.getBond(base.getAtom(i), base.getAtom(j)) != null){
+					graph.add( new SimpleEdge(i,j) );
+				}
+			}
+		}
+	}
+	
+	public void addID(String id){
+		mol_ids.add(id);
+	}
+	 
+	public String[] getIDNums(){
+		String[] a = {"plop"};
+		return mol_ids.toArray(a);
+		
+	}
+	
+	public Graph<Edge> getGraph(){
+		if( this.graph == null){
+			makeGraph( this );
+		}
+		return this.graph;
+	}
+	
+	public boolean isIsomorphic(IAtomContainer that, AbstractIsomorphismTester iso_tester){
+		if(!(that instanceof MoleculeStruct)){
+			that = new MoleculeStruct( that );
+		}
+		MoleculeStruct that_struct = (MoleculeStruct) that;
+		return iso_tester.areIsomorphic(this.getGraph(), that_struct.getGraph() );
 	}
 	
 
