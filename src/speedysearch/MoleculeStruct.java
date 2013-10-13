@@ -23,11 +23,11 @@ import edu.ucla.sspace.graph.isomorphism.AbstractIsomorphismTester;
  */
 public class MoleculeStruct extends AtomContainer
 {
-	private int hash_code;
+	protected int hash_code;
 	
 	private static final long serialVersionUID = 1L;
-	private ArrayList<String> mol_ids;
-	private SparseUndirectedGraph graph;
+	protected ArrayList<String> mol_ids;
+	protected SparseUndirectedGraph graph;
 
 	public MoleculeStruct( IAtomContainer base )
 	{	
@@ -40,7 +40,16 @@ public class MoleculeStruct extends AtomContainer
 			atom.setAtomTypeName("S");
 			atom.setSymbol("C");
 		}
-		
+
+		makeGraph(this);
+
+		setHash();
+
+		this.mol_ids.add( base.getID() );
+
+	}
+	
+	protected void setHash(){
 		int max_atom_count = 0;
 		int min_atom_count = 1000;
 		Iterator<IBond> bonds = this.bonds().iterator();
@@ -48,6 +57,7 @@ public class MoleculeStruct extends AtomContainer
 			IBond bond = bonds.next();
 			if(bond.getAtomCount() > max_atom_count){
 				max_atom_count = bond.getAtomCount();
+			
 			}
 			if(bond.getAtomCount() < min_atom_count){
 				min_atom_count = bond.getAtomCount();
@@ -56,9 +66,6 @@ public class MoleculeStruct extends AtomContainer
 		}
 		
 		hash_code = 1000000 * max_atom_count + 10000 * min_atom_count + 100 * this.bondCount + this.atomCount;
-		this.mol_ids.add( this.getID() );
-		this.setID( "struct_" + this.getID());
-
 	}
 	
 	private void makeGraph(IAtomContainer base){

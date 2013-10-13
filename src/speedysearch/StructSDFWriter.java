@@ -30,7 +30,7 @@ public class StructSDFWriter{
 	private void writeStructure(MoleculeStruct struct) throws CDKException{
 		try{
 			meta_writer.newLine();
-			meta_writer.write("<" + struct.getID() + ": ");
+			meta_writer.write("<" +"struct_"+ struct.getID() + ": ");
 			for(String id: struct.getIDNums()){
 				if( id != null){
 					meta_writer.write( id );

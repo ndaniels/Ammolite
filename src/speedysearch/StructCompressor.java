@@ -76,7 +76,7 @@ public class StructCompressor {
 		VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
         while( molecule_database.hasNext() ){
         	IAtomContainer molecule =  molecule_database.next();
-        	MoleculeStruct structure = new MoleculeStruct( molecule );
+        	MoleculeStruct structure = new CyclicStruct( molecule );
         	molecules++;
         	if( found_structs.containsKey( structure.hashCode())){
         		ArrayList<IAtomContainer> potential_matches = found_structs.get( structure.hashCode() );
@@ -84,7 +84,7 @@ public class StructCompressor {
         		for( IAtomContainer candidate: potential_matches ){
         			if ( structure.isIsomorphic(candidate, iso_tester) ){
         				no_match = false;
-        				( (MoleculeStruct) candidate).addID( structure.getID());
+        				( (CyclicStruct) candidate).addID( structure.getID());
         				break;
         			} else {
         				fruitless_comparisons++;
