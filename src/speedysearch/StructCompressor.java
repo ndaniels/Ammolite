@@ -46,7 +46,7 @@ public class StructCompressor {
 			filename = filename.substring(0, filename.length() -4 );
 		}
 		for(File f: contents){
-			IteratingMDLReader molecule_database =new IteratingMDLReader(
+			IteratingSDFReader molecule_database =new IteratingSDFReader(
 																			new FileReader( f ), 
 																			DefaultChemObjectBuilder.getInstance()
 																		);
@@ -72,7 +72,7 @@ public class StructCompressor {
 
 	}
 	
-	private static void checkDatabaseForIsomorphicStructs( IteratingMDLReader molecule_database ) throws CDKException{
+	private static void checkDatabaseForIsomorphicStructs( IteratingSDFReader molecule_database ) throws CDKException{
 		VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
         while( molecule_database.hasNext() ){
         	IAtomContainer molecule =  molecule_database.next();

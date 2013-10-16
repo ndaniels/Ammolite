@@ -13,7 +13,9 @@ import edu.ucla.sspace.graph.Edge;
 import edu.ucla.sspace.graph.SparseUndirectedGraph;
 import edu.ucla.sspace.graph.SimpleEdge;
 import edu.ucla.sspace.graph.Graph;
+
 import edu.ucla.sspace.graph.isomorphism.AbstractIsomorphismTester;
+
 
 /**
  * A class representing the structure of a molecule.
@@ -44,10 +46,13 @@ public class MoleculeStruct extends AtomContainer
 		makeGraph(this);
 
 		setHash();
+		this.setID((String) base.getProperty("PUBCHEM_COMPOUND_CID"));
+		this.setProperty("PUBCHEM_COMPOUND_CID", this.getID());
 
-		this.mol_ids.add( base.getID() );
+		this.mol_ids.add( getID() );
 
 	}
+
 	
 	protected void setHash(){
 		int max_atom_count = 0;
