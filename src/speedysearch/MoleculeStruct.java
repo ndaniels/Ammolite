@@ -13,7 +13,6 @@ import edu.ucla.sspace.graph.Edge;
 import edu.ucla.sspace.graph.SparseUndirectedGraph;
 import edu.ucla.sspace.graph.SimpleEdge;
 import edu.ucla.sspace.graph.Graph;
-
 import edu.ucla.sspace.graph.isomorphism.AbstractIsomorphismTester;
 
 
@@ -42,10 +41,16 @@ public class MoleculeStruct extends AtomContainer
 			atom.setAtomTypeName("S");
 			atom.setSymbol("C");
 		}
-
+		Iterator<IBond> bonds = this.bonds().iterator();
+		while( bonds.hasNext() ){
+			IBond bond = bonds.next();
+			bond.setOrder(IBond.Order.SINGLE);
+		}
+		
 		makeGraph(this);
 
 		setHash();
+		
 		this.setID((String) base.getProperty("PUBCHEM_COMPOUND_CID"));
 		this.setProperty("PUBCHEM_COMPOUND_CID", this.getID());
 
@@ -53,24 +58,10 @@ public class MoleculeStruct extends AtomContainer
 
 	}
 
-	
-	protected void setHash(){
-		int max_atom_count = 0;
-		int min_atom_count = 1000;
-		Iterator<IBond> bonds = this.bonds().iterator();
-		while( bonds.hasNext() ){
-			IBond bond = bonds.next();
-			if(bond.getAtomCount() > max_atom_count){
-				max_atom_count = bond.getAtomCount();
+
 			
-			}
-			if(bond.getAtomCount() < min_atom_count){
-				min_atom_count = bond.getAtomCount();
-			}
-			bond.setOrder(IBond.Order.SINGLE);
-		}
-		
-		hash_code = 1000000 * max_atom_count + 10000 * min_atom_count + 100 * this.bondCount + this.atomCount;
+	protected void setHash(){
+		hash_code = 1000 * this.bondCount + this.atomCount;
 	}
 	
 	private void makeGraph(IAtomContainer base){

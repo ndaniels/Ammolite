@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import org.openscience.cdk.exception.CDKException;
 
-
 public class MolSearch {
 
 	/**
@@ -20,10 +19,17 @@ public class MolSearch {
 			StructFinder sf = new StructFinder(args[1], args[2]);
 			System.out.println("Looking for exact structural matches to "+args[3]+" in "+args[1]);
 			System.out.println(sf.exactQuery(args[3]));
+		} else if( args.length == 4 && args[0].equals("--mcsMol") ){
+			StructFinder sf = new StructFinder(args[1], args[2]);
+			System.out.println("Looking for mcs structural matches to "+args[3]+" in "+args[1]);
+			mcsSearch(sf, args[3]);
 		}
 
 	}
 	
+	private static void mcsSearch(StructFinder sf, String query_filename){
+		sf.mcsQuery(query_filename);
+	}
 	
 	private static void findID(String struct_filename, String id){
 		System.out.println("Looking for "+id+" in "+struct_filename);

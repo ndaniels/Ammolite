@@ -1,17 +1,30 @@
 package speedysearch;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.apache.commons.cli.MissingOptionException;
+import org.apache.commons.cli.ParseException;
 import org.openscience.cdk.DefaultChemObjectBuilder;
+import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.io.SDFWriter;
 
+import cmd.InputHandler;
+import cmd.OutputHandler;
+import cmd.SMSDcmd;
+import cmd.ArgumentHandler;
 import edu.ucla.sspace.graph.isomorphism.VF2IsomorphismTester;
+
+import org.openscience.smsd.AtomAtomMapping;
+import org.openscience.smsd.algorithm.vflib.VF2MCS;
 
 public class StructFinder {
 	
@@ -21,6 +34,55 @@ public class StructFinder {
 	public StructFinder(String _struct_filename, String _id_filename) {
 		struct_filename = _struct_filename;
 		id_filename = _id_filename;
+	}
+	
+	public void mcsQuery(String query_filename){
+		IAtomContainer query = this.convertToCyclicStruct(query_filename);
+		IAtomContainer target;
+		IteratingSDFReader struct_file = null;
+		try {
+			struct_file = new IteratingSDFReader( struct_filename );
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		VF2MCS matcher;
+		while(struct_file.hasNext()){
+			target = new CyclicStruct( struct_file.next());
+			matcher = new VF2MCS(query, target, true, true);
+			AtomAtomMapping mapping = matcher.getFirstAtomMapping();
+			System.out.println(mapping);
+		}
+	}
+	
+	private CyclicStruct convertToCyclicStruct(String query_filename){
+		CyclicStruct struct = null;
+		try {
+			IteratingSDFReader query_file = new IteratingSDFReader(query_filename);
+			IAtomContainer query = query_file.next();
+			query_file.close();
+			struct = new CyclicStruct(query);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return struct;
+	}
+	
+	private String compressQuery(String query_filename){
+		String struct_filename = "STRUCT_"+query_filename;
+		
+		try{
+		CyclicStruct struct = convertToCyclicStruct(query_filename);
+		SDFWriter sdfwriter = new SDFWriter(new BufferedWriter( new FileWriter( struct_filename )));
+		sdfwriter.write(struct);
+		sdfwriter.close();
+		} catch( IOException e){
+			e.printStackTrace();
+		} catch( CDKException c){
+			c.printStackTrace();
+		}
+		return struct_filename;
 	}
 	
 	public String exactQuery(String query_filename){

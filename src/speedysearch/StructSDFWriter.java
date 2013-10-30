@@ -31,14 +31,12 @@ public class StructSDFWriter{
 		try{
 			meta_writer.newLine();
 
-			meta_writer.write("<");
 			for(String id: struct.getIDNums()){
 				if( id != null){
 					meta_writer.write( id );
 					meta_writer.write(" ");
 				}
 			}
-			meta_writer.write(">");	
 		} catch (IOException exception){
 			throw new CDKException("Error while writing structural metadata: " + exception.getMessage(), exception );
 		}
