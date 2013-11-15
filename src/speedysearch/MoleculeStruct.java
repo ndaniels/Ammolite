@@ -28,7 +28,7 @@ public class MoleculeStruct extends AtomContainer
 	
 	private static final long serialVersionUID = 1L;
 	protected ArrayList<String> mol_ids;
-	protected SparseUndirectedGraph graph;
+	public SparseUndirectedGraph graph;
 
 	public MoleculeStruct( IAtomContainer base )
 	{	

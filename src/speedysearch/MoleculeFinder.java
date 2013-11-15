@@ -80,7 +80,9 @@ public class MoleculeFinder implements IMoleculeFinder {
 
 	@Override
 	public String maximalCommonStructureIDs(IAtomContainer query) {
-		// TODO Auto-generated method stub
+		if(hashed_structs == null){
+			populateHash();
+		} 
 		return null;
 	}
 
@@ -90,29 +92,25 @@ public class MoleculeFinder implements IMoleculeFinder {
 	}
 
 	@Override
-	public IAtomContainer exactMolecularMatch(IAtomContainer query,
-			ArrayList<IAtomContainer> set) {
+	public IAtomContainer exactMolecularMatch(IAtomContainer query, ArrayList<IAtomContainer> set) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String exactMolecularMatchID(IAtomContainer query,
-			ArrayList<IAtomContainer> set) {
+	public String exactMolecularMatchID(IAtomContainer query, ArrayList<IAtomContainer> set) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<IAtomContainer> maximalCommonMolecules(
-			IAtomContainer query, ArrayList<IAtomContainer> set) {
+	public ArrayList<IAtomContainer> maximalCommonMolecules(IAtomContainer query, ArrayList<IAtomContainer> set) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String maximalCommonMoleculeIDs(IAtomContainer query,
-			ArrayList<IAtomContainer> set) {
+	public String maximalCommonMoleculeIDs(IAtomContainer query,ArrayList<IAtomContainer> set) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -122,6 +120,8 @@ public class MoleculeFinder implements IMoleculeFinder {
 		// TODO Auto-generated method stub
 
 	}
+	
+	
 	
 	private void populateHash(){
 		hashed_structs = new HashMap<Integer, ArrayList<CyclicStruct> >(1000*1000);
@@ -147,7 +147,7 @@ public class MoleculeFinder implements IMoleculeFinder {
 	}
 	
 	private IAtomContainer loadMolecule(String id){
-		// TODO: implement
+		return null;
 	}
 	
 	/**

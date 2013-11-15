@@ -9,19 +9,23 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import org.apache.commons.cli.MissingOptionException;
 import org.apache.commons.cli.ParseException;
+import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.io.SDFWriter;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import cmd.InputHandler;
 import cmd.OutputHandler;
 import cmd.SMSDcmd;
 import cmd.ArgumentHandler;
 import edu.ucla.sspace.graph.isomorphism.VF2IsomorphismTester;
+import fmcs.MCS;
 
 import org.openscience.smsd.AtomAtomMapping;
 import org.openscience.smsd.algorithm.vflib.VF2MCS;
@@ -34,6 +38,24 @@ public class StructFinder {
 	public StructFinder(String _struct_filename, String _id_filename) {
 		struct_filename = _struct_filename;
 		id_filename = _id_filename;
+	}
+	
+	public static  void testMCS(String query_filename, String target_filename){
+		IAtomContainer query = StructFinder.convertToAtomContainer(query_filename);
+		query = AtomContainerManipulator.removeHydrogens(query);
+		IAtomContainer target = StructFinder.convertToAtomContainer(target_filename);
+		target = AtomContainerManipulator.removeHydrogens(target);
+		MoleculeStruct q = new MoleculeStruct(query);
+		System.out.println(q.graph);
+		MoleculeStruct t = new MoleculeStruct(target);
+		System.out.println(t.graph);
+		MCS myTestMCS = new MCS(query,target);
+		myTestMCS.calculate();
+
+		for(IAtomContainer sol: myTestMCS.getSolutions()){
+			MoleculeStruct m = new MoleculeStruct(sol);
+			System.out.println(m.graph);
+		}
 	}
 	
 	public void mcsQuery(String query_filename){
@@ -53,6 +75,20 @@ public class StructFinder {
 			AtomAtomMapping mapping = matcher.getFirstAtomMapping();
 			System.out.println(mapping);
 		}
+	}
+	
+	private static IAtomContainer convertToAtomContainer(String filename){
+		IAtomContainer mol = null;
+		try {
+			IteratingSDFReader query_file = new IteratingSDFReader(filename);
+			IAtomContainer query = query_file.next();
+			query_file.close();
+			mol = new AtomContainer(query);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return mol;
 	}
 	
 	private CyclicStruct convertToCyclicStruct(String query_filename){

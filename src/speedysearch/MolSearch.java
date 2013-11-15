@@ -23,6 +23,8 @@ public class MolSearch {
 			StructFinder sf = new StructFinder(args[1], args[2]);
 			System.out.println("Looking for mcs structural matches to "+args[3]+" in "+args[1]);
 			mcsSearch(sf, args[3]);
+		} else if( args.length == 3 && args[0].equals("--testFMCS")){
+			StructFinder.testMCS(args[1], args[2]);
 		}
 
 	}
