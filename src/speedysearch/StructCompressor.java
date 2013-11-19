@@ -25,10 +25,16 @@ public class StructCompressor {
 	private static int matches = 0;
 	private static int fruitless_comparisons = 0;
 
+	public static void compress(String folder_name) throws IOException, CDKException{
+		MoleculeStruct exemplar = new RingStruct();
+		compress(folder_name, exemplar);
+	}
 	
-	public static void  compress(String folder_name) throws IOException, CDKException{
+	public static void  compress(String folder_name, MoleculeStruct exemplar) throws IOException, CDKException{
+		MoleculeStructFactory structFactory = new MoleculeStructFactory(exemplar);
 		
 		int init_capacity = 1000*1000; // Initial capacity of 1,000,000. Still a lot less than the 60,000,000 molecules
+		
 		found_structs = new HashMap<Integer, ArrayList<IAtomContainer>>( init_capacity );
 		long startTime =System.currentTimeMillis();
 		
@@ -50,7 +56,7 @@ public class StructCompressor {
 																			DefaultChemObjectBuilder.getInstance()
 																		);
 			System.out.println("Scanning " +  f.getName());
-			checkDatabaseForIsomorphicStructs( molecule_database );
+			checkDatabaseForIsomorphicStructs( molecule_database, structFactory );
 			molecule_database.close();
 			System.out.println("Scanned " + molecules +" molecules");
 			System.out.println("Found " + structures +" unique structures");
@@ -71,11 +77,11 @@ public class StructCompressor {
 
 	}
 	
-	private static void checkDatabaseForIsomorphicStructs( IteratingSDFReader molecule_database ) throws CDKException{
+	private static void checkDatabaseForIsomorphicStructs( IteratingSDFReader molecule_database, MoleculeStructFactory structFactory ) throws CDKException{
 		VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
         while( molecule_database.hasNext() ){
         	IAtomContainer molecule =  molecule_database.next();
-        	MoleculeStruct structure = new CyclicStruct( molecule );
+        	MoleculeStruct structure = structFactory.makeMoleculeStruct(molecule);
         	molecules++;
         	if( found_structs.containsKey( structure.hashCode())){
         		ArrayList<IAtomContainer> potential_matches = found_structs.get( structure.hashCode() );
@@ -83,7 +89,7 @@ public class StructCompressor {
         		for( IAtomContainer candidate: potential_matches ){
         			if ( structure.isIsomorphic(candidate, iso_tester) ){
         				no_match = false;
-        				( (CyclicStruct) candidate).addID( structure.getID());
+        				( (RingStruct) candidate).addID( structure.getID());
         				break;
         			} else {
         				fruitless_comparisons++;

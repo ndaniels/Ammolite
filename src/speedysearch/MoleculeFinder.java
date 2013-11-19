@@ -6,18 +6,27 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import edu.ucla.sspace.graph.isomorphism.VF2IsomorphismTester;
+import fmcs.MCS;
 
 public class MoleculeFinder implements IMoleculeFinder {
 	
-	private HashMap<Integer, ArrayList<CyclicStruct> > hashed_structs;
-	private String struct_filename, id_filename;
+	private HashMap<Integer, ArrayList<MoleculeStruct> > hashed_structs;
+	private String database_filename, struct_filename, id_filename;
+	private MoleculeStructFactory structFactory;
 
-	public MoleculeFinder() {
-		// TODO Auto-generated constructor stub
+	public MoleculeFinder(String _database_filename,String  _struct_filename, String _id_filename, MoleculeStruct exemplar) {
+		structFactory= new MoleculeStructFactory( exemplar );
+		database_filename= _database_filename;
+		struct_filename = _struct_filename;
+		id_filename = _id_filename;
+		
 	}
 
 	@Override
@@ -42,15 +51,15 @@ public class MoleculeFinder implements IMoleculeFinder {
 		if(hashed_structs == null){
 			populateHash();
 		}
-		CyclicStruct qStruct = new CyclicStruct(query);
+		MoleculeStruct qStruct = structFactory.makeMoleculeStruct(query);
 		if(!hashed_structs.containsKey(qStruct.hashCode())){
 			return "No matches.";
 		}
 		VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
-		for(CyclicStruct el: hashed_structs.get(qStruct.hashCode()) ){
+		for(MoleculeStruct el: hashed_structs.get(qStruct.hashCode()) ){
 			if( qStruct.isIsomorphic(el, iso_tester)){
 				System.out.println(el.getID());
-				return getMatchingIDs(id_filename, el.getID());
+				return getMatchingIDs(el.getID());
 			}
 		}
 		return "No matches.";
@@ -80,10 +89,27 @@ public class MoleculeFinder implements IMoleculeFinder {
 
 	@Override
 	public String maximalCommonStructureIDs(IAtomContainer query) {
-		if(hashed_structs == null){
-			populateHash();
-		} 
-		return null;
+		LinkedList<MoleculeStruct> matches = new LinkedList<MoleculeStruct>();
+		double ARBITRARY_THRESHOLD = 0.5;
+		MoleculeStruct qStruct = structFactory.makeMoleculeStruct(query);
+		Iterator<ArrayList<MoleculeStruct>> arrayItr = hashed_structs.values().iterator();
+		while( arrayItr.hasNext()){
+			ArrayList<MoleculeStruct> list = arrayItr.next();
+			for(MoleculeStruct target: list){
+				MCS myMCS = new MCS(qStruct,target);
+				myMCS.calculate();
+				if(myMCS.size() > qStruct.getAtomCount()*ARBITRARY_THRESHOLD){
+					matches.add(target);
+				}
+			}
+		}
+		StringBuilder out = new StringBuilder();
+		for(MoleculeStruct match: matches){
+			out.append( getMatchingIDs( match.getID() ) );
+		}
+		return out.toString();
+		
+
 	}
 
 	@Override
@@ -124,17 +150,17 @@ public class MoleculeFinder implements IMoleculeFinder {
 	
 	
 	private void populateHash(){
-		hashed_structs = new HashMap<Integer, ArrayList<CyclicStruct> >(1000*1000);
+		hashed_structs = new HashMap<Integer, ArrayList<MoleculeStruct> >(1000*1000);
 		IteratingSDFReader struct_file;
 		try {
 			struct_file = new IteratingSDFReader( struct_filename );
 			
 			while(struct_file.hasNext()){
-				CyclicStruct struct = new CyclicStruct( struct_file.next());
+				MoleculeStruct struct = structFactory.makeMoleculeStruct( struct_file.next());
 				if(hashed_structs.containsKey( struct.hashCode())){
 					hashed_structs.get(struct.hashCode()).add(struct);
 				} else {
-					hashed_structs.put(struct.hashCode(), new ArrayList<CyclicStruct>());
+					hashed_structs.put(struct.hashCode(), new ArrayList<MoleculeStruct>());
 					hashed_structs.get(struct.hashCode()).add(struct);
 				}
 			}
@@ -144,6 +170,10 @@ public class MoleculeFinder implements IMoleculeFinder {
 			e.printStackTrace();
 		}
 
+	}
+	
+	private void populateIDHash(){
+		// TODO
 	}
 	
 	private IAtomContainer loadMolecule(String id){
@@ -160,9 +190,9 @@ public class MoleculeFinder implements IMoleculeFinder {
 	 * @return
 	 * @throws IOException
 	 */
-	private String getMatchingIDs(String _id_filename, String struct_id){
+	private String getMatchingIDs(String struct_id){
 		try{
-			BufferedReader structs = new BufferedReader(new FileReader(new File(_id_filename)));
+			BufferedReader structs = new BufferedReader(new FileReader(new File(id_filename)));
 			String line;
 			while((line = structs.readLine()) != null){
 				if( line.contains(struct_id) ){

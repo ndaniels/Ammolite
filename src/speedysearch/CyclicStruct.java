@@ -12,13 +12,17 @@ public class CyclicStruct extends MoleculeStruct {
 
 	private static final long serialVersionUID = 1L;
 
+	public CyclicStruct(){
+		
+	}
+	
 	public CyclicStruct(IAtomContainer base) {
 		super(base);
 		removeOnePrimeCarbons();
 		setHash();
 	}
 	
-	private void removeOnePrimeCarbons(){
+	protected void removeOnePrimeCarbons(){
 		if(graph.size() +1 == graph.order() ){
 			this.removeAllBonds();
 			graph.clearEdges();

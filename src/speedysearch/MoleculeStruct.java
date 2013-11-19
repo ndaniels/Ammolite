@@ -29,7 +29,10 @@ public class MoleculeStruct extends AtomContainer
 	private static final long serialVersionUID = 1L;
 	protected ArrayList<String> mol_ids;
 	public SparseUndirectedGraph graph;
-
+	
+	public MoleculeStruct(){
+		
+	}
 	public MoleculeStruct( IAtomContainer base )
 	{	
 		super( new AtomContainer(AtomContainerManipulator.removeHydrogens(base)) );
