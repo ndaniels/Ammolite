@@ -185,7 +185,7 @@ public class IteratingSDFReader extends DefaultIteratingChemObjectReader<IAtomCo
         //initIOSettings();
         setSkip(skip);
     }
-
+    
 
     @TestMethod("testGetFormat")
     public IResourceFormat getFormat() {
@@ -204,15 +204,12 @@ public class IteratingSDFReader extends DefaultIteratingChemObjectReader<IAtomCo
      */
     private ISimpleChemObjectReader getReader(IChemFormat format){
 
-        // create a new reader if not mapped
         if(!readerMap.containsKey(format)){
 
             ISimpleChemObjectReader reader = factory.createReader(format);
             reader.setErrorHandler(this.errorHandler);
             reader.setReaderMode(this.mode);
-//            if (currentFormat instanceof MDLV2000Format) {
-//            	reader.addSettings(getSettings());
-//            }
+
 
             readerMap.put(format, reader);
 
@@ -234,7 +231,7 @@ public class IteratingSDFReader extends DefaultIteratingChemObjectReader<IAtomCo
         hasNext = false;
         nextMolecule = null;
         buffer.delete(0, buffer.length());
-            
+        
         // now try to parse the next Molecule
         try {
             currentFormat = (IChemFormat)MDLFormat.getInstance();
@@ -413,14 +410,5 @@ public class IteratingSDFReader extends DefaultIteratingChemObjectReader<IAtomCo
 	    setReader(new InputStreamReader(reader));
     }
 
-//    private void initIOSettings() {
-//        forceReadAs3DCoords = new BooleanIOSetting("ForceReadAs3DCoordinates", IOSetting.LOW,
-//          "Should coordinates always be read as 3D?", 
-//          "false");
-//        this.addSetting(forceReadAs3DCoords);
-//    }
-    
-//    public void customizeJob() {
-//        fireIOSettingQuestion(forceReadAs3DCoords);
-//    }
+
 }

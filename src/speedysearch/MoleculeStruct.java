@@ -22,7 +22,7 @@ import edu.ucla.sspace.graph.isomorphism.AbstractIsomorphismTester;
  * 
  * @author  David Danko
  */
-public class MoleculeStruct extends AtomContainer
+public class MoleculeStruct extends AtomContainer implements Comparable<MoleculeStruct>
 {
 	protected int hash_code;
 	
@@ -109,5 +109,9 @@ public class MoleculeStruct extends AtomContainer
 	@Override
 	public int hashCode(){
 		return hash_code;
+	}
+	@Override
+	public int compareTo(MoleculeStruct that) {
+		return this.getAtomCount() - that.getAtomCount();
 	}
 }

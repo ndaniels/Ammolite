@@ -1,45 +1,55 @@
 package speedysearch;
 
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 
+import org.apache.commons.io.input.BoundedInputStream;
+import org.omg.CORBA.portable.InputStream;
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
+
 import edu.ucla.sspace.graph.isomorphism.VF2IsomorphismTester;
 
 /*
  * A class for compressing SDF files based on molecules with identical structure
-
  * 
  */
 
 public class StructCompressor {
-	private static HashMap<Integer, ArrayList<IAtomContainer> > found_structs;
-	private static int molecules = 0;
-	private static int structures = 0;
-	private static int matches = 0;
-	private static int fruitless_comparisons = 0;
+	private KeyListMap<Integer, MoleculeStruct> structsByHash = new KeyListMap<Integer,MoleculeStruct>(1000);
+	private KeyListMap<Integer, MoleculeStruct> structsByAtomCount= new KeyListMap<Integer,MoleculeStruct>(1000);
+	private HashMap<String, FilePair> moleculesLocationsByPubChemID = new HashMap<String, FilePair>();
+	private MoleculeStructFactory structFactory;
+	private int molecules = 0;
+	private int structures = 0;
+	private int fruitless_comparisons = 0;
+	private long runningTime, startTime;
 
-	public static void compress(String folder_name) throws IOException, CDKException{
-		MoleculeStruct exemplar = new RingStruct();
-		compress(folder_name, exemplar);
+	public void StructCompresser(String folder_name, MoleculeStruct exemplar) throws IOException, CDKException{
+		structFactory = new MoleculeStructFactory(exemplar);
 	}
 	
-	public static void  compress(String folder_name, MoleculeStruct exemplar) throws IOException, CDKException{
-		MoleculeStructFactory structFactory = new MoleculeStructFactory(exemplar);
-		
-		int init_capacity = 1000*1000; // Initial capacity of 1,000,000. Still a lot less than the 60,000,000 molecules
-		
-		found_structs = new HashMap<Integer, ArrayList<IAtomContainer>>( init_capacity );
-		long startTime =System.currentTimeMillis();
-		
-		long runningTime;
-		
+	/**
+	 * Turns a folder or file name into a list of file names (or just one name)
+	 * @param folder_name
+	 * @return
+	 */
+	private File[] getContents(String folder_name ){
 		File directory = new File( folder_name );
 		File[] contents = {directory};
 		if( directory.isDirectory()){
@@ -50,41 +60,64 @@ public class StructCompressor {
 		if( filename.length()>=4 && filename.substring(filename.length()-4, filename.length()).equals(".sdf")){
 			filename = filename.substring(0, filename.length() -4 );
 		}
+		return contents;
+	}
+	
+	/**
+	 * Scans through an sdf library and compresses it.
+	 * 
+	 * @param folder_name location of the database to be compressed
+	 * @param filename name for the compressed database
+	 * @throws IOException
+	 * @throws CDKException
+	 */
+	public void  compress(String folder_name, String filename) throws IOException, CDKException{
+		startTime =System.currentTimeMillis();
+		File[] contents = getContents(folder_name);
+
+		FileInputStream fs;
+		BufferedReader br;
 		for(File f: contents){
+			fs = new FileInputStream(f);
+			br = new BufferedReader( new InputStreamReader(fs ));
 			IteratingSDFReader molecule_database =new IteratingSDFReader(
-																			new FileReader( f ), 
+																			br,
 																			DefaultChemObjectBuilder.getInstance()
 																		);
 			System.out.println("Scanning " +  f.getName());
+			
 			checkDatabaseForIsomorphicStructs( molecule_database, structFactory );
 			molecule_database.close();
-			System.out.println("Scanned " + molecules +" molecules");
-			System.out.println("Found " + structures +" unique structures");
-			System.out.println("Found " + matches +" molecules with matching structures");
-			runningTime = (System.currentTimeMillis() - startTime)/(1000*60);// Time in minutes
-			System.out.println("Running for "+ runningTime + " minutes");
+			
+			talk();
 		}
 		
 		produceClusteredDatabase( filename );
-		System.out.println("Total Scanned " + molecules +" molecules");
-		System.out.println("Total Found " + structures +" unique structures");
-		System.out.println("Total Found " + matches +" molecules with matching structures");
-		System.out.println("Compared two non isomporhic molecules "+ fruitless_comparisons +" times"); // This is the slowest part of compression so it's worth reducing these as much as possible
-		runningTime = (System.currentTimeMillis() - startTime)/(1000*60);// Time in minutes
-		System.out.println("Ran for "+ runningTime + " minutes");
-		
-		
+		talk();
+	}
 
+	private void talk(){
+		runningTime = (System.currentTimeMillis() - startTime)/(1000);// Time in seconds
+		System.out.println(molecules +" "+structures+" "+runningTime+" "+fruitless_comparisons);
 	}
 	
-	private static void checkDatabaseForIsomorphicStructs( IteratingSDFReader molecule_database, MoleculeStructFactory structFactory ) throws CDKException{
+	/**
+	 * Go through a file looking for matching elements of clusters
+	 * 
+	 * @param molecule_database
+	 * @param structFactory
+	 * @throws CDKException
+	 */
+	private void checkDatabaseForIsomorphicStructs( IteratingSDFReader molecule_database, MoleculeStructFactory structFactory ) throws CDKException{
 		VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
         while( molecule_database.hasNext() ){
+
         	IAtomContainer molecule =  molecule_database.next();
+        	
         	MoleculeStruct structure = structFactory.makeMoleculeStruct(molecule);
         	molecules++;
-        	if( found_structs.containsKey( structure.hashCode())){
-        		ArrayList<IAtomContainer> potential_matches = found_structs.get( structure.hashCode() );
+        	if( structsByHash.containsKey( structure.hashCode())){
+        		LinkedList<MoleculeStruct> potential_matches = structsByHash.get( structure.hashCode() );
         		boolean no_match = true;
         		for( IAtomContainer candidate: potential_matches ){
         			if ( structure.isIsomorphic(candidate, iso_tester) ){
@@ -95,29 +128,36 @@ public class StructCompressor {
         				fruitless_comparisons++;
         			}
         		}
+        		
         		if( no_match ){
         			structures++;
-        			potential_matches.add( structure );
-        		} else{
-        			matches++;
-        		}
+        			structsByHash.add(structure.hashCode(), structure);
+        			structsByAtomCount.add(structure.getAtomCount(), structure);
+        		} 
         	}
         	else{
         		structures++;
-        		ArrayList<IAtomContainer> list = new ArrayList<IAtomContainer>(2);
-        		list.add( structure );
-        		found_structs.put(structure.hashCode(), list);
+        		structsByHash.add(structure.hashCode(), structure);
+    			structsByAtomCount.add(structure.getAtomCount(), structure);
         	}
         }
 	}
 	
-	private static void produceClusteredDatabase( String filename ) throws CDKException, IOException{
+	/**
+	 * Produce the files representing the clustered database.
+	 * 
+	 * @param filename
+	 * @throws CDKException
+	 * @throws IOException
+	 */
+	private void produceClusteredDatabase( String filename ) throws CDKException, IOException{
 	
         StructSDFWriter writer = new StructSDFWriter( filename );
-        Iterator< ArrayList<IAtomContainer> > lists = found_structs.values().iterator();
+        Iterator<LinkedList<MoleculeStruct>> lists = structsByHash.values().iterator();
         
        while( lists.hasNext() ){
-    	   ArrayList<IAtomContainer> struct_list = lists.next();
+    	   LinkedList<MoleculeStruct> struct_list = lists.next();
+    	   
         	for(IAtomContainer struct: struct_list){
         		assert( struct != null);
         		writer.write( struct );
@@ -127,5 +167,20 @@ public class StructCompressor {
        if (writer != null) {
            writer.close();
        }
+	}
+	
+	private void WriteObjectToFile( String object_filename, Object o){
+		object_filename = object_filename + ".ser";
+		try{
+			OutputStream file = new FileOutputStream(object_filename);
+			OutputStream buffer = new BufferedOutputStream( file );
+			ObjectOutput output = new ObjectOutputStream( buffer );
+			output.writeObject(o);
+			output.close();
+		}
+		catch( IOException ex){
+			ex.printStackTrace();
+		}
+		
 	}
 }
