@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 
 import org.apache.commons.io.input.BoundedInputStream;
 import org.omg.CORBA.portable.InputStream;
@@ -32,16 +34,15 @@ import edu.ucla.sspace.graph.isomorphism.VF2IsomorphismTester;
 
 public class StructCompressor {
 	private KeyListMap<Integer, MoleculeStruct> structsByHash = new KeyListMap<Integer,MoleculeStruct>(1000);
-	private KeyListMap<Integer, MoleculeStruct> structsByAtomCount= new KeyListMap<Integer,MoleculeStruct>(1000);
-	private HashMap<String, FilePair> moleculesLocationsByPubChemID = new HashMap<String, FilePair>();
+	private HashMap<String, FilePair> moleculeLocationsByID = new HashMap<String, FilePair>();
 	private MoleculeStructFactory structFactory;
 	private int molecules = 0;
 	private int structures = 0;
 	private int fruitless_comparisons = 0;
 	private long runningTime, startTime;
 
-	public void StructCompresser(String folder_name, MoleculeStruct exemplar) throws IOException, CDKException{
-		structFactory = new MoleculeStructFactory(exemplar);
+	public void StructCompresser(String folder_name, MoleculeStructFactory _structFactory) throws IOException, CDKException{
+		structFactory = _structFactory;
 	}
 	
 	/**
@@ -109,15 +110,15 @@ public class StructCompressor {
 	 * @throws CDKException
 	 */
 	private void checkDatabaseForIsomorphicStructs( IteratingSDFReader molecule_database, MoleculeStructFactory structFactory ) throws CDKException{
+		
 		VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
         while( molecule_database.hasNext() ){
 
-        	IAtomContainer molecule =  molecule_database.next();
-        	
+        	IAtomContainer molecule =  molecule_database.next();       	
         	MoleculeStruct structure = structFactory.makeMoleculeStruct(molecule);
         	molecules++;
         	if( structsByHash.containsKey( structure.hashCode())){
-        		LinkedList<MoleculeStruct> potential_matches = structsByHash.get( structure.hashCode() );
+        		List<MoleculeStruct> potential_matches = structsByHash.get( structure.hashCode() );
         		boolean no_match = true;
         		for( IAtomContainer candidate: potential_matches ){
         			if ( structure.isIsomorphic(candidate, iso_tester) ){
@@ -132,15 +133,24 @@ public class StructCompressor {
         		if( no_match ){
         			structures++;
         			structsByHash.add(structure.hashCode(), structure);
-        			structsByAtomCount.add(structure.getAtomCount(), structure);
         		} 
         	}
         	else{
         		structures++;
         		structsByHash.add(structure.hashCode(), structure);
-    			structsByAtomCount.add(structure.getAtomCount(), structure);
         	}
         }
+	}
+	
+	/**
+	 * Reads through a file and adds to the location hash. This is a redundant loop but java struggles sometimes.
+	 * 
+	 * @param f
+	 * @throws FileNotFoundException
+	 */
+	private void findMolLocations(File f) throws FileNotFoundException{
+
+		
 	}
 	
 	/**
@@ -153,10 +163,10 @@ public class StructCompressor {
 	private void produceClusteredDatabase( String filename ) throws CDKException, IOException{
 	
         StructSDFWriter writer = new StructSDFWriter( filename );
-        Iterator<LinkedList<MoleculeStruct>> lists = structsByHash.values().iterator();
+        Iterator<List<MoleculeStruct>> lists = structsByHash.values().iterator();
         
        while( lists.hasNext() ){
-    	   LinkedList<MoleculeStruct> struct_list = lists.next();
+    	   List<MoleculeStruct> struct_list = lists.next();
     	   
         	for(IAtomContainer struct: struct_list){
         		assert( struct != null);

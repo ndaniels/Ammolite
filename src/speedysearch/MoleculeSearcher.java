@@ -1,11 +1,7 @@
 package speedysearch;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -16,7 +12,6 @@ import fmcs.MCS;
 public class MoleculeSearcher {
 	private MoleculeStructFactory structFactory;
 	private StructDatabase db;
-	private static final String no_match = "NO_MATCH";
 	
 	public MoleculeSearcher( StructDatabase _db, MoleculeStructFactory _structFactory) {
 		structFactory= _structFactory;
@@ -25,16 +20,16 @@ public class MoleculeSearcher {
 	}
 	
 	
-	public String exactStructureMatch(IAtomContainer query){
+	public String[] exactStructureMatch(IAtomContainer query){
 		MoleculeStruct sQuery = structFactory.makeMoleculeStruct(query);
 		List<MoleculeStruct> targets = db.getStructsByHash( sQuery.hashCode() );
 		VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
 		for(MoleculeStruct t: targets){
 			if( sQuery.isIsomorphic(t, iso_tester)){
-				return sQuery.getID();
+				return t.getIDNums();
 			}
 		}
-		return no_match;
+		return null;
 	}
 	
 	public String[] bestStructureMatches(IAtomContainer query){

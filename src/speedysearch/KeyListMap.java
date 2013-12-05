@@ -2,8 +2,9 @@ package speedysearch;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 
-public class KeyListMap<K,V> extends HashMap<K, LinkedList<V>> {
+public class KeyListMap<K,V> extends HashMap<K, List<V>> {
 	
 	public KeyListMap(int initialSize){
 		super(initialSize);
@@ -18,4 +19,5 @@ public class KeyListMap<K,V> extends HashMap<K, LinkedList<V>> {
 		}
 		return val;
 	}
+	
 }
