@@ -4,10 +4,10 @@ import java.util.Iterator;
 
 public class StructIterator implements Iterator<MoleculeStruct> {
 	Iterator<MoleculeStruct> currentListIterator;
-	Iterator<Object> keyIterator;
-	KeyListMap<Object, MoleculeStruct> in;
+	Iterator<Integer> keyIterator;
+	KeyListMap<Integer, MoleculeStruct> in;
 	
-	public StructIterator(KeyListMap<Object, MoleculeStruct> _in){
+	public StructIterator(KeyListMap<Integer, MoleculeStruct> _in){
 		in = _in;
 		keyIterator = in.keySet().iterator();
 		if(keyIterator.hasNext()){

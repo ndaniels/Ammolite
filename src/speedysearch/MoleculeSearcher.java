@@ -87,9 +87,11 @@ public class MoleculeSearcher {
 	}
 	
 	public IAtomContainer[] hybridSearch(IAtomContainer query){
+		
 		String[] structMatches = new String[1];
-		structMatches[0] = exactStructureMatch( query );
-		if( structMatches[0].equals(no_match)){
+		structMatches = exactStructureMatch( query );
+		
+		if( structMatches == null){
 			structMatches = bestStructureMatches( query );
 		}
 		return bestMoleculeMatches(query, structMatches);	

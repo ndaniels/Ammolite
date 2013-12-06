@@ -19,7 +19,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.commons.io.input.BoundedInputStream;
+import org.apache.commons.io.input.CountingInputStream;
 import org.omg.CORBA.portable.InputStream;
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.exception.CDKException;
@@ -41,7 +41,7 @@ public class StructCompressor {
 	private int fruitless_comparisons = 0;
 	private long runningTime, startTime;
 
-	public void StructCompresser(String folder_name, MoleculeStructFactory _structFactory) throws IOException, CDKException{
+	public StructCompressor(MoleculeStructFactory _structFactory) throws IOException, CDKException{
 		structFactory = _structFactory;
 	}
 	
@@ -93,6 +93,10 @@ public class StructCompressor {
 			talk();
 		}
 		
+		for(File f:contents){
+			findMolLocations(f);
+		}
+		
 		produceClusteredDatabase( filename );
 		talk();
 	}
@@ -120,10 +124,10 @@ public class StructCompressor {
         	if( structsByHash.containsKey( structure.hashCode())){
         		List<MoleculeStruct> potential_matches = structsByHash.get( structure.hashCode() );
         		boolean no_match = true;
-        		for( IAtomContainer candidate: potential_matches ){
+        		for( MoleculeStruct candidate: potential_matches ){
         			if ( structure.isIsomorphic(candidate, iso_tester) ){
         				no_match = false;
-        				( (RingStruct) candidate).addID( structure.getID());
+        				candidate.addID( structure.getID());
         				break;
         			} else {
         				fruitless_comparisons++;
@@ -146,10 +150,51 @@ public class StructCompressor {
 	 * Reads through a file and adds to the location hash. This is a redundant loop but java struggles sometimes.
 	 * 
 	 * @param f
-	 * @throws FileNotFoundException
+	 * @throws IOException 
 	 */
-	private void findMolLocations(File f) throws FileNotFoundException{
+	private void findMolLocations(File f) throws IOException{
+		FileInputStream inStream = new FileInputStream(f);
+		CountingInputStream in = new CountingInputStream(inStream);
+		
+		long pos = 0;
+		boolean foundOffset = false;
+		int c;
 
+		while( (c=in.read()) != -1){
+			
+			if(c == '$' && !foundOffset){
+				pos = in.getByteCount();
+				foundOffset = true;
+				
+				
+			} else if( c == '>') {
+				
+				StringBuilder sb = new StringBuilder();
+				while( (c=in.read()) != '\n'){
+					if( c != ' '){
+						
+						sb.append((char) c);
+					}
+				}
+				
+				if( sb.toString().equals("<PUBCHEM_COMPOUND_CID>")){
+					sb = new StringBuilder();
+					while( (c=in.read()) != '\n'){
+						if( c != ' '){
+							sb.append((char) c);
+						}
+					}
+					String pubchemID = sb.toString();
+					
+					moleculeLocationsByID.put(pubchemID, new FilePair(f.getAbsolutePath(), pos));
+					foundOffset = false;
+					
+				}
+			}
+		}
+		
+		in.close();
+		
 		
 	}
 	
@@ -160,29 +205,19 @@ public class StructCompressor {
 	 * @throws CDKException
 	 * @throws IOException
 	 */
-	private void produceClusteredDatabase( String filename ) throws CDKException, IOException{
+	private void produceClusteredDatabase( String path ) throws CDKException, IOException{
 	
-        StructSDFWriter writer = new StructSDFWriter( filename );
-        Iterator<List<MoleculeStruct>> lists = structsByHash.values().iterator();
-        
-       while( lists.hasNext() ){
-    	   List<MoleculeStruct> struct_list = lists.next();
-    	   
-        	for(IAtomContainer struct: struct_list){
-        		assert( struct != null);
-        		writer.write( struct );
-        	}
-        }
-       
-       if (writer != null) {
-           writer.close();
-       }
+		File folder = new File( path );
+		folder.mkdir();
+		WriteObjectToFile(folder.getAbsolutePath(), "structsByHash", structsByHash);
+		WriteObjectToFile(folder.getAbsolutePath(), "moleculeLocationsByID", moleculeLocationsByID);
+		
 	}
 	
-	private void WriteObjectToFile( String object_filename, Object o){
-		object_filename = object_filename + ".ser";
+	private void WriteObjectToFile(String parent, String object_filename, Object o){
+		object_filename = parent + "/" + object_filename + ".ser";
 		try{
-			OutputStream file = new FileOutputStream(object_filename);
+			OutputStream file = new FileOutputStream( object_filename );
 			OutputStream buffer = new BufferedOutputStream( file );
 			ObjectOutput output = new ObjectOutputStream( buffer );
 			output.writeObject(o);

@@ -26,27 +26,38 @@ public class StructDatabase {
 		return structsByHash.get(hash);
 	}
 	
-	public IAtomContainer getMolecule(String pubchemID) throws IOException{
+	public IAtomContainer getMolecule(String pubchemID){
+		
 		FilePair fp = fileLocsByID.get(pubchemID);
 		String filename = fp.name();
 		long byteOffset = fp.location();
 		
 		File f = new File(filename);
-		FileInputStream fs = new FileInputStream(f);
-		fs.skip(byteOffset);
-		BufferedReader br = new BufferedReader( new InputStreamReader(fs ));
-		IteratingSDFReader molecule =new IteratingSDFReader( br, DefaultChemObjectBuilder.getInstance() );
-		IAtomContainer out = molecule.next();
+		FileInputStream fs;
+		try {
+			fs = new FileInputStream(f);
+			fs.skip(byteOffset);
+			BufferedReader br = new BufferedReader( new InputStreamReader(fs ));
+			IteratingSDFReader molecule =new IteratingSDFReader( br, DefaultChemObjectBuilder.getInstance() );
+			IAtomContainer out = molecule.next();
+			
+			fs.close();
+			br.close();
+			molecule.close();
+			
+			return out;
+			
+		} catch (IOException e) {
+			System.exit(-1);
+			e.printStackTrace();
+		}
+		return null;
 		
-		fs.close();
-		br.close();
-		molecule.close();
-		
-		return out;
+
 	}
 	
 	public Iterator<MoleculeStruct> iterator(){
-		return StructIterator( structsByHash);
+		return new StructIterator( structsByHash);
 	}
 	
 	

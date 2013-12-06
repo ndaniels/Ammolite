@@ -1,6 +1,8 @@
 package speedysearch;
 
-public class FilePair {
+import java.io.Serializable;
+
+public class FilePair implements Serializable{
 	private String filename;
 	private long location;
 	
