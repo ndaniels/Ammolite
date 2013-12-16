@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JRI_DIR"/>
-	<classpathentry kind="lib" path="/usr/share/java/cdk-1.4.19.jar"/>
-	<classpathentry kind="lib" path="/usr/share/java/java-atk-wrapper.jar"/>
-	<classpathentry kind="lib" path="/usr/share/java/xmlParserAPIs.jar"/>
 	<classpathentry kind="lib" path="lib/cdk-1.4.19.jar"/>
-	<classpathentry kind="lib" path="lib/SMSD20130819.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/SMSD20130819.jar"/>
 	<classpathentry kind="lib" path="lib/sspace-2.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/trove-3.0.2.jar"/>
+	<classpathentry kind="lib" path="lib/scallop_2.10-0.9.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

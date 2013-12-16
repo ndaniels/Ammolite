@@ -106,6 +106,58 @@ public class StructCompressor {
 		System.out.println(molecules +" "+structures+" "+runningTime+" "+fruitless_comparisons);
 	}
 	
+	public static void mergeDatabases( StructDatabase a, StructDatabase b, String targetname){
+		
+		if(	!( a.getMoleculeStructFactory().exemplar.getClass().equals( b.getMoleculeStructFactory().exemplar.getClass()))){
+			throw new RuntimeException("Databases do not have the same type of compression. Aborting.");
+		}
+		
+		KeyListMap<Integer, MoleculeStruct> newStructsByHash = a.getStructsByHash();
+		KeyListMap<Integer, MoleculeStruct> bStructsByHash = b.getStructsByHash();
+		VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
+		List<MoleculeStruct> toAdd;
+		
+		for(int key: bStructsByHash.keySet()){
+			
+			toAdd = new ArrayList<MoleculeStruct>();
+			
+			if( newStructsByHash.containsKey(key)){
+				
+				toAdd = new ArrayList<MoleculeStruct>();
+				
+				for(MoleculeStruct aStruct: newStructsByHash.get(key)){
+					for(MoleculeStruct bStruct: bStructsByHash.get(key)){
+						if(aStruct.isIsomorphic(bStruct, iso_tester)){
+							for(String id: bStruct.getIDNums()){
+								aStruct.addID(id);
+							}
+							break;
+						} else {
+							toAdd.add(bStruct);
+						}
+					}
+				}
+				
+				for(MoleculeStruct m: toAdd){
+					newStructsByHash.get(key).add(m);
+				}
+				
+			} else {
+				
+				newStructsByHash.put(key, bStructsByHash.get(key));			
+			}		
+		}
+		
+		HashMap<String, FilePair> newMolLocsByID = a.getFileLocsByID();
+		for(String key: b.getFileLocsByID().keySet()){
+			newMolLocsByID.put(key, b.getFileLocsByID().get(key));
+		}
+		
+		StructDatabase newDB = new StructDatabase( newStructsByHash, newMolLocsByID, a.getMoleculeStructFactory());
+		
+		writeObjectToFile(targetname, newDB);
+	}
+	
 	/**
 	 * Go through a file looking for matching elements of clusters
 	 * 
@@ -205,17 +257,12 @@ public class StructCompressor {
 	 * @throws CDKException
 	 * @throws IOException
 	 */
-	private void produceClusteredDatabase( String path ) throws CDKException, IOException{
-	
-		File folder = new File( path );
-		folder.mkdir();
-		WriteObjectToFile(folder.getAbsolutePath(), "structsByHash", structsByHash);
-		WriteObjectToFile(folder.getAbsolutePath(), "moleculeLocationsByID", moleculeLocationsByID);
-		
+	private void produceClusteredDatabase( String name ) throws CDKException, IOException{
+		StructDatabase database = new StructDatabase( structsByHash, moleculeLocationsByID, structFactory);
+		writeObjectToFile(name, database);
 	}
 	
-	private void WriteObjectToFile(String parent, String object_filename, Object o){
-		object_filename = parent + "/" + object_filename + ".ser";
+	private static void writeObjectToFile(String object_filename, Object o){
 		try{
 			OutputStream file = new FileOutputStream( object_filename );
 			OutputStream buffer = new BufferedOutputStream( file );

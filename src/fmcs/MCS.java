@@ -3,6 +3,7 @@ package fmcs;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import org.openscience.cdk.AtomContainer;
@@ -32,8 +33,8 @@ public class MCS {
 	private int bondMismatchUpperBound;
 	private int atomMismatchCurr;
 	private int bondMismatchCurr;
-	private IAtomContainer compoundOne;
-	private IAtomContainer compoundTwo;
+	public IAtomContainer compoundOne;
+	public IAtomContainer compoundTwo;
 	boolean timeoutStop = false;
 	boolean newComponent;
 	private int bondMisCount;
@@ -294,7 +295,7 @@ public class MCS {
 	 * 
 	 * @return
 	 */
-	public Collection<IAtomContainer> getSolutions(){
+	public List<IAtomContainer> getSolutions(){
 		
 		ArrayList<IAtomContainer> out = new ArrayList<IAtomContainer>(bestList.size());
 

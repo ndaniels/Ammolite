@@ -1,47 +1,83 @@
 <project name="MolSearch" basedir="." default="main">
 
-    <property name="src.dir"     value="src/"/>
+		<property name="src.dir"      value="src/"/>
+		<property name="build.dir"    value="build"/>
+		<property name="classes.dir"  value="${build.dir}/classes"/>
+		<property name="jar.dir"      value="${build.dir}/jar"/>
+		<property name="lib.dir" 	  value="lib" />
+		<property name="main-class"   value="speedysearch.MolSearchMain"/>
 
-    <property name="build.dir"   	value="build"/>
-    <property name="classes.dir" 	value="${build.dir}/classes"/>
-    <property name="jar.dir"     	value="${build.dir}/jar"/>
-    <property name="lib.dir" 		value="lib" />
+	
+		<target name="init">
+			<property name="scala.home" 	    value="/usr/local/Cellar/scala/2.10.3" />
+			<property name="scala.home.lib"	    value="${scala.home}/libexec/lib" />
 
-    <property name="main-class"  	value="speedysearch.MolSearch"/>
+			<path id="scala.path" cache="true">
+				<fileset dir="${scala.home.lib}">
+					<include name="**/*.jar"/>
+      			</fileset>
+      		</path>
 
-	<path id="build.classpath">
-    	<fileset dir="${lib.dir}">
-      		<include name="*.jar" />
-    	</fileset>
-  	</path>
+      		<path id="lib" cache="false">
+				<fileset dir="${lib.dir}">
+       				 <include name="**/*.jar"/>
+      			</fileset>
+      		</path>
+			
+			<path id="build.classpath">
+				<path refid="lib" />
+				<path refid="scala.path" />
+			</path>
+	
+			<taskdef resource="scala/tools/ant/antlib.xml">
+				<classpath>
+					<pathelement location="${scala.home.lib}/scala-compiler.jar"   />
+					<pathelement location="${scala.home.lib}/scala-reflect.jar"   />
+					<pathelement location="${scala.home.lib}/scala-library.jar"   />
+				</classpath>
+			</taskdef>
 
-    <target name="clean">
-        <delete dir="${build.dir}"/>
-    </target>
+		</target>
+	
+			
+
+		<target name="clean">
+			<delete dir="${build.dir}"/>
+		</target>
 
 
-  	
-    <target name="compile">
-        <mkdir dir="${build.dir}"/>
-        <javac source="1.6" target="1.6" srcdir="${src.dir}" destdir="${build.dir}" classpathref="build.classpath" />
-    </target>
+		
+		<target name="compile" depends="init">
+			<mkdir dir="${build.dir}"/>
+			<javac source="1.6" target="1.6" srcdir="${src.dir}" destdir="${build.dir}" classpathref="build.classpath" />
+			<scalac srcdir="${src.dir}" destdir="${build.dir}" classpathref="build.classpath" force="changed" >
+				<include name="**/*.scala"/>
+				<exclude name="**/*.java"/>
+			</scalac>
+		</target>
 
-    <target name="jar" depends="compile">
-        <mkdir dir="${jar.dir}"/>
-        <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${build.dir}" >
-            <manifest>
-                <attribute name="Main-Class" value="${main-class}"/>
-                <attribute name="Class-Path" value="../../lib/cdk-1.4.19.jar ../../lib/SMSD20130819.jar ../../lib/trove-3.0.2.jar ../../lib/sspace-2.0.1.jar"/>
-            </manifest>
-        </jar>
-    </target>
-    
-    <target name="run" depends="jar">
-        <java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>
-    </target>
+		<target name="jar" depends="compile">
 
-    <target name="clean-build" depends="clean,jar"/>
+				<mkdir dir="${jar.dir}"/>
 
-    <target name="main" depends="clean,run"/>
+				<manifestclasspath property="depends" jarfile="${jar.dir}/${ant.project.name}.jar">
+    				<classpath refid="lib"/>
+				</manifestclasspath>
+
+				<jar jarfile="${jar.dir}/${ant.project.name}.jar" basedir="${build.dir}" >
+				    <manifest>
+				        <attribute name="Main-Class" value="${main-class}"/>
+				        <attribute name="Class-Path" value="${depends}"/>
+				    </manifest>
+				</jar>
+		</target>
+		
+		<target name="run" depends="jar">
+			<java jar="${jar.dir}/${ant.project.name}.jar" inputstring="--help" fork="true"/>
+		</target>
+
+		<target name="clean-build" depends="clean,jar"/>
+
+		<target name="main" depends="clean,run"/>
 
 </project>
