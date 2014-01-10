@@ -29,8 +29,8 @@ public class MCS {
 	private int userDefinedLowerBound;
 	private int substructureNumLimit;
 	private int currSubstructureNum;
-	private int atomMismatchUpperBound;
-	private int bondMismatchUpperBound;
+	private int atomMismatchUpperBound = 1;
+	private int bondMismatchUpperBound = 1;
 	private int atomMismatchCurr;
 	private int bondMismatchCurr;
 	public IAtomContainer compoundOne;
@@ -88,18 +88,17 @@ public class MCS {
 			compoundTwo = _compoundOne;
 		}
 		
-		
-		
 	}
 
-	/**
-	 * My mother always said to put two layers between the API call and the 
-	 * actual program.
-	 */
+
 	public void calculate(){
+		Logger.log("Starting MCS");
 		clearResult();
+		
 		start_time = System.currentTimeMillis();
+		
 		if( compoundOne.equals(compoundTwo)){
+			Logger.log("Identical graphs");
 			identicalGraph = true;	
 		} else {
 			max();
@@ -142,6 +141,7 @@ public class MCS {
 	 * TODO: this is very C++
 	 */
 	private void max(){
+		Logger.log("Max");
 		MCSList<IAtom> atomListOne = new MCSList<IAtom>();
 		for(IAtom a: compoundOne.atoms()){
 			atomListOne.push(a);
@@ -175,7 +175,7 @@ public class MCS {
 	 * @return whether the atoms are compatible
 	 */
 	private boolean compatible(IAtom atom1, IAtom atom2){
-
+		Logger.log("compatible");
 		MCSList<IAtom> targetNeighborMapping = new MCSList<IAtom>();
 		MCSList<IAtom> atomOneNeighborList = new MCSList<IAtom>( compoundOne.getConnectedAtomsList( atom1 ));
 		for(IAtom atom1N: atomOneNeighborList){
@@ -329,6 +329,7 @@ public class MCS {
 	 * @param atomListTwo
 	 */
 	private void grow(MCSList<IAtom> atomListOne, MCSList<IAtom> atomListTwo){
+		Logger.log("Grow");
 		
 		MCSList<IAtom> atomListOneCopy = new MCSList<IAtom>( atomListOne );
 		MCSList<IAtom> atomListTwoCopy = new MCSList<IAtom>( atomListTwo );
@@ -336,9 +337,11 @@ public class MCS {
 		MCSList<Integer> atomListTwoDegrees = new MCSList<Integer>();
 		
 		// For every atom in list one makes a corresponding list of their potential degree in the current mapping
+		Logger.log("Going through " +atomListOne.size()+" atoms in list one");
 		for( IAtom atom: atomListOne){
 			
 			if(!currentMapping.containsKey( atom )){
+				Logger.log("IAtom " + atom + " is not in current mapping",3);
 				
 				int degree = 0;
 				
@@ -346,6 +349,7 @@ public class MCS {
 
 					if(currentMapping.containsValue(neighbor)){
 						degree++;
+						Logger.log("IAtom " + atom + " has "+degree+" neighbors in the current mapping",3);
 					}
 				}
 
@@ -354,25 +358,29 @@ public class MCS {
 		}
 		
 		// For every atom in list two makes a corresponding list of their potential degree in the current mapping
+		Logger.log("Going through " +atomListTwo.size()+" atoms in list two");
 		for( IAtom atom: atomListTwo){
 			
 			if(!currentMapping.containsKey( atom )){
-				
+				Logger.log("IAtom " + atom + " is not in current mapping",3);
 				int degree = 0;
 				
 				for(IAtom neighbor: compoundTwo.getConnectedAtomsList(atom)){
 					if(currentMapping.containsValue(neighbor)){
 						degree++;
+						Logger.log("IAtom " + atom + " has "+degree+" neighbors in the current mapping",3);
 					}
 				}
 
 				atomListTwoDegrees.push(degree);	
 			}
 		}
+		
 		// Check how many atoms in list one and two share the same degree to establish an upper bound
 		int currentBound = currentMapping.size();
 		for(int degree:atomListOneDegrees){
 			if(atomListTwoDegrees.contains(degree)){
+				Logger.log("Both lists have at least one atom with "+degree+" neighbors in the current mapping",2);
 				currentBound++;
 				atomListTwoDegrees.remove(degree);
 			}
@@ -380,6 +388,7 @@ public class MCS {
 		
 		// Throw out anything that's too little
         if(currentBound < userDefinedLowerBound || currentBound < size()) {
+        	Logger.log("Our current upper bound of "+currentBound+" is too little, aborting");
             return;
         }
 		
@@ -389,9 +398,11 @@ public class MCS {
 			// End conditions for the loop
 			if ( System.currentTimeMillis() - start_time > this.timeout){
 				boundary();
+				Logger.log("Timed out. Ending.");
 				return;
 			} else if (atomListOneCopy.isEmpty() || atomListTwoCopy.isEmpty()) { 
                 boundary();
+                Logger.log("One or both lists of atoms is empty. Ending.");
                 return;
             }
             
@@ -402,18 +413,21 @@ public class MCS {
                 boolean atomMismatched = false;
                 boolean atomMismatchAllowed = true;
                 
-                if (topCandidateAtom.getAtomicNumber() != otherAtom.getAtomicNumber()) {
+                if (!topCandidateAtom.getAtomicNumber().equals( otherAtom.getAtomicNumber())){
+
+                	Logger.log("Atoms mismatched. " + topCandidateAtom.getAtomicNumber()+" and "+otherAtom.getAtomicNumber());
                     ++atomMismatchCurr;
                     atomMismatched = true;
                 }
                 
                 // If we can still have an atom mismatch
-                if (!(atomMismatchCurr > atomMismatchUpperBound) && atomMismatchAllowed) {
-
+                if ((!(atomMismatchCurr > atomMismatchUpperBound) && atomMismatchAllowed)) {
+                	
+                	Logger.log("Allowing atom mismatch");
                     bondMisCount = 0;
                     
                     if ( newComponent = compatible(topCandidateAtom, otherAtom) ) {
-
+                    	
                         if (!(bondMismatchCurr + bondMisCount > bondMismatchUpperBound)) {
                             
                             bondMismatchCurr = bondMismatchCurr + bondMisCount;

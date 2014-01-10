@@ -9,5 +9,8 @@
 	<classpathentry kind="lib" path="lib/sspace-2.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/trove-3.0.2.jar"/>
 	<classpathentry kind="lib" path="lib/scallop_2.10-0.9.4.jar"/>
+	<classpathentry kind="lib" path="/Users/DC/Documents/UROP/MolSearch/lib/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="/Users/DC/Documents/UROP/MolSearch/lib/scala-library.jar"/>
+	<classpathentry kind="lib" path="/Users/DC/Documents/UROP/MolSearch/lib/scala-reflect.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

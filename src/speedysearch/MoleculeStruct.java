@@ -1,6 +1,7 @@
 package speedysearch;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 import org.openscience.cdk.AtomContainer;
@@ -64,7 +65,18 @@ public class MoleculeStruct extends AtomContainer implements Comparable<Molecule
 
 			
 	protected void setHash(){
-		hash_code = 1000 * this.bondCount + this.atomCount;
+		int[] degree = new int[this.atoms.length];
+		int i=0;
+		for(IAtom atom: this.atoms){
+			degree[i] = this.getConnectedAtomsCount(atom);
+			i++;
+		}
+		Arrays.sort(degree);
+		int h=0;
+		for(int j=0; j<degree.length; j++){
+			h += Math.pow(10, j) * degree[j];
+		}
+		this.hash_code = h;
 	}
 	
 	private void makeGraph(IAtomContainer base){

@@ -79,5 +79,14 @@ public class StructDatabase implements Serializable{
 		return new StructIterator( structsByHash);
 	}
 	
+	public int numReps(){
+		int numReps = 0;
+		for(int key: this.structsByHash.keySet()){
+			numReps += structsByHash.get(key).size();
+		}
+		return numReps;
+		
+	}
+	
 	
 }

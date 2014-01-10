@@ -4,23 +4,17 @@ import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.commons.io.input.CountingInputStream;
-import org.omg.CORBA.portable.InputStream;
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -85,7 +79,7 @@ public class StructCompressor {
 																			br,
 																			DefaultChemObjectBuilder.getInstance()
 																		);
-			System.out.println("Scanning " +  f.getName());
+			Logger.log("Scanning " +  f.getName());
 			
 			checkDatabaseForIsomorphicStructs( molecule_database, structFactory );
 			molecule_database.close();
@@ -103,7 +97,7 @@ public class StructCompressor {
 
 	private void talk(){
 		runningTime = (System.currentTimeMillis() - startTime)/(1000);// Time in seconds
-		System.out.println(molecules +" "+structures+" "+runningTime+" "+fruitless_comparisons);
+		Logger.log("Molecules: "+ molecules +" Representatives: "+structures+" Time: "+runningTime,2);
 	}
 	
 	public static void mergeDatabases( StructDatabase a, StructDatabase b, String targetname){
@@ -250,6 +244,23 @@ public class StructCompressor {
 		
 	}
 	
+	public void makeSDF( String filename){
+		try {
+			StructSDFWriter writer = new StructSDFWriter(filename);
+			for(int key: structsByHash.keySet()){
+				for( MoleculeStruct rep: structsByHash.get(key)){
+					writer.write(rep);
+				}
+			}
+			writer.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
 	/**
 	 * Produce the files representing the clustered database.
 	 * 
@@ -264,7 +275,7 @@ public class StructCompressor {
 	
 	private static void writeObjectToFile(String object_filename, Object o){
 		try{
-			OutputStream file = new FileOutputStream( object_filename );
+			OutputStream file = new FileOutputStream( object_filename + ".ser" );
 			OutputStream buffer = new BufferedOutputStream( file );
 			ObjectOutput output = new ObjectOutputStream( buffer );
 			output.writeObject(o);

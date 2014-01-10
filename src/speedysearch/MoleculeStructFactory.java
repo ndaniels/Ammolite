@@ -1,8 +1,13 @@
 package speedysearch;
 
+import java.io.Serializable;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 
-public class MoleculeStructFactory {
+public class MoleculeStructFactory implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
 	MoleculeStruct exemplar;
 	
 	public MoleculeStructFactory(MoleculeStruct _exemplar){

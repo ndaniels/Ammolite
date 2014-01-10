@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import edu.ucla.sspace.graph.isomorphism.VF2IsomorphismTester;
 import fmcs.MCS;
@@ -138,11 +140,17 @@ public class MoleculeSearcher {
 		while( structs.hasNext() ){
 			
 			target = structs.next();
+
 			
 			MCS myMCS = new MCS(sQuery,target);
 			myMCS.calculate();
+			
+			Logger.log( "Size of MCS: "+myMCS.getSolutions().get(0).getAtomCount());
+			
 			double coef = coeff(myMCS.size(), myMCS.compoundOne.getAtomCount(), myMCS.compoundTwo.getAtomCount());
-			if( coef > reprThreshold){
+			
+			Logger.log("Coeff: "+coef,4);
+			if( coef >= reprThreshold){
 				matches.add(target);
 			} 
 		}
@@ -166,6 +174,7 @@ public class MoleculeSearcher {
 		
 		for(String id: targetIDs){
 			target = db.getMolecule(id);
+			target = new AtomContainer(AtomContainerManipulator.removeHydrogens(target));
 			MCS myMCS = new MCS(query,target);
 			myMCS.calculate();
 			
@@ -189,6 +198,7 @@ public class MoleculeSearcher {
 		
 		for(String id: targetIDs){
 			target = db.getMolecule(id);
+			target = new AtomContainer(AtomContainerManipulator.removeHydrogens(target));
 			MCS myMCS = new MCS(query,target);
 			myMCS.calculate();
 			
@@ -202,10 +212,16 @@ public class MoleculeSearcher {
 	}
 	
 	public MoleculeTriple[] bigSearch(IAtomContainer query, double threshold){
-		double repThresh = convertThresh( threshold);
-		String[] repMatches = thresholdRepMatches( query, repThresh);
-		return thresholdMoleculeMatches( query, repMatches, threshold);
+		query = new AtomContainer(AtomContainerManipulator.removeHydrogens(query));
+		Logger.log("Searching for matches to " + query.getID() + " with threshold "+threshold, 2);
 		
+		double repThresh = convertThresh( threshold);
+		Logger.log("Threshold: "+threshold+" Representative Threshold: "+repThresh,3);
+		String[] repMatches = thresholdRepMatches( query, repThresh);
+		Logger.log("Found "+repMatches.length+" representative matches",3);
+		MoleculeTriple[] molMatches = thresholdMoleculeMatches( query, repMatches, threshold);
+		Logger.log("Found "+molMatches.length+" molecule matches",3);
+		return molMatches;
 	}
 	
 	/**
@@ -215,6 +231,8 @@ public class MoleculeSearcher {
 	 * @return
 	 */
 	public MoleculeTriple[] quickSearch(IAtomContainer query){
+		query = new AtomContainer(AtomContainerManipulator.removeHydrogens(query));
+		Logger.log("Searching for matches to " + query.getID(), 2);
 		
 		String[] repMatches = exactRepMatches( query);
 		if( repMatches == null){
@@ -239,6 +257,6 @@ public class MoleculeSearcher {
 	}
 	
 	private double convertThresh( double threshold){
-		return threshold; // TODO: this...
+		return 0.5 * threshold; // TODO: this... 0.5 is just made up
 	}
 }
