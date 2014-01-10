@@ -56,9 +56,10 @@ def buildRandomizedSDFs( numMolsList, inputFolder, outputFilenameList):
 		print( "Finished "+outputFilename)
 
 def main():
+
 	sizes = [1000, 10*1000, 200*1000, 1000*1000]
 	names = ["1k_random_molecules.sdf", "10k_random_molecules.sdf", "200k_random_molecules.sdf","1M_random_molecules.sdf"]
-	buildRandomizedSDFs(sizes, "../pubchem/sdf", names)
+	buildRandomizedSDFs(sizes, "../../pubchem/sdf", names)
 
 if __name__ == "__main__":
 	main()
