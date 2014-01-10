@@ -2,7 +2,7 @@ from random import choice, random
 from os import listdir
 
 
-def buildRandomizedSDF( numMols, inputFolder, outputFilename):
+def buildRandomizedSDFs( numMolsList, inputFolder, outputFilenameList):
 	filenames = [filename for filename in listdir(inputFolder) if filename[-3:] == "sdf"]
 	
 	
@@ -23,34 +23,42 @@ def buildRandomizedSDF( numMols, inputFolder, outputFilename):
 
 		fileOffsets.append(molOffsets)
 		f.close()
-	
-	molsToGrab = []
 
-	while len(molsToGrab) < numMols:
-		fromFile = choice(fileOffsets)
-		fromFileInd = fileOffsets.index(fromFile)
-		at = choice(fromFile)
-		molsToGrab.append( (fromFileInd, at))
+	for i in range( len( numMolsList)):
+		numMols = numMolsList[i]
+		outputFilename = outputFilenameList[i]
 
-	outFile = open(outputFilename,"w")
+		molsToGrab = []
 
-	for fileInd, offset in molsToGrab:
-		filename = filenames[fileInd]
-		f = open(inputFolder +"/"+filename,'r')
-		f.seek(offset)
-		firstline = True
-		for line in f:
-			
-			if "$$$$" not in line:
-				outFile.write(line)
-			else:
-				break
-		f.close()
+		while len(molsToGrab) < numMols:
+			fromFile = choice(fileOffsets)
+			fromFileInd = fileOffsets.index(fromFile)
+			at = choice(fromFile)
+			molsToGrab.append( (fromFileInd, at))
 
-	outFile.close()
+		outFile = open(outputFilename,"w")
+
+		for fileInd, offset in molsToGrab:
+			filename = filenames[fileInd]
+			f = open(inputFolder +"/"+filename,'r')
+			f.seek(offset)
+			firstline = True
+			for line in f:
+				
+				if "$$$$" not in line:
+					outFile.write(line)
+				else:
+					outFile.write("$$$$")
+					break
+			f.close()
+
+		outFile.close()
+		print( "Finished "+outputFilename)
 
 def main():
-	buildRandomizedSDF(1000,"../pubchem/sdf", "randomOut_1000")
+	sizes = [1000, 10*1000, 200*1000, 1000*1000]
+	names = ["1k_random_molecules.sdf", "10k_random_molecules.sdf", "200k_random_molecules.sdf","1M_random_molecules.sdf"]
+	buildRandomizedSDFs(sizes, "../pubchem/sdf", names)
 
 if __name__ == "__main__":
 	main()
