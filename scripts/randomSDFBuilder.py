@@ -50,7 +50,7 @@ def buildRandomizedSDF( numMols, inputFolder, outputFilename):
 	outFile.close()
 
 def main():
-	buildRandomizedSDF(1000,"../pubchem/sdf", "randomOut_1000")
+	buildRandomizedSDF(1000,"../../pubchem/sdf", "randomOut_1000")
 
 if __name__ == "__main__":
 	main()
