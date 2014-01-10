@@ -36,7 +36,7 @@ public class MCS {
 	public IAtomContainer compoundOne;
 	public IAtomContainer compoundTwo;
 	boolean timeoutStop = false;
-	boolean newComponent;
+	boolean introducedNewComponent;
 	private int bondMisCount;
 	private double start_time;
 
@@ -178,10 +178,10 @@ public class MCS {
 		Logger.log("compatible");
 		MCSList<IAtom> targetNeighborMapping = new MCSList<IAtom>();
 		MCSList<IAtom> atomOneNeighborList = new MCSList<IAtom>( compoundOne.getConnectedAtomsList( atom1 ));
-		for(IAtom atom1N: atomOneNeighborList){
+		for(IAtom atom1Neighbor: atomOneNeighborList){
 			
-			if( currentMapping.containsKey( atom1N ) ){
-				targetNeighborMapping.push(atom1N);
+			if( currentMapping.containsKey( atom1Neighbor ) ){
+				targetNeighborMapping.push(atom1Neighbor);
 			}
 		}
 		
@@ -209,26 +209,24 @@ public class MCS {
 		} else if( targetNeighborMapping.size() == 0){// Trivial compatibility 
 			return true;
 			
-		} else if( matchType == MatchType.DEFAULT){
+		}
 			
-			// Count how many bonds are not the same order between the two atoms
-			// We already know they have the same neighbors.
-			for(IAtom target: targetNeighborMapping){
-				
-				IAtom counterpart = currentMapping.getVal( target );
+		// Count how many bonds are not the same order between the two atoms
+		// We already know they have the same neighbors.
+		for(IAtom target: targetNeighborMapping){
+			
+			IAtom counterpart = currentMapping.getVal( target );
 
-				IBond bondOne = compoundOne.getBond(atom1, target);
-				IBond bondTwo = compoundTwo.getBond(atom2, counterpart );
-				
-				if( bondOne.getOrder() != bondTwo.getOrder() ){
-					bondMisCount++;
-				}
-				
+			IBond bondOne = compoundOne.getBond(atom1, target);
+			IBond bondTwo = compoundTwo.getBond(atom2, counterpart );
+			
+			if( bondOne.getOrder() != bondTwo.getOrder() ){
+				bondMisCount++;
 			}
 			
-			return true;
-		} 
-		return false;
+		}
+			
+		return true;
 		
 	}
 	
@@ -284,7 +282,7 @@ public class MCS {
         } else if (currentMapping.size() > size()) {
         	
             bestList.clear();
-            bestList.push(currentMapping.deepCopy());
+            bestList.push(currentMapping.deepCopy()); // TODO: deepcopy?
         }
 	}
 	
@@ -347,7 +345,7 @@ public class MCS {
 				
 				for(IAtom neighbor: compoundOne.getConnectedAtomsList(atom)){
 
-					if(currentMapping.containsValue(neighbor)){
+					if(currentMapping.containsKey(neighbor)){
 						degree++;
 						Logger.log("IAtom " + atom + " has "+degree+" neighbors in the current mapping",3);
 					}
@@ -366,7 +364,7 @@ public class MCS {
 				int degree = 0;
 				
 				for(IAtom neighbor: compoundTwo.getConnectedAtomsList(atom)){
-					if(currentMapping.containsValue(neighbor)){
+					if(currentMapping.containsKey(neighbor)){
 						degree++;
 						Logger.log("IAtom " + atom + " has "+degree+" neighbors in the current mapping",3);
 					}
@@ -396,11 +394,13 @@ public class MCS {
 		while( true ){
 
 			// End conditions for the loop
-			if ( System.currentTimeMillis() - start_time > this.timeout){
-				boundary();
-				Logger.log("Timed out. Ending.");
-				return;
-			} else if (atomListOneCopy.isEmpty() || atomListTwoCopy.isEmpty()) { 
+			// if ( System.currentTimeMillis() - start_time > this.timeout){
+			// 	boundary();
+			// 	Logger.log("Timed out. Ending.");
+			// 	return;
+			// } else 
+
+			if (atomListOneCopy.isEmpty() || atomListTwoCopy.isEmpty()) { 
                 boundary();
                 Logger.log("One or both lists of atoms is empty. Ending.");
                 return;
@@ -425,14 +425,15 @@ public class MCS {
                 	
                 	Logger.log("Allowing atom mismatch");
                     bondMisCount = 0;
+
                     
-                    if ( newComponent = compatible(topCandidateAtom, otherAtom) ) {
+                    if ( introducedNewComponent = compatible(topCandidateAtom, otherAtom) ) {
                     	
                         if (!(bondMismatchCurr + bondMisCount > bondMismatchUpperBound)) {
                             
                             bondMismatchCurr = bondMismatchCurr + bondMisCount;
                             
-                            if (newComponent) {
+                            if (introducedNewComponent) {
                                 ++currSubstructureNum;
                             }
 
@@ -442,7 +443,7 @@ public class MCS {
                              * just deemed compatible. The eventual pop can then explore substructures 
                              * that may not contain the given pair of atoms.
                              */
-                            if (currSubstructureNum <= substructureNumLimit ) {
+                            if ( !(currSubstructureNum > substructureNumLimit) ) {
                     			
                                 currentMapping.push(topCandidateAtom, otherAtom);
                                                    			
@@ -455,7 +456,7 @@ public class MCS {
 
                             }
                             
-                            if (newComponent) {
+                            if (introducedNewComponent) {
                                 --currSubstructureNum;
                             }
                             

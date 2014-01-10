@@ -47,7 +47,7 @@ object MolSearchMain{
 		  val structFactory = new MoleculeStructFactory( exemplar)
 		  val compressor = new StructCompressor( structFactory)
 		  compressor.compress(opts.compress.source(), opts.compress.target())
-		  if(opts.search.makeSDF.isDefined){
+		  if(opts.search.makeSDF.isDefined()){
 		    compressor.makeSDF( opts.compress.makeSDF())
 		  }
 		  
