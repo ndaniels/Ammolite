@@ -21,8 +21,17 @@ import speedysearch.IteratingSDFReader;
 public class FMCS {
 	
 	public static void doFMCS(String input, String output) throws IOException, CDKException{
-
-		IteratingSDFReader molecules =new IteratingSDFReader( input);
+		IteratingSDFReader molecules = null;
+		try{
+			
+		FileInputStream fs = new FileInputStream(input);
+		BufferedReader br = new BufferedReader( new InputStreamReader(fs ));
+		molecules =new IteratingSDFReader( br, DefaultChemObjectBuilder.getInstance());
+		} catch( IOException e){
+			Logger.log("Failed to read file");
+			e.printStackTrace();
+		}
+		Logger.log("reading molecules",3);
 		
 		IAtomContainer a = null;
 		IAtomContainer b = null;
@@ -44,6 +53,7 @@ public class FMCS {
 			sdfwriter.write(overlap);
 		}
 		sdfwriter.close();
-		
+		Logger.log("found mcs!", 3);
+		speedysearch.MolDrawer.draw(myMCS.getSolutions().get(0));
 	}
 }

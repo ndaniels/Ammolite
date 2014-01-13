@@ -164,6 +164,10 @@ public class StructCompressor {
 		VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
         while( molecule_database.hasNext() ){
 
+        	if( molecules % 500 == 0){
+        		talk();
+        	}
+        	
         	IAtomContainer molecule =  molecule_database.next();       	
         	MoleculeStruct structure = structFactory.makeMoleculeStruct(molecule);
         	molecules++;
