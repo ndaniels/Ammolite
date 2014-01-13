@@ -3,7 +3,7 @@ import sys
 def fix( filename):
 
 	f = file(filename, 'r')
-	fixed = file('fixed_'+filename, 'w')
+	fixed = file(filename+'.fixed', 'w')
 	for line in f:
 		if "$$$$" in line:
 			end = line.split("$$$$")[1]
