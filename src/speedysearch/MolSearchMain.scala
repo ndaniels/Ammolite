@@ -37,6 +37,10 @@ object MolSearchMain{
 			  val molecules = opt[String]("molecules", required=true, descr="sdf file containing the two molecules you want the max common subgraph of")
 			  val sdf = opt[String]("sdf", required=true, descr="Name of the file where you want the overlap results")
 			}
+			val dev = new Subcommand("dev"){
+			  val a = opt[String]("a")
+			  val b = opt[String]("b")
+			}
 		}
 		
 		Logger.setVerbosity( opts.verbosity())
@@ -73,6 +77,9 @@ object MolSearchMain{
 		} else if( opts.subcommand ==Some(opts.mcs)){
 		  Logger.log("Finding fmcs of two molecules")
 		  fmcs.FMCS.doFMCS(opts.mcs.molecules(), opts.mcs.sdf())
+		  
+		} else if( opts.subcommand == Some( opts.dev)){
+		  fmcs.FMCS.getCoeffs(opts.dev.a(), opts.dev.b())
 		}
 	}
 

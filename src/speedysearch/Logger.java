@@ -35,6 +35,10 @@ public class Logger {
 		}
 	}
 	
+	public static void error(Object in){
+		System.err.println(in);
+	}
+	
 	public static void experiment(Object in){
 		if( experimenting){
 			System.out.println( in);
