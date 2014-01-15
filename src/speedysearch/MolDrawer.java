@@ -6,6 +6,8 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +22,11 @@ import java.util.List;
 
 
 
+
+
+
+
+import javax.imageio.ImageIO;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.renderer.font.AWTFontManager;
@@ -36,7 +43,7 @@ import org.openscience.cdk.renderer.visitor.AWTDrawVisitor;
 
 public class MolDrawer {
 	
-	public static void draw(IAtomContainer mol){
+	public static void draw(IAtomContainer mol, String imageName) throws IOException{
 		int WIDTH = 200;
 	    int HEIGHT = 200;
 	    
@@ -67,6 +74,7 @@ public class MolDrawer {
 	    
 	    // the paint method also needs a toolkit-specific renderer
 	    renderer.paint(mol, drawVisitor);
+	    ImageIO.write((RenderedImage)image, "PNG", new File(imageName+".png"));
 
 	}
 }

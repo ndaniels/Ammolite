@@ -28,20 +28,20 @@ public class FMCS {
 		BufferedReader br = new BufferedReader( new InputStreamReader(fs ));
 		molecules =new IteratingSDFReader( br, DefaultChemObjectBuilder.getInstance());
 		} catch( IOException e){
-			Logger.log("Failed to read file");
+			speedysearch.Logger.log("Failed to read file");
 			e.printStackTrace();
 		}
-		Logger.log("reading molecules",3);
+		speedysearch.Logger.log("reading molecules",3);
 		
 		IAtomContainer a = null;
 		IAtomContainer b = null;
 		
 		a = molecules.next();
-		Logger.log("molecule one: "+a.getID(), 2);
+		speedysearch.Logger.log("molecule one: "+a.getID(), 2);
 		
 		
 		b = molecules.next();
-		Logger.log("molecule two: "+b.getID(), 2);
+		speedysearch.Logger.log("molecule two: "+b.getID(), 2);
 		
 		molecules.close();
 		a = new AtomContainer(AtomContainerManipulator.removeHydrogens(a));
@@ -53,7 +53,7 @@ public class FMCS {
 			sdfwriter.write(overlap);
 		}
 		sdfwriter.close();
-		Logger.log("found mcs!", 3);
-		speedysearch.MolDrawer.draw(myMCS.getSolutions().get(0));
+		speedysearch.Logger.log("found mcs!", 3);
+		speedysearch.MolDrawer.draw(myMCS.getSolutions().get(0), output);
 	}
 }

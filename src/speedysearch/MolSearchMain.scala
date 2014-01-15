@@ -40,6 +40,7 @@ object MolSearchMain{
 		}
 		
 		Logger.setVerbosity( opts.verbosity())
+		fmcs.Logger.setVerbosity(opts.verbosity())
 		
 		if( opts.subcommand == Some(opts.compress)){
 		

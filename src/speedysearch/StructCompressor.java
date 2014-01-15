@@ -97,7 +97,7 @@ public class StructCompressor {
 
 	private void talk(){
 		runningTime = (System.currentTimeMillis() - startTime)/(1000);// Time in seconds
-		Logger.log("Molecules: "+ molecules +" Representatives: "+structures+" Time: "+runningTime,2);
+		Logger.log("Molecules: "+ molecules +" Representatives: "+structures+" Seconds: "+runningTime+" Fruitless Comparisons: "+fruitless_comparisons,2);
 	}
 	
 	public static void mergeDatabases( StructDatabase a, StructDatabase b, String targetname){
@@ -164,7 +164,7 @@ public class StructCompressor {
 		VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
         while( molecule_database.hasNext() ){
 
-        	if( molecules % 500 == 0){
+        	if( molecules % 250 == 0){
         		talk();
         	}
         	
