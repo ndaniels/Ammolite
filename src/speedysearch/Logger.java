@@ -3,7 +3,7 @@ package speedysearch;
 public class Logger {
 
 	private static int verbosity = 1;// Normal level output, 0 is quiet, 2 slightly verbose, etc
-	private static boolean showDebug = false;
+	private static boolean showDebug = true;
 	private static boolean experimenting = false;
 	
 	public static void bugOut(boolean _showDebug){

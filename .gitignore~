@@ -1,4 +1,5 @@
-
+test_data/*
+test_results/*.sdf
 *.meta
 
 test_data.st.sdf

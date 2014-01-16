@@ -74,11 +74,15 @@ public class MoleculeStruct extends AtomContainer implements Comparable<Molecule
 		Arrays.sort(degree);
 		int h=0;
 		int bound = degree.length;
-		if(bound > 5){
-			bound = 5;// Max int32 is a 10 digit number so this is very unlikely to overflow.
+		int maxBound = 8;
+		if(bound > maxBound){
+			bound = maxBound;// Max int32 is a 10 digit number so this is very unlikely to overflow.
 		}
 		for(int j=0; j<bound; j++){
 			h += Math.pow(10, j) * degree[ degree.length - 1 - j];
+		}
+		if( h < 0){
+			Logger.debug("!!! "+ h +" !!!" );
 		}
 		this.hash_code = h;
 	}
