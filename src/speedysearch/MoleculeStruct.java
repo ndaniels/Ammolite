@@ -75,11 +75,9 @@ public class MoleculeStruct extends AtomContainer
 	
 	@Override
 	public void removeBond(IBond bond){
+		Logger.debug(bond);
+		graph.remove(bondsToEdges.get(bond));
 		super.removeBond(bond);
-		Edge e = bondsToEdges.get(bond);
-		if( graph.contains(e)){
-			graph.remove(e);
-		}
 	}
 
 	protected void setHash(){
@@ -112,18 +110,20 @@ public class MoleculeStruct extends AtomContainer
 		graph = new SparseUndirectedGraph();
 		for(int i=0; i<base.getAtomCount(); i++){
 			graph.add(i);
-			this.atomsToNodes.put(base.getAtom(i), i);
+			atomsToNodes.put(base.getAtom(i), i);
+			
 			for(int j=0; j<i; j++){
 				IBond bond = base.getBond(base.getAtom(i), base.getAtom(j));
 				if(  bond != null){
 					Edge newEdge = new SimpleEdge(i,j);
-					this.bondsToEdges.put(bond, newEdge);
+					bondsToEdges.put(bond, newEdge);
 					graph.add( newEdge);
 				}
 			}
 		}
 	}
 	
+
 	public void addID(String id){
 		mol_ids.add(id);
 	}
