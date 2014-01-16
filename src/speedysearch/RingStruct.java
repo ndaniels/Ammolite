@@ -119,7 +119,7 @@ public class RingStruct extends CyclicStruct {
 		for(Edge e: graph.edges()){
 			if( ! edgesInCycle.containsKey(e) && edgeLabels.containsKey(e)){
 
-				IBond b = this.getBond(getAtom(e.to()), getAtom(e.from()));
+				IBond b = this.edgesToBonds.get(e);
 				if(!bondsToRemove.contains(b)){
 					bondsToRemove.add(b);
 				}

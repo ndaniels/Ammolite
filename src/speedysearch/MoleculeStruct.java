@@ -31,8 +31,10 @@ public class MoleculeStruct extends AtomContainer
 	private static final long serialVersionUID = 1L;
 	protected ArrayList<String> mol_ids;
 	protected SparseUndirectedGraph graph;
-	private HashMap<IAtom,Integer> atomsToNodes = new HashMap<IAtom, Integer>();
-	private HashMap<IBond,Edge> bondsToEdges = new HashMap<IBond, Edge>();
+	protected HashMap<IAtom,Integer> atomsToNodes = new HashMap<IAtom, Integer>();
+	protected HashMap<Integer, IAtom> nodesToAtoms = new HashMap<Integer, IAtom>();
+	protected HashMap<IBond,Edge> bondsToEdges = new HashMap<IBond, Edge>();
+	protected HashMap<Edge, IBond> edgesToBonds = new HashMap<Edge, IBond>();
 	
 	public MoleculeStruct(){
 		
@@ -111,12 +113,13 @@ public class MoleculeStruct extends AtomContainer
 		for(int i=0; i<base.getAtomCount(); i++){
 			graph.add(i);
 			atomsToNodes.put(base.getAtom(i), i);
-			
+			nodesToAtoms.put(i, base.getAtom(i));
 			for(int j=0; j<i; j++){
 				IBond bond = base.getBond(base.getAtom(i), base.getAtom(j));
 				if(  bond != null){
 					Edge newEdge = new SimpleEdge(i,j);
 					bondsToEdges.put(bond, newEdge);
+					edgesToBonds.put(newEdge, bond);
 					graph.add( newEdge);
 				}
 			}
