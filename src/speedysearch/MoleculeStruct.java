@@ -84,21 +84,21 @@ public class MoleculeStruct extends AtomContainer
 		int h = this.atomCount;
 		h += 1000 * 1000 * this.bondCount;
 		
-//		int[] degree = new int[this.atoms.length];
-//		int i=0;
-//		for(IAtom atom: this.atoms){
-//			degree[i] = this.getConnectedAtomsCount(atom);
-//			i++;
-//		}
-//		Arrays.sort(degree);
-//		int bound = degree.length;
-//		int maxBound = 6;
-//		if(bound > maxBound){
-//			bound = maxBound;// Max int32 is a 10 digit number so this is very unlikely to overflow.
-//		}
-//		for(int j=0; j<bound; j++){
-//			h += Math.pow(10, j) * degree[ degree.length - 1 - j];
-//		}
+		int[] degree = new int[this.atoms.length];
+		int i=0;
+		for(IAtom atom: this.atoms){
+			degree[i] = this.getConnectedAtomsCount(atom);
+			i++;
+		}
+		Arrays.sort(degree);
+		int bound = degree.length;
+		int maxBound = 6;
+		if(bound > maxBound){
+			bound = maxBound;// Max int32 is a 10 digit number so this is very unlikely to overflow.
+		}
+		for(int j=0; j<bound; j++){
+			h += Math.pow(10, j) * degree[ degree.length - 1 - j];
+		}
 		
 		this.hash_code = h;
 
