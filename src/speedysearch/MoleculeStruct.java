@@ -76,7 +76,10 @@ public class MoleculeStruct extends AtomContainer
 	@Override
 	public void removeBond(IBond bond){
 		super.removeBond(bond);
-		graph.remove( bondsToEdges.get(bond));
+		Edge e = bondsToEdges.get(bond);
+		if( graph.contains(e)){
+			graph.remove(e);
+		}
 	}
 
 	protected void setHash(){
