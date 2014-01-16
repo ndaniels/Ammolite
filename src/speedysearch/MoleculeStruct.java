@@ -68,9 +68,7 @@ public class MoleculeStruct extends AtomContainer
 	
 	@Override
 	public void removeAtom(IAtom atom){
-		for( IBond bond: getConnectedBondsList(atom)){
-			removeBond(bond);
-		}
+
 		graph.remove( atomsToNodes.get(atom));
 		super.removeAtom(atom);
 	}
