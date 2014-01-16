@@ -20,7 +20,7 @@ public class RingStruct extends CyclicStruct {
 	public RingStruct(IAtomContainer base) {
 		super(base);
 		removeOnePrimeCarbons();
-		if( graph.order() > 0){
+		if( getGraph().order() > 0){
 			removeAcyclicEdges();
 			removeZeroPrimeCarbons();
 		}
@@ -30,19 +30,15 @@ public class RingStruct extends CyclicStruct {
 	
 	protected void removeZeroPrimeCarbons(){
 		ArrayList<IAtom> atomsToRemove = new ArrayList<IAtom>();
-		ArrayList<Integer> verticesToRemove = new ArrayList<Integer>();
-		for(int v: graph.vertices()){
-			if(graph.degree(v) == 0){
-				verticesToRemove.add(v);
+		for(int v: getGraph().vertices()){
+			if(getGraph().degree(v) == 0){
 				atomsToRemove.add(getAtom(v));
 			}
 		}
 		for(IAtom atom: atomsToRemove){
 			removeAtom(atom);
 		}
-		for(int v: verticesToRemove){
-			graph.remove(v);
-		}
+
 	}
 	
 
@@ -56,13 +52,13 @@ public class RingStruct extends CyclicStruct {
 		Map<Integer,Boolean> exploredVertices = new HashMap<Integer, Boolean>();
 		Map<Edge,String> edgeLabels = new HashMap<Edge, String>();
 		
-		stack.push(graph.vertices().toPrimitiveArray()[0]);
+		stack.push(getGraph().vertices().toPrimitiveArray()[0]);
 		visitedVertices.put(stack.peek(), -1);
 		while( ! stack.empty() ){
 			boolean newVisit = false;
 			int t = stack.peek();
 
-			for(Edge e: graph.getAdjacencyList(t)){
+			for(Edge e: getGraph().getAdjacencyList(t)){
 				if(!edgeLabels.containsKey(e)){
 					int w = e.from();
 					if( w == t){
@@ -90,7 +86,7 @@ public class RingStruct extends CyclicStruct {
 						boolean leaving = false;
 						do{
 							
-							for( Edge c: graph.getEdges(current, predecessor)){
+							for( Edge c: getGraph().getEdges(current, predecessor)){
 								if( ! edgesInCycle.containsKey(c)){
 									edgesInCycle.put(c, true);
 								} else if(edgesInCycle.containsKey(c) || !exploredVertices.containsKey(current)){
@@ -121,12 +117,9 @@ public class RingStruct extends CyclicStruct {
 		
 		
 		ArrayList<IBond> bondsToRemove = new ArrayList<IBond>();
-		ArrayList<Edge> edgesToRemove = new ArrayList<Edge>();
 		for(Edge e: graph.edges()){
 			if( ! edgesInCycle.containsKey(e) && edgeLabels.containsKey(e)){
-				if(!edgesToRemove.contains(e)){
-					edgesToRemove.add(e);
-				}				
+
 				IBond b = this.getBond(getAtom(e.to()), getAtom(e.from()));
 				if(!bondsToRemove.contains(b)){
 					bondsToRemove.add(b);
@@ -136,9 +129,7 @@ public class RingStruct extends CyclicStruct {
 		for(IBond bond: bondsToRemove){
 			removeBond(bond);
 		}
-		for(Edge e: edgesToRemove){
-			graph.remove(e);
-		}
+
 	}
 	
 }

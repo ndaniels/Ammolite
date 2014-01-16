@@ -194,7 +194,6 @@ public class StructCompressor {
         		} 
         	}
         	else{
-        		Logger.debug("adding new hash key");
         		structures++;
         		structsByHash.add(structure.hashCode(), structure);
         	}

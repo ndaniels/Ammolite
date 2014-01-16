@@ -2,6 +2,7 @@ package speedysearch;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import org.openscience.cdk.AtomContainer;
@@ -23,17 +24,21 @@ import edu.ucla.sspace.graph.isomorphism.AbstractIsomorphismTester;
  * 
  * @author  David Danko
  */
-public class MoleculeStruct extends AtomContainer implements Comparable<MoleculeStruct>
+public class MoleculeStruct extends AtomContainer
 {
 	protected int hash_code;
 	
 	private static final long serialVersionUID = 1L;
 	protected ArrayList<String> mol_ids;
-	public SparseUndirectedGraph graph;
+	protected SparseUndirectedGraph graph;
+	private HashMap<IAtom,Integer> atomsToNodes;
+	private HashMap<IBond,Edge> bondsToEdges;
 	
 	public MoleculeStruct(){
 		
 	}
+	
+	
 	public MoleculeStruct( IAtomContainer base )
 	{	
 		super( new AtomContainer(AtomContainerManipulator.removeHydrogens(base)) );
@@ -59,7 +64,21 @@ public class MoleculeStruct extends AtomContainer implements Comparable<Molecule
 		this.setProperty("PUBCHEM_COMPOUND_CID", this.getID());
 
 		this.mol_ids.add( getID() );
-
+	}
+	
+	@Override
+	public void removeAtom(IAtom atom){
+		for( IBond bond: getConnectedBondsList(atom)){
+			removeBond(bond);
+		}
+		graph.remove( atomsToNodes.get(atom));
+		super.removeAtom(atom);
+	}
+	
+	@Override
+	public void removeBond(IBond bond){
+		super.removeBond(bond);
+		graph.remove( bondsToEdges.get(bond));
 	}
 
 	protected void setHash(){
@@ -92,9 +111,13 @@ public class MoleculeStruct extends AtomContainer implements Comparable<Molecule
 		graph = new SparseUndirectedGraph();
 		for(int i=0; i<base.getAtomCount(); i++){
 			graph.add(i);
+			this.atomsToNodes.put(base.getAtom(i), i);
 			for(int j=0; j<i; j++){
-				if( base.getBond(base.getAtom(i), base.getAtom(j)) != null){
-					graph.add( new SimpleEdge(i,j) );
+				IBond bond = base.getBond(base.getAtom(i), base.getAtom(j));
+				if(  bond != null){
+					Edge newEdge = new SimpleEdge(i,j);
+					this.bondsToEdges.put(bond, newEdge);
+					graph.add( newEdge);
 				}
 			}
 		}
@@ -131,8 +154,5 @@ public class MoleculeStruct extends AtomContainer implements Comparable<Molecule
 	public int hashCode(){
 		return hash_code;
 	}
-	@Override
-	public int compareTo(MoleculeStruct that) {
-		return this.getAtomCount() - that.getAtomCount();
-	}
+
 }
