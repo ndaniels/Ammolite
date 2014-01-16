@@ -13,6 +13,12 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.commons.io.input.CountingInputStream;
 import org.openscience.cdk.DefaultChemObjectBuilder;
@@ -32,7 +38,7 @@ public class StructCompressor {
 	private MoleculeStructFactory structFactory;
 	private int molecules = 0;
 	private int structures = 0;
-	private int fruitless_comparisons = 0;
+	private AtomicInteger fruitless_comparisons = new AtomicInteger(0);
 	private int total_comparisons = 0;
 	private long runningTime, startTime;
 
@@ -66,8 +72,10 @@ public class StructCompressor {
 	 * @param filename name for the compressed database
 	 * @throws IOException
 	 * @throws CDKException
+	 * @throws ExecutionException 
+	 * @throws InterruptedException 
 	 */
-	public void  compress(String folder_name, String filename) throws IOException, CDKException{
+	public void  compress(String folder_name, String filename) throws IOException, CDKException, InterruptedException, ExecutionException{
 		startTime =System.currentTimeMillis();
 		File[] contents = getContents(folder_name);
 
@@ -160,8 +168,10 @@ public class StructCompressor {
 	 * @param molecule_database
 	 * @param structFactory
 	 * @throws CDKException
+	 * @throws ExecutionException 
+	 * @throws InterruptedException 
 	 */
-	private void checkDatabaseForIsomorphicStructs( IteratingSDFReader molecule_database, MoleculeStructFactory structFactory ) throws CDKException{
+	private void checkDatabaseForIsomorphicStructs( IteratingSDFReader molecule_database, MoleculeStructFactory structFactory ) throws CDKException, InterruptedException, ExecutionException{
 		
 		VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
         while( molecule_database.hasNext() ){
@@ -175,20 +185,10 @@ public class StructCompressor {
         	molecules++;
         	if( structsByHash.containsKey( structure.hashCode())){
         		List<MoleculeStruct> potential_matches = structsByHash.get( structure.hashCode() );
-        		boolean no_match = true;
-        		for( MoleculeStruct candidate: potential_matches ){
-        			total_comparisons++;
-        			if ( structure.isIsomorphic(candidate, iso_tester) ){
-        				no_match = false;
-        				candidate.addID( structure.getID());
-        				break;
-        			} else {
-        				fruitless_comparisons++;
-        			}
-
-        		}
+        		boolean match = parrallelIsomorphism( structure, potential_matches);
         		
-        		if( no_match ){
+        		
+        		if( !match ){
         			structures++;
         			structsByHash.add(structure.hashCode(), structure);
         		} 
@@ -199,6 +199,46 @@ public class StructCompressor {
         	}
         }
 	}
+	
+	private boolean parrallelIsomorphism(MoleculeStruct structure, List<MoleculeStruct> potential_matches) throws InterruptedException, ExecutionException{
+		
+		int threads = Runtime.getRuntime().availableProcessors();
+	    ExecutorService service = Executors.newFixedThreadPool(threads);
+	    
+	    List<Future<Boolean>> futures = new ArrayList<Future<Boolean>>();
+	    
+	    final MoleculeStruct fStruct = structure;
+	    
+	    for (final MoleculeStruct candidate: potential_matches) {
+	    	
+	        Callable<Boolean> callable = new Callable<Boolean>() {
+	        	
+	            public Boolean call() throws Exception {
+	            	VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
+	            	boolean iso = candidate.isIsomorphic(fStruct, iso_tester);
+	            	if( iso ){
+	            		candidate.addID( fStruct.getID());
+	            	} else {
+	            		fruitless_comparisons.incrementAndGet();
+	            	}
+	                return iso;
+	            }
+	        };
+	        
+	        futures.add(service.submit(callable));
+	    }
+
+	    service.shutdown();
+	    
+	    for (Future<Boolean> future : futures) {
+	        if( future.get()){
+	        	return true;
+	        }
+	    }
+	    return false;
+	    
+	}
+	
 	
 	/**
 	 * Reads through a file and adds to the location hash. This is a redundant loop but java struggles sometimes.
