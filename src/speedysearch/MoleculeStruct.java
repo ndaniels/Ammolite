@@ -24,15 +24,15 @@ import edu.ucla.sspace.graph.isomorphism.AbstractIsomorphismTester;
  * 
  * @author  David Danko
  */
-public class MoleculeStruct extends AtomContainer
+public class MoleculeStruct extends AtomContainer 
 {
 	protected int hash_code;
 	
 	private static final long serialVersionUID = 1L;
 	protected ArrayList<String> mol_ids;
 	protected SparseUndirectedGraph graph;
-	private HashMap<IAtom,Integer> atomsToNodes;
-	private HashMap<IBond,Edge> bondsToEdges;
+	private HashMap<IAtom,Integer> atomsToNodes = new HashMap<IAtom, Integer>();
+	private HashMap<IBond,Edge> bondsToEdges = new HashMap<IBond, Edge>();
 	
 	public MoleculeStruct(){
 		
