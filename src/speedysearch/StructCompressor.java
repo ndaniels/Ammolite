@@ -167,9 +167,6 @@ public class StructCompressor {
         	if( molecules % 250 == 0){
         		talk();
         	}
-        	if( molecules > 9750){
-        		talk();
-        	}
         	
         	IAtomContainer molecule =  molecule_database.next();       	
         	MoleculeStruct structure = structFactory.makeMoleculeStruct(molecule);
