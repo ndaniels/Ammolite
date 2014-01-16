@@ -81,7 +81,9 @@ public class MoleculeStruct extends AtomContainer implements Comparable<Molecule
 //		for(int j=0; j<bound; j++){
 //			h += Math.pow(10, j) * degree[ degree.length - 1 - j];
 //		}
-		this.hash_code = h;
+		
+		this.hash_code = 0;
+		//this.hash_code = h;
 
 	}
 			
