@@ -36,9 +36,8 @@ public class CyclicStruct extends MoleculeStruct {
 				
 				for( int i=0; i<getAtomCount(); i++){
 					if(graph.degree(i) == 1){
-						toRemove.add(getAtom(i));
-						bondsToRemove.addAll(getConnectedBondsList(getAtom(i)));
-						graph.remove(i);
+						toRemove.add(nodesToAtoms.get(i));
+						bondsToRemove.addAll(getConnectedBondsList( nodesToAtoms.get(i)));
 					}
 				}
 				

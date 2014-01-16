@@ -31,7 +31,7 @@ public class RingStruct extends CyclicStruct {
 		ArrayList<IAtom> atomsToRemove = new ArrayList<IAtom>();
 		for(int v: getGraph().vertices()){
 			if(getGraph().degree(v) == 0){
-				atomsToRemove.add(getAtom(v));
+				atomsToRemove.add( nodesToAtoms.get(v));
 			}
 		}
 		for(IAtom atom: atomsToRemove){
