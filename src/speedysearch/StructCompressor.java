@@ -177,6 +177,7 @@ public class StructCompressor {
         		List<MoleculeStruct> potential_matches = structsByHash.get( structure.hashCode() );
         		boolean no_match = true;
         		for( MoleculeStruct candidate: potential_matches ){
+        			total_comparisons++;
         			if ( structure.isIsomorphic(candidate, iso_tester) ){
         				no_match = false;
         				candidate.addID( structure.getID());
@@ -184,7 +185,7 @@ public class StructCompressor {
         			} else {
         				fruitless_comparisons++;
         			}
-        			total_comparisons++;
+
         		}
         		
         		if( no_match ){
