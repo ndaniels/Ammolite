@@ -62,30 +62,34 @@ public class MoleculeStruct extends AtomContainer implements Comparable<Molecule
 
 	}
 
-
-			
 	protected void setHash(){
-		int[] degree = new int[this.atoms.length];
-		int i=0;
-		for(IAtom atom: this.atoms){
-			degree[i] = this.getConnectedAtomsCount(atom);
-			i++;
-		}
-		Arrays.sort(degree);
-		int h=0;
-		int bound = degree.length;
-		int maxBound = 8;
-		if(bound > maxBound){
-			bound = maxBound;// Max int32 is a 10 digit number so this is very unlikely to overflow.
-		}
-		for(int j=0; j<bound; j++){
-			h += Math.pow(10, j) * degree[ degree.length - 1 - j];
-		}
-		if( h < 0){
-			Logger.debug("!!! "+ h +" !!!" );
-		}
+		int h = this.atomCount;
+		h += 1000* this.bondCount;
 		this.hash_code = h;
 	}
+			
+//	protected void setHash(){
+//		int[] degree = new int[this.atoms.length];
+//		int i=0;
+//		for(IAtom atom: this.atoms){
+//			degree[i] = this.getConnectedAtomsCount(atom);
+//			i++;
+//		}
+//		Arrays.sort(degree);
+//		int h=0;
+//		int bound = degree.length;
+//		int maxBound = 8;
+//		if(bound > maxBound){
+//			bound = maxBound;// Max int32 is a 10 digit number so this is very unlikely to overflow.
+//		}
+//		for(int j=0; j<bound; j++){
+//			h += Math.pow(10, j) * degree[ degree.length - 1 - j];
+//		}
+//		if( h < 0){
+//			Logger.debug("!!! "+ h +" !!!" );
+//		}
+//		this.hash_code = h;
+//	}
 	
 	private void makeGraph(IAtomContainer base){
 		graph = new SparseUndirectedGraph();
