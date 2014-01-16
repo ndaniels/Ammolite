@@ -33,6 +33,7 @@ public class StructCompressor {
 	private int molecules = 0;
 	private int structures = 0;
 	private int fruitless_comparisons = 0;
+	private int total_comparisons = 0;
 	private long runningTime, startTime;
 
 	public StructCompressor(MoleculeStructFactory _structFactory) throws IOException, CDKException{
@@ -97,7 +98,8 @@ public class StructCompressor {
 
 	private void talk(){
 		runningTime = (System.currentTimeMillis() - startTime)/(1000);// Time in seconds
-		Logger.log("Molecules: "+ molecules +" Representatives: "+structures+" Seconds: "+runningTime+" Fruitless Comparisons: "+fruitless_comparisons,2);
+		Logger.log("Molecules: "+ molecules +" Representatives: "+structures+" Seconds: "+runningTime,2);
+		Logger.debug(" Fruitless Comparisons: "+fruitless_comparisons+" Total Comparisons: "+total_comparisons);
 	}
 	
 	public static void mergeDatabases( StructDatabase a, StructDatabase b, String targetname){
@@ -182,6 +184,7 @@ public class StructCompressor {
         			} else {
         				fruitless_comparisons++;
         			}
+        			total_comparisons++;
         		}
         		
         		if( no_match ){
@@ -190,6 +193,7 @@ public class StructCompressor {
         		} 
         	}
         	else{
+        		Logger.debug("adding new hash key");
         		structures++;
         		structsByHash.add(structure.hashCode(), structure);
         	}
