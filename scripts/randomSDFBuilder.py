@@ -48,7 +48,7 @@ def buildRandomizedSDFs( numMolsList, inputFolder, outputFilenameList):
 				if "$$$$" not in line:
 					outFile.write(line)
 				else:
-					outFile.write("$$$$")
+					outFile.write("$$$$\n")
 					break
 			f.close()
 
@@ -57,8 +57,12 @@ def buildRandomizedSDFs( numMolsList, inputFolder, outputFilenameList):
 
 def main():
 
-	sizes = [1000, 10*1000, 200*1000, 1000*1000]
-	names = ["1k_random_molecules.sdf", "10k_random_molecules.sdf", "200k_random_molecules.sdf","1M_random_molecules.sdf"]
+	sizes = [50*1000]*24
+	name = "50k_random_molecules_"
+	names = []
+	for i in range( len(sizes)):
+		names.append( name + i +".sdf")
+	
 	buildRandomizedSDFs(sizes, "/mnt/work/ndaniels/pubchem/sdf", names)
 
 
