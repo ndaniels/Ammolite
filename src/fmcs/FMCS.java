@@ -59,13 +59,16 @@ public class FMCS {
 			a = molsA.next();
 			while( molsB.hasNext()){
 				b = molsB.next();
-				speedysearch.Logger.error("Comparing "+a.getID()+" to "+b.getID());
+				speedysearch.Logger.debug("Comparing "+a.getID()+" to "+b.getID());
 				a = new AtomContainer(AtomContainerManipulator.removeHydrogens(a));
 				b = new AtomContainer(AtomContainerManipulator.removeHydrogens(b));
+				speedysearch.Logger.debug("Removed hydrogens");
 				MCS myMCS = new MCS(a,b);
 				myMCS.calculate();
+				speedysearch.Logger.debug("Calculated MCS");
 				double overlap = overlapCoeff( myMCS.size(), a.getAtomCount(), b.getAtomCount());
 				double tanimoto = tanimotoCoeff( myMCS.size(), a.getAtomCount(), b.getAtomCount());
+				speedysearch.Logger.debug("Calculated coeffs");
 				speedysearch.Logger.log("molA "+a.getID() +" molB "+ b.getID() +" mcs_size "+myMCS.size()+" overlap: "+overlap+" tanimoto: "+tanimoto, 0);
 			}
 		}
