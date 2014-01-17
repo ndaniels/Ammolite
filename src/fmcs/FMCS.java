@@ -39,7 +39,7 @@ public class FMCS {
 			speedysearch.Logger.error("Failed to read first file");
 			e.printStackTrace();
 		}
-		speedysearch.Logger.log("Opened " + fileA);
+		speedysearch.Logger.error("Opened " + fileA);
 		IteratingSDFReader molsB = null;
 		try{
 			
@@ -50,7 +50,7 @@ public class FMCS {
 			speedysearch.Logger.error("Failed to second read file");
 			e.printStackTrace();
 		}
-		speedysearch.Logger.log("Opened "+fileB);
+		speedysearch.Logger.error("Opened "+fileB);
 		
 		IAtomContainer a;
 		IAtomContainer b;
@@ -59,6 +59,7 @@ public class FMCS {
 			a = molsA.next();
 			while( molsB.hasNext()){
 				b = molsB.next();
+				speedysearch.Logger.error("Comparing "+a.getID()+" to "+b.getID());
 				a = new AtomContainer(AtomContainerManipulator.removeHydrogens(a));
 				b = new AtomContainer(AtomContainerManipulator.removeHydrogens(b));
 				MCS myMCS = new MCS(a,b);
