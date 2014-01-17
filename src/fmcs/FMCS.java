@@ -39,6 +39,7 @@ public class FMCS {
 			speedysearch.Logger.error("Failed to read first file");
 			e.printStackTrace();
 		}
+		speedysearch.Logger.log("Opened " + fileA);
 		IteratingSDFReader molsB = null;
 		try{
 			
@@ -49,6 +50,7 @@ public class FMCS {
 			speedysearch.Logger.error("Failed to second read file");
 			e.printStackTrace();
 		}
+		speedysearch.Logger.log("Opened "+fileB);
 		
 		IAtomContainer a;
 		IAtomContainer b;
