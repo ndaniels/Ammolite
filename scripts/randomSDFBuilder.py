@@ -61,6 +61,7 @@ def main():
 	names = ["1k_random_molecules.sdf", "10k_random_molecules.sdf", "200k_random_molecules.sdf","1M_random_molecules.sdf"]
 	buildRandomizedSDFs(sizes, "/mnt/work/ndaniels/pubchem/sdf", names)
 
+
 if __name__ == "__main__":
 	main()
 
