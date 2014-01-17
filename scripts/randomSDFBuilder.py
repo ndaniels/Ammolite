@@ -61,7 +61,7 @@ def main():
 	name = "50k_random_molecules_"
 	names = []
 	for i in range( len(sizes)):
-		names.append( name + i +".sdf")
+		names.append( name + str(i) +".sdf")
 	
 	buildRandomizedSDFs(sizes, "/mnt/work/ndaniels/pubchem/sdf", names)
 
