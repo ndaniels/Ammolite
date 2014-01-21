@@ -118,9 +118,10 @@ public class StructCompressor {
 		runningTime = (System.currentTimeMillis() - startTime)/(1000);
 		try {
 		    PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("hashtableshape.txt", true)));
+			out.print("Molecules: "+ molecules +" Representatives: "+structures+" Seconds: "+runningTime);
+			out.println(" Fruitless Comparisons: "+fruitless_comparisons+" Hash Table Size: "+structsByHash.size());
+			
 			for(int key : structsByHash.keySet()){
-				out.print("Molecules: "+ molecules +" Representatives: "+structures+" Seconds: "+runningTime);
-				out.println(" Fruitless Comparisons: "+fruitless_comparisons+" Hash Table Size: "+structsByHash.size());
 				out.print(structsByHash.get(key).size());
 				out.print(" ");
 			}
@@ -198,10 +199,10 @@ public class StructCompressor {
 		VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
         while( molecule_database.hasNext() ){
         	long currentTime = (System.currentTimeMillis() - startTime)/(1000);
-        	if( molecules % 100 == 0 || currentTime - runningTime > 1){
+        	if( molecules % 100 == 0 || currentTime - runningTime > 2){
         		talk();
         	}
-        	if( molecules % 500 == 0 || currentTime - runningTime > 1){
+        	if( molecules % 500 == 0 || currentTime - runningTime > 2){
         		showTableShape();
         	}
         	
