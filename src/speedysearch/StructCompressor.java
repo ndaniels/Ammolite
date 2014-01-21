@@ -115,9 +115,12 @@ public class StructCompressor {
 	}
 	
 	private void showTableShape(){
+		runningTime = (System.currentTimeMillis() - startTime)/(1000);
 		try {
 		    PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("hashtableshape.txt", true)));
 			for(int key : structsByHash.keySet()){
+				out.print("Molecules: "+ molecules +" Representatives: "+structures+" Seconds: "+runningTime);
+				out.println(" Fruitless Comparisons: "+fruitless_comparisons+" Hash Table Size: "+structsByHash.size());
 				out.print(structsByHash.get(key).size());
 				out.print(" ");
 			}
