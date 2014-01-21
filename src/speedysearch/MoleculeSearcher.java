@@ -216,11 +216,11 @@ public class MoleculeSearcher {
 		Logger.log("Searching for matches to " + query.getID() + " with threshold "+threshold, 2);
 		
 		double repThresh = convertThresh( threshold);
-		Logger.log("Threshold: "+threshold+" Representative Threshold: "+repThresh,3);
+		Logger.log("Threshold: "+threshold+" Representative Threshold: "+repThresh,2);
 		String[] repMatches = thresholdRepMatches( query, repThresh);
-		Logger.log("Found "+repMatches.length+" representative matches",3);
+		Logger.log("Found "+repMatches.length+" representative matches",2);
 		MoleculeTriple[] molMatches = thresholdMoleculeMatches( query, repMatches, threshold);
-		Logger.log("Found "+molMatches.length+" molecule matches",3);
+		Logger.log("Found "+molMatches.length+" molecule matches",2);
 		return molMatches;
 	}
 	
@@ -241,9 +241,8 @@ public class MoleculeSearcher {
 		if( repMatches == null){
 			repMatches = bestRepMatches( query);
 		}
-
 		return bestMoleculeMatches(query, repMatches);	
-	}	
+	}
 	
 	private double coeff(int overlap, int a, int b){
 		if( useTanimoto){

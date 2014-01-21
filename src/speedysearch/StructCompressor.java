@@ -108,6 +108,7 @@ public class StructCompressor {
 		runningTime = (System.currentTimeMillis() - startTime)/(1000);// Time in seconds
 		Logger.log("Molecules: "+ molecules +" Representatives: "+structures+" Seconds: "+runningTime,2);
 		Logger.debug(" Fruitless Comparisons: "+fruitless_comparisons+" Total Comparisons: "+total_comparisons);
+		Logger.debug("Hash Table Size: "+structsByHash.size());
 	}
 	
 	public static void mergeDatabases( StructDatabase a, StructDatabase b, String targetname){
