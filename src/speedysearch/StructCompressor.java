@@ -108,7 +108,7 @@ public class StructCompressor {
 		runningTime = (System.currentTimeMillis() - startTime)/(1000);// Time in seconds
 		Logger.log("Molecules: "+ molecules +" Representatives: "+structures+" Seconds: "+runningTime,2);
 		Logger.debug(" Fruitless Comparisons: "+fruitless_comparisons+" Total Comparisons: "+total_comparisons);
-		Logger.debug("Hash Table Size: "+structsByHash.size());
+		Logger.debug(" Hash Table Size: "+structsByHash.size());
 	}
 	
 	public static void mergeDatabases( StructDatabase a, StructDatabase b, String targetname){
@@ -176,8 +176,8 @@ public class StructCompressor {
 		
 		VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
         while( molecule_database.hasNext() ){
-
-        	if( molecules % 100 == 0){
+        	long currentTime = (System.currentTimeMillis() - startTime)/(1000);
+        	if( molecules % 100 == 0 || currentTime - runningTime > 1){
         		talk();
         	}
         	
@@ -198,6 +198,7 @@ public class StructCompressor {
         		structures++;
         		structsByHash.add(structure.hashCode(), structure);
         	}
+        	runningTime = (System.currentTimeMillis() - startTime)/(1000);
         }
 	}
 	
