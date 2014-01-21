@@ -2,14 +2,17 @@ package speedysearch;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -111,6 +114,21 @@ public class StructCompressor {
 		Logger.debug(" Hash Table Size: "+structsByHash.size());
 	}
 	
+	private void showTableShape(){
+		try {
+		    PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("hashtableshape.txt", true)));
+			for(int key : structsByHash.keySet()){
+				out.print(structsByHash.get(key).size());
+				out.print(" ");
+			}
+			out.println();
+		    out.close();
+		} catch (IOException e) {
+		    //exception handling left as an exercise for the reader
+		}
+
+	}
+	
 	public static void mergeDatabases( StructDatabase a, StructDatabase b, String targetname){
 		
 		if(	!( a.getMoleculeStructFactory().exemplar.getClass().equals( b.getMoleculeStructFactory().exemplar.getClass()))){
@@ -179,6 +197,9 @@ public class StructCompressor {
         	long currentTime = (System.currentTimeMillis() - startTime)/(1000);
         	if( molecules % 100 == 0 || currentTime - runningTime > 1){
         		talk();
+        	}
+        	if( molecules % 500 == 0 || currentTime - runningTime > 1){
+        		showTableShape();
         	}
         	
         	IAtomContainer molecule =  molecule_database.next();       	
