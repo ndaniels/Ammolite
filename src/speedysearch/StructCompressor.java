@@ -21,7 +21,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.input.CountingInputStream;
 import org.openscience.cdk.DefaultChemObjectBuilder;
@@ -228,7 +230,7 @@ public class StructCompressor {
 	}
 	
 	private boolean parrallelIsomorphism(MoleculeStruct structure, List<MoleculeStruct> potential_matches) throws InterruptedException, ExecutionException{
-		
+		long parallelStartTime = System.currentTimeMillis();
 		int threads = Runtime.getRuntime().availableProcessors();
 	    ExecutorService service = Executors.newFixedThreadPool(threads);
 	    
@@ -255,13 +257,24 @@ public class StructCompressor {
 	        futures.add(service.submit(callable));
 	    }
 
-	    service.shutdown();
+	    
 	    
 	    for (Future<Boolean> future : futures) {
-	        if( future.get()){
+	    	boolean myResult = false;
+
+    		try {
+				myResult = future.get( 5, TimeUnit.SECONDS);
+			} catch (TimeoutException e) {
+				Logger.error("Time out while searching for representatives isomorphic to "+structure.getID());
+				e.printStackTrace();
+			}
+
+	        if( myResult){
+	        	service.shutdown();
 	        	return true;
 	        }
 	    }
+	    service.shutdown();
 	    return false;
 	    
 	}
