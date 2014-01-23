@@ -213,9 +213,7 @@ public class StructCompressor {
         	if( molecules % 1000 == 0 || currentTime - runningTime > 2){
         		talk();
         	}
-//        	if( molecules % 500 == 0 || currentTime - runningTime > 2){
-//        		showTableShape();
-//        	}
+        	runningTime = (System.currentTimeMillis() - startTime)/(1000);
         	
         	IAtomContainer molecule =  molecule_database.next();       	
         	MoleculeStruct structure = structFactory.makeMoleculeStruct(molecule);
@@ -234,7 +232,7 @@ public class StructCompressor {
         		structures++;
         		structsByHash.add(structure.hashCode(), structure);
         	}
-        	runningTime = (System.currentTimeMillis() - startTime)/(1000);
+
         }
 	}
 	
@@ -266,13 +264,17 @@ public class StructCompressor {
 	        futures.add(service.submit(callable));
 	    }
 
-	    
+	    int minSecs = 60;
+	    int secsAllowedPerIsoCalc = minSecs * futures.size() / threads;
+	    if( secsAllowedPerIsoCalc < minSecs){
+	    	secsAllowedPerIsoCalc = minSecs;
+	    }
 	    
 	    for (Future<Boolean> future : futures) {
 	    	boolean myResult = false;
 
     		try {
-				myResult = future.get( 30, TimeUnit.SECONDS);
+				myResult = future.get( secsAllowedPerIsoCalc, TimeUnit.SECONDS);
 			} catch (TimeoutException e) {
 				Logger.error("Time out while searching for representatives isomorphic to "+structure.getID());
 				e.printStackTrace();
