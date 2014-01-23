@@ -276,7 +276,7 @@ public class StructCompressor {
     		try {
 				myResult = future.get( secsAllowedPerIsoCalc, TimeUnit.SECONDS);
 			} catch (TimeoutException e) {
-				Logger.error("Time out while searching for representatives isomorphic to "+structure.getID());
+				Logger.error("Time out while searching for representatives isomorphic to "+structure.getID()+ " after "+secsAllowedPerIsoCalc+" seconds");
 				e.printStackTrace();
 			}
 
