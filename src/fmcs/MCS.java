@@ -36,8 +36,6 @@ public class MCS {
 	public IAtomContainer compoundOne;
 	public IAtomContainer compoundTwo;
 	boolean timeoutStop = false;
-	boolean introducedNewComponent;
-	private int bondMisCount;
 	private double start_time;
 
 	/**
@@ -174,7 +172,7 @@ public class MCS {
 	 * @param atom2
 	 * @return whether the atoms are compatible
 	 */
-	private boolean compatible(IAtom atom1, IAtom atom2){
+	private boolean compatible(IAtom atom1, IAtom atom2, Integer bondMisCount, Boolean introducedNewComponent){
 		Logger.log("compatible");
 		MCSList<IAtom> targetNeighborMapping = new MCSList<IAtom>();
 		MCSList<IAtom> atomOneNeighborList = new MCSList<IAtom>( compoundOne.getConnectedAtomsList( atom1 ));
@@ -197,17 +195,15 @@ public class MCS {
 			}
 		}
 		
-		boolean targetMapEqualsCurrMap = true;
+		// Assert the two maps are equal
 		for(IAtom t: targetNeighborMapping){
-			targetMapEqualsCurrMap &= currNeighborMapping.contains(t);
+			if( !currNeighborMapping.contains(t)){
+				return false;
+			}
 		}
 
-		
-		if(!targetMapEqualsCurrMap){ 
-			return false;
-			
-		} else if( targetNeighborMapping.size() == 0){// Trivial compatibility 
-			return true;
+		 if( targetNeighborMapping.size() == 0){// Trivial compatibility 
+			introducedNewComponent = true;
 			
 		}
 			
@@ -424,10 +420,12 @@ public class MCS {
                 if ((!(atomMismatchCurr > atomMismatchUpperBound) && atomMismatchAllowed)) {
                 	
                 	Logger.log("Allowing atom mismatch");
-                    bondMisCount = 0;
+                	
+                    Integer bondMisCount = 0;
+                    Boolean introducedNewComponent = false;
 
                     
-                    if ( introducedNewComponent = compatible(topCandidateAtom, otherAtom) ) {
+                    if ( compatible(topCandidateAtom, otherAtom, bondMisCount, introducedNewComponent) ) {
                     	
                         if (!(bondMismatchCurr + bondMisCount > bondMismatchUpperBound)) {
                             

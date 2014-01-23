@@ -72,12 +72,14 @@ public class ParallelSearcher {
 			};
 			futures.add( service.submit( callable));
 		}
-		service.shutdown();
+
 		
 		List<MoleculeTriple[]> results = new ArrayList<MoleculeTriple[]>();
 		for(Future<MoleculeTriple[]> future: futures){
 			results.add( future.get());
 		}
+		
+		service.shutdown();
 		return results;
 		
 	}
@@ -124,12 +126,14 @@ public class ParallelSearcher {
 			};
 			futures.add( service.submit( callable));
 		}
-		service.shutdown();
+		
 		
 		List<MoleculeTriple[]> results = new ArrayList<MoleculeTriple[]>();
 		for(Future<MoleculeTriple[]> future: futures){
 			results.add( future.get());
 		}
+		
+		service.shutdown();
 		return results;
 		
 	}

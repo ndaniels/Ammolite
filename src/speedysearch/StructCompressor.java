@@ -87,16 +87,26 @@ public class StructCompressor {
 		FileInputStream fs;
 		BufferedReader br;
 		for(File f: contents){
+			long fStart = System.currentTimeMillis();
+			
 			fs = new FileInputStream(f);
 			br = new BufferedReader( new InputStreamReader(fs ));
 			IteratingSDFReader molecule_database =new IteratingSDFReader(
 																			br,
 																			DefaultChemObjectBuilder.getInstance()
 																		);
-			Logger.log("Scanning " +  f.getName());
+			long setupFinish = System.currentTimeMillis() - fStart;
+			Logger.debug("Scanning " +  f.getName()+ " after "+setupFinish+" milliseconds spent instantiating sdf reader");
 			
 			checkDatabaseForIsomorphicStructs( molecule_database, structFactory );
+			long scanFinish = System.currentTimeMillis() - fStart; 
+			Logger.debug("Finished Scanning after " +  scanFinish+ " milliseconds");
+			
 			molecule_database.close();
+			br.close();
+			fs.close();
+			long closeFinish = System.currentTimeMillis() - fStart; 
+			Logger.debug("Finished closing files after " +  closeFinish+ " milliseconds");
 			
 			talk();
 		}
@@ -112,8 +122,7 @@ public class StructCompressor {
 	private void talk(){
 		runningTime = (System.currentTimeMillis() - startTime)/(1000);// Time in seconds
 		Logger.log("Molecules: "+ molecules +" Representatives: "+structures+" Seconds: "+runningTime,2);
-		Logger.debug(" Fruitless Comparisons: "+fruitless_comparisons+" Total Comparisons: "+total_comparisons);
-		Logger.debug(" Hash Table Size: "+structsByHash.size());
+		Logger.debug(" Fruitless Comparisons: "+fruitless_comparisons+" Hash Table Size: "+structsByHash.size());
 	}
 	
 	private void showTableShape(){
@@ -204,9 +213,9 @@ public class StructCompressor {
         	if( molecules % 100 == 0 || currentTime - runningTime > 2){
         		talk();
         	}
-        	if( molecules % 500 == 0 || currentTime - runningTime > 2){
-        		showTableShape();
-        	}
+//        	if( molecules % 500 == 0 || currentTime - runningTime > 2){
+//        		showTableShape();
+//        	}
         	
         	IAtomContainer molecule =  molecule_database.next();       	
         	MoleculeStruct structure = structFactory.makeMoleculeStruct(molecule);
