@@ -210,7 +210,7 @@ public class StructCompressor {
 		VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
         while( molecule_database.hasNext() ){
         	long currentTime = (System.currentTimeMillis() - startTime)/(1000);
-        	if( molecules % 100 == 0 || currentTime - runningTime > 2){
+        	if( molecules % 1000 == 0 || currentTime - runningTime > 2){
         		talk();
         	}
 //        	if( molecules % 500 == 0 || currentTime - runningTime > 2){
@@ -272,7 +272,7 @@ public class StructCompressor {
 	    	boolean myResult = false;
 
     		try {
-				myResult = future.get( 5, TimeUnit.SECONDS);
+				myResult = future.get( 30, TimeUnit.SECONDS);
 			} catch (TimeoutException e) {
 				Logger.error("Time out while searching for representatives isomorphic to "+structure.getID());
 				e.printStackTrace();
