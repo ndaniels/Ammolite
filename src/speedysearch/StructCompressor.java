@@ -210,7 +210,7 @@ public class StructCompressor {
 		VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
         while( molecule_database.hasNext() ){
         	long currentTime = (System.currentTimeMillis() - startTime)/(1000);
-        	if( molecules % 1000 == 0 || currentTime - runningTime > 2){
+        	if( molecules % 1000 == 0 || currentTime - runningTime > 30){
         		talk();
         	}
         	runningTime = (System.currentTimeMillis() - startTime)/(1000);
@@ -265,7 +265,7 @@ public class StructCompressor {
 	    }
 
 	    int minSecs = 60;
-	    int secsAllowedPerIsoCalc = minSecs * futures.size() / threads;
+	    int secsAllowedPerIsoCalc =(int) (minSecs * ((float) futures.size()) / ((float) threads) );
 	    if( secsAllowedPerIsoCalc < minSecs){
 	    	secsAllowedPerIsoCalc = minSecs;
 	    }
