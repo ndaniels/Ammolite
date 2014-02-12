@@ -15,8 +15,8 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.io.SDFWriter;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
-
 import speedysearch.IteratingSDFReader;
+import speedysearch.RingStruct;
 
 public class FMCS {
 	
@@ -54,8 +54,12 @@ public class FMCS {
 		
 		IAtomContainer a;
 		IAtomContainer b;
+		RingStruct repA;
+		RingStruct repB;
+		
 		
 		speedysearch.Logger.log("molA_ID molB_ID molA_size molB_size mcs_size overlap_coeff tanimoto_coeff", 0);
+		speedysearch.Logger.log("repA_ID repB_ID repA_size repB_size mcs_size overlap_coeff tanimoto_coeff", 0);
 		while( molsA.hasNext() ){
 			a = molsA.next();
 			while( molsB.hasNext()){
@@ -63,14 +67,21 @@ public class FMCS {
 				speedysearch.Logger.debug("Comparing "+a.getID()+" to "+b.getID());
 				a = new AtomContainer(AtomContainerManipulator.removeHydrogens(a));
 				b = new AtomContainer(AtomContainerManipulator.removeHydrogens(b));
+				repA = new RingStruct(a);
+				repB = new RingStruct(b);
 				speedysearch.Logger.debug("Removed hydrogens");
 				MCS myMCS = new MCS(a,b);
+				MCS repMCS = new MCS(repA, repB);
 				myMCS.calculate();
+				repMCS.calculate();
 				speedysearch.Logger.debug("Calculated MCS");
 				double overlap = overlapCoeff( myMCS.size(), a.getAtomCount(), b.getAtomCount());
 				double tanimoto = tanimotoCoeff( myMCS.size(), a.getAtomCount(), b.getAtomCount());
+				double rep_overlap = overlapCoeff( repMCS.size(), repA.getAtomCount(), repB.getAtomCount());
+				double rep_tanimoto = tanimotoCoeff( repMCS.size(), repA.getAtomCount(), repB.getAtomCount());
 				speedysearch.Logger.debug("Calculated coeffs");
-				speedysearch.Logger.log(a.getID() +" "+ b.getID() +" "+a.getAtomCount()+" "+b.getAtomCount()+" "+myMCS.size()+" "+overlap+" "+tanimoto, 0);
+				speedysearch.Logger.log("mol "+a.getID() +" "+ b.getID() +" "+a.getAtomCount()+" "+b.getAtomCount()+" "+myMCS.size()+" "+overlap+" "+tanimoto, 0);
+				speedysearch.Logger.log("rep "+repA.getID() +" "+ repB.getID() +" "+repA.getAtomCount()+" "+repB.getAtomCount()+" "+repMCS.size()+" "+rep_overlap+" "+rep_tanimoto, 0);
 			}
 		}
 		
