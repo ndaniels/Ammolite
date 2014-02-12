@@ -23,6 +23,7 @@ public class ParallelSearcher {
 	private int numThreads;
 	private StructDatabase db;
 	private boolean useTanimoto;
+	private static final int BATCH_SIZE = 10;
 	
 	
 	public ParallelSearcher( StructDatabase _db, boolean _useTanimoto){
@@ -32,7 +33,7 @@ public class ParallelSearcher {
 	}
 	
 	public void doQuickSearch( String queryFilename, String outFilename ) throws InterruptedException, ExecutionException, IOException, CDKException{
-		int batchSize = 10*numThreads; // Won't try to read an entire large file at once
+		int batchSize = BATCH_SIZE*numThreads; // Won't try to read an entire large file at once
 		List<IAtomContainer> queries = new ArrayList<IAtomContainer>( batchSize);
 		IteratingSDFReader queryFile = new IteratingSDFReader( new FileInputStream( new File( queryFilename)), DefaultChemObjectBuilder.getInstance());
 		SDFWriter writer = new SDFWriter(new BufferedWriter( new FileWriter( outFilename + ".sdf" )));

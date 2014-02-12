@@ -55,6 +55,7 @@ public class FMCS {
 		IAtomContainer a;
 		IAtomContainer b;
 		
+		speedysearch.Logger.log("molA_ID molB_ID molA_size molB_size mcs_size overlap_coeff tanimoto_coeff", 0);
 		while( molsA.hasNext() ){
 			a = molsA.next();
 			while( molsB.hasNext()){
@@ -69,7 +70,7 @@ public class FMCS {
 				double overlap = overlapCoeff( myMCS.size(), a.getAtomCount(), b.getAtomCount());
 				double tanimoto = tanimotoCoeff( myMCS.size(), a.getAtomCount(), b.getAtomCount());
 				speedysearch.Logger.debug("Calculated coeffs");
-				speedysearch.Logger.log("molA "+a.getID() +" molB "+ b.getID() +" mcs_size "+myMCS.size()+" overlap: "+overlap+" tanimoto: "+tanimoto, 0);
+				speedysearch.Logger.log(a.getID() +" "+ b.getID() +" "+a.getAtomCount()+" "+b.getAtomCount()+" "+myMCS.size()+" "+overlap+" "+tanimoto, 0);
 			}
 		}
 		
