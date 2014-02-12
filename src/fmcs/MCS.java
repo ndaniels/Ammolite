@@ -1,17 +1,12 @@
 package fmcs;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
-
-import speedysearch.MoleculeStruct;
 
 public class MCS {
 	
@@ -35,10 +30,6 @@ public class MCS {
 	public IAtomContainer compoundOne;
 	public IAtomContainer compoundTwo;
 	boolean timeoutStop = false;
-<<<<<<< HEAD
-=======
-	private double start_time;
->>>>>>> multithreaded_compression
 
 	/**
 	 * Default constructor
@@ -155,15 +146,10 @@ public class MCS {
 	 * @param atom2
 	 * @return whether the atoms are compatible
 	 */
-<<<<<<< HEAD
 	private CompatibleReturn compatible(IAtom atom1, IAtom atom2){
 		
 		CompatibleReturn out = new CompatibleReturn();
 		
-=======
-	private boolean compatible(IAtom atom1, IAtom atom2, Integer bondMisCount, Boolean introducedNewComponent){
-		Logger.log("compatible");
->>>>>>> multithreaded_compression
 		MCSList<IAtom> targetNeighborMapping = new MCSList<IAtom>();
 		MCSList<IAtom> atomOneNeighborList 
 			= new MCSList<IAtom>( compoundOne.getConnectedAtomsList( atom1 ));
@@ -188,7 +174,7 @@ public class MCS {
 			}
 		}
 		
-<<<<<<< HEAD
+
 		if (!targetNeighborMapping.equals(currNeighborMapping)) {
             return out;
         } else {
@@ -198,18 +184,6 @@ public class MCS {
 		if( targetNeighborMapping.size() == 0){
 			out.introducedNewComponent = true;
 			speedysearch.Logger.debug("Trying to introduce a new component");
-=======
-		// Assert the two maps are equal
-		for(IAtom t: targetNeighborMapping){
-			if( !currNeighborMapping.contains(t)){
-				return false;
-			}
-		}
-
-		 if( targetNeighborMapping.size() == 0){// Trivial compatibility 
-			introducedNewComponent = true;
-			
->>>>>>> multithreaded_compression
 		}
 			
 		// Count how many bonds are not the same order between the two atoms
@@ -437,7 +411,7 @@ public class MCS {
                 boolean tooManyAtomMismatches = atomMismatchCurr > atomMismatchUpperBound;
                 if ( !tooManyAtomMismatches) {
                 	
-<<<<<<< HEAD
+
                     CompatibleReturn compOut = compatible(topCandidateAtom, otherAtom);
                     
                     int bondMisCount = compOut.bondMisCount;
@@ -445,15 +419,7 @@ public class MCS {
                     boolean foundCompatible = compOut.compatible;
 
                     if ( foundCompatible ) {
-=======
-                	Logger.log("Allowing atom mismatch");
-                	
-                    Integer bondMisCount = 0;
-                    Boolean introducedNewComponent = false;
 
-                    
-                    if ( compatible(topCandidateAtom, otherAtom, bondMisCount, introducedNewComponent) ) {
->>>>>>> multithreaded_compression
                     	
                     	speedysearch.Logger.debug("Currently there are "+bondMismatchCurr+" bond mismatches");
                     	boolean tooManyBondMismatches = bondMismatchCurr + bondMisCount > bondMismatchUpperBound;
