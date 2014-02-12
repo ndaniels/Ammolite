@@ -22,8 +22,8 @@ public class MCS {
 	private int userDefinedLowerBound;
 	private int substructureNumLimit;
 	private int currSubstructureNum;
-	private int atomMismatchUpperBound = 2;
-	private int bondMismatchUpperBound = 2;
+	private int atomMismatchUpperBound = 1;
+	private int bondMismatchUpperBound = 1;
 	private int atomMismatchCurr;
 	private int bondMismatchCurr;
 	private int solutionSize = 0;
