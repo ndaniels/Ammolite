@@ -2,17 +2,28 @@ package speedysearch;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeoutException;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.input.CountingInputStream;
 import org.openscience.cdk.DefaultChemObjectBuilder;
@@ -32,7 +43,7 @@ public class StructCompressor {
 	private MoleculeStructFactory structFactory;
 	private int molecules = 0;
 	private int structures = 0;
-	private int fruitless_comparisons = 0;
+	private AtomicInteger fruitless_comparisons = new AtomicInteger(0);
 	private int total_comparisons = 0;
 	private long runningTime, startTime;
 
@@ -66,24 +77,36 @@ public class StructCompressor {
 	 * @param filename name for the compressed database
 	 * @throws IOException
 	 * @throws CDKException
+	 * @throws ExecutionException 
+	 * @throws InterruptedException 
 	 */
-	public void  compress(String folder_name, String filename) throws IOException, CDKException{
+	public void  compress(String folder_name, String filename) throws IOException, CDKException, InterruptedException, ExecutionException{
 		startTime =System.currentTimeMillis();
 		File[] contents = getContents(folder_name);
 
 		FileInputStream fs;
 		BufferedReader br;
 		for(File f: contents){
+			long fStart = System.currentTimeMillis();
+			
 			fs = new FileInputStream(f);
 			br = new BufferedReader( new InputStreamReader(fs ));
 			IteratingSDFReader molecule_database =new IteratingSDFReader(
 																			br,
 																			DefaultChemObjectBuilder.getInstance()
 																		);
-			Logger.log("Scanning " +  f.getName());
+			long setupFinish = System.currentTimeMillis() - fStart;
+			Logger.debug("Scanning " +  f.getName()+ " after "+setupFinish+" milliseconds spent instantiating sdf reader");
 			
 			checkDatabaseForIsomorphicStructs( molecule_database, structFactory );
+			long scanFinish = System.currentTimeMillis() - fStart; 
+			Logger.debug("Finished Scanning after " +  scanFinish+ " milliseconds");
+			
 			molecule_database.close();
+			br.close();
+			fs.close();
+			long closeFinish = System.currentTimeMillis() - fStart; 
+			Logger.debug("Finished closing files after " +  closeFinish+ " milliseconds");
 			
 			talk();
 		}
@@ -99,7 +122,26 @@ public class StructCompressor {
 	private void talk(){
 		runningTime = (System.currentTimeMillis() - startTime)/(1000);// Time in seconds
 		Logger.log("Molecules: "+ molecules +" Representatives: "+structures+" Seconds: "+runningTime,2);
-		Logger.debug(" Fruitless Comparisons: "+fruitless_comparisons+" Total Comparisons: "+total_comparisons);
+		Logger.debug(" Fruitless Comparisons: "+fruitless_comparisons+" Hash Table Size: "+structsByHash.size());
+	}
+	
+	private void showTableShape(){
+		runningTime = (System.currentTimeMillis() - startTime)/(1000);
+		try {
+		    PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("hashtableshape.txt", true)));
+			out.print("Molecules: "+ molecules +" Representatives: "+structures+" Seconds: "+runningTime);
+			out.println(" Fruitless Comparisons: "+fruitless_comparisons+" Hash Table Size: "+structsByHash.size());
+			
+			for(int key : structsByHash.keySet()){
+				out.print(structsByHash.get(key).size());
+				out.print(" ");
+			}
+			out.println();
+		    out.close();
+		} catch (IOException e) {
+		    //exception handling left as an exercise for the reader
+		}
+
 	}
 	
 	public static void mergeDatabases( StructDatabase a, StructDatabase b, String targetname){
@@ -160,35 +202,28 @@ public class StructCompressor {
 	 * @param molecule_database
 	 * @param structFactory
 	 * @throws CDKException
+	 * @throws ExecutionException 
+	 * @throws InterruptedException 
 	 */
-	private void checkDatabaseForIsomorphicStructs( IteratingSDFReader molecule_database, MoleculeStructFactory structFactory ) throws CDKException{
+	private void checkDatabaseForIsomorphicStructs( IteratingSDFReader molecule_database, MoleculeStructFactory structFactory ) throws CDKException, InterruptedException, ExecutionException{
 		
 		VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
         while( molecule_database.hasNext() ){
-
-        	if( molecules % 100 == 0){
+        	long currentTime = (System.currentTimeMillis() - startTime)/(1000);
+        	if( molecules % 1000 == 0 || currentTime - runningTime > 30){
         		talk();
         	}
+        	runningTime = (System.currentTimeMillis() - startTime)/(1000);
         	
         	IAtomContainer molecule =  molecule_database.next();       	
         	MoleculeStruct structure = structFactory.makeMoleculeStruct(molecule);
         	molecules++;
         	if( structsByHash.containsKey( structure.hashCode())){
         		List<MoleculeStruct> potential_matches = structsByHash.get( structure.hashCode() );
-        		boolean no_match = true;
-        		for( MoleculeStruct candidate: potential_matches ){
-        			total_comparisons++;
-        			if ( structure.isIsomorphic(candidate, iso_tester) ){
-        				no_match = false;
-        				candidate.addID( structure.getID());
-        				break;
-        			} else {
-        				fruitless_comparisons++;
-        			}
-
-        		}
+        		boolean match = parrallelIsomorphism( structure, potential_matches);
         		
-        		if( no_match ){
+        		
+        		if( !match ){
         			structures++;
         			structsByHash.add(structure.hashCode(), structure);
         		} 
@@ -197,8 +232,64 @@ public class StructCompressor {
         		structures++;
         		structsByHash.add(structure.hashCode(), structure);
         	}
+
         }
 	}
+	
+	private boolean parrallelIsomorphism(MoleculeStruct structure, List<MoleculeStruct> potential_matches) throws InterruptedException, ExecutionException{
+		long parallelStartTime = System.currentTimeMillis();
+		int threads = Runtime.getRuntime().availableProcessors();
+	    ExecutorService service = Executors.newFixedThreadPool(threads);
+	    
+	    List<Future<Boolean>> futures = new ArrayList<Future<Boolean>>();
+	    
+	    final MoleculeStruct fStruct = structure;
+	    
+	    for (final MoleculeStruct candidate: potential_matches) {
+	    	
+	        Callable<Boolean> callable = new Callable<Boolean>() {
+	        	
+	            public Boolean call() throws Exception {
+	            	VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
+	            	boolean iso = candidate.isIsomorphic(fStruct, iso_tester);
+	            	if( iso ){
+	            		candidate.addID( fStruct.getID());
+	            	} else {
+	            		fruitless_comparisons.incrementAndGet();
+	            	}
+	                return iso;
+	            }
+	        };
+	        
+	        futures.add(service.submit(callable));
+	    }
+
+	    int minSecs = 60;
+	    int secsAllowedPerIsoCalc =(int) (minSecs * ((float) futures.size()) / ((float) threads) );
+	    if( secsAllowedPerIsoCalc < minSecs){
+	    	secsAllowedPerIsoCalc = minSecs;
+	    }
+	    
+	    for (Future<Boolean> future : futures) {
+	    	boolean myResult = false;
+
+    		try {
+				myResult = future.get( secsAllowedPerIsoCalc, TimeUnit.SECONDS);
+			} catch (TimeoutException e) {
+				Logger.error("Time out while searching for representatives isomorphic to "+structure.getID()+ " after "+secsAllowedPerIsoCalc+" seconds");
+				e.printStackTrace();
+			}
+
+	        if( myResult){
+	        	service.shutdown();
+	        	return true;
+	        }
+	    }
+	    service.shutdown();
+	    return false;
+	    
+	}
+	
 	
 	/**
 	 * Reads through a file and adds to the location hash. This is a redundant loop but java struggles sometimes.

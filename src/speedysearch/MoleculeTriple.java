@@ -26,4 +26,8 @@ public class MoleculeTriple {
 	public IAtomContainer getMatch(){
 		return match;
 	}
+	
+	public String sizes(){
+		return query.getAtomCount()+" "+match.getAtomCount()+" "+overlaps.get(0).getAtomCount();
+	}
 }

@@ -27,8 +27,8 @@ object MolSearchMain{
 				val database = opt[String]("database", required=true, descr="Path to the database.")
 				val queries = opt[String]("queries", required=true, descr="SDF file of queries.")
 				val threshold = opt[Double]("threshold", descr="Threshold to use. Uses overlap coefficient by default.")
-			    val tanimoto = opt[Boolean]("tanimoto", descr="Use tanimoto coefficients.")
-			    val makeSDF = opt[String]("sdf", descr="Make an SDF file of the search results. First molecule is the overlap, second is the query, third is the match.")
+			    val tanimoto = opt[Boolean]("tanimoto", descr="Use tanimoto coefficients.", default=Some(false))
+			    val target = opt[String]("target", required=true, descr="Make an SDF file of the search results. First molecule is the query, second is the match, third is the overlap.")
 			    
 			    codependent( big, threshold)
 			    
@@ -60,20 +60,17 @@ object MolSearchMain{
 		  val decompressor = new StructDatabaseDecompressor()
 		  val database = decompressor.decompress(opts.search.database())
 		  Logger.log("Database contains " + database.numReps() + " representatives",4)
-		  val searcher = new MultiSearcher( database, opts.search.queries())
+		  val searcher = new ParallelSearcher( database, opts.search.tanimoto())
 		  
 		  if( opts.search.big() ){
 		    Logger.log("Running a big search with threshold "+opts.search.threshold())
-		    searcher.bigSearch(opts.search.threshold(), opts.search.tanimoto())
+		    searcher.doBigSearch( opts.search.queries(), opts.search.target(), opts.search.threshold())
 		    
 		  } else {
 		    Logger.log("Running a quick search")
-		    searcher.quickSearch()
+		    searcher.doQuickSearch( opts.search.queries(), opts.search.target())
 		  }
-		  if( opts.search.makeSDF.isDefined){
-		    searcher.makeSDF(opts.search.makeSDF())
-		  }
-		  searcher.testPrint()
+		  
 		} else if( opts.subcommand ==Some(opts.mcs)){
 		  Logger.log("Finding fmcs of two molecules")
 		  fmcs.FMCS.doFMCS(opts.mcs.molecules(), opts.mcs.sdf())
