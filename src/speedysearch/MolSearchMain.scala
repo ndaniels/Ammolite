@@ -80,7 +80,7 @@ object MolSearchMain{
 		  
 		} else if( opts.subcommand == Some( opts.dev)){
 		  fmcs.FMCS.getCoeffs(opts.dev.a(), opts.dev.b())
-		}
+		} 
 	}
 
 		

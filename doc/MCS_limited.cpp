@@ -232,25 +232,16 @@ namespace FMCS {
             for (size_t i = 0; i < atomListTwoSize; ++i) {
                 
                 bool atomMismatched = false;
-                bool atomMismatchAllowed = true;
+
                 int atom1 = compoundOne.getAtom(topCandidateAtom).atomType;
                 int atom2 = compoundTwo.getAtom(atomListTwoPtr[i]).atomType;
                 if (atom1 != atom2) {
                     
-                    if (rules.count(atom1) > 0) {
-                        if (!rules[atom1][atom2]) {
-                            atomMismatchAllowed = false;
-                        }
-                    } else if (rules.count(atom2) > 0) {
-                        if (!rules[atom2][atom1]) {
-                            atomMismatchAllowed = false;
-                        }
-                    }
                     ++atomMismatchCurr;
                     atomMismatched = true;
                 }
                 
-                if (!(atomMismatchCurr > atomMismatchUpperBound) && atomMismatchAllowed) {
+                if (!(atomMismatchCurr > atomMismatchUpperBound)) {
                     
                     size_t bondMisCount = 0;
                     bool introducedNewComponent = false;
@@ -283,11 +274,11 @@ namespace FMCS {
                         }
                     }
                     
-                }
+                } // end if(not too many mismatches)
                 if (atomMismatched) {
                     --atomMismatchCurr;
                 }
-            }
+            }// end for
         }
     }
     

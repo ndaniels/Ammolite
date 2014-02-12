@@ -11,74 +11,67 @@ import org.openscience.cdk.interfaces.IAtom;
  * @author DC
  *
  */
-public class MCSMap extends HashMap<IAtom, IAtom> {
+public class MCSMap {
 
 	private MCSList<IAtom> keyList = new MCSList<IAtom>();
 	private MCSList<IAtom> valList = new MCSList<IAtom>();
 	
-	public void checkInvariants() throws RuntimeException {
-		boolean a = keyList.size() == valList.size();
-		boolean b = keyList.size() == this.size();
-		if(!a && !b){
-			throw new RuntimeException("Key Size != Val Size != Total Size");
-		} else if (!a){
-			throw new RuntimeException("Key Size != Val Size");
-			
-		} else if( !b){
-			throw new RuntimeException("KeySize != Total Size , "+keyList.size()+" != "+this.size());
-		}
+	public int size(){
+		return keyList.size();
 	}
+	
 	public void push(IAtom key, IAtom val){
-		this.checkInvariants();
-		if(this.containsKey(key)){
-			if(this.getVal(key).equals(val)){
-				throw new RuntimeException(" double dupe");
-			} else{
-				throw new RuntimeException("single dupe");
-			}
-		}
-		this.put(key, val);
 		keyList.push(key);
 		valList.push(val);
 	}
 	
 	public void pop(){
-		this.checkInvariants();
-		IAtom key = keyList.pop();
-		this.remove(key);
+		keyList.pop();
 		valList.pop();
 	}
 	
 	public IAtom getKey(IAtom val){
-		this.checkInvariants();
 		int j =  valList.indexOf(val);
 		if(j == -1){
 			return null;
 		}
-		IAtom o = keyList.get( j );
-		return o;
+		return keyList.get( j );
 	}
 	
 	public IAtom getVal(IAtom key){
-		this.checkInvariants();
-		return this.get(key);
+		int j =  keyList.indexOf(key);
+		if(j == -1){
+			return null;
+		}
+		return valList.get( j );
 	}
 	
-	@Override
 	public void clear(){
-		super.clear();
 		keyList.clear();
 		valList.clear();
 	}
 	
-	public MCSMap deepCopy(){
-		this.checkInvariants();
+	public boolean containsKey(IAtom key){
+		return keyList.contains(key);
+	}
+	
+	public boolean containsVal(IAtom val){
+		return valList.contains(val);
+	}
+	
+	public MCSList<IAtom> getKeyList(){
+		return new MCSList<IAtom>(keyList);
+	}
+	
+	public MCSList<IAtom> getValList(){
+		return new MCSList<IAtom>(valList);
+	}
+	
+	public MCSMap copy(){
 		MCSMap out = new MCSMap();
-		for(IAtom k: keyList){
-			IAtom v = this.get(k);
-			out.push(k, v);
+		for(IAtom key: this.getKeyList()){
+			out.push( key, this.getVal(key));
 		}
-		out.checkInvariants();
 		return out;
 	}
 	

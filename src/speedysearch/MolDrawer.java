@@ -44,8 +44,8 @@ import org.openscience.cdk.renderer.visitor.AWTDrawVisitor;
 public class MolDrawer {
 	
 	public static void draw(IAtomContainer mol, String imageName) throws IOException{
-		int WIDTH = 200;
-	    int HEIGHT = 200;
+		int WIDTH = 500;
+	    int HEIGHT = 500;
 	    
 	    // the draw area and the image should be the same size
 	    Rectangle drawArea = new Rectangle(WIDTH, HEIGHT);

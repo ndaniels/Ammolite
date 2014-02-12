@@ -121,6 +121,8 @@ public class FMCS {
 		molecules.close();
 		a = new AtomContainer(AtomContainerManipulator.removeHydrogens(a));
 		b = new AtomContainer(AtomContainerManipulator.removeHydrogens(b));
+		speedysearch.MolDrawer.draw(a, output + "_inp1");
+		speedysearch.MolDrawer.draw(b, output + "_inp2");
 		MCS myMCS = new MCS(a,b);
 		myMCS.calculate();
 		SDFWriter sdfwriter = new SDFWriter(new BufferedWriter( new FileWriter( output + ".sdf" )));
@@ -129,6 +131,10 @@ public class FMCS {
 		}
 		sdfwriter.close();
 		speedysearch.Logger.log("found mcs!", 2);
-		speedysearch.MolDrawer.draw(myMCS.getSolutions().get(0), output);
+		int i=0;
+		for(IAtomContainer sol: myMCS.getSolutions()){
+			speedysearch.MolDrawer.draw(sol, output + i);
+			++i;
+		}
 	}
 }

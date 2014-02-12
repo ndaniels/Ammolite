@@ -21,24 +21,20 @@ public class MCS {
 		// RING_SENSITIVE // Unsupported
 	}
 	
-	private int timeout;
 	private boolean identicalGraph;
 	public MCSList<MCSMap> bestList = new MCSList<MCSMap>();
 	public MCSMap currentMapping = new MCSMap();
-	private MatchType matchType;
 	private int userDefinedLowerBound;
 	private int substructureNumLimit;
 	private int currSubstructureNum;
-	private int atomMismatchUpperBound = 1;
-	private int bondMismatchUpperBound = 1;
+	private int atomMismatchUpperBound = 2;
+	private int bondMismatchUpperBound = 2;
 	private int atomMismatchCurr;
 	private int bondMismatchCurr;
+	private int solutionSize = 0;
 	public IAtomContainer compoundOne;
 	public IAtomContainer compoundTwo;
 	boolean timeoutStop = false;
-	boolean introducedNewComponent;
-	private int bondMisCount;
-	private double start_time;
 
 	/**
 	 * Default constructor
@@ -47,9 +43,7 @@ public class MCS {
 	 * @param _compoundTwo
 	 */
 	public MCS(IAtomContainer _compoundOne, IAtomContainer _compoundTwo ){
-		this(	_compoundOne ,_compoundTwo, 
-				0, 10, 1, 
-				MCS.MatchType.DEFAULT, 1000);
+		this(	_compoundOne ,_compoundTwo, 0, 1);
 	}
 	
 	/**
@@ -65,14 +59,11 @@ public class MCS {
 	 * @param _timeout
 	 */
  	public MCS(	IAtomContainer _compoundOne, IAtomContainer _compoundTwo, 
-				int _userDefinedLowerBound, int _substructureNumLimit, int _bondMismatchUpper,
-				MatchType _matchType, int _timeout){
+				int _userDefinedLowerBound, int _substructureNumLimit){
 		
 		userDefinedLowerBound = _userDefinedLowerBound;
 		substructureNumLimit = _substructureNumLimit;
-		bondMismatchUpperBound = _bondMismatchUpper;
-		matchType = _matchType;
-		timeout = _timeout;
+
 		
 		atomMismatchCurr = 0;
 		bondMismatchCurr = 0;
@@ -92,13 +83,11 @@ public class MCS {
 
 
 	public void calculate(){
-		Logger.log("Starting MCS");
+		
 		clearResult();
 		
-		start_time = System.currentTimeMillis();
-		
 		if( compoundOne.equals(compoundTwo)){
-			Logger.log("Identical graphs");
+			
 			identicalGraph = true;	
 		} else {
 			max();
@@ -114,12 +103,9 @@ public class MCS {
 		if (identicalGraph) {
             return compoundOne.getAtomCount();
         } else {
-			if( bestList.size() > 0){
-				return bestList.get(0).size();
-			}
+			return solutionSize;
         }
-		
-		return -1;
+	
 	}
 	
 	/**
@@ -141,7 +127,7 @@ public class MCS {
 	 * TODO: this is very C++
 	 */
 	private void max(){
-		Logger.log("Max");
+		
 		MCSList<IAtom> atomListOne = new MCSList<IAtom>();
 		for(IAtom a: compoundOne.atoms()){
 			atomListOne.push(a);
@@ -153,15 +139,6 @@ public class MCS {
 		grow(atomListOne, atomListTwo);
 	}
 	
-	/**
-	 * Checks if two atoms match. Just compares type but could do other stuff.
-	 * @param a
-	 * @param b
-	 * @return
-	 */
-	private boolean match(IAtom a, IAtom b){
-		return a.getAtomicNumber() == b.getAtomicNumber();
-	}
 	
 	/**
 	 * Checks whether a given pair of atoms are compatible by seeing if they share 
@@ -174,10 +151,14 @@ public class MCS {
 	 * @param atom2
 	 * @return whether the atoms are compatible
 	 */
-	private boolean compatible(IAtom atom1, IAtom atom2){
-		Logger.log("compatible");
+	private CompatibleReturn compatible(IAtom atom1, IAtom atom2){
+		
+		CompatibleReturn out = new CompatibleReturn();
+		
 		MCSList<IAtom> targetNeighborMapping = new MCSList<IAtom>();
-		MCSList<IAtom> atomOneNeighborList = new MCSList<IAtom>( compoundOne.getConnectedAtomsList( atom1 ));
+		MCSList<IAtom> atomOneNeighborList 
+			= new MCSList<IAtom>( compoundOne.getConnectedAtomsList( atom1 ));
+		
 		for(IAtom atom1Neighbor: atomOneNeighborList){
 			
 			if( currentMapping.containsKey( atom1Neighbor ) ){
@@ -186,29 +167,27 @@ public class MCS {
 		}
 		
 		MCSList<IAtom> currNeighborMapping = new MCSList<IAtom>();
-
-		MCSList<IAtom> atomTwoNeighborList = new MCSList<IAtom>( compoundTwo.getConnectedAtomsList( atom2 )); 
+		MCSList<IAtom> atomTwoNeighborList 
+			= new MCSList<IAtom>( compoundTwo.getConnectedAtomsList( atom2 )); 
+		
 		for(IAtom atom2N: atomTwoNeighborList){
 
 			
-			if( currentMapping.containsValue( atom2N ) ){
+			if( currentMapping.containsVal( atom2N ) ){
 				IAtom k = currentMapping.getKey( atom2N );
 				currNeighborMapping.push(k);
 			}
 		}
 		
-		boolean targetMapEqualsCurrMap = true;
-		for(IAtom t: targetNeighborMapping){
-			targetMapEqualsCurrMap &= currNeighborMapping.contains(t);
-		}
-
+		if (!targetNeighborMapping.equals(currNeighborMapping)) {
+            return out;
+        } else {
+        	out.compatible = true;
+        }
 		
-		if(!targetMapEqualsCurrMap){ 
-			return false;
-			
-		} else if( targetNeighborMapping.size() == 0){// Trivial compatibility 
-			return true;
-			
+		if( targetNeighborMapping.size() == 0){
+			out.introducedNewComponent = true;
+			speedysearch.Logger.debug("Trying to introduce a new component");
 		}
 			
 		// Count how many bonds are not the same order between the two atoms
@@ -221,17 +200,18 @@ public class MCS {
 			IBond bondTwo = compoundTwo.getBond(atom2, counterpart );
 			
 			if( bondOne.getOrder() != bondTwo.getOrder() ){
-				bondMisCount++;
+				out.bondMisCount++;
 			}
 			
 		}
 			
-		return true;
+		return out;
 		
 	}
 	
 	/**
-	 * Selectively pops the atom with the most potential connections with the current structure
+	 * Selectively pops the atom with the most potential connections with the current 
+	 * structure
 	 * @param atomList
 	 * @return the candidate
 	 */
@@ -239,23 +219,28 @@ public class MCS {
 
 		IAtom bestCandidateAtom = atomList.get(0);
 		IAtom candidateAtom = null;
-		IAtom nextContender;
 		
 		for(int i=0; i<atomList.size(); i++){
-			nextContender = atomList.get(i);
+			IAtom nextContender = atomList.get(i);
 			// sets the 'best' candidate as the one with the most bonds in the smaller molecule
-			if( compoundOne.getConnectedBondsCount(nextContender) > compoundOne.getConnectedBondsCount(bestCandidateAtom)){
-				bestCandidateAtom = atomList.get(i);
+			int bondsToNextContender = compoundOne.getConnectedBondsCount(nextContender);
+			int bondsToBestCandidate = compoundOne.getConnectedBondsCount(bestCandidateAtom);
+			
+			if( bondsToNextContender > bondsToBestCandidate){
+				bestCandidateAtom = nextContender;
 			}
 			
-			MCSList<IAtom> neighborAtomList = new MCSList<IAtom>( compoundOne.getConnectedAtomsList(nextContender));
+			MCSList<IAtom> neighborAtomList 
+				= new MCSList<IAtom>( compoundOne.getConnectedAtomsList(nextContender));
 			for(int j=0; j<neighborAtomList.size(); j++){
-				// The real candidate is the one with the most bonds that has a neighbor in the current mapping
+				// The real candidate is the one with the most bonds that has a neighbor in the 
+				// current mapping
 				if( currentMapping.containsKey(neighborAtomList.get(j))){
 					if(		( candidateAtom == null ) || 
-							( compoundOne.getConnectedBondsCount(nextContender) > compoundOne.getConnectedBondsCount(candidateAtom))){
+							( bondsToNextContender > bondsToBestCandidate)){
 
 						candidateAtom = nextContender;
+						break;
 					}
 				}
 			}
@@ -265,8 +250,9 @@ public class MCS {
 
 			atomList.remove(bestCandidateAtom);
 			return bestCandidateAtom;
+		} else {
+			atomList.remove(candidateAtom);
 		}
-		atomList.remove(candidateAtom);
 		return candidateAtom;
 	}
 	
@@ -277,47 +263,65 @@ public class MCS {
 	private void boundary(){
         if (currentMapping.size() == size() ) {
         	
-            bestList.push(currentMapping.deepCopy());
-            
+            bestList.push(currentMapping.copy());
+            speedysearch.Logger.debug("Adding a solution of size "+currentMapping.size()+" vs "+size());
         } else if (currentMapping.size() > size()) {
-        	
+        	solutionSize = currentMapping.size();
             bestList.clear();
-            bestList.push(currentMapping.deepCopy()); // TODO: deepcopy?
+            bestList.push(currentMapping.copy()); // TODO: deepcopy?
+            speedysearch.Logger.debug("Better solution of size "+currentMapping.size());
+
         }
 	}
 	
 	/**
 	 * Converts the best list into a set of IAtomContainers
 	 * 
-	 * TODO: Currently only returns solutions of size 1. Probably not this function though. 
-	 * 
 	 * @return
 	 */
 	public List<IAtomContainer> getSolutions(){
-		
+		speedysearch.Logger.debug("Found "+bestList.size()+" solutions of size "+size());
 		ArrayList<IAtomContainer> out = new ArrayList<IAtomContainer>(bestList.size());
 
-		for(MCSMap solution: bestList){
-
-			Set<IAtom> atoms = solution.keySet();
-						
-			IAtomContainer thisSol = new AtomContainer();
-			for(IAtom atom: atoms){
-				thisSol.addAtom(atom);
+		for(MCSMap map: bestList){
+			if(map.size() != size()){
+				speedysearch.Logger.debug("!!!");
+			}
+			IAtomContainer keySol = new AtomContainer();
+			IAtomContainer valSol = new AtomContainer();
+			for(IAtom atom: map.getKeyList()){
+				keySol.addAtom(atom);
+			}
+			for(IAtom atom: map.getValList()){
+				valSol.addAtom(atom);
 			}
 			
-			for(IAtom atom: atoms){
-				Iterator<IBond> bonds = compoundOne.getConnectedBondsList(atom).iterator();
-				
-				for(IBond bond=bonds.next(); bonds.hasNext(); bond=bonds.next()){
-					thisSol.addBond(bond);
+			for(int i=0; i<keySol.getAtomCount(); ++i){
+				for(int j=0; j<i; ++j){
+					IBond b = compoundOne.getBond(keySol.getAtom(i), keySol.getAtom(j));
+					if( b != null){
+						keySol.addBond(b);
+					}
 				}
-				
 			}
 			
-			out.add(thisSol);
+			for(int i=0; i<valSol.getAtomCount(); ++i){
+				for(int j=0; j<i; ++j){
+					IBond b = compoundTwo.getBond(valSol.getAtom(i), valSol.getAtom(j));
+					if( b != null){
+						valSol.addBond(b);
+					}
+				}
+			}
+			
+			out.add(keySol);
+			out.add(valSol);
 		}
 		return out;
+	}
+	
+	private void grow(MCSList<IAtom> atomListOne, MCSList<IAtom> atomListTwo){
+		grow(atomListOne, atomListTwo, 0);
 	}
 	
 	/**
@@ -326,28 +330,23 @@ public class MCS {
 	 * @param atomListOne
 	 * @param atomListTwo
 	 */
-	private void grow(MCSList<IAtom> atomListOne, MCSList<IAtom> atomListTwo){
-		Logger.log("Grow");
-		
+	private void grow(MCSList<IAtom> atomListOne, MCSList<IAtom> atomListTwo, int indLevel){
 		MCSList<IAtom> atomListOneCopy = new MCSList<IAtom>( atomListOne );
 		MCSList<IAtom> atomListTwoCopy = new MCSList<IAtom>( atomListTwo );
 		MCSList<Integer> atomListOneDegrees = new MCSList<Integer>();
 		MCSList<Integer> atomListTwoDegrees = new MCSList<Integer>();
 		
-		// For every atom in list one makes a corresponding list of their potential degree in the current mapping
-		Logger.log("Going through " +atomListOne.size()+" atoms in list one");
+		// For every atom in list one makes a corresponding list of their potential degree in the 
+		// current mapping
 		for( IAtom atom: atomListOne){
 			
 			if(!currentMapping.containsKey( atom )){
-				Logger.log("IAtom " + atom + " is not in current mapping",3);
-				
 				int degree = 0;
 				
 				for(IAtom neighbor: compoundOne.getConnectedAtomsList(atom)){
 
 					if(currentMapping.containsKey(neighbor)){
 						degree++;
-						Logger.log("IAtom " + atom + " has "+degree+" neighbors in the current mapping",3);
 					}
 				}
 
@@ -355,18 +354,16 @@ public class MCS {
 			}
 		}
 		
-		// For every atom in list two makes a corresponding list of their potential degree in the current mapping
-		Logger.log("Going through " +atomListTwo.size()+" atoms in list two");
+		// For every atom in list two makes a corresponding list of their potential degree in the 
+		// current mapping
 		for( IAtom atom: atomListTwo){
 			
 			if(!currentMapping.containsKey( atom )){
-				Logger.log("IAtom " + atom + " is not in current mapping",3);
 				int degree = 0;
 				
 				for(IAtom neighbor: compoundTwo.getConnectedAtomsList(atom)){
 					if(currentMapping.containsKey(neighbor)){
 						degree++;
-						Logger.log("IAtom " + atom + " has "+degree+" neighbors in the current mapping",3);
 					}
 				}
 
@@ -374,11 +371,11 @@ public class MCS {
 			}
 		}
 		
-		// Check how many atoms in list one and two share the same degree to establish an upper bound
+		// Check how many atoms in list one and two share the same degree to establish an upper 
+		// bound
 		int currentBound = currentMapping.size();
 		for(int degree:atomListOneDegrees){
 			if(atomListTwoDegrees.contains(degree)){
-				Logger.log("Both lists have at least one atom with "+degree+" neighbors in the current mapping",2);
 				currentBound++;
 				atomListTwoDegrees.remove(degree);
 			}
@@ -386,50 +383,49 @@ public class MCS {
 		
 		// Throw out anything that's too little
         if(currentBound < userDefinedLowerBound || currentBound < size()) {
-        	Logger.log("Our current upper bound of "+currentBound+" is too little, aborting");
             return;
         }
 		
 		
 		while( true ){
 
-			// End conditions for the loop
-			// if ( System.currentTimeMillis() - start_time > this.timeout){
-			// 	boundary();
-			// 	Logger.log("Timed out. Ending.");
-			// 	return;
-			// } else 
-
 			if (atomListOneCopy.isEmpty() || atomListTwoCopy.isEmpty()) { 
                 boundary();
-                Logger.log("One or both lists of atoms is empty. Ending.");
                 return;
             }
             
 			
             IAtom topCandidateAtom = top(atomListOneCopy);
+            //speedysearch.Logger.debug("topCandidateAtom: "+topCandidateAtom);
     		for( IAtom otherAtom: atomListTwoCopy){
     			
                 boolean atomMismatched = false;
-                boolean atomMismatchAllowed = true;
                 
-                if (!topCandidateAtom.getAtomicNumber().equals( otherAtom.getAtomicNumber())){
-
-                	Logger.log("Atoms mismatched. " + topCandidateAtom.getAtomicNumber()+" and "+otherAtom.getAtomicNumber());
+                int atom1 = topCandidateAtom.getAtomicNumber();
+                int atom2 = otherAtom.getAtomicNumber();
+                
+//                speedysearch.Logger.debug("atom1: "+atom1+" atom2: "+atom2);
+                
+                if ( atom1 != atom2){
                     ++atomMismatchCurr;
                     atomMismatched = true;
                 }
                 
                 // If we can still have an atom mismatch
-                if ((!(atomMismatchCurr > atomMismatchUpperBound) && atomMismatchAllowed)) {
+                boolean tooManyAtomMismatches = atomMismatchCurr > atomMismatchUpperBound;
+                if ( !tooManyAtomMismatches) {
                 	
-                	Logger.log("Allowing atom mismatch");
-                    bondMisCount = 0;
-
+                    CompatibleReturn compOut = compatible(topCandidateAtom, otherAtom);
                     
-                    if ( introducedNewComponent = compatible(topCandidateAtom, otherAtom) ) {
+                    int bondMisCount = compOut.bondMisCount;
+                    boolean introducedNewComponent = compOut.introducedNewComponent;
+                    boolean foundCompatible = compOut.compatible;
+
+                    if ( foundCompatible ) {
                     	
-                        if (!(bondMismatchCurr + bondMisCount > bondMismatchUpperBound)) {
+                    	speedysearch.Logger.debug("Currently there are "+bondMismatchCurr+" bond mismatches");
+                    	boolean tooManyBondMismatches = bondMismatchCurr + bondMisCount > bondMismatchUpperBound;
+                        if (!tooManyBondMismatches) {
                             
                             bondMismatchCurr = bondMismatchCurr + bondMisCount;
                             
@@ -440,19 +436,21 @@ public class MCS {
                             /**
                              * This is where the algorithm gets a bit tricky. The recursive call to
                              * grow explores all the possible substructures that include the atom we 
-                             * just deemed compatible. The eventual pop can then explore substructures 
-                             * that may not contain the given pair of atoms.
+                             * just deemed compatible. The eventual pop can then explore 
+                             * substructures that may not contain the given pair of atoms.
                              */
-                            if ( !(currSubstructureNum > substructureNumLimit) ) {
+                            speedysearch.Logger.debug("Currently there are "+currSubstructureNum+" substructures");
+                            boolean aboveBound = currSubstructureNum > substructureNumLimit;
+                            if ( !aboveBound ) {
+                            	speedysearch.Logger.debug("Did introduce a new component, now there are "+currSubstructureNum);
                     			
-                                currentMapping.push(topCandidateAtom, otherAtom);
-                                                   			
+                                currentMapping.push(topCandidateAtom, otherAtom);        			
                                 atomListTwo.remove(otherAtom);
 
-                                grow(atomListOneCopy, atomListTwo);
+                                grow(atomListOneCopy, atomListTwo, indLevel+1);
                              
                                 atomListTwo.push(otherAtom);
-                                currentMapping.pop();                      
+                                currentMapping.pop();            
 
                             }
                             
@@ -464,11 +462,11 @@ public class MCS {
                         }
                     }
                     
-                }
+                } 
                 if (atomMismatched) {
                     --atomMismatchCurr;
                 }
-            }
+            }// end for( IAtom otherAtom: atomListTwoCopy)
 		}
 		
 		
