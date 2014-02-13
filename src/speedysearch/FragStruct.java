@@ -22,7 +22,7 @@ public class FragStruct extends CyclicStruct {
 		removeOnePrimeCarbons();
 		if( getGraph().order() > 0){
 			removeAcyclicEdges();
-			//removeZeroPrimeCarbons();
+			removeZeroPrimeCarbons();
 		}
 		setHash();
 	}
