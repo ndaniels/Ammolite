@@ -48,7 +48,7 @@ object MolSearchMain{
 		
 		if( opts.subcommand == Some(opts.compress)){
 		
-		  val exemplar = new CyclicStruct()
+		  val exemplar = new FragStruct()
 		  val structFactory = new MoleculeStructFactory( exemplar)
 		  val compressor = new StructCompressor( structFactory)
 		  compressor.compress(opts.compress.source(), opts.compress.target())
