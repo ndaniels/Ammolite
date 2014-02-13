@@ -16,7 +16,9 @@ import org.openscience.cdk.io.SDFWriter;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import speedysearch.CyclicStruct;
+import speedysearch.FragStruct;
 import speedysearch.IteratingSDFReader;
+import speedysearch.MoleculeStruct;
 import speedysearch.RingStruct;
 
 public class FMCS {
@@ -55,8 +57,8 @@ public class FMCS {
 		
 		IAtomContainer a;
 		IAtomContainer b;
-		CyclicStruct repA;
-		CyclicStruct repB;
+		MoleculeStruct repA;
+		MoleculeStruct repB;
 		
 		
 		speedysearch.Logger.log("molA_ID molB_ID molA_size molB_size mcs_size overlap_coeff tanimoto_coeff", 0);
@@ -68,8 +70,8 @@ public class FMCS {
 				speedysearch.Logger.debug("Comparing "+a.getID()+" to "+b.getID());
 				a = new AtomContainer(AtomContainerManipulator.removeHydrogens(a));
 				b = new AtomContainer(AtomContainerManipulator.removeHydrogens(b));
-				repA = new CyclicStruct(a);
-				repB = new CyclicStruct(b);
+				repA = new FragStruct(a);
+				repB = new FragStruct(b);
 				speedysearch.Logger.debug("Removed hydrogens");
 				MCS myMCS = new MCS(a,b);
 				MCS repMCS = new MCS(repA, repB);

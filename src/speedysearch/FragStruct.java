@@ -2,7 +2,6 @@ package speedysearch;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
@@ -13,7 +12,7 @@ import org.openscience.cdk.interfaces.IBond;
 import edu.ucla.sspace.graph.Edge;
 
 public class FragStruct extends CyclicStruct {
-
+	
 	public FragStruct(){
 		
 	}
@@ -22,14 +21,29 @@ public class FragStruct extends CyclicStruct {
 		super(base);
 		removeOnePrimeCarbons();
 		if( getGraph().order() > 0){
-			separateAcyclicEdges();
+			removeAcyclicEdges();
+			//removeZeroPrimeCarbons();
 		}
 		setHash();
 	}
 	
+	protected void removeZeroPrimeCarbons(){
+		ArrayList<IAtom> atomsToRemove = new ArrayList<IAtom>();
+		for(int v: getGraph().vertices()){
+			if(getGraph().degree(v) == 0){
+				atomsToRemove.add( nodesToAtoms.get(v));
+			}
+		}
+		for(IAtom atom: atomsToRemove){
+			removeAtom(atom);
+		}
+
+	}
+	
+
 
 	
-	protected void separateAcyclicEdges(){
+	protected void removeAcyclicEdges(){
 		Stack<Integer> stack = new Stack<Integer>();
 		Map<Edge,Boolean> edgesInCycle = new HashMap<Edge,Boolean>();
 
@@ -101,43 +115,20 @@ public class FragStruct extends CyclicStruct {
 		}
 		
 		
-		ArrayList<IBond> lineBonds = new ArrayList<IBond>();
+		ArrayList<IBond> bondsToRemove = new ArrayList<IBond>();
 		for(Edge e: graph.edges()){
 			if( ! edgesInCycle.containsKey(e) && edgeLabels.containsKey(e)){
 
 				IBond b = this.edgesToBonds.get(e);
-				if(!lineBonds.contains(b)){
-					lineBonds.add(b);
+				if(!bondsToRemove.contains(b)){
+					bondsToRemove.add(b);
 				}
 			}
 		}
-
-		
-		for(IAtom atom: this.atoms()){
-			List<IBond> myLineBonds = new ArrayList<IBond>();
-			boolean hasRingBonds = false;
-			
-			for(IBond bond: this.getConnectedBondsList(atom)){
-				if(lineBonds.contains(bond)){
-					myLineBonds.add(bond);
-				} else {
-					hasRingBonds = true;
-
-			}
-			if(myLineBonds.size() != 0 && hasRingBonds){
-				//IAtom dupeAtom = new IAtom();
-//				dupeAtom.setAtomicNumber( atom.getAtomicNumber());
-//				this.addAtom(dupeAtom);
-				
-				
-				
-			}
-			
-		}
-		for(IBond bond: lineBonds){
+		for(IBond bond: bondsToRemove){
 			removeBond(bond);
 		}
 
 	}
-	}
+	
 }

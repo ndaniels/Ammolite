@@ -256,6 +256,11 @@ public class MoleculeSearcher {
 	}
 	
 	private double convertThresh( double threshold){
-		return 0.5 * threshold; // TODO: this... 0.5 is just made up
+		
+		if( useTanimoto){
+			return threshold + 0.1;
+		} else{
+			return 0.4 * threshold + 0.5;
+		}
 	}
 }
