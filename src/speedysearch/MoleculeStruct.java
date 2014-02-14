@@ -79,6 +79,16 @@ public class MoleculeStruct extends AtomContainer
 		graph.remove(bondsToEdges.get(bond));
 		super.removeBond(bond);
 	}
+	
+	@Override
+	public void addAtom(IAtom atom){
+		int node = this.atomCount;
+		nodesToAtoms.put(node, atom);
+		atomsToNodes.put(atom, node);
+		graph.add(node);
+		super.addAtom(atom);
+	}
+	
 
 	protected void setHash(){
 		int h = this.atomCount;

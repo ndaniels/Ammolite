@@ -21,6 +21,9 @@ public class MoleculeStructFactory implements Serializable{
 		if(exemplar.getClass() == CyclicStruct.class ){
 			return new CyclicStruct( base );
 		} 
+		if( exemplar.getClass() == FragStruct.class){
+			return new FragStruct( base );
+		}
 		return new MoleculeStruct( base );
 	}
 }
