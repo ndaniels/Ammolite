@@ -1,8 +1,0 @@
-/**
- * 
- */
-/**
- * @author DC
- *
- */
-package speedysearch;

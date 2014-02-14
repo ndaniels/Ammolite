@@ -8,6 +8,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import moonstone.compression.CyclicStruct;
+import moonstone.compression.FragStruct;
+import moonstone.compression.MoleculeStruct;
+
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.exception.CDKException;
@@ -15,11 +19,8 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.io.SDFWriter;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
-import speedysearch.CyclicStruct;
-import speedysearch.FragStruct;
 import speedysearch.IteratingSDFReader;
-import speedysearch.MoleculeStruct;
-import speedysearch.RingStruct;
+
 
 public class FMCS {
 	
