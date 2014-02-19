@@ -1,5 +1,6 @@
 test_data/*
 test_results/*.sdf
+molecule_sets/*
 *.meta
 
 test_data.st.sdf
