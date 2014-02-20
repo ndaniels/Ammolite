@@ -5,6 +5,7 @@ import edu.mit.csail.ammolite.compression.MoleculeStructFactory
 import edu.mit.csail.ammolite.compression.StructCompressor
 import org.rogach.scallop._
 import edu.mit.csail.ammolite.search.SearchHandler
+import edu.mit.csail.ammolite.compression.CyclicStruct
 
 
 object AmmoliteMain{
