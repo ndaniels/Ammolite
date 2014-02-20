@@ -15,6 +15,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.KeyListMap;
+import edu.mit.csail.ammolite.compression.CyclicStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory;
 
@@ -25,6 +26,8 @@ public class StructDatabase implements Serializable{
 	private KeyListMap<Integer, MoleculeStruct> structsByHash;
 	private HashMap<String, FilePair> fileLocsByID;
 	private MoleculeStructFactory structFactory;
+	
+	
 
 	public StructDatabase(	KeyListMap<Integer, MoleculeStruct> _structsByHash, 
 							HashMap<String, FilePair> _fileLocsByID, 
@@ -94,7 +97,10 @@ public class StructDatabase implements Serializable{
 	}
 	
 	public double convertThreshold(double threshold, double probability, boolean useTanimoto){
-		return -1.0;
+		if( structFactory.exemplar.getClass() == CyclicStruct.class){
+			return 0.5 * threshold + 0.3 - 0.2 * probability + 0.2; 
+		}
+		return 0.0;
 	}
 	
 	public MoleculeStruct makeMoleculeStruct(IAtomContainer mol){

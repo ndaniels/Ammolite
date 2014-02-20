@@ -8,7 +8,8 @@ public class MoleculeStructFactory implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	MoleculeStruct exemplar;
+	public MoleculeStruct exemplar;
+	
 	
 	public MoleculeStructFactory(MoleculeStruct _exemplar){
 		exemplar = _exemplar;
