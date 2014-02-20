@@ -3,7 +3,7 @@ package edu.mit.csail.fmcsj;
 public class Logger {
 
 	private static int verbosity = 1;// Normal level output, 0 is quiet, 2 slightly verbose, etc
-	private static boolean silenced = false;
+	private static boolean silenced = true;
 	
 
 	public static void setVerbosity( int _verbosity){
