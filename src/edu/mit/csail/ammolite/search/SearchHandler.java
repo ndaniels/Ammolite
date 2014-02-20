@@ -11,20 +11,24 @@ public class SearchHandler {
 		LINEAR, CYCLIC, RING 
 	}
 
-	public SearchHandler(String databaseFilename, String queryFilename, double threshold, double probability, boolean useTanimoto){
+	public SearchHandler(String databaseFilename, String queryFilename, String outFilename, double threshold, double probability, boolean useTanimoto){
 		pickSearchType( threshold,probability, useTanimoto);
 		if( searchType != SearchType.LINEAR){
-			db = StructDatabaseDecompressor.decompress(databaseFilename);
+			//db = StructDatabaseDecompressor.decompress(databaseFilename);
+		}
+		if( searchType == SearchType.CYCLIC){
+			IBatchSearcher searcher = new ParallelSearcher();
+			searcher.search(databaseFilename, queryFilename, outFilename, threshold, probability, useTanimoto);
 		}
 		
 	}
 	
 	public void handleSearch(){
-		return;
+
 	}
 	
 	private void pickSearchType(double threshold, double probability, boolean useTanimoto){
-		searchType = SearchType.RING;
+		searchType = SearchType.CYCLIC;
 	}
 	
 }

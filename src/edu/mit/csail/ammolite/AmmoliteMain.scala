@@ -61,7 +61,8 @@ object AmmoliteMain{
 		  }
 		  
 		} else if( opts.subcommand == Some(opts.search)){
-			val searchHandler = new SearchHandler( opts.search.database(), opts.search.queries(), opts.search.threshold(), opts.search.probability(), opts.search.tanimoto())
+			val searchHandler = new SearchHandler( opts.search.database(), opts.search.queries(), opts.search.target(),
+													opts.search.threshold(), opts.search.probability(), opts.search.tanimoto())
 			searchHandler.handleSearch();
 		  
 		} else if( opts.subcommand ==Some(opts.mcs)){
