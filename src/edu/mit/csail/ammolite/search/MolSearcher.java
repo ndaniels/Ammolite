@@ -65,10 +65,12 @@ public class MolSearcher implements IMolSearcher {
 
 		List<MoleculeStruct> matches = new ArrayList<MoleculeStruct>();
 		Iterator<MoleculeStruct> structs = db.iterator();
-		
+		int count = 0;
 		MoleculeStruct target;
 		while( structs.hasNext() ){
-			
+			if( count % 50 == 0){
+				edu.mit.csail.ammolite.Logger.debug("Scanned "+count+" representatives");
+			}
 			target = structs.next();
 
 			
@@ -80,6 +82,7 @@ public class MolSearcher implements IMolSearcher {
 			if( coef >= reprThreshold){
 				matches.add(target);
 			} 
+			count++;
 		}
 		
 		ArrayList<String> ids = new ArrayList<String>(3 * matches.size());
