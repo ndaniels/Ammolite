@@ -28,7 +28,7 @@ public class ParallelSearcher implements IBatchSearcher{
 	private static int numThreads = Runtime.getRuntime().availableProcessors();;
 	private static StructDatabase db;
 	private static boolean useTanimoto;
-	private static final int BATCH_SIZE = 10*numThreads;
+	private static final int BATCH_SIZE = 1;// 10*numThreads;
 	
 
 	/**
@@ -149,6 +149,7 @@ public class ParallelSearcher implements IBatchSearcher{
 		
 		List<MolTriple[]> results = new ArrayList<MolTriple[]>();
 		for(Future<MolTriple[]> future: futures){
+			
 			results.add( future.get());
 		}
 		
