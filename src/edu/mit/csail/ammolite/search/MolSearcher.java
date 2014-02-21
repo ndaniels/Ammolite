@@ -26,8 +26,11 @@ public class MolSearcher implements IMolSearcher {
 	public MolTriple[] search(IAtomContainer query, double threshold, double probability) {
 		query = new AtomContainer(AtomContainerManipulator.removeHydrogens(query));
 		double repThreshold = db.convertThreshold(threshold, probability, useTanimoto);
+		edu.mit.csail.ammolite.Logger.debug("Using rep threshold of "+repThreshold);
 		String[] repMatches = thresholdRepMatches( query, repThreshold);
+		edu.mit.csail.ammolite.Logger.debug("Found "+repMatches.length+" representative matches");
 		List<MolTriple> molMatches = thresholdMoleculeMatches( query, repMatches, threshold);
+		edu.mit.csail.ammolite.Logger.debug("Found "+molMatches.size()+" molecule matches");
 		return molMatches.toArray(new MolTriple[0]);
 	}
 
