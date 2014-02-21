@@ -421,7 +421,7 @@ public class MCS {
                     if ( foundCompatible ) {
 
                     	
-                    	edu.mit.csail.ammolite.Logger.debug("Currently there are "+bondMismatchCurr+" bond mismatches");
+                    	//edu.mit.csail.ammolite.Logger.debug("Currently there are "+bondMismatchCurr+" bond mismatches");
                     	boolean tooManyBondMismatches = bondMismatchCurr + bondMisCount > bondMismatchUpperBound;
                         if (!tooManyBondMismatches) {
                             
@@ -437,10 +437,10 @@ public class MCS {
                              * just deemed compatible. The eventual pop can then explore 
                              * substructures that may not contain the given pair of atoms.
                              */
-                            edu.mit.csail.ammolite.Logger.debug("Currently there are "+currSubstructureNum+" substructures");
+                            //edu.mit.csail.ammolite.Logger.debug("Currently there are "+currSubstructureNum+" substructures");
                             boolean aboveBound = currSubstructureNum > substructureNumLimit;
                             if ( !aboveBound ) {
-                            	edu.mit.csail.ammolite.Logger.debug("Did introduce a new component, now there are "+currSubstructureNum);
+                            	//edu.mit.csail.ammolite.Logger.debug("Did introduce a new component, now there are "+currSubstructureNum);
                     			
                                 currentMapping.push(topCandidateAtom, otherAtom);        			
                                 atomListTwo.remove(otherAtom);
