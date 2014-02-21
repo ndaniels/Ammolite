@@ -44,6 +44,10 @@
 		<target name="clean">
 			<delete dir="${build.dir}"/>
 		</target>
+	
+		<target name="cleanjar">
+			<delete dir="${jar.dir}"/>
+		</target>
 
 
 		
@@ -56,7 +60,7 @@
 			</scalac>
 		</target>
 
-		<target name="jar" depends="compile">
+		<target name="jar" depends="compile,cleanjar">
 
 				<mkdir dir="${jar.dir}"/>
 
@@ -78,6 +82,6 @@
 
 		<target name="clean-build" depends="clean,jar"/>
 
-		<target name="main" depends="clean,run"/>
+		<target name="main" depends="run"/>
 
 </project>

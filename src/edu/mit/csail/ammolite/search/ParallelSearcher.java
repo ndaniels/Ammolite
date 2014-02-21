@@ -128,7 +128,7 @@ public class ParallelSearcher implements IBatchSearcher{
 	 * @throws ExecutionException
 	 */
 	private List<MolTriple[]> parallelSearch(List<IAtomContainer> queries, double threshold, double probability) throws InterruptedException, ExecutionException{
-		
+		edu.mit.csail.ammolite.Logger.debug("Searching for "+queries.size()+" queries with threshold "+threshold+" and probability "+probability);
 		ExecutorService service = Executors.newFixedThreadPool(numThreads);
 		List<Future<MolTriple[]>> futures = new ArrayList<Future<MolTriple[]>>();
 		final double fThresh = threshold;

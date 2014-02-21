@@ -38,10 +38,10 @@ public class FMCS {
 		BufferedReader brA = new BufferedReader( new InputStreamReader(fsA ));
 		molsA =new IteratingSDFReader( brA, DefaultChemObjectBuilder.getInstance());
 		} catch( IOException e){
-			edu.mit.csail.ammolite.Logger.error("Failed to read first file");
+			//edu.mit.csail.ammolite.Logger.error("Failed to read first file");
 			e.printStackTrace();
 		}
-		edu.mit.csail.ammolite.Logger.error("Opened " + fileA);
+		//edu.mit.csail.ammolite.Logger.error("Opened " + fileA);
 		IteratingSDFReader molsB = null;
 		try{
 			
@@ -49,10 +49,10 @@ public class FMCS {
 		BufferedReader brB = new BufferedReader( new InputStreamReader(fsB ));
 		molsB =new IteratingSDFReader( brB, DefaultChemObjectBuilder.getInstance());
 		} catch( IOException e){
-			edu.mit.csail.ammolite.Logger.error("Failed to second read file");
+			//edu.mit.csail.ammolite.Logger.error("Failed to second read file");
 			e.printStackTrace();
 		}
-		edu.mit.csail.ammolite.Logger.error("Opened "+fileB);
+		//edu.mit.csail.ammolite.Logger.error("Opened "+fileB);
 		
 		IAtomContainer a;
 		IAtomContainer b;
@@ -60,30 +60,30 @@ public class FMCS {
 		MoleculeStruct repB;
 		
 		
-		edu.mit.csail.ammolite.Logger.log("molA_ID molB_ID molA_size molB_size mcs_size overlap_coeff tanimoto_coeff", 0);
-		edu.mit.csail.ammolite.Logger.log("repA_ID repB_ID repA_size repB_size mcs_size overlap_coeff tanimoto_coeff", 0);
+		//edu.mit.csail.ammolite.Logger.log("molA_ID molB_ID molA_size molB_size mcs_size overlap_coeff tanimoto_coeff", 0);
+		//edu.mit.csail.ammolite.Logger.log("repA_ID repB_ID repA_size repB_size mcs_size overlap_coeff tanimoto_coeff", 0);
 		while( molsA.hasNext() ){
 			a = molsA.next();
 			while( molsB.hasNext()){
 				b = molsB.next();
-				edu.mit.csail.ammolite.Logger.debug("Comparing "+a.getID()+" to "+b.getID());
+				//edu.mit.csail.ammolite.Logger.debug("Comparing "+a.getID()+" to "+b.getID());
 				a = new AtomContainer(AtomContainerManipulator.removeHydrogens(a));
 				b = new AtomContainer(AtomContainerManipulator.removeHydrogens(b));
 				repA = new FragStruct(a);
 				repB = new FragStruct(b);
-				edu.mit.csail.ammolite.Logger.debug("Removed hydrogens");
+				//edu.mit.csail.ammolite.Logger.debug("Removed hydrogens");
 				MCS myMCS = new MCS(a,b);
 				MCS repMCS = new MCS(repA, repB);
 				myMCS.calculate();
 				repMCS.calculate();
-				edu.mit.csail.ammolite.Logger.debug("Calculated MCS");
+				//edu.mit.csail.ammolite.Logger.debug("Calculated MCS");
 				double overlap = overlapCoeff( myMCS.size(), a.getAtomCount(), b.getAtomCount());
 				double tanimoto = tanimotoCoeff( myMCS.size(), a.getAtomCount(), b.getAtomCount());
 				double rep_overlap = overlapCoeff( repMCS.size(), repA.getAtomCount(), repB.getAtomCount());
 				double rep_tanimoto = tanimotoCoeff( repMCS.size(), repA.getAtomCount(), repB.getAtomCount());
-				edu.mit.csail.ammolite.Logger.debug("Calculated coeffs");
-				edu.mit.csail.ammolite.Logger.log("mol "+a.getID() +" "+ b.getID() +" "+a.getAtomCount()+" "+b.getAtomCount()+" "+myMCS.size()+" "+overlap+" "+tanimoto, 0);
-				edu.mit.csail.ammolite.Logger.log("rep "+repA.getID() +" "+ repB.getID() +" "+repA.getAtomCount()+" "+repB.getAtomCount()+" "+repMCS.size()+" "+rep_overlap+" "+rep_tanimoto, 0);
+				//edu.mit.csail.ammolite.Logger.debug("Calculated coeffs");
+				//edu.mit.csail.ammolite.Logger.log("mol "+a.getID() +" "+ b.getID() +" "+a.getAtomCount()+" "+b.getAtomCount()+" "+myMCS.size()+" "+overlap+" "+tanimoto, 0);
+				//edu.mit.csail.ammolite.Logger.log("rep "+repA.getID() +" "+ repB.getID() +" "+repA.getAtomCount()+" "+repB.getAtomCount()+" "+repMCS.size()+" "+rep_overlap+" "+rep_tanimoto, 0);
 			}
 		}
 		
@@ -117,20 +117,20 @@ public class FMCS {
 		BufferedReader br = new BufferedReader( new InputStreamReader(fs ));
 		molecules =new IteratingSDFReader( br, DefaultChemObjectBuilder.getInstance());
 		} catch( IOException e){
-			edu.mit.csail.ammolite.Logger.error("Failed to read file");
+			//edu.mit.csail.ammolite.Logger.error("Failed to read file");
 			e.printStackTrace();
 		}
-		edu.mit.csail.ammolite.Logger.log("reading molecules",3);
+		//edu.mit.csail.ammolite.Logger.log("reading molecules",3);
 		
 		IAtomContainer a = null;
 		IAtomContainer b = null;
 		
 		a = molecules.next();
-		edu.mit.csail.ammolite.Logger.log("molecule one: "+a.getID(), 2);
+		//edu.mit.csail.ammolite.Logger.log("molecule one: "+a.getID(), 2);
 		
 		
 		b = molecules.next();
-		edu.mit.csail.ammolite.Logger.log("molecule two: "+b.getID(), 2);
+		//edu.mit.csail.ammolite.Logger.log("molecule two: "+b.getID(), 2);
 		
 		molecules.close();
 		a = new AtomContainer(AtomContainerManipulator.removeHydrogens(a));
@@ -144,7 +144,7 @@ public class FMCS {
 			sdfwriter.write(overlap);
 		}
 		sdfwriter.close();
-		edu.mit.csail.ammolite.Logger.log("found mcs!", 2);
+		//edu.mit.csail.ammolite.Logger.log("found mcs!", 2);
 		int i=0;
 		for(IAtomContainer sol: myMCS.getSolutions()){
 			edu.mit.csail.ammolite.MolDrawer.draw(sol, output + i);
