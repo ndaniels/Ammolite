@@ -183,7 +183,7 @@ public class MCS {
 		
 		if( targetNeighborMapping.size() == 0){
 			out.introducedNewComponent = true;
-			edu.mit.csail.ammolite.Logger.debug("Trying to introduce a new component");
+			////edu.mit.csail.ammolite.Logger.debug("Trying to introduce a new component");
 		}
 			
 		// Count how many bonds are not the same order between the two atoms
@@ -260,12 +260,12 @@ public class MCS {
         if (currentMapping.size() == size() ) {
         	
             bestList.push(currentMapping.copy());
-            edu.mit.csail.ammolite.Logger.debug("Adding a solution of size "+currentMapping.size()+" vs "+size());
+            ////edu.mit.csail.ammolite.Logger.debug("Adding a solution of size "+currentMapping.size()+" vs "+size());
         } else if (currentMapping.size() > size()) {
         	solutionSize = currentMapping.size();
             bestList.clear();
             bestList.push(currentMapping.copy()); // TODO: deepcopy?
-            edu.mit.csail.ammolite.Logger.debug("Better solution of size "+currentMapping.size());
+            ////edu.mit.csail.ammolite.Logger.debug("Better solution of size "+currentMapping.size());
 
         }
 	}
@@ -276,12 +276,12 @@ public class MCS {
 	 * @return
 	 */
 	public List<IAtomContainer> getSolutions(){
-		edu.mit.csail.ammolite.Logger.debug("Found "+bestList.size()+" solutions of size "+size());
+		////edu.mit.csail.ammolite.Logger.debug("Found "+bestList.size()+" solutions of size "+size());
 		ArrayList<IAtomContainer> out = new ArrayList<IAtomContainer>(bestList.size());
 
 		for(MCSMap map: bestList){
 			if(map.size() != size()){
-				edu.mit.csail.ammolite.Logger.debug("!!!");
+				////edu.mit.csail.ammolite.Logger.debug("!!!");
 			}
 			IAtomContainer keySol = new AtomContainer();
 			IAtomContainer valSol = new AtomContainer();
@@ -392,7 +392,7 @@ public class MCS {
             
 			
             IAtom topCandidateAtom = top(atomListOneCopy);
-            //edu.mit.csail.ammolite.Logger.debug("topCandidateAtom: "+topCandidateAtom);
+            //////edu.mit.csail.ammolite.Logger.debug("topCandidateAtom: "+topCandidateAtom);
     		for( IAtom otherAtom: atomListTwoCopy){
     			
                 boolean atomMismatched = false;
@@ -400,7 +400,7 @@ public class MCS {
                 int atom1 = topCandidateAtom.getAtomicNumber();
                 int atom2 = otherAtom.getAtomicNumber();
                 
-//                edu.mit.csail.ammolite.Logger.debug("atom1: "+atom1+" atom2: "+atom2);
+//                ////edu.mit.csail.ammolite.Logger.debug("atom1: "+atom1+" atom2: "+atom2);
                 
                 if ( atom1 != atom2){
                     ++atomMismatchCurr;
@@ -421,7 +421,7 @@ public class MCS {
                     if ( foundCompatible ) {
 
                     	
-                    	//edu.mit.csail.ammolite.Logger.debug("Currently there are "+bondMismatchCurr+" bond mismatches");
+                    	//////edu.mit.csail.ammolite.Logger.debug("Currently there are "+bondMismatchCurr+" bond mismatches");
                     	boolean tooManyBondMismatches = bondMismatchCurr + bondMisCount > bondMismatchUpperBound;
                         if (!tooManyBondMismatches) {
                             
@@ -437,10 +437,10 @@ public class MCS {
                              * just deemed compatible. The eventual pop can then explore 
                              * substructures that may not contain the given pair of atoms.
                              */
-                            //edu.mit.csail.ammolite.Logger.debug("Currently there are "+currSubstructureNum+" substructures");
+                            //////edu.mit.csail.ammolite.Logger.debug("Currently there are "+currSubstructureNum+" substructures");
                             boolean aboveBound = currSubstructureNum > substructureNumLimit;
                             if ( !aboveBound ) {
-                            	//edu.mit.csail.ammolite.Logger.debug("Did introduce a new component, now there are "+currSubstructureNum);
+                            	//////edu.mit.csail.ammolite.Logger.debug("Did introduce a new component, now there are "+currSubstructureNum);
                     			
                                 currentMapping.push(topCandidateAtom, otherAtom);        			
                                 atomListTwo.remove(otherAtom);
