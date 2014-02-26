@@ -76,8 +76,13 @@ public class MCS {
 		
 	}
 
-
-	public void calculate(){
+ 	/**
+ 	 * Calculates the Maximal Common Subgraph
+ 	 * 
+ 	 * @return the running time in milliseconds
+ 	 */
+	public long calculate(){
+		long startTime = System.currentTimeMillis();
 		
 		clearResult();
 		
@@ -87,6 +92,7 @@ public class MCS {
 		} else {
 			max();
 		}
+		return System.currentTimeMillis() - startTime;
 		
 	}
 	

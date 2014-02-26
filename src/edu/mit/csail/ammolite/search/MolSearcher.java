@@ -61,21 +61,26 @@ public class MolSearcher implements IMolSearcher {
 	 * @return
 	 */
 	private String[] thresholdRepMatches(IAtomContainer query, Double reprThreshold){
+		long startTime = System.currentTimeMillis();
+		long timeInMCS = 0L;
 		MoleculeStruct sQuery = db.makeMoleculeStruct(query);
 
 		List<MoleculeStruct> matches = new ArrayList<MoleculeStruct>();
 		Iterator<MoleculeStruct> structs = db.iterator();
 		int count = 0;
 		MoleculeStruct target;
+		
 		while( structs.hasNext() ){
 			if( count % 50 == 0){
 				edu.mit.csail.ammolite.Logger.debug("Scanned "+count+" representatives");
+				edu.mit.csail.ammolite.Logger.debug("Working for "+(System.currentTimeMillis()-startTime)+" milliseconds total");
+				edu.mit.csail.ammolite.Logger.debug("In MCS for "+timeInMCS+" milliseconds");
 			}
 			target = structs.next();
 
 			
 			MCS myMCS = new MCS(sQuery,target);
-			myMCS.calculate();
+			timeInMCS += myMCS.calculate();
 			
 			double coef = coeff(myMCS.size(), myMCS.compoundOne.getAtomCount(), myMCS.compoundTwo.getAtomCount());
 			
