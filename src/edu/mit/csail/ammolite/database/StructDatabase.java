@@ -16,6 +16,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.KeyListMap;
+import edu.mit.csail.ammolite.Logger;
 import edu.mit.csail.ammolite.compression.CyclicStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory;
@@ -30,6 +31,7 @@ public class StructDatabase{
 	private CompressionType compressionType;
 	private List<MoleculeStruct> linearStructs = null;
 	private int numReps = -1;
+	private int numMols = -1;
 	
 	
 
@@ -38,6 +40,7 @@ public class StructDatabase{
 		fileLocsByID = coreData.fileLocsByID;
 		compressionType = coreData.compressionType;
 		structFactory = new MoleculeStructFactory( compressionType);
+		buildLinearSet();
 	}
 	
 	public CompressionType getCompressionType(){
@@ -116,9 +119,36 @@ public class StructDatabase{
 		
 	}
 	
+	public int numMols(){
+		if( numMols == -1){
+			numMols = 0;
+			for(List<MoleculeStruct> repSet: structsByHash.values()){
+				for(MoleculeStruct rep: repSet){
+					numMols += rep.getIDNums().length;
+				}
+			}
+		}
+		return numMols;
+	}
+	
+	public String info(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("Ammolite Database Info\n");
+		sb.append("Number of molecules: "+numMols()+"\n");
+		sb.append("Number of representatives: "+numReps()+"\n");
+		sb.append("Compression Type: "+compressionType+"\n");
+		return sb.toString();
+	}
+	
+
+	
+	
+	
 	public double convertThreshold(double threshold, double probability, boolean useTanimoto){
-		if( compressionType == CompressionType.CYCLIC){
+		if( compressionType.equals( CompressionType.CYCLIC)){
 			return 0.5 * threshold + 0.3 - 0.2 * probability + 0.2; 
+		} else {
+			Logger.debug(compressionType);
 		}
 		return 0.0;
 	}

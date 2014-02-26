@@ -7,6 +7,7 @@ import org.rogach.scallop._
 import edu.mit.csail.ammolite.search.SearchHandler
 import edu.mit.csail.ammolite.compression.CyclicStruct
 import edu.mit.csail.ammolite.database.CompressionType
+import edu.mit.csail.ammolite.database.StructDatabaseDecompressor
 
 
 object AmmoliteMain{
@@ -46,6 +47,9 @@ object AmmoliteMain{
 			  val a = opt[String]("a")
 			  val b = opt[String]("b")
 			}
+			val examine = new Subcommand("examine"){
+			  val database = opt[String]("database", required=true, descr="Path to the database.") 
+			}
 		}
 		
 		Logger.setVerbosity( opts.verbosity())
@@ -71,7 +75,10 @@ object AmmoliteMain{
 		  
 		} else if( opts.subcommand == Some( opts.dev)){
 		  edu.mit.csail.fmcsj.FMCS.getCoeffs(opts.dev.a(), opts.dev.b())
-		} 
+		} else if( opts.subcommand == Some( opts.examine)){
+		  val db = StructDatabaseDecompressor.decompress( opts.examine.database())
+		  Logger.log(db.info())
+		}
 	}
 
 		
