@@ -57,8 +57,7 @@ object AmmoliteMain{
 		
 		if( opts.subcommand == Some(opts.compress)){
 		
-		  val structFactory = new MoleculeStructFactory( CompressionType.CYCLIC)
-		  val compressor = new StructCompressor( structFactory)
+		  val compressor = new StructCompressor( CompressionType.CYCLIC )
 		  compressor.compress(opts.compress.source(), opts.compress.target())
 		  if(opts.compress.makeSDF.isDefined ){
 		    compressor.makeSDF( opts.compress.makeSDF())

@@ -34,6 +34,7 @@ import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.KeyListMap;
 import edu.mit.csail.ammolite.Logger;
 import edu.mit.csail.ammolite.StructSDFWriter;
+import edu.mit.csail.ammolite.database.CompressionType;
 import edu.mit.csail.ammolite.database.FilePair;
 import edu.mit.csail.ammolite.database.StructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseCoreData;
@@ -54,8 +55,8 @@ public class StructCompressor {
 	private int total_comparisons = 0;
 	private long runningTime, startTime;
 
-	public StructCompressor(MoleculeStructFactory _structFactory) throws IOException, CDKException{
-		structFactory = _structFactory;
+	public StructCompressor(CompressionType compType) throws IOException, CDKException{
+		structFactory = new MoleculeStructFactory( compType);
 	}
 	
 	/**

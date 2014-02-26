@@ -5,4 +5,5 @@ import java.io.Serializable;
 public enum CompressionType implements Serializable {
 	CYCLIC,
 	RING,
+	BASIC,
 }

@@ -22,13 +22,15 @@ public class MoleculeStructFactory implements Serializable{
 	}
 
 	public MoleculeStruct makeMoleculeStruct(IAtomContainer base){
-		if( compressionType == CompressionType.RING ){
+		if( compressionType.equals( CompressionType.RING )){
 			return new RingStruct( base );
-		} 
-		if( compressionType == CompressionType.CYCLIC ){
+		} else if( compressionType.equals( CompressionType.CYCLIC )){
 			return new CyclicStruct( base );
-		} 
+		} else if( compressionType.equals( CompressionType.BASIC)){
+			return new MoleculeStruct( base );
+		} else {
+			throw new IllegalArgumentException("Compression type not found");
+		}
 
-		return new MoleculeStruct( base );
 	}
 }
