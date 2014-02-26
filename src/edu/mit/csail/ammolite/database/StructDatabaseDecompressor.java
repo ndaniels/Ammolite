@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
-import java.util.HashMap;
-import java.util.List;
 
 import edu.mit.csail.ammolite.Logger;
 
@@ -19,10 +17,11 @@ public class StructDatabaseDecompressor {
 			Object database;
 			try {
 				database = deserialize( new File(databasename));
-				if( !( database instanceof StructDatabase)){
+				if( !( database instanceof StructDatabaseCoreData)){
 					throw new IOException();
 				}
-				return new StructDatabase( (StructDatabaseCoreData) database);
+				StructDatabaseCoreData structDB = (StructDatabaseCoreData) database;
+				return new StructDatabase( structDB);
 			} catch (ClassNotFoundException e) {
 				Logger.error("Failed to open database "+databasename);
 				e.printStackTrace();
