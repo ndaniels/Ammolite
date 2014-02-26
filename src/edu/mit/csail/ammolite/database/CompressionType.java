@@ -1,6 +1,8 @@
 package edu.mit.csail.ammolite.database;
 
-public enum CompressionType {
+import java.io.Serializable;
+
+public enum CompressionType implements Serializable {
 	CYCLIC,
 	RING,
 }
