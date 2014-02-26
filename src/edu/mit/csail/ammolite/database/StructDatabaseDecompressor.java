@@ -22,7 +22,7 @@ public class StructDatabaseDecompressor {
 				if( !( database instanceof StructDatabase)){
 					throw new IOException();
 				}
-				return (StructDatabase) database;
+				return new StructDatabase( (StructDatabaseCoreData) database);
 			} catch (ClassNotFoundException e) {
 				Logger.error("Failed to open database "+databasename);
 				e.printStackTrace();
