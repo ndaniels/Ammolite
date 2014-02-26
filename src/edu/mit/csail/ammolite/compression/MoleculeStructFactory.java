@@ -13,8 +13,8 @@ public class MoleculeStructFactory implements Serializable{
 	private CompressionType compressionType;
 	
 	
-	public MoleculeStructFactory(CompressionType compressionType){
-		
+	public MoleculeStructFactory(CompressionType _compressionType){
+		compressionType = _compressionType;
 	}
 	
 	public CompressionType getCompressionType(){
