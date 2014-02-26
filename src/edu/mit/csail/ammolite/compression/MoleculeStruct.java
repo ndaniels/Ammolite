@@ -1,5 +1,6 @@
 package edu.mit.csail.ammolite.compression;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -24,11 +25,9 @@ import edu.ucla.sspace.graph.isomorphism.AbstractIsomorphismTester;
  * 
  * @author  David Danko
  */
-public class MoleculeStruct extends AtomContainer 
-{
-	protected int hash_code;
+public class MoleculeStruct extends AtomContainer implements Serializable {
 	
-	private static final long serialVersionUID = 1L;
+	protected int hash_code;
 	protected ArrayList<String> mol_ids;
 	protected SparseUndirectedGraph graph;
 	protected HashMap<IAtom,Integer> atomsToNodes = new HashMap<IAtom, Integer>();

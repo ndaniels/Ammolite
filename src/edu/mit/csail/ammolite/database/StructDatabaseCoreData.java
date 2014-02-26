@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 import edu.mit.csail.ammolite.KeyListMap;
 import edu.mit.csail.ammolite.compression.MoleculeStruct;
-import edu.mit.csail.ammolite.compression.MoleculeStructFactory;
 
 public class StructDatabaseCoreData implements Serializable {
 

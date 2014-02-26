@@ -1,10 +1,11 @@
 package edu.mit.csail.ammolite;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-public class KeyListMap<K,V> extends HashMap<K, List<V>> {
+public class KeyListMap<K,V> extends HashMap<K, List<V>> implements Serializable {
 	
 	public KeyListMap(int initialSize){
 		super(initialSize);
