@@ -5,7 +5,6 @@ import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
 
 public class SearchHandler {
 	private SearchType searchType;
-	private StructDatabase db;
 	
 	private enum SearchType{
 		LINEAR, CYCLIC, RING 
@@ -13,13 +12,14 @@ public class SearchHandler {
 
 	public SearchHandler(String databaseFilename, String queryFilename, String outFilename, double threshold, double probability, boolean useTanimoto){
 		pickSearchType( threshold,probability, useTanimoto);
+		IBatchSearcher searcher = null;
 		if( searchType != SearchType.LINEAR){
-			//db = StructDatabaseDecompressor.decompress(databaseFilename);
+			searcher = new LinearSearcher();
 		}
-		if( searchType == SearchType.CYCLIC){
-			IBatchSearcher searcher = new ParallelSearcher();
-			searcher.search(databaseFilename, queryFilename, outFilename, threshold, probability, useTanimoto);
+		else if( searchType == SearchType.CYCLIC){
+			searcher = new ParallelSearcher();
 		}
+		searcher.search(databaseFilename, queryFilename, outFilename, threshold, probability, useTanimoto);
 		
 	}
 	
@@ -28,7 +28,11 @@ public class SearchHandler {
 	}
 	
 	private void pickSearchType(double threshold, double probability, boolean useTanimoto){
-		searchType = SearchType.CYCLIC;
+		if( probability > 0.98){
+			searchType = SearchType.LINEAR;
+		} else {
+			searchType = SearchType.CYCLIC;
+		}
 	}
 	
 }

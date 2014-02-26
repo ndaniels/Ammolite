@@ -4,27 +4,31 @@ import java.io.Serializable;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
+import edu.mit.csail.ammolite.database.CompressionType;
+
 public class MoleculeStructFactory implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	public MoleculeStruct exemplar;
+	private CompressionType compressionType;
 	
 	
-	public MoleculeStructFactory(MoleculeStruct _exemplar){
-		exemplar = _exemplar;
+	public MoleculeStructFactory(CompressionType compressionType){
+		
+	}
+	
+	public CompressionType getCompressionType(){
+		return compressionType;
 	}
 
 	public MoleculeStruct makeMoleculeStruct(IAtomContainer base){
-		if( exemplar.getClass() == RingStruct.class ){
+		if( compressionType == CompressionType.RING ){
 			return new RingStruct( base );
 		} 
-		if(exemplar.getClass() == CyclicStruct.class ){
+		if( compressionType == CompressionType.CYCLIC ){
 			return new CyclicStruct( base );
 		} 
-		if( exemplar.getClass() == FragStruct.class){
-			return new FragStruct( base );
-		}
+
 		return new MoleculeStruct( base );
 	}
 }

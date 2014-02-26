@@ -36,6 +36,7 @@ import edu.mit.csail.ammolite.Logger;
 import edu.mit.csail.ammolite.StructSDFWriter;
 import edu.mit.csail.ammolite.database.FilePair;
 import edu.mit.csail.ammolite.database.StructDatabase;
+import edu.mit.csail.ammolite.database.StructDatabaseCoreData;
 import edu.ucla.sspace.graph.isomorphism.VF2IsomorphismTester;
 
 /*
@@ -152,7 +153,7 @@ public class StructCompressor {
 	
 	public static void mergeDatabases( StructDatabase a, StructDatabase b, String targetname){
 		
-		if(	!( a.getMoleculeStructFactory().exemplar.getClass().equals( b.getMoleculeStructFactory().exemplar.getClass()))){
+		if(	 !(a.getCompressionType().equals(b.getCompressionType()))){
 			throw new RuntimeException("Databases do not have the same type of compression. Aborting.");
 		}
 		
@@ -197,7 +198,7 @@ public class StructCompressor {
 			newMolLocsByID.put(key, b.getFileLocsByID().get(key));
 		}
 		
-		StructDatabase newDB = new StructDatabase( newStructsByHash, newMolLocsByID, a.getMoleculeStructFactory());
+		StructDatabaseCoreData newDB = new StructDatabaseCoreData( newStructsByHash, newMolLocsByID, a.getCompressionType());
 		
 		writeObjectToFile(targetname, newDB);
 	}
@@ -374,13 +375,13 @@ public class StructCompressor {
 	 * @throws IOException
 	 */
 	private void produceClusteredDatabase( String name ) throws CDKException, IOException{
-		StructDatabase database = new StructDatabase( structsByHash, moleculeLocationsByID, structFactory);
+		StructDatabaseCoreData database = new StructDatabaseCoreData( structsByHash, moleculeLocationsByID, structFactory.getCompressionType());
 		writeObjectToFile(name, database);
 	}
 	
 	private static void writeObjectToFile(String object_filename, Object o){
 		try{
-			OutputStream file = new FileOutputStream( object_filename + ".ser" );
+			OutputStream file = new FileOutputStream( object_filename + ".adb" );
 			OutputStream buffer = new BufferedOutputStream( file );
 			ObjectOutput output = new ObjectOutputStream( buffer );
 			output.writeObject(o);

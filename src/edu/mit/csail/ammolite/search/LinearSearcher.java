@@ -22,68 +22,35 @@ import org.openscience.cdk.io.SDFWriter;
 import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.Logger;
 import edu.mit.csail.ammolite.database.StructDatabase;
-import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
+import edu.mit.csail.fmcsj.MCS;
 
-public class ParallelSearcher implements IBatchSearcher{
+public class LinearSearcher implements IBatchSearcher {
 	private static int numThreads = Runtime.getRuntime().availableProcessors();
-	private static StructDatabase db;
-	private static boolean useTanimoto;
+	private boolean useTanimoto;
 	private static final int BATCH_SIZE = 1;// 10*numThreads;
-	
 
-	/**
-	 * API level interface that handles file IO. 
-	 * 
-	 * Could eventually be moved to SearchHandler class.
-	 * 
-	 * @param databaseFilename
-	 * @param queryFilename
-	 * @param outFilename
-	 * @param threshold
-	 * @param probability
-	 * @param _useTanimoto
-	 */
-	public void search(String databaseFilename, String queryFilename, String outFilename, double threshold, double probability, boolean _useTanimoto){
-		db = StructDatabaseDecompressor.decompress(databaseFilename);
+	@Override
+	public void search(String databaseFilename, String queryFilename,
+			String outFilename, double threshold, double probability,
+			boolean _useTanimoto) {
 		useTanimoto = _useTanimoto;
-		try {
-			doSearch( queryFilename, outFilename, threshold, probability);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.exit(1);
-		} 
 		
-	}
-	
-	public List<MolTriple[]> search(StructDatabase _db, List<IAtomContainer> queries, double threshold, double probability, boolean _useTanimoto){
-		db = _db;
 		useTanimoto = _useTanimoto;
 		try {
-			return parallelSearch(queries, threshold, probability);
+			doSearch( databaseFilename, queryFilename, outFilename, threshold);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.exit(1);
 		}
-		return null; 
+
 	}
 	
-	/**
-	 * Does all the file handling  for search.
-	 * 
-	 * @param queryFilename
-	 * @param outFilename
-	 * @param threshold
-	 * @throws InterruptedException
-	 * @throws ExecutionException
-	 * @throws IOException
-	 * @throws CDKException
-	 */
-	private void doSearch( String queryFilename, String outFilename, double threshold , double probability) throws InterruptedException, ExecutionException, IOException, CDKException{
-
-		List<IAtomContainer> queries = new ArrayList<IAtomContainer>( BATCH_SIZE);
-		IteratingSDFReader queryFile = new IteratingSDFReader( new FileInputStream( new File( queryFilename)), DefaultChemObjectBuilder.getInstance());
+	private void doSearch(String dbFilename, String queryFilename, 
+							String outFilename, double threshold) throws IOException, InterruptedException, ExecutionException, CDKException{
+		IteratingSDFReader db = openSDF( dbFilename);
+		IteratingSDFReader queryFile = openSDF( queryFilename);
+		List<IAtomContainer> queries = new ArrayList<IAtomContainer>(BATCH_SIZE);
 		SDFWriter writer = new SDFWriter(new BufferedWriter( new FileWriter( outFilename + ".sdf" )));
 		while( queryFile.hasNext() ){
 			int count=0;
@@ -91,7 +58,7 @@ public class ParallelSearcher implements IBatchSearcher{
 				queries.add( queryFile.next());
 				count++;
 			}
-			for( MolTriple[] tripArray : parallelSearch( queries, threshold, probability)){
+			for( MolTriple[] tripArray : parallelLinearSearch( queries, db, threshold)){
 				Logger.experiment("NumResults: "+tripArray.length);
 				if( outFilename.equals("DEV-TEST")){
 					StringBuilder sb = new StringBuilder();
@@ -116,36 +83,37 @@ public class ParallelSearcher implements IBatchSearcher{
 		}
 		queryFile.close();
 		writer.close();
+		db.close();
 	}
 	
-	/**
-	 * Uses a parallel for loop to do search several individual searches simultaneously.
-	 * 
-	 * @param queries
-	 * @param threshold
-	 * @return
-	 * @throws InterruptedException
-	 * @throws ExecutionException
-	 */
-	private List<MolTriple[]> parallelSearch(List<IAtomContainer> queries, double threshold, double probability) throws InterruptedException, ExecutionException{
-		edu.mit.csail.ammolite.Logger.debug("Searching for "+queries.size()+" queries with threshold "+threshold+" and probability "+probability);
+	private List<MolTriple[]> parallelLinearSearch(List<IAtomContainer> queries, IteratingSDFReader db, double threshold) throws InterruptedException, ExecutionException{
+		edu.mit.csail.ammolite.Logger.debug("Searching for "+queries.size()+" queries with threshold "+threshold+" linearly");
 		ExecutorService service = Executors.newFixedThreadPool(numThreads);
 		List<Future<MolTriple[]>> futures = new ArrayList<Future<MolTriple[]>>();
 		final double fThresh = threshold;
-		final double fProb = probability;
+		final IteratingSDFReader fdb = db;
 		
 		for( final IAtomContainer query: queries){
 			
 			Callable<MolTriple[]> callable = new Callable<MolTriple[]>(){
 				
 				public MolTriple[] call() throws Exception {
-					IMolSearcher searcher = new MolSearcher( db, useTanimoto);
-					return searcher.search(query, fThresh, fProb);
+					IAtomContainer target;
+					List<MolTriple> results = new ArrayList<MolTriple>();
+					while( fdb.hasNext()){
+						target = fdb.next();
+						MCS myMCS = new MCS( query, target);
+						myMCS.calculate();
+						if( (useTanimoto && fThresh <= Util.tanimotoCoeff(myMCS.size(), query.getAtomCount(), target.getAtomCount())
+							|| ( fThresh <= Util.overlapCoeff(myMCS.size(), query.getAtomCount(), target.getAtomCount()))	)){
+							results.add(new MolTriple(myMCS.getSolutions(), query, target));
+						}
+					}
+					return results.toArray(new MolTriple[0]);
 				}
 			};
 			futures.add( service.submit( callable));
 		}
-		
 		
 		List<MolTriple[]> results = new ArrayList<MolTriple[]>();
 		for(Future<MolTriple[]> future: futures){
@@ -158,6 +126,24 @@ public class ParallelSearcher implements IBatchSearcher{
 		
 	}
 	
+	private IteratingSDFReader openSDF(String filename){
+		try {
+			return new IteratingSDFReader( new FileInputStream( new File( filename)), DefaultChemObjectBuilder.getInstance());
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			edu.mit.csail.ammolite.Logger.error("SDF file not found");
+			e.printStackTrace();
+			System.exit(1);
+		}
+		return null;
+	}
 
-	
+	@Override
+	public List<MolTriple[]> search(StructDatabase _db,
+			List<IAtomContainer> queries, double threshold,
+			double repThreshold, boolean _useTanimoto) {
+		throw new UnsupportedOperationException();
+		
+	}
+
 }

@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -19,22 +20,28 @@ import edu.mit.csail.ammolite.compression.CyclicStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory;
 
-public class StructDatabase implements Serializable{
+public class StructDatabase{
 	
 
 
 	private KeyListMap<Integer, MoleculeStruct> structsByHash;
 	private HashMap<String, FilePair> fileLocsByID;
 	private MoleculeStructFactory structFactory;
+	private CompressionType compressionType;
+	private List<MoleculeStruct> linearStructs = null;
+	private int numReps = -1;
 	
 	
 
-	public StructDatabase(	KeyListMap<Integer, MoleculeStruct> _structsByHash, 
-							HashMap<String, FilePair> _fileLocsByID, 
-							MoleculeStructFactory _structfactory){
-		structsByHash = _structsByHash;
-		fileLocsByID = _fileLocsByID;
-		structFactory = _structfactory;
+	public StructDatabase(	StructDatabaseCoreData coreData){
+		structsByHash = coreData.structsByHash;
+		fileLocsByID = coreData.fileLocsByID;
+		compressionType = coreData.compressionType;
+		structFactory = new MoleculeStructFactory( compressionType);
+	}
+	
+	public CompressionType getCompressionType(){
+		return compressionType;
 	}
 	
 	public MoleculeStructFactory getMoleculeStructFactory(){
@@ -84,20 +91,33 @@ public class StructDatabase implements Serializable{
 	}
 	
 	public Iterator<MoleculeStruct> iterator(){
-		return new StructIterator( structsByHash);
+		if( linearStructs == null){
+			buildLinearSet();
+		}
+		return linearStructs.iterator();		
+	}
+	
+	private void buildLinearSet(){
+		linearStructs = new ArrayList<MoleculeStruct>( numReps());
+		for(List<MoleculeStruct> repSet: structsByHash.values()){
+			linearStructs.addAll(repSet);
+		}
+
 	}
 	
 	public int numReps(){
-		int numReps = 0;
-		for(int key: this.structsByHash.keySet()){
-			numReps += structsByHash.get(key).size();
+		if( numReps == -1){
+			numReps = 0;
+			for(List<MoleculeStruct> repSet: structsByHash.values()){
+				numReps += repSet.size();
+			}
 		}
 		return numReps;
 		
 	}
 	
 	public double convertThreshold(double threshold, double probability, boolean useTanimoto){
-		if( structFactory.exemplar.getClass() == CyclicStruct.class){
+		if( compressionType == CompressionType.CYCLIC){
 			return 0.5 * threshold + 0.3 - 0.2 * probability + 0.2; 
 		}
 		return 0.0;

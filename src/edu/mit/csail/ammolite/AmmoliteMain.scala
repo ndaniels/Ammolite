@@ -6,6 +6,7 @@ import edu.mit.csail.ammolite.compression.StructCompressor
 import org.rogach.scallop._
 import edu.mit.csail.ammolite.search.SearchHandler
 import edu.mit.csail.ammolite.compression.CyclicStruct
+import edu.mit.csail.ammolite.database.CompressionType
 
 
 object AmmoliteMain{
@@ -52,8 +53,7 @@ object AmmoliteMain{
 		
 		if( opts.subcommand == Some(opts.compress)){
 		
-		  val exemplar = new CyclicStruct()
-		  val structFactory = new MoleculeStructFactory( exemplar)
+		  val structFactory = new MoleculeStructFactory( CompressionType.CYCLIC)
 		  val compressor = new StructCompressor( structFactory)
 		  compressor.compress(opts.compress.source(), opts.compress.target())
 		  if(opts.compress.makeSDF.isDefined ){
