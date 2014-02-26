@@ -27,6 +27,10 @@ import edu.ucla.sspace.graph.isomorphism.AbstractIsomorphismTester;
  */
 public class MoleculeStruct extends AtomContainer implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5426987516210898334L;
 	protected int hash_code;
 	protected ArrayList<String> mol_ids;
 	protected SparseUndirectedGraph graph;

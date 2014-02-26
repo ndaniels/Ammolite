@@ -7,6 +7,11 @@ import java.util.List;
 
 public class KeyListMap<K,V> extends HashMap<K, List<V>> implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6317801244680182657L;
+
 	public KeyListMap(int initialSize){
 		super(initialSize);
 	}
