@@ -46,7 +46,7 @@ import edu.ucla.sspace.graph.isomorphism.VF2IsomorphismTester;
  */
 
 public class StructCompressor {
-	private KeyListMap<Integer, MoleculeStruct> structsByHash = new KeyListMap<Integer,MoleculeStruct>(1000);
+	private KeyListMap<Integer, MolStruct> structsByHash = new KeyListMap<Integer,MolStruct>(1000);
 	private HashMap<String, FilePair> moleculeLocationsByID = new HashMap<String, FilePair>();
 	private MoleculeStructFactory structFactory;
 	private int molecules = 0;
@@ -158,21 +158,21 @@ public class StructCompressor {
 			throw new RuntimeException("Databases do not have the same type of compression. Aborting.");
 		}
 		
-		KeyListMap<Integer, MoleculeStruct> newStructsByHash = a.getStructsByHash();
-		KeyListMap<Integer, MoleculeStruct> bStructsByHash = b.getStructsByHash();
+		KeyListMap<Integer, MolStruct> newStructsByHash = a.getStructsByHash();
+		KeyListMap<Integer, MolStruct> bStructsByHash = b.getStructsByHash();
 		VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
-		List<MoleculeStruct> toAdd;
+		List<MolStruct> toAdd;
 		
 		for(int key: bStructsByHash.keySet()){
 			
-			toAdd = new ArrayList<MoleculeStruct>();
+			toAdd = new ArrayList<MolStruct>();
 			
 			if( newStructsByHash.containsKey(key)){
 				
-				toAdd = new ArrayList<MoleculeStruct>();
+				toAdd = new ArrayList<MolStruct>();
 				
-				for(MoleculeStruct aStruct: newStructsByHash.get(key)){
-					for(MoleculeStruct bStruct: bStructsByHash.get(key)){
+				for(MolStruct aStruct: newStructsByHash.get(key)){
+					for(MolStruct bStruct: bStructsByHash.get(key)){
 						if(aStruct.isIsomorphic(bStruct, iso_tester)){
 							for(String id: bStruct.getIDNums()){
 								aStruct.addID(id);
@@ -184,7 +184,7 @@ public class StructCompressor {
 					}
 				}
 				
-				for(MoleculeStruct m: toAdd){
+				for(MolStruct m: toAdd){
 					newStructsByHash.get(key).add(m);
 				}
 				
@@ -224,10 +224,10 @@ public class StructCompressor {
         	runningTime = (System.currentTimeMillis() - startTime)/(1000);
         	
         	IAtomContainer molecule =  molecule_database.next();       	
-        	MoleculeStruct structure = structFactory.makeMoleculeStruct(molecule);
+        	MolStruct structure = structFactory.makeMoleculeStruct(molecule);
         	molecules++;
         	if( structsByHash.containsKey( structure.hashCode())){
-        		List<MoleculeStruct> potential_matches = structsByHash.get( structure.hashCode() );
+        		List<MolStruct> potential_matches = structsByHash.get( structure.hashCode() );
         		boolean match = parrallelIsomorphism( structure, potential_matches);
         		
         		
@@ -244,16 +244,16 @@ public class StructCompressor {
         }
 	}
 	
-	private boolean parrallelIsomorphism(MoleculeStruct structure, List<MoleculeStruct> potential_matches) throws InterruptedException, ExecutionException{
+	private boolean parrallelIsomorphism(MolStruct structure, List<MolStruct> potential_matches) throws InterruptedException, ExecutionException{
 		long parallelStartTime = System.currentTimeMillis();
 		int threads = Runtime.getRuntime().availableProcessors();
 	    ExecutorService service = Executors.newFixedThreadPool(threads);
 	    
 	    List<Future<Boolean>> futures = new ArrayList<Future<Boolean>>();
 	    
-	    final MoleculeStruct fStruct = structure;
+	    final MolStruct fStruct = structure;
 	    
-	    for (final MoleculeStruct candidate: potential_matches) {
+	    for (final MolStruct candidate: potential_matches) {
 	    	
 	        Callable<Boolean> callable = new Callable<Boolean>() {
 	        	
@@ -355,7 +355,7 @@ public class StructCompressor {
 		try {
 			StructSDFWriter writer = new StructSDFWriter(filename);
 			for(int key: structsByHash.keySet()){
-				for( MoleculeStruct rep: structsByHash.get(key)){
+				for( MolStruct rep: structsByHash.get(key)){
 					writer.write(rep);
 				}
 			}

@@ -3,14 +3,14 @@ package edu.mit.csail.ammolite.database;
 import java.util.Iterator;
 
 import edu.mit.csail.ammolite.KeyListMap;
-import edu.mit.csail.ammolite.compression.MoleculeStruct;
+import edu.mit.csail.ammolite.compression.MolStruct;
 
-public class StructIterator implements Iterator<MoleculeStruct> {
-	Iterator<MoleculeStruct> currentListIterator;
+public class StructIterator implements Iterator<MolStruct> {
+	Iterator<MolStruct> currentListIterator;
 	Iterator<Integer> keyIterator;
-	KeyListMap<Integer, MoleculeStruct> in;
+	KeyListMap<Integer, MolStruct> in;
 	
-	public StructIterator(KeyListMap<Integer, MoleculeStruct> _in){
+	public StructIterator(KeyListMap<Integer, MolStruct> _in){
 		in = _in;
 		keyIterator = in.keySet().iterator();
 		if(keyIterator.hasNext()){
@@ -34,7 +34,7 @@ public class StructIterator implements Iterator<MoleculeStruct> {
 	}
 
 	@Override
-	public MoleculeStruct next() {
+	public MolStruct next() {
 		if( this.hasNext()){
 			return currentListIterator.next();
 		} else{

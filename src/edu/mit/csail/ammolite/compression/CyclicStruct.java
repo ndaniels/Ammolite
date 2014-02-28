@@ -9,7 +9,7 @@ import org.openscience.cdk.interfaces.IBond;
 
 import edu.ucla.sspace.graph.Edge;
 
-public class CyclicStruct extends MoleculeStruct {
+public class CyclicStruct extends MolStruct {
 
 	private static final long serialVersionUID = 1L;
 

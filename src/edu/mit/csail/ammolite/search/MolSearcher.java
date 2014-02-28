@@ -8,7 +8,7 @@ import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
-import edu.mit.csail.ammolite.compression.MoleculeStruct;
+import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.database.StructDatabase;
 import edu.mit.csail.fmcsj.MCS;
 
@@ -63,12 +63,12 @@ public class MolSearcher implements IMolSearcher {
 	private String[] thresholdRepMatches(IAtomContainer query, Double reprThreshold){
 		long startTime = System.currentTimeMillis();
 		long timeInMCS = 0L;
-		MoleculeStruct sQuery = db.makeMoleculeStruct(query);
+		MolStruct sQuery = db.makeMoleculeStruct(query);
 
-		List<MoleculeStruct> matches = new ArrayList<MoleculeStruct>();
-		Iterator<MoleculeStruct> structs = db.iterator();
+		List<MolStruct> matches = new ArrayList<MolStruct>();
+		Iterator<MolStruct> structs = db.iterator();
 		int count = 0;
-		MoleculeStruct target;
+		MolStruct target;
 		
 		while( structs.hasNext() ){
 			if( count % 50 == 0){
