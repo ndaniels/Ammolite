@@ -100,7 +100,8 @@ object AmmoliteMain{
 		} else if( opts.subcommand == Some( opts.aggsearch)){
 		    System.out.println("AB")
 		    val aggSearcher = new AggregateSearcher(opts.aggsearch.cluster(), opts.aggsearch.database())
-		    aggSearcher.doSearch(opts.aggregate.search.queries(), opts.aggregate.search.target(), opts.aggregate.search.threshold(), opts.aggregate.search.tanimoto())
+		    
+		    aggSearcher.doSearch(opts.aggsearch.queries(), opts.aggsearch.target(), opts.aggsearch.threshold(), opts.aggsearch.tanimoto())
 		}
 	}
 
