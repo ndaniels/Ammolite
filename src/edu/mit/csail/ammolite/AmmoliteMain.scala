@@ -93,17 +93,14 @@ object AmmoliteMain{
 		} else if( opts.subcommand == Some( opts.examine)){
 		  val db = StructDatabaseDecompressor.decompress( opts.examine.database())
 		  Logger.log(db.info())
-		} else if( opts.subcommand == Some( opts.aggregate)){
-		  System.out.println("A")
-		  if(opts.subcommand == Some( opts.aggregate.compress)){
+		} else if(opts.subcommand. == Some( opts.aggregate.compress)){
 		    System.out.println("AA")
 		    val agg = new Aggregator( opts.aggregate.compress.source())
 		    agg.aggregate(opts.aggregate.compress.target())
-		  } else if( opts.subcommand == Some( opts.aggregate.search)){
+		} else if( opts.subcommand == Some( opts.aggregate.search)){
 		    System.out.println("AB")
 		    val aggSearcher = new AggregateSearcher(opts.aggregate.search.cluster(), opts.aggregate.search.database())
 		    aggSearcher.doSearch(opts.aggregate.search.queries(), opts.aggregate.search.target(), opts.aggregate.search.threshold(), opts.aggregate.search.tanimoto())
-		  }
 		}
 	}
 
