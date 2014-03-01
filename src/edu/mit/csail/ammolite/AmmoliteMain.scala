@@ -52,20 +52,20 @@ object AmmoliteMain{
 			val examine = new Subcommand("examine"){
 			  val database = opt[String]("database", required=true, descr="Path to the database.") 
 			} 
-			val aggregate = new Subcommand("aggregate"){
-			  val compress = new Subcommand("compress"){
-				val source = opt[String]("source", required=true, descr="File or folder to compress")
-			    val target = opt[String]("target", required=true, descr="Name of the new compressed database")
-			  }
-			  val search = new Subcommand("search"){
-			    val database = opt[String]("database", required=true, descr="Path to the database.")
-			    val cluster = opt[String]("cluster", required=true, descr="Path to the clusters.")
-				val queries = opt[String]("queries", required=true, descr="SDF file of queries.")
-				val threshold = opt[Double]("threshold", descr="Threshold to use. Uses overlap coefficient by default.")
-			    val tanimoto = opt[Boolean]("tanimoto", descr="Use tanimoto coefficients.", default=Some(false))
-			    val target = opt[String]("target", required=true, descr="Make an SDF file of the search results. First molecule is the query, second is the match, third is the overlap.")
-			  }
-			}
+
+		  val aggcompress = new Subcommand("aggcompress"){
+			val source = opt[String]("source", required=true, descr="File or folder to compress")
+		    val target = opt[String]("target", required=true, descr="Name of the new compressed database")
+		  }
+		  val aggsearch = new Subcommand("aggsearch"){
+		    val database = opt[String]("database", required=true, descr="Path to the database.")
+		    val cluster = opt[String]("cluster", required=true, descr="Path to the clusters.")
+			val queries = opt[String]("queries", required=true, descr="SDF file of queries.")
+			val threshold = opt[Double]("threshold", descr="Threshold to use. Uses overlap coefficient by default.")
+		    val tanimoto = opt[Boolean]("tanimoto", descr="Use tanimoto coefficients.", default=Some(false))
+		    val target = opt[String]("target", required=true, descr="Make an SDF file of the search results. First molecule is the query, second is the match, third is the overlap.")
+		  }
+			
 		}
 		
 		Logger.setVerbosity( opts.verbosity())
@@ -93,13 +93,13 @@ object AmmoliteMain{
 		} else if( opts.subcommand == Some( opts.examine)){
 		  val db = StructDatabaseDecompressor.decompress( opts.examine.database())
 		  Logger.log(db.info())
-		} else if(opts.aggregate.subcommand == Some( opts.aggregate.compress)){
+		} else if(opts.subcommand == Some( opts.aggcompress)){
 		    System.out.println("AA")
-		    val agg = new Aggregator( opts.aggregate.compress.source())
-		    agg.aggregate(opts.aggregate.compress.target())
-		} else if( opts.aggregate.subcommand == Some( opts.aggregate.search)){
+		    val agg = new Aggregator( opts.aggcompress.source())
+		    agg.aggregate(opts.aggcompress.target())
+		} else if( opts.subcommand == Some( opts.aggsearch)){
 		    System.out.println("AB")
-		    val aggSearcher = new AggregateSearcher(opts.aggregate.search.cluster(), opts.aggregate.search.database())
+		    val aggSearcher = new AggregateSearcher(opts.aggsearch.cluster(), opts.aggsearch.database())
 		    aggSearcher.doSearch(opts.aggregate.search.queries(), opts.aggregate.search.target(), opts.aggregate.search.threshold(), opts.aggregate.search.tanimoto())
 		}
 	}
