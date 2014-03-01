@@ -57,8 +57,8 @@ def buildRandomizedSDFs( numMolsList, inputFolder, outputFilenameList):
 
 def main():
 
-	sizes = [100,250]
-	names = ["100_random_molecules.sdf", "250_random_molecules.sdf"]	
+	sizes = [30]
+	names = ["30_random_molecules.sdf"]	
 	buildRandomizedSDFs(sizes, "/mnt/work/dcdanko/MolSearch/molecule_sets/1k/", names)
 
 
