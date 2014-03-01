@@ -18,18 +18,18 @@ import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.KeyListMap;
 import edu.mit.csail.ammolite.Logger;
 import edu.mit.csail.ammolite.compression.CyclicStruct;
-import edu.mit.csail.ammolite.compression.MolStruct;
+import edu.mit.csail.ammolite.compression.MoleculeStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory;
 
 public class StructDatabase{
 	
 
 
-	private KeyListMap<Integer, MolStruct> structsByHash;
+	private KeyListMap<Integer, MoleculeStruct> structsByHash;
 	private HashMap<String, FilePair> fileLocsByID;
 	private MoleculeStructFactory structFactory;
 	private CompressionType compressionType;
-	private List<MolStruct> linearStructs = null;
+	private List<MoleculeStruct> linearStructs = null;
 	private int numReps = -1;
 	private int numMols = -1;
 	
@@ -51,11 +51,11 @@ public class StructDatabase{
 		return structFactory;
 	}
 	
-	public List<MolStruct> getStructsByHash(int hash){
+	public List<MoleculeStruct> getStructsByHash(int hash){
 		return structsByHash.get(hash);
 	}
 	
-	public KeyListMap<Integer, MolStruct> getStructsByHash(){
+	public KeyListMap<Integer, MoleculeStruct> getStructsByHash(){
 		return this.structsByHash;
 	}
 	
@@ -93,7 +93,7 @@ public class StructDatabase{
 
 	}
 	
-	public Iterator<MolStruct> iterator(){
+	public Iterator<MoleculeStruct> iterator(){
 		if( linearStructs == null){
 			buildLinearSet();
 		}
@@ -101,8 +101,8 @@ public class StructDatabase{
 	}
 	
 	private void buildLinearSet(){
-		linearStructs = new ArrayList<MolStruct>( numReps());
-		for(List<MolStruct> repSet: structsByHash.values()){
+		linearStructs = new ArrayList<MoleculeStruct>( numReps());
+		for(List<MoleculeStruct> repSet: structsByHash.values()){
 			linearStructs.addAll(repSet);
 		}
 
@@ -111,7 +111,7 @@ public class StructDatabase{
 	public int numReps(){
 		if( numReps == -1){
 			numReps = 0;
-			for(List<MolStruct> repSet: structsByHash.values()){
+			for(List<MoleculeStruct> repSet: structsByHash.values()){
 				numReps += repSet.size();
 			}
 		}
@@ -122,8 +122,8 @@ public class StructDatabase{
 	public int numMols(){
 		if( numMols == -1){
 			numMols = 0;
-			for(List<MolStruct> repSet: structsByHash.values()){
-				for(MolStruct rep: repSet){
+			for(List<MoleculeStruct> repSet: structsByHash.values()){
+				for(MoleculeStruct rep: repSet){
 					numMols += rep.getIDNums().length;
 				}
 			}
@@ -153,7 +153,7 @@ public class StructDatabase{
 		return 0.0;
 	}
 	
-	public MolStruct makeMoleculeStruct(IAtomContainer mol){
+	public MoleculeStruct makeMoleculeStruct(IAtomContainer mol){
 		return structFactory.makeMoleculeStruct(mol);
 	}
 	

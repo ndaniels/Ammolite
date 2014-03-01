@@ -16,7 +16,7 @@ import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.compression.FragStruct;
-import edu.mit.csail.ammolite.compression.MolStruct;
+import edu.mit.csail.ammolite.compression.MoleculeStruct;
 
 
 
@@ -56,8 +56,8 @@ public class FMCS {
 		
 		IAtomContainer a;
 		IAtomContainer b;
-		MolStruct repA;
-		MolStruct repB;
+		MoleculeStruct repA;
+		MoleculeStruct repB;
 		
 		
 		//edu.mit.csail.ammolite.Logger.log("molA_ID molB_ID molA_size molB_size mcs_size overlap_coeff tanimoto_coeff", 0);
