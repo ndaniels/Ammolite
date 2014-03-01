@@ -93,7 +93,7 @@ object AmmoliteMain{
 		} else if( opts.subcommand == Some( opts.examine)){
 		  val db = StructDatabaseDecompressor.decompress( opts.examine.database())
 		  Logger.log(db.info())
-		} else if(opts.subcommand. == Some( opts.aggregate.compress)){
+		} else if(opts.subcommand == Some( opts.aggregate.compress)){
 		    System.out.println("AA")
 		    val agg = new Aggregator( opts.aggregate.compress.source())
 		    agg.aggregate(opts.aggregate.compress.target())
