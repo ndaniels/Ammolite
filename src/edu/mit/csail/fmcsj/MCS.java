@@ -88,7 +88,7 @@ public class MCS {
 		clearResult();
 		
 		if( compoundOne == compoundTwo){
-			Logger.debug("Identical Graphs");
+			//Logger.debug("Identical Graphs");
 			identicalGraph = true;	
 		} else {
 			max();
