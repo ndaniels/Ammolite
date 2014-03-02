@@ -282,8 +282,13 @@ public class MCS {
 	 * @return
 	 */
 	public List<IAtomContainer> getSolutions(){
+		
 		////edu.mit.csail.ammolite.Logger.debug("Found "+bestList.size()+" solutions of size "+size());
 		ArrayList<IAtomContainer> out = new ArrayList<IAtomContainer>(bestList.size());
+		if(identicalGraph){
+			out.add(compoundOne);
+			return out;
+		}
 
 		for(MCSMap map: bestList){
 			if(map.size() != size()){
