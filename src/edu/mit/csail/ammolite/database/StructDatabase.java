@@ -79,9 +79,12 @@ public class StructDatabase{
 
 			IteratingSDFReader molecule =new IteratingSDFReader( br, DefaultChemObjectBuilder.getInstance() );
 			IAtomContainer out = null;
-			if( molecule.hasNext()){
-			out = molecule.next();
-			} else {
+			boolean noMolecule = true;
+			while( molecule.hasNext() && noMolecule){
+				out = molecule.next();
+				noMolecule = false;
+			}
+			if( out == null){
 				Logger.debug("Missing molecule "+pubchemID);
 				Logger.debug(filename);
 				Logger.debug(byteOffset);
