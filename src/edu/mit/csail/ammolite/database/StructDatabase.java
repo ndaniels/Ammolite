@@ -74,15 +74,13 @@ public class StructDatabase{
 		FileInputStream fs;
 		try {
 			fs = new FileInputStream(f);
-			Logger.debug(fs);
 			fs.skip(byteOffset);
-			Logger.debug(byteOffset);
 			BufferedReader br = new BufferedReader( new InputStreamReader(fs ));
-			Logger.debug(br);
+
 			IteratingSDFReader molecule =new IteratingSDFReader( br, DefaultChemObjectBuilder.getInstance() );
 			molecule.hasNext();
 			IAtomContainer out = molecule.next();
-			Logger.debug(out);
+			
 			fs.close();
 			br.close();
 			molecule.close();
