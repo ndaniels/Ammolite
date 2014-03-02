@@ -64,8 +64,9 @@ public class StructDatabase{
 	}
 	
 	public IAtomContainer getMolecule(String pubchemID){
-		
+		Logger.debug(pubchemID);
 		FilePair fp = fileLocsByID.get(pubchemID);
+		Logger.debug(fp);
 		String filename = fp.name();
 		long byteOffset = fp.location();
 		
@@ -77,7 +78,7 @@ public class StructDatabase{
 			BufferedReader br = new BufferedReader( new InputStreamReader(fs ));
 			IteratingSDFReader molecule =new IteratingSDFReader( br, DefaultChemObjectBuilder.getInstance() );
 			IAtomContainer out = molecule.next();
-			
+			Logger.debug(out);
 			fs.close();
 			br.close();
 			molecule.close();
