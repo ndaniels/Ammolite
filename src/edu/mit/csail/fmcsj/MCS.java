@@ -3,6 +3,7 @@ package edu.mit.csail.fmcsj;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.mit.csail.ammolite.Logger;
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -87,7 +88,7 @@ public class MCS {
 		clearResult();
 		
 		if( compoundOne == compoundTwo){
-			
+			Logger.debug("Identical Graphs");
 			identicalGraph = true;	
 		} else {
 			max();
