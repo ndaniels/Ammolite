@@ -80,6 +80,7 @@ public class StructDatabase{
 			BufferedReader br = new BufferedReader( new InputStreamReader(fs ));
 			Logger.debug(br);
 			IteratingSDFReader molecule =new IteratingSDFReader( br, DefaultChemObjectBuilder.getInstance() );
+			molecule.hasNext();
 			IAtomContainer out = molecule.next();
 			Logger.debug(out);
 			fs.close();
