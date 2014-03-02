@@ -86,7 +86,7 @@ public class MCS {
 		
 		clearResult();
 		
-		if( compoundOne.equals(compoundTwo)){
+		if( compoundOne == compoundTwo){
 			
 			identicalGraph = true;	
 		} else {
