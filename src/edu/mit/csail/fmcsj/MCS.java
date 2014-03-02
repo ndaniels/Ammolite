@@ -26,7 +26,7 @@ public class MCS {
 	private int bondMismatchUpperBound = 1;
 	private int atomMismatchCurr;
 	private int bondMismatchCurr;
-	private int solutionSize = 0;
+	private int solutionSize = -1;
 	public IAtomContainer compoundOne;
 	public IAtomContainer compoundTwo;
 	boolean timeoutStop = false;
