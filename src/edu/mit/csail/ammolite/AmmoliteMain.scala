@@ -65,6 +65,7 @@ object AmmoliteMain{
 			val threshold = opt[Double]("threshold", descr="Threshold to use. Uses overlap coefficient by default.")
 		    val tanimoto = opt[Boolean]("tanimoto", descr="Use tanimoto coefficients.", default=Some(false))
 		    val target = opt[String]("target", required=true, descr="Make an SDF file of the search results. First molecule is the query, second is the match, third is the overlap.")
+		    val searchbound = opt[Double]("search-boundary", default=Some(0.5), descr="how similar clusters have to be")
 		  }
 			
 		}
@@ -100,7 +101,7 @@ object AmmoliteMain{
 		    agg.aggregate(opts.aggcompress.target())
 		} else if( opts.subcommand == Some( opts.aggsearch)){
 
-		    val aggSearcher = new AggregateSearcher(opts.aggsearch.cluster(), opts.aggsearch.database())
+		    val aggSearcher = new AggregateSearcher(opts.aggsearch.cluster(), opts.aggsearch.database(), opts.aggsearch.searchbound()))
 		    
 		    aggSearcher.doSearch(opts.aggsearch.queries(), opts.aggsearch.target(), opts.aggsearch.threshold(), opts.aggsearch.tanimoto())
 		}
