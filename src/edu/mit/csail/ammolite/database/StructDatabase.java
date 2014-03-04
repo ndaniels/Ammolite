@@ -75,7 +75,9 @@ public class StructDatabase{
 		try {
 			fs = new FileInputStream(f);
 			BufferedReader br = new BufferedReader( new InputStreamReader(fs ));
-			br.skip(byteOffset-5);
+			if( byteOffset -5 > 0){
+				br.skip(byteOffset-5);
+			}
 			IteratingSDFReader molecule =new IteratingSDFReader( br, DefaultChemObjectBuilder.getInstance() );
 			IAtomContainer out = null;
 			if(molecule.hasNext()){
