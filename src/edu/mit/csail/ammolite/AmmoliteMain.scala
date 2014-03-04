@@ -101,7 +101,7 @@ object AmmoliteMain{
 		    agg.aggregate(opts.aggcompress.target())
 		} else if( opts.subcommand == Some( opts.aggsearch)){
 
-		    val aggSearcher = new AggregateSearcher(opts.aggsearch.cluster(), opts.aggsearch.database(), opts.aggsearch.searchbound()))
+		    val aggSearcher = new AggregateSearcher(opts.aggsearch.cluster(), opts.aggsearch.database(), opts.aggsearch.searchbound())
 		    
 		    aggSearcher.doSearch(opts.aggsearch.queries(), opts.aggsearch.target(), opts.aggsearch.threshold(), opts.aggsearch.tanimoto())
 		}
