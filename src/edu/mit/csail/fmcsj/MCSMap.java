@@ -4,6 +4,7 @@
 package edu.mit.csail.fmcsj;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.openscience.cdk.interfaces.IAtom;
 
@@ -16,6 +17,9 @@ public class MCSMap {
 	private MCSList<IAtom> keyList = new MCSList<IAtom>();
 	private MCSList<IAtom> valList = new MCSList<IAtom>();
 	
+	private Map<IAtom,IAtom> keyToVal = new HashMap<IAtom,IAtom>();
+	private Map<IAtom,IAtom> valToKey = new HashMap<IAtom,IAtom>();
+	
 	public int size(){
 		return keyList.size();
 	}
@@ -23,40 +27,36 @@ public class MCSMap {
 	public void push(IAtom key, IAtom val){
 		keyList.push(key);
 		valList.push(val);
+		keyToVal.put(key, val);
+		valToKey.put(val, key);
 	}
 	
 	public void pop(){
-		keyList.pop();
-		valList.pop();
+		valToKey.remove(valList.pop());
+		keyToVal.remove(keyList.pop());
 	}
 	
 	public IAtom getKey(IAtom val){
-		int j =  valList.indexOf(val);
-		if(j == -1){
-			return null;
-		}
-		return keyList.get( j );
+		return valToKey.get(val);
 	}
 	
 	public IAtom getVal(IAtom key){
-		int j =  keyList.indexOf(key);
-		if(j == -1){
-			return null;
-		}
-		return valList.get( j );
+		return keyToVal.get(key);
 	}
 	
 	public void clear(){
 		keyList.clear();
 		valList.clear();
+		keyToVal.clear();
+		valToKey.clear();
 	}
 	
 	public boolean containsKey(IAtom key){
-		return keyList.contains(key);
+		return keyToVal.containsKey(key);
 	}
 	
 	public boolean containsVal(IAtom val){
-		return valList.contains(val);
+		return valToKey.containsKey(val);
 	}
 	
 	public MCSList<IAtom> getKeyList(){

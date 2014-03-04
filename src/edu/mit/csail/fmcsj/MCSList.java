@@ -1,36 +1,54 @@
 package edu.mit.csail.fmcsj;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
-public class MCSList<T> extends ArrayList<T> {
+import org.openscience.cdk.interfaces.IAtom;
 
+public class MCSList<T> implements Iterable<T>{
+	private ArrayList<T> myList;
+	private Set<T> els;
+	
 	public MCSList( List<T> l){
-		super(l);
+		myList = new ArrayList<T>(l);
+		els = new HashSet<T>(l);
 	}
+	
 	public MCSList(){
 		super();
 	}
-	
-	private static final long serialVersionUID = 1L;
 
+
+	public MCSList(MCSList<T> l) {
+		for(T el: l){
+			this.push(el);
+		}
+	}
+	
 	public void push(final T el){
 		
-		this.add(el);
+		myList.add(el);
+		els.add(el);
 
 	}
 	
-	public T front(){
-		return this.get(0);
+	
+	public T pop(){
+		T el = myList.remove( myList.size() - 1);
+		els.remove(el);
+		return el;
+	
 	}
 	
-	public T back(){
-		return this.get(this.size()-1);
+	public int size(){
+		return myList.size();
 	}
 	
-	public void pop(){
-		this.remove( this.size() - 1);
-	
+	public boolean contains(T el){
+		return els.contains(el);
 	}
 	
 	@Override
@@ -38,16 +56,40 @@ public class MCSList<T> extends ArrayList<T> {
 		if(!(that instanceof MCSList<?>)){
 			return false;
 		}
-		MCSList<?> mThat = (MCSList<?>) that;
+		MCSList<T> mThat = (MCSList<T>) that;
 		if( mThat.size() != this.size()){
 			return false;
 		}
-		for(T el: this){
+		for(T el: myList){
 			if( !mThat.contains(el)){
 				return false;
 			}
 		}
 		return true;
+	}
+
+	public T get(int j) {
+		return myList.get(j);
+	}
+	
+	public void clear() {
+		els.clear();
+		myList.clear();
+		
+	}
+	
+	@Override
+	public Iterator<T> iterator() {
+		return myList.iterator();
+	}
+	
+	public void remove(T el) {
+		myList.remove(el);
+		els.remove(el);
+		
+	}
+	public boolean isEmpty() {
+		return this.size() == 0;
 	}
 
 }
