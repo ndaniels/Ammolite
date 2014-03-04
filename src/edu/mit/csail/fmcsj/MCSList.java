@@ -18,11 +18,14 @@ public class MCSList<T> implements Iterable<T>{
 	}
 	
 	public MCSList(){
-		super();
+		myList = new ArrayList<T>();
+		els = new HashSet<T>();
 	}
 
 
 	public MCSList(MCSList<T> l) {
+		myList = new ArrayList<T>();
+		els = new HashSet<T>();
 		for(T el: l){
 			this.push(el);
 		}
