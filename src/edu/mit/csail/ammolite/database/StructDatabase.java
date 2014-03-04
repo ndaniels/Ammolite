@@ -83,11 +83,14 @@ public class StructDatabase{
 			} else {
 				Logger.debug("\n");
 				Logger.debug("Missing molecule, here are some lines from the file");
-				Logger.debug("\n");
+				Logger.debug("----------------------------------------------------\n");
+				FileInputStream fs2 = new FileInputStream(f);
+				BufferedReader br2 = new BufferedReader( new InputStreamReader(fs2 ));
+				br.skip(byteOffset);
 				for(int i=0; i<30; ++i){
-					Logger.debug(br.readLine());
+					Logger.debug(br2.readLine());
 				}
-				Logger.debug("\n");
+				Logger.debug("\n----------------------------------------------------\n");
 				Logger.debug("Trying to load it anyways...");
 				out = molecule.next();
 			}
