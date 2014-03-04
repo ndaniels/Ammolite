@@ -33,6 +33,9 @@ public class MCS {
 	boolean timeoutStop = false;
 
 
+	public MCS(IAtomContainer _compoundOne, IAtomContainer _compoundTwo){
+		this(_compoundOne, _compoundTwo, false);
+	}
 	
 	/**
 	 * Constructor
@@ -46,7 +49,12 @@ public class MCS {
 	 * @param _matchType
 	 * @param _timeout
 	 */
- 	public MCS(	IAtomContainer _compoundOne, IAtomContainer _compoundTwo){
+ 	public MCS(	IAtomContainer _compoundOne, IAtomContainer _compoundTwo, boolean flexible){
+ 		
+ 		if( flexible){
+ 			atomMismatchUpperBound = 1;
+ 			bondMismatchUpperBound = 1;
+ 		}
 
 		atomMismatchCurr = 0;
 		bondMismatchCurr = 0;
