@@ -75,7 +75,7 @@ public class StructDatabase{
 		try {
 			fs = new FileInputStream(f);
 			BufferedReader br = new BufferedReader( new InputStreamReader(fs ));
-			br.skip(byteOffset);
+			br.skip(byteOffset-5);
 			IteratingSDFReader molecule =new IteratingSDFReader( br, DefaultChemObjectBuilder.getInstance() );
 			IAtomContainer out = null;
 			if(molecule.hasNext()){
@@ -84,11 +84,11 @@ public class StructDatabase{
 				Logger.debug("\n");
 				Logger.debug("Missing molecule, here are some lines from the file");
 				Logger.debug("----------------------------------------------------\n");
-				FileInputStream fs2 = new FileInputStream(f);
-				BufferedReader br2 = new BufferedReader( new InputStreamReader(fs2 ));
+//				FileInputStream fs2 = new FileInputStream(f);
+//				BufferedReader br2 = new BufferedReader( new InputStreamReader(fs2 ));
 				br.skip(byteOffset);
 				for(int i=0; i<30; ++i){
-					Logger.debug(br2.readLine());
+					Logger.debug(br.readLine());
 				}
 				Logger.debug("\n----------------------------------------------------\n");
 				Logger.debug("Trying to load it anyways...");
