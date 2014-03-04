@@ -20,11 +20,11 @@ public class MCS {
 	private boolean identicalGraph;
 	public MCSList<MCSMap> bestList = new MCSList<MCSMap>();
 	public MCSMap currentMapping = new MCSMap();
-	private int userDefinedLowerBound;
-	private int substructureNumLimit;
+	private int userDefinedLowerBound = 0;
+	private int substructureNumLimit = 1;
 	private int currSubstructureNum;
-	private int atomMismatchUpperBound = 1;
-	private int bondMismatchUpperBound = 1;
+	private int atomMismatchUpperBound = 0;
+	private int bondMismatchUpperBound = 0;
 	private int atomMismatchCurr;
 	private int bondMismatchCurr;
 	private int solutionSize = -1;
@@ -32,18 +32,10 @@ public class MCS {
 	public IAtomContainer compoundTwo;
 	boolean timeoutStop = false;
 
-	/**
-	 * Default constructor
-	 * 
-	 * @param _compoundOne
-	 * @param _compoundTwo
-	 */
-	public MCS(IAtomContainer _compoundOne, IAtomContainer _compoundTwo ){
-		this(	_compoundOne ,_compoundTwo, 0, 1);
-	}
+
 	
 	/**
-	 * Detailed Constructor
+	 * Constructor
 	 * 
 	 * @param _compoundOne
 	 * @param _compoundTwo
@@ -54,13 +46,8 @@ public class MCS {
 	 * @param _matchType
 	 * @param _timeout
 	 */
- 	public MCS(	IAtomContainer _compoundOne, IAtomContainer _compoundTwo, 
-				int _userDefinedLowerBound, int _substructureNumLimit){
-		
-		userDefinedLowerBound = _userDefinedLowerBound;
-		substructureNumLimit = _substructureNumLimit;
+ 	public MCS(	IAtomContainer _compoundOne, IAtomContainer _compoundTwo){
 
-		
 		atomMismatchCurr = 0;
 		bondMismatchCurr = 0;
 		currSubstructureNum = 0;
