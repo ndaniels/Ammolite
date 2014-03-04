@@ -76,7 +76,12 @@ public class StructDatabase{
 			fs = new FileInputStream(f);
 			BufferedReader br = new BufferedReader( new InputStreamReader(fs ));
 			if( byteOffset -5 > 0){
-				br.skip(byteOffset-5);
+				br.skip(byteOffset-5); // TODO
+				/**
+				 * Why the -5? The -5 is here because the code that finds the offsets (version 0) 
+				 * finds the offset after the delimiter string '$$$$\n' which causes a lot of issues
+				 * for the reader. This should be fixed (obv.)
+				 */
 			}
 			IteratingSDFReader molecule =new IteratingSDFReader( br, DefaultChemObjectBuilder.getInstance() );
 			IAtomContainer out = null;
