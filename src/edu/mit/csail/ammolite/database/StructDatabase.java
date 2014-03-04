@@ -81,10 +81,15 @@ public class StructDatabase{
 			if(molecule.hasNext()){
 				out = molecule.next();
 			} else {
+				Logger.debug("\n");
+				Logger.debug("Missing molecule, here are some lines from the file");
+				Logger.debug("\n");
 				for(int i=0; i<30; ++i){
 					Logger.debug(br.readLine());
 				}
-				Logger.debug("Missing molecule, here are some lines from the file");
+				Logger.debug("\n");
+				Logger.debug("Trying to load it anyways...");
+				out = molecule.next();
 			}
 			
 			fs.close();
