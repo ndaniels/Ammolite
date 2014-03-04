@@ -74,23 +74,18 @@ public class StructDatabase{
 		FileInputStream fs;
 		try {
 			fs = new FileInputStream(f);
-			fs.skip(byteOffset);
 			BufferedReader br = new BufferedReader( new InputStreamReader(fs ));
-
+			br.skip(byteOffset);
 			IteratingSDFReader molecule =new IteratingSDFReader( br, DefaultChemObjectBuilder.getInstance() );
 			IAtomContainer out = null;
-			molecule.hasNext();
-			out = molecule.next();
-//			boolean noMolecule = true;
-//			while( molecule.hasNext() && noMolecule){
-//				out = molecule.next();
-//				noMolecule = false;
-//			}
-//			if( out == null){
-//				Logger.debug("Missing molecule "+pubchemID);
-//				Logger.debug(filename);
-//				Logger.debug(byteOffset);
-//			}
+			if(molecule.hasNext()){
+				out = molecule.next();
+			} else {
+				for(int i=0; i<30; ++i){
+					Logger.debug(br.readLine());
+				}
+				Logger.debug("Missing molecule, here are some lines from the file");
+			}
 			
 			fs.close();
 			br.close();
