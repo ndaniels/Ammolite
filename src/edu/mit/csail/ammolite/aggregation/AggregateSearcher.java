@@ -65,7 +65,7 @@ public class AggregateSearcher {
 		SDFWriter writer = new SDFWriter(new BufferedWriter( new FileWriter( outFilename + ".sdf" )));
 		
 		while( queryFile.hasNext() ){
-			MoleculeStruct query = new CyclicStruct( new AtomContainer(AtomContainerManipulator.removeHydrogens(queryFile.next())));
+			MoleculeStruct query = db.makeMoleculeStruct(queryFile.next());
 			List<MolTriple> results = singleSearch( query,threshold, useTanimoto);
 			Logger.experiment("Query ID: "+query.getID()+", Matches: "+results.size());
 			StringBuilder sb = new StringBuilder();
