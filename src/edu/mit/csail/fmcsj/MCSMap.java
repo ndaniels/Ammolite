@@ -17,9 +17,6 @@ public class MCSMap {
 	private MCSList<IAtom> keyList = new MCSList<IAtom>();
 	private MCSList<IAtom> valList = new MCSList<IAtom>();
 	
-	private Map<IAtom,IAtom> keyToVal = new HashMap<IAtom,IAtom>();
-	private Map<IAtom,IAtom> valToKey = new HashMap<IAtom,IAtom>();
-	
 	public int size(){
 		return keyList.size();
 	}
@@ -27,36 +24,52 @@ public class MCSMap {
 	public void push(IAtom key, IAtom val){
 		keyList.push(key);
 		valList.push(val);
-		keyToVal.put(key, val);
-		valToKey.put(val, key);
 	}
 	
 	public void pop(){
-		valToKey.remove(valList.pop());
-		keyToVal.remove(keyList.pop());
+		valList.pop();
+		keyList.pop();
 	}
 	
 	public IAtom getKey(IAtom val){
-		return valToKey.get(val);
+		for(int i=0; i<size(); ++i){
+			if(val == valList.get(i)){ // This is supposed to be memory address.
+				return keyList.get(i);
+			}
+		}
+		return null;
 	}
 	
 	public IAtom getVal(IAtom key){
-		return keyToVal.get(key);
+		for(int i=0; i<size(); ++i){
+			if(key == keyList.get(i)){ // This is supposed to be memory address.
+				return valList.get(i);
+			}
+		}
+		return null;
 	}
 	
 	public void clear(){
 		keyList.clear();
 		valList.clear();
-		keyToVal.clear();
-		valToKey.clear();
 	}
 	
 	public boolean containsKey(IAtom key){
-		return keyToVal.containsKey(key);
+		for(int i=0; i<size(); ++i){
+			if(key == keyList.get(i)){ // This is supposed to be memory address.
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public boolean containsVal(IAtom val){
-		return valToKey.containsKey(val);
+		for(int i=0; i<size(); ++i){
+			if(val == valList.get(i)){ // This is supposed to be memory address.
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public MCSList<IAtom> getKeyList(){
@@ -74,6 +87,8 @@ public class MCSMap {
 		}
 		return out;
 	}
+	
+
 	
 	
 	

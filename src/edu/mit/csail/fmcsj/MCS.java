@@ -215,7 +215,7 @@ public class MCS {
 	 */
 	private IAtom top(MCSList<IAtom> atomList){
 
-		IAtom bestCandidateAtom = atomList.get(0);
+		IAtom bestCandidateAtom = atomList.peek();
 		IAtom candidateAtom = null;
 		
 		for(int i=0; i<atomList.size(); i++){

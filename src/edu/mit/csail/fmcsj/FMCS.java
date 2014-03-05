@@ -137,7 +137,7 @@ public class FMCS {
 		b = new AtomContainer(AtomContainerManipulator.removeHydrogens(b));
 		edu.mit.csail.ammolite.MolDrawer.draw(a, output + "_inp1");
 		edu.mit.csail.ammolite.MolDrawer.draw(b, output + "_inp2");
-		MCS myMCS = new MCS(a,b);
+		MCS myMCS = new MCS(a,b,true);
 		myMCS.calculate();
 		SDFWriter sdfwriter = new SDFWriter(new BufferedWriter( new FileWriter( output + ".sdf" )));
 		for(IAtomContainer overlap: myMCS.getSolutions()){
