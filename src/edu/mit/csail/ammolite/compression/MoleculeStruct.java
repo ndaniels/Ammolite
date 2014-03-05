@@ -66,7 +66,6 @@ public class MoleculeStruct extends AtomContainer implements Serializable {
 		setHash();
 		
 		this.setID((String) base.getProperty("PUBCHEM_COMPOUND_CID"));
-		this.setProperty("PUBCHEM_COMPOUND_CID", this.getID());
 
 		this.mol_ids.add( getID() );
 	}

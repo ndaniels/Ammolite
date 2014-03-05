@@ -152,57 +152,57 @@ public class StructCompressor {
 
 	}
 	
-	public static void mergeDatabases( StructDatabase a, StructDatabase b, String targetname){
-		
-		if(	 !(a.getCompressionType().equals(b.getCompressionType()))){
-			throw new RuntimeException("Databases do not have the same type of compression. Aborting.");
-		}
-		
-		KeyListMap<Integer, MoleculeStruct> newStructsByHash = a.getStructsByHash();
-		KeyListMap<Integer, MoleculeStruct> bStructsByHash = b.getStructsByHash();
-		VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
-		List<MoleculeStruct> toAdd;
-		
-		for(int key: bStructsByHash.keySet()){
-			
-			toAdd = new ArrayList<MoleculeStruct>();
-			
-			if( newStructsByHash.containsKey(key)){
-				
-				toAdd = new ArrayList<MoleculeStruct>();
-				
-				for(MoleculeStruct aStruct: newStructsByHash.get(key)){
-					for(MoleculeStruct bStruct: bStructsByHash.get(key)){
-						if(aStruct.isIsomorphic(bStruct, iso_tester)){
-							for(String id: bStruct.getIDNums()){
-								aStruct.addID(id);
-							}
-							break;
-						} else {
-							toAdd.add(bStruct);
-						}
-					}
-				}
-				
-				for(MoleculeStruct m: toAdd){
-					newStructsByHash.get(key).add(m);
-				}
-				
-			} else {
-				
-				newStructsByHash.put(key, bStructsByHash.get(key));			
-			}		
-		}
-		
-		HashMap<String, FilePair> newMolLocsByID = a.getFileLocsByID();
-		for(String key: b.getFileLocsByID().keySet()){
-			newMolLocsByID.put(key, b.getFileLocsByID().get(key));
-		}
-		
-		StructDatabaseCoreData newDB = new StructDatabaseCoreData( newStructsByHash, newMolLocsByID, a.getCompressionType());
-		
-		writeObjectToFile(targetname, newDB);
-	}
+//	public static void mergeDatabases( StructDatabase a, StructDatabase b, String targetname){
+//		
+//		if(	 !(a.getCompressionType().equals(b.getCompressionType()))){
+//			throw new RuntimeException("Databases do not have the same type of compression. Aborting.");
+//		}
+//		
+//		KeyListMap<Integer, MoleculeStruct> newStructsByHash = a.getStructsByHash();
+//		KeyListMap<Integer, MoleculeStruct> bStructsByHash = b.getStructsByHash();
+//		VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
+//		List<MoleculeStruct> toAdd;
+//		
+//		for(int key: bStructsByHash.keySet()){
+//			
+//			toAdd = new ArrayList<MoleculeStruct>();
+//			
+//			if( newStructsByHash.containsKey(key)){
+//				
+//				toAdd = new ArrayList<MoleculeStruct>();
+//				
+//				for(MoleculeStruct aStruct: newStructsByHash.get(key)){
+//					for(MoleculeStruct bStruct: bStructsByHash.get(key)){
+//						if(aStruct.isIsomorphic(bStruct, iso_tester)){
+//							for(String id: bStruct.getIDNums()){
+//								aStruct.addID(id);
+//							}
+//							break;
+//						} else {
+//							toAdd.add(bStruct);
+//						}
+//					}
+//				}
+//				
+//				for(MoleculeStruct m: toAdd){
+//					newStructsByHash.get(key).add(m);
+//				}
+//				
+//			} else {
+//				
+//				newStructsByHash.put(key, bStructsByHash.get(key));			
+//			}		
+//		}
+//		
+//		HashMap<String, FilePair> newMolLocsByID = a.getFileLocsByID();
+//		for(String key: b.getFileLocsByID().keySet()){
+//			newMolLocsByID.put(key, b.getFileLocsByID().get(key));
+//		}
+//		
+//		StructDatabaseCoreData newDB = new StructDatabaseCoreData( newStructsByHash, newMolLocsByID, a.getCompressionType());
+//		
+//		writeObjectToFile(targetname, newDB);
+//	}
 	
 	/**
 	 * Go through a file looking for matching elements of clusters

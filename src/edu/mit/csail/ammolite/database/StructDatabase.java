@@ -21,7 +21,7 @@ import edu.mit.csail.ammolite.compression.CyclicStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory;
 
-public class StructDatabase{
+public class StructDatabase implements IStructDatabase{
 	
 
 
@@ -29,7 +29,7 @@ public class StructDatabase{
 	private HashMap<String, FilePair> fileLocsByID;
 	private MoleculeStructFactory structFactory;
 	private CompressionType compressionType;
-	private List<MoleculeStruct> linearStructs = null;
+	private List<IAtomContainer> linearStructs = null;
 	private int numReps = -1;
 	private int numMols = -1;
 	
@@ -59,9 +59,9 @@ public class StructDatabase{
 		return this.structsByHash;
 	}
 	
-	public HashMap<String, FilePair> getFileLocsByID(){
-		return this.fileLocsByID;
-	}
+//	public HashMap<String, FilePair> getFileLocsByID(){
+//		return this.fileLocsByID;
+//	}
 	
 	public IAtomContainer getMolecule(String pubchemID){
 		
@@ -117,7 +117,7 @@ public class StructDatabase{
 
 	}
 	
-	public Iterator<MoleculeStruct> iterator(){
+	public Iterator<IAtomContainer> iterator(){
 		if( linearStructs == null){
 			buildLinearSet();
 		}
@@ -125,7 +125,7 @@ public class StructDatabase{
 	}
 	
 	private void buildLinearSet(){
-		linearStructs = new ArrayList<MoleculeStruct>( numReps());
+		linearStructs = new ArrayList<IAtomContainer>( numReps());
 		for(List<MoleculeStruct> repSet: structsByHash.values()){
 			linearStructs.addAll(repSet);
 		}

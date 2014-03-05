@@ -18,12 +18,12 @@ public class Cluster implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -4558559462758246483L;
-	private MoleculeStruct rep;
+	private IAtomContainer rep;
 	private List<Cluster> members= new LinkedList<Cluster>();
 	private double repBound;
 	private int order = 0;
 	
-	public Cluster(MoleculeStruct initialMember, double _repBound){
+	public Cluster(IAtomContainer initialMember, double _repBound){
 		repBound = _repBound;
 		rep = initialMember;
 	}
@@ -37,7 +37,7 @@ public class Cluster implements Serializable{
 		order = initialMember.order() + 1;
 	}
 	
-	public MoleculeStruct getRep(){
+	public IAtomContainer getRep(){
 		return rep;
 	}
 	public int order(){
@@ -87,7 +87,7 @@ public class Cluster implements Serializable{
 		return true;
 	}
 	
-	public boolean matchesCluster(MoleculeStruct candidate, double myRepBound){
+	public boolean matchesCluster(IAtomContainer candidate, double myRepBound){
 		
 		MCS myMCS = new MCS(candidate, rep, true);
 		myMCS.calculate();

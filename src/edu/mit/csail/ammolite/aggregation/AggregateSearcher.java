@@ -24,6 +24,7 @@ import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.Logger;
 import edu.mit.csail.ammolite.compression.CyclicStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStruct;
+import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
 import edu.mit.csail.ammolite.search.MolTriple;
@@ -31,7 +32,7 @@ import edu.mit.csail.ammolite.search.Util;
 import edu.mit.csail.fmcsj.MCS;
 
 public class AggregateSearcher {
-	private StructDatabase db;
+	private IStructDatabase db;
 	private List<Cluster> cList;
 	private static double searchBound;
 	private boolean useTanimoto = false;
@@ -65,7 +66,7 @@ public class AggregateSearcher {
 		SDFWriter writer = new SDFWriter(new BufferedWriter( new FileWriter( outFilename + ".sdf" )));
 		
 		while( queryFile.hasNext() ){
-			MoleculeStruct query = db.makeMoleculeStruct(queryFile.next());
+			IAtomContainer query = db.makeMoleculeStruct(queryFile.next());
 			List<MolTriple> results = singleSearch( query,threshold, useTanimoto);
 			Logger.experiment("Query ID: "+query.getID()+", Matches: "+results.size());
 			StringBuilder sb = new StringBuilder();
@@ -95,9 +96,9 @@ public class AggregateSearcher {
 		writer.close();
 	}
 	
-	private List<MolTriple> singleSearch(MoleculeStruct query, double threshold, boolean _useTanimoto){
+	private List<MolTriple> singleSearch(IAtomContainer query, double threshold, boolean _useTanimoto){
 		useTanimoto = _useTanimoto;
-		List<MoleculeStruct> matches = new ArrayList<MoleculeStruct>();
+		List<IAtomContainer> matches = new ArrayList<IAtomContainer>();
 		List<Cluster> myCList = new ArrayList<Cluster>(cList);
 		
 		while( myCList.size() > 0){
@@ -110,10 +111,15 @@ public class AggregateSearcher {
 			myCList.remove(c);
 		}
 		List<String> ids = new ArrayList<String>(3 * matches.size());
-		
 		for(int i=0;i<matches.size(); i++){
-			for(String id: matches.get(i).getIDNums()){
-				ids.add(id);
+			IAtomContainer match = matches.get(i);
+			if( match instanceof MoleculeStruct){
+				MoleculeStruct sMatch = (MoleculeStruct) match;
+				for(String id: sMatch.getIDNums()){
+					ids.add(id);
+				}
+			} else {
+				ids.add(match.getID());
 			}
 		}
 		Logger.debug(ids);

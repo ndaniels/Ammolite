@@ -21,6 +21,7 @@ import org.openscience.cdk.io.SDFWriter;
 
 import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.Logger;
+import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
 
@@ -44,7 +45,7 @@ public class ParallelSearcher implements IBatchSearcher{
 	 * @param _useTanimoto
 	 */
 	public void search(String databaseFilename, String queryFilename, String outFilename, double threshold, double probability, boolean _useTanimoto){
-		db = StructDatabaseDecompressor.decompress(databaseFilename);
+		db = (StructDatabase) StructDatabaseDecompressor.decompress(databaseFilename);
 		useTanimoto = _useTanimoto;
 		try {
 			doSearch( queryFilename, outFilename, threshold, probability);

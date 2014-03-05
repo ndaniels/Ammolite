@@ -66,7 +66,7 @@ public class MolSearcher implements IMolSearcher {
 		MoleculeStruct sQuery = db.makeMoleculeStruct(query);
 
 		List<MoleculeStruct> matches = new ArrayList<MoleculeStruct>();
-		Iterator<MoleculeStruct> structs = db.iterator();
+		Iterator<IAtomContainer> structs = db.iterator();
 		int count = 0;
 		MoleculeStruct target;
 		
@@ -76,7 +76,7 @@ public class MolSearcher implements IMolSearcher {
 				edu.mit.csail.ammolite.Logger.debug("Working for "+(System.currentTimeMillis()-startTime)+" milliseconds total");
 				edu.mit.csail.ammolite.Logger.debug("In MCS for "+timeInMCS+" milliseconds");
 			}
-			target = structs.next();
+			target = (MoleculeStruct) structs.next();
 
 			
 			MCS myMCS = new MCS(sQuery,target);

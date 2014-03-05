@@ -10,13 +10,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.openscience.cdk.interfaces.IAtomContainer;
+
 import edu.mit.csail.ammolite.Logger;
 import edu.mit.csail.ammolite.compression.MoleculeStruct;
+import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
 
 public class Aggregator {
-	private StructDatabase db;
+	private IStructDatabase db;
 	private static double repBound;
 	
 	public Aggregator(String dbFilename, double _repBound){
@@ -71,7 +74,7 @@ public class Aggregator {
 	
 	private List<Cluster> buildInitialClusterList(){
 		List<Cluster> clusterList = new ArrayList<Cluster>();
-		Iterator<MoleculeStruct> dbIter = db.iterator();
+		Iterator<IAtomContainer> dbIter = db.iterator();
 		while( dbIter.hasNext()){
 			clusterList.add( new Cluster(dbIter.next(), repBound));
 		}
