@@ -1,0 +1,8 @@
+
+
+Molecules: 10000 Representatives: 1048 Seconds: 275
+ Fruitless Comparisons: 5061 Total Comparisons: 14013
+
+Multithreaded version
+Molecules: 10000 Representatives: 1048 Seconds: 327
+ Fruitless Comparisons: 22545 Total Comparisons: 0
