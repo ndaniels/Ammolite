@@ -93,6 +93,10 @@ public class Matrix {
 	
 	private List<ClusterDist> parDistances(){
 		int numThreads = Runtime.getRuntime().availableProcessors();
+		if( numThreads > 12){
+			numThreads -= 4;
+		}
+		numThreads = 4;
 		Logger.debug("Using "+numThreads+" threads");
 		ExecutorService service = Executors.newFixedThreadPool(numThreads);
 		List<Future<ClusterDist>> futures = new ArrayList<Future<ClusterDist>>();

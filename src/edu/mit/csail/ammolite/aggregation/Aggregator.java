@@ -30,13 +30,18 @@ public class Aggregator {
 	public long aggregate(String filename){
 		long startTime = System.currentTimeMillis();
 		List<Cluster> cList = buildInitialClusterList();
+		Logger.debug("1");
 		int prevNumClusters = cList.size()+1;
 		while( cList.size() != prevNumClusters && cList.size() > 10){
+			Logger.debug("2*");
 			Logger.debug(cList.size()+" clusters");
 			prevNumClusters = cList.size();
+			Logger.debug("3*");
 			Matrix matrix = buildMatrix( cList);
+			Logger.debug("4*");
 			cList = singleFold( matrix, matrix.size());
 		}
+		Logger.debug("5");
 		Logger.debug(cList.size()+" clusters");
 		writeObjectToFile( filename, cList);
 		return System.currentTimeMillis()-startTime;

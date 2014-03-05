@@ -13,7 +13,8 @@ import edu.mit.csail.ammolite.Logger;
 public class StructDatabaseDecompressor {
 	
 	
-	public static IStructDatabase decompress(String databasename){			
+	public static IStructDatabase decompress(String databasename){
+			Logger.log("Decompressing "+databasename, 1);
 			String extension = "";
 			int i = databasename.lastIndexOf('.');
 			if (i > 0) {
