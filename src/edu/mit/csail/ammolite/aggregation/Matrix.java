@@ -13,6 +13,9 @@ import java.util.concurrent.Future;
 
 import edu.mit.csail.ammolite.Logger;
 import edu.mit.csail.fmcsj.MCS;
+
+import org.openscience.cdk.AtomContainer;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.smsd.Substructure;
 import org.openscience.smsd.Isomorphism;
 import org.openscience.smsd.interfaces.Algorithm;
@@ -100,15 +103,17 @@ public class Matrix {
 		if( numThreads > 12){
 			numThreads -= 4;
 		}
-		numThreads = 1;
+		//numThreads = 1;
 		Logger.debug("Using "+numThreads+" threads");
 		ExecutorService service = Executors.newFixedThreadPool(numThreads);
 		List<Future<ClusterDist>> futures = new ArrayList<Future<ClusterDist>>();
 
 		for(int i=0; i<cList.size(); ++i){
 			for(int j=0; j<i; ++j){
-				final Cluster a = cList.get(i);
-				final Cluster b = cList.get(j);
+				final Cluster aClust = cList.get(i);
+				final Cluster bClust = cList.get(j);
+				final IAtomContainer a = new AtomContainer( aClust.getRep() );
+				final IAtomContainer b = new AtomContainer( bClust.getRep() );
 				Callable<ClusterDist> callable = new Callable<ClusterDist>(){
 					
 					public ClusterDist call() throws Exception {
@@ -121,11 +126,11 @@ public class Matrix {
 						boolean matchRings = true;
 						boolean matchAtomType = true;
 						long startTime = System.currentTimeMillis();
-						BaseMapping smsd = new Isomorphism(a.getRep(), b.getRep(), Algorithm.DEFAULT, 
+						BaseMapping smsd = new Isomorphism(a, b, Algorithm.DEFAULT, 
 															matchBonds, matchRings, matchAtomType);
 						long runTime = System.currentTimeMillis() - startTime;
 						double tanimotoScore = smsd.getTanimotoSimilarity();
-						return new ClusterDist(a,b,tanimotoScore,runTime);
+						return new ClusterDist(aClust,bClust,tanimotoScore,runTime);
 						
 					}
 				};
