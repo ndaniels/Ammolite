@@ -11,8 +11,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.compression.MoleculeStruct;
@@ -25,6 +27,7 @@ public class MoleculeDatabase implements IStructDatabase {
 		IteratingSDFReader sdf = getReader( filename);
 		while( sdf.hasNext()){
 			IAtomContainer mol = sdf.next();
+			mol = new AtomContainer(AtomContainerManipulator.removeHydrogens(mol));
 			molecules.add(mol);
 			idToMolecule.put(mol.getID(), mol);
 		}

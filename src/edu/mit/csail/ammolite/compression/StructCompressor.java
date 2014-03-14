@@ -316,7 +316,7 @@ public class StructCompressor {
 		while( (c=in.read()) != -1){
 			
 			if(c == '$' && !foundOffset){
-				pos = in.getByteCount();
+				pos = in.getByteCount()-1;
 				foundOffset = true;
 				
 				

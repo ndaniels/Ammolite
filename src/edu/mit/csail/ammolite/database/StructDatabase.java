@@ -25,13 +25,13 @@ public class StructDatabase implements IStructDatabase{
 	
 
 
-	private KeyListMap<Integer, MoleculeStruct> structsByHash;
-	private HashMap<String, FilePair> fileLocsByID;
-	private MoleculeStructFactory structFactory;
-	private CompressionType compressionType;
-	private List<IAtomContainer> linearStructs = null;
-	private int numReps = -1;
-	private int numMols = -1;
+	protected KeyListMap<Integer, MoleculeStruct> structsByHash;
+	protected HashMap<String, FilePair> fileLocsByID;
+	protected MoleculeStructFactory structFactory;
+	protected CompressionType compressionType;
+	protected List<IAtomContainer> linearStructs = null;
+	protected int numReps = -1;
+	protected int numMols = -1;
 	
 	
 
@@ -124,7 +124,7 @@ public class StructDatabase implements IStructDatabase{
 		return linearStructs.iterator();		
 	}
 	
-	private void buildLinearSet(){
+	protected void buildLinearSet(){
 		linearStructs = new ArrayList<IAtomContainer>( numReps());
 		for(List<MoleculeStruct> repSet: structsByHash.values()){
 			linearStructs.addAll(repSet);

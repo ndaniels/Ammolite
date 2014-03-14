@@ -147,7 +147,7 @@ public class MoleculeStruct extends AtomContainer implements Serializable {
 		
 	}
 	
-	public Graph<Edge> getGraph(){
+	public SparseUndirectedGraph getGraph(){
 		if( this.graph == null){
 			makeGraph( this );
 		}
