@@ -13,6 +13,10 @@ import java.util.concurrent.Future;
 
 import edu.mit.csail.ammolite.Logger;
 import edu.mit.csail.fmcsj.MCS;
+import org.openscience.smsd.Substructure;
+import org.openscience.smsd.Isomorphism;
+import org.openscience.smsd.interfaces.Algorithm;
+import org.openscience.smsd.BaseMapping;
 
 public class Matrix {
 	
@@ -107,11 +111,21 @@ public class Matrix {
 				Callable<ClusterDist> callable = new Callable<ClusterDist>(){
 					
 					public ClusterDist call() throws Exception {
-						MCS myMCS = new MCS( a.getRep(), b.getRep());
-						long time = myMCS.calculate();
-						int overlap = myMCS.size();
-						double coeff = tanimotoCoeff( overlap, a.getRep().getAtomCount(), b.getRep().getAtomCount());
-						return new ClusterDist(a,b,coeff,time);
+//						MCS myMCS = new MCS( a.getRep(), b.getRep());
+//						long time = myMCS.calculate();
+//						int overlap = myMCS.size();
+//						double coeff = tanimotoCoeff( overlap, a.getRep().getAtomCount(), b.getRep().getAtomCount());
+//						return new ClusterDist(a,b,coeff,time);
+						boolean matchBonds = true;
+						boolean matchRings = true;
+						boolean matchAtomType = true;
+						long startTime = System.currentTimeMillis();
+						BaseMapping smsd = new Isomorphism(a.getRep(), b.getRep(), Algorithm.DEFAULT, 
+															matchBonds, matchRings, matchAtomType);
+						long runTime = System.currentTimeMillis() - startTime;
+						double tanimotoScore = smsd.getTanimotoSimilarity();
+						return new ClusterDist(a,b,tanimotoScore,runTime);
+						
 					}
 				};
 				futures.add( service.submit( callable));
