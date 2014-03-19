@@ -30,7 +30,7 @@ public class Logger {
 	
 	public static void debug(Object in){
 		if( showDebug){
-			System.out.println(in);
+			System.err.println(in);
 		}
 	}
 	

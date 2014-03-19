@@ -39,7 +39,7 @@ public class StructDatabaseDecompressor {
 				throw new IOException();
 			}
 			StructDatabaseCoreData structDB = (StructDatabaseCoreData) database;
-			return new StructDatabase( structDB);
+			return new BigStructDatabase( structDB);
 		} catch (ClassNotFoundException e) {
 			Logger.error("Failed to open database "+databasename);
 			e.printStackTrace();

@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -13,7 +15,7 @@ import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.Logger;
 
 public class BigStructDatabase extends StructDatabase{
-	
+	private Map<String, IAtomContainer> idToMolecule = new HashMap<String, IAtomContainer>();
 	/**
 	 * For testing, like structdatabase but searches an entire file for the appropriate molecule.
 	 * @param coredata
@@ -24,6 +26,11 @@ public class BigStructDatabase extends StructDatabase{
 	
 	@Override
 	public IAtomContainer getMolecule(String pubchemID){
+		if(idToMolecule.containsKey(pubchemID)){
+			return idToMolecule.get(pubchemID);
+		}
+		
+		else{
 			
 			FilePair fp = fileLocsByID.get(pubchemID);
 			
@@ -49,16 +56,14 @@ public class BigStructDatabase extends StructDatabase{
 				while( molecule.hasNext())
 				if(molecule.hasNext()){
 					IAtomContainer out = molecule.next();
-					if( pubchemID.equals( out.getProperty("PUBCHEM_COMPOUND_CID") )){
-						return out;
-					}
+					idToMolecule.put((String) out.getProperty("PUBCHEM_COMPOUND_CID"), out);
 				}
 			} catch (IOException e) {
 				System.exit(-1);
 				e.printStackTrace();
 			}
-			return null;
-			
+		}
+		return idToMolecule.get(pubchemID);
 	
 		}
 
