@@ -339,7 +339,13 @@ public class StructCompressor {
 					}
 					String pubchemID = sb.toString();
 					
-					moleculeLocationsByID.put(pubchemID, new FilePair(f.getAbsolutePath(), pos));
+					FilePair myFP =  new FilePair(f.getAbsolutePath(), pos);
+					if(myFP == null){
+						Logger.error("Missing file pair");
+						System.exit(1);
+					}
+					
+					moleculeLocationsByID.put(pubchemID, myFP);
 					foundOffset = false;
 					
 				}
