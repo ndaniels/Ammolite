@@ -19,10 +19,12 @@ import edu.mit.csail.ammolite.database.StructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
 
 public class Aggregator {
+	private String dbFilename;
 	private IStructDatabase db;
 	private static double repBound;
 	
-	public Aggregator(String dbFilename, double _repBound){
+	public Aggregator(String _dbFilename, double _repBound){
+		dbFilename = _dbFilename;
 		db = StructDatabaseDecompressor.decompress(dbFilename);
 		repBound = _repBound;
 	}
@@ -43,7 +45,8 @@ public class Aggregator {
 		}
 
 		Logger.debug(cList.size()+" clusters");
-		writeObjectToFile( filename, cList);
+		ClusterDatabase cDB = new ClusterDatabase(dbFilename, cList);
+		writeObjectToFile( filename, cDB);
 		return System.currentTimeMillis()-startTime;
 	}
 	
@@ -92,7 +95,7 @@ public class Aggregator {
 	
 	private static void writeObjectToFile(String object_filename, Object o){
 		try{
-			OutputStream file = new FileOutputStream( object_filename + ".cdb" );
+			OutputStream file = new FileOutputStream( object_filename + ".clusters.adb" );
 			OutputStream buffer = new BufferedOutputStream( file );
 			ObjectOutput output = new ObjectOutputStream( buffer );
 			output.writeObject(o);

@@ -36,16 +36,13 @@ public class AggregateSearcher {
 	private List<Cluster> cList;
 	private static double searchBound;
 	private boolean useTanimoto = false;
+	private ClusterDatabase cDB;
 	
-	public AggregateSearcher(String clusterName, String dbName, double _searchBound){
+	public AggregateSearcher(String clusterDBName, double _searchBound){
 		searchBound = _searchBound;
-		try {
-			cList = (List<Cluster>) deserialize( new File( clusterName));
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.exit(1);
-		} 
-		db = StructDatabaseDecompressor.decompress(dbName);
+		cDB = ClusterDatabaseDecompressor.decompress(clusterDBName);
+		db = cDB.getDatabase();
+		cList = cDB.getClusterList();
 	}
 	
 	/**
@@ -157,13 +154,5 @@ public class AggregateSearcher {
 	
 	
 	
-	private static Object deserialize(File f) throws ClassNotFoundException, IOException{
-        InputStream file = new FileInputStream(f);
-        InputStream buffer = new BufferedInputStream(file);
-        ObjectInput obInput = new ObjectInputStream (buffer);
 
-        Object recovered = obInput.readObject();
-        obInput.close();
-        return recovered;
-	}
 }

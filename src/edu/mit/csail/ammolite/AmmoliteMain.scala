@@ -60,8 +60,7 @@ object AmmoliteMain{
 		    val repbound = opt[Double]("rep-boundary", default=Some(0.5), descr="how similar clusters have to be")
 		  }
 		  val aggsearch = new Subcommand("aggsearch"){
-		    val database = opt[String]("database", required=true, descr="Path to the database.")
-		    val cluster = opt[String]("cluster", required=true, descr="Path to the clusters.")
+		    val cluster = opt[String]("cluster", required=true, descr="Path to the cluster database you want to search.")
 			val queries = opt[String]("queries", required=true, descr="SDF file of queries.")
 			val threshold = opt[Double]("threshold", descr="Threshold to use. Uses overlap coefficient by default.")
 		    val tanimoto = opt[Boolean]("tanimoto", descr="Use tanimoto coefficients.", default=Some(false))
@@ -107,7 +106,7 @@ object AmmoliteMain{
 		    agg.aggregate(opts.aggcompress.target())
 		} else if( opts.subcommand == Some( opts.aggsearch)){
 
-		    val aggSearcher = new AggregateSearcher(opts.aggsearch.cluster(), opts.aggsearch.database(), opts.aggsearch.searchbound())
+		    val aggSearcher = new AggregateSearcher(opts.aggsearch.cluster(), opts.aggsearch.searchbound())
 		    
 		    aggSearcher.doSearch(opts.aggsearch.queries(), opts.aggsearch.target(), opts.aggsearch.threshold(), opts.aggsearch.tanimoto())
 		}
