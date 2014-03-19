@@ -37,6 +37,7 @@ import edu.mit.csail.ammolite.StructSDFWriter;
 import edu.mit.csail.ammolite.database.CompressionType;
 import edu.mit.csail.ammolite.database.FilePair;
 import edu.mit.csail.ammolite.database.StructDatabase;
+import edu.mit.csail.ammolite.database.StructDatabaseCompressor;
 import edu.mit.csail.ammolite.database.StructDatabaseCoreData;
 import edu.ucla.sspace.graph.isomorphism.VF2IsomorphismTester;
 
@@ -55,7 +56,7 @@ public class StructCompressor {
 	private int total_comparisons = 0;
 	private long runningTime, startTime;
 
-	public StructCompressor(CompressionType compType) throws IOException, CDKException{
+	public StructCompressor(CompressionType compType){
 		structFactory = new MoleculeStructFactory( compType);
 	}
 	
@@ -69,11 +70,6 @@ public class StructCompressor {
 		File[] contents = {directory};
 		if( directory.isDirectory()){
 			contents = directory.listFiles();
-		}
-		String[] a = folder_name.split("/");
-		String filename = a[ a.length - 1];
-		if( filename.length()>=4 && filename.substring(filename.length()-4, filename.length()).equals(".sdf")){
-			filename = filename.substring(0, filename.length() -4 );
 		}
 		return contents;
 	}
@@ -104,7 +100,7 @@ public class StructCompressor {
 																			DefaultChemObjectBuilder.getInstance()
 																		);
 			long setupFinish = System.currentTimeMillis() - fStart;
-			Logger.debug("Scanning " +  f.getName()+ " after "+setupFinish+" milliseconds spent instantiating sdf reader");
+			Logger.debug("Scanning " +  f.getName());
 			
 			checkDatabaseForIsomorphicStructs( molecule_database, structFactory );
 			long scanFinish = System.currentTimeMillis() - fStart; 
@@ -130,7 +126,7 @@ public class StructCompressor {
 	private void talk(){
 		runningTime = (System.currentTimeMillis() - startTime)/(1000);// Time in seconds
 		Logger.log("Molecules: "+ molecules +" Representatives: "+structures+" Seconds: "+runningTime,2);
-		Logger.debug(" Fruitless Comparisons: "+fruitless_comparisons+" Hash Table Size: "+structsByHash.size());
+		//Logger.debug(" Fruitless Comparisons: "+fruitless_comparisons+" Hash Table Size: "+structsByHash.size());
 	}
 	
 	private void showTableShape(){
@@ -215,22 +211,20 @@ public class StructCompressor {
 	 */
 	private void checkDatabaseForIsomorphicStructs( IteratingSDFReader molecule_database, MoleculeStructFactory structFactory ) throws CDKException, InterruptedException, ExecutionException{
 		
-		VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
+
         while( molecule_database.hasNext() ){
-        	long currentTime = (System.currentTimeMillis() - startTime)/(1000);
-        	if( molecules % 1000 == 0 || currentTime - runningTime > 30){
+        	if( molecules % 1000 == 0 ){
         		talk();
         	}
-        	runningTime = (System.currentTimeMillis() - startTime)/(1000);
         	
         	IAtomContainer molecule =  molecule_database.next();       	
         	MoleculeStruct structure = structFactory.makeMoleculeStruct(molecule);
         	molecules++;
+        	
         	if( structsByHash.containsKey( structure.hashCode())){
+        		
         		List<MoleculeStruct> potential_matches = structsByHash.get( structure.hashCode() );
         		boolean match = parrallelIsomorphism( structure, potential_matches);
-        		
-        		
         		if( !match ){
         			structures++;
         			structsByHash.add(structure.hashCode(), structure);
@@ -331,19 +325,15 @@ public class StructCompressor {
 				}
 				
 				if( sb.toString().equals("<PUBCHEM_COMPOUND_CID>")){
-					sb = new StringBuilder();
+					StringBuilder idGrabber = new StringBuilder();
 					while( (c=in.read()) != '\n'){
 						if( c != ' '){
-							sb.append((char) c);
+							idGrabber.append((char) c);
 						}
 					}
-					String pubchemID = sb.toString();
+					String pubchemID = idGrabber.toString();
 					
 					FilePair myFP =  new FilePair(f.getAbsolutePath(), pos);
-					if(myFP == null){
-						Logger.error("Missing file pair");
-						System.exit(1);
-					}
 					
 					moleculeLocationsByID.put(pubchemID, myFP);
 					foundOffset = false;
@@ -357,22 +347,6 @@ public class StructCompressor {
 		
 	}
 	
-	public void makeSDF( String filename){
-		try {
-			StructSDFWriter writer = new StructSDFWriter(filename);
-			for(int key: structsByHash.keySet()){
-				for( MoleculeStruct rep: structsByHash.get(key)){
-					writer.write(rep);
-				}
-			}
-			writer.close();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-	}
 	
 	/**
 	 * Produce the files representing the clustered database.
@@ -381,22 +355,9 @@ public class StructCompressor {
 	 * @throws CDKException
 	 * @throws IOException
 	 */
-	private void produceClusteredDatabase( String name ) throws CDKException, IOException{
+	private void produceClusteredDatabase( String name ){
 		StructDatabaseCoreData database = new StructDatabaseCoreData( structsByHash, moleculeLocationsByID, structFactory.getCompressionType());
-		writeObjectToFile(name, database);
+		StructDatabaseCompressor.compress(name, database);
 	}
 	
-	private static void writeObjectToFile(String object_filename, Object o){
-		try{
-			OutputStream file = new FileOutputStream( object_filename + ".adb" );
-			OutputStream buffer = new BufferedOutputStream( file );
-			ObjectOutput output = new ObjectOutputStream( buffer );
-			output.writeObject(o);
-			output.close();
-		}
-		catch( IOException ex){
-			ex.printStackTrace();
-		}
-		
-	}
 }

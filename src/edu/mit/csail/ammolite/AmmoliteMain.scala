@@ -29,7 +29,6 @@ object AmmoliteMain{
 			  banner("Compress a database of SDF files")
 			  val source = opt[String]("source", required=true, descr="File or folder to compress")
 			  val target = opt[String]("target", required=true, descr="Name of the new compressed database")
-			  val makeSDF = opt[String]("sdf", descr="Make an SDF file of the cluster representatives and a file with pointers")
 			  val simple = opt[Boolean]("simple", descr="Use simple structures instead of cyclic structures")
 			}
 			val search = new Subcommand("search"){
@@ -82,9 +81,6 @@ object AmmoliteMain{
 		  val compressor = new StructCompressor( compType )
 		  
 		  compressor.compress(opts.compress.source(), opts.compress.target())
-		  if(opts.compress.makeSDF.isDefined ){
-		    compressor.makeSDF( opts.compress.makeSDF())
-		  }
 		  
 		} else if( opts.subcommand == Some(opts.search)){
 			val searchHandler = new SearchHandler( opts.search.database(), opts.search.queries(), opts.search.target(),

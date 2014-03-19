@@ -1,5 +1,6 @@
 package edu.mit.csail.ammolite.compression;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -9,9 +10,7 @@ import org.openscience.cdk.interfaces.IBond;
 
 import edu.ucla.sspace.graph.Edge;
 
-public class CyclicStruct extends MoleculeStruct {
-
-	private static final long serialVersionUID = 1L;
+public class CyclicStruct extends MoleculeStruct implements Serializable{
 
 	public CyclicStruct(){
 		
