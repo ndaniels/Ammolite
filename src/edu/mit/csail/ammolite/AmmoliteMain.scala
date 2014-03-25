@@ -89,10 +89,10 @@ object AmmoliteMain{
 		  
 		} else if( opts.subcommand ==Some(opts.mcs)){
 		  Logger.log("Finding edu.mit.csail.fmcsj of two molecules")
-		  edu.mit.csail.fmcsj.FMCS.doFMCS(opts.mcs.molecules(), opts.mcs.sdf())
+		  edu.mit.csail.fmcsj.UtilFMCS.doFMCS(opts.mcs.molecules(), opts.mcs.sdf())
 		  
 		} else if( opts.subcommand == Some( opts.dev)){
-		  edu.mit.csail.fmcsj.FMCS.getCoeffs(opts.dev.a(), opts.dev.b())
+		  edu.mit.csail.fmcsj.UtilFMCS.getCoeffs(opts.dev.a(), opts.dev.b())
 		} else if( opts.subcommand == Some( opts.examine)){
 		  val db = StructDatabaseDecompressor.decompress( opts.examine.database())
 		  Logger.log(db.info())

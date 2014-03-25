@@ -29,7 +29,7 @@ import edu.mit.csail.ammolite.database.StructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
 import edu.mit.csail.ammolite.search.MolTriple;
 import edu.mit.csail.ammolite.search.Util;
-import edu.mit.csail.fmcsj.MCS;
+import edu.mit.csail.fmcsj.FMCS;
 
 public class AggregateSearcher {
 	private IStructDatabase db;
@@ -130,9 +130,9 @@ public class AggregateSearcher {
 		for(String id: targetIDs){
 			target = db.getMolecule(id);
 			target = new AtomContainer(AtomContainerManipulator.removeHydrogens(target));
-			MCS myMCS = new MCS(query,target);
+			FMCS myMCS = new FMCS(query,target);
 			myMCS.calculate();
-			double myCoeff = coeff( myMCS.size(), myMCS.compoundOne.getAtomCount(), myMCS.compoundTwo.getAtomCount());
+			double myCoeff = coeff( myMCS.size(), myMCS.getCompoundOne().getAtomCount(), myMCS.getCompoundTwo().getAtomCount());
 			//Logger.debug(myCoeff);
 			if(myCoeff > threshold){
 				matches.add( new MolTriple( myMCS.getSolutions(), query, target));

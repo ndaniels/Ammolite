@@ -1,154 +1,452 @@
- package edu.mit.csail.fmcsj;
+package edu.mit.csail.fmcsj;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
+import edu.mit.csail.ammolite.Logger;
 import org.openscience.cdk.AtomContainer;
-import org.openscience.cdk.DefaultChemObjectBuilder;
-import org.openscience.cdk.exception.CDKException;
+import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.io.SDFWriter;
-import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
+import org.openscience.cdk.interfaces.IBond;
 
-import edu.mit.csail.ammolite.IteratingSDFReader;
-import edu.mit.csail.ammolite.compression.FragStruct;
-import edu.mit.csail.ammolite.compression.MoleculeStruct;
+public class FMCS extends AbstractMCS{
+	
+	private boolean identicalGraph;
+	public MCSList<MCSMap> bestList = new MCSList<MCSMap>();
+	public MCSMap currentMapping = new MCSMap();
+	private int userDefinedLowerBound = 0;
+	private int substructureNumLimit = 1;
+	private int currSubstructureNum;
+	private int atomMismatchUpperBound = 0;
+	private int bondMismatchUpperBound = 0;
+	private int atomMismatchCurr;
+	private int bondMismatchCurr;
+	private int solutionSize = -1;
+	boolean timeoutStop = false;
+
+	/**
+	 * Constructor
+	 * 
+	 * @param _compoundOne
+	 * @param _compoundTwo
+	 */
+	public FMCS(IAtomContainer _compoundOne, IAtomContainer _compoundTwo) {
+		super(_compoundOne, _compoundTwo);
+ 		boolean flexible = false;
+ 		if( flexible){
+ 			atomMismatchUpperBound = 1;
+ 			bondMismatchUpperBound = 1;
+ 		}
+
+		atomMismatchCurr = 0;
+		bondMismatchCurr = 0;
+		currSubstructureNum = 0;
+		identicalGraph = false;
+	}
 
 
-
-public class FMCS {
+ 	/**
+ 	 * Calculates the Maximal Common Subgraph
+ 	 * 
+ 	 * @return the running time in milliseconds
+ 	 */
+	public long calculate(){
+		long startTime = System.currentTimeMillis();
+		
+		clearResult();
+		
+		if( smallCompound == bigCompound){
+			//Logger.debug("Identical Graphs");
+			identicalGraph = true;	
+		} else {
+			max();
+		}
+		return System.currentTimeMillis() - startTime;
+		
+	}
 	
 	/**
-	 * prints out tanimoto and overlap coefficients between two sdf files.
-	 * 
-	 * Development only.
-	 * 
-	 * @param fileA
-	 * @param fileB
+	 * @return the size of the best match so far
 	 */
-	public static void getCoeffs(String fileA, String fileB){
-		IteratingSDFReader molsA = null;
-		try{
-			
-		FileInputStream fsA = new FileInputStream(fileA);
-		BufferedReader brA = new BufferedReader( new InputStreamReader(fsA ));
-		molsA =new IteratingSDFReader( brA, DefaultChemObjectBuilder.getInstance());
-		} catch( IOException e){
-			//edu.mit.csail.ammolite.Logger.error("Failed to read first file");
-			e.printStackTrace();
+	public int size(){
+		
+		if (identicalGraph) {
+            return smallCompound.getAtomCount();
+        } else {
+			return solutionSize;
+        }
+	
+	}
+	
+	/**
+	 * Straightforward. Resets the class.
+	 */
+	public void clearResult(){
+	     bestList.clear();
+	        
+        identicalGraph = false;
+        currentMapping.clear();
+	        
+        timeoutStop = false;
+	}
+	
+	
+	/**
+	 * Convert IAtomContainers into lists and then call grow.
+	 * 
+	 * TODO: this is very C++
+	 */
+	private void max(){
+		
+		MCSList<IAtom> atomListOne = new MCSList<IAtom>();
+		for(IAtom a: smallCompound.atoms()){
+			atomListOne.push(a);
 		}
-		//edu.mit.csail.ammolite.Logger.error("Opened " + fileA);
-		IteratingSDFReader molsB = null;
-		try{
-			
-		FileInputStream fsB = new FileInputStream(fileB);
-		BufferedReader brB = new BufferedReader( new InputStreamReader(fsB ));
-		molsB =new IteratingSDFReader( brB, DefaultChemObjectBuilder.getInstance());
-		} catch( IOException e){
-			//edu.mit.csail.ammolite.Logger.error("Failed to second read file");
-			e.printStackTrace();
+		MCSList<IAtom> atomListTwo = new MCSList<IAtom>();
+		for(IAtom a: bigCompound.atoms()){
+			atomListTwo.push(a);
 		}
-		//edu.mit.csail.ammolite.Logger.error("Opened "+fileB);
+		grow(atomListOne, atomListTwo);
+	}
+	
+	
+	/**
+	 * Checks whether a given pair of atoms are compatible by seeing if they share 
+	 * the same neighboring atoms. Does not penalize atoms for having different bond
+	 * types than their counterpart but does keep track of this.
+	 * 
+	 * TODO: check how IAtom equality works
+	 * 
+	 * @param atom1
+	 * @param atom2
+	 * @return whether the atoms are compatible
+	 */
+	private CompatibleReturn compatible(IAtom atom1, IAtom atom2){
 		
-		IAtomContainer a;
-		IAtomContainer b;
-		MoleculeStruct repA;
-		MoleculeStruct repB;
+		CompatibleReturn out = new CompatibleReturn();
 		
+		MCSList<IAtom> targetNeighborMapping = new MCSList<IAtom>();
+		MCSList<IAtom> atomOneNeighborList 
+			= new MCSList<IAtom>( smallCompound.getConnectedAtomsList( atom1 ));
 		
-		//edu.mit.csail.ammolite.Logger.log("molA_ID molB_ID molA_size molB_size mcs_size overlap_coeff tanimoto_coeff", 0);
-		//edu.mit.csail.ammolite.Logger.log("repA_ID repB_ID repA_size repB_size mcs_size overlap_coeff tanimoto_coeff", 0);
-		while( molsA.hasNext() ){
-			a = molsA.next();
-			while( molsB.hasNext()){
-				b = molsB.next();
-				//edu.mit.csail.ammolite.Logger.debug("Comparing "+a.getID()+" to "+b.getID());
-				a = new AtomContainer(AtomContainerManipulator.removeHydrogens(a));
-				b = new AtomContainer(AtomContainerManipulator.removeHydrogens(b));
-				repA = new FragStruct(a);
-				repB = new FragStruct(b);
-				//edu.mit.csail.ammolite.Logger.debug("Removed hydrogens");
-				MCS myMCS = new MCS(a,b);
-				MCS repMCS = new MCS(repA, repB);
-				myMCS.calculate();
-				repMCS.calculate();
-				//edu.mit.csail.ammolite.Logger.debug("Calculated MCS");
-				double overlap = overlapCoeff( myMCS.size(), a.getAtomCount(), b.getAtomCount());
-				double tanimoto = tanimotoCoeff( myMCS.size(), a.getAtomCount(), b.getAtomCount());
-				double rep_overlap = overlapCoeff( repMCS.size(), repA.getAtomCount(), repB.getAtomCount());
-				double rep_tanimoto = tanimotoCoeff( repMCS.size(), repA.getAtomCount(), repB.getAtomCount());
-				//edu.mit.csail.ammolite.Logger.debug("Calculated coeffs");
-				//edu.mit.csail.ammolite.Logger.log("mol "+a.getID() +" "+ b.getID() +" "+a.getAtomCount()+" "+b.getAtomCount()+" "+myMCS.size()+" "+overlap+" "+tanimoto, 0);
-				//edu.mit.csail.ammolite.Logger.log("rep "+repA.getID() +" "+ repB.getID() +" "+repA.getAtomCount()+" "+repB.getAtomCount()+" "+repMCS.size()+" "+rep_overlap+" "+rep_tanimoto, 0);
+		for(IAtom atom1Neighbor: atomOneNeighborList){
+			
+			if( currentMapping.containsKey( atom1Neighbor ) ){
+				targetNeighborMapping.push(atom1Neighbor);
 			}
 		}
 		
-	}
-	
-	private static double overlapCoeff(int overlap, int a, int b){
+		MCSList<IAtom> currNeighborMapping = new MCSList<IAtom>();
+		MCSList<IAtom> atomTwoNeighborList 
+			= new MCSList<IAtom>( bigCompound.getConnectedAtomsList( atom2 )); 
 		
-		if( a < b){
-			return ( (double) overlap) / a;
+		for(IAtom atom2N: atomTwoNeighborList){
+
+			
+			if( currentMapping.containsVal( atom2N ) ){
+				IAtom k = currentMapping.getKey( atom2N );
+				currNeighborMapping.push(k);
+			}
 		}
-		return ( (double) overlap) / b;
-	}
-	 
-	private static double tanimotoCoeff(int overlap, int a, int b){
-		return ( (double) overlap) / ( a + b - overlap);
+		
+
+		if (!targetNeighborMapping.equals(currNeighborMapping)) {
+            return out;
+        } else {
+        	out.compatible = true;
+        }
+		
+		if( targetNeighborMapping.size() == 0){
+			out.introducedNewComponent = true;
+			////edu.mit.csail.ammolite.Logger.debug("Trying to introduce a new component");
+		}
+			
+		// Count how many bonds are not the same order between the two atoms
+		// We already know they have the same neighbors.
+		for(IAtom target: targetNeighborMapping){
+			
+			IAtom counterpart = currentMapping.getVal( target );
+
+			IBond bondOne = smallCompound.getBond(atom1, target);
+			IBond bondTwo = bigCompound.getBond(atom2, counterpart );
+			
+			if( bondOne.getOrder() != bondTwo.getOrder() ){
+				out.bondMisCount++;
+			}
+			
+		}
+			
+		return out;
+		
 	}
 	
 	/**
-	 * Find the Max Common Subgraph between two molecules. Makes an sdf file and prints a picture.
-	 * 
-	 * @param input
-	 * @param output
-	 * @throws IOException
-	 * @throws CDKException
+	 * Selectively pops the atom with the most potential connections with the current 
+	 * structure
+	 * @param atomList
+	 * @return the candidate
 	 */
-	public static void doFMCS(String input, String output) throws IOException, CDKException{
-		IteratingSDFReader molecules = null;
-		try{
+	private IAtom top(MCSList<IAtom> atomList){
+
+		IAtom bestCandidateAtom = atomList.peek();
+		IAtom candidateAtom = null;
+		
+		for(int i=0; i<atomList.size(); i++){
+			IAtom nextContender = atomList.get(i);
+			// sets the 'best' candidate as the one with the most bonds in the smaller molecule
+			int bondsToNextContender = smallCompound.getConnectedBondsCount(nextContender);
+			int bondsToBestCandidate = smallCompound.getConnectedBondsCount(bestCandidateAtom);
 			
-		FileInputStream fs = new FileInputStream(input);
-		BufferedReader br = new BufferedReader( new InputStreamReader(fs ));
-		molecules =new IteratingSDFReader( br, DefaultChemObjectBuilder.getInstance());
-		} catch( IOException e){
-			//edu.mit.csail.ammolite.Logger.error("Failed to read file");
-			e.printStackTrace();
+			if( bondsToNextContender > bondsToBestCandidate){
+				bestCandidateAtom = nextContender;
+			}
+			
+			MCSList<IAtom> neighborAtomList 
+				= new MCSList<IAtom>( smallCompound.getConnectedAtomsList(nextContender));
+			for(int j=0; j<neighborAtomList.size(); j++){
+				// The real candidate is the one with the most bonds that has a neighbor in the 
+				// current mapping
+				if( currentMapping.containsKey(neighborAtomList.get(j))){
+					if(		( candidateAtom == null ) || 
+							( bondsToNextContender > bondsToBestCandidate)){
+
+						candidateAtom = nextContender;
+						break;
+					}
+				}
+			}
 		}
-		//edu.mit.csail.ammolite.Logger.log("reading molecules",3);
-		
-		IAtomContainer a = null;
-		IAtomContainer b = null;
-		
-		a = molecules.next();
-		//edu.mit.csail.ammolite.Logger.log("molecule one: "+a.getID(), 2);
-		
-		
-		b = molecules.next();
-		//edu.mit.csail.ammolite.Logger.log("molecule two: "+b.getID(), 2);
-		
-		molecules.close();
-		a = new AtomContainer(AtomContainerManipulator.removeHydrogens(a));
-		b = new AtomContainer(AtomContainerManipulator.removeHydrogens(b));
-		edu.mit.csail.ammolite.MolDrawer.draw(a, output + "_inp1");
-		edu.mit.csail.ammolite.MolDrawer.draw(b, output + "_inp2");
-		MCS myMCS = new MCS(a,b,true);
-		myMCS.calculate();
-		SDFWriter sdfwriter = new SDFWriter(new BufferedWriter( new FileWriter( output + ".sdf" )));
-		for(IAtomContainer overlap: myMCS.getSolutions()){
-			sdfwriter.write(overlap);
+		// Really the 'best' candidate is only used if we don't have anything else
+		if( candidateAtom == null ){
+
+			atomList.remove(bestCandidateAtom);
+			return bestCandidateAtom;
+		} else {
+			atomList.remove(candidateAtom);
 		}
-		sdfwriter.close();
-		//edu.mit.csail.ammolite.Logger.log("found mcs!", 2);
-		int i=0;
-		for(IAtomContainer sol: myMCS.getSolutions()){
-			edu.mit.csail.ammolite.MolDrawer.draw(sol, output + i);
-			++i;
+		return candidateAtom;
+	}
+	
+	/**
+	 * Checks the current solution to see if it represents a best solution
+	 * @modifies bestList
+	 */
+	private void boundary(){
+        if (currentMapping.size() == size() ) {
+        	
+            bestList.push(currentMapping.copy());
+            ////edu.mit.csail.ammolite.Logger.debug("Adding a solution of size "+currentMapping.size()+" vs "+size());
+        } else if (currentMapping.size() > size()) {
+        	solutionSize = currentMapping.size();
+            bestList.clear();
+            bestList.push(currentMapping.copy()); // TODO: deepcopy?
+            ////edu.mit.csail.ammolite.Logger.debug("Better solution of size "+currentMapping.size());
+
+        }
+	}
+	
+	/**
+	 * Converts the best list into a set of IAtomContainers
+	 * 
+	 * @return
+	 */
+	public List<IAtomContainer> getSolutions(){
+		
+		////edu.mit.csail.ammolite.Logger.debug("Found "+bestList.size()+" solutions of size "+size());
+		ArrayList<IAtomContainer> out = new ArrayList<IAtomContainer>(bestList.size());
+		if(identicalGraph){
+			out.add(smallCompound);
+			return out;
 		}
+
+		for(MCSMap map: bestList){
+			if(map.size() != size()){
+				////edu.mit.csail.ammolite.Logger.debug("!!!");
+			}
+			IAtomContainer keySol = new AtomContainer();
+			IAtomContainer valSol = new AtomContainer();
+			for(IAtom atom: map.getKeyList()){
+				keySol.addAtom(atom);
+			}
+			for(IAtom atom: map.getValList()){
+				valSol.addAtom(atom);
+			}
+			
+			for(int i=0; i<keySol.getAtomCount(); ++i){
+				for(int j=0; j<i; ++j){
+					IBond b = smallCompound.getBond(keySol.getAtom(i), keySol.getAtom(j));
+					if( b != null){
+						keySol.addBond(b);
+					}
+				}
+			}
+			
+			for(int i=0; i<valSol.getAtomCount(); ++i){
+				for(int j=0; j<i; ++j){
+					IBond b = bigCompound.getBond(valSol.getAtom(i), valSol.getAtom(j));
+					if( b != null){
+						valSol.addBond(b);
+					}
+				}
+			}
+			
+			out.add(keySol);
+			out.add(valSol);
+		}
+		return out;
+	}
+	
+	private void grow(MCSList<IAtom> atomListOne, MCSList<IAtom> atomListTwo){
+		grow(atomListOne, atomListTwo, 0);
+	}
+	
+	/**
+	 * The core of the fmcs algorithm. Explores likely substructure branches.
+	 * 
+	 * @param atomListOne
+	 * @param atomListTwo
+	 */
+	private void grow(MCSList<IAtom> atomListOne, MCSList<IAtom> atomListTwo, int indLevel){
+		MCSList<IAtom> atomListOneCopy = new MCSList<IAtom>( atomListOne );
+		MCSList<IAtom> atomListTwoCopy = new MCSList<IAtom>( atomListTwo );
+		MCSList<Integer> atomListOneDegrees = new MCSList<Integer>();
+		MCSList<Integer> atomListTwoDegrees = new MCSList<Integer>();
+		
+		// For every atom in list one makes a corresponding list of their potential degree in the 
+		// current mapping
+		for( IAtom atom: atomListOne){
+			
+			if(!currentMapping.containsKey( atom )){
+				int degree = 0;
+				
+				for(IAtom neighbor: smallCompound.getConnectedAtomsList(atom)){
+
+					if(currentMapping.containsKey(neighbor)){
+						degree++;
+					}
+				}
+
+				atomListOneDegrees.push(degree);	
+			}
+		}
+		
+		// For every atom in list two makes a corresponding list of their potential degree in the 
+		// current mapping
+		for( IAtom atom: atomListTwo){
+			
+			if(!currentMapping.containsKey( atom )){
+				int degree = 0;
+				
+				for(IAtom neighbor: bigCompound.getConnectedAtomsList(atom)){
+					if(currentMapping.containsKey(neighbor)){
+						degree++;
+					}
+				}
+
+				atomListTwoDegrees.push(degree);	
+			}
+		}
+		
+		// Check how many atoms in list one and two share the same degree to establish an upper 
+		// bound
+		int currentBound = currentMapping.size();
+		for(int degree:atomListOneDegrees){
+			if(atomListTwoDegrees.contains(degree)){
+				currentBound++;
+				atomListTwoDegrees.remove(degree);
+			}
+		}
+		
+		// Throw out anything that's too little
+        if(currentBound < userDefinedLowerBound || currentBound < size()) {
+            return;
+        }
+		
+		
+		while( true ){
+
+			if (atomListOneCopy.isEmpty() || atomListTwoCopy.isEmpty()) { 
+                boundary();
+                return;
+            }
+            
+			
+            IAtom topCandidateAtom = top(atomListOneCopy);
+            //////edu.mit.csail.ammolite.Logger.debug("topCandidateAtom: "+topCandidateAtom);
+    		for( IAtom otherAtom: atomListTwoCopy){
+    			
+                boolean atomMismatched = false;
+                
+                int atom1 = topCandidateAtom.getAtomicNumber();
+                int atom2 = otherAtom.getAtomicNumber();
+                
+//                ////edu.mit.csail.ammolite.Logger.debug("atom1: "+atom1+" atom2: "+atom2);
+                
+                if ( atom1 != atom2){
+                    ++atomMismatchCurr;
+                    atomMismatched = true;
+                }
+                
+                // If we can still have an atom mismatch
+                boolean tooManyAtomMismatches = atomMismatchCurr > atomMismatchUpperBound;
+                if ( !tooManyAtomMismatches) {
+                	
+
+                    CompatibleReturn compOut = compatible(topCandidateAtom, otherAtom);
+                    
+                    int bondMisCount = compOut.bondMisCount;
+                    boolean introducedNewComponent = compOut.introducedNewComponent;
+                    boolean foundCompatible = compOut.compatible;
+
+                    if ( foundCompatible ) {
+
+                    	
+                    	//////edu.mit.csail.ammolite.Logger.debug("Currently there are "+bondMismatchCurr+" bond mismatches");
+                    	boolean tooManyBondMismatches = bondMismatchCurr + bondMisCount > bondMismatchUpperBound;
+                        if (!tooManyBondMismatches) {
+                            
+                            bondMismatchCurr = bondMismatchCurr + bondMisCount;
+                            
+                            if (introducedNewComponent) {
+                                ++currSubstructureNum;
+                            }
+
+                            /**
+                             * This is where the algorithm gets a bit tricky. The recursive call to
+                             * grow explores all the possible substructures that include the atom we 
+                             * just deemed compatible. The eventual pop can then explore 
+                             * substructures that may not contain the given pair of atoms.
+                             */
+                            //////edu.mit.csail.ammolite.Logger.debug("Currently there are "+currSubstructureNum+" substructures");
+                            boolean aboveBound = currSubstructureNum > substructureNumLimit;
+                            if ( !aboveBound ) {
+                            	//////edu.mit.csail.ammolite.Logger.debug("Did introduce a new component, now there are "+currSubstructureNum);
+                    			
+                                currentMapping.push(topCandidateAtom, otherAtom);        			
+                                atomListTwo.remove(otherAtom);
+
+                                grow(atomListOneCopy, atomListTwo, indLevel+1);
+                             
+                                atomListTwo.push(otherAtom);
+                                currentMapping.pop();            
+
+                            }
+                            
+                            if (introducedNewComponent) {
+                                --currSubstructureNum;
+                            }
+                            
+                            bondMismatchCurr = bondMismatchCurr - bondMisCount;
+                        }
+                    }
+                    
+                } 
+                if (atomMismatched) {
+                    --atomMismatchCurr;
+                }
+            }// end for( IAtom otherAtom: atomListTwoCopy)
+		}
+		
+		
 	}
 }

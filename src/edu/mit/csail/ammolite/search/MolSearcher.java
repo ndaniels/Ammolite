@@ -10,7 +10,7 @@ import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import edu.mit.csail.ammolite.compression.MoleculeStruct;
 import edu.mit.csail.ammolite.database.StructDatabase;
-import edu.mit.csail.fmcsj.MCS;
+import edu.mit.csail.fmcsj.FMCS;
 
 public class MolSearcher implements IMolSearcher {
 
@@ -41,10 +41,10 @@ public class MolSearcher implements IMolSearcher {
 		for(String id: targetIDs){
 			target = db.getMolecule(id);
 			target = new AtomContainer(AtomContainerManipulator.removeHydrogens(target));
-			MCS myMCS = new MCS(query,target);
+			FMCS myMCS = new FMCS(query,target);
 			myMCS.calculate();
 			
-			if(coeff( myMCS.size(), myMCS.compoundOne.getAtomCount(), myMCS.compoundTwo.getAtomCount()) > threshold){
+			if(coeff( myMCS.size(), myMCS.getCompoundOne().getAtomCount(), myMCS.getCompoundTwo().getAtomCount()) > threshold){
 				matches.add( new MolTriple( myMCS.getSolutions(), query, target));
 				
 			}
@@ -79,10 +79,10 @@ public class MolSearcher implements IMolSearcher {
 			target = (MoleculeStruct) structs.next();
 
 			
-			MCS myMCS = new MCS(sQuery,target);
+			FMCS myMCS = new FMCS(sQuery,target);
 			timeInMCS += myMCS.calculate();
 			
-			double coef = coeff(myMCS.size(), myMCS.compoundOne.getAtomCount(), myMCS.compoundTwo.getAtomCount());
+			double coef = coeff(myMCS.size(), myMCS.getCompoundOne().getAtomCount(), myMCS.getCompoundTwo().getAtomCount());
 			
 			if( coef >= reprThreshold){
 				matches.add(target);

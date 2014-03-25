@@ -9,7 +9,8 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import edu.mit.csail.ammolite.Logger;
 import edu.mit.csail.ammolite.compression.MoleculeStruct;
-import edu.mit.csail.fmcsj.MCS;
+import edu.mit.csail.fmcsj.AbstractMCS;
+import edu.mit.csail.fmcsj.FMCS;
 
 
 public class Cluster implements Serializable{
@@ -56,7 +57,7 @@ public class Cluster implements Serializable{
 			return candidate.addCandidate(this);
 		}
 		
-		MCS myMCS = new MCS(candidate.getRep(), rep, true);
+		AbstractMCS myMCS = new FMCS(candidate.getRep(), rep);
 		myMCS.calculate();
 		
 		int newRepSize = myMCS.size();
@@ -89,7 +90,7 @@ public class Cluster implements Serializable{
 	
 	public boolean matchesCluster(IAtomContainer candidate, double myRepBound){
 		
-		MCS myMCS = new MCS(candidate, rep, true);
+		AbstractMCS myMCS = new FMCS(candidate, rep);
 		myMCS.calculate();
 		int newRepSize = myMCS.size();
 		

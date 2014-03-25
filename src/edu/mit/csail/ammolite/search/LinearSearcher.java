@@ -22,7 +22,7 @@ import org.openscience.cdk.io.SDFWriter;
 import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.Logger;
 import edu.mit.csail.ammolite.database.StructDatabase;
-import edu.mit.csail.fmcsj.MCS;
+import edu.mit.csail.fmcsj.FMCS;
 
 public class LinearSearcher implements IBatchSearcher {
 	private static int numThreads = Runtime.getRuntime().availableProcessors();
@@ -102,7 +102,7 @@ public class LinearSearcher implements IBatchSearcher {
 					List<MolTriple> results = new ArrayList<MolTriple>();
 					while( fdb.hasNext()){
 						target = fdb.next();
-						MCS myMCS = new MCS( query, target);
+						FMCS myMCS = new FMCS( query, target);
 						myMCS.calculate();
 						if( (useTanimoto && fThresh <= Util.tanimotoCoeff(myMCS.size(), query.getAtomCount(), target.getAtomCount())
 							|| ( fThresh <= Util.overlapCoeff(myMCS.size(), query.getAtomCount(), target.getAtomCount()))	)){
