@@ -14,6 +14,7 @@ import java.util.concurrent.Future;
 import edu.mit.csail.ammolite.Logger;
 import edu.mit.csail.fmcsj.AbstractMCS;
 import edu.mit.csail.fmcsj.FMCS;
+import edu.mit.csail.fmcsj.SMSD;
 
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -114,7 +115,7 @@ public class Matrix {
 				Callable<ClusterDist> callable = new Callable<ClusterDist>(){
 					
 					public ClusterDist call() throws Exception {
-						AbstractMCS myMCS = new FMCS( a, b);
+						AbstractMCS myMCS = new SMSD( a, b);
 						long runTime = myMCS.calculate();
 						int overlap = myMCS.size();
 						double coeff = tanimotoCoeff( overlap, a.getAtomCount(), b.getAtomCount());

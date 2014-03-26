@@ -2,12 +2,13 @@ package edu.mit.csail.fmcsj;
 
 import java.util.List;
 
+import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.smsd.Isomorphism;
 import org.openscience.cdk.smsd.interfaces.Algorithm;
 
 public class SMSD extends AbstractMCS {
-	Isomorphism smsd = null;
+	Isomorphism comparison = null;
 
 	public SMSD(IAtomContainer _compoundOne, IAtomContainer _compoundTwo) {
 		super(_compoundOne, _compoundTwo);
@@ -16,19 +17,30 @@ public class SMSD extends AbstractMCS {
 
 	@Override
 	public long calculate() {
-		return 0;
+		long startTime = System.currentTimeMillis();
+
+		comparison = new Isomorphism(Algorithm.DEFAULT, true);
+        try {
+			comparison.init(smallCompound, bigCompound, true, true);
+		} catch (CDKException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+        long runTime = System.currentTimeMillis() - startTime;
+		return runTime;
 		
 	}
 
 	@Override
 	public int size() {
-		return 0;
+		return comparison.getFirstAtomMapping().size();
+
 	}
 
 	@Override
 	public List<IAtomContainer> getSolutions() {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException();
 	}
 
 }
