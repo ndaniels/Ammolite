@@ -119,7 +119,6 @@ public class Matrix {
 						int overlap = myMCS.size();
 						double coeff = tanimotoCoeff( overlap, a.getAtomCount(), b.getAtomCount());
 						return new ClusterDist(aClust,bClust,coeff,runTime);
-						
 					}
 				};
 				futures.add( service.submit( callable));
