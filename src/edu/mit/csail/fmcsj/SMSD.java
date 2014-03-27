@@ -28,7 +28,7 @@ public class SMSD extends AbstractMCS {
         boolean energyMinimization = true;
 
         comparison = new Isomorphism(smallCompound, bigCompound, Algorithm.DEFAULT, bondSensitive, ringmatch, true);
-        comparison.setChemFilters(stereoMatch, fragmentMinimization, energyMinimization);
+       // comparison.setChemFilters(stereoMatch, fragmentMinimization, energyMinimization);
 
         long runTime = System.currentTimeMillis() - startTime;
 		return runTime;
