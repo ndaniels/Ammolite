@@ -1,5 +1,6 @@
 package edu.mit.csail.fmcsj;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.openscience.cdk.exception.CDKException;
@@ -36,7 +37,13 @@ public class SMSD extends AbstractMCS {
 			System.exit(1);
 		}
         comparison.setChemFilters(true, true, true);
-        comparison.getTanimotoSimilarity();
+        try {
+			comparison.getTanimotoSimilarity();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.exit(1);
+		}
 		
 	}
 
