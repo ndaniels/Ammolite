@@ -35,7 +35,7 @@ public abstract class AbstractMCS {
 		if( calculated){
 			return mySize();
 		}
-		throw new UnsupportedOperationException("Must call calculate before size");
+		throw new UnsupportedOperationException("Must call calculate before calling size");
 	}
 	
 	public IAtomContainer getCompoundOne(){

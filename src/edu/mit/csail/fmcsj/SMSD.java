@@ -36,6 +36,7 @@ public class SMSD extends AbstractMCS {
 			System.exit(1);
 		}
         comparison.setChemFilters(true, true, true);
+        comparison.getTanimotoSimilarity();
 		
 	}
 
