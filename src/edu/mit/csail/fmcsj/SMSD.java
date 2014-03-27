@@ -18,9 +18,7 @@ public class SMSD extends AbstractMCS {
 	}
 
 	@Override
-	public long calculate() {
-		long startTime = System.currentTimeMillis();
-
+	protected void myCalculate() {
 		boolean bondSensitive = true;
         boolean ringmatch = false;
         boolean stereoMatch = true;
@@ -37,13 +35,11 @@ public class SMSD extends AbstractMCS {
 			e.printStackTrace();
 		}
         comparison.setChemFilters(true, true, true);
-        long runTime = System.currentTimeMillis() - startTime;
-		return runTime;
 		
 	}
 
 	@Override
-	public int size() {
+	protected int mySize() {
 		return comparison.getFirstAtomMapping().size();
 
 	}

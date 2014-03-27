@@ -50,8 +50,7 @@ public class FMCS extends AbstractMCS{
  	 * 
  	 * @return the running time in milliseconds
  	 */
-	public long calculate(){
-		long startTime = System.currentTimeMillis();
+	protected void myCalculate(){
 		
 		clearResult();
 		
@@ -61,14 +60,13 @@ public class FMCS extends AbstractMCS{
 		} else {
 			max();
 		}
-		return System.currentTimeMillis() - startTime;
 		
 	}
 	
 	/**
 	 * @return the size of the best match so far
 	 */
-	public int size(){
+	protected int mySize(){
 		
 		if (identicalGraph) {
             return smallCompound.getAtomCount();
