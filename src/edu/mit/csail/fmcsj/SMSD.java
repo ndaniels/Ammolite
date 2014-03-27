@@ -27,7 +27,7 @@ public class SMSD extends AbstractMCS {
         boolean energyMinimization = true;
 
       //Bond Sensitive is set true
-        Isomorphism comparison = new Isomorphism(Algorithm.DEFAULT, true);
+        comparison = new Isomorphism(Algorithm.DEFAULT, true);
         // set molecules, remove hydrogens, clean and configure molecule
         try {
 			comparison.init(smallCompound, bigCompound, true, true);
