@@ -41,7 +41,7 @@ public class SMSD extends AbstractMCS {
 
 	@Override
 	protected int mySize() {
-		return comparison.getFirstAtomMapping().size();
+		return comparison.getAllAtomMapping().get(0).size();
 
 	}
 
