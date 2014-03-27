@@ -37,19 +37,24 @@ public class SMSD extends AbstractMCS {
 			System.exit(1);
 		}
         comparison.setChemFilters(true, true, true);
-        try {
-			comparison.getTanimotoSimilarity();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.exit(1);
-		}
+       
 		
 	}
 
 	@Override
 	protected int mySize() {
-		return comparison.getAllAtomMapping().get(0).size();
+		double t = 0.0;
+		try {
+			t = comparison.getTanimotoAtomSimilarity();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.exit(1);
+		}
+		int a = smallCompound.getAtomCount();
+		int b = bigCompound.getAtomCount();
+		double mcsSize = t * (a+b) / (t+1) ;
+		return (int) (mcsSize + 0.5);
 
 	}
 
