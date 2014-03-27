@@ -101,6 +101,7 @@ public class Matrix {
 		if( numThreads > 12){
 			numThreads -= 4;
 		}
+		numThreads = 1;
 		Logger.debug("Using "+numThreads+" threads");
 		ExecutorService service = Executors.newFixedThreadPool(numThreads);
 		List<Future<ClusterDist>> futures = new ArrayList<Future<ClusterDist>>();
