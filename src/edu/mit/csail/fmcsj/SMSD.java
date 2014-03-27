@@ -33,6 +33,7 @@ public class SMSD extends AbstractMCS {
 		} catch (CDKException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.exit(1);
 		}
         comparison.setChemFilters(true, true, true);
 		
