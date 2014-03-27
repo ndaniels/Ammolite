@@ -1,2 +1,4 @@
+git pull;
+clear;
 ./Ammolite compress -s "$1" -t "$2";
-./Ammolite aggcompress -s "$2.adb" -t "$2"
+./Ammolite aggcompress -s "$2.adb" -t "$2";
