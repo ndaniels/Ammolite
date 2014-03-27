@@ -1,0 +1,11 @@
+org/openscience/cdk/group/PermutationGroup.java
+org/openscience/cdk/group/Permutation.java
+org/openscience/cdk/group/Partition.java
+org/openscience/cdk/group/IEquitablePartitionRefiner.java
+org/openscience/cdk/group/DisjointSetForest.java
+org/openscience/cdk/group/BondEquitablePartitionRefiner.java
+org/openscience/cdk/group/BondDiscretePartitionRefiner.java
+org/openscience/cdk/group/AtomEquitablePartitionRefiner.java
+org/openscience/cdk/group/AtomDiscretePartitionRefiner.java
+org/openscience/cdk/group/AbstractEquitablePartitionRefiner.java
+org/openscience/cdk/group/AbstractDiscretePartitionRefiner.java

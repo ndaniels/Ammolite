@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.smsd.Isomorphism;
-import org.openscience.cdk.smsd.interfaces.Algorithm;
+import org.openscience.smsd.Isomorphism;
+import org.openscience.smsd.interfaces.Algorithm;
+
+
 
 public class SMSD extends AbstractMCS {
 	Isomorphism comparison = null;
@@ -19,13 +21,14 @@ public class SMSD extends AbstractMCS {
 	public long calculate() {
 		long startTime = System.currentTimeMillis();
 
-		comparison = new Isomorphism(Algorithm.DEFAULT, true);
-        try {
-			comparison.init(smallCompound, bigCompound, true, true);
-		} catch (CDKException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		boolean bondSensitive = true;
+        boolean ringmatch = false;
+        boolean stereoMatch = true;
+        boolean fragmentMinimization = true;
+        boolean energyMinimization = true;
+
+        comparison = new Isomorphism(smallCompound, bigCompound, Algorithm.DEFAULT, bondSensitive, ringmatch, true);
+        comparison.setChemFilters(stereoMatch, fragmentMinimization, energyMinimization);
 
         long runTime = System.currentTimeMillis() - startTime;
 		return runTime;
@@ -34,7 +37,7 @@ public class SMSD extends AbstractMCS {
 
 	@Override
 	public int size() {
-		return comparison.getFirstAtomMapping().size();
+		return comparison.getFirstAtomMapping().getCount();
 
 	}
 
