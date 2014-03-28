@@ -10,6 +10,6 @@
 	<classpathentry kind="lib" path="/Users/DC/Documents/UROP/MolSearch/lib/commons-io-2.4.jar"/>
 	<classpathentry kind="lib" path="/Users/DC/Documents/UROP/MolSearch/lib/scala-library.jar"/>
 	<classpathentry kind="lib" path="/Users/DC/Documents/UROP/MolSearch/lib/scala-reflect.jar"/>
-	<classpathentry kind="lib" path="lib/cdk-1.5.4.jar"/>
+	<classpathentry kind="lib" path="lib/cdk-1.4.19.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
