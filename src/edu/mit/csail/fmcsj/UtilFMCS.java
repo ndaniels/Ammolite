@@ -146,7 +146,12 @@ public class UtilFMCS {
 		edu.mit.csail.ammolite.MolDrawer.draw(a, output + "_inp1");
 		edu.mit.csail.ammolite.MolDrawer.draw(b, output + "_inp2");
 		FMCS myMCS = new FMCS(a,b);
-		myMCS.calculate();
+		try {
+			myMCS.calculate();
+		} catch (TimeoutException te) {
+			te.printStackTrace();
+			System.exit(1);
+		}
 		SDFWriter sdfwriter = new SDFWriter(new BufferedWriter( new FileWriter( output + ".sdf" )));
 		for(IAtomContainer overlap: myMCS.getSolutions()){
 			sdfwriter.write(overlap);
