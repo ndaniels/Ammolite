@@ -1,0 +1,36 @@
+Scanning 30_random_molecules.sdf
+Finished Scanning after 538 milliseconds
+Finished closing files after 538 milliseconds
+Decompressing 30.adb
+29 clusters
+Calculating pairwise distances for 29 clusters
+Using 1 threads
+java.util.concurrent.ExecutionException: java.lang.IllegalArgumentException: value already present: Atom(730655340, S:C, H:0, SP:0, 2D:[(5.2215, 2.1877)], AtomType(730655340, N:C.sp3, MBO:SINGLE, BOS:4.0, FC:0, H:SP3, NC:4, EV:4, Isotope(730655340, MN:12, EM:12.0, AB:98.93, Element(730655340, S:C, AN:6))))
+	at java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.util.concurrent.FutureTask.get(FutureTask.java:188)
+	at edu.mit.csail.ammolite.aggregation.Matrix.parDistances(Unknown Source)
+	at edu.mit.csail.ammolite.aggregation.Matrix.populateDistArray(Unknown Source)
+	at edu.mit.csail.ammolite.aggregation.Matrix.<init>(Unknown Source)
+	at edu.mit.csail.ammolite.aggregation.Aggregator.buildMatrix(Unknown Source)
+	at edu.mit.csail.ammolite.aggregation.Aggregator.aggregate(Unknown Source)
+	at edu.mit.csail.ammolite.AmmoliteMain$.main(AmmoliteMain.scala:102)
+	at edu.mit.csail.ammolite.AmmoliteMain.main(AmmoliteMain.scala)
+Caused by: java.lang.IllegalArgumentException: value already present: Atom(730655340, S:C, H:0, SP:0, 2D:[(5.2215, 2.1877)], AtomType(730655340, N:C.sp3, MBO:SINGLE, BOS:4.0, FC:0, H:SP3, NC:4, EV:4, Isotope(730655340, MN:12, EM:12.0, AB:98.93, Element(730655340, S:C, AN:6))))
+	at com.google.common.collect.HashBiMap.put(HashBiMap.java:241)
+	at com.google.common.collect.HashBiMap.put(HashBiMap.java:218)
+	at org.openscience.smsd.AtomAtomMapping.put(AtomAtomMapping.java:107)
+	at org.openscience.smsd.algorithm.vflib.BaseMCS.setVFMappings(BaseMCS.java:168)
+	at org.openscience.smsd.algorithm.vflib.VF2MCS.searchVFMappings(VF2MCS.java:331)
+	at org.openscience.smsd.algorithm.vflib.VF2MCS.<init>(VF2MCS.java:83)
+	at org.openscience.smsd.Isomorphism.vfLibMCSAlgorithm(Isomorphism.java:266)
+	at org.openscience.smsd.Isomorphism.defaultMCSAlgorithm(Isomorphism.java:287)
+	at org.openscience.smsd.Isomorphism.chooseAlgorithm(Isomorphism.java:227)
+	at org.openscience.smsd.Isomorphism.mcsBuilder(Isomorphism.java:201)
+	at org.openscience.smsd.Isomorphism.<init>(Isomorphism.java:180)
+	at edu.mit.csail.fmcsj.SMSD.calculate(Unknown Source)
+	at edu.mit.csail.ammolite.aggregation.Matrix$1.call(Unknown Source)
+	at edu.mit.csail.ammolite.aggregation.Matrix$1.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:744)
