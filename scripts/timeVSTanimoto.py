@@ -9,14 +9,18 @@ def parse( filename):
 	coeff = []
 	grabbingData = False
 	for line in f:
+		if grabbingData and 'clusters' in line:
+			break
 		if grabbingData:
 			l = line.split()
-			time.append( int( l[2]))
-			coeff.append(float(l[4]))
+			t = int( l[2])
+			c = float(l[4])
+			if t < 3000 and c > 0.5:
+				time.append( t)
+				coeff.append(c)
 		if 'Time breakdown' in line:
 			grabbingData = True
-		if 'clusters' in line:
-			break
+		
 	return (time,coeff)
 
 def makeGraphs( (time, coeff)):
@@ -25,7 +29,7 @@ def makeGraphs( (time, coeff)):
 	show()
 		
 def main():
-	makeGraphs( parse(argv[0]))
+	makeGraphs( parse(argv[1]))
 
 if __name__ == '__main__':
 	main()
