@@ -28,7 +28,7 @@ public abstract class AbstractMCS {
 	}
 	
 	public static long getTimeoutMillis(){
-		return 2*1000;
+		return 20*1000;
 	}
 	
 	abstract protected void myCalculate();
