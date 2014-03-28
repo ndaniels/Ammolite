@@ -10,6 +10,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeoutException;
 
 import edu.mit.csail.ammolite.Logger;
 import edu.mit.csail.fmcsj.AbstractMCS;
@@ -114,9 +115,14 @@ public class Matrix {
 				final IAtomContainer b = new AtomContainer( bClust.getRep() );
 				Callable<ClusterDist> callable = new Callable<ClusterDist>(){
 					
-					public ClusterDist call() throws Exception {
+					public ClusterDist call() throws InterruptedException, ExecutionException{
 						AbstractMCS myMCS = new SMSD( a, b);
-						long runTime = myMCS.calculate();
+						long runTime;
+						try {
+							runTime = myMCS.calculate();
+						} catch (TimeoutException e) {
+							return new ClusterDist(aClust, bClust, 0, AbstractMCS.getTimeoutMillis());
+						}
 						int overlap = myMCS.size();
 						double coeff = tanimotoCoeff( overlap, a.getAtomCount(), b.getAtomCount());
 						return new ClusterDist(aClust,bClust,coeff,runTime);
@@ -130,13 +136,14 @@ public class Matrix {
 		for( Future<ClusterDist> future: futures){
 			try {
 				results.add( future.get());
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ExecutionException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			} catch (InterruptedException ie) {
+				ie.printStackTrace();
+				System.exit(1);
+			} catch (ExecutionException ee) {
+				ee.printStackTrace();
+				System.exit(1);
 			}
+
 		}
 		
 		service.shutdown();
