@@ -3,6 +3,7 @@ package edu.mit.csail.ammolite.search;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -10,6 +11,7 @@ import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import edu.mit.csail.ammolite.compression.MoleculeStruct;
 import edu.mit.csail.ammolite.database.StructDatabase;
+import edu.mit.csail.fmcsj.AbstractMCS;
 import edu.mit.csail.fmcsj.FMCS;
 
 public class MolSearcher implements IMolSearcher {
@@ -78,16 +80,22 @@ public class MolSearcher implements IMolSearcher {
 			}
 			target = (MoleculeStruct) structs.next();
 
-			
+			boolean timeOut = false;
 			FMCS myMCS = new FMCS(sQuery,target);
-			timeInMCS += myMCS.calculate();
-			
-			double coef = coeff(myMCS.size(), myMCS.getCompoundOne().getAtomCount(), myMCS.getCompoundTwo().getAtomCount());
-			
-			if( coef >= reprThreshold){
-				matches.add(target);
-			} 
-			count++;
+			try {
+				timeInMCS += myMCS.calculate();
+			} catch (TimeoutException e) {
+				timeInMCS += AbstractMCS.getTimeoutMillis();
+				timeOut = true;
+			}
+			if( !timeOut){
+				double coef = coeff(myMCS.size(), myMCS.getCompoundOne().getAtomCount(), myMCS.getCompoundTwo().getAtomCount());
+				
+				if( coef >= reprThreshold){
+					matches.add(target);
+				} 
+				count++;
+			}
 		}
 		
 		ArrayList<String> ids = new ArrayList<String>(3 * matches.size());

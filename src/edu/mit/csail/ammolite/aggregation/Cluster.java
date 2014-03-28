@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
@@ -58,7 +59,11 @@ public class Cluster implements Serializable{
 		}
 		
 		AbstractMCS myMCS = new FMCS(candidate.getRep(), rep);
-		myMCS.calculate();
+		try {
+			myMCS.calculate();
+		} catch (TimeoutException e) {
+			return false;
+		}
 		
 		int newRepSize = myMCS.size();
 		
@@ -91,7 +96,11 @@ public class Cluster implements Serializable{
 	public boolean matchesCluster(IAtomContainer candidate, double myRepBound){
 		
 		AbstractMCS myMCS = new FMCS(candidate, rep);
-		myMCS.calculate();
+		try {
+			myMCS.calculate();
+		} catch (TimeoutException e) {
+			return false;
+		}
 		int newRepSize = myMCS.size();
 		
 		if( (overlap( newRepSize, candidate.getAtomCount()) < myRepBound) ){
