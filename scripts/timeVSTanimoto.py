@@ -15,7 +15,7 @@ def parse( filename):
 			l = line.split()
 			t = int( l[2])
 			c = float(l[4])
-			if t < 3000 and c > 0.5:
+			if t < 3000 and c > 0.0:
 				time.append( t)
 				coeff.append(c)
 		if 'Time breakdown' in line:
