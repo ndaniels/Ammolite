@@ -39,15 +39,33 @@ public class Aggregator {
 			Logger.debug(cList.size()+" clusters");
 			prevNumClusters = cList.size();
 
-			Matrix matrix = buildMatrix( cList);
+			//Matrix matrix = buildMatrix( cList);
 
-			cList = singleFold( matrix, matrix.size());
+			cList = linearFold( cList);
 		}
 
 		Logger.debug(cList.size()+" clusters");
 		ClusterDatabase cDB = new ClusterDatabase(dbFilename, cList);
 		writeObjectToFile( filename, cDB);
 		return System.currentTimeMillis()-startTime;
+	}
+	
+	private List<Cluster> linearFold(List<Cluster> cList){
+		
+		List<Cluster> newCList = new ArrayList<Cluster>();
+		for(Cluster originalCluster: cList){
+			boolean added = false;
+			for(Cluster comparisonCluster: newCList){
+				if( comparisonCluster.addCandidate(originalCluster) ){
+					added = true;
+					break;
+				}
+			}
+			if(!added){
+				newCList.add(originalCluster);
+			}
+		}
+		return newClist;
 	}
 	
 	private List<Cluster> singleFold(Matrix matrix, int originalSize){
