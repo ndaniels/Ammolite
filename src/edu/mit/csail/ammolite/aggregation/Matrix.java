@@ -59,12 +59,14 @@ public class Matrix {
 		//Logger.debug(distArrayToString());
 		long totalMCSTime = 0;
 		List<Long> mcsTimes = new ArrayList<Long>();
+		List<Double> mcsDists = new ArrayList<Double>();
 		for(ClusterDist cd: parDistances()){
 			
 			int aInd = clusterToInd.get(cd.a);
 			int bInd = clusterToInd.get(cd.b);
 			totalMCSTime += cd.time;
 			mcsTimes.add(cd.time);
+			mcsDists.add(cd.d);
 			
 			//Logger.debug(distArrayToString());
 			//Logger.debug("aInd bInd "+aInd+" "+bInd);
@@ -81,7 +83,10 @@ public class Matrix {
 		//Logger.debug(distArrayToString());
 		long elapsedTime = System.currentTimeMillis() - startTime;
 		Logger.debug("Done calculating pairwise distances. Took "+elapsedTime+" milliseconds, "+totalMCSTime+" in MCS");
-		Logger.debug("Time breakdown: \n"+mcsTimes);
+		Logger.debug("Time breakdown:");
+		for(int i=0; i<mcsDists.size(); ++i){
+			Logger.debug(i+" Time "+mcsTimes.get(i)+" Dist "+mcsDists.get(i));
+		}
 	}
 	
 	private String distArrayToString(){
