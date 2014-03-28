@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.concurrent.TimeoutException;
 
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.DefaultChemObjectBuilder;
@@ -74,16 +75,23 @@ public class UtilFMCS {
 				//edu.mit.csail.ammolite.Logger.debug("Removed hydrogens");
 				FMCS myMCS = new FMCS(a,b);
 				FMCS repMCS = new FMCS(repA, repB);
-				myMCS.calculate();
-				repMCS.calculate();
-				//edu.mit.csail.ammolite.Logger.debug("Calculated MCS");
-				double overlap = overlapCoeff( myMCS.size(), a.getAtomCount(), b.getAtomCount());
-				double tanimoto = tanimotoCoeff( myMCS.size(), a.getAtomCount(), b.getAtomCount());
-				double rep_overlap = overlapCoeff( repMCS.size(), repA.getAtomCount(), repB.getAtomCount());
-				double rep_tanimoto = tanimotoCoeff( repMCS.size(), repA.getAtomCount(), repB.getAtomCount());
-				//edu.mit.csail.ammolite.Logger.debug("Calculated coeffs");
-				//edu.mit.csail.ammolite.Logger.log("mol "+a.getID() +" "+ b.getID() +" "+a.getAtomCount()+" "+b.getAtomCount()+" "+myMCS.size()+" "+overlap+" "+tanimoto, 0);
-				//edu.mit.csail.ammolite.Logger.log("rep "+repA.getID() +" "+ repB.getID() +" "+repA.getAtomCount()+" "+repB.getAtomCount()+" "+repMCS.size()+" "+rep_overlap+" "+rep_tanimoto, 0);
+				boolean timeOut = false;
+				try {
+					myMCS.calculate();
+					repMCS.calculate();
+				} catch (TimeoutException e) {
+					timeOut = true;
+				}
+				if(!timeOut){
+					//edu.mit.csail.ammolite.Logger.debug("Calculated MCS");
+					double overlap = overlapCoeff( myMCS.size(), a.getAtomCount(), b.getAtomCount());
+					double tanimoto = tanimotoCoeff( myMCS.size(), a.getAtomCount(), b.getAtomCount());
+					double rep_overlap = overlapCoeff( repMCS.size(), repA.getAtomCount(), repB.getAtomCount());
+					double rep_tanimoto = tanimotoCoeff( repMCS.size(), repA.getAtomCount(), repB.getAtomCount());
+					//edu.mit.csail.ammolite.Logger.debug("Calculated coeffs");
+					//edu.mit.csail.ammolite.Logger.log("mol "+a.getID() +" "+ b.getID() +" "+a.getAtomCount()+" "+b.getAtomCount()+" "+myMCS.size()+" "+overlap+" "+tanimoto, 0);
+					//edu.mit.csail.ammolite.Logger.log("rep "+repA.getID() +" "+ repB.getID() +" "+repA.getAtomCount()+" "+repB.getAtomCount()+" "+repMCS.size()+" "+rep_overlap+" "+rep_tanimoto, 0);
+				}
 			}
 		}
 		
