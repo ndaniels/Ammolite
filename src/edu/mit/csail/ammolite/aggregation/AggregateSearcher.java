@@ -12,6 +12,7 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeoutException;
 
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.DefaultChemObjectBuilder;
@@ -130,13 +131,20 @@ public class AggregateSearcher {
 		for(String id: targetIDs){
 			target = db.getMolecule(id);
 			target = new AtomContainer(AtomContainerManipulator.removeHydrogens(target));
+			boolean timeOut = false;
 			FMCS myMCS = new FMCS(query,target);
-			myMCS.calculate();
-			double myCoeff = coeff( myMCS.size(), myMCS.getCompoundOne().getAtomCount(), myMCS.getCompoundTwo().getAtomCount());
-			//Logger.debug(myCoeff);
-			if(myCoeff > threshold){
-				matches.add( new MolTriple( myMCS.getSolutions(), query, target));
-				
+			try {
+				myMCS.calculate();
+			} catch (TimeoutException te) {
+				timeOut = true;
+			}
+			if(!timeOut){
+				double myCoeff = coeff( myMCS.size(), myMCS.getCompoundOne().getAtomCount(), myMCS.getCompoundTwo().getAtomCount());
+				//Logger.debug(myCoeff);
+				if(myCoeff > threshold){
+					matches.add( new MolTriple( myMCS.getSolutions(), query, target));
+					
+				}
 			}
 		}
 		
