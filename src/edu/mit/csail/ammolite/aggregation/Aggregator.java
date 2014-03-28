@@ -65,7 +65,7 @@ public class Aggregator {
 				newCList.add(originalCluster);
 			}
 		}
-		return newClist;
+		return newCList;
 	}
 	
 	private List<Cluster> singleFold(Matrix matrix, int originalSize){
