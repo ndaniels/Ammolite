@@ -83,10 +83,10 @@ public class Matrix {
 		//Logger.debug(distArrayToString());
 		long elapsedTime = System.currentTimeMillis() - startTime;
 		Logger.debug("Done calculating pairwise distances. Took "+elapsedTime+" milliseconds, "+totalMCSTime+" in MCS");
-		Logger.debug("Time breakdown:");
-		for(int i=0; i<mcsDists.size(); ++i){
-			Logger.debug(i+" Time "+mcsTimes.get(i)+" Dist "+mcsDists.get(i));
-		}
+//		Logger.debug("Time breakdown:");
+//		for(int i=0; i<mcsDists.size(); ++i){
+//			Logger.debug(i+" Time "+mcsTimes.get(i)+" Dist "+mcsDists.get(i));
+//		}
 	}
 	
 	private String distArrayToString(){
