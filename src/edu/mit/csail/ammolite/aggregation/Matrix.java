@@ -124,7 +124,7 @@ public class Matrix {
 				Callable<ClusterDist> callable = new Callable<ClusterDist>(){
 					
 					public ClusterDist call() throws InterruptedException, ExecutionException{
-						AbstractMCS myMCS = new FMCS( a, b);
+						AbstractMCS myMCS = new SMSD( a, b);
 						long runTime;
 						try {
 							runTime = myMCS.calculate();
