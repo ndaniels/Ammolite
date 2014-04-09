@@ -32,16 +32,21 @@ public class Aggregator {
 	public long aggregate(String filename){
 		long startTime = System.currentTimeMillis();
 		List<Cluster> cList = buildInitialClusterList();
-
+		boolean FULL_AGG_MODE = true;
 		int prevNumClusters = cList.size()+1;
 		while( cList.size() != prevNumClusters && cList.size() > 10){
 
 			Logger.debug(cList.size()+" clusters");
 			prevNumClusters = cList.size();
 
-			//Matrix matrix = buildMatrix( cList);
-
-			cList = linearFold( cList);
+			if( FULL_AGG_MODE ){
+				Matrix matrix = buildMatrix( cList);
+				cList = singleFold( matrix);
+				
+			} else {
+				cList = linearFold( cList);
+			}
+			
 		}
 
 		Logger.debug(cList.size()+" clusters");
@@ -68,7 +73,8 @@ public class Aggregator {
 		return newCList;
 	}
 	
-	private List<Cluster> singleFold(Matrix matrix, int originalSize){
+	private List<Cluster> singleFold(Matrix matrix){
+		int originalSize = matrix.size();
 		while( matrix.size()*2 > originalSize && !matrix.done()){
 			//Logger.debug(matrix);
 			Pair<Cluster> closest = matrix.getClosest();
