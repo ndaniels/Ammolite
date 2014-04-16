@@ -1,6 +1,7 @@
 test_data/*
 test_results/*
-molecule_sets/[!smalls]
+molecule_sets/*
+!molecule_sets/smalls/*
 results/*
 *.meta
 
