@@ -1,0 +1,70 @@
+4/16/14
+
+Was able to build SMSD from scratch which let me avoid having the cmd and gui packages. More importantly I didn't have to package the cdk as part of the smsd jar. 
+
+Using the small SMSD.jar I just generated (and cdk 1.5.6) I was able to build MCS without errors.
+
+With MCS.jar and cdk 1.5.4 (note the difference) I was able to build Ammolite and successfully compress an sdf file. When I tried to use a version built with cdk 1.5.6 I got a not serializable exception. 
+
+Using Ammolite built with cdk 1.5.4 to try and aggregate the database I got this error java.lang.NoClassDefFoundError: org/openscience/smsd/Isomorphism. Guessing I just need the SMSD.jar in Ammolite's dependencies.
+
+Well, no more NoClassDefFoundError. Now I'm getting this 
+
+Apr 16, 2014 12:00:41 PM uk.ac.ebi.reactionblast.tools.ExtAtomContainerManipulator percieveAtomTypesAndConfigureAtoms
+WARNING: Failed to find Matching AtomType! Cjava.lang.NullPointerException
+Apr 16, 2014 12:00:41 PM uk.ac.ebi.reactionblast.tools.ExtAtomContainerManipulator percieveAtomTypesAndConfigureAtoms
+WARNING: Failed to find Matching AtomType! Cjava.lang.NullPointerException
+Apr 16, 2014 12:00:41 PM uk.ac.ebi.reactionblast.tools.ExtAtomContainerManipulator percieveAtomTypesAndConfigureAtoms
+WARNING: Failed to find Matching AtomType! Cjava.lang.NullPointerException
+java.util.concurrent.ExecutionException: java.lang.NullPointerException
+
+lots and lots of times. I can still compress an sdf though.
+
+About 1/3 of the time I'm not getting the above exception; I'm getting null pointers in mcs.smsd.mySize() To try and find why I'm adding some runtime exceptions.
+
+Turns out the Isomorphism isn't getting initialized sometimes...? This happens every time if I only use one thread.
+
+4/28/14
+
+Looking for a java profiler tool and learning how to use it. May have fixed the above errors but I'm not sure yet, certainly doesn't seem to be any faster...
+
+Spent most of the day building a jUnit test. Mostly really frustrating but I think I have a lead of sorts. FMCSj is returning an overlap for caffeine and viagra with 11 atoms, this is the correct size for 2 atom/bond mismatches (and also about the right runtime) .
+
+Nope. Turns out I just wasn't stripping the hydrogens. Ended up with a runtime of about 500ms on average.
+
+4/29/14
+
+Progress. Figured out that once I stripped the hydrogens runtime for SMSD dropped to ~100 ms. Trying different filters/booleans now to see if it can go even lower.
+
+bondSensitive	ringMatch	sM 	fM 	eM 	Time
+true			false		T 	T 	T 	100ms
+false 			false 		T 	T 	T 	330ms
+true 			true 		T  	T   T   100ms
+false 			true 		T  	T   T   100ms
+true			true 		F 	T 	T 	92ms
+true			true 		F 	F 	T 	83ms
+true			true 		F 	F 	F 	83ms
+true			false 		F 	F 	F 	92ms
+
+so this is pretty good. I'm going to try and aggregate some stuff and see how it goes.
+
+Compatibility issues. Fix it later...
+
+Trying out molecule structs instead of molecules:
+
+bondSensitive	ringMatch	sM 	fM 	eM 	Time
+true			false		T 	T 	T 	18,981ms
+false 			false 		T 	T 	T 	
+true 			true 		T  	T   T   
+false 			true 		T  	T   T   
+true			true 		F 	T 	T 	
+true			true 		F 	F 	T 	
+true			true 		F 	F 	F 	348ms
+true			false 		F 	F 	F 	
+false 			false 		F 	F 	F 	slooooooooooow
+false			true 		F 	F 	F 	347ms
+
+FMCS performance
+molecules: 780ms
+structures: 1,722ms
+GraphMCS (only works on structs): 1,405ms

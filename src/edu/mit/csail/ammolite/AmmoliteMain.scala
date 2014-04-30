@@ -10,6 +10,7 @@ import edu.mit.csail.ammolite.database.CompressionType
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor
 import edu.mit.csail.ammolite.aggregation.Aggregator
 import edu.mit.csail.ammolite.aggregation.AggregateSearcher
+import edu.mit.csail.ammolite.aggregation.ClusterDatabaseDecompressor
 
 
 object AmmoliteMain{
@@ -50,6 +51,9 @@ object AmmoliteMain{
 			  val b = opt[String]("b")
 			}
 			val examine = new Subcommand("examine"){
+			  val database = opt[String]("database", required=true, descr="Path to the database.") 
+			} 
+			val aggexamine = new Subcommand("aggexamine"){
 			  val database = opt[String]("database", required=true, descr="Path to the database.") 
 			} 
 
@@ -93,7 +97,10 @@ object AmmoliteMain{
 		} else if( opts.subcommand == Some( opts.dev)){
 		  edu.mit.csail.ammolite.fmcsj.UtilFMCS.getCoeffs(opts.dev.a(), opts.dev.b())
 		} else if( opts.subcommand == Some( opts.examine)){
-		  val db = StructDatabaseDecompressor.decompress( opts.examine.database())
+			val db = StructDatabaseDecompressor.decompress( opts.examine.database())
+		    Logger.log(db.info())
+		} else if( opts.subcommand == Some( opts.aggexamine)){
+		  val db = ClusterDatabaseDecompressor.decompress( opts.aggexamine.database())
 		  Logger.log(db.info())
 		} else if(opts.subcommand == Some( opts.aggcompress)){
 

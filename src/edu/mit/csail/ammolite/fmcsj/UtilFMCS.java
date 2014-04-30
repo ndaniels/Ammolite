@@ -77,12 +77,8 @@ public class UtilFMCS {
 				FMCS myMCS = new FMCS(a,b);
 				FMCS repMCS = new FMCS(repA, repB);
 				boolean timeOut = false;
-				try {
-					myMCS.calculate();
-					repMCS.calculate();
-				} catch (TimeoutException e) {
-					timeOut = true;
-				}
+				myMCS.calculate();
+				repMCS.calculate();
 				if(!timeOut){
 					//edu.mit.csail.ammolite.Logger.debug("Calculated MCS");
 					double overlap = overlapCoeff( myMCS.size(), a.getAtomCount(), b.getAtomCount());
@@ -147,12 +143,7 @@ public class UtilFMCS {
 		edu.mit.csail.ammolite.MolDrawer.draw(a, output + "_inp1");
 		edu.mit.csail.ammolite.MolDrawer.draw(b, output + "_inp2");
 		FMCS myMCS = new FMCS(a,b);
-		try {
-			myMCS.calculate();
-		} catch (TimeoutException te) {
-			te.printStackTrace();
-			System.exit(1);
-		}
+		myMCS.calculate();
 		SDFWriter sdfwriter = new SDFWriter(new BufferedWriter( new FileWriter( output + ".sdf" )));
 		for(IAtomContainer overlap: myMCS.getSolutions()){
 			sdfwriter.write(overlap);

@@ -14,7 +14,7 @@ public class ClusterDatabaseDecompressor {
 
 	public static ClusterDatabase decompress(String clusterDBName){
 		try {
-			return (ClusterDatabase) deserialize( new File( clusterDBName));
+			return new ClusterDatabase( (ClusterDatabaseCoreData) deserialize( new File( clusterDBName)));
 		} catch (ClassNotFoundException e) {
 			Logger.error("Not a valid cluster database. Aborting");
 			e.printStackTrace();
@@ -35,4 +35,5 @@ public class ClusterDatabaseDecompressor {
         obInput.close();
         return recovered;
 	}
+	
 }

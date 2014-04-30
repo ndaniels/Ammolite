@@ -15,6 +15,7 @@ import java.util.concurrent.TimeoutException;
 import edu.mit.csail.ammolite.Logger;
 import edu.mit.csail.fmcsj.AbstractMCS;
 import edu.mit.csail.fmcsj.FMCS;
+import edu.mit.csail.fmcsj.MCSFinder;
 import edu.mit.csail.fmcsj.SMSD;
 
 import org.openscience.cdk.AtomContainer;
@@ -110,7 +111,7 @@ public class Matrix {
 		if( numThreads > 12){
 			numThreads -= 4;
 		}
-		// numThreads = 1;
+		//numThreads = 1;
 		Logger.debug("Using "+numThreads+" threads");
 		ExecutorService service = Executors.newFixedThreadPool(numThreads);
 		List<Future<ClusterDist>> futures = new ArrayList<Future<ClusterDist>>();
@@ -124,13 +125,10 @@ public class Matrix {
 				Callable<ClusterDist> callable = new Callable<ClusterDist>(){
 					
 					public ClusterDist call() throws InterruptedException, ExecutionException{
-						AbstractMCS myMCS = new SMSD( a, b);
+						AbstractMCS myMCS = new MCSFinder( a, b);
 						long runTime;
-						try {
-							runTime = myMCS.calculate();
-						} catch (TimeoutException e) {
-							return new ClusterDist(aClust, bClust, 0, AbstractMCS.getTimeoutMillis());
-						}
+						runTime = myMCS.calculate();
+	
 						int overlap = myMCS.size();
 						double coeff = tanimotoCoeff( overlap, a.getAtomCount(), b.getAtomCount());
 						return new ClusterDist(aClust,bClust,coeff,runTime);

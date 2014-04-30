@@ -12,6 +12,7 @@ import edu.mit.csail.ammolite.Logger;
 import edu.mit.csail.ammolite.compression.MoleculeStruct;
 import edu.mit.csail.fmcsj.AbstractMCS;
 import edu.mit.csail.fmcsj.FMCS;
+import edu.mit.csail.fmcsj.MCSFinder;
 
 
 public class Cluster implements Serializable{
@@ -58,12 +59,9 @@ public class Cluster implements Serializable{
 			return candidate.addCandidate(this);
 		}
 		
-		AbstractMCS myMCS = new FMCS(candidate.getRep(), rep);
-		try {
-			myMCS.calculate();
-		} catch (TimeoutException e) {
-			return false;
-		}
+		AbstractMCS myMCS = new MCSFinder(candidate.getRep(), rep);
+		myMCS.calculate();
+		
 		
 		int newRepSize = myMCS.size();
 		
@@ -96,11 +94,8 @@ public class Cluster implements Serializable{
 	public boolean matchesCluster(IAtomContainer candidate, double myRepBound){
 		
 		AbstractMCS myMCS = new FMCS(candidate, rep);
-		try {
-			myMCS.calculate();
-		} catch (TimeoutException e) {
-			return false;
-		}
+		myMCS.calculate();
+
 		int newRepSize = myMCS.size();
 		
 		if( (overlap( newRepSize, candidate.getAtomCount()) < myRepBound) ){

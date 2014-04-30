@@ -45,12 +45,7 @@ public class MolSearcher implements IMolSearcher {
 			target = new AtomContainer(AtomContainerManipulator.removeHydrogens(target));
 			FMCS myMCS = new FMCS(query,target);
 			boolean timeOut = false;
-			try {
-				myMCS.calculate();
-			} catch (TimeoutException e) {
-				timeOut = true;
-			}
-			
+			myMCS.calculate();
 			if(!timeOut && coeff( myMCS.size(), myMCS.getCompoundOne().getAtomCount(), myMCS.getCompoundTwo().getAtomCount()) > threshold){
 				matches.add( new MolTriple( myMCS.getSolutions(), query, target));
 				
@@ -87,12 +82,7 @@ public class MolSearcher implements IMolSearcher {
 
 			boolean timeOut = false;
 			FMCS myMCS = new FMCS(sQuery,target);
-			try {
-				timeInMCS += myMCS.calculate();
-			} catch (TimeoutException e) {
-				timeInMCS += AbstractMCS.getTimeoutMillis();
-				timeOut = true;
-			}
+			timeInMCS += myMCS.calculate();
 			if( !timeOut){
 				double coef = coeff(myMCS.size(), myMCS.getCompoundOne().getAtomCount(), myMCS.getCompoundTwo().getAtomCount());
 				

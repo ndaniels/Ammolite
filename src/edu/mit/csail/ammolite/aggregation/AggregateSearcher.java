@@ -30,7 +30,9 @@ import edu.mit.csail.ammolite.database.StructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
 import edu.mit.csail.ammolite.search.MolTriple;
 import edu.mit.csail.ammolite.search.Util;
+import edu.mit.csail.fmcsj.AbstractMCS;
 import edu.mit.csail.fmcsj.FMCS;
+import edu.mit.csail.fmcsj.MCSFinder;
 
 public class AggregateSearcher {
 	private IStructDatabase db;
@@ -132,12 +134,8 @@ public class AggregateSearcher {
 			target = db.getMolecule(id);
 			target = new AtomContainer(AtomContainerManipulator.removeHydrogens(target));
 			boolean timeOut = false;
-			FMCS myMCS = new FMCS(query,target);
-			try {
-				myMCS.calculate();
-			} catch (TimeoutException te) {
-				timeOut = true;
-			}
+			AbstractMCS myMCS = new MCSFinder(query,target);
+			myMCS.calculate();
 			if(!timeOut){
 				double myCoeff = coeff( myMCS.size(), myMCS.getCompoundOne().getAtomCount(), myMCS.getCompoundTwo().getAtomCount());
 				//Logger.debug(myCoeff);

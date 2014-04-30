@@ -34,7 +34,8 @@ public class Aggregator {
 		List<Cluster> cList = buildInitialClusterList();
 		boolean FULL_AGG_MODE = true;
 		int prevNumClusters = cList.size()+1;
-		while( cList.size() != prevNumClusters && cList.size() > 10){
+		boolean converged = cList.size() == prevNumClusters;
+		while(!converged && cList.size() > 0){
 
 			Logger.debug(cList.size()+" clusters");
 			prevNumClusters = cList.size();
@@ -46,11 +47,14 @@ public class Aggregator {
 			} else {
 				cList = linearFold( cList);
 			}
-			
+			converged = cList.size() == prevNumClusters;
 		}
-
-		Logger.debug(cList.size()+" clusters");
-		ClusterDatabase cDB = new ClusterDatabase(dbFilename, cList);
+		if(converged){
+			Logger.debug("converged with "+cList.size()+" clusters");
+		} else {
+			Logger.debug("ended with "+cList.size()+" clusters");
+		}
+		ClusterDatabaseCoreData cDB = new ClusterDatabaseCoreData(dbFilename, cList, repBound);
 		writeObjectToFile( filename, cDB);
 		return System.currentTimeMillis()-startTime;
 	}
