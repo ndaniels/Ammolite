@@ -68,3 +68,12 @@ FMCS performance
 molecules: 780ms
 structures: 1,722ms
 GraphMCS (only works on structs): 1,405ms
+
+4/30/14
+
+Got SMSD to work appreciably fast. Around 30-50ms on cyclicStructs. Also got aggregation clustering working and built a nifty module to show cluster hierarchy.
+
+Aggregation search seems like it might have some issues, also I haven't tried clustering anything big yet. Started compressing 1k on ent at ~3:30 
+
+Should take something on the order of 5e5 * 3e-2 / 20 = 15e3 / 20 = 7500s * (1m/60s) * (1h/60s) ~= 3h 
+

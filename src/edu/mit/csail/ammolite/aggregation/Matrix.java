@@ -127,8 +127,7 @@ public class Matrix {
 					public ClusterDist call() throws InterruptedException, ExecutionException{
 						AbstractMCS myMCS = new MCSFinder( a, b);
 						long runTime;
-						runTime = myMCS.calculate();
-	
+						runTime = myMCS.timedCalculate();
 						int overlap = myMCS.size();
 						double coeff = tanimotoCoeff( overlap, a.getAtomCount(), b.getAtomCount());
 						return new ClusterDist(aClust,bClust,coeff,runTime);
