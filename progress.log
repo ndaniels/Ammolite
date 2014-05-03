@@ -77,3 +77,13 @@ Aggregation search seems like it might have some issues, also I haven't tried cl
 
 Should take something on the order of 5e5 * 3e-2 / 20 = 15e3 / 20 = 7500s * (1m/60s) * (1h/60s) ~= 3h 
 
+5/2/14
+
+So... 
+
+Aggregation clustering on the 1k database took about 4 seconds per comparison. My best guess is that there are a few pathological pairings that take hours. To test that theory I reimplemented timedCalculate (now it hides the timeout exception) and reran aggregation with a max time of 2s per MCS; this should finish in a few hours.
+
+But on the chance that aggregation is still too slow I took another look at the (pseudo) linear aggregation I built. To recap this approach doesn't try to find the closest pair of clusters. It just attempts to add clusters to each other until it gets lucky (which is faster because it will only rarely compute every possible distance).
+
+I built single and multithreaded versions which work the same way conceptually but the multithreaded one is less deterministic. ON my laptop the multithreaded is a little slower but that could easily be because of a high start up cost which would be mitigated on big runs.
+

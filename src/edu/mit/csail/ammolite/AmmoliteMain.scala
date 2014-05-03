@@ -61,6 +61,7 @@ object AmmoliteMain{
 			val source = opt[String]("source", required=true, descr="File or folder to compress")
 		    val target = opt[String]("target", required=true, descr="Name of the new compressed database")
 		    val repbound = opt[Double]("rep-boundary", default=Some(0.5), descr="how similar clusters have to be")
+		    val linearizeClustering = opt[Boolean]("linear-cluster", default=Some(false), descr="development...")
 		  }
 		  val aggsearch = new Subcommand("aggsearch"){
 		    val cluster = opt[String]("cluster", required=true, descr="Path to the cluster database you want to search.")
@@ -105,7 +106,7 @@ object AmmoliteMain{
 		} else if(opts.subcommand == Some( opts.aggcompress)){
 
 		    val agg = new Aggregator( opts.aggcompress.source(), opts.aggcompress.repbound())
-		    agg.aggregate(opts.aggcompress.target())
+		    agg.aggregate(opts.aggcompress.target(), opts.aggcompress.linearizeClustering())
 		} else if( opts.subcommand == Some( opts.aggsearch)){
 
 		    val aggSearcher = new AggregateSearcher(opts.aggsearch.cluster(), opts.aggsearch.searchbound())

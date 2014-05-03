@@ -9,6 +9,10 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
@@ -17,6 +21,13 @@ import edu.mit.csail.ammolite.compression.MoleculeStruct;
 import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
+
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeoutException;
 
 public class Aggregator {
 	private String dbFilename;
@@ -30,32 +41,42 @@ public class Aggregator {
 	}
 	
 	public long aggregate(String filename){
+		return aggregate(filename, false);
+	}
+	
+	public long aggregate(String filename, boolean useLinearizedClustering){
 		long startTime = System.currentTimeMillis();
+		
 		List<Cluster> cList = buildInitialClusterList();
-		boolean FULL_AGG_MODE = true;
-		int prevNumClusters = cList.size()+1;
-		boolean converged = cList.size() == prevNumClusters;
+		boolean converged = false;
+		int prevNumClusters = -1;
+		
 		while(!converged && cList.size() > 0){
-
 			Logger.debug(cList.size()+" clusters");
 			prevNumClusters = cList.size();
 
-			if( FULL_AGG_MODE ){
+			if( !useLinearizedClustering ){
 				Matrix matrix = buildMatrix( cList);
 				cList = singleFold( matrix);
 				
 			} else {
-				cList = linearFold( cList);
+				long lineStartTime = System.currentTimeMillis();
+				cList = parallelLinearFold( cList);
+				long lineTime = System.currentTimeMillis() - lineStartTime;
+				Logger.debug("Did parallel pseudolinear clustering in "+lineTime);
 			}
-			converged = cList.size() == prevNumClusters;
+			converged = (cList.size() == prevNumClusters);
 		}
+		
 		if(converged){
 			Logger.debug("converged with "+cList.size()+" clusters");
 		} else {
 			Logger.debug("ended with "+cList.size()+" clusters");
 		}
+		
 		ClusterDatabaseCoreData cDB = new ClusterDatabaseCoreData(dbFilename, cList, repBound);
 		writeObjectToFile( filename, cDB);
+		
 		return System.currentTimeMillis()-startTime;
 	}
 	
@@ -64,15 +85,94 @@ public class Aggregator {
 		List<Cluster> newCList = new ArrayList<Cluster>();
 		for(Cluster originalCluster: cList){
 			boolean added = false;
-			for(Cluster comparisonCluster: newCList){
-				if( comparisonCluster.addCandidate(originalCluster) ){
-					added = true;
-					break;
+			for(int i=0; i<newCList.size(); ++i){
+				Cluster comparisonCluster = newCList.get(i);
+				if( comparisonCluster.order() == originalCluster.order()){
+					Cluster newCluster = new Cluster( comparisonCluster, repBound);
+					added = newCluster.addCandidate(originalCluster);
+					if(added){
+						newCList.remove(i);
+						newCList.add(newCluster);
+						break;
+					}
+					
+				} else if ( comparisonCluster.order() < originalCluster.order()){
+					added = originalCluster.addCandidate(comparisonCluster);
+					if( added){
+						newCList.remove(i);
+						newCList.add(originalCluster);
+						break;
+					}
+					
+				} else if ( comparisonCluster.order() > originalCluster.order()){
+					added = comparisonCluster.addCandidate(originalCluster);
+					if( added){
+						break;
+					}
 				}
 			}
 			if(!added){
 				newCList.add(originalCluster);
 			}
+		}
+		return newCList;
+	}
+	
+	private List<Cluster> parallelLinearFold(List<Cluster> cList){
+		
+		
+		class Out {
+			public boolean added = false;
+			public Cluster clusterToAdd = null;
+			public int indexOfClusterToRemove;
+			
+		}
+		
+		List<Cluster> newCList = new ArrayList<Cluster>();
+		for(int j=0; j<cList.size(); ++j){
+			
+			List<Callable<Out>> callList = new ArrayList<Callable<Out>>(newCList.size());
+			
+			final Cluster originalCluster = cList.get(j);
+			
+			for(int i=0; i<newCList.size(); ++i){
+				
+				final Cluster comparisonCluster = newCList.get(i);
+				final int index = i;
+				
+				Callable<Out> callable = new Callable<Out>(){
+					
+					public Out call() throws InterruptedException, ExecutionException{
+						Out out = new Out();
+						if( comparisonCluster.order() >= originalCluster.order()){
+							Cluster newCluster = new Cluster( comparisonCluster, repBound);
+							out.added = newCluster.addCandidate(originalCluster);
+							out.clusterToAdd = newCluster;
+							out.indexOfClusterToRemove = index;
+							
+						} else if ( comparisonCluster.order() < originalCluster.order()){
+							Cluster newCluster = new Cluster( originalCluster, repBound);
+							out.added = newCluster.addCandidate(comparisonCluster);
+							out.clusterToAdd = newCluster;
+							out.indexOfClusterToRemove = index;	
+						}
+						if( out.added){
+							return out;
+						}
+						return null;
+					}
+				};
+				callList.add(callable);
+			}
+			Out result =  ParallelUtils.parallelSingleExecution(callList);
+			
+			if(result != null){
+				newCList.remove(result.indexOfClusterToRemove);
+				newCList.add(result.clusterToAdd);
+			} else {
+				newCList.add(originalCluster);
+			}
+			
 		}
 		return newCList;
 	}
@@ -93,11 +193,11 @@ public class Aggregator {
 			} else if( a.order() < b.order()){
 				//Logger.debug("a.order < b.order");
 				c = b;
-				success = b.addCandidate(a);
+				success = c.addCandidate(a);
 			} else if( a.order() > b.order()){
 				//Logger.debug("a.order > b.order");
 				c = a;
-				success = a.addCandidate(b);
+				success = c.addCandidate(b);
 			}
 			if( success){
 				matrix.merge(a, b, c);

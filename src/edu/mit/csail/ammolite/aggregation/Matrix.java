@@ -107,14 +107,8 @@ public class Matrix {
 	}
 	
 	private List<ClusterDist> parDistances(){
-		int numThreads = Runtime.getRuntime().availableProcessors();
-		if( numThreads > 12){
-			numThreads -= 4;
-		}
-		//numThreads = 1;
-		Logger.debug("Using "+numThreads+" threads");
-		ExecutorService service = Executors.newFixedThreadPool(numThreads);
-		List<Future<ClusterDist>> futures = new ArrayList<Future<ClusterDist>>();
+		
+		List<Callable<ClusterDist>> callableList = new ArrayList<Callable<ClusterDist>>();
 
 		for(int i=0; i<cList.size(); ++i){
 			for(int j=0; j<i; ++j){
@@ -133,26 +127,11 @@ public class Matrix {
 						return new ClusterDist(aClust,bClust,coeff,runTime);
 					}
 				};
-				futures.add( service.submit( callable));
+				callableList.add(callable);
 			}
 		}
 		
-		List<ClusterDist> results = new ArrayList<ClusterDist>();
-		for( Future<ClusterDist> future: futures){
-			try {
-				results.add( future.get());
-			} catch (InterruptedException ie) {
-				ie.printStackTrace();
-				System.exit(1);
-			} catch (ExecutionException ee) {
-				ee.printStackTrace();
-				System.exit(1);
-			}
-
-		}
-		
-		service.shutdown();
-		return results;
+		return ParallelUtils.parallelFullExecution(callableList);
 	}
 	
 	private double tanimotoCoeff(int overlap, int a, int b){
