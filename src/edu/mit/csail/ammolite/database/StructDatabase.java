@@ -16,10 +16,10 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.KeyListMap;
-import edu.mit.csail.ammolite.Logger;
 import edu.mit.csail.ammolite.compression.CyclicStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory;
+import edu.mit.csail.ammolite.utils.Logger;
 
 public class StructDatabase implements IStructDatabase{
 	

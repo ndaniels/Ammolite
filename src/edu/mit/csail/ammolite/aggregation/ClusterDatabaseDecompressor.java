@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 
-import edu.mit.csail.ammolite.Logger;
+import edu.mit.csail.ammolite.utils.Logger;
 
 public class ClusterDatabaseDecompressor {
 

@@ -12,7 +12,7 @@ import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import edu.mit.csail.ammolite.IteratingSDFReader;
-import edu.mit.csail.ammolite.Logger;
+import edu.mit.csail.ammolite.utils.Logger;
 
 public class BigStructDatabase extends StructDatabase{
 	private Map<String, IAtomContainer> idToMolecule = new HashMap<String, IAtomContainer>();

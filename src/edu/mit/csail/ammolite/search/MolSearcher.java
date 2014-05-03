@@ -11,8 +11,9 @@ import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import edu.mit.csail.ammolite.compression.MoleculeStruct;
 import edu.mit.csail.ammolite.database.StructDatabase;
-import edu.mit.csail.fmcsj.AbstractMCS;
-import edu.mit.csail.fmcsj.FMCS;
+import edu.mit.csail.ammolite.mcs.AbstractMCS;
+import edu.mit.csail.ammolite.mcs.FMCS;
+import edu.mit.csail.ammolite.utils.UtilFunctions;
 
 public class MolSearcher implements IMolSearcher {
 
@@ -28,11 +29,11 @@ public class MolSearcher implements IMolSearcher {
 	public MolTriple[] search(IAtomContainer query, double threshold, double probability) {
 		query = new AtomContainer(AtomContainerManipulator.removeHydrogens(query));
 		double repThreshold = db.convertThreshold(threshold, probability, useTanimoto);
-		edu.mit.csail.ammolite.Logger.debug("Using rep threshold of "+repThreshold);
+		edu.mit.csail.ammolite.utils.Logger.debug("Using rep threshold of "+repThreshold);
 		String[] repMatches = thresholdRepMatches( query, repThreshold);
-		edu.mit.csail.ammolite.Logger.debug("Found "+repMatches.length+" representative matches");
+		edu.mit.csail.ammolite.utils.Logger.debug("Found "+repMatches.length+" representative matches");
 		List<MolTriple> molMatches = thresholdMoleculeMatches( query, repMatches, threshold);
-		edu.mit.csail.ammolite.Logger.debug("Found "+molMatches.size()+" molecule matches");
+		edu.mit.csail.ammolite.utils.Logger.debug("Found "+molMatches.size()+" molecule matches");
 		return molMatches.toArray(new MolTriple[0]);
 	}
 
@@ -74,9 +75,9 @@ public class MolSearcher implements IMolSearcher {
 		
 		while( structs.hasNext() ){
 			if( count % 50 == 0){
-				edu.mit.csail.ammolite.Logger.debug("Scanned "+count+" representatives");
-				edu.mit.csail.ammolite.Logger.debug("Working for "+(System.currentTimeMillis()-startTime)+" milliseconds total");
-				edu.mit.csail.ammolite.Logger.debug("In MCS for "+timeInMCS+" milliseconds");
+				edu.mit.csail.ammolite.utils.Logger.debug("Scanned "+count+" representatives");
+				edu.mit.csail.ammolite.utils.Logger.debug("Working for "+(System.currentTimeMillis()-startTime)+" milliseconds total");
+				edu.mit.csail.ammolite.utils.Logger.debug("In MCS for "+timeInMCS+" milliseconds");
 			}
 			target = (MoleculeStruct) structs.next();
 
@@ -106,9 +107,9 @@ public class MolSearcher implements IMolSearcher {
 	
 	private double coeff(int overlap, int a, int b){
 		if( useTanimoto){
-			return Util.tanimotoCoeff(overlap, a, b);
+			return UtilFunctions.tanimotoCoeff(overlap, a, b);
 		}
-		return Util.overlapCoeff(overlap, a, b);
+		return UtilFunctions.overlapCoeff(overlap, a, b);
 		
 	}
 }

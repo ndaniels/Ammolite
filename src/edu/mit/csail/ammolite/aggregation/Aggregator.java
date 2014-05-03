@@ -16,11 +16,13 @@ import java.util.concurrent.Future;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
-import edu.mit.csail.ammolite.Logger;
 import edu.mit.csail.ammolite.compression.MoleculeStruct;
 import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
+import edu.mit.csail.ammolite.utils.Logger;
+import edu.mit.csail.ammolite.utils.Pair;
+import edu.mit.csail.ammolite.utils.ParallelUtils;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;

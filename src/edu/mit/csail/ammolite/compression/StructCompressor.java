@@ -32,13 +32,13 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.KeyListMap;
-import edu.mit.csail.ammolite.Logger;
 import edu.mit.csail.ammolite.StructSDFWriter;
 import edu.mit.csail.ammolite.database.CompressionType;
 import edu.mit.csail.ammolite.database.FilePair;
 import edu.mit.csail.ammolite.database.StructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseCompressor;
 import edu.mit.csail.ammolite.database.StructDatabaseCoreData;
+import edu.mit.csail.ammolite.utils.Logger;
 import edu.ucla.sspace.graph.isomorphism.VF2IsomorphismTester;
 
 /*

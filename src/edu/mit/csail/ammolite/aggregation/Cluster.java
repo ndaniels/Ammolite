@@ -8,11 +8,11 @@ import java.util.concurrent.TimeoutException;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
-import edu.mit.csail.ammolite.Logger;
 import edu.mit.csail.ammolite.compression.MoleculeStruct;
-import edu.mit.csail.fmcsj.AbstractMCS;
-import edu.mit.csail.fmcsj.FMCS;
-import edu.mit.csail.fmcsj.MCSFinder;
+import edu.mit.csail.ammolite.mcs.AbstractMCS;
+import edu.mit.csail.ammolite.mcs.FMCS;
+import edu.mit.csail.ammolite.mcs.MCSFinder;
+import edu.mit.csail.ammolite.utils.Logger;
 
 
 public class Cluster implements Serializable{

@@ -20,13 +20,14 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.io.SDFWriter;
 
 import edu.mit.csail.ammolite.IteratingSDFReader;
-import edu.mit.csail.ammolite.Logger;
 import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
+import edu.mit.csail.ammolite.utils.Logger;
+import edu.mit.csail.ammolite.utils.ParallelUtils;
+import edu.mit.csail.ammolite.utils.UtilFunctions;
 
 public class ParallelSearcher implements IBatchSearcher{
-	private static int numThreads = Runtime.getRuntime().availableProcessors();
 	private static StructDatabase db;
 	private static boolean useTanimoto;
 	private static final int BATCH_SIZE = 1;// 10*numThreads;
@@ -100,9 +101,9 @@ public class ParallelSearcher implements IBatchSearcher{
 						int overlap = triple.getOverlap().get(0).getAtomCount();
 						int a = triple.getQuery().getAtomCount();
 						int b = triple.getMatch().getAtomCount();
-						sb.append( Util.overlapCoeff(overlap, a, b));
+						sb.append( UtilFunctions.overlapCoeff(overlap, a, b));
 						sb.append(" ");
-						sb.append( Util.tanimotoCoeff(overlap, a, b));
+						sb.append( UtilFunctions.tanimotoCoeff(overlap, a, b));
 						sb.append(" ");
 					}
 					Logger.experiment(sb.toString());
@@ -129,11 +130,12 @@ public class ParallelSearcher implements IBatchSearcher{
 	 * @throws ExecutionException
 	 */
 	private List<MolTriple[]> parallelSearch(List<IAtomContainer> queries, double threshold, double probability) throws InterruptedException, ExecutionException{
-		edu.mit.csail.ammolite.Logger.debug("Searching for "+queries.size()+" queries with threshold "+threshold+" and probability "+probability);
-		ExecutorService service = Executors.newFixedThreadPool(numThreads);
-		List<Future<MolTriple[]>> futures = new ArrayList<Future<MolTriple[]>>();
+		edu.mit.csail.ammolite.utils.Logger.debug("Searching for "+queries.size()+" queries with threshold "+threshold+" and probability "+probability);
+
 		final double fThresh = threshold;
 		final double fProb = probability;
+		
+		List<Callable<MolTriple[]>> callList = new ArrayList<Callable<MolTriple[]>>(queries.size());
 		
 		for( final IAtomContainer query: queries){
 			
@@ -144,19 +146,10 @@ public class ParallelSearcher implements IBatchSearcher{
 					return searcher.search(query, fThresh, fProb);
 				}
 			};
-			futures.add( service.submit( callable));
+			callList.add(callable);
 		}
-		
-		
-		List<MolTriple[]> results = new ArrayList<MolTriple[]>();
-		for(Future<MolTriple[]> future: futures){
-			
-			results.add( future.get());
-		}
-		
-		service.shutdown();
-		return results;
-		
+
+		return ParallelUtils.parallelFullExecution(callList);
 	}
 	
 

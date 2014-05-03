@@ -22,17 +22,17 @@ import org.openscience.cdk.io.SDFWriter;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import edu.mit.csail.ammolite.IteratingSDFReader;
-import edu.mit.csail.ammolite.Logger;
 import edu.mit.csail.ammolite.compression.CyclicStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStruct;
 import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
+import edu.mit.csail.ammolite.mcs.AbstractMCS;
+import edu.mit.csail.ammolite.mcs.FMCS;
+import edu.mit.csail.ammolite.mcs.MCSFinder;
 import edu.mit.csail.ammolite.search.MolTriple;
-import edu.mit.csail.ammolite.search.Util;
-import edu.mit.csail.fmcsj.AbstractMCS;
-import edu.mit.csail.fmcsj.FMCS;
-import edu.mit.csail.fmcsj.MCSFinder;
+import edu.mit.csail.ammolite.utils.Logger;
+import edu.mit.csail.ammolite.utils.UtilFunctions;
 
 public class AggregateSearcher {
 	private IStructDatabase db;
@@ -77,9 +77,9 @@ public class AggregateSearcher {
 					int overlap = triple.getOverlap().get(0).getAtomCount();
 					int a = triple.getQuery().getAtomCount();
 					int b = triple.getMatch().getAtomCount();
-					sb.append( Util.overlapCoeff(overlap, a, b));
+					sb.append( UtilFunctions.overlapCoeff(overlap, a, b));
 					sb.append(" ");
-					sb.append( Util.tanimotoCoeff(overlap, a, b));
+					sb.append( UtilFunctions.tanimotoCoeff(overlap, a, b));
 					sb.append(" ");
 					
 				} else {
@@ -151,9 +151,9 @@ public class AggregateSearcher {
 	
 	private double coeff(int overlap, int a, int b){
 		if( useTanimoto){
-			return Util.tanimotoCoeff(overlap, a, b);
+			return UtilFunctions.tanimotoCoeff(overlap, a, b);
 		}
-		return Util.overlapCoeff(overlap, a, b);
+		return UtilFunctions.overlapCoeff(overlap, a, b);
 		
 	}
 	

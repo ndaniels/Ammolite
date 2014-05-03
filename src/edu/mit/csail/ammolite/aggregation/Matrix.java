@@ -12,11 +12,13 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeoutException;
 
-import edu.mit.csail.ammolite.Logger;
-import edu.mit.csail.fmcsj.AbstractMCS;
-import edu.mit.csail.fmcsj.FMCS;
-import edu.mit.csail.fmcsj.MCSFinder;
-import edu.mit.csail.fmcsj.SMSD;
+import edu.mit.csail.ammolite.mcs.AbstractMCS;
+import edu.mit.csail.ammolite.mcs.FMCS;
+import edu.mit.csail.ammolite.mcs.MCSFinder;
+import edu.mit.csail.ammolite.mcs.SMSD;
+import edu.mit.csail.ammolite.utils.Logger;
+import edu.mit.csail.ammolite.utils.Pair;
+import edu.mit.csail.ammolite.utils.ParallelUtils;
 
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -28,6 +30,20 @@ public class Matrix {
 	Map<Cluster, Integer> clusterToInd = new HashMap<Cluster,Integer>();
 	
 	private static final Double FAIL = -1.0;
+	
+	class ClusterDist {
+		public Cluster a;
+		public Cluster b;
+		public double d;
+		public long time;
+		
+		public ClusterDist(Cluster _a, Cluster _b, double _d, long _time){
+			a = _a;
+			b = _b;
+			d = _d;
+			time = _time;
+		}
+	}
 	
 	public Matrix(List<Cluster> _cList){
 		cList = _cList;
