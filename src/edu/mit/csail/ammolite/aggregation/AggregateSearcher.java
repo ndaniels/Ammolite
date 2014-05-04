@@ -32,6 +32,7 @@ import edu.mit.csail.ammolite.mcs.FMCS;
 import edu.mit.csail.ammolite.mcs.MCSFinder;
 import edu.mit.csail.ammolite.search.MolTriple;
 import edu.mit.csail.ammolite.utils.Logger;
+import edu.mit.csail.ammolite.utils.Pair;
 import edu.mit.csail.ammolite.utils.UtilFunctions;
 
 public class AggregateSearcher {
@@ -67,17 +68,21 @@ public class AggregateSearcher {
 		
 		while( queryFile.hasNext() ){
 			IAtomContainer query = db.makeMoleculeStruct(queryFile.next());
-			List<MolTriple> results = singleSearch( query,threshold, useTanimoto);
+			Pair<List> p = singleSearch( query,threshold, useTanimoto);
+			List<MolTriple> results = p.left();
+			List<String> ids = p.right();
 			Logger.experiment("Query ID: "+query.getID()+", Matches: "+results.size());
 			StringBuilder sb = new StringBuilder();
 			
-			for( MolTriple triple : results){
+			for(int i=0; i<results.size(); ++i){
+				MolTriple triple = results.get(i);
+				String id = ids.get(i);
 				if( outFilename.equals("DEV-TEST")){
 					
 					int overlap = triple.getOverlap().get(0).getAtomCount();
 					int a = triple.getQuery().getAtomCount();
 					int b = triple.getMatch().getAtomCount();
-					sb.append(triple.getMatch().getProperty("PUBCHEM_COMPOUND_CID"));
+					sb.append(id);
 					sb.append(": (");
 					sb.append( UtilFunctions.overlapCoeff(overlap, a, b));
 					sb.append(", ");
@@ -98,7 +103,7 @@ public class AggregateSearcher {
 		writer.close();
 	}
 	
-	private List<MolTriple> singleSearch(IAtomContainer query, double threshold, boolean _useTanimoto){
+	private Pair<List> singleSearch(IAtomContainer query, double threshold, boolean _useTanimoto){
 		useTanimoto = _useTanimoto;
 		List<IAtomContainer> matches = new ArrayList<IAtomContainer>();
 		List<Cluster> myCList = new ArrayList<Cluster>(cList);
@@ -125,7 +130,7 @@ public class AggregateSearcher {
 			}
 		}
 		Logger.debug(ids, false);
-		return thresholdMoleculeMatches(query, ids, threshold);
+		return new Pair( thresholdMoleculeMatches(query, ids, threshold), ids);
 	}
 	
 	private List<MolTriple> thresholdMoleculeMatches( IAtomContainer query, List<String>  targetIDs, double threshold){
