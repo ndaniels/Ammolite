@@ -77,10 +77,12 @@ public class AggregateSearcher {
 					int overlap = triple.getOverlap().get(0).getAtomCount();
 					int a = triple.getQuery().getAtomCount();
 					int b = triple.getMatch().getAtomCount();
+					sb.append(triple.getMatch().getID());
+					sb.append(": (");
 					sb.append( UtilFunctions.overlapCoeff(overlap, a, b));
-					sb.append(" ");
+					sb.append(", ");
 					sb.append( UtilFunctions.tanimotoCoeff(overlap, a, b));
-					sb.append(" ");
+					sb.append(") ");
 					
 				} else {
 				    writer.write(triple.getQuery());
