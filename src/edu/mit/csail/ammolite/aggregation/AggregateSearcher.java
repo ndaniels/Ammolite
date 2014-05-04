@@ -77,7 +77,7 @@ public class AggregateSearcher {
 					int overlap = triple.getOverlap().get(0).getAtomCount();
 					int a = triple.getQuery().getAtomCount();
 					int b = triple.getMatch().getAtomCount();
-					sb.append(triple.getMatch().getID());
+					sb.append(triple.getMatch().getProperty("PUBCHEM_COMPOUND_CID"));
 					sb.append(": (");
 					sb.append( UtilFunctions.overlapCoeff(overlap, a, b));
 					sb.append(", ");
