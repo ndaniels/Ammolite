@@ -34,6 +34,12 @@ public class Logger {
 		}
 	}
 	
+	public static void debug(Object in, boolean showMe){
+		if( showDebug && showMe){
+			System.err.println(in);
+		}
+	}
+	
 	public static void error(Object in){
 		System.err.println(in);
 	}

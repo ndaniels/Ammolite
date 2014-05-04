@@ -8,9 +8,9 @@ import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
 
-import edu.mit.csail.fmcsj.AbstractMCS;
-import edu.mit.csail.fmcsj.MCSList;
-import edu.mit.csail.fmcsj.MCSMap;
+import edu.mit.csail.ammolite.mcs.AbstractMCS;
+import edu.mit.csail.ammolite.mcs.MCSList;
+import edu.mit.csail.ammolite.mcs.MCSMap;
 
 public class FMCS extends AbstractMCS{
 	

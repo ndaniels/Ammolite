@@ -15,6 +15,8 @@ import edu.mit.csail.ammolite.mcs.AbstractMCS;
 import edu.mit.csail.ammolite.mcs.FMCS;
 import edu.mit.csail.ammolite.utils.UtilFunctions;
 
+import edu.mit.csail.ammolite.utils.Logger;
+
 public class MolSearcher implements IMolSearcher {
 
 	private StructDatabase db;
@@ -29,11 +31,11 @@ public class MolSearcher implements IMolSearcher {
 	public MolTriple[] search(IAtomContainer query, double threshold, double probability) {
 		query = new AtomContainer(AtomContainerManipulator.removeHydrogens(query));
 		double repThreshold = db.convertThreshold(threshold, probability, useTanimoto);
-		edu.mit.csail.ammolite.utils.Logger.debug("Using rep threshold of "+repThreshold);
+		Logger.debug("Using rep threshold of "+repThreshold);
 		String[] repMatches = thresholdRepMatches( query, repThreshold);
-		edu.mit.csail.ammolite.utils.Logger.debug("Found "+repMatches.length+" representative matches");
+		Logger.debug("Found "+repMatches.length+" representative matches");
 		List<MolTriple> molMatches = thresholdMoleculeMatches( query, repMatches, threshold);
-		edu.mit.csail.ammolite.utils.Logger.debug("Found "+molMatches.size()+" molecule matches");
+		Logger.debug("Found "+molMatches.size()+" molecule matches");
 		return molMatches.toArray(new MolTriple[0]);
 	}
 
@@ -75,9 +77,9 @@ public class MolSearcher implements IMolSearcher {
 		
 		while( structs.hasNext() ){
 			if( count % 50 == 0){
-				edu.mit.csail.ammolite.utils.Logger.debug("Scanned "+count+" representatives");
-				edu.mit.csail.ammolite.utils.Logger.debug("Working for "+(System.currentTimeMillis()-startTime)+" milliseconds total");
-				edu.mit.csail.ammolite.utils.Logger.debug("In MCS for "+timeInMCS+" milliseconds");
+				Logger.debug("Scanned "+count+" representatives");
+				Logger.debug("Working for "+(System.currentTimeMillis()-startTime)+" milliseconds total");
+				Logger.debug("In MCS for "+timeInMCS+" milliseconds");
 			}
 			target = (MoleculeStruct) structs.next();
 

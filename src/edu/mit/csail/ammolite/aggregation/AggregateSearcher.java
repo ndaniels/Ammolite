@@ -122,7 +122,7 @@ public class AggregateSearcher {
 				ids.add(match.getID());
 			}
 		}
-		Logger.debug(ids);
+		Logger.debug(ids, false);
 		return thresholdMoleculeMatches(query, ids, threshold);
 	}
 	

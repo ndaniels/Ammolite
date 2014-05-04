@@ -15,8 +15,9 @@ import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.io.iterator.IteratingSDFReader;
 
-import edu.mit.csail.fmcsj.FMCS;
-import edu.mit.csail.fmcsj.MolStruct;
+import edu.mit.csail.ammolite.compression.MoleculeStruct;
+import edu.mit.csail.ammolite.mcs.FMCS;
+
 
 
 public class FMCSTest{
@@ -58,8 +59,8 @@ public class FMCSTest{
 		int molOffset = randomMolecules.size()/2;
 		long totalTime = 0;
 		for(int i=0; i<molOffset; ++i){
-			MolStruct a = new MolStruct(randomMolecules.get(i));
-			MolStruct b = new MolStruct(randomMolecules.get(i+molOffset));
+			MoleculeStruct a = new MoleculeStruct(randomMolecules.get(i));
+			MoleculeStruct b = new MoleculeStruct(randomMolecules.get(i+molOffset));
 			FMCS myFMCS = new FMCS(a,b);
 			totalTime += myFMCS.calculate();
 		}

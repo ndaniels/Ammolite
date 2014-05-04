@@ -39,6 +39,7 @@ import edu.mit.csail.ammolite.database.StructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseCompressor;
 import edu.mit.csail.ammolite.database.StructDatabaseCoreData;
 import edu.mit.csail.ammolite.utils.Logger;
+import edu.mit.csail.ammolite.utils.ParallelUtils;
 import edu.ucla.sspace.graph.isomorphism.VF2IsomorphismTester;
 
 /*
@@ -238,16 +239,13 @@ public class StructCompressor {
         }
 	}
 	
-	private boolean parrallelIsomorphism(MoleculeStruct structure, List<MoleculeStruct> potential_matches) throws InterruptedException, ExecutionException{
-		long parallelStartTime = System.currentTimeMillis();
-		int threads = Runtime.getRuntime().availableProcessors();
-	    ExecutorService service = Executors.newFixedThreadPool(threads);
-	    
-	    List<Future<Boolean>> futures = new ArrayList<Future<Boolean>>();
+	private boolean parrallelIsomorphism(MoleculeStruct structure, List<MoleculeStruct> potentialMatches) throws InterruptedException, ExecutionException{
+
+	    List<Callable<Boolean>> callList = new ArrayList<Callable<Boolean>>(potentialMatches.size());
 	    
 	    final MoleculeStruct fStruct = structure;
 	    
-	    for (final MoleculeStruct candidate: potential_matches) {
+	    for (final MoleculeStruct candidate: potentialMatches) {
 	    	
 	        Callable<Boolean> callable = new Callable<Boolean>() {
 	        	
@@ -256,39 +254,18 @@ public class StructCompressor {
 	            	boolean iso = candidate.isIsomorphic(fStruct, iso_tester);
 	            	if( iso ){
 	            		candidate.addID( fStruct.getID());
+	            		return iso;
 	            	} else {
 	            		fruitless_comparisons.incrementAndGet();
 	            	}
-	                return iso;
+	                return null;
 	            }
 	        };
-	        
-	        futures.add(service.submit(callable));
+	        callList.add(callable);
+
 	    }
 
-	    int minSecs = 60;
-	    int secsAllowedPerIsoCalc =(int) (minSecs * ((float) futures.size()) / ((float) threads) );
-	    if( secsAllowedPerIsoCalc < minSecs){
-	    	secsAllowedPerIsoCalc = minSecs;
-	    }
-	    
-	    for (Future<Boolean> future : futures) {
-	    	boolean myResult = false;
-
-    		try {
-				myResult = future.get( secsAllowedPerIsoCalc, TimeUnit.SECONDS);
-			} catch (TimeoutException e) {
-				Logger.error("Time out while searching for representatives isomorphic to "+structure.getID()+ " after "+secsAllowedPerIsoCalc+" seconds");
-				e.printStackTrace();
-			}
-
-	        if( myResult){
-	        	service.shutdown();
-	        	return true;
-	        }
-	    }
-	    service.shutdown();
-	    return false;
+	    return ParallelUtils.parallelTimedSingleExecution( callList, 60*1000);
 	    
 	}
 	

@@ -2,7 +2,7 @@ package edu.mit.csail.ammolite.mcs;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
-import edu.mit.csail.fmcsj.SMSD;
+import edu.mit.csail.ammolite.mcs.SMSD;
 
 public class MCSFinder extends SMSD {
 

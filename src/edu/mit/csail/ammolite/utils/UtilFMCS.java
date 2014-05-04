@@ -19,7 +19,7 @@ import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.compression.FragStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStruct;
 import edu.mit.csail.ammolite.mcs.*;
-import edu.mit.csail.fmcsj.FMCS;
+
 
 
 public class UtilFMCS {

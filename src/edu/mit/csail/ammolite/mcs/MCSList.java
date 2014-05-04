@@ -10,8 +10,8 @@ import java.util.Set;
 
 import org.openscience.cdk.interfaces.IAtom;
 
-import edu.mit.csail.fmcsj.MCSIterator;
-import edu.mit.csail.fmcsj.MCSList;
+import edu.mit.csail.ammolite.mcs.MCSIterator;
+import edu.mit.csail.ammolite.mcs.MCSList;
 
 public class MCSList<T> implements Iterable<T>{
 	private ArrayList<T> myList;

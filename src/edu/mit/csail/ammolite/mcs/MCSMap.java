@@ -8,8 +8,8 @@ import java.util.Map;
 
 import org.openscience.cdk.interfaces.IAtom;
 
-import edu.mit.csail.fmcsj.MCSList;
-import edu.mit.csail.fmcsj.MCSMap;
+import edu.mit.csail.ammolite.mcs.MCSList;
+import edu.mit.csail.ammolite.mcs.MCSMap;
 
 /**
  * @author DC

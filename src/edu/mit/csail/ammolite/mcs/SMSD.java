@@ -12,7 +12,7 @@ import org.openscience.smsd.AtomAtomMapping;
 import org.openscience.smsd.Isomorphism;
 import org.openscience.smsd.interfaces.Algorithm;
 
-import edu.mit.csail.fmcsj.AbstractMCS;
+import edu.mit.csail.ammolite.mcs.AbstractMCS;
 
 public class SMSD extends AbstractMCS {
 	protected Isomorphism comparison = null;

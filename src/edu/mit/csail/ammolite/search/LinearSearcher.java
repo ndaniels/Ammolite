@@ -119,7 +119,7 @@ public class LinearSearcher implements IBatchSearcher {
 			callList.add(callable);
 		}
 		
-		return ParallelUtils.parallelFullExecution(callables);
+		return ParallelUtils.parallelFullExecution(callList);
 	}
 	
 	private IteratingSDFReader openSDF(String filename){

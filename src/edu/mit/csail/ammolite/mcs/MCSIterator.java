@@ -3,7 +3,7 @@ package edu.mit.csail.ammolite.mcs;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import edu.mit.csail.fmcsj.MCSList;
+import edu.mit.csail.ammolite.mcs.MCSList;
 
 public class MCSIterator<T> implements Iterator<T> {
 	private MCSList<T> list;
