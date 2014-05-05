@@ -242,9 +242,7 @@ public class StructCompressor {
 	private boolean parrallelIsomorphism(MoleculeStruct structure, List<MoleculeStruct> potentialMatches) throws InterruptedException, ExecutionException{
 
 	    List<Callable<Boolean>> callList = new ArrayList<Callable<Boolean>>(potentialMatches.size());
-	    
 	    final MoleculeStruct fStruct = structure;
-	    
 	    for (final MoleculeStruct candidate: potentialMatches) {
 	    	
 	        Callable<Boolean> callable = new Callable<Boolean>() {
@@ -264,9 +262,13 @@ public class StructCompressor {
 	        callList.add(callable);
 
 	    }
+	    Boolean success = ParallelUtils.parallelTimedSingleExecution( callList, 60*1000);
+	    if(success == null){
+	    	return false;
+	    } else {
+	    	return true;
+	    }
 
-	    return ParallelUtils.parallelTimedSingleExecution( callList, 60*1000);
-	    
 	}
 	
 	

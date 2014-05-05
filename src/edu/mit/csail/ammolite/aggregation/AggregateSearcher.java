@@ -68,25 +68,26 @@ public class AggregateSearcher {
 		
 		while( queryFile.hasNext() ){
 			IAtomContainer query = db.makeMoleculeStruct(queryFile.next());
-			Pair<List> p = singleSearch( query,threshold, useTanimoto);
-			List<MolTriple> results = p.left();
-			List<String> ids = p.right();
+
+			List<MolTriple> results = singleSearch( query,threshold, useTanimoto);
 			Logger.experiment("Query ID: "+query.getID()+", Matches: "+results.size());
 			StringBuilder sb = new StringBuilder();
 			
 			for(int i=0; i<results.size(); ++i){
 				MolTriple triple = results.get(i);
-				String id = ids.get(i);
 				if( outFilename.equals("DEV-TEST")){
 					
 					int overlap = triple.getOverlap().get(0).getAtomCount();
 					int a = triple.getQuery().getAtomCount();
 					int b = triple.getMatch().getAtomCount();
-					sb.append(id);
-					sb.append(": (");
-					sb.append( UtilFunctions.overlapCoeff(overlap, a, b));
+					sb.append("(");
+					sb.append(triple.getMatch().getProperty("PUBCHEM_COMPOUND_CID"));
 					sb.append(", ");
-					sb.append( UtilFunctions.tanimotoCoeff(overlap, a, b));
+					sb.append(overlap);
+					sb.append(", ");
+					sb.append(a);
+					sb.append(", ");
+					sb.append(b);
 					sb.append(") ");
 					
 				} else {
@@ -103,7 +104,7 @@ public class AggregateSearcher {
 		writer.close();
 	}
 	
-	private Pair<List> singleSearch(IAtomContainer query, double threshold, boolean _useTanimoto){
+	private  List<MolTriple> singleSearch(IAtomContainer query, double threshold, boolean _useTanimoto){
 		useTanimoto = _useTanimoto;
 		List<IAtomContainer> matches = new ArrayList<IAtomContainer>();
 		List<Cluster> myCList = new ArrayList<Cluster>(cList);
@@ -130,7 +131,7 @@ public class AggregateSearcher {
 			}
 		}
 		Logger.debug(ids, false);
-		return new Pair( thresholdMoleculeMatches(query, ids, threshold), ids);
+		return thresholdMoleculeMatches(query, ids, threshold);
 	}
 	
 	private List<MolTriple> thresholdMoleculeMatches( IAtomContainer query, List<String>  targetIDs, double threshold){
@@ -139,7 +140,7 @@ public class AggregateSearcher {
 		
 		for(String id: targetIDs){
 			target = db.getMolecule(id);
-			target = new AtomContainer(AtomContainerManipulator.removeHydrogens(target));
+			//target = new AtomContainer(AtomContainerManipulator.removeHydrogens(target));
 			boolean timeOut = false;
 			AbstractMCS myMCS = new MCSFinder(query,target);
 			myMCS.calculate();

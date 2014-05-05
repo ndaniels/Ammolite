@@ -34,20 +34,26 @@ public class ClusterDatabase{
 		sb.append(db.info());
 		sb.append("Compressed with boundary: ");
 		sb.append(repBound);
-		if(db.numReps() < 100){
-			sb.append("\n Cluster structure: \n");
-			for(Cluster c: cList){
-				sb.append(clusterToASCIIForest(c));
-			}
+		sb.append("\n Cluster structure: \n");
+		for(Cluster c: cList){
+			sb.append(clusterToASCIIForest(c));
 		}
 		sb.append("\n");
 		return sb.toString();
 	}
 	
 	private String clusterToASCIIForest(Cluster c){
-		
+		return clusterToASCIIForest(c, 0);
+	}
+	
+	private String clusterToASCIIForest(Cluster c, int depth){
+		if( depth >= 8){
+			return "(...)";
+		}
 		StringBuilder nameBuilder = new StringBuilder();
 		nameBuilder.append("(");
+		nameBuilder.append(c.getRep().getAtomCount());
+		nameBuilder.append(", ");
 		nameBuilder.append(c.order());
 		if( c.getMembers().size() == 0){
 			nameBuilder.append(", ");
