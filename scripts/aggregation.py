@@ -1,6 +1,10 @@
 from subprocess import call
 from os import mkdir, listdir
+from time import strftime
 import sys
+
+def date():
+	print( "Current date & time " + strftime("%c"))
 
 def buildCompressedDB(sdfName, dbName):
 	command = "./Ammolite compress -s {} -t {}".format(sdfName, dbName)
@@ -20,6 +24,7 @@ def buildAggs(path, name):
 	buildCompressedDB(path,dbName)
 	dbName =  dbName + ".adb"
 	for cRatio in [0.6,0.7,0.8,0.9]:
+		date()
 		aggName = "{}/{}_{}".format(folderName,name,cRatio)
 		buildAggregate(dbName, aggName, cRatio)
 	return folderName
@@ -38,6 +43,7 @@ def searchAggs( folderName, queries):
 	for f in files:
 		for thresh in [0.6, 0.7, 0.8, 0.9]:
 			for compBound in [0.4, 0.5, 0.6, 0.7, 0.8]:
+				date()
 				fName = "{}/{}".format(folderName, f)
 				searchAggregate(fName, queries, thresh, compBound)
 
