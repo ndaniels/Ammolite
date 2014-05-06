@@ -72,7 +72,7 @@ object AmmoliteMain{
 			val threshold = opt[Double]("threshold", descr="Threshold to use. Uses overlap coefficient by default.")
 		    val tanimoto = opt[Boolean]("tanimoto", descr="Use tanimoto coefficients.", default=Some(false))
 		    val target = opt[String]("target", required=true, descr="Make an SDF file of the search results. First molecule is the query, second is the match, third is the overlap.")
-		    val searchbound = opt[Double]("search-boundary", default=Some(0.5), descr="how similar clusters have to be")
+		    val searchbound = opt[Double]("search-boundary", default=Some(0.5), descr="how similar molecules have to be to clusters to match")
 		  }
 			
 		}

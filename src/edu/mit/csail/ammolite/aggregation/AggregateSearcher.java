@@ -38,12 +38,12 @@ import edu.mit.csail.ammolite.utils.UtilFunctions;
 public class AggregateSearcher {
 	private IStructDatabase db;
 	private List<Cluster> cList;
-	private static double searchBound;
+	private static double clusterBound;
 	private boolean useTanimoto = false;
 	private ClusterDatabase cDB;
 	
-	public AggregateSearcher(String clusterDBName, double _searchBound){
-		searchBound = _searchBound;
+	public AggregateSearcher(String clusterDBName, double _clusterBound){
+		clusterBound = _clusterBound;
 		cDB = ClusterDatabaseDecompressor.decompress(clusterDBName);
 		db = cDB.getDatabase();
 		cList = cDB.getClusterList();
@@ -113,7 +113,7 @@ public class AggregateSearcher {
 			Cluster c = myCList.get(0);
 			if(c.order() == 0){
 				matches.add(c.getRep());
-			} else if( c.matchesCluster(query, Math.pow( searchBound, c.order()))){
+			} else if( c.matchesCluster(query, Math.pow( clusterBound, c.order()))){
 				myCList.addAll(c.getMembers());
 			}
 			myCList.remove(c);
