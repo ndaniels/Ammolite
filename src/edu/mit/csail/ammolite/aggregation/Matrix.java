@@ -77,7 +77,7 @@ public class Matrix {
 		long totalMCSTime = 0;
 		List<Long> mcsTimes = new ArrayList<Long>();
 		List<Double> mcsDists = new ArrayList<Double>();
-		for(ClusterDist cd: parDistances()){
+		for(ClusterDist cd: linDistances()){
 			
 			int aInd = clusterToInd.get(cd.a);
 			int bInd = clusterToInd.get(cd.b);
@@ -148,6 +148,25 @@ public class Matrix {
 		}
 		
 		return ParallelUtils.parallelFullExecution(callableList);
+	}
+	
+	private List<ClusterDist> linDistances(){
+		List<ClusterDist> out = new ArrayList<ClusterDist>(cList.size()*cList.size()/2);
+		for(int i=0; i<cList.size(); ++i){
+			for(int j=0; j<i; ++j){
+				Cluster aClust = cList.get(i);
+				Cluster bClust = cList.get(j);
+				IAtomContainer a = new AtomContainer( aClust.getRep() );
+				IAtomContainer b = new AtomContainer( bClust.getRep() );
+				AbstractMCS myMCS = new MCSFinder( a, b);
+				long runTime;
+				runTime = myMCS.timedCalculate();
+				int overlap = myMCS.size();
+				double coeff = tanimotoCoeff( overlap, a.getAtomCount(), b.getAtomCount());
+				out.add( new ClusterDist(aClust,bClust,coeff,runTime));
+			}	
+		}
+		return out;
 	}
 	
 	private double tanimotoCoeff(int overlap, int a, int b){

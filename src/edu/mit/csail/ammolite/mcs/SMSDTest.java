@@ -15,7 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.io.iterator.IteratingSDFReader;
+import edu.mit.csail.ammolite.IteratingSDFReader;
 
 import edu.mit.csail.ammolite.compression.CyclicStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStruct;

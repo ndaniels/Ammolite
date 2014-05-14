@@ -53,6 +53,9 @@ object AmmoliteMain{
 			  val a = opt[String]("a")
 			  val b = opt[String]("b")
 			}
+			val devTestMCS = new Subcommand("test-mcs"){
+			  val sdf = opt[String]("filename")
+			}
 			val examine = new Subcommand("examine"){
 			  val database = opt[String]("database", required=true, descr="Path to the database.") 
 			} 
@@ -100,6 +103,8 @@ object AmmoliteMain{
 		  
 		} else if( opts.subcommand == Some( opts.dev)){
 		  edu.mit.csail.ammolite.utils.UtilFMCS.getCoeffs(opts.dev.a(), opts.dev.b())
+		} else if( opts.subcommand == Some( opts.devTestMCS)){
+		  edu.mit.csail.ammolite.utils.UtilFMCS.testMCS(opts.devTestMCS.sdf())
 		} else if( opts.subcommand == Some( opts.examine)){
 			val db = StructDatabaseDecompressor.decompress( opts.examine.database())
 		    Logger.log(db.info())

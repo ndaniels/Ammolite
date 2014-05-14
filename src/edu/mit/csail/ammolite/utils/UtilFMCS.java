@@ -6,6 +6,8 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeoutException;
 
 import org.openscience.cdk.AtomContainer;
@@ -16,6 +18,7 @@ import org.openscience.cdk.io.SDFWriter;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import edu.mit.csail.ammolite.IteratingSDFReader;
+import edu.mit.csail.ammolite.compression.CyclicStruct;
 import edu.mit.csail.ammolite.compression.FragStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStruct;
 import edu.mit.csail.ammolite.mcs.*;
@@ -155,5 +158,59 @@ public class UtilFMCS {
 			edu.mit.csail.ammolite.MolDrawer.draw(sol, output + i);
 			++i;
 		}
+	}
+	
+	
+	public static void testMCS(String filename){
+		IteratingSDFReader molecules = null;
+		try{
+			
+		FileInputStream fs = new FileInputStream(filename);
+		BufferedReader br = new BufferedReader( new InputStreamReader(fs ));
+		molecules =new IteratingSDFReader( br, DefaultChemObjectBuilder.getInstance());
+		} catch( IOException e){
+			//edu.mit.csail.ammolite.Logger.error("Failed to read file");
+			e.printStackTrace();
+		}
+		
+		List<IAtomContainer> mols = new ArrayList<IAtomContainer>();
+		while(molecules.hasNext()){
+			mols.add( molecules.next());
+		}
+		
+		List<CyclicStruct> structs = new ArrayList<CyclicStruct>(mols.size());
+		for(IAtomContainer mol: mols){
+			structs.add( new CyclicStruct(mol));
+		}
+		
+		int numberOfMolMCS = 0;
+		long molMCSStartTime = System.currentTimeMillis();
+		for(int i=0; i<mols.size(); ++i){
+			for(int j=0; j<i; ++j){
+				MCSFinder myMCS = new MCSFinder(mols.get(i), mols.get(j));
+				myMCS.calculate();
+				numberOfMolMCS++;
+			}
+		}
+		long elapsedMolTime = System.currentTimeMillis() - molMCSStartTime;
+		long aveMolTime = elapsedMolTime / numberOfMolMCS;
+		System.out.println("Did "+numberOfMolMCS+" comparisons of molecules in "+elapsedMolTime+ "ms Average time: "+aveMolTime);
+		
+		int numberOfStructMCS = 0;
+		long molStructStartTime = System.currentTimeMillis();
+		for(int i=0; i<mols.size(); ++i){
+			for(int j=0; j<i; ++j){
+				MCSFinder myMCS = new MCSFinder(structs.get(i), structs.get(j));
+				myMCS.calculate();
+				numberOfStructMCS++;
+			}
+		}
+		long elapsedStructTime = System.currentTimeMillis() - molStructStartTime;
+		long aveStructTime = elapsedStructTime / numberOfStructMCS;
+		System.out.println("Did "+numberOfStructMCS+" comparisons of structures in "+elapsedStructTime+ "ms Average time: "+aveStructTime);
+		
+		
+		
+		
 	}
 }

@@ -87,3 +87,14 @@ But on the chance that aggregation is still too slow I took another look at the 
 
 I built single and multithreaded versions which work the same way conceptually but the multithreaded one is less deterministic. ON my laptop the multithreaded is a little slower but that could easily be because of a high start up cost which would be mitigated on big runs.
 
+5/6/14
+
+Lots of debugging and various stuff. MCS seems a lot slower on ent when compressing 1k I added timed run to MCS (2 second max) which helps. I also built a pseudo linear version which doesn't try to build good clusters, it just tries to build clusters. This is a lot faster.
+
+Currently running a big script on ent which aggregates at a lot of different cluster strictnesses then searches the clusters at different thresholds and cluster strictnesses.
+
+Should provide enough data to tune one or two big runs. whoch will give us timing and accuracy.
+
+
+
+

@@ -63,7 +63,7 @@ public class Aggregator {
 				
 			} else {
 				long lineStartTime = System.currentTimeMillis();
-				cList = parallelLinearFold( cList);
+				cList = linearFold( cList);
 				long lineTime = System.currentTimeMillis() - lineStartTime;
 				Logger.debug("Did parallel pseudolinear clustering in "+lineTime);
 			}
