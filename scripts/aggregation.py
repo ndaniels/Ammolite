@@ -32,16 +32,18 @@ def buildAggs(path, name):
 " ./Ammolite aggsearch -c 1k_pseudolinear_7.clusters.adb -q molecule_sets/smalls/100_random_molecules.sdf -t 0.8 --target DEV-TEST 2>&1 | tee 100_over_1k.log"
 
 def searchAggregate( aggregate, queries, threshold, compBound):
-	logName = "{}_{}_{}".format(aggregate.split(".")[0], queries.split("/")[-1], threshold)
+	aggName = aggregate[:-13]
+	compressionRatio = float( aggName.split("_")[1])
+	logName = "threshold_{}_clusterBound_{}_compressionRatio_{}".format(threshold, compBound, compressionRatio)
 	command = "./Ammolite aggsearch -c {} -q {} -t {} -s {} --target DEV-TEST 2>&1 | tee {}".format(aggregate, queries, threshold, compBound, logName)
 	print( "Running: "+ command)
 	call( command, shell=True)
 
 def searchAggs( folderName, queries):
 	files = listdir( folderName)
-	files = [ f for f in files if f.split(".")[-2] == "clusters"]
+	files = [ f for f in files if len(f) >= 13 and f[-13:] == ".clusters.adb"]
 	for f in files:
-		for thresh in [0.6, 0.7, 0.8, 0.9]:
+		for thresh in [0.0]:
 			for compBound in [0.4, 0.5, 0.6, 0.7, 0.8]:
 				date()
 				fName = "{}/{}".format(folderName, f)
@@ -51,5 +53,5 @@ def searchAggs( folderName, queries):
 
 if __name__ == "__main__":
 	args = sys.argv
-	folderName = buildAggs(args[1], args[2])
-	searchAggs(folderName, args[1])
+	# folderName = buildAggs(args[1], args[2])
+	searchAggs(args[2], args[1])

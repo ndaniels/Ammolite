@@ -201,7 +201,7 @@ public class UtilFMCS {
 		for(int i=0; i<mols.size(); ++i){
 			for(int j=0; j<i; ++j){
 				MCSFinder myMCS = new MCSFinder(structs.get(i), structs.get(j));
-				myMCS.calculate();
+				myMCS.timedCalculate(1500);
 				numberOfStructMCS++;
 			}
 		}
