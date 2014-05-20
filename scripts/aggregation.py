@@ -35,7 +35,7 @@ def searchAggregate( aggregate, queries, threshold, compBound):
 	aggName = aggregate[:-13]
 	compressionRatio = float( aggName.split("_")[1])
 	logName = "threshold_{}_clusterBound_{}_compressionRatio_{}".format(threshold, compBound, compressionRatio)
-	command = "./Ammolite aggsearch -c {} -q {} -t {} -s {} --target DEV-TEST 2>&1 | tee {}".format(aggregate, queries, threshold, compBound, logName)
+	command = "./Ammolite aggsearch -c {} -q {} -t {} -s {} --target DEV-TEST 2>&1 {}".format(aggregate, queries, threshold, compBound, logName)
 	print( "Running: "+ command)
 	call( command, shell=True)
 
