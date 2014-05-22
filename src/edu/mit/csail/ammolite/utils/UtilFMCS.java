@@ -178,37 +178,93 @@ public class UtilFMCS {
 			mols.add( molecules.next());
 		}
 		
-		List<CyclicStruct> structs = new ArrayList<CyclicStruct>(mols.size());
+		List<MoleculeStruct> structs = new ArrayList<MoleculeStruct>(mols.size());
 		for(IAtomContainer mol: mols){
 			structs.add( new CyclicStruct(mol));
 		}
 		
-		int numberOfMolMCS = 0;
-		long molMCSStartTime = System.currentTimeMillis();
-		for(int i=0; i<mols.size(); ++i){
-			for(int j=0; j<i; ++j){
-				MCSFinder myMCS = new MCSFinder(mols.get(i), mols.get(j));
-				myMCS.calculate();
-				numberOfMolMCS++;
-			}
-		}
-		long elapsedMolTime = System.currentTimeMillis() - molMCSStartTime;
-		long aveMolTime = elapsedMolTime / numberOfMolMCS;
-		System.out.println("Did "+numberOfMolMCS+" comparisons of molecules in "+elapsedMolTime+ "ms Average time: "+aveMolTime);
-		
+//		// SMSD Molecules
+//		List<Integer> smsdSizes = new ArrayList<Integer>(mols.size()*mols.size() / 2);
+//		int numberOfMolMCS = 0;
+//		long molMCSStartTime = System.currentTimeMillis();
+//		for(int i=0; i<mols.size(); ++i){
+//			for(int j=0; j<i; ++j){
+//				AbstractMCS myMCS = new SMSD(mols.get(i), mols.get(j));
+//				myMCS.timedCalculate(2000);
+//				smsdSizes.add(myMCS.size());
+//				numberOfMolMCS++;
+//			}
+//		}
+//		long elapsedMolTime = System.currentTimeMillis() - molMCSStartTime;
+//		long aveMolTime = elapsedMolTime / numberOfMolMCS;
+//		System.out.println("Did "+numberOfMolMCS+" comparisons of molecules in "+elapsedMolTime+ "ms with SMSD. Average time: "+aveMolTime);
+//		
+		// SMSD Structures
+		List<Integer> smsdStructSizes = new ArrayList<Integer>(mols.size()*mols.size() / 2);
 		int numberOfStructMCS = 0;
 		long molStructStartTime = System.currentTimeMillis();
 		for(int i=0; i<mols.size(); ++i){
 			for(int j=0; j<i; ++j){
-				MCSFinder myMCS = new MCSFinder(structs.get(i), structs.get(j));
-				myMCS.timedCalculate(1500);
+				AbstractMCS myMCS = new SMSD(structs.get(i), structs.get(j));
+				myMCS.timedCalculate(2000);
+				smsdStructSizes.add(myMCS.size());
 				numberOfStructMCS++;
 			}
 		}
 		long elapsedStructTime = System.currentTimeMillis() - molStructStartTime;
 		long aveStructTime = elapsedStructTime / numberOfStructMCS;
-		System.out.println("Did "+numberOfStructMCS+" comparisons of structures in "+elapsedStructTime+ "ms Average time: "+aveStructTime);
+		System.out.println("Did "+numberOfStructMCS+" comparisons of structures in "+elapsedStructTime+ "ms with SMSD. Average time: "+aveStructTime);
 		
+		// IsoRank Structures
+		List<Integer> isoStructSizes = new ArrayList<Integer>(mols.size()*mols.size() / 2);
+		int numberOfIsoMCS = 0;
+		long isoStartTime = System.currentTimeMillis();
+		for(int i=0; i<mols.size(); ++i){
+			for(int j=0; j<i; ++j){
+				IsoRank myMCS = new IsoRank(structs.get(i), structs.get(j));
+				myMCS.calculate();
+				isoStructSizes.add(myMCS.size());
+				numberOfIsoMCS++;
+			}
+		}
+		long elapsedIsoTime = System.currentTimeMillis() - isoStartTime;
+		long aveIsoTime = elapsedIsoTime / numberOfIsoMCS;
+		System.out.println("Did "+numberOfIsoMCS+" comparisons of structures in "+elapsedIsoTime+ "ms with IsoRank. Average time: "+aveIsoTime);
+		
+		// IsoRank SMSD comparison
+		int equal = 0;
+		int isoBigger = 0;
+		int smsdBigger = 0;
+		int oneOff = 0;
+		int twoOff = 0;
+		int manyOff = 0;
+		
+		for(int i=0; i<isoStructSizes.size(); ++i){
+			int iso = isoStructSizes.get(i);
+			int smsd = smsdStructSizes.get(i);
+			if(iso == smsd)
+				equal++;
+			else if(iso < smsd)
+				smsdBigger++;
+			else 
+				isoBigger++;
+			
+			int diff = Math.abs(iso - smsd);
+			if( diff == 1 )
+				oneOff++;
+			else if (diff == 2)
+				twoOff++;
+			else
+				manyOff++;
+		}
+		
+		System.out.println("Compared results from SMSD and IsoRank.");
+		System.out.println("IsoRank found a larger mcs "+isoBigger+" times.");
+		System.out.println("SMSD found a larger mcs "+smsdBigger+" times.");
+		System.out.println("They found the same size mcs "+equal+" times.");
+		System.out.println("The mcs found were one off "+oneOff+" times");
+		System.out.println("The mcs found were two off "+twoOff+" times");
+		System.out.println("The mcs found were more than two off "+manyOff+" times");
 		
 		
 		

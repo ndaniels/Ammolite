@@ -95,6 +95,12 @@ Currently running a big script on ent which aggregates at a lot of different clu
 
 Should provide enough data to tune one or two big runs. whoch will give us timing and accuracy.
 
+5/20/14
+
+Davids-MacBook-Air-3:MolSearch DC$ ./Ammolite test-mcs -f molecule_sets/smalls/100_random_molecules.sdf 
+Did 4950 comparisons of molecules in 159116ms Average time: 32
+Did 4950 comparisons of structures in 492988ms Average time: 99
+
 
 
 
