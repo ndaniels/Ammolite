@@ -28,6 +28,7 @@ public class IsoRank{
 	Graph mcs;
 	
 	final static double ZERO_THRESH = 0.000000000001;
+	final static double EMPIRICAL_EDGE_CUTOFF = 0.0546875;
 	
 	
 	public IsoRank( MoleculeStruct m1, MoleculeStruct m2){ 
@@ -64,7 +65,7 @@ public class IsoRank{
 
 			int maxDex = R.getMaxIndex();
 
-			if(R.getEntry(maxDex) > ZERO_THRESH){
+			if(R.getEntry(maxDex) > EMPIRICAL_EDGE_CUTOFF){
 				int i = maxDex / g2.order();
 				int j = maxDex - i*g2.order();
 				mapping.put(i, j);
