@@ -14,52 +14,53 @@ import edu.mit.csail.ammolite.mcs.MCSIterator;
 import edu.mit.csail.ammolite.mcs.MCSList;
 
 public class MCSList<T> implements Iterable<T>{
-	private ArrayList<T> myList;
-	private Map<T,Integer> els;
+	private List<T> myList;
+	private Map<T,Integer> atomsToCounts = new HashMap<T,Integer>();
+	int mySize = 0;
 	
 	public MCSList( List<T> l){
-		myList = new ArrayList<T>(l);
-		els = new HashMap<T,Integer>();
-		for(int i=0; i<myList.size(); ++i){
-			els.put(myList.get(i),i);
+		myList = new ArrayList<T>(l.size()); 
+		mySize = myList.size();
+		for(T el: l){
+			this.push(el);
 		}
 
 	}
 	
 	public MCSList(){
 		myList = new ArrayList<T>();
-		els = new HashMap<T,Integer>();
 	}
 
 
 	public MCSList(MCSList<T> l) {
 		myList = new ArrayList<T>();
-		els = new HashMap<T,Integer>();
 		for(T el: l){
 			this.push(el);
 		}
 	}
 	
 	public void push(T el){
-		if(els.containsKey(el)){
-			int count = els.get(el);
+		if(atomsToCounts.containsKey(el)){
+			int count = atomsToCounts.get(el);
 			++count;
-			els.put(el,count);
+			atomsToCounts.put(el,count);
 		} else {
-			els.put(el, 1);
+			atomsToCounts.put(el, 1);
 		}
 		myList.add(el);
+		mySize++;
 	}
 	
 	public T pop(){
 		T el = myList.get(myList.size() - 1);
 		myList.remove( myList.size() - 1);
-		int count = els.get(el);
+		mySize--;
+		int count = atomsToCounts.get(el);
 		--count;
 		if(count == 0){
-			els.remove(el);
+			atomsToCounts.remove(el);
 		} else {
-			els.put(el, count);
+			atomsToCounts.put(el, count);
 		}
 		return el;
 	}
@@ -69,11 +70,11 @@ public class MCSList<T> implements Iterable<T>{
 	}
 	
 	public int size(){
-		return myList.size();
+		return mySize;
 	}
 	
 	public boolean contains(T el){
-		return els.containsKey(el);
+		return atomsToCounts.containsKey(el);
 	}
 	
 	@Override
@@ -104,7 +105,7 @@ public class MCSList<T> implements Iterable<T>{
 	}
 	
 	public Map<T,Integer> getElementsByCount(){
-		return els;
+		return atomsToCounts;
 	}
 
 	public T get(int j) {
@@ -112,8 +113,9 @@ public class MCSList<T> implements Iterable<T>{
 	}
 	
 	public void clear() {
-		els.clear();
+		atomsToCounts.clear();
 		myList.clear();
+		mySize = 0;
 	}
 	
 	@Override
@@ -123,12 +125,13 @@ public class MCSList<T> implements Iterable<T>{
 	
 	public void remove(T el) {
 		myList.remove(el);
-		int count = els.get(el);
+		mySize--;
+		int count = atomsToCounts.get(el);
 		--count;
 		if(count == 0){
-			els.remove(el);
+			atomsToCounts.remove(el);
 		} else {
-			els.put(el, count);
+			atomsToCounts.put(el, count);
 		}
 	}
 	
@@ -136,14 +139,15 @@ public class MCSList<T> implements Iterable<T>{
 		return this.size() == 0;
 	}
 	
+	
 	private void check(){
-		if(!(myList.size() == els.size())){
+		if(!(myList.size() == atomsToCounts.size())){
 			throw new IllegalStateException("List sizes mismatched");
 		} 
 		
 		for(int i=0; i<size(); ++i){
 			T el = myList.get(i);
-			if(!els.get(el).equals(i)){
+			if(!atomsToCounts.get(el).equals(i)){
 				throw new IllegalStateException("Map points to wrong index");
 			}
 		}

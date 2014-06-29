@@ -35,6 +35,8 @@ public class FMCS extends AbstractMCS{
 	 */
 	public FMCS(IAtomContainer _compoundOne, IAtomContainer _compoundTwo) {
 		super(_compoundOne, _compoundTwo);
+		smallCompound = new FMCSAtomContainer( smallCompound);
+		bigCompound = new FMCSAtomContainer( bigCompound);
  		boolean flexible = false;
  		if( flexible){
  			atomMismatchUpperBound = 1;
@@ -157,8 +159,6 @@ public class FMCS extends AbstractMCS{
 			= new MCSList<IAtom>( bigCompound.getConnectedAtomsList( atom2 )); 
 		
 		for(IAtom atom2N: atomTwoNeighborList){
-
-			
 			if( currentMapping.containsVal( atom2N ) ){
 				IAtom k = currentMapping.getKey( atom2N );
 				currNeighborMapping.push(k);

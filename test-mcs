@@ -1,0 +1,1 @@
+ant; ./Ammolite test-mcs -f "$@"

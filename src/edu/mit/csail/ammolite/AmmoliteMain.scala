@@ -50,8 +50,7 @@ object AmmoliteMain{
 			  val sdf = opt[String]("sdf", required=true, descr="Name of the file where you want the overlap results")
 			}
 			val dev = new Subcommand("dev"){
-			  val a = opt[String]("a")
-			  val b = opt[String]("b")
+			  val f = opt[String]("f")
 			}
 			val devTestMCS = new Subcommand("test-mcs"){
 			  val sdf = opt[String]("filename")
@@ -102,7 +101,7 @@ object AmmoliteMain{
 		  edu.mit.csail.ammolite.utils.UtilFMCS.doFMCS(opts.mcs.molecules(), opts.mcs.sdf())
 		  
 		} else if( opts.subcommand == Some( opts.dev)){
-		  edu.mit.csail.ammolite.utils.UtilFMCS.getCoeffs(opts.dev.a(), opts.dev.b())
+		  edu.mit.csail.ammolite.utils.UtilFMCS.getCoeffs(opts.dev.f())
 		} else if( opts.subcommand == Some( opts.devTestMCS)){
 		  edu.mit.csail.ammolite.utils.UtilFMCS.testMCS(opts.devTestMCS.sdf())
 		} else if( opts.subcommand == Some( opts.examine)){

@@ -8,8 +8,8 @@ public class UtilFunctions {
 	
 	public static double overlapCoeff(int overlap, int a, int b){
 		if( a < b){
-			return ( (double) overlap) / a;
+			return ( 1.0*overlap) / a;
 		}
-		return ( (double) overlap) / b;
+		return ( 1.0*overlap) / b;
 	}
 }

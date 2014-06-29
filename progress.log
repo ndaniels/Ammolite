@@ -101,6 +101,124 @@ Davids-MacBook-Air-3:MolSearch DC$ ./Ammolite test-mcs -f molecule_sets/smalls/1
 Did 4950 comparisons of molecules in 159116ms Average time: 32
 Did 4950 comparisons of structures in 492988ms Average time: 99
 
+5/27/14
+
+Wrote a paper for 6.100 that outlines where the program is currently and how it works
+Also did some other stuff....
+
+Right now I'm starting to use jProfiler to find slow spots in FMCSj. Here's where things are with 30_random_molcules.sdf
+
+With tuning:   	Did 435 comparisons of molecules in 102276ms with FMCS. Average time: 235
+Without tuning: Did 435 comparisons of molecules in 186671ms with FMCS. Average time: 429
+
+6/12/14 
+
+In Philly and getting to work. Starting by looking at FMCS to see if I can't tune it up some. My first approach is just profiling the version I have running now and cleaning up hot spots. Once I get internet access I'll probably end up modifying the source code for fMCSr (the original) to see if I can figure out how many times it recurses, etc. Might also play with IsoRank to see if I can make it more accurate. 
+
+Pretuning results:
+
+Did 435 comparisons of molecules in 185058ms with FMCS. 	Average time: 425
+Did 435 comparisons of molecules in 9706ms with SMSD. 		Average time: 22
+Did 435 comparisons of structures in 12510ms with SMSD. 	Average time: 28
+Did 435 comparisons of structures in 9010ms with IsoRank. 	Average time: 20
+
+With simple hot spot clean up (only on FMCS, base line results for IsoRank):
+
+Did 435 comparisons of molecules in 104475ms with FMCS. Average time: 240
+Did 435 comparisons of molecules in 9236ms with SMSD. Average time: 21
+Did 435 comparisons of structures in 12620ms with SMSD. Average time: 29
+Did 435 comparisons of structures in 9397ms with IsoRank. Average time: 21
+Compared results from SMSD and IsoRank.
+IsoRank found a larger mcs 197 times.
+SMSD found a larger mcs 182 times.
+They found the same size mcs 56 times.
+The mcs found were one off 92 times
+The mcs found were two off 95 times
+The mcs found were more than two off 248 times
+
+More complicated hot spots to look at:
+
+MCS Iterator
+MCSMap.containsVal
+cdk.bond.contains
+MCSList.init
+FMCS.compatible
+
+Might have found a bug while trying to play with MCSList. When intialized from an ArrayList MCSList put each atom into a table with their index rather than counting the number of times each atom occurred.
+
+Did 435 comparisons of molecules in 114429ms with FMCS. Average time: 263
+Did 435 comparisons of molecules in 9453ms with SMSD. Average time: 21
+Did 435 comparisons of structures in 12593ms with SMSD. Average time: 28
+Did 435 comparisons of structures in 5944ms with IsoRank. Average time: 13
+
+Well it actually got slower. That sucks.
+
+Did 4950 comparisons of molecules in 1746448ms with FMCS. Average time: 352
+Did 4950 comparisons of molecules in 139913ms with SMSD. Average time: 28
+Did 4950 comparisons of structures in 296700ms with SMSD. Average time: 59
+Did 4950 comparisons of structures in 75695ms with IsoRank. Average time: 15
+Compared results from SMSD and IsoRank.
+IsoRank found a larger mcs 1629 times.
+SMSD found a larger mcs 2282 times.
+They found the same size mcs 1039 times.
+The mcs found were one off 1258 times
+The mcs found were two off 867 times
+The mcs found were more than two off 2825 times
+
+6/13/14
+
+Did 31125 comparisons of molecules in 9,233,036ms with FMCS. Average time: 296
+Did 31125 comparisons of molecules in 1,832,626ms with SMSD. Average time: 58
+Did 31125 comparisons of structures in 6,054,028ms with SMSD. Average time: 194
+Did 31125 comparisons of structures in 532,753ms with IsoRank. Average time: 17
+Compared results from SMSD and IsoRank.
+IsoRank found a larger mcs 11308 times.
+SMSD found a larger mcs 14108 times.
+They found the same size mcs 5,709 times.
+The mcs found were one off 7,700 times
+The mcs found were two off 4,494 times
+The mcs found were more than two off 18,931 times
+
+TODO: compare SMSD and FMCS results. Maybe a better FMCS result is possible with time out?
+
+6/16/14
+
+I've been working with IsoRank a lot today but I'm running into some frustrating errors (Stuff not printing out, not sure why). I'll leave it for now as it's close to practice but I'll come back to it later.
+
+6/17/14 2:30 PM -> 4:35
+
+Glad I left off until today. I was piping my output into a file so I only ever saw the error output. Took about three seconds to figure out.
+
+Also fixed the overflow bug in about 3 seconds. I'm running the AC today, I wonder if that helps me think.
+
+The mapping eigenvector in IsoRank is all zeros, always. Investigating. 
+
+Not the iterative building process (I think). The standard eigen vector process gives all zeros except for the first element which is one. 
+
+My best guess is that the problem with IsoRank is still in the double indexing of the matrices. I really have no idea what that means.
+
+So the internet stopped working... Got it back.
+
+Currently exploring the matlab implementation. Looks like there's a lot about matlba I don't get. Also looking at the canonical pagerank algorithm.
+
+Thought I was getting somewhere but it doesn't seem like it. Over and out for now. I'll try looking at this for a an hour or so tonight then ask Noah for more help.
+
+6/18/14 3:00 PM -> 4:40 PM, 5:10 PM -> 6:10 PM 
+
+Starting up with reading through the matlab code for isoRank again.
+
+Here's my current approach:
+
+I'm going to download matlab and compare output from a few test cases. This is opposed to reading through a lot of matlab code and getting bogged down in a lot of linear algebra I don't understand. Downside might be that I don't understand what's happening even after I run test cases. 
+
+Matlab will take a little while (like 2 days, the internet here is really slow) to download so in the meantime I'm going to start modifying the C++/R implementation of fMCSr to see if I can get some diagnostics. Basically the same approach as above. Let's see how it plays out.
+
+6/19/14 12:30 PM -> 1:50 PM 3:40 PM -> 4:50 PM
+
+Got matlab up and running, now working on isoRank.
+
+Looks like I got a strong correlation between isoRank and SMSD on the 30 set. I'm trying the 100 set now but unfortunatley the implementation is pretty naive so I managaged to slow it down to about 800ms a call. I think a faster implementation will fix that though. 
+
 
 
 

@@ -1,0 +1,1 @@
+ant;  ./Ammolite test-mcs -f "$1" > workspace/june26/"$2"; cd workspace/june26; python ../../scripts/figure-generators/smsdIsoCompare.py "$2"; mol
