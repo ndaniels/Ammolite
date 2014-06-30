@@ -70,8 +70,8 @@ public class IsoRank{
 	
 	public void calculate(){
 		// RealMatrix A = buildNormOutA();
-		SparseMatrix A = buildSparseA();
-		//DualMatrix A = buildDualA();
+		//SparseMatrix A = buildSparseA();
+		DualMatrix A = buildDualA();
 		RealVector R = iterativelyBuildRMaxIter(A);
 		map = buildMapping(R);
 		
