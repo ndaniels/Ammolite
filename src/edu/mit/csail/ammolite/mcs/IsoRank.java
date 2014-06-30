@@ -39,7 +39,8 @@ public class IsoRank{
 	Map<Integer,Integer> map;
 	
 	final static double ZERO_THRESH = 0.0000001;
-	final static double CONVERGENCE_THRESHOLD = .001;
+	final static double CONVERGENCE_THRESHOLD = .5;
+	final static int MAX_ITERATIONS = 20;
 
 	public IsoRank( MoleculeStruct m1, MoleculeStruct m2, double baseThresh){ 
 		this( m1.getGraph(), m2.getGraph(), baseThresh);
@@ -69,9 +70,9 @@ public class IsoRank{
 	
 	public void calculate(){
 		// RealMatrix A = buildNormOutA();
-		//SparseMatrix A = buildSparseA();
-		DualMatrix A = buildDualA();
-		RealVector R = iterativelyBuildR(A);
+		SparseMatrix A = buildSparseA();
+		//DualMatrix A = buildDualA();
+		RealVector R = iterativelyBuildRMaxIter(A);
 		map = buildMapping(R);
 		
 //		map = buildMapping(iterativelyBuildR(buildSparseA()));
@@ -286,6 +287,75 @@ public class IsoRank{
 		
 		return R;
 	}
+	
+	private RealVector iterativelyBuildRMaxIter(DualMatrix A){
+		
+		RealVector R = new OpenMapRealVector(A.getColumnDimension());
+		
+		R.mapAddToSelf(1.0);
+		R.unitize();
+
+		int iter = 0;
+		
+		while(iter < MAX_ITERATIONS){
+			R  = A.postOperate(R);
+			try{
+				R.unitize();
+			}
+			catch(MathArithmeticException mae){
+				break;
+			}
+			iter++;
+		}
+		
+		return R;
+	}
+	
+	private RealVector iterativelyBuildRMaxIter(SparseMatrix A){
+		
+		RealVector R = new OpenMapRealVector(A.getColumnDimension());
+		
+		R.mapAddToSelf(1.0);
+		R.unitize();
+
+		int iter = 0;
+		
+		while(iter < MAX_ITERATIONS){
+			R  = A.postOperate(R);
+			try{
+				R.unitize();
+			}
+			catch(MathArithmeticException mae){
+				break;
+			}
+			iter++;
+		}
+		
+		return R;
+	}
+	
+	private RealVector iterativelyBuildRMaxIter(RealMatrix A){
+		
+		RealVector R = new OpenMapRealVector(A.getColumnDimension());
+		
+		R.mapAddToSelf(1.0);
+		R.unitize();
+
+		int iter = 0;
+		
+		while(iter < MAX_ITERATIONS){
+			R  = A.operate(R);
+			try{
+				R.unitize();
+			}
+			catch(MathArithmeticException mae){
+				break;
+			}
+			iter++;
+		}
+		
+		return R;
+	}
 
 	private RealVector iterativelyBuildR(RealMatrix A){
 		
@@ -419,7 +489,7 @@ public class IsoRank{
 		return A;
 	}
 	
-	private RealMatrix buildNormOutA(){
+	private RealMatrix buildRealA(){
 
 		SparseMatrix A = new SparseMatrix( n1*n2,n1*n2);
 		
@@ -453,7 +523,7 @@ public class IsoRank{
 			}
 		}
 
-		return A.getNormOut();
+		return A.getMatrix();
 	}
 	
 	private SparseMatrix buildSparseAdj(SparseUndirectedGraph g){

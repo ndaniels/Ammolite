@@ -6,6 +6,8 @@ import org.apache.commons.math3.linear.OpenMapRealVector;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
 
+import edu.mit.csail.ammolite.utils.UtilFMCS;
+
 public class DualMatrix {
 	SparseMatrix A;
 	SparseMatrix B;
@@ -26,14 +28,21 @@ public class DualMatrix {
 		}
 		
 		RealMatrix rectR = matrixFromVector(R);
-
+//		System.out.println("rectR");
+//		UtilFMCS.prettyPrintMatrix(rectR);
+		
 		RealMatrix T = B.postMultiply(rectR);
-
+//		System.out.println("T");
+//		UtilFMCS.prettyPrintMatrix(T);
+		
 		RealMatrix newR = A.postMultiply(T.transpose());
-		System.out.println( newR);
+//		System.out.println("newR");
+//		UtilFMCS.prettyPrintMatrix(newR);
+		
 		RealVector out = vectorFromMatrix(newR);
 		return out;
 	}
+	
 	
 	private void checkIndices(int row, int col){
 		if( row >= a*b || col >= a*b){
@@ -75,7 +84,7 @@ public class DualMatrix {
 		RealVector R = new OpenMapRealVector(a*b);
 		for(int row=0; row<a; row++){
 			for(int col=0; col<b; col++){
-				int vec = row + col*a;
+				int vec = row*b + col;
 				double val = rectR.getEntry(row, col);
 				R.setEntry(vec, val);
 			}
@@ -84,6 +93,10 @@ public class DualMatrix {
 	}
 
 	public int getColumnDimension() {
+		return a*b;
+	}
+
+	public int getRowDimension() {
 		return a*b;
 	}
 

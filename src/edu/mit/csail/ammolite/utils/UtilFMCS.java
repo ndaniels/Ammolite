@@ -296,30 +296,184 @@ public class UtilFMCS {
 		return isoOverlaps;
 	}
 	
+	public static void prettyPrintMatrix(RealMatrix m){
+		int rows=m.getRowDimension();
+		int cols = m.getColumnDimension();
+		
+		for(int r=0; r<rows; r++){
+			System.out.print(r+":\t{");
+			for(int c=0; c<cols; c++){
+				System.out.print(m.getEntry(r, c));
+				if(c!=cols-1){
+					System.out.print(", ");
+				} else {
+					System.out.println("}");
+				}
+			}
+		}
+	}
+	public static void prettyPrintMatrix(DualMatrix m){
+		int rows=m.getRowDimension();
+		int cols = m.getColumnDimension();
+		
+		for(int r=0; r<rows; r++){
+			System.out.print(r+":\t{");
+			for(int c=0; c<cols; c++){
+				System.out.print(m.getEntry(r, c));
+				if(c!=cols-1){
+					System.out.print(", ");
+				} else {
+					System.out.println("}");
+				}
+			}
+		}
+	}
+	
+	private static SparseMatrix getSparseMatrix(int d){
+		SparseMatrix A = new SparseMatrix(d, d);
+		for(int rowA=0; rowA<d; rowA++){
+			for(int colA=0; colA<rowA; colA++){
+				if(Math.random() <= 2.0 / (d*d)){
+					A.add(rowA, colA, 1.0);
+					A.add(colA, rowA, 1.0);
+				}
+			}
+		}
+		return A;
+	}
+	
+	private static void speedTestMatrices(){
+		SparseMatrix A;
+		SparseMatrix B;
+		RealMatrix rA;
+		RealMatrix rB;
+		DualMatrix D;
+		RealMatrix rD;
+		RealVector V;
+		for(int rep=0; rep<5; rep++){
+		System.out.println("Small Matrices");
+		int sDim = 10;
+		A = getSparseMatrix(sDim);
+		B = getSparseMatrix(sDim);
+		rA = A.getMatrix();
+		rB = B.getMatrix();
+		
+		V = new OpenMapRealVector(sDim);
+		V.mapAddToSelf(1.0);
+		long start = System.currentTimeMillis();
+		for(int iter=0; iter<100; iter++){
+			V = A.postOperate(V);
+		}
+		System.out.println("SparseMatrix took "+(System.currentTimeMillis() - start));
+		
+		V = new OpenMapRealVector(sDim);
+		V.mapAddToSelf(1.0);
+		start = System.currentTimeMillis();
+		for(int iter=0; iter<100; iter++){
+			V = rA.operate(V);
+		}
+		System.out.println("RealMatrix took "+(System.currentTimeMillis() - start));
+		
+		System.out.println("Medium Matrices");
+		int mDim = sDim*sDim;
+		D = new DualMatrix(A,B);
+		A = getSparseMatrix(mDim);
+		B = getSparseMatrix(mDim);
+		rA = A.getMatrix();
+		rB = B.getMatrix();
+		
+		V = new OpenMapRealVector(mDim);
+		V.mapAddToSelf(1.0);
+		start = System.currentTimeMillis();
+		for(int iter=0; iter<100; iter++){
+			V = A.postOperate(V);
+		}
+		System.out.println("SparseMatrix took "+(System.currentTimeMillis() - start));
+		
+		V = new OpenMapRealVector(mDim);
+		V.mapAddToSelf(1.0);
+		start = System.currentTimeMillis();
+		for(int iter=0; iter<100; iter++){
+			V = rA.operate(V);
+		}
+		System.out.println("RealMatrix took "+(System.currentTimeMillis() - start));
+		
+		V = new OpenMapRealVector(mDim);
+		V.mapAddToSelf(1.0);
+		D = new DualMatrix(A,B);
+		start = System.currentTimeMillis();
+		for(int iter=0; iter<100; iter++){
+			V = rA.operate(V);
+		}
+		System.out.println("DualMatrix took "+(System.currentTimeMillis() - start));
+		
+		System.out.println("Large Matrices");
+		int lDim = mDim*mDim;
+		D = new DualMatrix(A,B);
+		A = getSparseMatrix(lDim);
+		B = getSparseMatrix(lDim);
+		rA = A.getMatrix();
+		rB = B.getMatrix();
+		
+		V = new OpenMapRealVector(lDim);
+		V.mapAddToSelf(1.0);
+		start = System.currentTimeMillis();
+		for(int iter=0; iter<100; iter++){
+			V = A.postOperate(V);
+		}
+		System.out.println("SparseMatrix took "+(System.currentTimeMillis() - start));
+		
+		V = new OpenMapRealVector(lDim);
+		V.mapAddToSelf(1.0);
+		start = System.currentTimeMillis();
+		for(int iter=0; iter<100; iter++){
+			V = rA.operate(V);
+		}
+		System.out.println("RealMatrix took "+(System.currentTimeMillis() - start));
+		
+		V = new OpenMapRealVector(lDim);
+		V.mapAddToSelf(1.0);
+		D = new DualMatrix(A,B);
+		start = System.currentTimeMillis();
+		for(int iter=0; iter<100; iter++){
+			V = rA.operate(V);
+		}
+		System.out.println("DualMatrix took "+(System.currentTimeMillis() - start));
+		}
+		
+	}
+	
 	private static boolean testMatrices(){
-		int aDim = 10;
-		int bDim = 25;
+		int aDim = 3;
+		int bDim = 4;
 		SparseMatrix A = new SparseMatrix(aDim, aDim);
 		SparseMatrix B = new SparseMatrix(bDim, bDim);
 		
 		for(int rowA=0; rowA<aDim; rowA++){
-			for(int colA=0; colA<aDim; colA++){
-				if(Math.random() <= 20.0/(aDim*aDim)){
+			for(int colA=0; colA<rowA; colA++){
+				if(Math.random() <= 0.5){
 					A.add(rowA, colA, 1.0);
+					A.add(colA, rowA, 1.0);
 				}
 			}
 		}
 		
 		for(int rowB=0; rowB<bDim; rowB++){
-			for(int colB=0; colB<bDim; colB++){
-				if(Math.random() <= 20.0/(bDim*bDim)){
+			for(int colB=0; colB<rowB; colB++){
+				if(Math.random() <= 0.5){
 					B.add(rowB, colB, 1.0);
+					B.add(colB, rowB, 1.0);
 				}
 			}
 		}
 		
 		RealMatrix rA = A.getMatrix();
 		RealMatrix rB = B.getMatrix();
+		
+//		System.out.println("A");
+//		prettyPrintMatrix(rA);
+//		System.out.println("B");
+//		prettyPrintMatrix(rB);
 		
 		RealMatrix rAA = rA.multiply(rA);
 		RealMatrix rBB = rB.multiply(rB);
@@ -340,14 +494,28 @@ public class UtilFMCS {
 				rD.setEntry(row, col, D.getEntry(row, col));
 			}
 		}
+
+
 		
 		RealVector V = new OpenMapRealVector(rD.getColumn(0));
 		
 		RealVector DV = D.postOperate(V);
 		RealVector rDV = rD.operate(V);
 		
-		if(!DV.equals(rDV)){
+//		System.out.println("ORIGINAL \tDUAL \tREAL");
+//		
+//		for(int i=0; i<dDim; i++){
+//			System.out.print(V.getEntry(i));
+//			System.out.print(" \t");
+//			System.out.print(DV.getEntry(i));
+//			System.out.print(" \t");
+//			System.out.println(rDV.getEntry(i));
+//		}
+		
+		double dist = DV.getDistance(rDV);
+		if(dist > 0.000001){
 			System.err.println("DualMatrix Failed Tests.");
+			System.err.println("Vectors were off by "+ dist);
 			return false;
 		}
 		
@@ -363,6 +531,7 @@ public class UtilFMCS {
 		if(!testMatrices()){
 			System.exit(1);
 		}
+//		speedTestMatrices();
 
 		List<IAtomContainer> mols = parseSDF(filename);
 		
