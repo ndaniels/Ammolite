@@ -170,7 +170,7 @@ public class StructDatabase implements IStructDatabase{
 	
 	public double convertThreshold(double threshold, double probability, boolean useTanimoto){
 		if( compressionType.equals( CompressionType.CYCLIC)){
-			return 0.5 * threshold + 0.3 - 0.2 * probability + 0.2; 
+			return (0.5 * threshold) - (0.2 * probability) + 0.2; 
 		} else {
 			Logger.debug(compressionType);
 		}

@@ -55,6 +55,12 @@ object AmmoliteMain{
 			val devTestMCS = new Subcommand("test-mcs"){
 			  val sdf = opt[String]("filename")
 			}
+			val devTestSearch = new Subcommand("test-search"){
+			  val q = opt[String]("queries")
+			  val db = opt[String]("database")
+			  val t = opt[Double]("threshold")
+			  val p = opt[Double]("prob")
+			}
 			val examine = new Subcommand("examine"){
 			  val database = opt[String]("database", required=true, descr="Path to the database.") 
 			} 
@@ -97,13 +103,15 @@ object AmmoliteMain{
 			searchHandler.handleSearch();
 		  
 		} else if( opts.subcommand ==Some(opts.mcs)){
-		  Logger.log("Finding edu.mit.csail.fmcsj of two molecules")
+		  Logger.log("Finding mcs of two molecules")
 		  edu.mit.csail.ammolite.utils.UtilFMCS.doFMCS(opts.mcs.molecules(), opts.mcs.sdf())
 		  
 		} else if( opts.subcommand == Some( opts.dev)){
 		  edu.mit.csail.ammolite.utils.UtilFMCS.getCoeffs(opts.dev.f())
 		} else if( opts.subcommand == Some( opts.devTestMCS)){
 		  edu.mit.csail.ammolite.utils.UtilFMCS.testMCS(opts.devTestMCS.sdf())
+		} else if( opts.subcommand == Some( opts.devTestSearch)){
+		  edu.mit.csail.ammolite.tests.SearchTest.testCompressedSearch(opts.devTestSearch.q(), opts.devTestSearch.db(), opts.devTestSearch.t(), opts.devTestSearch.p())
 		} else if( opts.subcommand == Some( opts.examine)){
 			val db = StructDatabaseDecompressor.decompress( opts.examine.database())
 		    Logger.log(db.info())

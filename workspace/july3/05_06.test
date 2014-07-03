@@ -1,0 +1,362 @@
+fine_threshold: 0.7 coarse_threshold 0.35
+Decompressing molecule_sets/smalls/100_random_molecules.adb
+START_QUERY 59293769
+AMMOLITE
+time: 966
+matches: 
+SMSD
+time: 5495
+matches: 
+END_QUERY
+START_QUERY 62452948
+AMMOLITE
+time: 52
+matches: 
+SMSD
+time: 1029
+matches: 
+END_QUERY
+START_QUERY 37545929
+AMMOLITE
+time: 223
+matches: 
+SMSD
+time: 8380
+matches: 
+END_QUERY
+START_QUERY 30371023
+AMMOLITE
+time: 157
+matches: 
+SMSD
+time: 1580
+matches: 
+END_QUERY
+START_QUERY 4524519
+AMMOLITE
+time: 93
+matches: 
+SMSD
+time: 899
+matches: 
+END_QUERY
+START_QUERY 44182792
+AMMOLITE
+time: 1691
+matches: 
+SMSD
+time: 2153
+matches: 
+END_QUERY
+START_QUERY 6133607
+AMMOLITE
+time: 209
+matches: 
+SMSD
+time: 1687
+matches: 
+END_QUERY
+START_QUERY 18722923
+AMMOLITE
+time: 2856
+matches: 
+SMSD
+time: 3422
+matches: 
+END_QUERY
+START_QUERY 44182792
+AMMOLITE
+time: 1600
+matches: 
+SMSD
+time: 2023
+matches: 
+END_QUERY
+START_QUERY 2398094
+AMMOLITE
+time: 37
+matches: 
+SMSD
+time: 702
+matches: 
+END_QUERY
+START_QUERY 50745572
+AMMOLITE
+time: 1981
+matches: 
+SMSD
+time: 2125
+matches: 
+END_QUERY
+START_QUERY 48329520
+AMMOLITE
+time: 1384
+matches: 
+SMSD
+time: 2135
+matches: 
+END_QUERY
+START_QUERY 55274868
+AMMOLITE
+time: 38
+matches: 
+SMSD
+time: 777
+matches: 
+END_QUERY
+START_QUERY 40399283
+AMMOLITE
+time: 137
+matches: 
+SMSD
+time: 1933
+matches: 
+END_QUERY
+START_QUERY 56370184
+AMMOLITE
+time: 152
+matches: 
+SMSD
+time: 1200
+matches: 
+END_QUERY
+START_QUERY 65295144
+AMMOLITE
+time: 245
+matches: 
+SMSD
+time: 900
+matches: 
+END_QUERY
+START_QUERY 64799108
+AMMOLITE
+time: 111
+matches: 
+SMSD
+time: 639
+matches: 
+END_QUERY
+START_QUERY 9930426
+AMMOLITE
+time: 128
+matches: 
+SMSD
+time: 2939
+matches: 
+END_QUERY
+START_QUERY 48875331
+AMMOLITE
+time: 129
+matches: 
+SMSD
+time: 1989
+matches: 
+END_QUERY
+START_QUERY 51215349
+AMMOLITE
+time: 63
+matches: 
+SMSD
+time: 1025
+matches: 
+END_QUERY
+START_QUERY 32850434
+AMMOLITE
+time: 284
+matches: 
+SMSD
+time: 2027
+matches: 
+END_QUERY
+START_QUERY 59293769
+AMMOLITE
+time: 161
+matches: 
+SMSD
+time: 2056
+matches: 
+END_QUERY
+START_QUERY 46420414
+AMMOLITE
+time: 715
+matches: 
+SMSD
+time: 2028
+matches: 
+END_QUERY
+START_QUERY 48497298
+AMMOLITE
+time: 65
+matches: 
+SMSD
+time: 654
+matches: 
+END_QUERY
+START_QUERY 15919642
+AMMOLITE
+time: 1870
+matches: 
+SMSD
+time: 8696
+matches: 
+END_QUERY
+START_QUERY 1525165
+AMMOLITE
+time: 162
+matches: 
+SMSD
+time: 1819
+matches: 
+END_QUERY
+START_QUERY 41641047
+AMMOLITE
+time: 145
+matches: 
+SMSD
+time: 1164
+matches: 
+END_QUERY
+START_QUERY 50980631
+AMMOLITE
+time: 317
+matches: 
+SMSD
+time: 722
+matches: 
+END_QUERY
+START_QUERY 27173023
+AMMOLITE
+time: 66
+matches: 
+SMSD
+time: 1204
+matches: 
+END_QUERY
+START_QUERY 7247461
+AMMOLITE
+time: 141
+matches: 
+SMSD
+time: 997
+matches: 
+END_QUERY
+START_QUERY 48875331
+AMMOLITE
+time: 122
+matches: 
+SMSD
+time: 2019
+matches: 
+END_QUERY
+START_QUERY 3390483
+AMMOLITE
+time: 137
+matches: 
+SMSD
+time: 1183
+matches: 
+END_QUERY
+START_QUERY 20186483
+AMMOLITE
+time: 38
+matches: 
+SMSD
+time: 730
+matches: 
+END_QUERY
+START_QUERY 23890422
+AMMOLITE
+time: 420
+matches: 
+SMSD
+time: 1054
+matches: 
+END_QUERY
+START_QUERY 48131770
+AMMOLITE
+time: 74
+matches: 
+SMSD
+time: 987
+matches: 
+END_QUERY
+START_QUERY 18841895
+AMMOLITE
+time: 551
+matches: 
+SMSD
+time: 1245
+matches: 
+END_QUERY
+START_QUERY 32660251
+AMMOLITE
+time: 252
+matches: 
+SMSD
+time: 2112
+matches: 
+END_QUERY
+START_QUERY 10446339
+AMMOLITE
+time: 995
+matches: 
+SMSD
+time: 1948
+matches: 
+END_QUERY
+START_QUERY 47862991
+AMMOLITE
+time: 135
+matches: 
+SMSD
+time: 1524
+matches: 
+END_QUERY
+START_QUERY 44495362
+AMMOLITE
+time: 122
+matches: 
+SMSD
+time: 2313
+matches: 
+END_QUERY
+START_QUERY 1525165
+AMMOLITE
+time: 152
+matches: 
+SMSD
+time: 1782
+matches: 
+END_QUERY
+START_QUERY 23379805
+AMMOLITE
+time: 29
+matches: 
+SMSD
+time: 397
+matches: 
+END_QUERY
+START_QUERY 53460846
+AMMOLITE
+time: 131
+matches: 
+SMSD
+time: 4467
+matches: 
+END_QUERY
+START_QUERY 15812686
+AMMOLITE
+time: 38
+matches: 
+SMSD
+time: 649
+matches: 
+END_QUERY
+START_QUERY 32338269
+AMMOLITE
+time: 36
+matches: 
+SMSD
+time: 687
+matches: 32338269 
+END_QUERY

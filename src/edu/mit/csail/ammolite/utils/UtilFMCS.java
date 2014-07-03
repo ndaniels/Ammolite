@@ -174,7 +174,7 @@ public class UtilFMCS {
 		long isoStartTime = System.currentTimeMillis();
 		for(int i=0; i<mols.size(); ++i){
 			for(int j=0; j<i; ++j){
-				IsoRank myMCS = new IsoRank(structs.get(i), structs.get(j), baseThresh);
+				IsoRank myMCS = new IsoRank(structs.get(i), structs.get(j));
 				myMCS.calculate();
 				isoStructSizes.add(myMCS.size());
 				isoOverlaps.add(UtilFunctions.overlapCoeff(myMCS.size(), structs.get(i).getAtomCount(), structs.get(j).getAtomCount()));
@@ -524,9 +524,7 @@ public class UtilFMCS {
 	}
 	
 	public static void testMCS(String filename){
-		
-//		double testOverlapCoeff = UtilFunctions.overlapCoeff(2, 3, 3);
-//		System.out.println("Overlap test, should be .666 is "+testOverlapCoeff);
+
 		
 		if(!testMatrices()){
 			System.exit(1);
@@ -540,94 +538,11 @@ public class UtilFMCS {
 			structs.add( new CyclicStruct(mol));
 		}
 		
-		List<Integer> crossSizes = new ArrayList<Integer>();
-		List<Double> mappingThresh_08_0 = new ArrayList<Double>();
-		List<Double> mappingThresh_12_0 = new ArrayList<Double>();
-		List<Double> mappingThresh_16_0 = new ArrayList<Double>();
-		List<Double> mappingThresh_20_0 = new ArrayList<Double>();
-
-		for(int i=0; i<mols.size(); i++){
-			for(int j=0; j<i; j++){
-				int cross = structs.get(i).getAtomCount() * structs.get(j).getAtomCount();
-				crossSizes.add(cross);
-				mappingThresh_08_0.add( 8.0/cross);
-				mappingThresh_12_0.add( 12.0/cross);
-				mappingThresh_16_0.add( 16.0/cross);
-				mappingThresh_20_0.add( 20.0/cross);
-			}
-		}
-		
 		List<Integer> smsd = testSMSDStructs(mols,structs);
-		
-//		List<Integer> isoRank_0_25 = testIsoRank(mols, structs, 0.25);
-//		List<Integer> isoRank_0_5 = testIsoRank(mols, structs, 0.5);
-//		List<Integer> isoRank_1_0 = testIsoRank(mols, structs, 1.0);
-//		List<Integer> isoRank_2_0 = testIsoRank(mols, structs, 2.0);
-//		List<Integer> isoRank_4_0 = testIsoRank(mols, structs, 4.0);
-//		List<Integer> isoRank_8_0 = testIsoRank(mols, structs, 8.0);
 		List<Integer> isoRank_10_0 = testIsoRank(mols, structs, 10.0);
-//		List<Integer> isoRank_12_0 = testIsoRank(mols, structs, 12.0);
-//		List<Integer> isoRank_14_0 = testIsoRank(mols, structs, 14.0);
-//		List<Integer> isoRank_16_0 = testIsoRank(mols, structs, 16.0);
-//		List<Integer> isoRank_18_0 = testIsoRank(mols, structs, 18.0);
-//		List<Integer> isoRank_20_0 = testIsoRank(mols, structs, 20.0);
-//		List<Integer> isoRank_24_0 = testIsoRank(mols, structs, 24.0);
-//		List<Integer> isoRank_28_0 = testIsoRank(mols, structs, 28.0);
-//		List<Integer> isoRank_32_0 = testIsoRank(mols, structs, 32.0);
-		
-//		List<Double> isoOverlaps_8 = buildIsoOverlap(structs, isoRank_8_0);
-//		List<Double> isoOverlaps_10 = buildIsoOverlap(structs, isoRank_10_0);
-//		List<Double> isoOverlaps_12 = buildIsoOverlap(structs, isoRank_12_0);
-//		List<Double> isoOverlaps_14 = buildIsoOverlap(structs, isoRank_14_0);
-//		List<Double> isoOverlaps_16 = buildIsoOverlap(structs, isoRank_16_0);
-//		List<Double> isoOverlaps_18 = buildIsoOverlap(structs, isoRank_18_0);
-//		List<Double> isoOverlaps_20 = buildIsoOverlap(structs, isoRank_20_0);
-		
-//		compare("IsoRank_Overlap_bt=8.0" , "cross_size", isoOverlaps_8, crossSizes);
-//		compare("IsoRank_Overlap_bt=10.0", "cross_size", isoOverlaps_10, crossSizes);
-//		compare("IsoRank_Overlap_bt=12.0", "cross_size", isoOverlaps_12, crossSizes);
-//		compare("IsoRank_Overlap_bt=14.0", "cross_size", isoOverlaps_14, crossSizes);
-//		compare("IsoRank_Overlap_bt=16.0", "cross_size", isoOverlaps_16, crossSizes);
-//		compare("IsoRank_Overlap_bt=18.0", "cross_size", isoOverlaps_18, crossSizes);
-//		compare("IsoRank_Overlap_bt=20.0", "cross_size", isoOverlaps_20, crossSizes);
 
-//		compare("IsoRank_Overlap_bt=8.0" , "mappingThresh_08_0", isoOverlaps_8, mappingThresh_08_0);
-//		compare("IsoRank_Overlap_bt=12.0", "mappingThresh_12_0", isoOverlaps_12, mappingThresh_12_0);
-//		compare("IsoRank_Overlap_bt=16.0", "mappingThresh_16_0", isoOverlaps_16, mappingThresh_16_0);
-//		compare("IsoRank_Overlap_bt=20.0", "mappingThresh_20_0", isoOverlaps_20, mappingThresh_20_0);
-		
-//		compare("IsoRank_bt=8.0",  "cross_size", isoOverlaps_8, crossSizes);
-//		compare("IsoRank_bt=10.0", "cross_size", isoOverlaps_10, crossSizes);
-//		compare("IsoRank_bt=12.0", "cross_size", isoOverlaps_12, crossSizes);
-//		compare("IsoRank_bt=14.0", "cross_size", isoOverlaps_14, crossSizes);
-//		compare("IsoRank_bt=16.0", "cross_size", isoOverlaps_16, crossSizes);
-//		compare("IsoRank_bt=18.0", "cross_size", isoOverlaps_18, crossSizes);
-//		compare("IsoRank_bt=20.0", "cross_size", isoOverlaps_20, crossSizes);
+		compare("IsoRank_bt=40.0", "smsd", isoRank_10_0, smsd);
 
-//		compare("IsoRank_bt=1.0", "smsd", isoRank_0_25, smsd);	
-//		compare("IsoRank_bt=1.0", "smsd", isoRank_0_5, smsd);	
-//		compare("IsoRank_bt=1.0", "smsd", isoRank_1_0, smsd);		
-//		compare("IsoRank_bt=2.0", "smsd", isoRank_2_0, smsd);
-//		compare("IsoRank_bt=4.0", "smsd", isoRank_4_0, smsd);
-//		compare("IsoRank_bt=8.0", "smsd", isoRank_8_0, smsd);
-		compare("IsoRank_bt=10.0", "smsd", isoRank_10_0, smsd);
-//		compare("IsoRank_bt=12.0", "smsd", isoRank_12_0, smsd);
-//		compare("IsoRank_bt=14.0", "smsd", isoRank_14_0, smsd);
-//		compare("IsoRank_bt=16.0", "smsd", isoRank_16_0, smsd);
-//		compare("IsoRank_bt=20.0", "smsd", isoRank_20_0, smsd);
-//		compare("IsoRank_bt=24.0", "smsd", isoRank_24_0, smsd);
-//		compare("IsoRank_bt=28.0", "smsd", isoRank_28_0, smsd);
-//		compare("IsoRank_bt=32.0", "smsd", isoRank_32_0, smsd);
-//		compare("IsoRank_bt=64.0", "smsd", isoRank_64_0, smsd);
-//		compare("IsoRank_bt=128.0", "smsd", isoRank_128_0, smsd);
-//		compare("IsoRank_bt=256.0", "smsd", isoRank_256_0, smsd);
-//		compare("IsoRank_bt=512.0", "smsd", isoRank_512_0, smsd);
-		
-//		compare("IsoRank_bt=8.0", "cross_size", isoRank_8_0, crossSizes);
-//		compare("IsoRank_Overlap_bt=8.0", "cross_size", isoOverlaps_8, crossSizes);
-//		compare("IsoRank_bt=16.0", "cross_size", isoRank_16_0, crossSizes);
-//		compare("IsoRank_Overlap_bt=16.0", "cross_size", isoOverlaps_16, crossSizes);
-//		compare("IsoRank_bt=32.0", "cross_size", isoRank_32_0, crossSizes);
 		
 	}
 }
