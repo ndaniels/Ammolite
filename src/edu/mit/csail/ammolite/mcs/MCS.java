@@ -35,16 +35,37 @@ public class MCS {
 		
 	}
 	
+	public static boolean beatsOverlapThresholdSMSD(IAtomContainer a, IAtomContainer b, double threshold){
+		double overlapCoeff = overlapCoeff(getSMSDOverlap(a,b), a.getAtomCount(), b.getAtomCount());
+		if(overlapCoeff >= threshold )
+			return true;
+		return false;
+	}
+	
+	public static boolean beatsOverlapThresholdFMCS(IAtomContainer a, IAtomContainer b, double threshold){
+		double overlapCoeff = overlapCoeff(getFMCSOverlap(a,b), a.getAtomCount(), b.getAtomCount());
+		if(overlapCoeff >= threshold )
+			return true;
+		return false;
+	}
+	
 	private static int getIsoRankOverlap(MoleculeStruct a, MoleculeStruct b){
 		IsoRank iso = new IsoRank(a,b);
 		iso.calculate();
 		return iso.size();
 	}
 	
+	
 	private static int getSMSDOverlap(IAtomContainer a, IAtomContainer b){
 		SMSD smsd = new SMSD(a,b);
 		smsd.timedCalculate(2000);
 		return smsd.size();
+	}
+	
+	private static int getFMCSOverlap(IAtomContainer a, IAtomContainer b){
+		FMCS fmcs = new FMCS(a,b);
+		fmcs.timedCalculate(2000);
+		return fmcs.size();
 	}
 	
 	public static double overlapCoeff(int overlap, int a, int b){
