@@ -22,7 +22,7 @@ public class CyclicStruct extends MoleculeStruct implements Serializable{
 	public CyclicStruct(IAtomContainer base) {
 		super(base);
 		removeOnePrimeCarbons();
-		setHash();
+		setFingerprint();
 		rebaseGraph();
 		
 	}

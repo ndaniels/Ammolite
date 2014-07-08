@@ -35,6 +35,15 @@ public class MCS {
 		
 	}
 	
+	public static boolean beatsOverlapThresholdIsoRank(MoleculeStruct a, MoleculeStruct b, double threshold){
+		int isoOverlap = getIsoRankOverlap((MoleculeStruct) a, (MoleculeStruct) b);
+		double isoCoeff = overlapCoeff(isoOverlap, a.getAtomCount(), b.getAtomCount());
+		if( isoCoeff < threshold){
+			return false;
+		}
+		return true;
+	}
+	
 	public static boolean beatsOverlapThresholdSMSD(IAtomContainer a, IAtomContainer b, double threshold){
 		double overlapCoeff = overlapCoeff(getSMSDOverlap(a,b), a.getAtomCount(), b.getAtomCount());
 		if(overlapCoeff >= threshold )

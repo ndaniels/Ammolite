@@ -51,44 +51,45 @@ def parseSearchTestResults( searchTestResults):
 
 	return allResults
 
-def collectRuntimeAves( results):
-	methodTimes = {}
+def aggregateResultsByMethod( results):
+	resultsByMethod = {}
 	for result in results:
-		for methodName, method in result.methods.items():
-			if( methodName not in methodTimes):
-				methodTimes[methodName] = [method.time, 1]
+		for methodName, methodResult in result.methods.items():
+			if( methodName not in resultsByMethod):
+				resultsByMethod[ methodName] = [ methodResult,]
 			else:
-				methodTimes[methodName][0] += method.time
-				methodTimes[methodName][1] += 1
-	averageTimes = {}
-	for name, [totalTime, number] in methodTimes.items():
-		aveTime = totalTime / number
-		averageTimes[name] = aveTime
-		print("{}, average runtime: {}".format(name, aveTime))
+				resultsByMethod[ methodName].append( methodResult)
+	return resultsByMethod
 
-def collectAveNumResults( results):
-	methodTimes = {}
-	for result in results:
-		for methodName, method in result.methods.items():
-			if( methodName not in methodTimes):
-				methodTimes[methodName] = [len(method.matches),1]
-			else:
-				methodTimes[methodName][0] += len(method.matches)
-				methodTimes[methodName][1] += 1
-	averageTimes = {}
-	for name, [totalResults, number] in methodTimes.items():
-		aveResults = float(totalResults) / number
-		averageTimes[name] = aveResults
-		print("{}, average number of results: {}".format(name, aveResults))
+def arbAverage( results, getter, outname=None):
+	averages = {}
+	resultsByMethod = aggregateResultsByMethod( results)
+	for methodName, methodResults in resultsByMethod.items():
+		total, num = 0, 0
+		for methodResult in methodResults:
+			total += getter(methodResult)
+			num += 1
+		a = float(total) / num
+		averages[ methodName] = a
+		if( outname != None):
+			print("{}, average {}: {}".format(methodName, outname, a))
+	return averages
 
+def getRuntime( methodResult):
+	return methodResult.time
+
+def getNumberOfResults( methodResult):
+	return len(methodResult.matches)
 
 
 def main( searchFiles):
 	results = []
 	for filename in searchFiles:
 		results += parseSearchTestResults( filename)
-	collectRuntimeAves(results)
-	collectAveNumResults( results)
+	print("\nAverage runtimes:")
+	arbAverage(results, getRuntime, "running time")
+	print("\nAverage number of results:")
+	arbAverage(results, getNumberOfResults, "number of results")
 
 if __name__ == "__main__":
 	args = sys.argv

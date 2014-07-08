@@ -14,7 +14,9 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -40,6 +42,7 @@ import edu.mit.csail.ammolite.database.StructDatabaseCompressor;
 import edu.mit.csail.ammolite.database.StructDatabaseCoreData;
 import edu.mit.csail.ammolite.utils.Logger;
 import edu.mit.csail.ammolite.utils.ParallelUtils;
+import edu.mit.csail.ammolite.utils.SDFUtils;
 import edu.ucla.sspace.graph.isomorphism.VF2IsomorphismTester;
 
 /*
@@ -48,7 +51,7 @@ import edu.ucla.sspace.graph.isomorphism.VF2IsomorphismTester;
  */
 
 public class StructCompressor {
-	private KeyListMap<Integer, MoleculeStruct> structsByHash = new KeyListMap<Integer,MoleculeStruct>(1000);
+	private KeyListMap<Integer, MoleculeStruct> structsByFingerprint = new KeyListMap<Integer,MoleculeStruct>(1000);
 	private HashMap<String, FilePair> moleculeLocationsByID = new HashMap<String, FilePair>();
 	private MoleculeStructFactory structFactory;
 	private int molecules = 0;
@@ -75,6 +78,36 @@ public class StructCompressor {
 		return contents;
 	}
 	
+	public static KeyListMap<MoleculeStruct, IAtomContainer> compressQueries(Collection<IAtomContainer> queries, MoleculeStructFactory sF){
+		KeyListMap<Integer, MoleculeStruct> structsByFinger = new KeyListMap<Integer,MoleculeStruct>(queries.size());
+		KeyListMap<MoleculeStruct, IAtomContainer> out = new KeyListMap<MoleculeStruct, IAtomContainer>(queries.size());
+		for(IAtomContainer q: queries){
+			MoleculeStruct sq = sF.makeMoleculeStruct(q);
+			int fingerprint = sq.fingerprint();
+			if(structsByFinger.containsKey(fingerprint)){
+				VF2IsomorphismTester isoTester = new VF2IsomorphismTester();
+				boolean foundMatch = false;
+				for(MoleculeStruct candidate:structsByFinger.get(fingerprint)){
+					boolean iso = candidate.isIsomorphic(sq, isoTester);
+					if( iso){
+						foundMatch = true;
+						out.add(candidate, q);
+						break;
+					}
+				}
+				if(!foundMatch){
+					structsByFinger.add(fingerprint, sq);
+					out.add(sq, q);
+				}
+				
+			} else {
+				structsByFinger.add(fingerprint, sq);
+				out.add(sq, q);
+			}
+		}
+		return out;
+	}
+	
 	/**
 	 * Scans through an sdf library and compresses it.
 	 * 
@@ -89,30 +122,9 @@ public class StructCompressor {
 		startTime =System.currentTimeMillis();
 		File[] contents = getContents(folder_name);
 
-		FileInputStream fs;
-		BufferedReader br;
 		for(File f: contents){
-			long fStart = System.currentTimeMillis();
-			
-			fs = new FileInputStream(f);
-			br = new BufferedReader( new InputStreamReader(fs ));
-			IteratingSDFReader molecule_database =new IteratingSDFReader(
-																			br,
-																			DefaultChemObjectBuilder.getInstance()
-																		);
-			long setupFinish = System.currentTimeMillis() - fStart;
-			Logger.debug("Scanning " +  f.getName());
-			
-			checkDatabaseForIsomorphicStructs( molecule_database, structFactory );
-			long scanFinish = System.currentTimeMillis() - fStart; 
-			Logger.debug("Finished Scanning after " +  scanFinish+ " milliseconds");
-			
-			molecule_database.close();
-			br.close();
-			fs.close();
-			long closeFinish = System.currentTimeMillis() - fStart; 
-			Logger.debug("Finished closing files after " +  closeFinish+ " milliseconds");
-			
+			Iterator<IAtomContainer> molecule_database = SDFUtils.parseSDFOnline(f.getAbsolutePath());
+			checkDatabaseForIsomorphicStructs( molecule_database, structFactory );	
 			talk();
 		}
 		
@@ -127,79 +139,10 @@ public class StructCompressor {
 	private void talk(){
 		runningTime = (System.currentTimeMillis() - startTime)/(1000);// Time in seconds
 		Logger.log("Molecules: "+ molecules +" Representatives: "+structures+" Seconds: "+runningTime,2);
-		//Logger.debug(" Fruitless Comparisons: "+fruitless_comparisons+" Hash Table Size: "+structsByHash.size());
+		//Logger.debug(" Fruitless Comparisons: "+fruitless_comparisons+" Hash Table Size: "+structsByFingerprint.size());
 	}
 	
-	private void showTableShape(){
-		runningTime = (System.currentTimeMillis() - startTime)/(1000);
-		try {
-		    PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("hashtableshape.txt", true)));
-			out.print("Molecules: "+ molecules +" Representatives: "+structures+" Seconds: "+runningTime);
-			out.println(" Fruitless Comparisons: "+fruitless_comparisons+" Hash Table Size: "+structsByHash.size());
-			
-			for(int key : structsByHash.keySet()){
-				out.print(structsByHash.get(key).size());
-				out.print(" ");
-			}
-			out.println();
-		    out.close();
-		} catch (IOException e) {
-		    //exception handling left as an exercise for the reader
-		}
 
-	}
-	
-//	public static void mergeDatabases( StructDatabase a, StructDatabase b, String targetname){
-//		
-//		if(	 !(a.getCompressionType().equals(b.getCompressionType()))){
-//			throw new RuntimeException("Databases do not have the same type of compression. Aborting.");
-//		}
-//		
-//		KeyListMap<Integer, MoleculeStruct> newStructsByHash = a.getStructsByHash();
-//		KeyListMap<Integer, MoleculeStruct> bStructsByHash = b.getStructsByHash();
-//		VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
-//		List<MoleculeStruct> toAdd;
-//		
-//		for(int key: bStructsByHash.keySet()){
-//			
-//			toAdd = new ArrayList<MoleculeStruct>();
-//			
-//			if( newStructsByHash.containsKey(key)){
-//				
-//				toAdd = new ArrayList<MoleculeStruct>();
-//				
-//				for(MoleculeStruct aStruct: newStructsByHash.get(key)){
-//					for(MoleculeStruct bStruct: bStructsByHash.get(key)){
-//						if(aStruct.isIsomorphic(bStruct, iso_tester)){
-//							for(String id: bStruct.getIDNums()){
-//								aStruct.addID(id);
-//							}
-//							break;
-//						} else {
-//							toAdd.add(bStruct);
-//						}
-//					}
-//				}
-//				
-//				for(MoleculeStruct m: toAdd){
-//					newStructsByHash.get(key).add(m);
-//				}
-//				
-//			} else {
-//				
-//				newStructsByHash.put(key, bStructsByHash.get(key));			
-//			}		
-//		}
-//		
-//		HashMap<String, FilePair> newMolLocsByID = a.getFileLocsByID();
-//		for(String key: b.getFileLocsByID().keySet()){
-//			newMolLocsByID.put(key, b.getFileLocsByID().get(key));
-//		}
-//		
-//		StructDatabaseCoreData newDB = new StructDatabaseCoreData( newStructsByHash, newMolLocsByID, a.getCompressionType());
-//		
-//		writeObjectToFile(targetname, newDB);
-//	}
 	
 	/**
 	 * Go through a file looking for matching elements of clusters
@@ -210,30 +153,27 @@ public class StructCompressor {
 	 * @throws ExecutionException 
 	 * @throws InterruptedException 
 	 */
-	private void checkDatabaseForIsomorphicStructs( IteratingSDFReader molecule_database, MoleculeStructFactory structFactory ) throws CDKException, InterruptedException, ExecutionException{
+	private void checkDatabaseForIsomorphicStructs( Iterator<IAtomContainer> molecule_database, MoleculeStructFactory structFactory ) throws CDKException, InterruptedException, ExecutionException{
 		
 
         while( molecule_database.hasNext() ){
-        	if( molecules % 1000 == 0 ){
-        		talk();
-        	}
         	
         	IAtomContainer molecule =  molecule_database.next();       	
         	MoleculeStruct structure = structFactory.makeMoleculeStruct(molecule);
         	molecules++;
         	
-        	if( structsByHash.containsKey( structure.hashCode())){
+        	if( structsByFingerprint.containsKey( structure.fingerprint())){
         		
-        		List<MoleculeStruct> potential_matches = structsByHash.get( structure.hashCode() );
-        		boolean match = parrallelIsomorphism( structure, potential_matches);
+        		List<MoleculeStruct> potentialMatches = structsByFingerprint.get( structure.fingerprint() );
+        		boolean match = parrallelIsomorphism( structure, potentialMatches);
         		if( !match ){
         			structures++;
-        			structsByHash.add(structure.hashCode(), structure);
+        			structsByFingerprint.add(structure.fingerprint(), structure);
         		} 
         	}
         	else{
         		structures++;
-        		structsByHash.add(structure.hashCode(), structure);
+        		structsByFingerprint.add(structure.fingerprint(), structure);
         	}
 
         }
@@ -335,7 +275,7 @@ public class StructCompressor {
 	 * @throws IOException
 	 */
 	private void produceClusteredDatabase( String name ){
-		StructDatabaseCoreData database = new StructDatabaseCoreData( structsByHash, moleculeLocationsByID, structFactory.getCompressionType());
+		StructDatabaseCoreData database = new StructDatabaseCoreData( structsByFingerprint, moleculeLocationsByID, structFactory.getCompressionType());
 		StructDatabaseCompressor.compress(name, database);
 	}
 	

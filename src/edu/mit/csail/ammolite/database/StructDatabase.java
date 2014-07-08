@@ -29,7 +29,7 @@ public class StructDatabase implements IStructDatabase{
 	protected HashMap<String, FilePair> fileLocsByID;
 	protected MoleculeStructFactory structFactory;
 	protected CompressionType compressionType;
-	protected List<IAtomContainer> linearStructs = null;
+	protected List<MoleculeStruct> linearStructs = null;
 	protected int numReps = -1;
 	protected int numMols = -1;
 	
@@ -41,6 +41,10 @@ public class StructDatabase implements IStructDatabase{
 		compressionType = coreData.compressionType;
 		structFactory = new MoleculeStructFactory( compressionType);
 		buildLinearSet();
+	}
+	
+	public MoleculeStructFactory getStructFactory(){
+		return structFactory;
 	}
 	
 	public CompressionType getCompressionType(){
@@ -117,7 +121,7 @@ public class StructDatabase implements IStructDatabase{
 
 	}
 	
-	public Iterator<IAtomContainer> iterator(){
+	public Iterator<MoleculeStruct> iterator(){
 		if( linearStructs == null){
 			buildLinearSet();
 		}
@@ -125,7 +129,7 @@ public class StructDatabase implements IStructDatabase{
 	}
 	
 	protected void buildLinearSet(){
-		linearStructs = new ArrayList<IAtomContainer>( numReps());
+		linearStructs = new ArrayList<MoleculeStruct>( numReps());
 		for(List<MoleculeStruct> repSet: structsByHash.values()){
 			linearStructs.addAll(repSet);
 		}

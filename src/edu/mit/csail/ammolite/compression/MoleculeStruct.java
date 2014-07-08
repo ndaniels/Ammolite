@@ -31,7 +31,7 @@ public class MoleculeStruct extends AtomContainer implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -5426987516210898334L;
-	protected int hash_code;
+	protected int fingerprint;
 	protected ArrayList<String> mol_ids;
 	protected SparseUndirectedGraph graph;
 	protected HashMap<IAtom,Integer> atomsToNodes = new HashMap<IAtom, Integer>();
@@ -63,7 +63,7 @@ public class MoleculeStruct extends AtomContainer implements Serializable {
 		
 		makeGraph(this);
 
-		setHash();
+		setFingerprint();
 		
 		this.setID((String) base.getProperty("PUBCHEM_COMPOUND_CID"));
 
@@ -92,7 +92,7 @@ public class MoleculeStruct extends AtomContainer implements Serializable {
 	}
 	
 
-	protected void setHash(){
+	protected void setFingerprint(){
 		int h = this.atomCount;
 		h += 1000 * 1000 * this.bondCount;
 		
@@ -112,7 +112,7 @@ public class MoleculeStruct extends AtomContainer implements Serializable {
 			h += Math.pow(10, j) * degree[ degree.length - 1 - j];
 		}
 		
-		this.hash_code = h;
+		this.fingerprint = h;
 
 	}
 			
@@ -162,11 +162,8 @@ public class MoleculeStruct extends AtomContainer implements Serializable {
 		return iso_tester.areIsomorphic(this.getGraph(), that_struct.getGraph() );
 	}
 	
-
-	
-	@Override
-	public int hashCode(){
-		return hash_code;
+	public int fingerprint(){
+		return fingerprint;
 	}
 
 }
