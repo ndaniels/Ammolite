@@ -40,10 +40,10 @@ public class SearchTest {
 		for(IAtomContainer query: queries){
 			results.add( ammoliteSMSDSearch(query, db, thresh, prob));
 			results.add( ammoliteIsoRankSMSDSearch(query, db, thresh, prob));
-			results.add( ammoliteFMCSSearch(query, db, thresh, prob));
+//			results.add( ammoliteFMCSSearch(query, db, thresh, prob));
 			results.add( ammoliteCoarseSearch(query, db, thresh, prob));
 			results.add( smsdSearch(query, targets, thresh));
-			results.add( fmcsSearch(query, targets, thresh));
+//			results.add( fmcsSearch(query, targets, thresh));
 		}
 		processResults(results);
 	}

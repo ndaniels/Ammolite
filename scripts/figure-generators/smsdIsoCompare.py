@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from pylab import polyfit, show, savefig
+from pylab import polyfit, poly1d, show, savefig
 import sys
 
 def isNumber( s):
@@ -16,9 +16,15 @@ def makeGraph(X,Y, xName, yName, name="NoName"):
 	outname = "{} from {}.png".format(superName,name)
 	fig.suptitle(superName)
 	ax.scatter(X,Y)
+
+	fit = polyfit(X,Y,1)
+	fit_fn = poly1d(fit) # fit_fn is now a function which takes in x and returns an estimate for y
+	ax.plot(X,Y, 'yo', X, fit_fn(X), '--k')
+
 	ax.plot(range(40))
 	ax.set_xlabel('Size of MCS found by {}'.format(xName))
 	ax.set_ylabel('Size of MCS found by {}'.format(yName))
+	ax.text(1, 1, "y = {}*x + {}".format(fit[0], fit[1]))
 	fig.savefig(outname)
 
 

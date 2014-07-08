@@ -271,6 +271,83 @@ public class UtilFMCS {
 		return smsdStructSizes;
 	}
 	
+	private static List<Integer> selfCompareSMSDStructs(List<IAtomContainer> mols, List<MoleculeStruct> structs){
+		
+		// SMSD Structures
+		List<Integer> smsdStructSizes = new ArrayList<Integer>(mols.size()*mols.size() / 2);
+		int numberOfStructMCS = 0;
+		long molStructStartTime = System.currentTimeMillis();
+		for(int i=0; i<mols.size(); ++i){
+			AbstractMCS myMCS = new SMSD(structs.get(i), structs.get(i));
+			myMCS.timedCalculate(2000);
+			smsdStructSizes.add(myMCS.size());
+			numberOfStructMCS++;
+		}
+		long elapsedStructTime = System.currentTimeMillis() - molStructStartTime;
+		long aveStructTime = elapsedStructTime / numberOfStructMCS;
+		System.out.println("Did "+numberOfStructMCS+" comparisons of structures to themselves in "+elapsedStructTime+ "ms with SMSD. Average time: "+aveStructTime);
+
+		return smsdStructSizes;
+	}
+	
+	private static List<Integer> selfCompareSMSD(List<IAtomContainer> mols, List<MoleculeStruct> structs){
+		
+		// SMSD Structures
+		List<Integer> smsdSizes = new ArrayList<Integer>(mols.size()*mols.size() / 2);
+		int numberOfStructMCS = 0;
+		long molStructStartTime = System.currentTimeMillis();
+		for(int i=0; i<mols.size(); ++i){
+			AbstractMCS myMCS = new SMSD(mols.get(i), mols.get(i));
+			myMCS.timedCalculate(2000);
+			smsdSizes.add(myMCS.size());
+			numberOfStructMCS++;
+		}
+		long elapsedStructTime = System.currentTimeMillis() - molStructStartTime;
+		long aveStructTime = elapsedStructTime / numberOfStructMCS;
+		System.out.println("Did "+numberOfStructMCS+" comparisons of molecules to themselves in "+elapsedStructTime+ "ms with SMSD. Average time: "+aveStructTime);
+
+		return smsdSizes;
+	}
+	
+	
+	private static List<Integer> selfCompareFMCSStructs(List<IAtomContainer> mols, List<MoleculeStruct> structs){
+		
+		// SMSD Structures
+		List<Integer> smsdStructSizes = new ArrayList<Integer>(mols.size()*mols.size() / 2);
+		int numberOfStructMCS = 0;
+		long molStructStartTime = System.currentTimeMillis();
+		for(int i=0; i<mols.size(); ++i){
+			AbstractMCS myMCS = new FMCS(structs.get(i), structs.get(i));
+			myMCS.timedCalculate(2000);
+			smsdStructSizes.add(myMCS.size());
+			numberOfStructMCS++;
+		}
+		long elapsedStructTime = System.currentTimeMillis() - molStructStartTime;
+		long aveStructTime = elapsedStructTime / numberOfStructMCS;
+		System.out.println("Did "+numberOfStructMCS+" comparisons of structures to themselves in "+elapsedStructTime+ "ms with FMCS. Average time: "+aveStructTime);
+
+		return smsdStructSizes;
+	}
+	
+	private static List<Integer> selfCompareFMCS(List<IAtomContainer> mols, List<MoleculeStruct> structs){
+		
+		// SMSD Structures
+		List<Integer> smsdSizes = new ArrayList<Integer>(mols.size()*mols.size() / 2);
+		int numberOfStructMCS = 0;
+		long molStructStartTime = System.currentTimeMillis();
+		for(int i=0; i<mols.size(); ++i){
+			AbstractMCS myMCS = new FMCS(mols.get(i), mols.get(i));
+			myMCS.timedCalculate(2000);
+			smsdSizes.add(myMCS.size());
+			numberOfStructMCS++;
+		}
+		long elapsedStructTime = System.currentTimeMillis() - molStructStartTime;
+		long aveStructTime = elapsedStructTime / numberOfStructMCS;
+		System.out.println("Did "+numberOfStructMCS+" comparisons of molecules to themselves in "+elapsedStructTime+ "ms with FMCS. Average time: "+aveStructTime);
+
+		return smsdSizes;
+	}
+	
 	private static void compare(String name1, String name2, List l1, List l2){
 		System.out.println("COMPARISON_DELIMITER");
 		System.out.println(name1+" "+name2);
@@ -532,16 +609,27 @@ public class UtilFMCS {
 //		speedTestMatrices();
 
 		List<IAtomContainer> mols = parseSDF(filename);
-		
 		List<MoleculeStruct> structs = new ArrayList<MoleculeStruct>(mols.size());
+		List<Integer> molSizes = new ArrayList<Integer>(mols.size());
+		List<Integer> structSizes = new ArrayList<Integer>(mols.size());
 		for(IAtomContainer mol: mols){
-			structs.add( new CyclicStruct(mol));
+			MoleculeStruct struct = new CyclicStruct(mol);
+			IAtomContainer h = new AtomContainer(AtomContainerManipulator.removeHydrogens(mol));
+			structs.add( struct);
+			molSizes.add(h.getAtomCount());
+			structSizes.add(struct.getAtomCount());
 		}
 		
-		List<Integer> smsd = testSMSDStructs(mols,structs);
-		List<Integer> isoRank_10_0 = testIsoRank(mols, structs, 10.0);
+		List<Integer> selfSMSD = selfCompareSMSD(mols,structs);
+		List<Integer> selfSMSDStructs = selfCompareSMSDStructs(mols,structs);
+		List<Integer> selfFMCS = selfCompareFMCS(mols,structs);
+		List<Integer> selfFMCSStructs = selfCompareFMCSStructs(mols,structs);
+		
 
-		compare("IsoRank_bt=40.0", "smsd", isoRank_10_0, smsd);
+		compare("self-smsd", "molecule-sizes", selfSMSD, molSizes);
+		compare("self-smsd-structs", "structure-sizes", selfSMSDStructs, structSizes);
+		compare("self-fmcs", "molecule-sizes", selfFMCS, molSizes);
+		compare("self-fmcs-structs", "structure-sizes", selfFMCSStructs, structSizes);
 
 		
 	}

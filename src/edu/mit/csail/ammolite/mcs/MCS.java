@@ -3,6 +3,7 @@ package edu.mit.csail.ammolite.mcs;
 import java.util.concurrent.Callable;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import edu.mit.csail.ammolite.compression.MoleculeStruct;
 
@@ -16,6 +17,10 @@ public class MCS {
 		return getIsoRankOverlap(a,b);
 	}
 	
+	private static int getAtomCountNoHydrogen(IAtomContainer mol){
+		return AtomContainerManipulator.removeHydrogens(mol).getAtomCount();
+	}
+	
 	public static boolean beatsOverlapThreshold(IAtomContainer a, IAtomContainer b, double threshold){
 		
 		if(a instanceof MoleculeStruct && b instanceof MoleculeStruct){
@@ -25,9 +30,10 @@ public class MCS {
 				return false;
 			}
 		}
+		
 
 		int standardOverlap = getSMSDOverlap(a,b);
-		double standardCoeff = overlapCoeff(standardOverlap, a.getAtomCount(), b.getAtomCount());
+		double standardCoeff = overlapCoeff(standardOverlap, a, b);
 		if( standardCoeff >= threshold){
 			return true;
 		}
@@ -36,8 +42,8 @@ public class MCS {
 	}
 	
 	public static boolean beatsOverlapThresholdIsoRank(MoleculeStruct a, MoleculeStruct b, double threshold){
-		int isoOverlap = getIsoRankOverlap((MoleculeStruct) a, (MoleculeStruct) b);
-		double isoCoeff = overlapCoeff(isoOverlap, a.getAtomCount(), b.getAtomCount());
+		int isoOverlap = getIsoRankOverlap(a, b);
+		double isoCoeff = overlapCoeff(isoOverlap, a, b);
 		if( isoCoeff < threshold){
 			return false;
 		}
@@ -45,14 +51,14 @@ public class MCS {
 	}
 	
 	public static boolean beatsOverlapThresholdSMSD(IAtomContainer a, IAtomContainer b, double threshold){
-		double overlapCoeff = overlapCoeff(getSMSDOverlap(a,b), a.getAtomCount(), b.getAtomCount());
+		double overlapCoeff = overlapCoeff(getSMSDOverlap(a,b), a, b);
 		if(overlapCoeff >= threshold )
 			return true;
 		return false;
 	}
 	
 	public static boolean beatsOverlapThresholdFMCS(IAtomContainer a, IAtomContainer b, double threshold){
-		double overlapCoeff = overlapCoeff(getFMCSOverlap(a,b), a.getAtomCount(), b.getAtomCount());
+		double overlapCoeff = overlapCoeff(getFMCSOverlap(a,b), a, b);
 		if(overlapCoeff >= threshold )
 			return true;
 		return false;
@@ -75,6 +81,10 @@ public class MCS {
 		FMCS fmcs = new FMCS(a,b);
 		fmcs.timedCalculate(2000);
 		return fmcs.size();
+	}
+	
+	public static double overlapCoeff(int overlap, IAtomContainer a, IAtomContainer b){
+		return overlapCoeff(overlap, getAtomCountNoHydrogen(a), getAtomCountNoHydrogen(b));
 	}
 	
 	public static double overlapCoeff(int overlap, int a, int b){
