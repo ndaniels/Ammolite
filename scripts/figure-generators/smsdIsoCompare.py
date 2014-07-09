@@ -21,7 +21,6 @@ def makeGraph(X,Y, xName, yName, name="NoName"):
 	fit_fn = poly1d(fit) # fit_fn is now a function which takes in x and returns an estimate for y
 	ax.plot(X,Y, 'yo', X, fit_fn(X), '--k')
 
-	ax.plot(range(40))
 	ax.set_xlabel('Size of MCS found by {}'.format(xName))
 	ax.set_ylabel('Size of MCS found by {}'.format(yName))
 	ax.text(1, 1, "y = {}*x + {}".format(fit[0], fit[1]))

@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
-import edu.mit.csail.ammolite.compression.MoleculeStruct;
+import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory;
 
 public interface IStructDatabase {
@@ -16,6 +16,6 @@ public interface IStructDatabase {
 	public String info();
 	public double convertThreshold(double threshold, double probability, boolean useTanimoto);
 	public IAtomContainer makeMoleculeStruct(IAtomContainer mol);
-	public Iterator<MoleculeStruct> iterator();
+	public Iterator<MolStruct> iterator();
 	public MoleculeStructFactory getStructFactory();
 }

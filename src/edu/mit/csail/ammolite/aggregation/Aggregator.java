@@ -16,7 +16,7 @@ import java.util.concurrent.Future;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
-import edu.mit.csail.ammolite.compression.MoleculeStruct;
+import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
@@ -212,7 +212,7 @@ public class Aggregator {
 	
 	private List<Cluster> buildInitialClusterList(){
 		List<Cluster> clusterList = new ArrayList<Cluster>();
-		Iterator<IAtomContainer> dbIter = db.iterator();
+		Iterator<MolStruct> dbIter = db.iterator();
 		while( dbIter.hasNext()){
 			clusterList.add( new Cluster(dbIter.next(), repBound));
 		}

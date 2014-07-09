@@ -51,7 +51,7 @@ import edu.ucla.sspace.graph.isomorphism.VF2IsomorphismTester;
  */
 
 public class StructCompressor {
-	private KeyListMap<Integer, MoleculeStruct> structsByFingerprint = new KeyListMap<Integer,MoleculeStruct>(1000);
+	private KeyListMap<Integer, MolStruct> structsByFingerprint = new KeyListMap<Integer,MolStruct>(1000);
 	private HashMap<String, FilePair> moleculeLocationsByID = new HashMap<String, FilePair>();
 	private MoleculeStructFactory structFactory;
 	private int molecules = 0;
@@ -78,16 +78,16 @@ public class StructCompressor {
 		return contents;
 	}
 	
-	public static KeyListMap<MoleculeStruct, IAtomContainer> compressQueries(Collection<IAtomContainer> queries, MoleculeStructFactory sF){
-		KeyListMap<Integer, MoleculeStruct> structsByFinger = new KeyListMap<Integer,MoleculeStruct>(queries.size());
-		KeyListMap<MoleculeStruct, IAtomContainer> out = new KeyListMap<MoleculeStruct, IAtomContainer>(queries.size());
+	public static KeyListMap<MolStruct, IAtomContainer> compressQueries(Collection<IAtomContainer> queries, MoleculeStructFactory sF){
+		KeyListMap<Integer, MolStruct> structsByFinger = new KeyListMap<Integer,MolStruct>(queries.size());
+		KeyListMap<MolStruct, IAtomContainer> out = new KeyListMap<MolStruct, IAtomContainer>(queries.size());
 		for(IAtomContainer q: queries){
-			MoleculeStruct sq = sF.makeMoleculeStruct(q);
+			MolStruct sq = sF.makeMoleculeStruct(q);
 			int fingerprint = sq.fingerprint();
 			if(structsByFinger.containsKey(fingerprint)){
 				VF2IsomorphismTester isoTester = new VF2IsomorphismTester();
 				boolean foundMatch = false;
-				for(MoleculeStruct candidate:structsByFinger.get(fingerprint)){
+				for(MolStruct candidate:structsByFinger.get(fingerprint)){
 					boolean iso = candidate.isIsomorphic(sq, isoTester);
 					if( iso){
 						foundMatch = true;
@@ -159,12 +159,12 @@ public class StructCompressor {
         while( molecule_database.hasNext() ){
         	
         	IAtomContainer molecule =  molecule_database.next();       	
-        	MoleculeStruct structure = structFactory.makeMoleculeStruct(molecule);
+        	MolStruct structure = structFactory.makeMoleculeStruct(molecule);
         	molecules++;
         	
         	if( structsByFingerprint.containsKey( structure.fingerprint())){
         		
-        		List<MoleculeStruct> potentialMatches = structsByFingerprint.get( structure.fingerprint() );
+        		List<MolStruct> potentialMatches = structsByFingerprint.get( structure.fingerprint() );
         		boolean match = parrallelIsomorphism( structure, potentialMatches);
         		if( !match ){
         			structures++;
@@ -179,11 +179,11 @@ public class StructCompressor {
         }
 	}
 	
-	private boolean parrallelIsomorphism(MoleculeStruct structure, List<MoleculeStruct> potentialMatches) throws InterruptedException, ExecutionException{
+	private boolean parrallelIsomorphism(MolStruct structure, List<MolStruct> potentialMatches) throws InterruptedException, ExecutionException{
 
 	    List<Callable<Boolean>> callList = new ArrayList<Callable<Boolean>>(potentialMatches.size());
-	    final MoleculeStruct fStruct = structure;
-	    for (final MoleculeStruct candidate: potentialMatches) {
+	    final MolStruct fStruct = structure;
+	    for (final MolStruct candidate: potentialMatches) {
 	    	
 	        Callable<Boolean> callable = new Callable<Boolean>() {
 	        	

@@ -1,171 +1,31 @@
- package edu.mit.csail.ammolite.utils;
+package edu.mit.csail.ammolite.tests;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-import java.util.concurrent.TimeoutException;
 
 import org.apache.commons.math3.linear.BlockRealMatrix;
 import org.apache.commons.math3.linear.OpenMapRealVector;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
 import org.openscience.cdk.AtomContainer;
-import org.openscience.cdk.DefaultChemObjectBuilder;
-import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.io.SDFWriter;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
-import scala.reflect.internal.Trees.This;
-import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.compression.CyclicStruct;
-import edu.mit.csail.ammolite.compression.FragStruct;
-import edu.mit.csail.ammolite.compression.MoleculeStruct;
-import edu.mit.csail.ammolite.mcs.*;
+import edu.mit.csail.ammolite.compression.MolStruct;
+import edu.mit.csail.ammolite.compression.RingStruct;
+import edu.mit.csail.ammolite.mcs.AbstractMCS;
+import edu.mit.csail.ammolite.mcs.DualMatrix;
+import edu.mit.csail.ammolite.mcs.FMCS;
+import edu.mit.csail.ammolite.mcs.IsoRank;
+import edu.mit.csail.ammolite.mcs.SMSD;
+import edu.mit.csail.ammolite.mcs.SparseMatrix;
+import edu.mit.csail.ammolite.utils.MCSUtils;
+import edu.mit.csail.ammolite.utils.SDFUtils;
 
-
-
-public class UtilFMCS {
+public class MCSTest {
 	
-	/**
-	 * prints out tanimoto and overlap coefficients between two sdf files.
-	 * 
-	 * Development only.
-	 * 
-	 * @param fileA
-	 * @param fileB
-	 */
-	public static void getCoeffs(String filename){
-
-		List<IAtomContainer> mols = parseSDF( filename);
-		
-		IAtomContainer a;
-		IAtomContainer b;
-		MoleculeStruct repA;
-		MoleculeStruct repB;
-		
-		
-		Logger.log("molA_ID molB_ID molA_size molB_size mcs_size overlap_coeff tanimoto_coeff", 0);
-		Logger.log("repA_ID repB_ID repA_size repB_size mcs_size overlap_coeff tanimoto_coeff", 0);
-		for(int i=0; i< mols.size(); ++i){
-			a = mols.get(i);
-			for(int j=0; j<i; ++j){
-				b = mols.get(j);
-				//edu.mit.csail.ammolite.Logger.debug("Comparing "+a.getID()+" to "+b.getID());
-				a = new AtomContainer(AtomContainerManipulator.removeHydrogens(a));
-				b = new AtomContainer(AtomContainerManipulator.removeHydrogens(b));
-				repA = new CyclicStruct(a);
-				repB = new CyclicStruct(b);
-				//edu.mit.csail.ammolite.Logger.debug("Removed hydrogens");
-				FMCS myMCS = new FMCS(a,b);
-				FMCS repMCS = new FMCS(repA, repB);
-				boolean timeOut = false;
-				myMCS.calculate();
-				repMCS.calculate();
-				if(!timeOut){
-					//edu.mit.csail.ammolite.Logger.debug("Calculated MCS");
-					double overlap = overlapCoeff( myMCS.size(), a.getAtomCount(), b.getAtomCount());
-					double tanimoto = tanimotoCoeff( myMCS.size(), a.getAtomCount(), b.getAtomCount());
-					double rep_overlap = overlapCoeff( repMCS.size(), repA.getAtomCount(), repB.getAtomCount());
-					double rep_tanimoto = tanimotoCoeff( repMCS.size(), repA.getAtomCount(), repB.getAtomCount());
-					//edu.mit.csail.ammolite.Logger.debug("Calculated coeffs");
-					Logger.log("mol "+a.getID() +" "+ b.getID() +" "+a.getAtomCount()+" "+b.getAtomCount()+" "+myMCS.size()+" "+overlap+" "+tanimoto, 0);
-					Logger.log("rep "+repA.getID() +" "+ repB.getID() +" "+repA.getAtomCount()+" "+repB.getAtomCount()+" "+repMCS.size()+" "+rep_overlap+" "+rep_tanimoto, 0);
-				}
-			}
-		}
-		
-	}
-	
-	private static double overlapCoeff(int overlap, int a, int b){
-		
-		if( a < b){
-			return ( (double) overlap) / a;
-		}
-		return ( (double) overlap) / b;
-	}
-	 
-	private static double tanimotoCoeff(int overlap, int a, int b){
-		return ( (double) overlap) / ( a + b - overlap);
-	}
-	
-	/**
-	 * Find the Max Common Subgraph between two molecules. Makes an sdf file and prints a picture.
-	 * 
-	 * @param input
-	 * @param output
-	 * @throws IOException
-	 * @throws CDKException
-	 */
-	public static void doFMCS(String input, String output) throws IOException, CDKException{
-		IteratingSDFReader molecules = null;
-		try{
-			
-		FileInputStream fs = new FileInputStream(input);
-		BufferedReader br = new BufferedReader( new InputStreamReader(fs ));
-		molecules =new IteratingSDFReader( br, DefaultChemObjectBuilder.getInstance());
-		} catch( IOException e){
-			//edu.mit.csail.ammolite.Logger.error("Failed to read file");
-			e.printStackTrace();
-		}
-		//edu.mit.csail.ammolite.Logger.log("reading molecules",3);
-		
-		IAtomContainer a = null;
-		IAtomContainer b = null;
-		
-		a = molecules.next();
-		//edu.mit.csail.ammolite.Logger.log("molecule one: "+a.getID(), 2);
-		
-		
-		b = molecules.next();
-		//edu.mit.csail.ammolite.Logger.log("molecule two: "+b.getID(), 2);
-		
-		molecules.close();
-		a = new AtomContainer(AtomContainerManipulator.removeHydrogens(a));
-		b = new AtomContainer(AtomContainerManipulator.removeHydrogens(b));
-		edu.mit.csail.ammolite.MolDrawer.draw(a, output + "_inp1");
-		edu.mit.csail.ammolite.MolDrawer.draw(b, output + "_inp2");
-		FMCS myMCS = new FMCS(a,b);
-		myMCS.calculate();
-		SDFWriter sdfwriter = new SDFWriter(new BufferedWriter( new FileWriter( output + ".sdf" )));
-		for(IAtomContainer overlap: myMCS.getSolutions()){
-			sdfwriter.write(overlap);
-		}
-		sdfwriter.close();
-		//edu.mit.csail.ammolite.Logger.log("found mcs!", 2);
-		int i=0;
-		for(IAtomContainer sol: myMCS.getSolutions()){
-			edu.mit.csail.ammolite.MolDrawer.draw(sol, output + i);
-			++i;
-		}
-	}
-	
-	private static List<IAtomContainer> parseSDF(String filename){
-		IteratingSDFReader molecules = null;
-		try{
-			
-		FileInputStream fs = new FileInputStream(filename);
-		BufferedReader br = new BufferedReader( new InputStreamReader(fs ));
-		molecules =new IteratingSDFReader( br, DefaultChemObjectBuilder.getInstance());
-		} catch( IOException e){
-			//edu.mit.csail.ammolite.Logger.error("Failed to read file");
-			e.printStackTrace();
-		}
-		
-		List<IAtomContainer> mols = new ArrayList<IAtomContainer>();
-		while(molecules.hasNext()){
-			mols.add( molecules.next());
-		}
-		return mols;
-	}
-	
-	private static List<Integer> testIsoRank(List<IAtomContainer> mols, List<MoleculeStruct> structs, double baseThresh){
+	private static List<Integer> testIsoRank(List<IAtomContainer> mols, List<MolStruct> structs){
 		// IsoRank Structures
 		List<Integer> isoStructSizes = new ArrayList<Integer>(mols.size()*mols.size() / 2);
 		List<Double> isoOverlaps = new ArrayList<Double>(mols.size()*mols.size() / 2);
@@ -177,8 +37,8 @@ public class UtilFMCS {
 				IsoRank myMCS = new IsoRank(structs.get(i), structs.get(j));
 				myMCS.calculate();
 				isoStructSizes.add(myMCS.size());
-				isoOverlaps.add(UtilFunctions.overlapCoeff(myMCS.size(), structs.get(i).getAtomCount(), structs.get(j).getAtomCount()));
-				isoTanimotos.add(UtilFunctions.tanimotoCoeff(myMCS.size(), structs.get(i).getAtomCount(), structs.get(j).getAtomCount()));
+				isoOverlaps.add(MCSUtils.overlapCoeff(myMCS.size(), structs.get(i).getAtomCount(), structs.get(j).getAtomCount()));
+				isoTanimotos.add(MCSUtils.tanimotoCoeff(myMCS.size(), structs.get(i).getAtomCount(), structs.get(j).getAtomCount()));
 				numberOfIsoMCS++;
 			}
 		}
@@ -188,7 +48,7 @@ public class UtilFMCS {
 		return isoStructSizes;
 	}
 	
-	private static List<Integer> testFMCSMols(List<IAtomContainer> mols, List<MoleculeStruct> structs){
+	private static List<Integer> testFMCSMols(List<IAtomContainer> mols, List<MolStruct> structs){
 		// FMCSj Molecules
 		List<Integer> fmcsSizes = new ArrayList<Integer>(mols.size()*mols.size() / 2);
 		int numberOfMolFMCSMCS = 0;
@@ -207,7 +67,7 @@ public class UtilFMCS {
 		return fmcsSizes;
 	}
 	
-	private static List<Integer> testFMCSStructs(List<IAtomContainer> mols, List<MoleculeStruct> structs){
+	private static List<Integer> testFMCSStructs(List<IAtomContainer> mols, List<MolStruct> structs){
 		// FMCSj Structures
 		List<Integer> fmcsStructSizes = new ArrayList<Integer>(mols.size()*mols.size() / 2);
 		int numberOfStructFMCS = 0;
@@ -226,7 +86,7 @@ public class UtilFMCS {
 		return fmcsStructSizes;
 	}
 	
-	private static List<Integer> testSMSDMols(List<IAtomContainer> mols, List<MoleculeStruct> structs){
+	private static List<Integer> testSMSDMols(List<IAtomContainer> mols, List<MolStruct> structs){
 		// SMSD Molecules
 		List<Integer> smsdSizes = new ArrayList<Integer>(mols.size()*mols.size() / 2);
 		int numberOfMolMCS = 0;
@@ -244,8 +104,67 @@ public class UtilFMCS {
 		System.out.println("Did "+numberOfMolMCS+" comparisons of molecules in "+elapsedMolTime+ "ms with SMSD. Average time: "+aveMolTime);
 		return smsdSizes;
 	}
+	
+	private static List<Double> overlapSMSDMols(List<IAtomContainer> mols, List<MolStruct> structs){
+		// SMSD Molecules
+		List<Double> smsdOverlaps = new ArrayList<Double>(mols.size()*mols.size() / 2);
+		int numberOfMolMCS = 0;
+		long molMCSStartTime = System.currentTimeMillis();
+		for(int i=0; i<mols.size(); ++i){
+			for(int j=0; j<i; ++j){
+				AbstractMCS myMCS = new SMSD(mols.get(i), mols.get(j));
+				myMCS.timedCalculate(2000);
+				int o = myMCS.size();
+				int a = AtomContainerManipulator.removeHydrogens(mols.get(i)).getAtomCount();
+				int b = AtomContainerManipulator.removeHydrogens(mols.get(j)).getAtomCount();
+				smsdOverlaps.add(MCSUtils.overlapCoeff(o,a,b));
+				numberOfMolMCS++;
+			}
+		}
+		long elapsedMolTime = System.currentTimeMillis() - molMCSStartTime;
+		long aveMolTime = elapsedMolTime / numberOfMolMCS;
+		System.out.println("Did "+numberOfMolMCS+" comparisons of molecules in "+elapsedMolTime+ "ms with SMSD. Average time: "+aveMolTime);
+		return smsdOverlaps;
+	}
+	
+	private static List<Double> overlapIsoStructs(List<IAtomContainer> mols, List<MolStruct> structs){
+		List<Double> isoOverlaps = new ArrayList<Double>();
 
-	private static List<Integer> testSMSDStructs(List<IAtomContainer> mols, List<MoleculeStruct> structs){
+		for(int i=0; i<mols.size(); ++i){
+			for(int j=0; j<i; ++j){
+				
+				IsoRank myMCS = new IsoRank(structs.get(i), structs.get(j));
+				myMCS.calculate();
+				int o = myMCS.size();
+				int a = structs.get(i).getAtomCount();
+				int b = structs.get(j).getAtomCount();
+				isoOverlaps.add(MCSUtils.overlapCoeff(o,a,b));
+			}
+		}
+
+		return isoOverlaps;
+	}
+	
+	private static List<Double> overlapSMSDStructs(List<IAtomContainer> mols, List<MolStruct> structs){
+		// SMSD Molecules
+		List<Double> smsdOverlaps = new ArrayList<Double>(mols.size()*mols.size() / 2);
+
+		for(int i=0; i<mols.size(); ++i){
+			for(int j=0; j<i; ++j){
+				
+				AbstractMCS myMCS = new SMSD(structs.get(i), structs.get(j));
+				myMCS.timedCalculate(2000);
+				int o = myMCS.size();
+				int a = structs.get(i).getAtomCount();
+				int b = structs.get(j).getAtomCount();
+				smsdOverlaps.add(MCSUtils.overlapCoeff(o,a,b));
+			}
+		}
+
+		return smsdOverlaps;
+	}
+
+	private static List<Integer> testSMSDStructs(List<IAtomContainer> mols, List<MolStruct> structs){
 		
 		// SMSD Structures
 		List<Integer> smsdStructSizes = new ArrayList<Integer>(mols.size()*mols.size() / 2);
@@ -258,8 +177,8 @@ public class UtilFMCS {
 				AbstractMCS myMCS = new SMSD(structs.get(i), structs.get(j));
 				myMCS.timedCalculate(2000);
 				smsdStructSizes.add(myMCS.size());
-				smsdOverlaps.add(UtilFunctions.overlapCoeff(myMCS.size(), structs.get(i).getAtomCount(), structs.get(j).getAtomCount()));
-				smsdTanimotos.add(UtilFunctions.tanimotoCoeff(myMCS.size(), structs.get(i).getAtomCount(), structs.get(j).getAtomCount()));
+				smsdOverlaps.add(MCSUtils.overlapCoeff(myMCS.size(), structs.get(i).getAtomCount(), structs.get(j).getAtomCount()));
+				smsdTanimotos.add(MCSUtils.tanimotoCoeff(myMCS.size(), structs.get(i).getAtomCount(), structs.get(j).getAtomCount()));
 				numberOfStructMCS++;
 			}
 		}
@@ -271,7 +190,7 @@ public class UtilFMCS {
 		return smsdStructSizes;
 	}
 	
-	private static List<Integer> selfCompareSMSDStructs(List<IAtomContainer> mols, List<MoleculeStruct> structs){
+	private static List<Integer> selfCompareSMSDStructs(List<IAtomContainer> mols, List<MolStruct> structs){
 		
 		// SMSD Structures
 		List<Integer> smsdStructSizes = new ArrayList<Integer>(mols.size()*mols.size() / 2);
@@ -290,7 +209,7 @@ public class UtilFMCS {
 		return smsdStructSizes;
 	}
 	
-	private static List<Integer> selfCompareSMSD(List<IAtomContainer> mols, List<MoleculeStruct> structs){
+	private static List<Integer> selfCompareSMSD(List<IAtomContainer> mols, List<MolStruct> structs){
 		
 		// SMSD Structures
 		List<Integer> smsdSizes = new ArrayList<Integer>(mols.size()*mols.size() / 2);
@@ -309,8 +228,7 @@ public class UtilFMCS {
 		return smsdSizes;
 	}
 	
-	
-	private static List<Integer> selfCompareFMCSStructs(List<IAtomContainer> mols, List<MoleculeStruct> structs){
+	private static List<Integer> selfCompareFMCSStructs(List<IAtomContainer> mols, List<MolStruct> structs){
 		
 		// SMSD Structures
 		List<Integer> smsdStructSizes = new ArrayList<Integer>(mols.size()*mols.size() / 2);
@@ -329,7 +247,7 @@ public class UtilFMCS {
 		return smsdStructSizes;
 	}
 	
-	private static List<Integer> selfCompareFMCS(List<IAtomContainer> mols, List<MoleculeStruct> structs){
+	private static List<Integer> selfCompareFMCS(List<IAtomContainer> mols, List<MolStruct> structs){
 		
 		// SMSD Structures
 		List<Integer> smsdSizes = new ArrayList<Integer>(mols.size()*mols.size() / 2);
@@ -359,19 +277,7 @@ public class UtilFMCS {
 		}
 	}
 	
-	private static List<Double> buildIsoOverlap(List<MoleculeStruct> structs, List<Integer> isos){
-		List<Double> isoOverlaps = new ArrayList<Double>();
-		int k=0;
-		for(int i=0; i<structs.size(); i++){
-			for(int j=0; j<i; j++){
-				int iso = isos.get(k);
-				double overlap = UtilFunctions.overlapCoeff(iso, structs.get(i).getAtomCount(), structs.get(j).getAtomCount());
-				k++;
-				isoOverlaps.add(overlap);
-			}
-		}
-		return isoOverlaps;
-	}
+
 	
 	public static void prettyPrintMatrix(RealMatrix m){
 		int rows=m.getRowDimension();
@@ -389,6 +295,7 @@ public class UtilFMCS {
 			}
 		}
 	}
+	
 	public static void prettyPrintMatrix(DualMatrix m){
 		int rows=m.getRowDimension();
 		int cols = m.getColumnDimension();
@@ -600,36 +507,37 @@ public class UtilFMCS {
 
 	}
 	
+
+	
 	public static void testMCS(String filename){
 
-		
-		if(!testMatrices()){
-			System.exit(1);
-		}
-//		speedTestMatrices();
+		List<IAtomContainer> mols = SDFUtils.parseSDF(filename);
+		List<MolStruct> cyclicStructs = new ArrayList<MolStruct>(mols.size());
+		List<MolStruct> ringStructs = new ArrayList<MolStruct>(mols.size());
 
-		List<IAtomContainer> mols = parseSDF(filename);
-		List<MoleculeStruct> structs = new ArrayList<MoleculeStruct>(mols.size());
-		List<Integer> molSizes = new ArrayList<Integer>(mols.size());
-		List<Integer> structSizes = new ArrayList<Integer>(mols.size());
 		for(IAtomContainer mol: mols){
-			MoleculeStruct struct = new CyclicStruct(mol);
-			IAtomContainer h = new AtomContainer(AtomContainerManipulator.removeHydrogens(mol));
-			structs.add( struct);
-			molSizes.add(h.getAtomCount());
-			structSizes.add(struct.getAtomCount());
+			MolStruct cStruct = new CyclicStruct(mol);
+//			MolStruct rStruct = new RingStruct(mol);
+			
+			cyclicStructs.add(cStruct);
+//			ringStructs.add( rStruct);
 		}
 		
-		List<Integer> selfSMSD = selfCompareSMSD(mols,structs);
-		List<Integer> selfSMSDStructs = selfCompareSMSDStructs(mols,structs);
-		List<Integer> selfFMCS = selfCompareFMCS(mols,structs);
-		List<Integer> selfFMCSStructs = selfCompareFMCSStructs(mols,structs);
+		List<Integer> isoCyclicStructs =  	testIsoRank(mols,		cyclicStructs);
+		List<Integer> smsdCyclicStructs =  	testSMSDStructs(mols,	cyclicStructs);
+//		List<Integer> isoRingStructs =  	testIsoRank(mols,		ringStructs);
+//		List<Integer> smsdRingStructs =  	testSMSDStructs(mols,	ringStructs);
+		
+		List<Double> structOverlapsIso = overlapIsoStructs(mols, cyclicStructs);
+//		List<Double> structOverlapsSMSD = overlapSMSDStructs(mols, structs);
+		List<Double> molOverlaps = overlapSMSDMols(mols, cyclicStructs);
 		
 
-		compare("self-smsd", "molecule-sizes", selfSMSD, molSizes);
-		compare("self-smsd-structs", "structure-sizes", selfSMSDStructs, structSizes);
-		compare("self-fmcs", "molecule-sizes", selfFMCS, molSizes);
-		compare("self-fmcs-structs", "structure-sizes", selfFMCSStructs, structSizes);
+		compare("structure-overlaps-iso", "molecule-overlaps", structOverlapsIso, molOverlaps);
+//		compare("structure-overlaps-smsd", "molecule-overlaps", structOverlapsSMSD, molOverlaps);
+//		compare("structure-overlaps-iso", "structure-overlaps-smsd", structOverlapsIso, structOverlapsSMSD);
+		compare("IsoRank-CyclicStructs", "SMSD-CyclicStructs", isoCyclicStructs, smsdCyclicStructs);
+//		compare("IsoRank-RingStructs", "SMSD-RingStructs", isoRingStructs, smsdRingStructs);
 
 		
 	}

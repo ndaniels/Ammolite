@@ -18,7 +18,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import edu.mit.csail.ammolite.IteratingSDFReader;
 
 import edu.mit.csail.ammolite.compression.CyclicStruct;
-import edu.mit.csail.ammolite.compression.MoleculeStruct;
+import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.mcs.AbstractMCS;
 import edu.mit.csail.ammolite.mcs.MCSFinder;
 import edu.mit.csail.ammolite.mcs.SMSD;
@@ -86,8 +86,8 @@ public class SMSDTest{
 		long totalTime = 0;
 		for(int j=1; j<n/2-1; ++j){
 			for(int i=0; i<n; ++i){
-				MoleculeStruct a = new MoleculeStruct(randomMolecules.get(i));
-				MoleculeStruct b = new MoleculeStruct(randomMolecules.get( (i+j) % n));
+				MolStruct a = new MolStruct(randomMolecules.get(i));
+				MolStruct b = new MolStruct(randomMolecules.get( (i+j) % n));
 				SMSD myFMCS = new SMSD(a,b);
 				totalTime += myFMCS.calculate();
 				numComp += 1;
@@ -106,8 +106,8 @@ public class SMSDTest{
 		long totalTime = 0;
 		for(int j=1; j<n/2-1; ++j){
 			for(int i=0; i<n; ++i){
-				MoleculeStruct a = new CyclicStruct(randomMolecules.get(i));
-				MoleculeStruct b = new CyclicStruct(randomMolecules.get( (i+j) % n));
+				MolStruct a = new CyclicStruct(randomMolecules.get(i));
+				MolStruct b = new CyclicStruct(randomMolecules.get( (i+j) % n));
 				SMSD myFMCS = new SMSD(a,b);
 				totalTime += myFMCS.calculate();
 				numComp += 1;
@@ -127,8 +127,8 @@ public class SMSDTest{
 		
 		for(int j=1; j<n/2-1; ++j){
 			for(int i=0; i<n; ++i){
-				final MoleculeStruct a = new CyclicStruct(randomMolecules.get(i));
-				final MoleculeStruct b = new CyclicStruct(randomMolecules.get( (i+j) % n));
+				final MolStruct a = new CyclicStruct(randomMolecules.get(i));
+				final MolStruct b = new CyclicStruct(randomMolecules.get( (i+j) % n));
 				numComp += 1;
 				Callable<Long> callable = new Callable<Long>(){
 					public Long call() throws InterruptedException, ExecutionException{

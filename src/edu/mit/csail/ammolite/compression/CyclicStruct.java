@@ -13,7 +13,7 @@ import edu.ucla.sspace.graph.Graph;
 import edu.ucla.sspace.graph.SimpleEdge;
 import edu.ucla.sspace.graph.SparseUndirectedGraph;
 
-public class CyclicStruct extends MoleculeStruct implements Serializable{
+public class CyclicStruct extends MolStruct implements Serializable{
 
 	public CyclicStruct(){
 		

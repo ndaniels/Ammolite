@@ -109,7 +109,7 @@ object AmmoliteMain{
 		} else if( opts.subcommand == Some( opts.dev)){
 		  edu.mit.csail.ammolite.utils.UtilFMCS.getCoeffs(opts.dev.f())
 		} else if( opts.subcommand == Some( opts.devTestMCS)){
-		  edu.mit.csail.ammolite.utils.UtilFMCS.testMCS(opts.devTestMCS.sdf())
+		  edu.mit.csail.ammolite.tests.MCSTest.testMCS(opts.devTestMCS.sdf())
 		} else if( opts.subcommand == Some( opts.devTestSearch)){
 		  edu.mit.csail.ammolite.tests.SearchTest.testCompressedSearch(opts.devTestSearch.q(), opts.devTestSearch.db(), opts.devTestSearch.t(), opts.devTestSearch.p())
 		} else if( opts.subcommand == Some( opts.examine)){

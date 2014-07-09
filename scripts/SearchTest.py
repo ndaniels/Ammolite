@@ -25,12 +25,18 @@ def parseSearchTestResults( searchTestResults):
 		inMethod = False
 		for line in f:
 			l = line.split()
-			if(not inQuery and l[0] == "fine_threshold:"):
-				fineThresh = l[1]
-				coarseThresh = l[3]
-			elif( not inQuery and l[0] == "START_QUERY"):
-				inQuery = True
-				result = SearchResult(l[1], fineThresh, coarseThresh)
+			if(not inQuery):
+				if( l[0] == "fine_threshold:"):
+					fineThresh = l[1]
+					coarseThresh = l[3]
+					print("Fine threshold: {} Coarse threshold; {}".format(fineThresh, coarseThresh))
+				elif( l[0] == "WALL_CLOCK"):
+					print(line)
+
+				elif(l[0] == "START_QUERY"):
+					inQuery = True
+					result = SearchResult(l[1], fineThresh, coarseThresh)
+
 			elif( inQuery):
 				if(l[0] == "END_QUERY"):
 					inQuery = False

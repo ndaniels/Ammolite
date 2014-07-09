@@ -8,7 +8,7 @@ import java.util.concurrent.TimeoutException;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
-import edu.mit.csail.ammolite.compression.MoleculeStruct;
+import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.mcs.AbstractMCS;
 import edu.mit.csail.ammolite.mcs.FMCS;
 import edu.mit.csail.ammolite.mcs.MCSFinder;
@@ -83,7 +83,7 @@ public class Cluster implements Serializable{
 		members.add(candidate);
 		List<IAtomContainer> solutions = myMCS.getSolutions();
 		
-		rep = new MoleculeStruct( solutions.get(0));
+		rep = new MolStruct( solutions.get(0));
 		if( candidate.order() + 1 > order()){
 			order = candidate.order() + 1;
 		}

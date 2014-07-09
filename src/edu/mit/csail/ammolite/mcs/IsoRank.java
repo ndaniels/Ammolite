@@ -11,7 +11,7 @@ import org.apache.commons.math3.exception.MathArithmeticException;
 import org.apache.commons.math3.linear.OpenMapRealVector;
 import org.apache.commons.math3.linear.RealVector;
 
-import edu.mit.csail.ammolite.compression.MoleculeStruct;
+import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.ucla.sspace.graph.SimpleEdge;
 import edu.ucla.sspace.graph.SparseUndirectedGraph;
 
@@ -27,7 +27,7 @@ public class IsoRank{
 
 	final static int MAX_ITERATIONS = 20;
 
-	public IsoRank( MoleculeStruct m1, MoleculeStruct m2){ 
+	public IsoRank( MolStruct m1, MolStruct m2){ 
 		this( m1.getGraph(), m2.getGraph());
 	}
 
@@ -42,7 +42,7 @@ public class IsoRank{
 		}
 		n1 = big.order();
 		n2 = lil.order();
-		mapping_threshold = 40.0 / (n1*n2);
+		mapping_threshold = 14.0 / (n1*n2);
 	}
 	
 	public void calculate(){

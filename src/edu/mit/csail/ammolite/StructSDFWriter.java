@@ -8,7 +8,7 @@ import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IChemObject;
 import org.openscience.cdk.io.SDFWriter;
 
-import edu.mit.csail.ammolite.compression.MoleculeStruct;
+import edu.mit.csail.ammolite.compression.MolStruct;
 
 public class StructSDFWriter{
 	private BufferedWriter meta_writer;
@@ -22,14 +22,14 @@ public class StructSDFWriter{
 	
 
 	public void write(IChemObject object) throws CDKException{
-		if(object instanceof MoleculeStruct){
-			this.writeStructure((MoleculeStruct) object);
+		if(object instanceof MolStruct){
+			this.writeStructure((MolStruct) object);
 		}
 		sdfwriter.write(object);
 		
 	}
 	
-	private void writeStructure(MoleculeStruct struct) throws CDKException{
+	private void writeStructure(MolStruct struct) throws CDKException{
 		try{
 			meta_writer.newLine();
 

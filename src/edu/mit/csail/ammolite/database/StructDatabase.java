@@ -17,7 +17,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.KeyListMap;
 import edu.mit.csail.ammolite.compression.CyclicStruct;
-import edu.mit.csail.ammolite.compression.MoleculeStruct;
+import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory;
 import edu.mit.csail.ammolite.utils.Logger;
 
@@ -25,11 +25,11 @@ public class StructDatabase implements IStructDatabase{
 	
 
 
-	protected KeyListMap<Integer, MoleculeStruct> structsByHash;
+	protected KeyListMap<Integer, MolStruct> structsByHash;
 	protected HashMap<String, FilePair> fileLocsByID;
 	protected MoleculeStructFactory structFactory;
 	protected CompressionType compressionType;
-	protected List<MoleculeStruct> linearStructs = null;
+	protected List<MolStruct> linearStructs = null;
 	protected int numReps = -1;
 	protected int numMols = -1;
 	
@@ -55,11 +55,11 @@ public class StructDatabase implements IStructDatabase{
 		return structFactory;
 	}
 	
-	public List<MoleculeStruct> getStructsByHash(int hash){
+	public List<MolStruct> getStructsByHash(int hash){
 		return structsByHash.get(hash);
 	}
 	
-	public KeyListMap<Integer, MoleculeStruct> getStructsByHash(){
+	public KeyListMap<Integer, MolStruct> getStructsByHash(){
 		return this.structsByHash;
 	}
 	
@@ -121,7 +121,7 @@ public class StructDatabase implements IStructDatabase{
 
 	}
 	
-	public Iterator<MoleculeStruct> iterator(){
+	public Iterator<MolStruct> iterator(){
 		if( linearStructs == null){
 			buildLinearSet();
 		}
@@ -129,8 +129,8 @@ public class StructDatabase implements IStructDatabase{
 	}
 	
 	protected void buildLinearSet(){
-		linearStructs = new ArrayList<MoleculeStruct>( numReps());
-		for(List<MoleculeStruct> repSet: structsByHash.values()){
+		linearStructs = new ArrayList<MolStruct>( numReps());
+		for(List<MolStruct> repSet: structsByHash.values()){
 			linearStructs.addAll(repSet);
 		}
 
@@ -139,7 +139,7 @@ public class StructDatabase implements IStructDatabase{
 	public int numReps(){
 		if( numReps == -1){
 			numReps = 0;
-			for(List<MoleculeStruct> repSet: structsByHash.values()){
+			for(List<MolStruct> repSet: structsByHash.values()){
 				numReps += repSet.size();
 			}
 		}
@@ -150,8 +150,8 @@ public class StructDatabase implements IStructDatabase{
 	public int numMols(){
 		if( numMols == -1){
 			numMols = 0;
-			for(List<MoleculeStruct> repSet: structsByHash.values()){
-				for(MoleculeStruct rep: repSet){
+			for(List<MolStruct> repSet: structsByHash.values()){
+				for(MolStruct rep: repSet){
 					numMols += rep.getIDNums().length;
 				}
 			}
@@ -181,7 +181,7 @@ public class StructDatabase implements IStructDatabase{
 		return 0.0;
 	}
 	
-	public MoleculeStruct makeMoleculeStruct(IAtomContainer mol){
+	public MolStruct makeMoleculeStruct(IAtomContainer mol){
 		return structFactory.makeMoleculeStruct(mol);
 	}
 	

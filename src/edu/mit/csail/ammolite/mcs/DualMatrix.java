@@ -6,7 +6,7 @@ import org.apache.commons.math3.linear.OpenMapRealVector;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
 
-import edu.mit.csail.ammolite.utils.UtilFMCS;
+import edu.mit.csail.ammolite.utils.MCSUtils;
 
 public class DualMatrix {
 	SparseMatrix A;

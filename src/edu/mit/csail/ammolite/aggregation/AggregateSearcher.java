@@ -23,7 +23,7 @@ import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.compression.CyclicStruct;
-import edu.mit.csail.ammolite.compression.MoleculeStruct;
+import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
@@ -121,8 +121,8 @@ public class AggregateSearcher {
 		List<String> ids = new ArrayList<String>(3 * matches.size());
 		for(int i=0;i<matches.size(); i++){
 			IAtomContainer match = matches.get(i);
-			if( match instanceof MoleculeStruct){
-				MoleculeStruct sMatch = (MoleculeStruct) match;
+			if( match instanceof MolStruct){
+				MolStruct sMatch = (MolStruct) match;
 				for(String id: sMatch.getIDNums()){
 					ids.add(id);
 				}

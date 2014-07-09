@@ -5,7 +5,7 @@ import java.util.concurrent.Callable;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
-import edu.mit.csail.ammolite.compression.MoleculeStruct;
+import edu.mit.csail.ammolite.compression.MolStruct;
 
 public class MCS {
 	
@@ -13,7 +13,7 @@ public class MCS {
 		return getSMSDOverlap(a,b);
 	}
 	
-	public static int getSizeOfOverlap(MoleculeStruct a, MoleculeStruct b){
+	public static int getSizeOfOverlap(MolStruct a, MolStruct b){
 		return getIsoRankOverlap(a,b);
 	}
 	
@@ -23,8 +23,8 @@ public class MCS {
 	
 	public static boolean beatsOverlapThreshold(IAtomContainer a, IAtomContainer b, double threshold){
 		
-		if(a instanceof MoleculeStruct && b instanceof MoleculeStruct){
-			int isoOverlap = getIsoRankOverlap((MoleculeStruct) a, (MoleculeStruct) b);
+		if(a instanceof MolStruct && b instanceof MolStruct){
+			int isoOverlap = getIsoRankOverlap((MolStruct) a, (MolStruct) b);
 			double isoCoeff = overlapCoeff(isoOverlap, a.getAtomCount(), b.getAtomCount());
 			if( isoCoeff < threshold){
 				return false;
@@ -41,7 +41,7 @@ public class MCS {
 		
 	}
 	
-	public static boolean beatsOverlapThresholdIsoRank(MoleculeStruct a, MoleculeStruct b, double threshold){
+	public static boolean beatsOverlapThresholdIsoRank(MolStruct a, MolStruct b, double threshold){
 		int isoOverlap = getIsoRankOverlap(a, b);
 		double isoCoeff = overlapCoeff(isoOverlap, a, b);
 		if( isoCoeff < threshold){
@@ -64,7 +64,7 @@ public class MCS {
 		return false;
 	}
 	
-	private static int getIsoRankOverlap(MoleculeStruct a, MoleculeStruct b){
+	private static int getIsoRankOverlap(MolStruct a, MolStruct b){
 		IsoRank iso = new IsoRank(a,b);
 		iso.calculate();
 		return iso.size();

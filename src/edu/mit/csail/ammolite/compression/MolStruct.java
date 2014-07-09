@@ -25,7 +25,7 @@ import edu.ucla.sspace.graph.isomorphism.AbstractIsomorphismTester;
  * 
  * @author  David Danko
  */
-public class MoleculeStruct extends AtomContainer implements Serializable {
+public class MolStruct extends AtomContainer implements Serializable {
 	
 	/**
 	 * 
@@ -39,12 +39,12 @@ public class MoleculeStruct extends AtomContainer implements Serializable {
 	protected HashMap<IBond,Edge> bondsToEdges = new HashMap<IBond, Edge>();
 	protected HashMap<Edge, IBond> edgesToBonds = new HashMap<Edge, IBond>();
 	
-	public MoleculeStruct(){
+	public MolStruct(){
 		
 	}
 	
 	
-	public MoleculeStruct( IAtomContainer base )
+	public MolStruct( IAtomContainer base )
 	{	
 		super( new AtomContainer(AtomContainerManipulator.removeHydrogens(base)) );
 		mol_ids = new ArrayList<String>();
@@ -155,10 +155,10 @@ public class MoleculeStruct extends AtomContainer implements Serializable {
 	}
 	
 	public boolean isIsomorphic(IAtomContainer that, AbstractIsomorphismTester iso_tester){
-		if(!(that instanceof MoleculeStruct)){
-			that = new MoleculeStruct( that );
+		if(!(that instanceof MolStruct)){
+			that = new MolStruct( that );
 		}
-		MoleculeStruct that_struct = (MoleculeStruct) that;
+		MolStruct that_struct = (MolStruct) that;
 		return iso_tester.areIsomorphic(this.getGraph(), that_struct.getGraph() );
 	}
 	
