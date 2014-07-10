@@ -28,6 +28,14 @@ public class MCSUtils {
 		return ( 1.0*overlap) / b;
 	}
 	
+	public static double overlapCoeff(int overlap, IAtomContainer a, IAtomContainer b){
+		return overlapCoeff(overlap, getAtomCountNoHydrogen(a), getAtomCountNoHydrogen(b));
+	}
+	
+	public static int getAtomCountNoHydrogen(IAtomContainer mol){
+		return AtomContainerManipulator.removeHydrogens(mol).getAtomCount();
+	}
+	
 	/**
 	 * Find the Max Common Subgraph between two molecules. Makes an sdf file and prints a picture.
 	 * 

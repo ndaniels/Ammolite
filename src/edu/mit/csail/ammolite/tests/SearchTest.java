@@ -21,6 +21,7 @@ import edu.mit.csail.ammolite.database.BigStructDatabase;
 import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
 import edu.mit.csail.ammolite.mcs.MCS;
+import edu.mit.csail.ammolite.utils.MCSUtils;
 import edu.mit.csail.ammolite.utils.SDFUtils;
 
 public class SearchTest {
@@ -30,6 +31,7 @@ public class SearchTest {
 	private static final String ammoliteCoarse = "AMMOLITE_COARSE";
 	private static final String ammolite = "AMMOLITE";
 	private static final String smsd = "SMSD";
+	private static final String fmcs = "FMCS";
 	
 	
 	public static void testCompressedSearch(String queryFile, String databaseName, double thresh, double prob){
@@ -75,7 +77,20 @@ public class SearchTest {
 			System.out.print(match.getProperty("PUBCHEM_COMPOUND_CID"));
 			System.out.print(" ");
 		}
-		System.out.println("\nEND_METHOD");
+		System.out.println("\nSTART_DETAILED_MATCHES");
+		for(int i=0; i< result.matches.size(); i++){
+			IAtomContainer match = result.matches.get(i);
+			int matchSize = result.matchSizes.get(i);
+			System.out.print(match.getProperty("PUBCHEM_COMPOUND_CID"));
+			System.out.print(" ");
+			System.out.print(matchSize);
+			System.out.print(" ");
+			System.out.print(MCSUtils.getAtomCountNoHydrogen(match));
+			System.out.print(" ");
+			System.out.println(MCSUtils.getAtomCountNoHydrogen(result.query));
+		}
+		System.out.println("END_DETAILED_MATCHES");
+		System.out.println("END_METHOD");
 		System.out.println("END_QUERY");
 	}
 	
@@ -89,6 +104,7 @@ public class SearchTest {
 		public IAtomContainer query;
 		public String methodName;
 		public List<IAtomContainer> matches = new ArrayList<IAtomContainer>();
+		public List<Integer> matchSizes = new ArrayList<Integer>();
 		
 		public SearchResult(IAtomContainer q, String _methodName){
 			query = q;
@@ -122,8 +138,9 @@ public class SearchTest {
 			return duration;
 		}
 		
-		public void addMatch(IAtomContainer match){
+		public void addMatch(IAtomContainer match, int mcsSize){
 			matches.add(match);
+			matchSizes.add(mcsSize);
 		}
 		
 	}
@@ -139,8 +156,9 @@ public class SearchTest {
 			if(MCS.beatsOverlapThresholdIsoRank(sQuery, sTarget, sThresh)){
 				for(String pubchemID: sTarget.getIDNums()){
 					IAtomContainer target = db.getMolecule(pubchemID);
-					if(MCS.beatsOverlapThresholdSMSD(query, target, thresh)){
-						result.addMatch(target);
+					int mcsSize = MCS.getSMSDOverlap(query, target);
+					if(thresh <= MCSUtils.overlapCoeff(mcsSize, query, target)){
+						result.addMatch(target, mcsSize);
 					}
 				}
 			}
@@ -160,10 +178,11 @@ public class SearchTest {
 		Iterator<MolStruct> iter = db.iterator();
 		while(iter.hasNext()){
 			MolStruct sTarget = iter.next();
-			if(MCS.beatsOverlapThresholdIsoRank(sQuery, sTarget, sThresh)){
+			int mcsSize = MCS.getIsoRankOverlap(sTarget, sQuery);
+			if(sThresh <= MCSUtils.overlapCoeff(mcsSize, sTarget, sQuery)){
 				for(String pubchemID: sTarget.getIDNums()){
 					IAtomContainer target = db.getMolecule(pubchemID);
-					result.addMatch(target);
+					result.addMatch(target, mcsSize);
 				}
 			}
 			
@@ -177,8 +196,9 @@ public class SearchTest {
 		SearchResult result = new SearchResult(query, smsd);
 		result.start();
 		for(IAtomContainer target: targets){
-			if(MCS.beatsOverlapThresholdSMSD(query, target, thresh)){
-				result.addMatch(target);
+			int mcsSize = MCS.getSMSDOverlap(target, query);
+			if(thresh <= MCSUtils.overlapCoeff(mcsSize, target, query)){
+				result.addMatch(target, mcsSize);
 			}
 		}
 		result.end();
@@ -186,11 +206,12 @@ public class SearchTest {
 	}
 	
 	private static SearchResult fmcsSearch(IAtomContainer query, Collection<IAtomContainer> targets, double thresh){
-		SearchResult result = new SearchResult(query, "FMCS");
+		SearchResult result = new SearchResult(query, fmcs);
 		result.start();
 		for(IAtomContainer target: targets){
-			if(MCS.beatsOverlapThresholdFMCS(query, target, thresh)){
-				result.addMatch(target);
+			int mcsSize = MCS.getFMCSOverlap(target, query);
+			if(thresh <= MCSUtils.overlapCoeff(mcsSize, target, query)){
+				result.addMatch(target, mcsSize);
 			}
 		}
 		result.end();
@@ -199,9 +220,7 @@ public class SearchTest {
 	
 	private static List<SearchResult> ammoliteCoarseQuerySideCompression(List<IAtomContainer> queries, IStructDatabase db, double thresh, double prob){
 		
-		System.out.print("Compressing Queries... ");
 		KeyListMap<MolStruct,IAtomContainer> compressedQueries = StructCompressor.compressQueries(queries, db.getStructFactory());
-		System.out.println("Done.");
 		double sThresh = prob; // !!! not using the conversion I came up with, yet.
 		List<SearchResult> allResults = new ArrayList<SearchResult>( 3* compressedQueries.keySet().size());
 		for(MolStruct cQuery: compressedQueries.keySet()){
@@ -217,11 +236,12 @@ public class SearchTest {
 			}
 			while(iter.hasNext()){
 				MolStruct sTarget = iter.next();
-				if(MCS.beatsOverlapThreshold(cQuery, sTarget, sThresh)){
+				int mcsSize = MCS.getIsoRankOverlap(sTarget, cQuery);
+				if(sThresh <= MCSUtils.overlapCoeff(mcsSize, sTarget, cQuery)){
 					for(String pubchemID: sTarget.getIDNums()){
 						IAtomContainer target = db.getMolecule(pubchemID);
 						for(SearchResult res: results){
-							res.addMatch(target);
+							res.addMatch(target, mcsSize);
 						}
 					}
 				}	
@@ -236,9 +256,8 @@ public class SearchTest {
 	}
 	
 	private static List<SearchResult> ammoliteQuerySideCompression(List<IAtomContainer> queries, IStructDatabase db, double thresh, double prob){
-		System.out.print("Compressing Queries... ");
+
 		KeyListMap<MolStruct,IAtomContainer> compressedQueries = StructCompressor.compressQueries(queries, db.getStructFactory());
-		System.out.println("Done.");
 		double sThresh = prob; // !!! not using the conversion I came up with, yet.
 		List<SearchResult> allResults = new ArrayList<SearchResult>( 3* compressedQueries.keySet().size());
 		Iterator<MolStruct> iter;
@@ -260,8 +279,9 @@ public class SearchTest {
 						for(int i=0; i<exQueries.size(); i++){
 							IAtomContainer exQuery = exQueries.get(i);
 							SearchResult result = results.get(i);
-							if(MCS.beatsOverlapThresholdSMSD(exQuery, target, thresh)){
-								result.addMatch(target);
+							int mcsSize = MCS.getSMSDOverlap(target, exQuery);
+							if(thresh <= MCSUtils.overlapCoeff(mcsSize, target, exQuery)){
+								result.addMatch(target, mcsSize);
 							}
 						}
 					}
