@@ -61,6 +61,58 @@ public class SearchTest {
 		processResults(results);
 	}
 	
+	public static void testSMSD(String queryFile){
+		List<IAtomContainer> molecules = SDFUtils.parseSDF( queryFile);
+		System.out.println(smsd);
+		// id1 id2 size(1) size(2) overlapSize(1,2) timeInMillis
+		for(int i=0; i<molecules.size(); i++){
+			for(int j=0; j<=i; j++){
+				IAtomContainer a = molecules.get(i);
+				IAtomContainer b = molecules.get(j);
+				long wallClockStart = System.currentTimeMillis();
+				int mcsSize = MCS.getSMSDOverlap(a, b);
+				long wallClockElapsed = System.currentTimeMillis() - wallClockStart;
+				System.out.print(a.getProperty("PUBCHEM_COMPOUND_CID"));
+				System.out.print(" ");
+				System.out.print(b.getProperty("PUBCHEM_COMPOUND_CID"));
+				System.out.print(" ");
+				System.out.print(MCSUtils.getAtomCountNoHydrogen(a));
+				System.out.print(" ");
+				System.out.print(MCSUtils.getAtomCountNoHydrogen(b));
+				System.out.print(" ");
+				System.out.print(mcsSize);
+				System.out.print(" ");
+				System.out.println( wallClockElapsed);
+			}
+		}
+	}
+	
+	public static void testFMCS(String queryFile){
+		List<IAtomContainer> molecules = SDFUtils.parseSDF( queryFile);
+		System.out.println(fmcs);
+		// id1 id2 size(1) size(2) overlapSize(1,2) timeInMillis
+		for(int i=0; i<molecules.size(); i++){
+			for(int j=0; j<=i; j++){
+				IAtomContainer a = molecules.get(i);
+				IAtomContainer b = molecules.get(j);
+				long wallClockStart = System.currentTimeMillis();
+				int mcsSize = MCS.getSMSDOverlap(a, b);
+				long wallClockElapsed = System.currentTimeMillis() - wallClockStart;
+				System.out.print(a.getProperty("PUBCHEM_COMPOUND_CID"));
+				System.out.print(" ");
+				System.out.print(b.getProperty("PUBCHEM_COMPOUND_CID"));
+				System.out.print(" ");
+				System.out.print(MCSUtils.getAtomCountNoHydrogen(a));
+				System.out.print(" ");
+				System.out.print(MCSUtils.getAtomCountNoHydrogen(b));
+				System.out.print(" ");
+				System.out.print(mcsSize);
+				System.out.print(" ");
+				System.out.println( wallClockElapsed);
+			}
+		}
+	}
+	
 	public static void processResults(List<SearchResult> results){
 		for(SearchResult r: results){
 			processSingleResult( r);

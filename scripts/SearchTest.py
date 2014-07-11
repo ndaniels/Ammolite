@@ -1,4 +1,5 @@
 import sys
+from glob import glob
 
 class MethodResult:
 	def __init__(self, method):
@@ -29,6 +30,7 @@ def parseSearchTestResults( searchTestResults):
 				if( l[0] == "fine_threshold:"):
 					fineThresh = l[1]
 					coarseThresh = l[3]
+					print("~"*70)
 					print("Fine threshold: {} Coarse threshold; {}".format(fineThresh, coarseThresh))
 				elif( l[0] == "WALL_CLOCK"):
 					print(line)
@@ -89,13 +91,16 @@ def getNumberOfResults( methodResult):
 
 
 def main( searchFiles):
-	results = []
-	for filename in searchFiles:
-		results += parseSearchTestResults( filename)
-	print("\nAverage runtimes:")
-	arbAverage(results, getRuntime, "running time")
-	print("\nAverage number of results:")
-	arbAverage(results, getNumberOfResults, "number of results")
+	filenames = []
+	for name in searchFiles:
+		filenames += glob(name)
+
+	for filename in filenames:
+		results = parseSearchTestResults( filename)
+		print("\nAverage runtimes:")
+		arbAverage(results, getRuntime, "running time")
+		print("\nAverage number of results:")
+		arbAverage(results, getNumberOfResults, "number of results")
 
 if __name__ == "__main__":
 	args = sys.argv
