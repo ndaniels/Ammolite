@@ -24,7 +24,7 @@ public class RingStruct extends CyclicStruct {
 			removeAcyclicEdges();
 			removeZeroPrimeCarbons();
 		}
-		setHash();
+		setFingerprint();
 	}
 	
 	protected void removeZeroPrimeCarbons(){

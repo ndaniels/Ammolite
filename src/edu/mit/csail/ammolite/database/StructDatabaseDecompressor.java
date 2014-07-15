@@ -23,8 +23,6 @@ public class StructDatabaseDecompressor {
 			
 			if(extension.equals("adb")){
 				return ammoliteDatabase( databasename);
-			} else if( extension.equals("sdf")) {
-				return new MoleculeDatabase( databasename);
 			} else {
 				throw new IllegalArgumentException("Cannot build a database from this filetype");
 			}

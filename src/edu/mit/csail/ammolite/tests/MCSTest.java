@@ -13,7 +13,6 @@ import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import edu.mit.csail.ammolite.compression.CyclicStruct;
 import edu.mit.csail.ammolite.compression.MolStruct;
-import edu.mit.csail.ammolite.compression.RingStruct;
 import edu.mit.csail.ammolite.mcs.AbstractMCS;
 import edu.mit.csail.ammolite.mcs.DualMatrix;
 import edu.mit.csail.ammolite.mcs.FMCS;

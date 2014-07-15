@@ -1,6 +1,6 @@
 package edu.mit.csail.ammolite
 
-import edu.mit.csail.ammolite.compression.FragStruct
+
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory
 import edu.mit.csail.ammolite.compression.StructCompressor
 
@@ -64,8 +64,9 @@ object AmmoliteMain{
 			val devTestAggSearch = new Subcommand("test-agg"){
 			  val q = opt[String]("queries")
 			  val db = opt[String]("database")
-			  val t = opt[Double]("threshold")
-			  val p = opt[Double]("prob")
+			  val f = opt[Double]("fine")
+			  val c = opt[Double]("coarse")
+			  val a = opt[Double]("agg")
 			}
 			val devTestSMSD = new Subcommand("test-smsd"){
 			   val mols = opt[String]("molecules")
@@ -128,7 +129,7 @@ object AmmoliteMain{
 		} else if( opts.subcommand == Some( opts.devTestSearch)){
 		  edu.mit.csail.ammolite.tests.SearchTest.testCompressedSearch(opts.devTestSearch.q(), opts.devTestSearch.db(), opts.devTestSearch.t(), opts.devTestSearch.p())
 		} else if( opts.subcommand == Some( opts.devTestAggSearch)){
-		  edu.mit.csail.ammolite.tests.AggregateSearchTest.testAggSearch(opts.devTestSearch.db(), opts.devTestSearch.q(), opts.devTestSearch.t(), opts.devTestSearch.p())
+		  edu.mit.csail.ammolite.tests.AggregateSearchTest.testAggSearch(opts.devTestAggSearch.db(), opts.devTestAggSearch.q(), opts.devTestAggSearch.f(), opts.devTestAggSearch.c(), opts.devTestAggSearch.a())
 		} else if( opts.subcommand == Some( opts.devTestSMSD)){
 		  edu.mit.csail.ammolite.tests.SearchTest.testSMSD(opts.devTestSMSD.mols())
 		}else if( opts.subcommand == Some( opts.devTestFMCS)){

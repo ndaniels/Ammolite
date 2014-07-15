@@ -136,7 +136,7 @@ public class AggregateSearchTest {
 		
 	}
 	
-	public static void testAggSearch(String clusterName, String queryFile, double thresh, double prob){
+	public static void testAggSearch(String clusterName, String queryFile, double fine, double coarse, double agg){
 		ClusterDatabase cDB = ClusterDatabaseDecompressor.decompress(clusterName);
 		List<Cluster> cList = cDB.getClusterList();
 		db = cDB.getDatabase();
@@ -147,32 +147,31 @@ public class AggregateSearchTest {
 			results.put(q, res);
 			res.start();
 			for(Cluster c: cList){
-				singleAggQuery(q, sQ, c, thresh, prob);
+				singleAggQuery(q, sQ, c, fine, coarse, agg);
 			}
 			res.end();
 		}
-		System.out.println("fine_threshold: "+thresh+" coarse_threshold: "+prob);
+		System.out.println("fine_threshold: "+fine+" coarse_threshold: "+coarse+ " agg_threshold: "+agg);
 		for(AggSearchResult r: results.values()){
 			r.print();
 		}
 		
 	}
 	
-	private static void singleAggQuery(IAtomContainer oQuery, MolStruct query, Cluster masterCluster, double thresh, double prob){
+	private static void singleAggQuery(IAtomContainer oQuery, MolStruct query, Cluster masterCluster, double fine, double coarse, double agg){
 		results.get(oQuery).startAggTime();
 		MolStruct rep = masterCluster.getRep();
-		double matchingThresh = thresh;
 		
-		if( MCS.beatsOverlapThresholdIsoRank(query, rep, matchingThresh)){
+		if( MCS.beatsOverlapThresholdIsoRank(query, rep, agg)){
 			if( masterCluster.order() == 0){
 				results.get(oQuery).addAggMatch(rep);
 				results.get(oQuery).endAggTime();
-				singleStandardQuery(oQuery, query, rep, thresh, prob);
+				singleStandardQuery(oQuery, query, rep, fine, coarse);
 				
 			} else {
 				for(Cluster subCluster: masterCluster.getMembers()){
 					results.get(oQuery).endAggTime();
-					singleAggQuery(oQuery,  query, subCluster, thresh, prob);
+					singleAggQuery(oQuery,  query, subCluster, fine, coarse, agg);
 				}
 			}
 		}

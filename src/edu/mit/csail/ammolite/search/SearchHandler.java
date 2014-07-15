@@ -13,12 +13,7 @@ public class SearchHandler {
 	public SearchHandler(String databaseFilename, String queryFilename, String outFilename, double threshold, double probability, boolean useTanimoto){
 		pickSearchType( threshold,probability, useTanimoto);
 		IBatchSearcher searcher = null;
-		if( searchType == SearchType.LINEAR){
-			searcher = new LinearSearcher();
-		}
-		else if( searchType == SearchType.CYCLIC){
-			searcher = new ParallelSearcher();
-		}
+
 		searcher.search(databaseFilename, queryFilename, outFilename, threshold, probability, useTanimoto);
 		
 	}
