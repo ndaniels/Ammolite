@@ -15,7 +15,7 @@ public interface IStructDatabase {
 	public int numMols();
 	public String info();
 	public double convertThreshold(double threshold, double probability, boolean useTanimoto);
-	public IAtomContainer makeMoleculeStruct(IAtomContainer mol);
+	public MolStruct makeMoleculeStruct(IAtomContainer mol);
 	public Iterator<MolStruct> iterator();
 	public MoleculeStructFactory getStructFactory();
 }

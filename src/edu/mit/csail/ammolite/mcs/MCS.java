@@ -75,6 +75,12 @@ public class MCS {
 		return smsd.size();
 	}
 	
+	public static IAtomContainer getMCS(IAtomContainer a, IAtomContainer b){		
+		SMSD smsd = new SMSD(a,b);
+		smsd.timedCalculate(2000);
+		return smsd.getFirstSolution();
+}
+	
 	public static int getFMCSOverlap(IAtomContainer a, IAtomContainer b){
 		FMCS fmcs = new FMCS(a,b);
 		fmcs.timedCalculate(2000);

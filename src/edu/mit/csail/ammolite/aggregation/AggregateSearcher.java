@@ -32,8 +32,8 @@ import edu.mit.csail.ammolite.mcs.FMCS;
 import edu.mit.csail.ammolite.mcs.MCSFinder;
 import edu.mit.csail.ammolite.search.MolTriple;
 import edu.mit.csail.ammolite.utils.Logger;
+import edu.mit.csail.ammolite.utils.MCSUtils;
 import edu.mit.csail.ammolite.utils.Pair;
-import edu.mit.csail.ammolite.utils.UtilFunctions;
 
 public class AggregateSearcher {
 	private IStructDatabase db;
@@ -67,7 +67,7 @@ public class AggregateSearcher {
 		SDFWriter writer = new SDFWriter(new BufferedWriter( new FileWriter( outFilename + ".sdf" )));
 		
 		while( queryFile.hasNext() ){
-			IAtomContainer query = db.makeMoleculeStruct(queryFile.next());
+			MolStruct query = db.makeMoleculeStruct(queryFile.next());
 
 			List<MolTriple> results = singleSearch( query,threshold, useTanimoto);
 			Logger.experiment("Query ID: "+query.getID()+", Matches: "+results.size());
@@ -104,7 +104,7 @@ public class AggregateSearcher {
 		writer.close();
 	}
 	
-	private  List<MolTriple> singleSearch(IAtomContainer query, double threshold, boolean _useTanimoto){
+	private  List<MolTriple> singleSearch(MolStruct query, double threshold, boolean _useTanimoto){
 		useTanimoto = _useTanimoto;
 		List<IAtomContainer> matches = new ArrayList<IAtomContainer>();
 		List<Cluster> myCList = new ArrayList<Cluster>(cList);
@@ -159,9 +159,9 @@ public class AggregateSearcher {
 	
 	private double coeff(int overlap, int a, int b){
 		if( useTanimoto){
-			return UtilFunctions.tanimotoCoeff(overlap, a, b);
+			return MCSUtils.tanimotoCoeff(overlap, a, b);
 		}
-		return UtilFunctions.overlapCoeff(overlap, a, b);
+		return MCSUtils.overlapCoeff(overlap, a, b);
 		
 	}
 	

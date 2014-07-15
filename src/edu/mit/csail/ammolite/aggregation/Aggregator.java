@@ -214,7 +214,8 @@ public class Aggregator {
 		List<Cluster> clusterList = new ArrayList<Cluster>();
 		Iterator<MolStruct> dbIter = db.iterator();
 		while( dbIter.hasNext()){
-			clusterList.add( new Cluster(dbIter.next(), repBound));
+			Cluster clust = new Cluster(dbIter.next(), repBound);
+			clusterList.add( clust);
 		}
 		return clusterList;
 	}

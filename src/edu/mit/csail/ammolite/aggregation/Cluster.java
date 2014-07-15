@@ -11,22 +11,21 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.mcs.AbstractMCS;
 import edu.mit.csail.ammolite.mcs.FMCS;
+import edu.mit.csail.ammolite.mcs.MCS;
 import edu.mit.csail.ammolite.mcs.MCSFinder;
 import edu.mit.csail.ammolite.utils.Logger;
+import edu.mit.csail.ammolite.utils.MCSUtils;
 
 
 public class Cluster implements Serializable{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4558559462758246483L;
-	private IAtomContainer rep;
+
+	private MolStruct rep;
 	private List<Cluster> members= new LinkedList<Cluster>();
 	private double repBound;
 	private int order = 0;
 	
-	public Cluster(IAtomContainer initialMember, double _repBound){
+	public Cluster(MolStruct initialMember, double _repBound){
 		repBound = _repBound;
 		rep = initialMember;
 	}
@@ -40,50 +39,69 @@ public class Cluster implements Serializable{
 		order = initialMember.order() + 1;
 	}
 	
-	public IAtomContainer getRep(){
+	/**
+	 * Return the representative molecule-structure for the cluster
+	 * @return
+	 */
+	public MolStruct getRep(){
 		return rep;
 	}
+	
+	/**
+	 * Returns the maximum distance to the base of the tree.
+	 * 
+	 * Leaves have an order of zero.
+	 * 
+	 * @return
+	 */
 	public int order(){
 		return order;
 	}
 	
+	
+	/**
+	 * Return the sub-clusters which are part of this cluster
+	 * @return
+	 */
 	public List<Cluster> getMembers(){
 		return members;
 	}
 	
+	/**
+	 * Attempt to add a candidate cluster to this cluster. Return true if successful.
+	 * @param candidate
+	 * @return
+	 */
 	public boolean addCandidate(Cluster candidate){
 		if( this == candidate){
 			return false;
 		}
 		if(candidate.order() > order()){
 			return candidate.addCandidate(this);
+		}		
+		if( !MCS.beatsOverlapThresholdIsoRank(candidate.getRep(), rep, 0.9 * repBound)){
+			return false;
 		}
 		
-		AbstractMCS myMCS = new MCSFinder(candidate.getRep(), rep);
-		myMCS.calculate();
+		IAtomContainer mcs = MCS.getMCS(candidate.getRep(), rep);
+		int mcsSize = mcs.getAtomCount();
+		double newOverlapCoeff = MCSUtils.overlapCoeff(mcsSize, rep, candidate.getRep());
 		
-		
-		int newRepSize = myMCS.size();
-		
-		
-		
-		if( (overlap( newRepSize, candidate.getRep().getAtomCount()) < repBound) ){
+		if( newOverlapCoeff < repBound){
 			return false;
 		}
 		
 
 		for(int i=0; i<members.size(); ++i){
-			
 			Cluster member = members.get(i);
-			if( overlap(newRepSize, member.getRep().getAtomCount()) < repBound ){
+			double memberOverlap = (1.0*mcsSize) /  member.getRep().getAtomCount();
+			if( memberOverlap < repBound ){
 				return false;
 			}
 		}
 		
-		members.add(candidate);
-		List<IAtomContainer> solutions = myMCS.getSolutions();
 		
-		rep = new MolStruct( solutions.get(0));
+		rep = new MolStruct( mcs);
 		if( candidate.order() + 1 > order()){
 			order = candidate.order() + 1;
 		}
@@ -91,31 +109,32 @@ public class Cluster implements Serializable{
 		return true;
 	}
 	
-	public boolean matchesCluster(IAtomContainer candidate, double myRepBound){
+	public boolean matchesCluster(MolStruct candidate, double myRepBound){
 		
-		AbstractMCS myMCS = new FMCS(candidate, rep);
-		myMCS.calculate();
-
-		int newRepSize = myMCS.size();
-		
-		if( (overlap( newRepSize, candidate.getAtomCount()) < myRepBound) ){
+		if( !MCS.beatsOverlapThresholdIsoRank(candidate, rep, 0.9 * repBound)){
 			return false;
 		}
 		
-		for(Cluster member: members){
-			if( overlap(newRepSize, member.getRep().getAtomCount()) < myRepBound ){
+		IAtomContainer mcs = MCS.getMCS(candidate, rep);
+		int mcsSize = mcs.getAtomCount();
+		double newOverlapCoeff = MCSUtils.overlapCoeff(mcsSize, rep, candidate);
+		
+		if( newOverlapCoeff < myRepBound){
+			return false;
+		}
+		
+		for(int i=0; i<members.size(); ++i){
+			Cluster member = members.get(i);
+			double memberOverlap = (1.0*mcsSize) /  member.getRep().getAtomCount();
+			if( memberOverlap < myRepBound ){
 				return false;
 			}
 		}
 		
-
 		return true;
 	}
 	
-	private double overlap(int overlap, int original){
-		return ( (double) overlap) / original;
-	}
-	
+
 	public String toString(){
 		return rep.getID();
 	}

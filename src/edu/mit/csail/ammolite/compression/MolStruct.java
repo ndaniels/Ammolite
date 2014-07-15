@@ -65,9 +65,16 @@ public class MolStruct extends AtomContainer implements Serializable {
 
 		setFingerprint();
 		
-		this.setID((String) base.getProperty("PUBCHEM_COMPOUND_CID"));
-
-		this.mol_ids.add( getID() );
+		String id = (String) base.getProperty("PUBCHEM_COMPOUND_CID");
+		this.setID( id);
+		this.mol_ids.add( id );
+	}
+	
+	public Object getProperty(Object description){
+		if( description.equals("PUBCHEM_COMPOUND_CID")){
+			return this.getID();
+		}
+		return super.getProperty(description);
 	}
 	
 	@Override
