@@ -56,9 +56,9 @@ public class SearchTest {
 			results.add( ammoliteCoarseSearch(query, db, thresh, prob));
 		}
 		
-		for(IAtomContainer query: queries){
-			results.add( smsdSearch(query, targets, thresh));
-		}
+//		for(IAtomContainer query: queries){
+//			results.add( smsdSearch(query, targets, thresh));
+//		}
 		
 		processResults(results);
 	}
