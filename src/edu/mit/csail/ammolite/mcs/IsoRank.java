@@ -170,13 +170,17 @@ public class IsoRank{
 		RealVector R = new OpenMapRealVector(A.getColumnDimension());
 		
 		R.mapAddToSelf(1.0);
-		R.unitize();
+		double norm = R.getNorm();
+		if( norm < 0.00000001){
+			return R;
+		}
+		R.mapDivideToSelf(norm);
 
 		int iter = 0;
 		
 		while(iter < MAX_ITERATIONS){
 			R  = A.postOperate(R);
-			double norm = R.getNorm();
+			norm = R.getNorm();
 			if( norm < 0.00000001){
 				return R;
 			}
