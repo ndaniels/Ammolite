@@ -60,7 +60,6 @@ class ResultTable:
 
 
 
-
 def parseFiles( smsdFilename, ammFilename):
 	smsdResults = []
 	with open(smsdFilename) as smsd:
@@ -96,7 +95,7 @@ def parseFiles( smsdFilename, ammFilename):
 
 	return (smsdResults, ammResults)
 
-def getAveNumMatches(coarse, fine, smsdResults, ammResults):
+def getAveNumSMSDMatches(fine, smsdResults):
 	matchTable = {}
 	resTable = ResultTable()
 	smsdMatches = 0
@@ -105,6 +104,11 @@ def getAveNumMatches(coarse, fine, smsdResults, ammResults):
 			smsdMatches += 1
 			resTable.addResult(sRes)
 
+	aveSMSDMatches = float(smsdMatches) / len(smsdResults)
+
+	return aveSMSDMatches, resTable
+
+def getAveNumAmmMatches(coarse, fine, resTable, ammResults):
 
 	ammMatches = 0
 	for aRes in ammResults:
@@ -113,28 +117,30 @@ def getAveNumMatches(coarse, fine, smsdResults, ammResults):
 			if sRes != None:
 				ammMatches += 1
 
-	aveSMSDMatches = float(smsdMatches) / len(smsdResults)
 	aveAmmMatches = float(ammMatches) / len(ammResults)
 
-	return (aveSMSDMatches, aveAmmMatches)
+	return aveAmmMatches
 
 def getData(smsdResults, ammResults):
 	pts = []
-	k = 50
+	k = 100
 	data = np.zeros((k,k))
 	Y = []
 	X = []
-	for i,fine in enumerate( [n/float(k) for n in range(k/3,k)]):
-		for j,coarse in enumerate( [n/float(k) for n in range(0,int((k+1)*fine))]):
-			aveSMSD, aveAmm = getAveNumMatches(coarse,fine,smsdResults,ammResults)
-			ratio = aveAmm / aveSMSD
-			data[i,j] = ratio
-			Y.append( ratio)
-			X.append( coarse / fine)
+	for i,fine in enumerate( [n/float(k) for n in range(0,k)]):
+		if fine > 0.4:
+			aveSMSD, resTable = getAveNumSMSDMatches(fine, smsdResults)
+			for j,coarse in enumerate( [n/float(k) for n in range(0,k)]):
+				if coarse <= fine:
+					aveAmm = getAveNumAmmMatches(coarse,fine,resTable,ammResults)
+					ratio = aveAmm / aveSMSD
+					data[i,j] = ratio
+					Y.append( ratio)
+					X.append( coarse / fine)
 
 	return data, [n/float(k) for n in range(0,k)], [n/float(k) for n in range(0,k)], X, Y
 
-def buildHeatMap( data, column_labels, row_labels):
+def buildHeatMap( data, column_labels, row_labels, rowName, colName, outname="Heat Map"):
 
 
 	fig, ax = plt.subplots()
@@ -146,6 +152,11 @@ def buildHeatMap( data, column_labels, row_labels):
 
 	ax.set_xticklabels(row_labels, minor=False)
 	ax.set_yticklabels(column_labels, minor=False)
+
+	ax.set_xlabel(rowName)
+	ax.set_ylabel(colName)
+
+	fig.savefig(outname)
 	plt.show()
 
 def makeGraph(X,Y, xName, yName, name="NoName"):
@@ -165,7 +176,7 @@ def main( args):
 	ammFilename = args[2]
 	smsdResults, ammResults = parseFiles(smsdFilename, ammFilename)
 	data, cols, rows, X, Y = getData(smsdResults, ammResults)
-	buildHeatMap(data, cols, rows)
+	buildHeatMap(data, cols, rows, "coarse threshold", "fine threshold")
 	makeGraph(X,Y, "coarse_fine_ratio", "smsd_amm_ratio")
 
 if __name__ == "__main__":
