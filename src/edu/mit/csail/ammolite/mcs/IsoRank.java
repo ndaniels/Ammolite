@@ -170,7 +170,11 @@ public class IsoRank{
 		RealVector R = new OpenMapRealVector(A.getColumnDimension());
 		
 		R.mapAddToSelf(1.0);
-		R.unitize();
+		try{
+			R.unitize();
+		} catch(MathArithmeticException mae){
+			return new OpenMapRealVector(A.getColumnDimension());
+		}
 
 		int iter = 0;
 		
@@ -180,7 +184,7 @@ public class IsoRank{
 				R.unitize();
 			}
 			catch(MathArithmeticException mae){
-				break;
+				return new OpenMapRealVector(A.getColumnDimension());
 			}
 			iter++;
 		}
