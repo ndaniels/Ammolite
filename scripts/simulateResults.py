@@ -123,7 +123,7 @@ def getAveNumAmmMatches(coarse, fine, resTable, ammResults):
 
 def getData(smsdResults, ammResults):
 	pts = []
-	k = 100
+	k = 50
 	data = np.zeros((k,k))
 	Y = []
 	X = []

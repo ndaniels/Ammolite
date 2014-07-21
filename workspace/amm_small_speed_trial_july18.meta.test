@@ -1,0 +1,21 @@
+searched 1k_random_molecules with 100_random_molecules
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Fine threshold: 0.7 Coarse threshold; 0.4
+
+Average runtimes:
+AMMOLITE_COMPRESSED_QUERIES, average running time: 126723.43
+AMMOLITE_COARSE, average running time: 932.45
+AMMOLITE, average running time: 126598.25
+
+Average number of results:
+AMMOLITE_COMPRESSED_QUERIES, average number of results: 5.26
+AMMOLITE_COARSE, average number of results: 848.84
+AMMOLITE, average number of results: 5.25
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Decompressing molecule_sets/1k/1k_random_molecules.adb
+Ammolite Database Info
+Number of molecules: 1000
+Number of representatives: 558
+Compression Type: CYCLIC

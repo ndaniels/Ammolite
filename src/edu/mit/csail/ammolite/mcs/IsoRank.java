@@ -143,8 +143,11 @@ public class IsoRank{
 		while(true){
 
 			int maxDex = R.getMaxIndex();
-
-			if(R.getEntry(maxDex) > mapping_threshold){
+			
+			if( maxDex < 0){
+				break;
+				
+			} else if(R.getEntry(maxDex) > mapping_threshold){
 				int lilVert = maxDex / n1;
 				int bigVert = maxDex - lilVert*n1;
 				mapping.put(lilVert, bigVert);

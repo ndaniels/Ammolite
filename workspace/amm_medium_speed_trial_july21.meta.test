@@ -1,0 +1,1 @@
+./Ammolite test-ammolite -d molecule_sets/50ks/50k_random_molecules_0.adb -q molecule_sets/smalls/100_random_molecules.sdf -t 0.7 -p 0.4 | tee "workspace/amm_medium_speed_trial_july21.test"
