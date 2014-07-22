@@ -47,29 +47,50 @@ public class SearchTest {
 		Collection<IAtomContainer> targets = db.getMolecules();
 		List<SearchResult> results = new ArrayList<SearchResult>();
 		
-		WallClock clock = new WallClock( ammoliteCompressed);
-		results.addAll( ammoliteQuerySideCompression(queries, db, thresh, prob));
-		clock.printElapsed();
-
-		clock = new WallClock( ammolite);
-		CommandLineProgressBar progressBar = new CommandLineProgressBar(ammolite, queries.size());
-		for(IAtomContainer query: queries){
-			results.add( ammoliteSearch(query, db, thresh, prob));
-			progressBar.event();
-		}
-		clock.printElapsed();
-
-		clock = new WallClock( ammoliteCoarse);
-		progressBar = new CommandLineProgressBar(ammoliteCoarse, queries.size());	
+		WallClock clock = new WallClock( ammoliteCoarse);
+		CommandLineProgressBar progressBar = new CommandLineProgressBar(ammoliteCoarse, queries.size());	
 		for(IAtomContainer query: queries){
 			results.add( ammoliteCoarseSearch(query, db, thresh, prob));
 			progressBar.event();
 		}
 		clock.printElapsed();
+
+		clock = new WallClock( ammolite);
+		progressBar = new CommandLineProgressBar(ammolite, queries.size());
+		for(IAtomContainer query: queries){
+			results.add( ammoliteSearch(query, db, thresh, prob));
+			progressBar.event();
+		}
+		clock.printElapsed();
+	
+		clock = new WallClock( ammoliteCompressed);
+		results.addAll( ammoliteQuerySideCompression(queries, db, thresh, prob));
+		clock.printElapsed();
 		
-//		for(IAtomContainer query: queries){
-//			results.add( smsdSearch(query, targets, thresh));
-//		}
+		processResults(results);
+	}
+	
+	public static void testSMSDSearch(String queryFile, String databaseName, double thresh){
+		System.out.println("fine_threshold: "+thresh+" coarse_threshold: n/a");
+		BigStructDatabase db = (BigStructDatabase) StructDatabaseDecompressor.decompress(databaseName);
+		db.preloadMolecules();
+		
+		List<IAtomContainer> queries = SDFUtils.parseSDF( queryFile);
+		Collection<IAtomContainer> targets = db.getMolecules();
+		List<SearchResult> results = new ArrayList<SearchResult>();
+		
+
+		WallClock clock = new WallClock( smsd);
+		CommandLineProgressBar progressBar = new CommandLineProgressBar(smsd, queries.size());	
+		for(IAtomContainer query: queries){
+			results.add( smsdSearch(query, targets, thresh));
+			progressBar.event();
+		}
+		clock.printElapsed();
+		
+		for(IAtomContainer query: queries){
+			results.add( smsdSearch(query, targets, thresh));
+		}
 		
 		processResults(results);
 	}
