@@ -1,0 +1,54 @@
+package edu.mit.csail.ammolite.utils;
+
+public class CommandLineProgressBar {
+	int maxEvents;
+	int currentEvent = 0;
+	String name;
+	
+	public CommandLineProgressBar(String _name, int _maxEvents){
+		name = _name;
+		maxEvents = _maxEvents;
+		display();
+	}
+	
+	public void event(){
+		currentEvent++;
+		display();
+	}
+	
+	public void display(){
+		display(80);
+	}
+	
+	private void display(int width){
+		int percentageDone = asPercent(currentEvent, maxEvents);
+		System.out.print("\r");
+		System.out.print(name);
+		System.out.print(" |");
+		int barWidth = width - name.length() - 8;
+		for(int i=0; i<barWidth; i++){
+			int barPercentage = asPercent(i, barWidth);
+			if( barPercentage <= percentageDone){
+				System.out.print("=");
+			} else {
+				System.out.print(" ");
+			}
+		}
+		if(percentageDone < 100){
+			System.out.print("|  "+percentageDone+"%");
+		} else {
+			System.out.print("| "+percentageDone+"%");
+			done();
+		}
+		
+	}
+	
+	public void done(){
+		System.out.print("\n");
+	}
+	
+	private int asPercent(int numerator, int denominator){
+		return  (int) ((100.0 * numerator) / denominator + 0.5);
+	}
+
+}

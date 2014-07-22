@@ -23,6 +23,7 @@ import edu.mit.csail.ammolite.database.CompressionType;
 import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
 import edu.mit.csail.ammolite.mcs.MCS;
+import edu.mit.csail.ammolite.utils.CommandLineProgressBar;
 import edu.mit.csail.ammolite.utils.MCSUtils;
 import edu.mit.csail.ammolite.utils.SDFUtils;
 
@@ -47,13 +48,16 @@ public class SearchTest {
 
 		results.addAll( ammoliteQuerySideCompression(queries, db, thresh, prob));
 
-
+		CommandLineProgressBar progressBar = new CommandLineProgressBar("Ammolite", queries.size());
 		for(IAtomContainer query: queries){
 			results.add( ammoliteSearch(query, db, thresh, prob));
+			progressBar.event();
 		}
 
+		progressBar = new CommandLineProgressBar("Ammolite Coarse", queries.size());	
 		for(IAtomContainer query: queries){
 			results.add( ammoliteCoarseSearch(query, db, thresh, prob));
+			progressBar.event();
 		}
 		
 //		for(IAtomContainer query: queries){
@@ -351,6 +355,7 @@ public class SearchTest {
 	private static List<SearchResult> ammoliteQuerySideCompression(List<IAtomContainer> queries, IStructDatabase db, double thresh, double prob){
 
 		KeyListMap<MolStruct,IAtomContainer> compressedQueries = StructCompressor.compressQueries(queries, db.getStructFactory());
+		CommandLineProgressBar progressBar = new CommandLineProgressBar("Ammolite Query Compression", compressedQueries.keySet().size());
 		double sThresh = prob; // !!! not using the conversion I came up with, yet.
 		List<SearchResult> allResults = new ArrayList<SearchResult>( 3* compressedQueries.keySet().size());
 		Iterator<MolStruct> iter;
@@ -386,6 +391,7 @@ public class SearchTest {
 				res.setDuration(aveTime);
 			}
 			allResults.addAll(results);
+			progressBar.event();
 		}
 		return allResults;
 	}
