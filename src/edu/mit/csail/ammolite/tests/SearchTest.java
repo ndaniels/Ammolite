@@ -26,6 +26,7 @@ import edu.mit.csail.ammolite.mcs.MCS;
 import edu.mit.csail.ammolite.utils.CommandLineProgressBar;
 import edu.mit.csail.ammolite.utils.MCSUtils;
 import edu.mit.csail.ammolite.utils.SDFUtils;
+import edu.mit.csail.ammolite.utils.WallClock;
 
 public class SearchTest {
 	
@@ -45,20 +46,26 @@ public class SearchTest {
 		List<IAtomContainer> queries = SDFUtils.parseSDF( queryFile);
 		Collection<IAtomContainer> targets = db.getMolecules();
 		List<SearchResult> results = new ArrayList<SearchResult>();
-
+		
+		WallClock clock = new WallClock( ammoliteCompressed);
 		results.addAll( ammoliteQuerySideCompression(queries, db, thresh, prob));
+		clock.printElapsed();
 
-		CommandLineProgressBar progressBar = new CommandLineProgressBar("Ammolite", queries.size());
+		clock = new WallClock( ammolite);
+		CommandLineProgressBar progressBar = new CommandLineProgressBar(ammolite, queries.size());
 		for(IAtomContainer query: queries){
 			results.add( ammoliteSearch(query, db, thresh, prob));
 			progressBar.event();
 		}
+		clock.printElapsed();
 
-		progressBar = new CommandLineProgressBar("Ammolite Coarse", queries.size());	
+		clock = new WallClock( ammoliteCoarse);
+		progressBar = new CommandLineProgressBar(ammoliteCoarse, queries.size());	
 		for(IAtomContainer query: queries){
 			results.add( ammoliteCoarseSearch(query, db, thresh, prob));
 			progressBar.event();
 		}
+		clock.printElapsed();
 		
 //		for(IAtomContainer query: queries){
 //			results.add( smsdSearch(query, targets, thresh));
@@ -355,7 +362,7 @@ public class SearchTest {
 	private static List<SearchResult> ammoliteQuerySideCompression(List<IAtomContainer> queries, IStructDatabase db, double thresh, double prob){
 
 		KeyListMap<MolStruct,IAtomContainer> compressedQueries = StructCompressor.compressQueries(queries, db.getStructFactory());
-		CommandLineProgressBar progressBar = new CommandLineProgressBar("Ammolite Query Compression", compressedQueries.keySet().size());
+		CommandLineProgressBar progressBar = new CommandLineProgressBar(ammoliteCompressed, compressedQueries.keySet().size());
 		double sThresh = prob; // !!! not using the conversion I came up with, yet.
 		List<SearchResult> allResults = new ArrayList<SearchResult>( 3* compressedQueries.keySet().size());
 		Iterator<MolStruct> iter;
