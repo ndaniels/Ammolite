@@ -86,11 +86,24 @@ public class MCS {
 		fmcs.timedCalculate(2000);
 		return fmcs.size();
 	}
-	
+
+	public static Callable<Boolean> getCallableIsoRankTest(MolStruct a, MolStruct b, double threshold){
+		final MolStruct fa = a;
+		final MolStruct fb = b;
+		final double fThresh = threshold;
+		
+		Callable<Boolean> callable = new Callable<Boolean>(){
+			
+			public Boolean call() throws Exception {
+				return beatsOverlapThresholdIsoRank(fa, fb, fThresh);
+			}
+		};
+		
+		return callable;
+	}
 
 	
-	
-	public static Callable<Boolean> getCallableThresholdTest(IAtomContainer a, IAtomContainer b, double threshold){
+	public static Callable<Boolean> getCallableSMSDTest(IAtomContainer a, IAtomContainer b, double threshold){
 		final IAtomContainer fa = a;
 		final IAtomContainer fb = b;
 		final double fThresh = threshold;
@@ -98,7 +111,7 @@ public class MCS {
 		Callable<Boolean> callable = new Callable<Boolean>(){
 			
 			public Boolean call() throws Exception {
-				return beatsOverlapThreshold(fa, fb, fThresh);
+				return beatsOverlapThresholdSMSD(fa, fb, fThresh);
 			}
 		};
 		

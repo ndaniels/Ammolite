@@ -58,9 +58,15 @@ object AmmoliteMain{
 			val devTestSearch = new Subcommand("test-ammolite"){
 			  val q = opt[String]("queries")
 			  val db = opt[String]("database")
+			  val out = opt[String]("outName")
 			  val t = opt[Double]("threshold")
 			  val p = opt[Double]("prob")
 			  val smsd = opt[Boolean]("SMSD", default=Some(false))
+			  val par = opt[Boolean]("Parallel", default=Some(false))
+			  val fmcs = opt[Boolean]("FMCS", default=Some(false))
+			  val amm = opt[Boolean]("Amm", default=Some(false))
+			  val coarse = opt[Boolean]("Coarse", default=Some(false))
+			  val queryComp = opt[Boolean]("QueryCompression", default=Some(false))
 			}
 			val devTestAggSearch = new Subcommand("test-agg"){
 			  val q = opt[String]("queries")
@@ -128,11 +134,14 @@ object AmmoliteMain{
 		} else if( opts.subcommand == Some( opts.devTestMCS)){
 		  edu.mit.csail.ammolite.tests.MCSTest.testMCS(opts.devTestMCS.sdf())
 		} else if( opts.subcommand == Some( opts.devTestSearch)){
-		  if( opts.devTestSearch.smsd()){
-		      edu.mit.csail.ammolite.tests.SearchTest.testSMSDSearch(opts.devTestSearch.q(), opts.devTestSearch.db(), opts.devTestSearch.t())
-		  } else {
-			  edu.mit.csail.ammolite.tests.SearchTest.testCompressedSearch(opts.devTestSearch.q(), opts.devTestSearch.db(), opts.devTestSearch.t(), opts.devTestSearch.p())
-		  }
+
+			  edu.mit.csail.ammolite.tests.SearchTest.testSearch(opts.devTestSearch.q(), opts.devTestSearch.db(), opts.devTestSearch.out(), opts.devTestSearch.t(), opts.devTestSearch.p(), 
+					  												opts.devTestSearch.amm(),
+					  												opts.devTestSearch.coarse(),
+					  												opts.devTestSearch.par(),
+					  												opts.devTestSearch.queryComp(),
+					  												opts.devTestSearch.smsd(),
+					  												opts.devTestSearch.fmcs())
 		  
 		  
 		} else if( opts.subcommand == Some( opts.devTestAggSearch)){

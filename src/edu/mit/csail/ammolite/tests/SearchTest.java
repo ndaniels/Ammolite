@@ -2,12 +2,18 @@ package edu.mit.csail.ammolite.tests;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -25,6 +31,7 @@ import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
 import edu.mit.csail.ammolite.mcs.MCS;
 import edu.mit.csail.ammolite.utils.CommandLineProgressBar;
 import edu.mit.csail.ammolite.utils.MCSUtils;
+import edu.mit.csail.ammolite.utils.ParallelUtils;
 import edu.mit.csail.ammolite.utils.SDFUtils;
 import edu.mit.csail.ammolite.utils.WallClock;
 
@@ -34,12 +41,15 @@ public class SearchTest {
 	private static final String ammoliteCoarseCompressed = "AMMOLITE_COMPRESSED_QUERIES_COARSE";
 	private static final String ammoliteCoarse = "AMMOLITE_COARSE";
 	private static final String ammolite = "AMMOLITE";
+	private static final String ammoliteParallel = "AMMOLITE_PARALLEL";
 	private static final String smsd = "SMSD";
 	private static final String fmcs = "FMCS";
 	
 	
-	public static void testCompressedSearch(String queryFile, String databaseName, double thresh, double prob){
-		System.out.println("fine_threshold: "+thresh+" coarse_threshold: "+prob);
+	public static void testSearch(String queryFile, String databaseName, String outName, double fine, double coarse, 
+									boolean testAmm, boolean testAmmCoarse, boolean testAmmPar,
+									boolean testAmmCompressedQuery, boolean testSMSD, boolean testFMCS){
+		
 		BigStructDatabase db = (BigStructDatabase) StructDatabaseDecompressor.decompress(databaseName);
 		db.preloadMolecules();
 		
@@ -47,53 +57,101 @@ public class SearchTest {
 		Collection<IAtomContainer> targets = db.getMolecules();
 		List<SearchResult> results = new ArrayList<SearchResult>();
 		
-		WallClock clock = new WallClock( ammoliteCoarse);
-		CommandLineProgressBar progressBar = new CommandLineProgressBar(ammoliteCoarse, queries.size());	
-		for(IAtomContainer query: queries){
-			results.add( ammoliteCoarseSearch(query, db, thresh, prob));
-			progressBar.event();
-		}
-		clock.printElapsed();
-
-		clock = new WallClock( ammolite);
-		progressBar = new CommandLineProgressBar(ammolite, queries.size());
-		for(IAtomContainer query: queries){
-			results.add( ammoliteSearch(query, db, thresh, prob));
-			progressBar.event();
-		}
-		clock.printElapsed();
-	
-		clock = new WallClock( ammoliteCompressed);
-		results.addAll( ammoliteQuerySideCompression(queries, db, thresh, prob));
-		clock.printElapsed();
+		PrintStream stream = getPrintStream(outName);
+		System.out.println("fine_threshold: "+fine+" coarse_threshold: "+coarse);
+		stream.println("fine_threshold: "+fine+" coarse_threshold: "+coarse);
+		WallClock clock;
+		CommandLineProgressBar progressBar;
 		
-		processResults(results);
+		if( testAmm){
+			clock = new WallClock( ammolite);
+			progressBar = new CommandLineProgressBar(ammolite, queries.size());
+			for(IAtomContainer query: queries){
+				results.add( ammoliteSearch(query, db, fine, coarse));
+				progressBar.event();
+			}
+			clock.printElapsed();
+			stream.println(clock.getElapsedString());
+			processResults(results, stream);
+			results.clear();
+		}
+		if( testAmmCoarse){
+			clock = new WallClock( ammoliteCoarse);
+			progressBar = new CommandLineProgressBar(ammoliteCoarse, queries.size());
+			for(IAtomContainer query: queries){
+				results.add( ammoliteCoarseSearch(query, db, fine, coarse));
+				progressBar.event();
+			}
+			clock.printElapsed();
+			stream.println(clock.getElapsedString());
+			processResults(results, stream);
+			results.clear();
+		}
+		if( testAmmPar){
+			clock = new WallClock( ammoliteParallel);
+			progressBar = new CommandLineProgressBar(ammoliteParallel, queries.size());
+			for(IAtomContainer query: queries){
+				results.add( parallelAmmoliteSearch(query, db, fine, coarse));
+				progressBar.event();
+			}
+			clock.printElapsed();
+			stream.println(clock.getElapsedString());
+			processResults(results, stream);
+			results.clear();
+		}
+		if( testSMSD){
+			clock = new WallClock( smsd);
+			progressBar = new CommandLineProgressBar(smsd, queries.size());
+			for(IAtomContainer query: queries){
+				results.add( smsdSearch(query, targets, fine));
+				progressBar.event();
+			}
+			clock.printElapsed();
+			stream.println(clock.getElapsedString());
+			processResults(results, stream);
+			results.clear();
+		}
+		if( testFMCS){
+			clock = new WallClock( fmcs);
+			progressBar = new CommandLineProgressBar(fmcs, queries.size());
+			for(IAtomContainer query: queries){
+				results.add( fmcsSearch(query, targets, fine));
+				progressBar.event();
+			}
+			clock.printElapsed();
+			stream.println(clock.getElapsedString());
+			processResults(results, stream);
+			results.clear();
+		}
+		if( testAmmCompressedQuery){
+			clock = new WallClock( ammoliteCompressed);
+			results.addAll( ammoliteQuerySideCompression(queries, db, fine, coarse));
+			clock.printElapsed();
+			stream.println(clock.getElapsedString());
+			processResults(results, stream);
+			results.clear();
+		}
+
+		stream.close();
+		
 	}
 	
-	public static void testSMSDSearch(String queryFile, String databaseName, double thresh){
-		System.out.println("fine_threshold: "+thresh+" coarse_threshold: n/a");
-		BigStructDatabase db = (BigStructDatabase) StructDatabaseDecompressor.decompress(databaseName);
-		db.preloadMolecules();
-		
-		List<IAtomContainer> queries = SDFUtils.parseSDF( queryFile);
-		Collection<IAtomContainer> targets = db.getMolecules();
-		List<SearchResult> results = new ArrayList<SearchResult>();
-		
-
-		WallClock clock = new WallClock( smsd);
-		CommandLineProgressBar progressBar = new CommandLineProgressBar(smsd, queries.size());	
-		for(IAtomContainer query: queries){
-			results.add( smsdSearch(query, targets, thresh));
-			progressBar.event();
+	private static PrintStream getPrintStream(String outName){
+		PrintStream writer= null;
+		try {
+			writer = new PrintStream(outName, "UTF-8");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
 		}
-		clock.printElapsed();
-		
-		for(IAtomContainer query: queries){
-			results.add( smsdSearch(query, targets, thresh));
+		if(writer == null){
+			System.exit(1);
 		}
+		return writer;
 		
-		processResults(results);
 	}
+	
 	
 	public static void testSMSD(String queryFile){
 		List<IAtomContainer> molecules = SDFUtils.parseSDF( queryFile);
@@ -186,39 +244,39 @@ public class SearchTest {
 		System.out.println("END_DATA");
 	}
 	
-	public static void processResults(List<SearchResult> results){
+	public static void processResults(List<SearchResult> results, PrintStream out){
 		for(SearchResult r: results){
-			processSingleResult( r);
+			processSingleResult( r, out);
 		}
 	}
 	
-	
-	private static void processSingleResult(SearchResult result){
-		System.out.println("START_QUERY "+result.query.getProperty("PUBCHEM_COMPOUND_CID"));
-		System.out.println("START_METHOD "+result.methodName);
-		System.out.println("time: "+result.time());
-		System.out.print("matches: ");
+	private static void processSingleResult(SearchResult result, PrintStream out){
+		out.println("START_QUERY "+result.query.getProperty("PUBCHEM_COMPOUND_CID"));
+		out.println("START_METHOD "+result.methodName);
+		out.println("time: "+result.time());
+		out.print("matches: ");
 		for(IAtomContainer match: result.matches){
-			System.out.print(match.getProperty("PUBCHEM_COMPOUND_CID"));
-			System.out.print(" ");
+			out.print(match.getProperty("PUBCHEM_COMPOUND_CID"));
+			out.print(" ");
 		}
-		System.out.println("\nSTART_DETAILED_MATCHES");
+		out.println("\nSTART_DETAILED_MATCHES");
 		for(int i=0; i< result.matches.size(); i++){
 			IAtomContainer match = result.matches.get(i);
 			int matchSize = result.matchSizes.get(i);
-			System.out.print(match.getProperty("PUBCHEM_COMPOUND_CID"));
-			System.out.print(" ");
-			System.out.print(matchSize);
-			System.out.print(" ");
-			System.out.print(MCSUtils.getAtomCountNoHydrogen(match));
-			System.out.print(" ");
-			System.out.println(MCSUtils.getAtomCountNoHydrogen(result.query));
+			out.print(match.getProperty("PUBCHEM_COMPOUND_CID"));
+			out.print(" ");
+			out.print(matchSize);
+			out.print(" ");
+			out.print(MCSUtils.getAtomCountNoHydrogen(match));
+			out.print(" ");
+			out.println(MCSUtils.getAtomCountNoHydrogen(result.query));
 		}
-		System.out.println("END_DETAILED_MATCHES");
-		System.out.println("END_METHOD");
-		System.out.println("END_QUERY");
+		out.println("END_DETAILED_MATCHES");
+		out.println("END_METHOD");
+		out.println("END_QUERY");
 	}
 	
+
 	
 	
 	static class SearchResult{
@@ -291,6 +349,49 @@ public class SearchTest {
 		}
 		result.end();
 		return result;
+	}
+	
+	private static SearchResult parallelAmmoliteSearch(IAtomContainer query, IStructDatabase db, double thresh, double prob){
+		double sThresh = prob; // !!! not using the conversion I came up with, yet.
+		SearchResult result = new SearchResult(query, ammoliteParallel);
+		result.start();
+		MolStruct sQuery = (MolStruct) db.makeMoleculeStruct(query);
+		Iterator<MolStruct> iter = db.iterator();
+		List<Callable<Boolean>> coarseTests = new LinkedList<Callable<Boolean>>();
+		List<MolStruct> coarseTargetsInOrder = new LinkedList<MolStruct>();
+		while(iter.hasNext()){
+			MolStruct sTarget = iter.next();
+			coarseTests.add(MCS.getCallableIsoRankTest(sQuery, sTarget, sThresh));
+			coarseTargetsInOrder.add(sTarget);
+		}
+		List<Boolean> coarseResults = ParallelUtils.parallelFullExecution(coarseTests);
+		List<Callable<Boolean>> fineTests = new LinkedList<Callable<Boolean>>();
+		List<IAtomContainer> fineTargetsInOrder = new LinkedList<IAtomContainer>();
+		for(int i=0; i<coarseResults.size(); i++){
+			boolean coarseMatch = coarseResults.get(i);
+			MolStruct sTarget = coarseTargetsInOrder.get(i);
+			
+			if( coarseMatch){
+				for(String pubchemID: sTarget.getIDNums()){
+					IAtomContainer target = db.getMolecule(pubchemID);
+					fineTests.add(MCS.getCallableSMSDTest(query, target, thresh));
+					fineTargetsInOrder.add(target);
+				}
+			}
+		}
+		
+		List<Boolean> fineResults = ParallelUtils.parallelFullExecution(fineTests);
+		for(int i=0; i<fineResults.size(); i++){
+			boolean fineMatch = fineResults.get(i);
+			if(fineMatch){
+				IAtomContainer target = fineTargetsInOrder.get(i);
+				result.addMatch(target, -1);
+			}
+
+		}
+		result.end();
+		return result;
+
 	}
 	
 	

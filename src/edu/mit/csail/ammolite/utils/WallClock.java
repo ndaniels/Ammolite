@@ -40,10 +40,14 @@ public class WallClock {
 		return endTime - startTime;
 	}
 	
-	public void printElapsed(){
+	public String getElapsedString(){
 		if(!ended){
 			end();
 		}
-		System.out.println("WALL_CLOCK "+name+" "+elapsedTime()+"ms");
+		return "WALL_CLOCK "+name+" "+elapsedTime()+"ms" ;
+	}
+	public void printElapsed(){
+
+		System.out.println(getElapsedString());
 	}
 }
