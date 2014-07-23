@@ -1,0 +1,1 @@
+./Ammolite test-ammolite -d molecule_sets/50ks/50k_random_molecules_0.adb -q molecule_sets/smalls/100_random_molecules.sdf -t 0.7 -p 0.5 -S -o workspace/smsd_8_33_july22.test
