@@ -25,7 +25,7 @@ import edu.ucla.sspace.graph.isomorphism.AbstractIsomorphismTester;
  * 
  * @author  David Danko
  */
-public class MolStruct extends AtomContainer implements Serializable {
+public class MolStruct extends AtomContainer implements Serializable, IAtomContainer {
 	
 	/**
 	 * 

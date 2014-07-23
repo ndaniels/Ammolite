@@ -1,0 +1,3 @@
+./Ammolite test-ammolite -d molecule_sets/50ks/50k_random_molecules_0.adb -q molecule_sets/smalls/100_random_molecules.sdf -t 0.7 -p 0.4 --Double -o workspace/amm_8_33_july23.test
+
+Search using double coarse search, one pass with IsoRank and a second pass with SMSD.

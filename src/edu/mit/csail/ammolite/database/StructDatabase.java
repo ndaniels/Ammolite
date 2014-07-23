@@ -128,6 +128,12 @@ public class StructDatabase implements IStructDatabase{
 		return linearStructs.iterator();		
 	}
 	
+	public List<MolStruct> getStructs(){
+		if( linearStructs == null){
+			buildLinearSet();
+		}
+		return linearStructs;
+	}
 	protected void buildLinearSet(){
 		linearStructs = new ArrayList<MolStruct>( numReps());
 		for(List<MolStruct> repSet: structsByHash.values()){
@@ -165,6 +171,22 @@ public class StructDatabase implements IStructDatabase{
 		sb.append("Number of molecules: "+numMols()+"\n");
 		sb.append("Number of representatives: "+numReps()+"\n");
 		sb.append("Compression Type: "+compressionType+"\n");
+		return sb.toString();
+	}
+	
+	public String asTable(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("BEGIN_TABLE\n");
+		for(MolStruct struct: getStructs()){
+			sb.append(struct.getProperty("PUBCHEM_COMPOUND_CID"));
+			sb.append(", ");
+			for(String id: struct.getIDNums()){
+				sb.append(id);
+				sb.append(", ");
+			}
+			sb.append("\n");
+		}
+		sb.append("END_TABLE\n");
 		return sb.toString();
 	}
 	

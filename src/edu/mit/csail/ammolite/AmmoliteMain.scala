@@ -49,8 +49,14 @@ object AmmoliteMain{
 			  val molecules = opt[String]("molecules", required=true, descr="sdf file containing the two molecules you want the max common subgraph of")
 			  val sdf = opt[String]("sdf", required=true, descr="Name of the file where you want the overlap results")
 			}
-			val dev = new Subcommand("dev"){
-			  val f = opt[String]("f")
+			val draw = new Subcommand("draw"){
+			  val f = opt[String]("filename")
+			  val s = opt[Boolean]("struct")
+			}
+			val structs = new Subcommand("as-structures"){
+			  val i = opt[String]("in")
+			  val o = opt[String]("out")
+
 			}
 			val devTestMCS = new Subcommand("test-mcs"){
 			  val sdf = opt[String]("filename")
@@ -65,6 +71,7 @@ object AmmoliteMain{
 			  val par = opt[Boolean]("Parallel", default=Some(false))
 			  val fmcs = opt[Boolean]("FMCS", default=Some(false))
 			  val amm = opt[Boolean]("Amm", default=Some(false))
+			  val ammSMSD = opt[Boolean]("AmmSMSD", default=Some(false))
 			  val coarse = opt[Boolean]("Coarse", default=Some(false))
 			  val doubleCoarse = opt[Boolean]("DoubleCoarse", default=Some(false))
 			  val double = opt[Boolean]("Double", default=Some(false))
@@ -90,7 +97,8 @@ object AmmoliteMain{
 
 			}
 			val examine = new Subcommand("examine"){
-			  val database = opt[String]("database", required=true, descr="Path to the database.") 
+			  val database = opt[String]("database", required=true, descr="Path to the database.")
+			  val table = opt[Boolean]("table", default=Some(false))
 			} 
 			val aggexamine = new Subcommand("aggexamine"){
 			  val database = opt[String]("database", required=true, descr="Path to the database.") 
@@ -147,7 +155,8 @@ object AmmoliteMain{
 					  												opts.devTestSearch.fmcs(),
 					  												opts.devTestSearch.smsdCoarse(),
 					  												opts.devTestSearch.doubleCoarse(),
-					  												opts.devTestSearch.double())
+					  												opts.devTestSearch.double(),
+					  												opts.devTestSearch.ammSMSD())
 		  
 		  
 		} else if( opts.subcommand == Some( opts.devTestAggSearch)){
@@ -162,9 +171,16 @@ object AmmoliteMain{
 		} else if( opts.subcommand == Some( opts.examine)){
 			val db = StructDatabaseDecompressor.decompress( opts.examine.database())
 		    Logger.log(db.info())
-		} else if( opts.subcommand == Some( opts.aggexamine)){
-		  val db = ClusterDatabaseDecompressor.decompress( opts.aggexamine.database())
-		  Logger.log(db.info())
+			if(opts.examine.table()){  
+		    	Logger.log(db.asTable())
+		    }
+		} else if( opts.subcommand == Some( opts.draw)){
+		  if(opts.draw.s()){
+		    edu.mit.csail.ammolite.MolDrawer.drawAsStruct(opts.draw.f())
+		  }
+		  edu.mit.csail.ammolite.MolDrawer.draw(opts.draw.f())
+		} else if( opts.subcommand == Some( opts.structs)){
+		  edu.mit.csail.ammolite.utils.DevUtils.makeStructFile(opts.structs.i(), opts.structs.o())
 		} else if(opts.subcommand == Some( opts.aggcompress)){
 
 		    val agg = new Aggregator( opts.aggcompress.source(), opts.aggcompress.repbound())

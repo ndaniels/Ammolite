@@ -26,9 +26,34 @@ import org.openscience.cdk.renderer.IRenderer;
 import org.openscience.cdk.renderer.AtomContainerRenderer;
 import org.openscience.cdk.renderer.visitor.AWTDrawVisitor;
 
+import edu.mit.csail.ammolite.compression.CyclicStruct;
+import edu.mit.csail.ammolite.compression.MolStruct;
+import edu.mit.csail.ammolite.utils.SDFUtils;
+
 public class MolDrawer {
 	
-	public static void draw(IAtomContainer mol, String imageName) throws IOException{
+	public static void draw(String sdfFile){
+		List<IAtomContainer> mols = SDFUtils.parseSDF(sdfFile);
+		for(int i=0; i<mols.size(); i++){
+			IAtomContainer mol = mols.get(i);
+			String id = (String) mol.getProperty("PUBCHEM_COMPOUND_CID");
+			String name = sdfFile.replace(".sdf", "_" + id);
+			draw(mol, name);
+		}
+	}
+	
+	public static void drawAsStruct(String sdfFile){
+		List<IAtomContainer> mols = SDFUtils.parseSDF(sdfFile);
+		for(int i=0; i<mols.size(); i++){
+			IAtomContainer mol = mols.get(i);
+			MolStruct struct = new CyclicStruct(mol);
+			String id = (String) mol.getProperty("PUBCHEM_COMPOUND_CID");
+			String name = sdfFile.replace(".sdf", "_struct_" + id);
+			draw(struct, name);
+		}
+	}
+	
+	public static void draw(IAtomContainer mol, String imageName){
 		int WIDTH = 500;
 	    int HEIGHT = 500;
 	    
@@ -59,7 +84,12 @@ public class MolDrawer {
 	    
 	    // the paint method also needs a toolkit-specific renderer
 	    renderer.paint(mol, drawVisitor);
-	    ImageIO.write((RenderedImage)image, "PNG", new File(imageName+".png"));
+	    try {
+			ImageIO.write((RenderedImage)image, "PNG", new File(imageName+".png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 }
