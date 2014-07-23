@@ -276,7 +276,7 @@ public class SearchTest {
 				MolStruct sA = sf.makeMoleculeStruct(a);
 				MolStruct sB = sf.makeMoleculeStruct(b);
 				long wallClockStart = System.currentTimeMillis();
-				int mcsSize = MCS.getIsoRankOverlap(sA, sB);
+				int mcsSize = MCS.getSMSDOverlap(sA, sB);
 				long wallClockElapsed = System.currentTimeMillis() - wallClockStart;
 				System.out.print(a.getProperty("PUBCHEM_COMPOUND_CID"));
 				System.out.print(" ");
