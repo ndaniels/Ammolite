@@ -37,6 +37,7 @@ import edu.mit.csail.ammolite.KeyListMap;
 import edu.mit.csail.ammolite.StructSDFWriter;
 import edu.mit.csail.ammolite.database.CompressionType;
 import edu.mit.csail.ammolite.database.FilePair;
+import edu.mit.csail.ammolite.database.SDFSet;
 import edu.mit.csail.ammolite.database.StructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseCompressor;
 import edu.mit.csail.ammolite.database.StructDatabaseCoreData;
@@ -52,7 +53,7 @@ import edu.ucla.sspace.graph.isomorphism.VF2IsomorphismTester;
 
 public class StructCompressor {
 	private KeyListMap<Integer, MolStruct> structsByFingerprint = new KeyListMap<Integer,MolStruct>(1000);
-	private HashMap<String, FilePair> moleculeLocationsByID = new HashMap<String, FilePair>();
+	private SDFSet sdfFiles;
 	private MoleculeStructFactory structFactory;
 	private int molecules = 0;
 	private int structures = 0;
@@ -121,18 +122,18 @@ public class StructCompressor {
 	public void  compress(String folder_name, String filename) throws IOException, CDKException, InterruptedException, ExecutionException{
 		startTime =System.currentTimeMillis();
 		File[] contents = getContents(folder_name);
+		List<String> filenames = new ArrayList<String>();
 
 		for(File f: contents){
+			filenames.add(f.getAbsolutePath());
 			Iterator<IAtomContainer> molecule_database = SDFUtils.parseSDFOnline(f.getAbsolutePath());
 			checkDatabaseForIsomorphicStructs( molecule_database, structFactory );	
 			talk();
 		}
 		
-		for(File f:contents){
-			findMolLocations(f);
-		}
-		
 		produceClusteredDatabase( filename );
+		sdfFiles = new SDFSet(filenames);
+		
 		talk();
 	}
 
@@ -154,7 +155,6 @@ public class StructCompressor {
 	 * @throws InterruptedException 
 	 */
 	private void checkDatabaseForIsomorphicStructs( Iterator<IAtomContainer> molecule_database, MoleculeStructFactory structFactory ) throws CDKException, InterruptedException, ExecutionException{
-		
 
         while( molecule_database.hasNext() ){
         	
@@ -211,61 +211,7 @@ public class StructCompressor {
 
 	}
 	
-	
-	/**
-	 * Reads through a file and adds to the location hash. This is a redundant loop but java struggles sometimes.
-	 * 
-	 * @param f
-	 * @throws IOException 
-	 */
-	private void findMolLocations(File f) throws IOException{
-		FileInputStream inStream = new FileInputStream(f);
-		CountingInputStream in = new CountingInputStream(inStream);
 		
-		long pos = 0;
-		boolean foundOffset = false;
-		int c;
-
-		while( (c=in.read()) != -1){
-			
-			if(c == '$' && !foundOffset){
-				pos = in.getByteCount()-1;
-				foundOffset = true;
-				
-				
-			} else if( c == '>') {
-				
-				StringBuilder sb = new StringBuilder();
-				while( (c=in.read()) != '\n'){
-					if( c != ' '){
-						
-						sb.append((char) c);
-					}
-				}
-				
-				if( sb.toString().equals("<PUBCHEM_COMPOUND_CID>")){
-					StringBuilder idGrabber = new StringBuilder();
-					while( (c=in.read()) != '\n'){
-						if( c != ' '){
-							idGrabber.append((char) c);
-						}
-					}
-					String pubchemID = idGrabber.toString();
-					
-					FilePair myFP =  new FilePair(f.getAbsolutePath(), pos);
-					
-					moleculeLocationsByID.put(pubchemID, myFP);
-					foundOffset = false;
-					
-				}
-			}
-		}
-		
-		in.close();
-		
-		
-	}
-	
 	
 	/**
 	 * Produce the files representing the clustered database.
@@ -275,7 +221,7 @@ public class StructCompressor {
 	 * @throws IOException
 	 */
 	private void produceClusteredDatabase( String name ){
-		StructDatabaseCoreData database = new StructDatabaseCoreData( structsByFingerprint, moleculeLocationsByID, structFactory.getCompressionType());
+		StructDatabaseCoreData database = new StructDatabaseCoreData( structsByFingerprint, sdfFiles, structFactory.getCompressionType());
 		StructDatabaseCompressor.compress(name, database);
 	}
 	

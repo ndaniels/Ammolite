@@ -21,6 +21,7 @@ import org.openscience.cdk.io.SDFWriter;
 import edu.mit.csail.ammolite.IteratingSDFReader;
 
 public class SDFUtils {
+	
 
 	
 	public static List<IAtomContainer> parseSDF(String filename){

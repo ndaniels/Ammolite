@@ -31,6 +31,7 @@ import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
 import edu.mit.csail.ammolite.mcs.MCS;
 import edu.mit.csail.ammolite.utils.CommandLineProgressBar;
 import edu.mit.csail.ammolite.utils.MCSUtils;
+import edu.mit.csail.ammolite.utils.MolUtils;
 import edu.mit.csail.ammolite.utils.ParallelUtils;
 import edu.mit.csail.ammolite.utils.SDFUtils;
 import edu.mit.csail.ammolite.utils.WallClock;
@@ -226,14 +227,14 @@ public class SearchTest {
 		out.println("time: "+result.time());
 		out.print("matches: ");
 		for(IAtomContainer match: result.matches){
-			out.print(match.getProperty("PUBCHEM_COMPOUND_CID"));
+			out.print(MolUtils.getPubID(match));
 			out.print(" ");
 		}
 		out.println("\nSTART_DETAILED_MATCHES");
 		for(int i=0; i< result.matches.size(); i++){
 			IAtomContainer match = result.matches.get(i);
 			int matchSize = result.matchSizes.get(i);
-			out.print(match.getProperty("PUBCHEM_COMPOUND_CID"));
+			out.print(MolUtils.getPubID(match));
 			out.print(" ");
 			out.print(matchSize);
 			out.print(" ");

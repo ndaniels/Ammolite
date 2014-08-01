@@ -26,7 +26,7 @@ public class StructDatabase implements IStructDatabase{
 
 
 	protected KeyListMap<Integer, MolStruct> structsByHash;
-	protected HashMap<String, FilePair> fileLocsByID;
+	protected SDFSet sdfFiles;
 	protected MoleculeStructFactory structFactory;
 	protected CompressionType compressionType;
 	protected List<MolStruct> linearStructs = null;
@@ -37,7 +37,7 @@ public class StructDatabase implements IStructDatabase{
 
 	public StructDatabase(	StructDatabaseCoreData coreData){
 		structsByHash = coreData.structsByHash;
-		fileLocsByID = coreData.fileLocsByID;
+		sdfFiles = coreData.files;
 		compressionType = coreData.compressionType;
 		structFactory = new MoleculeStructFactory( compressionType);
 		buildLinearSet();
@@ -68,57 +68,7 @@ public class StructDatabase implements IStructDatabase{
 //	}
 	
 	public IAtomContainer getMolecule(String pubchemID){
-		
-		FilePair fp = fileLocsByID.get(pubchemID);
-		
-		String filename = fp.name();
-		long byteOffset = fp.location();
-		
-		File f = new File(filename);
-		FileInputStream fs;
-		try {
-			fs = new FileInputStream(f);
-			BufferedReader br = new BufferedReader( new InputStreamReader(fs ));
-			if( byteOffset -5 > 0){
-				br.skip(byteOffset-5); // TODO
-				/**
-				 * Why the -5? The -5 is here because the code that finds the offsets (version 0) 
-				 * finds the offset after the delimiter string '$$$$\n' which causes a lot of issues
-				 * for the reader. This should be fixed (obv.)
-				 */
-			}
-			IteratingSDFReader molecule =new IteratingSDFReader( br, DefaultChemObjectBuilder.getInstance() );
-			IAtomContainer out = null;
-			if(molecule.hasNext()){
-				out = molecule.next();
-			} else {
-				Logger.debug("\n");
-				Logger.debug("Missing molecule, here are some lines from the file");
-				Logger.debug("----------------------------------------------------\n");
-//				FileInputStream fs2 = new FileInputStream(f);
-//				BufferedReader br2 = new BufferedReader( new InputStreamReader(fs2 ));
-				br.skip(byteOffset);
-				for(int i=0; i<30; ++i){
-					Logger.debug(br.readLine());
-				}
-				Logger.debug("\n----------------------------------------------------\n");
-				Logger.debug("Trying to load it anyways...");
-				out = molecule.next();
-			}
-			
-			fs.close();
-			br.close();
-			molecule.close();
-			
-			return out;
-			
-		} catch (IOException e) {
-			System.exit(-1);
-			e.printStackTrace();
-		}
-		return null;
-		
-
+		return sdfFiles.getMol(pubchemID);
 	}
 	
 	public Iterator<MolStruct> iterator(){

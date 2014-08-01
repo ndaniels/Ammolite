@@ -3,17 +3,16 @@ package edu.mit.csail.ammolite
 
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory
 import edu.mit.csail.ammolite.compression.StructCompressor
-
 import org.rogach.scallop._
-
 import edu.mit.csail.ammolite.search.SearchHandler
-import edu.mit.csail.ammolite.utils.Logger;
+import edu.mit.csail.ammolite.utils.Logger
 import edu.mit.csail.ammolite.compression.CyclicStruct
 import edu.mit.csail.ammolite.database.CompressionType
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor
 import edu.mit.csail.ammolite.aggregation.Aggregator
 import edu.mit.csail.ammolite.aggregation.AggregateSearcher
 import edu.mit.csail.ammolite.aggregation.ClusterDatabaseDecompressor
+import edu.mit.csail.ammolite.compression.SDFWrapper
 
 
 object AmmoliteMain{
@@ -57,6 +56,9 @@ object AmmoliteMain{
 			  val i = opt[String]("in")
 			  val o = opt[String]("out")
 
+			}
+			val devTestSDF = new Subcommand("test-sdf"){
+			  val sdf = opt[String]("filename")
 			}
 			val devTestMCS = new Subcommand("test-mcs"){
 			  val sdf = opt[String]("filename")
@@ -140,6 +142,8 @@ object AmmoliteMain{
 		  
 		} else if( opts.subcommand == Some( opts.devTestMCS)){
 		  edu.mit.csail.ammolite.tests.MCSTest.testMCS(opts.devTestMCS.sdf())
+		}  else if( opts.subcommand == Some( opts.devTestSDF)){
+		  val s = new SDFWrapper( opts.devTestSDF.sdf())
 		} else if( opts.subcommand == Some( opts.devTestSearch)){
 
 			  edu.mit.csail.ammolite.tests.SearchTest.testSearch(opts.devTestSearch.q(), opts.devTestSearch.db(), opts.devTestSearch.out(), opts.devTestSearch.t(), opts.devTestSearch.p(), 
