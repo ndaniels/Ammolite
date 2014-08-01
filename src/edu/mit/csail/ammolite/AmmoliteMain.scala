@@ -72,10 +72,6 @@ object AmmoliteMain{
 			  val fmcs = opt[Boolean]("FMCS", default=Some(false))
 			  val amm = opt[Boolean]("Amm", default=Some(false))
 			  val ammSMSD = opt[Boolean]("AmmSMSD", default=Some(false))
-			  val coarse = opt[Boolean]("Coarse", default=Some(false))
-			  val doubleCoarse = opt[Boolean]("DoubleCoarse", default=Some(false))
-			  val double = opt[Boolean]("Double", default=Some(false))
-			  val smsdCoarse = opt[Boolean]("FineCoarse", default=Some(false))
 			  val queryComp = opt[Boolean]("QueryCompression", default=Some(false))
 			}
 			val devTestAggSearch = new Subcommand("test-agg"){
@@ -148,14 +144,10 @@ object AmmoliteMain{
 
 			  edu.mit.csail.ammolite.tests.SearchTest.testSearch(opts.devTestSearch.q(), opts.devTestSearch.db(), opts.devTestSearch.out(), opts.devTestSearch.t(), opts.devTestSearch.p(), 
 					  												opts.devTestSearch.amm(),
-					  												opts.devTestSearch.coarse(),
 					  												opts.devTestSearch.par(),
 					  												opts.devTestSearch.queryComp(),
 					  												opts.devTestSearch.smsd(),
 					  												opts.devTestSearch.fmcs(),
-					  												opts.devTestSearch.smsdCoarse(),
-					  												opts.devTestSearch.doubleCoarse(),
-					  												opts.devTestSearch.double(),
 					  												opts.devTestSearch.ammSMSD())
 		  
 		  

@@ -39,155 +39,72 @@ public class SearchTest {
 	
 	private static final String ammoliteCompressed = "AMMOLITE_COMPRESSED_QUERIES";
 	private static final String ammoliteCoarseCompressed = "AMMOLITE_COMPRESSED_QUERIES_COARSE";
-	private static final String ammoliteCoarse = "AMMOLITE_COARSE_ISORANK";
-	private static final String ammoliteSMSDCoarse = "AMMOLITE_COARSE_SMSD";
-	private static final String ammoliteDoubleCoarse = "AMMOLITE_COARSE_DOUBLE";
-	private static final String ammolite = "AMMOLITE";
+
+	private static final String ammolite = "AMMOLITE_ISORANK";
 	private static final String ammoliteSMSD = "AMMOLITE_SMSD";
-	private static final String ammoliteDouble = "AMMOLITE_DOUBLE";
 	private static final String ammoliteParallel = "AMMOLITE_PARALLEL";
 	private static final String smsd = "SMSD";
 	private static final String fmcs = "FMCS";
 	
 	
 	public static void testSearch(String queryFile, String databaseName, String outName, double fine, double coarse, 
-									boolean testAmm, boolean testAmmCoarse, boolean testAmmPar,
-									boolean testAmmCompressedQuery, boolean testSMSD, boolean testFMCS,
-									boolean testAmmSMSDCoarse, boolean testAmmDoubleCoarse, boolean testAmmDouble,
-									boolean testAmmSMSD){
+									boolean testAmm, boolean testAmmPar, boolean testAmmCompressedQuery, 
+									boolean testSMSD, boolean testFMCS,boolean testAmmSMSD){
 		
 		BigStructDatabase db = (BigStructDatabase) StructDatabaseDecompressor.decompress(databaseName);
 		db.preloadMolecules();
 		
 		List<IAtomContainer> queries = SDFUtils.parseSDF( queryFile);
 		Collection<IAtomContainer> targets = db.getMolecules();
-		List<SearchResult> results = new ArrayList<SearchResult>();
+		List<MolStruct> sTargets = db.getStructs();
 		
 		PrintStream stream = getPrintStream(outName);
 		System.out.println("fine_threshold: "+fine+" coarse_threshold: "+coarse);
+		System.out.println("Number_Structures: "+sTargets.size()+" Number_Molecules: "+targets.size());
 		stream.println("fine_threshold: "+fine+" coarse_threshold: "+coarse);
-		WallClock clock;
-		CommandLineProgressBar progressBar;
+		stream.println("Number_Structures: "+sTargets.size()+" Number_Molecules: "+targets.size());
+
 		
 		if( testAmm){
-			clock = new WallClock( ammolite);
-			progressBar = new CommandLineProgressBar(ammolite, queries.size());
-			for(IAtomContainer query: queries){
-				results.add( ammoliteSearch(query, db, fine, coarse));
-				progressBar.event();
-			}
-			clock.printElapsed();
-			stream.println(clock.getElapsedString());
-			processResults(results, stream);
-			results.clear();
+			Tester tester = new AmmoliteSearch();
+			runTest(tester, stream, queries, db, targets, sTargets, fine, coarse, ammolite);
 		}
 		if( testAmmSMSD){
-			clock = new WallClock( ammoliteSMSD);
-			progressBar = new CommandLineProgressBar(ammoliteSMSD, queries.size());
-			for(IAtomContainer query: queries){
-				results.add( ammoliteSMSDSearch(query, db, fine, coarse));
-				progressBar.event();
-			}
-			clock.printElapsed();
-			stream.println(clock.getElapsedString());
-			processResults(results, stream);
-			results.clear();
+			Tester tester = new AmmoliteSMSDSearch();
+			runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse, ammoliteSMSD);
 		}
-		if( testAmmDouble){
-			clock = new WallClock( ammoliteDouble);
-			progressBar = new CommandLineProgressBar(ammoliteDouble, queries.size());
-			for(IAtomContainer query: queries){
-				results.add( ammoliteDoubleSearch(query, db, fine, coarse));
-				progressBar.event();
-			}
-			clock.printElapsed();
-			stream.println(clock.getElapsedString());
-			processResults(results, stream);
-			results.clear();
-		}
-		if( testAmmCoarse){
-			clock = new WallClock( ammoliteCoarse);
-			progressBar = new CommandLineProgressBar(ammoliteCoarse, queries.size());
-			for(IAtomContainer query: queries){
-				results.add( ammoliteCoarseSearch(query, db, fine, coarse));
-				progressBar.event();
-			}
-			clock.printElapsed();
-			stream.println(clock.getElapsedString());
-			processResults(results, stream);
-			results.clear();
-		}
-		if( testAmmSMSDCoarse){
-			clock = new WallClock( ammoliteSMSDCoarse);
-			progressBar = new CommandLineProgressBar(ammoliteSMSDCoarse, queries.size());
-			for(IAtomContainer query: queries){
-				results.add( ammoliteSMSDCoarseSearch(query, db, fine, coarse));
-				progressBar.event();
-			}
-			clock.printElapsed();
-			stream.println(clock.getElapsedString());
-			processResults(results, stream);
-			results.clear();
-		}
-		if( testAmmDoubleCoarse){
-			clock = new WallClock( ammoliteDoubleCoarse);
-			progressBar = new CommandLineProgressBar(ammoliteDoubleCoarse, queries.size());
-			for(IAtomContainer query: queries){
-				results.add( ammoliteDoubleCoarseSearch(query, db, fine, coarse));
-				progressBar.event();
-			}
-			clock.printElapsed();
-			stream.println(clock.getElapsedString());
-			processResults(results, stream);
-			results.clear();
-		}
+
 		if( testAmmPar){
-			clock = new WallClock( ammoliteParallel);
-			progressBar = new CommandLineProgressBar(ammoliteParallel, queries.size());
-			for(IAtomContainer query: queries){
-				results.add( parallelAmmoliteSearch(query, db, fine, coarse));
-				progressBar.event();
-			}
-			clock.printElapsed();
-			stream.println(clock.getElapsedString());
-			processResults(results, stream);
-			results.clear();
+			Tester tester = new AmmoliteParallelSearch();
+			runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse, ammoliteParallel);
 		}
 		if( testSMSD){
-			clock = new WallClock( smsd);
-			progressBar = new CommandLineProgressBar(smsd, queries.size());
-			for(IAtomContainer query: queries){
-				results.add( smsdSearch(query, targets, fine));
-				progressBar.event();
-			}
-			clock.printElapsed();
-			stream.println(clock.getElapsedString());
-			processResults(results, stream);
-			results.clear();
+			Tester tester = new SMSDSearch();
+			runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse, smsd);
 		}
 		if( testFMCS){
-			clock = new WallClock( fmcs);
-			progressBar = new CommandLineProgressBar(fmcs, queries.size());
-			for(IAtomContainer query: queries){
-				results.add( fmcsSearch(query, targets, fine));
-				progressBar.event();
-			}
-			clock.printElapsed();
-			stream.println(clock.getElapsedString());
-			processResults(results, stream);
-			results.clear();
+			Tester tester = new FMCSSearch();
+			runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse, fmcs);
 		}
 		if( testAmmCompressedQuery){
-			clock = new WallClock( ammoliteCompressed);
-			results.addAll( ammoliteQuerySideCompression(queries, db, fine, coarse));
-			clock.printElapsed();
-			stream.println(clock.getElapsedString());
-			processResults(results, stream);
-			results.clear();
+			Tester tester = new AmmoliteQuerySideCompressionSearch();
+			runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse, ammoliteCompressed);
 		}
 
 		stream.close();
 		
+	}
+	
+	private static void runTest(Tester tester, PrintStream stream, List<IAtomContainer> queries, IStructDatabase db, 
+										Collection<IAtomContainer> targets, List<MolStruct> sTargets, double thresh, 
+										double prob, String name){
+		
+		WallClock clock = new WallClock( name);
+		List<SearchResult> results = new ArrayList<SearchResult>();
+		results.addAll( tester.test(queries, db, targets, sTargets, thresh, prob, name));
+		clock.printElapsed();
+		stream.println(clock.getElapsedString());
+		processResults(results, stream);
 	}
 	
 	private static PrintStream getPrintStream(String outName){
@@ -266,7 +183,6 @@ public class SearchTest {
 	public static void testAmmoliteCoarse(String queryFile){
 		List<IAtomContainer> molecules = SDFUtils.parseSDF( queryFile);
 		MoleculeStructFactory sf = new MoleculeStructFactory(CompressionType.CYCLIC);
-		System.out.println(ammoliteCoarse);
 		System.out.println("id1 id2 size(1) size(2) compressedSize(1) compressedSize(2) overlapSize(1,2) timeInMillis");
 		System.out.println("BEGIN_DATA");
 		for(int i=0; i<molecules.size(); i++){
@@ -331,7 +247,85 @@ public class SearchTest {
 	}
 	
 
+	static interface Tester{
+		public List<SearchResult> test(List<IAtomContainer> queries, IStructDatabase db, 
+										Collection<IAtomContainer> targets,  List<MolStruct> sTargets, double thresh, 
+										double prob, String name);
+	}
 	
+	static abstract class MultiTester implements Tester {
+		abstract List<SearchResult> singleTestMultipleResults(IAtomContainer query, IStructDatabase db, 
+										Collection<IAtomContainer> targets,  List<MolStruct> sTargets, double fineThresh, 
+										double coarseThresh, String name);
+		
+		public List<SearchResult> test(List<IAtomContainer> queries, IStructDatabase db, 
+										Collection<IAtomContainer> targets, List<MolStruct> sTargets,  double fineThresh, 
+										double coarseThresh, String name){
+			List<SearchResult> results = new LinkedList<SearchResult>();
+			CommandLineProgressBar progressBar = new CommandLineProgressBar(name, queries.size());
+			for(IAtomContainer query: queries){
+				List<SearchResult> result = singleTestMultipleResults(query, db, targets, sTargets, fineThresh, coarseThresh, name);
+				results.addAll(result);
+				progressBar.event();
+			}
+			return results;
+		}
+	}
+	
+	static abstract class MultiSingleTester extends MultiTester{
+		abstract SearchResult singleTest(IAtomContainer query, IStructDatabase db, 
+										Collection<IAtomContainer> targets,  List<MolStruct> sTargets, double fineThresh, 
+										double coarseThresh, String name);
+		
+		public List<SearchResult> singleTestMultipleResults(IAtomContainer query, IStructDatabase db, 
+												Collection<IAtomContainer> targets,  List<MolStruct> sTargets, double fineThresh, 
+												double coarseThresh, String name){
+			List<SearchResult> l = new ArrayList<SearchResult>(1);
+			l.add(singleTest(query, db, targets, sTargets, fineThresh, coarseThresh, name));
+			return l;
+		}
+	}
+	
+	static abstract class AmmoliteTester extends MultiTester{
+		
+		abstract int getCoarseOverlap(MolStruct query, MolStruct target);
+		
+		protected int getFineOverlap(IAtomContainer query, IAtomContainer target){
+			return MCS.getSMSDOverlap(query, target);
+		}
+		
+		public List<SearchResult> singleTestMultipleResults(IAtomContainer query, IStructDatabase db, 
+										Collection<IAtomContainer> targets, List<MolStruct> sTargets,  double fineThresh, 
+										double coarseThresh, String name){
+			SearchResult result = new SearchResult(query, name);
+			SearchResult coarseResult = new SearchResult(query, name+"_COARSE");
+			result.start();
+			MolStruct sQuery = (MolStruct) db.makeMoleculeStruct(query);
+		
+			for(MolStruct sTarget: sTargets){
+				coarseResult.start();
+				int coarseOverlap = getCoarseOverlap(sQuery, sTarget);
+				if(coarseThresh <= MCSUtils.overlapCoeff(coarseOverlap, sQuery, sTarget)){
+					coarseResult.end();
+					for(String pubchemID: sTarget.getIDNums()){
+						IAtomContainer target = db.getMolecule(pubchemID);
+						coarseResult.addMatch(target, coarseOverlap);
+						int fineOverlap = getFineOverlap(query, target);
+						if(fineThresh <= MCSUtils.overlapCoeff(fineOverlap, query, target)){
+							result.addMatch(target, fineOverlap);
+						}
+					}					
+				}
+				
+			}
+			result.end();
+			List<SearchResult> l = new ArrayList<SearchResult>(2);
+			l.add(result);
+			l.add(coarseResult);
+			return l;
+
+		}
+	}
 	
 	static class SearchResult{
 		
@@ -362,6 +356,10 @@ public class SearchTest {
 		
 		public void end(long _endTime){
 			endTime = _endTime;
+			if(duration < 0){
+				duration = 0;
+			}
+			duration += endTime - startTime;
 		}
 		
 		public void setDuration(long _duration){
@@ -382,295 +380,208 @@ public class SearchTest {
 		
 	}
 	
-	private static SearchResult ammoliteSearch(IAtomContainer query, IStructDatabase db, double thresh, double prob){
-		double sThresh = prob; // !!! not using the conversion I came up with, yet.
-		SearchResult result = new SearchResult(query, ammolite);
-		result.start();
-		MolStruct sQuery = (MolStruct) db.makeMoleculeStruct(query);
-		Iterator<MolStruct> iter = db.iterator();
-		while(iter.hasNext()){
-			MolStruct sTarget = iter.next();
-			if(MCS.beatsOverlapThresholdIsoRank(sQuery, sTarget, sThresh)){
-				for(String pubchemID: sTarget.getIDNums()){
-					IAtomContainer target = db.getMolecule(pubchemID);
-					int mcsSize = MCS.getSMSDOverlap(query, target);
-					if(thresh <= MCSUtils.overlapCoeff(mcsSize, query, target)){
-						result.addMatch(target, mcsSize);
-					}
-				}
-			}
-			
+	static class AmmoliteSearch extends AmmoliteTester {
+	
+		int getCoarseOverlap(MolStruct query, MolStruct target) {
+			return MCS.getIsoRankOverlap(target, query);
 		}
-		result.end();
-		return result;
+
 	}
 	
-	private static SearchResult ammoliteSMSDSearch(IAtomContainer query, IStructDatabase db, double thresh, double prob){
-		double sThresh = prob; // !!! not using the conversion I came up with, yet.
-		SearchResult result = new SearchResult(query, ammoliteSMSD);
-		result.start();
-		MolStruct sQuery = (MolStruct) db.makeMoleculeStruct(query);
-		Iterator<MolStruct> iter = db.iterator();
-		while(iter.hasNext()){
-			MolStruct sTarget = iter.next();
-			if(MCS.beatsOverlapThresholdSMSD(sQuery, sTarget, sThresh)){
-				for(String pubchemID: sTarget.getIDNums()){
-					IAtomContainer target = db.getMolecule(pubchemID);
-					int mcsSize = MCS.getSMSDOverlap(query, target);
-					if(thresh <= MCSUtils.overlapCoeff(mcsSize, query, target)){
-						result.addMatch(target, mcsSize);
-					}
-				}
-			}
-			
+	static class AmmoliteSMSDSearch extends AmmoliteTester {
+		
+		int getCoarseOverlap(MolStruct query, MolStruct target) {
+			return MCS.getSMSDOverlap(target, query);
 		}
-		result.end();
-		return result;
 	}
 	
-	private static SearchResult ammoliteDoubleSearch(IAtomContainer query, IStructDatabase db, double thresh, double prob){
-		double sThresh = prob; // !!! not using the conversion I came up with, yet.
-		SearchResult result = new SearchResult(query, ammoliteDouble);
-		result.start();
-		MolStruct sQuery = (MolStruct) db.makeMoleculeStruct(query);
-		Iterator<MolStruct> iter = db.iterator();
-		while(iter.hasNext()){
-			MolStruct sTarget = iter.next();
-			if(MCS.beatsOverlapThresholdIsoRank(sQuery, sTarget, sThresh)){
-				int mcsSize = MCS.getSMSDOverlap(sTarget, sQuery);
-				if(sThresh <= MCSUtils.overlapCoeff(mcsSize, sTarget, sQuery)){
-					for(String pubchemID: sTarget.getIDNums()){
-						IAtomContainer target = db.getMolecule(pubchemID);
-						mcsSize = MCS.getSMSDOverlap(query, target);
-						if(thresh <= MCSUtils.overlapCoeff(mcsSize, query, target)){
-							result.addMatch(target, mcsSize);
+
+	static class AmmoliteParallelSearch implements Tester {
+		
+		public List<SearchResult> test(List<IAtomContainer> queries, IStructDatabase db, 
+											Collection<IAtomContainer> targets, List<MolStruct> sTargets,  double thresh, 
+											double prob, String name){
+			List<SearchResult> results = new LinkedList<SearchResult>();
+			for(IAtomContainer query: queries){
+				double sThresh = prob; // !!! not using the conversion I came up with, yet.
+				SearchResult result = new SearchResult(query, name);
+				result.start();
+				MolStruct sQuery = (MolStruct) db.makeMoleculeStruct(query);
+				
+				List<Callable<Boolean>> coarseTests = new LinkedList<Callable<Boolean>>();
+				List<MolStruct> coarseTargetsInOrder = new LinkedList<MolStruct>();
+				for(MolStruct sTarget: sTargets){
+					
+					coarseTests.add(MCS.getCallableIsoRankTest(sQuery, sTarget, sThresh));
+					coarseTargetsInOrder.add(sTarget);
+				}
+				List<Boolean> coarseResults = ParallelUtils.parallelFullExecution(coarseTests);
+				List<Callable<Boolean>> fineTests = new LinkedList<Callable<Boolean>>();
+				List<IAtomContainer> fineTargetsInOrder = new LinkedList<IAtomContainer>();
+				for(int i=0; i<coarseResults.size(); i++){
+					boolean coarseMatch = coarseResults.get(i);
+					MolStruct sTarget = coarseTargetsInOrder.get(i);
+					
+					if( coarseMatch){
+						for(String pubchemID: sTarget.getIDNums()){
+							IAtomContainer target = db.getMolecule(pubchemID);
+							fineTests.add(MCS.getCallableSMSDTest(query, target, thresh));
+							fineTargetsInOrder.add(target);
 						}
 					}
 				}
-			}
-			
-		}
-		result.end();
-		return result;
-	}
-	
-	private static SearchResult parallelAmmoliteSearch(IAtomContainer query, IStructDatabase db, double thresh, double prob){
-		double sThresh = prob; // !!! not using the conversion I came up with, yet.
-		SearchResult result = new SearchResult(query, ammoliteParallel);
-		result.start();
-		MolStruct sQuery = (MolStruct) db.makeMoleculeStruct(query);
-		Iterator<MolStruct> iter = db.iterator();
-		List<Callable<Boolean>> coarseTests = new LinkedList<Callable<Boolean>>();
-		List<MolStruct> coarseTargetsInOrder = new LinkedList<MolStruct>();
-		while(iter.hasNext()){
-			MolStruct sTarget = iter.next();
-			coarseTests.add(MCS.getCallableIsoRankTest(sQuery, sTarget, sThresh));
-			coarseTargetsInOrder.add(sTarget);
-		}
-		List<Boolean> coarseResults = ParallelUtils.parallelFullExecution(coarseTests);
-		List<Callable<Boolean>> fineTests = new LinkedList<Callable<Boolean>>();
-		List<IAtomContainer> fineTargetsInOrder = new LinkedList<IAtomContainer>();
-		for(int i=0; i<coarseResults.size(); i++){
-			boolean coarseMatch = coarseResults.get(i);
-			MolStruct sTarget = coarseTargetsInOrder.get(i);
-			
-			if( coarseMatch){
-				for(String pubchemID: sTarget.getIDNums()){
-					IAtomContainer target = db.getMolecule(pubchemID);
-					fineTests.add(MCS.getCallableSMSDTest(query, target, thresh));
-					fineTargetsInOrder.add(target);
+				
+				List<Boolean> fineResults = ParallelUtils.parallelFullExecution(fineTests);
+				for(int i=0; i<fineResults.size(); i++){
+					boolean fineMatch = fineResults.get(i);
+					if(fineMatch){
+						IAtomContainer target = fineTargetsInOrder.get(i);
+						result.addMatch(target, -1);
+					}
+
 				}
+				result.end();
+				results.add(result);
 			}
+			return results;
 		}
-		
-		List<Boolean> fineResults = ParallelUtils.parallelFullExecution(fineTests);
-		for(int i=0; i<fineResults.size(); i++){
-			boolean fineMatch = fineResults.get(i);
-			if(fineMatch){
-				IAtomContainer target = fineTargetsInOrder.get(i);
-				result.addMatch(target, -1);
-			}
-
-		}
-		result.end();
-		return result;
-
 	}
 	
-	
-	
-	private static SearchResult ammoliteCoarseSearch(IAtomContainer query, IStructDatabase db, double thresh, double prob){
-		double sThresh = prob; // !!! not using the conversion I came up with, yet.
-		SearchResult result = new SearchResult(query, ammoliteCoarse);
-		result.start();
-		MolStruct sQuery = (MolStruct) db.makeMoleculeStruct(query);
-		Iterator<MolStruct> iter = db.iterator();
-		while(iter.hasNext()){
-			MolStruct sTarget = iter.next();
-			int mcsSize = MCS.getIsoRankOverlap(sTarget, sQuery);
-			if(sThresh <= MCSUtils.overlapCoeff(mcsSize, sTarget, sQuery)){
-				for(String pubchemID: sTarget.getIDNums()){
-					IAtomContainer target = db.getMolecule(pubchemID);
+	static class SMSDSearch extends MultiSingleTester {
+
+		public SearchResult singleTest(IAtomContainer query, IStructDatabase db, 
+										Collection<IAtomContainer> targets,  List<MolStruct> sTargets, double thresh, 
+										double prob, String name){
+
+			SearchResult result = new SearchResult(query, name);
+			result.start();
+			for(IAtomContainer target: targets){
+				int mcsSize = MCS.getSMSDOverlap(target, query);
+				if(thresh <= MCSUtils.overlapCoeff(mcsSize, target, query)){
 					result.addMatch(target, mcsSize);
 				}
 			}
-			
+			result.end();
+			return result;
+
 		}
-		result.end();
-		return result;
+		
 	}
 	
-	private static SearchResult ammoliteSMSDCoarseSearch(IAtomContainer query, IStructDatabase db, double thresh, double prob){
-		double sThresh = prob; // !!! not using the conversion I came up with, yet.
-		SearchResult result = new SearchResult(query, ammoliteSMSDCoarse);
-		result.start();
-		MolStruct sQuery = (MolStruct) db.makeMoleculeStruct(query);
-		Iterator<MolStruct> iter = db.iterator();
-		while(iter.hasNext()){
-			MolStruct sTarget = iter.next();
-			int mcsSize = MCS.getSMSDOverlap(sTarget, sQuery);
-			if(sThresh <= MCSUtils.overlapCoeff(mcsSize, sTarget, sQuery)){
-				for(String pubchemID: sTarget.getIDNums()){
-					IAtomContainer target = db.getMolecule(pubchemID);
+	static class FMCSSearch extends MultiSingleTester {
+
+		public SearchResult singleTest(IAtomContainer query, IStructDatabase db, 
+										Collection<IAtomContainer> targets, List<MolStruct> sTargets,  double thresh, 
+										double prob, String name){
+
+			SearchResult result = new SearchResult(query, name);
+			result.start();
+			for(IAtomContainer target: targets){
+				int mcsSize = MCS.getFMCSOverlap(target, query);
+				if(thresh <= MCSUtils.overlapCoeff(mcsSize, target, query)){
 					result.addMatch(target, mcsSize);
 				}
 			}
-			
-		}
-		result.end();
-		return result;
-	}
-	
-	private static SearchResult ammoliteDoubleCoarseSearch(IAtomContainer query, IStructDatabase db, double thresh, double prob){
-		double sThresh = prob; // !!! not using the conversion I came up with, yet.
-		SearchResult result = new SearchResult(query, ammoliteDoubleCoarse);
-		result.start();
-		MolStruct sQuery = (MolStruct) db.makeMoleculeStruct(query);
-		Iterator<MolStruct> iter = db.iterator();
-		while(iter.hasNext()){
-			MolStruct sTarget = iter.next();
-			int mcsSize = MCS.getIsoRankOverlap(sTarget, sQuery);
-			if(sThresh <= MCSUtils.overlapCoeff(mcsSize, sTarget, sQuery)){
-				mcsSize = MCS.getSMSDOverlap(sTarget, sQuery);
-				if(sThresh <= MCSUtils.overlapCoeff(mcsSize, sTarget, sQuery)){
-					for(String pubchemID: sTarget.getIDNums()){
-						IAtomContainer target = db.getMolecule(pubchemID);
-						result.addMatch(target, mcsSize);
-					}
-				}
-			}
-			
-		}
-		result.end();
-		return result;
-	}
-	
-	
-	private static SearchResult smsdSearch(IAtomContainer query, Collection<IAtomContainer> targets, double thresh){
-		SearchResult result = new SearchResult(query, smsd);
-		result.start();
-		for(IAtomContainer target: targets){
-			int mcsSize = MCS.getSMSDOverlap(target, query);
-			if(thresh <= MCSUtils.overlapCoeff(mcsSize, target, query)){
-				result.addMatch(target, mcsSize);
-			}
-		}
-		result.end();
-		return result;
-	}
-	
-	private static SearchResult fmcsSearch(IAtomContainer query, Collection<IAtomContainer> targets, double thresh){
-		SearchResult result = new SearchResult(query, fmcs);
-		result.start();
-		for(IAtomContainer target: targets){
-			int mcsSize = MCS.getFMCSOverlap(target, query);
-			if(thresh <= MCSUtils.overlapCoeff(mcsSize, target, query)){
-				result.addMatch(target, mcsSize);
-			}
-		}
-		result.end();
-		return result;
-	}
-	
-	private static List<SearchResult> ammoliteCoarseQuerySideCompression(List<IAtomContainer> queries, IStructDatabase db, double thresh, double prob){
-		
-		KeyListMap<MolStruct,IAtomContainer> compressedQueries = StructCompressor.compressQueries(queries, db.getStructFactory());
-		double sThresh = prob; // !!! not using the conversion I came up with, yet.
-		List<SearchResult> allResults = new ArrayList<SearchResult>( 3* compressedQueries.keySet().size());
-		for(MolStruct cQuery: compressedQueries.keySet()){
-			List<IAtomContainer> exQueries = compressedQueries.get(cQuery);
-			List<SearchResult> results = new ArrayList<SearchResult>( exQueries.size());
-			for(IAtomContainer exQuery: exQueries){
-				results.add(new SearchResult(exQuery, ammoliteCoarseCompressed));
-			}
-			Iterator<MolStruct> iter = db.iterator();
-			long startTime = System.currentTimeMillis();
-			for(SearchResult res: results){
-				res.start(startTime);
-			}
-			while(iter.hasNext()){
-				MolStruct sTarget = iter.next();
-				int mcsSize = MCS.getIsoRankOverlap(sTarget, cQuery);
-				if(sThresh <= MCSUtils.overlapCoeff(mcsSize, sTarget, cQuery)){
-					for(String pubchemID: sTarget.getIDNums()){
-						IAtomContainer target = db.getMolecule(pubchemID);
-						for(SearchResult res: results){
-							res.addMatch(target, mcsSize);
-						}
-					}
-				}	
-			}
-			long endTime = System.currentTimeMillis();
-			for(SearchResult res: results){
-				res.end(endTime);
-			}
-			allResults.addAll(results);
-		}
-		return allResults;
-	}
-	
-	private static List<SearchResult> ammoliteQuerySideCompression(List<IAtomContainer> queries, IStructDatabase db, double thresh, double prob){
+			result.end();
+			return result;
 
-		KeyListMap<MolStruct,IAtomContainer> compressedQueries = StructCompressor.compressQueries(queries, db.getStructFactory());
-		CommandLineProgressBar progressBar = new CommandLineProgressBar(ammoliteCompressed, compressedQueries.keySet().size());
-		double sThresh = prob; // !!! not using the conversion I came up with, yet.
-		List<SearchResult> allResults = new ArrayList<SearchResult>( 3* compressedQueries.keySet().size());
-		Iterator<MolStruct> iter;
+		}
 		
-		for(MolStruct cQuery: compressedQueries.keySet()){
-			List<IAtomContainer> exQueries = compressedQueries.get(cQuery);
-			List<SearchResult> results = new ArrayList<SearchResult>( exQueries.size());
-			for(IAtomContainer exQuery: exQueries){
-				results.add(new SearchResult(exQuery, ammoliteCompressed));
-			}
-			
-			iter = db.iterator();
-			long startTime = System.currentTimeMillis();
-			while(iter.hasNext()){
-				MolStruct sTarget = iter.next();
-				if(MCS.beatsOverlapThresholdIsoRank(cQuery, sTarget, sThresh)){
-					for(String pubchemID: sTarget.getIDNums()){
-						IAtomContainer target = db.getMolecule(pubchemID);
-						for(int i=0; i<exQueries.size(); i++){
-							IAtomContainer exQuery = exQueries.get(i);
-							SearchResult result = results.get(i);
-							int mcsSize = MCS.getSMSDOverlap(target, exQuery);
-							if(thresh <= MCSUtils.overlapCoeff(mcsSize, target, exQuery)){
-								result.addMatch(target, mcsSize);
+	}
+	
+
+
+	static class AmmoliteCoarseQuerySideCompressionSearch implements Tester {
+
+
+		public List<SearchResult> test(List<IAtomContainer> queries,
+										IStructDatabase db, Collection<IAtomContainer> targets, List<MolStruct> sTargets, 
+										double thresh, double prob, String name) {
+			KeyListMap<MolStruct,IAtomContainer> compressedQueries = StructCompressor.compressQueries(queries, db.getStructFactory());
+			double sThresh = prob; // !!! not using the conversion I came up with, yet.
+			List<SearchResult> allResults = new ArrayList<SearchResult>( 3* compressedQueries.keySet().size());
+			for(MolStruct cQuery: compressedQueries.keySet()){
+				List<IAtomContainer> exQueries = compressedQueries.get(cQuery);
+				List<SearchResult> results = new ArrayList<SearchResult>( exQueries.size());
+				for(IAtomContainer exQuery: exQueries){
+					results.add(new SearchResult(exQuery, ammoliteCoarseCompressed));
+				}
+
+				long startTime = System.currentTimeMillis();
+				for(SearchResult res: results){
+					res.start(startTime);
+				}
+				for(MolStruct sTarget: sTargets){
+					
+					int mcsSize = MCS.getIsoRankOverlap(sTarget, cQuery);
+					if(sThresh <= MCSUtils.overlapCoeff(mcsSize, sTarget, cQuery)){
+						for(String pubchemID: sTarget.getIDNums()){
+							IAtomContainer target = db.getMolecule(pubchemID);
+							for(SearchResult res: results){
+								res.addMatch(target, mcsSize);
 							}
 						}
-					}
-				}	
+					}	
+				}
+				long endTime = System.currentTimeMillis();
+				for(SearchResult res: results){
+					res.end(endTime);
+				}
+				allResults.addAll(results);
 			}
-			long endTime = System.currentTimeMillis();
-			long aveTime = (endTime - startTime) / exQueries.size();
-			for(SearchResult res: results){
-				res.setDuration(aveTime);
-			}
-			allResults.addAll(results);
-			progressBar.event();
+			return allResults;
 		}
-		return allResults;
+		
+	}
+	
+	static class AmmoliteQuerySideCompressionSearch implements Tester {
+
+		@Override
+		public List<SearchResult> test(List<IAtomContainer> queries,
+				IStructDatabase db, Collection<IAtomContainer> targets, List<MolStruct> sTargets,
+				double thresh, double prob, String name) {
+			KeyListMap<MolStruct,IAtomContainer> compressedQueries = StructCompressor.compressQueries(queries, db.getStructFactory());
+			CommandLineProgressBar progressBar = new CommandLineProgressBar(ammoliteCompressed, compressedQueries.keySet().size());
+			double sThresh = prob; // !!! not using the conversion I came up with, yet.
+			List<SearchResult> allResults = new ArrayList<SearchResult>( 3* compressedQueries.keySet().size());
+			Iterator<MolStruct> iter;
+			
+			for(MolStruct cQuery: compressedQueries.keySet()){
+				List<IAtomContainer> exQueries = compressedQueries.get(cQuery);
+				List<SearchResult> results = new ArrayList<SearchResult>( exQueries.size());
+				for(IAtomContainer exQuery: exQueries){
+					results.add(new SearchResult(exQuery, ammoliteCompressed));
+				}
+				
+				
+				long startTime = System.currentTimeMillis();
+				for(MolStruct sTarget: sTargets){
+					
+					if(MCS.beatsOverlapThresholdIsoRank(cQuery, sTarget, sThresh)){
+						for(String pubchemID: sTarget.getIDNums()){
+							IAtomContainer target = db.getMolecule(pubchemID);
+							for(int i=0; i<exQueries.size(); i++){
+								IAtomContainer exQuery = exQueries.get(i);
+								SearchResult result = results.get(i);
+								int mcsSize = MCS.getSMSDOverlap(target, exQuery);
+								if(thresh <= MCSUtils.overlapCoeff(mcsSize, target, exQuery)){
+									result.addMatch(target, mcsSize);
+								}
+							}
+						}
+					}	
+				}
+				long endTime = System.currentTimeMillis();
+				long aveTime = (endTime - startTime) / exQueries.size();
+				for(SearchResult res: results){
+					res.setDuration(aveTime);
+				}
+				allResults.addAll(results);
+				progressBar.event();
+			}
+			return allResults;
+		}
+		
 	}
 
 }

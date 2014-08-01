@@ -121,9 +121,48 @@ def getAveNumAmmMatches(coarse, fine, resTable, ammResults):
 
 	return aveAmmMatches
 
+def getTime(smsdResults, ammResults, fineCutoff):
+
+	smsdTime, n = 0, 0
+	for sRes in smsdResults:
+		smsdTime += sRes.time
+		n += 1
+	print("Comparisons for smsd: {}".format(n))
+	smsdTime /= n
+
+	resolution = 5
+	evalPoints = [n/float(resolution) for n in range(resolution)]
+
+	ammTimes = []
+	for coarseCutoff in evalPoints:
+		ammTime, n = 0, 0
+		numCoarseHits = 0
+		coarseComparisons, fineComparisons = 0, 0
+		coarseMatches = ResultTable()
+		for aRes in ammResults:
+			coarseComparisons += 1
+			ammTime += aRes.time
+			n += 1
+			if aRes.overlapCoeff() >= coarseCutoff:
+				coarseMatches.addResult(aRes)
+				numCoarseHits += 1
+		for sRes in smsdResults:
+			if coarseMatches.getResult(sRes.id1, sRes.id2) != None:
+				ammTime += sRes.time
+				fineComparisons += 1
+
+		attemptHitRatio = numCoarseHits / float(coarseComparisons)
+		ammTime /= n
+		ammTimes.append(ammTime)
+		print("Coarse comparisons: {} Number of coarse hits: {} Ratio: {} Coarse Cutoff: {}".format(coarseComparisons, fineComparisons, numCoarseHits, coarseCutoff))
+
+	makeGraph(evalPoints, [t/float(smsdTime) for t in ammTimes], "Coarse Threshold", "Time Ratio", "Comparison of Time" )
+
+
+
 def getData(smsdResults, ammResults):
 	pts = []
-	k = 50
+	k = 25
 	data = np.zeros((k,k))
 	Y = []
 	X = []
@@ -175,9 +214,14 @@ def main( args):
 	smsdFilename = args[1]
 	ammFilename = args[2]
 	smsdResults, ammResults = parseFiles(smsdFilename, ammFilename)
-	data, cols, rows, X, Y = getData(smsdResults, ammResults)
-	buildHeatMap(data, cols, rows, "coarse threshold", "fine threshold")
-	makeGraph(X,Y, "coarse_fine_ratio", "smsd_amm_ratio")
+
+	if len(args) == 3:	
+		data, cols, rows, X, Y = getData(smsdResults, ammResults)
+		buildHeatMap(data, cols, rows, "coarse threshold", "fine threshold")
+		makeGraph(X,Y, "coarse_fine_ratio", "smsd_amm_ratio")
+	if len(args) == 4:
+		fine = float( args[3])
+		getTime(smsdResults, ammResults, fine)
 
 if __name__ == "__main__":
 	main(sys.argv)
