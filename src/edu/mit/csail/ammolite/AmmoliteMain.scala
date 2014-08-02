@@ -12,7 +12,7 @@ import edu.mit.csail.ammolite.database.StructDatabaseDecompressor
 import edu.mit.csail.ammolite.aggregation.Aggregator
 import edu.mit.csail.ammolite.aggregation.AggregateSearcher
 import edu.mit.csail.ammolite.aggregation.ClusterDatabaseDecompressor
-import edu.mit.csail.ammolite.compression.SDFWrapper
+import edu.mit.csail.ammolite.database.SDFWrapper
 
 
 object AmmoliteMain{

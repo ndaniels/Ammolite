@@ -18,6 +18,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.utils.Logger;
+import edu.mit.csail.ammolite.utils.MolUtils;
 
 public class BigStructDatabase extends StructDatabase{
 	private Map<String, IAtomContainer> idToMolecule = new HashMap<String, IAtomContainer>();
@@ -31,13 +32,20 @@ public class BigStructDatabase extends StructDatabase{
 	
 	public void preloadMolecules(){
 		System.out.println("Preloading molecules into memory...");
-		Set<String> ids = sdfFiles.getMoleculeIDs();
-		System.out.println("Fetched list of ids.");
-		for(String pubID: ids){
-			IAtomContainer mol = sdfFiles.getMol(pubID);
+		List<IAtomContainer> mols = getSDFSet().getAllMolecules();
+		System.out.println("Fetched a list of molecules.");
+		for(IAtomContainer mol: mols){
+			String pubID = MolUtils.getPubID(mol);
 			idToMolecule.put(pubID, mol);
 		}
 		System.out.println("Loaded molecules.");
+	}
+	
+	public SDFSet getSDFSet(){
+		if(sdfFiles == null){
+			throw new NullPointerException();
+		}
+		return sdfFiles;
 	}
 	
 	@Override

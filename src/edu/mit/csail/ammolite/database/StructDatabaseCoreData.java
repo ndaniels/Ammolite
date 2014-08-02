@@ -16,11 +16,17 @@ public class StructDatabaseCoreData implements Serializable {
 	
 	
 	public StructDatabaseCoreData(	KeyListMap<Integer, MolStruct> _structsByHash, 
-		SDFSet _files, 
-		CompressionType _compressionType){
+									SDFSet _files, 
+									CompressionType _compressionType){
 	
+		if(_structsByHash == null)
+			throw new NullPointerException("Null structure set.");
 		structsByHash = _structsByHash;
+		if(_files == null)
+			throw new NullPointerException("Null file set.");
 		files = _files;
+		if(_compressionType == null)
+			throw new NullPointerException("Null compression type.");
 		compressionType = _compressionType;
 	}
 }

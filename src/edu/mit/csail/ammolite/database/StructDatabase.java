@@ -36,8 +36,14 @@ public class StructDatabase implements IStructDatabase{
 	
 
 	public StructDatabase(	StructDatabaseCoreData coreData){
+		if(coreData.structsByHash == null)
+			throw new NullPointerException("Null structure set.");
 		structsByHash = coreData.structsByHash;
+		if(coreData.files == null)
+			throw new NullPointerException("Null file set.");
 		sdfFiles = coreData.files;
+		if(coreData.compressionType == null)
+			throw new NullPointerException("Null compression type.");
 		compressionType = coreData.compressionType;
 		structFactory = new MoleculeStructFactory( compressionType);
 		buildLinearSet();

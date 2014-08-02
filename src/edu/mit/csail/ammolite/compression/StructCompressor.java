@@ -130,9 +130,8 @@ public class StructCompressor {
 			checkDatabaseForIsomorphicStructs( molecule_database, structFactory );	
 			talk();
 		}
-		
-		produceClusteredDatabase( filename );
 		sdfFiles = new SDFSet(filenames);
+		produceClusteredDatabase( filename );
 		
 		talk();
 	}

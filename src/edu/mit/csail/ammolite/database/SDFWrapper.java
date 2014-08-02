@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +21,7 @@ import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.utils.MolUtils;
 import edu.mit.csail.ammolite.utils.SDFUtils;
 
-public class SDFWrapper {
+public class SDFWrapper implements Serializable{
 	String filepath;
 	Map<String,Long> idsToOffsets = new HashMap<String, Long>();
 	
@@ -36,6 +37,10 @@ public class SDFWrapper {
 			idsToOffsets.put(pubID, off);
 		}
 
+	}
+	
+	public List<IAtomContainer> getAllMolecules(){
+		return SDFUtils.parseSDF(filepath);
 	}
 	
 	private List<Long> findOffsets(){
