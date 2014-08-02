@@ -118,8 +118,8 @@ public class StructDatabase implements IStructDatabase{
 	public String info(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("Ammolite Database Info\n");
-		sb.append("Number of molecules: "+numMols()+"\n");
-		sb.append("Number of representatives: "+numReps()+"\n");
+		sb.append("Number of molecules: "+String.format("%,d", numMols())+"\n");
+		sb.append("Number of representatives: "+String.format("%,d", numReps())+"\n");
 		sb.append("Compression Type: "+compressionType+"\n");
 		return sb.toString();
 	}

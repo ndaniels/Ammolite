@@ -30,10 +30,14 @@ public class BigStructDatabase extends StructDatabase{
 	}
 	
 	public void preloadMolecules(){
-		for(String pubID: sdfFiles.getMolecules()){
+		System.out.println("Preloading molecules into memory...");
+		Set<String> ids = sdfFiles.getMoleculeIDs();
+		System.out.println("Fetched list of ids.");
+		for(String pubID: ids){
 			IAtomContainer mol = sdfFiles.getMol(pubID);
 			idToMolecule.put(pubID, mol);
 		}
+		System.out.println("Loaded molecules.");
 	}
 	
 	@Override

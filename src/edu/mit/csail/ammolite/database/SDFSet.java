@@ -27,7 +27,7 @@ public class SDFSet {
 	}
 	
 	
-	public Set<String> getMolecules(){
+	public Set<String> getMoleculeIDs(){
 		return idToWrapper.keySet();
 	}
 	
