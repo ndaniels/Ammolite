@@ -1,1 +1,1 @@
-/afs/csail/group/cb/tools/go-ext/bin/cmail -sendmail /usr/sbin/sendmail -subj "Status Update, Long Running Process" -period 4h -to dcdanko@mit.edu "$@"
+/afs/csail/group/cb/tools/go-ext/bin/cmail -sendmail /usr/sbin/sendmail -subj "Status Update, Long Running Process" -period 4h -to dcdanko@mit.edu java -jar build/jar/Ammolite.jar "$@"
