@@ -41,6 +41,7 @@ import edu.mit.csail.ammolite.database.SDFSet;
 import edu.mit.csail.ammolite.database.StructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseCompressor;
 import edu.mit.csail.ammolite.database.StructDatabaseCoreData;
+import edu.mit.csail.ammolite.utils.FileUtils;
 import edu.mit.csail.ammolite.utils.Logger;
 import edu.mit.csail.ammolite.utils.ParallelUtils;
 import edu.mit.csail.ammolite.utils.SDFUtils;
@@ -65,19 +66,6 @@ public class StructCompressor {
 		structFactory = new MoleculeStructFactory( compType);
 	}
 	
-	/**
-	 * Turns a folder or file name into a list of file names (or just one name)
-	 * @param folder_name
-	 * @return
-	 */
-	private File[] getContents(String folder_name ){
-		File directory = new File( folder_name );
-		File[] contents = {directory};
-		if( directory.isDirectory()){
-			contents = directory.listFiles();
-		}
-		return contents;
-	}
 	
 	public static KeyListMap<MolStruct, IAtomContainer> compressQueries(Collection<IAtomContainer> queries, MoleculeStructFactory sF){
 		KeyListMap<Integer, MolStruct> structsByFinger = new KeyListMap<Integer,MolStruct>(queries.size());
@@ -121,7 +109,7 @@ public class StructCompressor {
 	 */
 	public void  compress(String folder_name, String filename) throws IOException, CDKException, InterruptedException, ExecutionException{
 		startTime =System.currentTimeMillis();
-		File[] contents = getContents(folder_name);
+		File[] contents = FileUtils.getContents(folder_name);
 		List<String> filenames = new ArrayList<String>();
 
 		for(File f: contents){

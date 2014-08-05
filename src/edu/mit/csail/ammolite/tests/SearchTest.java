@@ -21,6 +21,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import scala.reflect.internal.Trees.This;
 import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.KeyListMap;
+import edu.mit.csail.ammolite.compression.DatabaseCompression;
 import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory;
 import edu.mit.csail.ammolite.compression.StructCompressor;
@@ -541,7 +542,7 @@ public class SearchTest {
 		public List<SearchResult> test(List<IAtomContainer> queries,
 				IStructDatabase db, Collection<IAtomContainer> targets, List<MolStruct> sTargets,
 				double thresh, double prob, String name) {
-			KeyListMap<MolStruct,IAtomContainer> compressedQueries = StructCompressor.compressQueries(queries, db.getStructFactory());
+			KeyListMap<MolStruct,IAtomContainer> compressedQueries = DatabaseCompression.compressMoleculeSet(queries, db.getStructFactory());
 			CommandLineProgressBar progressBar = new CommandLineProgressBar(ammoliteCompressed, compressedQueries.keySet().size());
 			double sThresh = prob; // !!! not using the conversion I came up with, yet.
 			List<SearchResult> allResults = new ArrayList<SearchResult>( 3* compressedQueries.keySet().size());

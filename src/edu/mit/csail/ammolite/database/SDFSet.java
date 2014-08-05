@@ -9,7 +9,9 @@ import java.util.Set;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
-public class SDFSet implements Serializable{
+public class SDFSet implements Serializable, ISDFSet {
+
+	private static final long serialVersionUID = 7582074972607192820L;
 	Map<String, SDFWrapper> idToWrapper = new HashMap<String, SDFWrapper>();
 	List<String> filenames;
 	
@@ -32,7 +34,7 @@ public class SDFSet implements Serializable{
 		return out;
 	}
 	
-	public List<String> getFiles(){
+	public List<String> getFilenames(){
 		return filenames;
 	}
 	

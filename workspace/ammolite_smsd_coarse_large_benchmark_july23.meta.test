@@ -1,0 +1,3 @@
+./Ammolite test-ammolite-coarse -m molecule_sets/1k/1k_random_molecules.sdf | tee "ammolite_smsd_coarse_large_benchmark_july23.test"
+
+doing the same fold over I've done before but now with SMSD not IsoRank

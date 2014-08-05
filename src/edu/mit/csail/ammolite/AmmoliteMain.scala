@@ -34,6 +34,12 @@ object AmmoliteMain{
 			  val target = opt[String]("target", required=true, descr="Name of the new compressed database")
 			  val simple = opt[Boolean]("simple", descr="Use simple structures instead of cyclic structures")
 			}
+			val merge = new Subcommand("merge-databases"){
+			  banner("Compress a database of SDF files")
+			  val d1 = opt[String]("d1", required=true, descr="First database")
+			  val d2 = opt[String]("d2", required=true, descr="Second database")
+			  val target = opt[String]("target", required=true, descr="Name of the new compressed database")
+			}
 			val search = new Subcommand("search"){
 			  
 				val database = opt[String]("database", required=true, descr="Path to the database.")
@@ -130,6 +136,9 @@ object AmmoliteMain{
 		  val compressor = new StructCompressor( compType )
 		  
 		  compressor.compress(opts.compress.source(), opts.compress.target())
+		  
+		} else if( opts.subcommand == Some(opts.merge)){
+		  edu.mit.csail.ammolite.compression.DatabaseCompression.mergeDatabases(opts.merge.d1(), opts.merge.d2(), opts.merge.target())
 		  
 		} else if( opts.subcommand == Some(opts.search)){
 			val searchHandler = new SearchHandler( opts.search.database(), opts.search.queries(), opts.search.target(),

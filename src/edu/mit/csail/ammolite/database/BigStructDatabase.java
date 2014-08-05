@@ -41,7 +41,7 @@ public class BigStructDatabase extends StructDatabase{
 		System.out.println("Loaded molecules.");
 	}
 	
-	public SDFSet getSDFSet(){
+	public ISDFSet getSDFSet(){
 		if(sdfFiles == null){
 			throw new NullPointerException();
 		}

@@ -26,19 +26,20 @@ public class StructDatabase implements IStructDatabase{
 
 
 	protected KeyListMap<Integer, MolStruct> structsByHash;
-	protected SDFSet sdfFiles;
+	protected ISDFSet sdfFiles;
 	protected MoleculeStructFactory structFactory;
 	protected CompressionType compressionType;
 	protected List<MolStruct> linearStructs = null;
 	protected int numReps = -1;
 	protected int numMols = -1;
+	protected String VERSION;
 	
 	
 
 	public StructDatabase(	StructDatabaseCoreData coreData){
-		if(coreData.structsByHash == null)
+		if(coreData.structsByFingerprint == null)
 			throw new NullPointerException("Null structure set.");
-		structsByHash = coreData.structsByHash;
+		structsByHash = coreData.structsByFingerprint;
 		if(coreData.files == null)
 			throw new NullPointerException("Null file set.");
 		sdfFiles = coreData.files;
@@ -46,6 +47,7 @@ public class StructDatabase implements IStructDatabase{
 			throw new NullPointerException("Null compression type.");
 		compressionType = coreData.compressionType;
 		structFactory = new MoleculeStructFactory( compressionType);
+		VERSION = coreData.VERSION;
 		buildLinearSet();
 	}
 	
@@ -124,6 +126,7 @@ public class StructDatabase implements IStructDatabase{
 	public String info(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("Ammolite Database Info\n");
+		sb.append("Database version: "+VERSION+"\n");
 		sb.append("Number of molecules: "+String.format("%,d", numMols())+"\n");
 		sb.append("Number of representatives: "+String.format("%,d", numReps())+"\n");
 		sb.append("Compression Type: "+compressionType+"\n");

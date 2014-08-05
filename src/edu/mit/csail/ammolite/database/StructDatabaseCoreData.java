@@ -10,18 +10,19 @@ public class StructDatabaseCoreData implements Serializable {
 
 
 	private static final long serialVersionUID = -2500864197376846911L;
-	public KeyListMap<Integer, MolStruct> structsByHash;
-	public SDFSet files;
+	public KeyListMap<Integer, MolStruct> structsByFingerprint;
+	public ISDFSet files;
 	public CompressionType compressionType;
+	public String VERSION = "dev_aug5_2014";
 	
 	
-	public StructDatabaseCoreData(	KeyListMap<Integer, MolStruct> _structsByHash, 
-									SDFSet _files, 
+	public StructDatabaseCoreData(	KeyListMap<Integer, MolStruct> _structsByFingerprint, 
+									ISDFSet _files, 
 									CompressionType _compressionType){
 	
-		if(_structsByHash == null)
+		if(_structsByFingerprint == null)
 			throw new NullPointerException("Null structure set.");
-		structsByHash = _structsByHash;
+		structsByFingerprint = _structsByFingerprint;
 		if(_files == null)
 			throw new NullPointerException("Null file set.");
 		files = _files;
@@ -29,4 +30,13 @@ public class StructDatabaseCoreData implements Serializable {
 			throw new NullPointerException("Null compression type.");
 		compressionType = _compressionType;
 	}
+	
+	public StructDatabaseCoreData(	KeyListMap<Integer, MolStruct> _structsByFingerprint, 
+			ISDFSet _files, 
+			CompressionType _compressionType,
+			String _VERSION){
+
+	this(_structsByFingerprint, _files, _compressionType);
+	VERSION = _VERSION;
+}
 }
