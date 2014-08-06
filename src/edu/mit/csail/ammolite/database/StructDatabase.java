@@ -33,26 +33,30 @@ public class StructDatabase implements IStructDatabase{
 	protected int numReps = -1;
 	protected int numMols = -1;
 	protected String VERSION;
+	protected IDatabaseCoreData coreData;
 	
 	
 
-	public StructDatabase(	StructDatabaseCoreData coreData){
-		if(coreData.structsByFingerprint == null)
-			throw new NullPointerException("Null structure set.");
-		structsByHash = coreData.structsByFingerprint;
-		if(coreData.files == null)
-			throw new NullPointerException("Null file set.");
-		sdfFiles = coreData.files;
-		if(coreData.compressionType == null)
-			throw new NullPointerException("Null compression type.");
-		compressionType = coreData.compressionType;
+	public StructDatabase(	IDatabaseCoreData _coreData){
+		coreData = _coreData;
+		structsByHash = coreData.getFingerprintTable();
+		sdfFiles = coreData.getSDFSet();
+		compressionType = coreData.getCompressionType();
 		structFactory = new MoleculeStructFactory( compressionType);
-		VERSION = coreData.VERSION;
+		VERSION = coreData.getVersion();
 		buildLinearSet();
 	}
 	
+	public StructDatabase(IStructDatabase db) {
+		this(db.getCoreData());
+	}
+
 	public MoleculeStructFactory getStructFactory(){
 		return structFactory;
+	}
+	
+	public IDatabaseCoreData getCoreData(){
+		return coreData;
 	}
 	
 	public CompressionType getCompressionType(){

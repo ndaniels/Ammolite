@@ -12,8 +12,12 @@ import edu.mit.csail.ammolite.utils.Logger;
 
 public class StructDatabaseDecompressor {
 	
-	
 	public static IStructDatabase decompress(String databasename){
+		return decompress(databasename, false);
+	}
+	
+	
+	public static IStructDatabase decompress(String databasename, boolean useCaching){
 			Logger.log("Decompressing "+databasename, 1);
 			String extension = "";
 			int i = databasename.lastIndexOf('.');
@@ -22,14 +26,20 @@ public class StructDatabaseDecompressor {
 			}
 			
 			if(extension.equals("adb")){
-				return new BigStructDatabase( ammoliteCoreDatabase( databasename));
+				if( useCaching){	
+					return new CachingStructDatabase( ammoliteCoreDatabase( databasename));
+				
+				
+				} else {
+					return new StructDatabase( ammoliteCoreDatabase( databasename));
+				}
 			} else {
 				throw new IllegalArgumentException("Cannot build a database from this filetype");
 			}
 
 	}
 	
-	public static StructDatabaseCoreData decompressToCoreData(String databasename){
+	public static IDatabaseCoreData decompressToCoreData(String databasename){
 		Logger.log("Decompressing "+databasename, 1);
 		String extension = "";
 		int i = databasename.lastIndexOf('.');
@@ -44,7 +54,7 @@ public class StructDatabaseDecompressor {
 		}
 	}
 	
-	private static StructDatabaseCoreData ammoliteCoreDatabase(String databasename){
+	private static IDatabaseCoreData ammoliteCoreDatabase(String databasename){
 		Object database;
 		try {
 			database = deserialize( new File(databasename));

@@ -30,6 +30,10 @@ public class BigStructDatabase extends StructDatabase{
 		super(coredata);
 	}
 	
+	public BigStructDatabase( IStructDatabase db){
+		super(db);
+	}
+	
 	public void preloadMolecules(){
 		System.out.println("Preloading molecules into memory...");
 		List<IAtomContainer> mols = getSDFSet().getAllMolecules();

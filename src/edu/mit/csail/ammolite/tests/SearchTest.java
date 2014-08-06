@@ -51,20 +51,26 @@ public class SearchTest {
 	
 	public static void testSearch(String queryFile, String databaseName, String outName, double fine, double coarse, 
 									boolean testAmm, boolean testAmmPar, boolean testAmmCompressedQuery, 
-									boolean testSMSD, boolean testFMCS,boolean testAmmSMSD){
+									boolean testSMSD, boolean testFMCS,boolean testAmmSMSD, boolean useCaching){
 		
-		BigStructDatabase db = (BigStructDatabase) StructDatabaseDecompressor.decompress(databaseName);
-		db.preloadMolecules();
-		
+		IStructDatabase db = StructDatabaseDecompressor.decompress(databaseName, useCaching);
 		List<IAtomContainer> queries = SDFUtils.parseSDF( queryFile);
-		Collection<IAtomContainer> targets = db.getMolecules();
+		Collection<IAtomContainer> targets = null;
+		if( db.numMols() < 50000){
+			db = new BigStructDatabase( db);
+			((BigStructDatabase) db).preloadMolecules();
+			targets = ((BigStructDatabase) db).getMolecules();
+		} else if( testFMCS || testSMSD) {
+			throw new RuntimeException("Database is too large to search using fmcs or smsd");
+		}
+		
 		List<MolStruct> sTargets = db.getStructs();
 		
 		PrintStream stream = getPrintStream(outName);
 		System.out.println("fine_threshold: "+fine+" coarse_threshold: "+coarse);
-		System.out.println("Number_Structures: "+sTargets.size()+" Number_Molecules: "+targets.size());
+		System.out.println("Number_Structures: "+sTargets.size()+" Number_Molecules: "+db.numMols());
 		stream.println("fine_threshold: "+fine+" coarse_threshold: "+coarse);
-		stream.println("Number_Structures: "+sTargets.size()+" Number_Molecules: "+targets.size());
+		stream.println("Number_Structures: "+sTargets.size()+" Number_Molecules: "+db.numMols());
 
 		
 		if( testAmm){

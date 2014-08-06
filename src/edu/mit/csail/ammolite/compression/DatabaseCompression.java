@@ -9,6 +9,7 @@ import java.util.concurrent.ExecutionException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import edu.mit.csail.ammolite.KeyListMap;
+import edu.mit.csail.ammolite.database.IDatabaseCoreData;
 import edu.mit.csail.ammolite.database.ISDFSet;
 import edu.mit.csail.ammolite.database.SDFSet;
 import edu.mit.csail.ammolite.database.StructDatabaseCompressor;
@@ -58,23 +59,23 @@ public class DatabaseCompression {
 	}
 	
 	public static void mergeDatabases(String d1Name, String d2Name, String newDBName){
-		StructDatabaseCoreData d1 = StructDatabaseDecompressor.decompressToCoreData(d1Name);
-		StructDatabaseCoreData d2 = StructDatabaseDecompressor.decompressToCoreData(d2Name);
+		IDatabaseCoreData d1 = StructDatabaseDecompressor.decompressToCoreData(d1Name);
+		IDatabaseCoreData d2 = StructDatabaseDecompressor.decompressToCoreData(d2Name);
 		StructDatabaseCoreData newDB = mergeDatabases(d1,d2);
 		StructDatabaseCompressor.compress(newDBName, newDB);
 	}
 	
-	public static StructDatabaseCoreData mergeDatabases(StructDatabaseCoreData d1, StructDatabaseCoreData d2){
-		if(!d1.VERSION.equals(d2.VERSION)){
+	public static StructDatabaseCoreData mergeDatabases(IDatabaseCoreData d1, IDatabaseCoreData d2){
+		if(!d1.getVersion().equals(d2.getVersion())){
 			throw new RuntimeException("Databases are not the same version and cannot be merged.");
 		}
-		if(d1.compressionType != d2.compressionType){
+		if(d1.getCompressionType() != d2.getCompressionType()){
 			throw new RuntimeException("Databases do not use the same type of compression and cannot ber merged.");
 		}
 		
-		KeyListMap<Integer, MolStruct> newStructsByFingerprint = mergeStructureTables( d1.structsByFingerprint, d2.structsByFingerprint);
-		ISDFSet newSDFSet = mergeSDFSets(d1.files, d2.files);
-		StructDatabaseCoreData newDB = new StructDatabaseCoreData(newStructsByFingerprint, newSDFSet, d1.compressionType, d1.VERSION);
+		KeyListMap<Integer, MolStruct> newStructsByFingerprint = mergeStructureTables( d1.getFingerprintTable(), d2.getFingerprintTable());
+		ISDFSet newSDFSet = mergeSDFSets(d1.getSDFSet(), d2.getSDFSet());
+		StructDatabaseCoreData newDB = new StructDatabaseCoreData(newStructsByFingerprint, newSDFSet, d1.getCompressionType(), d1.getVersion());
 		return newDB;
 	}
 	

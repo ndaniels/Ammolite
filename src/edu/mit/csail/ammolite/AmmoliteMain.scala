@@ -81,6 +81,7 @@ object AmmoliteMain{
 			  val amm = opt[Boolean]("Amm", default=Some(false))
 			  val ammSMSD = opt[Boolean]("AmmSMSD", default=Some(false))
 			  val queryComp = opt[Boolean]("QueryCompression", default=Some(false))
+			  val useCaching = opt[Boolean]("Caching", default=Some(false))
 			}
 			val devTestAggSearch = new Subcommand("test-agg"){
 			  val q = opt[String]("queries")
@@ -161,7 +162,8 @@ object AmmoliteMain{
 					  												opts.devTestSearch.queryComp(),
 					  												opts.devTestSearch.smsd(),
 					  												opts.devTestSearch.fmcs(),
-					  												opts.devTestSearch.ammSMSD())
+					  												opts.devTestSearch.ammSMSD(),
+					  												opts.devTestSearch.useCaching())
 		  
 		  
 		} else if( opts.subcommand == Some( opts.devTestAggSearch)){

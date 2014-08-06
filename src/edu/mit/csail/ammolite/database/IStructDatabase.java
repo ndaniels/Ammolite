@@ -21,4 +21,5 @@ public interface IStructDatabase {
 	public Iterator<MolStruct> iterator();
 	public MoleculeStructFactory getStructFactory();
 	public List<MolStruct> getStructs();
+	public IDatabaseCoreData getCoreData();
 }

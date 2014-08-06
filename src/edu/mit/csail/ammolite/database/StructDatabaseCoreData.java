@@ -6,14 +6,14 @@ import java.util.HashMap;
 import edu.mit.csail.ammolite.KeyListMap;
 import edu.mit.csail.ammolite.compression.MolStruct;
 
-public class StructDatabaseCoreData implements Serializable {
+public class StructDatabaseCoreData implements Serializable, IDatabaseCoreData  {
 
 
 	private static final long serialVersionUID = -2500864197376846911L;
-	public KeyListMap<Integer, MolStruct> structsByFingerprint;
-	public ISDFSet files;
-	public CompressionType compressionType;
-	public String VERSION = "dev_aug5_2014";
+	private KeyListMap<Integer, MolStruct> structsByFingerprint;
+	private ISDFSet files;
+	private CompressionType compressionType;
+	private String VERSION = "dev_aug6_2014";
 	
 	
 	public StructDatabaseCoreData(	KeyListMap<Integer, MolStruct> _structsByFingerprint, 
@@ -32,11 +32,55 @@ public class StructDatabaseCoreData implements Serializable {
 	}
 	
 	public StructDatabaseCoreData(	KeyListMap<Integer, MolStruct> _structsByFingerprint, 
-			ISDFSet _files, 
-			CompressionType _compressionType,
-			String _VERSION){
+										ISDFSet _files, 
+										CompressionType _compressionType,
+										String _VERSION){
 
-	this(_structsByFingerprint, _files, _compressionType);
-	VERSION = _VERSION;
+		this(_structsByFingerprint, _files, _compressionType);
+		VERSION = _VERSION;
+	}
+
+
+	public KeyListMap<Integer, MolStruct> getFingerprintTable() {
+		return structsByFingerprint;
+	}
+
+	public ISDFSet getSDFSet() {
+		return files;
+	}
+
+
+	public CompressionType getCompressionType() {
+		return compressionType;
+	}
+
+	@Override
+	public String getVersion() {
+		return VERSION;
+	}
+
+	@Override
+	public void setFingerprintTable(KeyListMap<Integer, MolStruct> table) {
+		structsByFingerprint = table;
+		
+	}
+
+	@Override
+	public void setSDFSet(ISDFSet set) {
+		files = set;
+		
+	}
+
+	@Override
+	public void setCompressionType(CompressionType type) {
+		compressionType = type;
+		
+	}
+
+	@Override
+	public void setVersion(String versionID) {
+		VERSION = versionID;
+		
+	}
 }
-}
+
