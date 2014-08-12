@@ -41,6 +41,7 @@ import edu.mit.csail.ammolite.database.SDFSet;
 import edu.mit.csail.ammolite.database.StructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseCompressor;
 import edu.mit.csail.ammolite.database.StructDatabaseCoreData;
+import edu.mit.csail.ammolite.utils.CommandLineProgressBar;
 import edu.mit.csail.ammolite.utils.FileUtils;
 import edu.mit.csail.ammolite.utils.Logger;
 import edu.mit.csail.ammolite.utils.ParallelUtils;
@@ -111,12 +112,13 @@ public class StructCompressor {
 		startTime =System.currentTimeMillis();
 		File[] contents = FileUtils.getContents(folder_name);
 		List<String> filenames = new ArrayList<String>();
-
+		CommandLineProgressBar progressBar = new CommandLineProgressBar("Matching Structures", contents.length);
 		for(File f: contents){
 			filenames.add(f.getAbsolutePath());
 			Iterator<IAtomContainer> molecule_database = SDFUtils.parseSDFOnline(f.getAbsolutePath());
 			checkDatabaseForIsomorphicStructs( molecule_database, structFactory );	
 			talk();
+			progressBar.event();
 		}
 		sdfFiles = new SDFSet(filenames);
 		produceClusteredDatabase( filename );

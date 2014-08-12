@@ -313,8 +313,8 @@ public class SearchTest {
 			for(MolStruct sTarget: sTargets){
 				coarseResult.start();
 				int coarseOverlap = getCoarseOverlap(sQuery, sTarget);
+				coarseResult.end();
 				if(coarseThresh <= MCSUtils.overlapCoeff(coarseOverlap, sQuery, sTarget)){
-					coarseResult.end();
 					for(String pubchemID: sTarget.getIDNums()){
 						IAtomContainer target = db.getMolecule(pubchemID);
 						coarseResult.addMatch(target, coarseOverlap);
@@ -351,7 +351,7 @@ public class SearchTest {
 		}
 		
 		public void start(){
-			startTime = System.currentTimeMillis();
+			start(System.currentTimeMillis());
 		}
 		
 		public void start(long _startTime){
@@ -359,7 +359,7 @@ public class SearchTest {
 		}
 		
 		public void end(){
-			endTime = System.currentTimeMillis();
+			end( System.currentTimeMillis());
 		}
 		
 		public void end(long _endTime){
