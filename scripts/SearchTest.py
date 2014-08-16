@@ -87,8 +87,9 @@ def arbAverage( results, getter, outname=None):
 def arbDetail(results, getter):
 	for r in results:
 		name = r.query
-		item = getter(r)
-		print("{}: {}".format(name, getter))
+		for mName, m in r.methods.items(): 
+			item = getter(m)
+			print("{} {}: {}".format(name, mName, item))
 
 def getRuntime( methodResult):
 	return methodResult.time
