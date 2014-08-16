@@ -80,7 +80,7 @@ def arbAverage( results, getter, outname=None):
 		a = float(total) / num
 		averages[ methodName] = a
 		if( outname != None):
-			print("{}, average {}: {}".format(methodName, outname, a))
+			print("{}, average {}: {:,}".format(methodName, outname, a))
 	return averages
 
 
@@ -89,7 +89,7 @@ def arbDetail(results, getter):
 		name = r.query
 		for mName, m in r.methods.items(): 
 			item = getter(m)
-			print("{} {}: {}".format(name, mName, item))
+			print("{} {}: {:,}".format(name, mName, item))
 
 def getRuntime( methodResult):
 	return methodResult.time
