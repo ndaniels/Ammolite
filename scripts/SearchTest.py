@@ -83,6 +83,13 @@ def arbAverage( results, getter, outname=None):
 			print("{}, average {}: {}".format(methodName, outname, a))
 	return averages
 
+
+def arbDetail(results, getter):
+	for r in results:
+		name = r.query
+		item = getter(r)
+		print("{}: {}".format(name, getter))
+
 def getRuntime( methodResult):
 	return methodResult.time
 
@@ -101,6 +108,10 @@ def main( searchFiles):
 		arbAverage(results, getRuntime, "running time")
 		print("\nAverage number of results:")
 		arbAverage(results, getNumberOfResults, "number of results")
+		print("\nDetailed runtimes:")
+		arbAverage(results, getRuntime)
+		print("\nDetailed number of results:")
+		arbAverage(results, getNumberOfResults)
 
 if __name__ == "__main__":
 	args = sys.argv
