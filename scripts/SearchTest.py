@@ -109,9 +109,9 @@ def main( searchFiles):
 		print("\nAverage number of results:")
 		arbAverage(results, getNumberOfResults, "number of results")
 		print("\nDetailed runtimes:")
-		arbAverage(results, getRuntime)
+		arbDetail(results, getRuntime)
 		print("\nDetailed number of results:")
-		arbAverage(results, getNumberOfResults)
+		arbDetail(results, getNumberOfResults)
 
 if __name__ == "__main__":
 	args = sys.argv
