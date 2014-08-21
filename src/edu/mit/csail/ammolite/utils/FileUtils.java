@@ -1,6 +1,9 @@
 package edu.mit.csail.ammolite.utils;
 
 import java.io.File;
+import java.io.FileFilter;
+
+import org.apache.commons.io.filefilter.WildcardFileFilter;
 
 public class FileUtils {
 	
@@ -16,6 +19,13 @@ public class FileUtils {
 			contents = directory.listFiles();
 		}
 		return contents;
+	}
+	
+	public static File[] expandWildcard(String wildcard){
+		 File dir = new File(".");
+		 FileFilter fileFilter = new WildcardFileFilter(wildcard);
+		 File[] files = dir.listFiles(fileFilter);
+		 return files;
 	}
 
 }

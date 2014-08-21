@@ -55,12 +55,14 @@ public class SearchTest {
 		
 		IStructDatabase db = StructDatabaseDecompressor.decompress(databaseName, useCaching);
 		List<IAtomContainer> queries = SDFUtils.parseSDF( queryFile);
-		Collection<IAtomContainer> targets = null;
+		Iterator<IAtomContainer> targets = null;
 		if( db.numMols() < 50000){
 			db = new BigStructDatabase( db);
 			((BigStructDatabase) db).preloadMolecules();
-			targets = ((BigStructDatabase) db).getMolecules();
-		} else if( testFMCS || testSMSD) {
+			targets = ((BigStructDatabase) db).getMolecules().iterator();
+		} else if( (testFMCS || testSMSD) && !(testAmm || testAmmPar || testAmmCompressedQuery || testAmmSMSD)) {
+			targets = SDFUtils.parseSDFOnline(databaseName);
+		} else {
 			throw new RuntimeException("Database is too large to search using fmcs or smsd");
 		}
 		
@@ -104,7 +106,7 @@ public class SearchTest {
 	}
 	
 	private static void runTest(Tester tester, PrintStream stream, List<IAtomContainer> queries, IStructDatabase db, 
-										Collection<IAtomContainer> targets, List<MolStruct> sTargets, double thresh, 
+										Iterator<IAtomContainer> targets, List<MolStruct> sTargets, double thresh, 
 										double prob, String name){
 		
 		WallClock clock = new WallClock( name);
@@ -257,17 +259,17 @@ public class SearchTest {
 
 	static interface Tester{
 		public List<SearchResult> test(List<IAtomContainer> queries, IStructDatabase db, 
-										Collection<IAtomContainer> targets,  List<MolStruct> sTargets, double thresh, 
+										Iterator<IAtomContainer> targets,  List<MolStruct> sTargets, double thresh, 
 										double prob, String name);
 	}
 	
 	static abstract class MultiTester implements Tester {
 		abstract List<SearchResult> singleTestMultipleResults(IAtomContainer query, IStructDatabase db, 
-										Collection<IAtomContainer> targets,  List<MolStruct> sTargets, double fineThresh, 
+										Iterator<IAtomContainer> targets,  List<MolStruct> sTargets, double fineThresh, 
 										double coarseThresh, String name);
 		
 		public List<SearchResult> test(List<IAtomContainer> queries, IStructDatabase db, 
-										Collection<IAtomContainer> targets, List<MolStruct> sTargets,  double fineThresh, 
+										Iterator<IAtomContainer> targets, List<MolStruct> sTargets,  double fineThresh, 
 										double coarseThresh, String name){
 			List<SearchResult> results = new LinkedList<SearchResult>();
 			CommandLineProgressBar progressBar = new CommandLineProgressBar(name, queries.size());
@@ -282,11 +284,11 @@ public class SearchTest {
 	
 	static abstract class MultiSingleTester extends MultiTester{
 		abstract SearchResult singleTest(IAtomContainer query, IStructDatabase db, 
-										Collection<IAtomContainer> targets,  List<MolStruct> sTargets, double fineThresh, 
+										Iterator<IAtomContainer> targets,  List<MolStruct> sTargets, double fineThresh, 
 										double coarseThresh, String name);
 		
 		public List<SearchResult> singleTestMultipleResults(IAtomContainer query, IStructDatabase db, 
-												Collection<IAtomContainer> targets,  List<MolStruct> sTargets, double fineThresh, 
+												Iterator<IAtomContainer> targets,  List<MolStruct> sTargets, double fineThresh, 
 												double coarseThresh, String name){
 			List<SearchResult> l = new ArrayList<SearchResult>(1);
 			l.add(singleTest(query, db, targets, sTargets, fineThresh, coarseThresh, name));
@@ -303,7 +305,7 @@ public class SearchTest {
 		}
 		
 		public List<SearchResult> singleTestMultipleResults(IAtomContainer query, IStructDatabase db, 
-										Collection<IAtomContainer> targets, List<MolStruct> sTargets,  double fineThresh, 
+										Iterator<IAtomContainer> targets, List<MolStruct> sTargets,  double fineThresh, 
 										double coarseThresh, String name){
 			SearchResult result = new SearchResult(query, name);
 			SearchResult coarseResult = new SearchResult(query, name+"_COARSE");
@@ -407,7 +409,7 @@ public class SearchTest {
 	static class AmmoliteParallelSearch implements Tester {
 		
 		public List<SearchResult> test(List<IAtomContainer> queries, IStructDatabase db, 
-											Collection<IAtomContainer> targets, List<MolStruct> sTargets,  double thresh, 
+											Iterator<IAtomContainer> targets, List<MolStruct> sTargets,  double thresh, 
 											double prob, String name){
 			List<SearchResult> results = new LinkedList<SearchResult>();
 			for(IAtomContainer query: queries){
@@ -458,12 +460,13 @@ public class SearchTest {
 	static class SMSDSearch extends MultiSingleTester {
 
 		public SearchResult singleTest(IAtomContainer query, IStructDatabase db, 
-										Collection<IAtomContainer> targets,  List<MolStruct> sTargets, double thresh, 
+										Iterator<IAtomContainer> targets,  List<MolStruct> sTargets, double thresh, 
 										double prob, String name){
 
 			SearchResult result = new SearchResult(query, name);
 			result.start();
-			for(IAtomContainer target: targets){
+			
+			for(IAtomContainer target= targets.next(); targets.hasNext(); target=targets.next()){
 				int mcsSize = MCS.getSMSDOverlap(target, query);
 				if(thresh <= MCSUtils.overlapCoeff(mcsSize, target, query)){
 					result.addMatch(target, mcsSize);
@@ -479,12 +482,12 @@ public class SearchTest {
 	static class FMCSSearch extends MultiSingleTester {
 
 		public SearchResult singleTest(IAtomContainer query, IStructDatabase db, 
-										Collection<IAtomContainer> targets, List<MolStruct> sTargets,  double thresh, 
+										Iterator<IAtomContainer> targets, List<MolStruct> sTargets,  double thresh, 
 										double prob, String name){
 
 			SearchResult result = new SearchResult(query, name);
 			result.start();
-			for(IAtomContainer target: targets){
+			for(IAtomContainer target= targets.next(); targets.hasNext(); target=targets.next()){
 				int mcsSize = MCS.getFMCSOverlap(target, query);
 				if(thresh <= MCSUtils.overlapCoeff(mcsSize, target, query)){
 					result.addMatch(target, mcsSize);
@@ -496,14 +499,13 @@ public class SearchTest {
 		}
 		
 	}
-	
 
 
 	static class AmmoliteCoarseQuerySideCompressionSearch implements Tester {
 
 
 		public List<SearchResult> test(List<IAtomContainer> queries,
-										IStructDatabase db, Collection<IAtomContainer> targets, List<MolStruct> sTargets, 
+										IStructDatabase db, Iterator<IAtomContainer> targets, List<MolStruct> sTargets, 
 										double thresh, double prob, String name) {
 			KeyListMap<MolStruct,IAtomContainer> compressedQueries = StructCompressor.compressQueries(queries, db.getStructFactory());
 			double sThresh = prob; // !!! not using the conversion I came up with, yet.
@@ -546,7 +548,7 @@ public class SearchTest {
 
 		@Override
 		public List<SearchResult> test(List<IAtomContainer> queries,
-				IStructDatabase db, Collection<IAtomContainer> targets, List<MolStruct> sTargets,
+				IStructDatabase db, Iterator<IAtomContainer> targets, List<MolStruct> sTargets,
 				double thresh, double prob, String name) {
 			KeyListMap<MolStruct,IAtomContainer> compressedQueries = DatabaseCompression.compressMoleculeSet(queries, db.getStructFactory());
 			CommandLineProgressBar progressBar = new CommandLineProgressBar(ammoliteCompressed, compressedQueries.keySet().size());
@@ -588,8 +590,7 @@ public class SearchTest {
 				progressBar.event();
 			}
 			return allResults;
-		}
-		
+		}		
 	}
 
 }

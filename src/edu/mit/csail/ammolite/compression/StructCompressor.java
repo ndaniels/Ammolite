@@ -108,9 +108,9 @@ public class StructCompressor {
 	 * @throws ExecutionException 
 	 * @throws InterruptedException 
 	 */
-	public void  compress(String folder_name, String filename) throws IOException, CDKException, InterruptedException, ExecutionException{
+	public void  compress(String inName, String filename) throws IOException, CDKException, InterruptedException, ExecutionException{
 		startTime =System.currentTimeMillis();
-		File[] contents = FileUtils.getContents(folder_name);
+		File[] contents = FileUtils.expandWildcard(inName);
 		List<String> filenames = new ArrayList<String>();
 		CommandLineProgressBar progressBar = new CommandLineProgressBar("Matching Structures", contents.length);
 		for(File f: contents){
