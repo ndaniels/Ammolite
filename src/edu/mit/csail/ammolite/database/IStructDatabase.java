@@ -22,4 +22,9 @@ public interface IStructDatabase {
 	public MoleculeStructFactory getStructFactory();
 	public List<MolStruct> getStructs();
 	public IDatabaseCoreData getCoreData();
+	public ISDFSet getSourceFiles();
+	public List<IAtomContainer> getMatchingMolecules(String structID);
+	public String getName();
+	public boolean isOrganized();
+
 }

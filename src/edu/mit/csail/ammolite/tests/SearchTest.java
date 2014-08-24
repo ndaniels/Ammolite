@@ -53,6 +53,9 @@ public class SearchTest {
 									boolean testAmm, boolean testAmmPar, boolean testAmmCompressedQuery, 
 									boolean testSMSD, boolean testFMCS,boolean testAmmSMSD, boolean useCaching){
 		
+		boolean testingAmmolite = (testAmm || testAmmPar || testAmmCompressedQuery || testAmmSMSD);
+		boolean testingLinear = (testFMCS || testSMSD);
+		
 		IStructDatabase db = StructDatabaseDecompressor.decompress(databaseName, useCaching);
 		List<IAtomContainer> queries = SDFUtils.parseSDF( queryFile);
 		Iterator<IAtomContainer> targets = null;
@@ -60,8 +63,9 @@ public class SearchTest {
 			db = new BigStructDatabase( db);
 			((BigStructDatabase) db).preloadMolecules();
 			targets = ((BigStructDatabase) db).getMolecules().iterator();
-		} else if( (testFMCS || testSMSD) && !(testAmm || testAmmPar || testAmmCompressedQuery || testAmmSMSD)) {
-			targets = SDFUtils.parseSDFOnline(databaseName);
+		} else if( testingLinear) {
+			List<String> sdfFiles = db.getSourceFiles().getFilenames();
+			targets = SDFUtils.parseSDFSetOnline(sdfFiles);
 		} else {
 			throw new RuntimeException("Database is too large to search using fmcs or smsd");
 		}
@@ -70,9 +74,9 @@ public class SearchTest {
 		
 		PrintStream stream = getPrintStream(outName);
 		System.out.println("fine_threshold: "+fine+" coarse_threshold: "+coarse);
-		System.out.println("Number_Structures: "+sTargets.size()+" Number_Molecules: "+db.numMols());
+		System.out.println(db.info());
 		stream.println("fine_threshold: "+fine+" coarse_threshold: "+coarse);
-		stream.println("Number_Structures: "+sTargets.size()+" Number_Molecules: "+db.numMols());
+		stream.println(db.info());
 
 		
 		if( testAmm){
@@ -317,14 +321,25 @@ public class SearchTest {
 				int coarseOverlap = getCoarseOverlap(sQuery, sTarget);
 				coarseResult.end();
 				if(coarseThresh <= MCSUtils.overlapCoeff(coarseOverlap, sQuery, sTarget)){
-					for(String pubchemID: sTarget.getIDNums()){
-						IAtomContainer target = db.getMolecule(pubchemID);
+					List<IAtomContainer> sTargetMatches;
+					if(db.isOrganized()){
+						sTargetMatches = db.getMatchingMolecules(MolUtils.getStructID(sTarget));
+					} else {
+						sTargetMatches = new ArrayList<IAtomContainer>();
+						for(String pubchemID: sTarget.getIDNums()){
+							IAtomContainer target = db.getMolecule(pubchemID);
+							sTargetMatches.add(target);
+						}
+					}
+			
+					
+					for(IAtomContainer target: sTargetMatches){
 						coarseResult.addMatch(target, coarseOverlap);
 						int fineOverlap = getFineOverlap(query, target);
 						if(fineThresh <= MCSUtils.overlapCoeff(fineOverlap, query, target)){
 							result.addMatch(target, fineOverlap);
 						}
-					}					
+					}
 				}
 				
 			}

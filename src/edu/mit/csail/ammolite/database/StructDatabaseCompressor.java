@@ -10,7 +10,7 @@ import java.io.OutputStream;
 
 public class StructDatabaseCompressor {
 	
-	public static void compress(String filename, StructDatabaseCoreData db){
+	public static void compress(String filename, IDatabaseCoreData db){
 		try {
 			writeObjectToFile(filename+ ".adb", db);
 		} catch (IOException e) {

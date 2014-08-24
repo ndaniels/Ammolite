@@ -22,11 +22,18 @@ import edu.mit.csail.ammolite.utils.MolUtils;
 import edu.mit.csail.ammolite.utils.SDFUtils;
 
 public class SDFWrapper implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1027281343854616798L;
 	String filepath;
+	String filename;
 	Map<String,Long> idsToOffsets = new HashMap<String, Long>();
 	
 	public SDFWrapper(String _filepath){
 		filepath = _filepath;
+		String[] splitPath = filepath.split("/");
+		filename = splitPath[splitPath.length - 1];
 		List<IAtomContainer> molecules = SDFUtils.parseSDF(filepath);
 		List<Long> offsets = findOffsets();
 		
@@ -37,6 +44,14 @@ public class SDFWrapper implements Serializable{
 			idsToOffsets.put(pubID, off);
 		}
 
+	}
+	
+	public String getFilename(){
+		return filename;
+	}
+	
+	public String getFilepath(){
+		return filepath;
 	}
 	
 	public List<IAtomContainer> getAllMolecules(){

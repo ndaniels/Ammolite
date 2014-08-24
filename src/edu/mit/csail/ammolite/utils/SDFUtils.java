@@ -58,25 +58,25 @@ public class SDFUtils {
 	}
 	
 	public static void writeToSDF(List<? extends IAtomContainer> molecules, String filename){
-		OutputStream stream = null;
 		try {
-			stream = new PrintStream(filename);
-		} catch (FileNotFoundException e) {
+			OutputStream stream = new PrintStream(filename);
+			SDFWriter writer = new SDFWriter( stream);
+			for(IAtomContainer mol: molecules){
+					writer.write(mol);
+			}
+			writer.close();
+			stream.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(1);
+		} catch (CDKException e) {
 			e.printStackTrace();
 			System.exit(1);
 		}
-		SDFWriter writer = new SDFWriter( stream);
-		for(IAtomContainer mol: molecules){
-			try {
-				writer.write(mol);
-			} catch (CDKException e) {
-				e.printStackTrace();
-			}
-		}
-		try {
-			stream.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	}
+	
+	public static Iterator<IAtomContainer> parseSDFSetOnline(List<String> filenames){
+		return new SDFMultiParser(filenames);
 	}
 }

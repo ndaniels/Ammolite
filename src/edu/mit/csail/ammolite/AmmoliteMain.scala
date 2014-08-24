@@ -13,6 +13,7 @@ import edu.mit.csail.ammolite.aggregation.Aggregator
 import edu.mit.csail.ammolite.aggregation.AggregateSearcher
 import edu.mit.csail.ammolite.aggregation.ClusterDatabaseDecompressor
 import edu.mit.csail.ammolite.database.SDFWrapper
+import edu.mit.csail.ammolite.compression.DatabaseCompression
 
 
 object AmmoliteMain{
@@ -39,6 +40,11 @@ object AmmoliteMain{
 			  val d1 = opt[String]("d1", required=true, descr="First database")
 			  val d2 = opt[String]("d2", required=true, descr="Second database")
 			  val target = opt[String]("target", required=true, descr="Name of the new compressed database")
+			}
+			
+			val organize = new Subcommand("organize-database"){
+			  banner("Organize a database")
+			  val db = opt[String]("database", required=true, descr="database to be organized")
 			}
 			val search = new Subcommand("search"){
 			  
@@ -197,6 +203,8 @@ object AmmoliteMain{
 		    val aggSearcher = new AggregateSearcher(opts.aggsearch.cluster(), opts.aggsearch.searchbound())
 		    
 		    aggSearcher.doSearch(opts.aggsearch.queries(), opts.aggsearch.target(), opts.aggsearch.threshold(), opts.aggsearch.tanimoto())
+		} else if( opts.subcommand == Some( opts.organize)){
+			DatabaseCompression.organizeDatabase(opts.organize.db())
 		}
 	}
 

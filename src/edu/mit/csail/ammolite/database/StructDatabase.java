@@ -33,6 +33,7 @@ public class StructDatabase implements IStructDatabase{
 	protected int numReps = -1;
 	protected int numMols = -1;
 	protected String VERSION;
+	protected String dbName;
 	protected IDatabaseCoreData coreData;
 	
 	
@@ -44,6 +45,7 @@ public class StructDatabase implements IStructDatabase{
 		compressionType = coreData.getCompressionType();
 		structFactory = new MoleculeStructFactory( compressionType);
 		VERSION = coreData.getVersion();
+		dbName = coreData.getName();
 		buildLinearSet();
 	}
 	
@@ -130,7 +132,13 @@ public class StructDatabase implements IStructDatabase{
 	public String info(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("Ammolite Database Info\n");
+		sb.append("Database Name: "+dbName+"\n");
 		sb.append("Database version: "+VERSION+"\n");
+		if( isOrganized() ){
+			sb.append("This database has been organized.\n");
+		} else {
+			sb.append("This database has NOT been organized.\n");
+		}
 		sb.append("Number of molecules: "+String.format("%,d", numMols())+"\n");
 		sb.append("Number of representatives: "+String.format("%,d", numReps())+"\n");
 		sb.append("Compression Type: "+compressionType+"\n");
@@ -153,7 +161,12 @@ public class StructDatabase implements IStructDatabase{
 		return sb.toString();
 	}
 	
-
+	public boolean isOrganized(){
+		if( sdfFiles instanceof OrganizedSDFSet){
+			return true;
+		}
+		return false;
+	}
 	
 	
 	
@@ -168,6 +181,25 @@ public class StructDatabase implements IStructDatabase{
 	
 	public MolStruct makeMoleculeStruct(IAtomContainer mol){
 		return structFactory.makeMoleculeStruct(mol);
+	}
+
+	@Override
+	public ISDFSet getSourceFiles() {
+		return sdfFiles;
+	}
+
+	@Override
+	public List<IAtomContainer> getMatchingMolecules(String structID) {
+		if(sdfFiles instanceof OrganizedSDFSet){
+			return ((OrganizedSDFSet) sdfFiles).getMatchingMols(structID);
+		} else {
+			throw new UnsupportedOperationException("Database must be organized for this operation to work.");
+		}
+	}
+
+	@Override
+	public String getName() {
+		return dbName;
 	}
 	
 	

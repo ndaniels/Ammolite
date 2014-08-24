@@ -37,6 +37,7 @@ import edu.mit.csail.ammolite.KeyListMap;
 import edu.mit.csail.ammolite.StructSDFWriter;
 import edu.mit.csail.ammolite.database.CompressionType;
 import edu.mit.csail.ammolite.database.FilePair;
+import edu.mit.csail.ammolite.database.IDatabaseCoreData;
 import edu.mit.csail.ammolite.database.SDFSet;
 import edu.mit.csail.ammolite.database.StructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseCompressor;
@@ -110,7 +111,8 @@ public class StructCompressor {
 	 */
 	public void  compress(String inName, String filename) throws IOException, CDKException, InterruptedException, ExecutionException{
 		startTime =System.currentTimeMillis();
-		File[] contents = FileUtils.expandWildcard(inName);
+		//File[] contents = FileUtils.expandWildcard(inName);
+		File[] contents = FileUtils.getContents(inName);
 		List<String> filenames = new ArrayList<String>();
 		CommandLineProgressBar progressBar = new CommandLineProgressBar("Matching Structures", contents.length);
 		for(File f: contents){
@@ -210,7 +212,7 @@ public class StructCompressor {
 	 * @throws IOException
 	 */
 	private void produceClusteredDatabase( String name ){
-		StructDatabaseCoreData database = new StructDatabaseCoreData( structsByFingerprint, sdfFiles, structFactory.getCompressionType());
+		IDatabaseCoreData database = new StructDatabaseCoreData( structsByFingerprint, sdfFiles, structFactory.getCompressionType(), name);
 		StructDatabaseCompressor.compress(name, database);
 	}
 	

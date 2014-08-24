@@ -12,18 +12,32 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 public class SDFSet implements Serializable, ISDFSet {
 
 	private static final long serialVersionUID = 7582074972607192820L;
-	Map<String, SDFWrapper> idToWrapper = new HashMap<String, SDFWrapper>();
-	List<String> filenames;
+	protected Map<String, SDFWrapper> idToWrapper = new HashMap<String, SDFWrapper>();
+	protected List<String> filenames = new ArrayList<String>();
+	protected Map<String,SDFWrapper> structIDToSDF = new HashMap<String,SDFWrapper>();
 	
-	public SDFSet(List<String> _filenames){
-		filenames = _filenames;
+	public SDFSet(List<String> filenames){
 		for(String f: filenames){
-			SDFWrapper wrap = new SDFWrapper(f);
-			for(String id: wrap.getIDs()){
-				idToWrapper.put(id, wrap);
-			}
+			addFile(f);
 		}
 		
+	}
+	
+	public boolean isOrganized(){
+		return false;
+	}
+	
+	
+	public void addFile(String filename){
+		filenames.add(filename);
+		SDFWrapper wrap = new SDFWrapper(filename);
+		addFile(wrap);
+	}
+	
+	public void addFile(SDFWrapper wrap){
+		for(String id: wrap.getIDs()){
+			idToWrapper.put(id, wrap);
+		}
 	}
 	
 	public List<IAtomContainer> getAllMolecules(){
@@ -47,5 +61,6 @@ public class SDFSet implements Serializable, ISDFSet {
 		SDFWrapper wrap = idToWrapper.get(pubID);
 		return wrap.getMol(pubID);
 	}
+
 
 }
