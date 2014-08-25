@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.Callable;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import edu.mit.csail.ammolite.KeyListMap;
@@ -17,6 +18,7 @@ import edu.mit.csail.ammolite.database.SDFWrapper;
 import edu.mit.csail.ammolite.database.StructDatabaseCompressor;
 import edu.mit.csail.ammolite.database.StructDatabaseCoreData;
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
+import edu.mit.csail.ammolite.utils.CommandLineProgressBar;
 import edu.mit.csail.ammolite.utils.MolUtils;
 import edu.mit.csail.ammolite.utils.ParallelUtils;
 import edu.mit.csail.ammolite.utils.SDFUtils;
@@ -180,7 +182,7 @@ public class DatabaseCompression {
 		File sdfSet = new File(setName);
 		sdfSet.mkdir();
 		List<String> sdfs = new ArrayList<String>(structs.size());
-
+		CommandLineProgressBar bar = new CommandLineProgressBar("Organization", structs.size());
 		for(MolStruct struct: structs){
 			String structID = MolUtils.getStructID(struct);
 			List<IAtomContainer> mols = new ArrayList<IAtomContainer>(struct.getIDNums().length);
@@ -190,6 +192,7 @@ public class DatabaseCompression {
 			}
 			SDFWrapper sdf  = makeSingleFile(structID, sdfSet.getAbsolutePath(), mols);
 			sdfs.add(sdf.getFilepath());
+			bar.event();
 		}
 		OrganizedSDFSet organizedSDFs = new OrganizedSDFSet(sdfs);
 		return organizedSDFs;
