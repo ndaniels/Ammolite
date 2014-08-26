@@ -66,9 +66,7 @@ public class SearchTest {
 		} else if( testingLinear) {
 			List<String> sdfFiles = db.getSourceFiles().getFilenames();
 			targets = SDFUtils.parseSDFSetOnline(sdfFiles);
-		} else {
-			throw new RuntimeException("Database is too large to search using fmcs or smsd");
-		}
+		} 
 		
 		List<MolStruct> sTargets = db.getStructs();
 		
