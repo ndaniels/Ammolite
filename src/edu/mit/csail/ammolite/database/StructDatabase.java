@@ -20,6 +20,8 @@ import edu.mit.csail.ammolite.compression.CyclicStruct;
 import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory;
 import edu.mit.csail.ammolite.utils.Logger;
+import edu.mit.csail.ammolite.utils.PubchemID;
+import edu.mit.csail.ammolite.utils.StructID;
 
 public class StructDatabase implements IStructDatabase{
 	
@@ -81,7 +83,7 @@ public class StructDatabase implements IStructDatabase{
 //		return this.fileLocsByID;
 //	}
 	
-	public IAtomContainer getMolecule(String pubchemID){
+	public IAtomContainer getMolecule(PubchemID pubchemID){
 		return sdfFiles.getMol(pubchemID);
 	}
 	
@@ -122,7 +124,7 @@ public class StructDatabase implements IStructDatabase{
 			numMols = 0;
 			for(List<MolStruct> repSet: structsByHash.values()){
 				for(MolStruct rep: repSet){
-					numMols += rep.getIDNums().length;
+					numMols += rep.getIDNums().size();
 				}
 			}
 		}
@@ -151,8 +153,8 @@ public class StructDatabase implements IStructDatabase{
 		for(MolStruct struct: getStructs()){
 			sb.append(struct.getProperty("PUBCHEM_COMPOUND_CID"));
 			sb.append(", ");
-			for(String id: struct.getIDNums()){
-				sb.append(id);
+			for(PubchemID id: struct.getIDNums()){
+				sb.append(id.asString());
 				sb.append(", ");
 			}
 			sb.append("\n");
@@ -183,21 +185,18 @@ public class StructDatabase implements IStructDatabase{
 		return structFactory.makeMoleculeStruct(mol);
 	}
 
-	@Override
 	public ISDFSet getSourceFiles() {
 		return sdfFiles;
 	}
 
-	@Override
-	public List<IAtomContainer> getMatchingMolecules(String structID) {
+	public List<IAtomContainer> getMatchingMolecules(StructID structID) {
 		if(sdfFiles instanceof OrganizedSDFSet){
 			return ((OrganizedSDFSet) sdfFiles).getMatchingMols(structID);
 		} else {
 			throw new UnsupportedOperationException("Database must be organized for this operation to work.");
 		}
 	}
-
-	@Override
+	
 	public String getName() {
 		return dbName;
 	}

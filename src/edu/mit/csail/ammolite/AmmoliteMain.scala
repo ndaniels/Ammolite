@@ -4,7 +4,6 @@ package edu.mit.csail.ammolite
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory
 import edu.mit.csail.ammolite.compression.StructCompressor
 import org.rogach.scallop._
-import edu.mit.csail.ammolite.search.SearchHandler
 import edu.mit.csail.ammolite.utils.Logger
 import edu.mit.csail.ammolite.compression.CyclicStruct
 import edu.mit.csail.ammolite.database.CompressionType
@@ -148,9 +147,7 @@ object AmmoliteMain{
 		  edu.mit.csail.ammolite.compression.DatabaseCompression.mergeDatabases(opts.merge.d1(), opts.merge.d2(), opts.merge.target())
 		  
 		} else if( opts.subcommand == Some(opts.search)){
-			val searchHandler = new SearchHandler( opts.search.database(), opts.search.queries(), opts.search.target(),
-													opts.search.threshold(), opts.search.probability(), opts.search.tanimoto())
-			searchHandler.handleSearch();
+			
 		  
 		} else if( opts.subcommand ==Some(opts.mcs)){
 		  Logger.log("Finding mcs of two molecules")

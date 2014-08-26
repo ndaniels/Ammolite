@@ -13,6 +13,7 @@ import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.mcs.MCS;
 import edu.mit.csail.ammolite.utils.MCSUtils;
+import edu.mit.csail.ammolite.utils.PubchemID;
 import edu.mit.csail.ammolite.utils.SDFUtils;
 
 public class AggregateSearchTest {
@@ -181,7 +182,7 @@ public class AggregateSearchTest {
 		double sThresh = prob; // !!! not using the conversion I came up with, yet.
 		if(MCS.beatsOverlapThresholdIsoRank(sQuery, sTarget, sThresh)){
 			results.get(oQuery).addCoarseMatch(sTarget);
-			for(String pubchemID: sTarget.getIDNums()){
+			for(PubchemID pubchemID: sTarget.getIDNums()){
 				IAtomContainer target = db.getMolecule(pubchemID);
 				int mcsSize = MCS.getSMSDOverlap(oQuery, target);
 				if(thresh <= MCSUtils.overlapCoeff(mcsSize, oQuery, target)){

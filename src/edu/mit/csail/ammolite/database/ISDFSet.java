@@ -5,12 +5,15 @@ import java.util.Set;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
+import edu.mit.csail.ammolite.utils.PubchemID;
+
 public interface ISDFSet {
 	
 	public List<IAtomContainer> getAllMolecules();
 	public List<String> getFilenames();
-	public Set<String> getMoleculeIDs();
-	public IAtomContainer getMol(String pubID);
+	public Set<PubchemID> getMoleculeIDs();
+	public IAtomContainer getMol(PubchemID pubID);
 	public boolean isOrganized();
 
 }
+

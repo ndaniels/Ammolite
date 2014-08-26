@@ -19,9 +19,10 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.utils.Logger;
 import edu.mit.csail.ammolite.utils.MolUtils;
+import edu.mit.csail.ammolite.utils.PubchemID;
 
 public class BigStructDatabase extends StructDatabase{
-	private Map<String, IAtomContainer> idToMolecule = new HashMap<String, IAtomContainer>();
+	private Map<PubchemID, IAtomContainer> idToMolecule = new HashMap<PubchemID, IAtomContainer>();
 	/**
 	 * For testing, like structdatabase but searches an entire file for the appropriate molecule.
 	 * @param coredata
@@ -39,7 +40,7 @@ public class BigStructDatabase extends StructDatabase{
 		List<IAtomContainer> mols = getSDFSet().getAllMolecules();
 		System.out.println("Fetched a list of molecules.");
 		for(IAtomContainer mol: mols){
-			String pubID = MolUtils.getPubID(mol);
+			PubchemID pubID = MolUtils.getPubID(mol);
 			idToMolecule.put(pubID, mol);
 		}
 		System.out.println("Loaded molecules.");
@@ -53,7 +54,7 @@ public class BigStructDatabase extends StructDatabase{
 	}
 	
 	@Override
-	public IAtomContainer getMolecule(String pubchemID){
+	public IAtomContainer getMolecule(PubchemID pubchemID){
 		if(idToMolecule.containsKey(pubchemID)){
 			return idToMolecule.get(pubchemID);
 		}

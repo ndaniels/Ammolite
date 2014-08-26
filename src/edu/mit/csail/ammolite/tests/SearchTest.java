@@ -34,6 +34,7 @@ import edu.mit.csail.ammolite.utils.CommandLineProgressBar;
 import edu.mit.csail.ammolite.utils.MCSUtils;
 import edu.mit.csail.ammolite.utils.MolUtils;
 import edu.mit.csail.ammolite.utils.ParallelUtils;
+import edu.mit.csail.ammolite.utils.PubchemID;
 import edu.mit.csail.ammolite.utils.SDFUtils;
 import edu.mit.csail.ammolite.utils.WallClock;
 
@@ -324,7 +325,7 @@ public class SearchTest {
 						sTargetMatches = db.getMatchingMolecules(MolUtils.getStructID(sTarget));
 					} else {
 						sTargetMatches = new ArrayList<IAtomContainer>();
-						for(String pubchemID: sTarget.getIDNums()){
+						for(PubchemID pubchemID: sTarget.getIDNums()){
 							IAtomContainer target = db.getMolecule(pubchemID);
 							sTargetMatches.add(target);
 						}
@@ -446,7 +447,7 @@ public class SearchTest {
 					MolStruct sTarget = coarseTargetsInOrder.get(i);
 					
 					if( coarseMatch){
-						for(String pubchemID: sTarget.getIDNums()){
+						for(PubchemID pubchemID: sTarget.getIDNums()){
 							IAtomContainer target = db.getMolecule(pubchemID);
 							fineTests.add(MCS.getCallableSMSDTest(query, target, thresh));
 							fineTargetsInOrder.add(target);
@@ -538,7 +539,7 @@ public class SearchTest {
 					
 					int mcsSize = MCS.getIsoRankOverlap(sTarget, cQuery);
 					if(sThresh <= MCSUtils.overlapCoeff(mcsSize, sTarget, cQuery)){
-						for(String pubchemID: sTarget.getIDNums()){
+						for(PubchemID pubchemID: sTarget.getIDNums()){
 							IAtomContainer target = db.getMolecule(pubchemID);
 							for(SearchResult res: results){
 								res.addMatch(target, mcsSize);
@@ -581,7 +582,7 @@ public class SearchTest {
 				for(MolStruct sTarget: sTargets){
 					
 					if(MCS.beatsOverlapThresholdIsoRank(cQuery, sTarget, sThresh)){
-						for(String pubchemID: sTarget.getIDNums()){
+						for(PubchemID pubchemID: sTarget.getIDNums()){
 							IAtomContainer target = db.getMolecule(pubchemID);
 							for(int i=0; i<exQueries.size(); i++){
 								IAtomContainer exQuery = exQueries.get(i);

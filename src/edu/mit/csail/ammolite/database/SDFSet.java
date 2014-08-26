@@ -9,12 +9,15 @@ import java.util.Set;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
+import edu.mit.csail.ammolite.utils.PubchemID;
+import edu.mit.csail.ammolite.utils.StructID;
+
 public class SDFSet implements Serializable, ISDFSet {
 
 	private static final long serialVersionUID = 7582074972607192820L;
-	protected Map<String, SDFWrapper> idToWrapper = new HashMap<String, SDFWrapper>();
+	protected Map<PubchemID, SDFWrapper> idToWrapper = new HashMap<PubchemID, SDFWrapper>();
 	protected List<String> filenames = new ArrayList<String>();
-	protected Map<String,SDFWrapper> structIDToSDF = new HashMap<String,SDFWrapper>();
+	protected Map<StructID,SDFWrapper> structIDToSDF = new HashMap<StructID,SDFWrapper>();
 	
 	public SDFSet(List<String> filenames){
 		for(String f: filenames){
@@ -35,7 +38,7 @@ public class SDFSet implements Serializable, ISDFSet {
 	}
 	
 	public void addFile(SDFWrapper wrap){
-		for(String id: wrap.getIDs()){
+		for(PubchemID id: wrap.getIDs()){
 			idToWrapper.put(id, wrap);
 		}
 	}
@@ -53,11 +56,11 @@ public class SDFSet implements Serializable, ISDFSet {
 	}
 	
 	
-	public Set<String> getMoleculeIDs(){
+	public Set<PubchemID> getMoleculeIDs(){
 		return idToWrapper.keySet();
 	}
 	
-	public IAtomContainer getMol(String pubID){
+	public IAtomContainer getMol(PubchemID pubID){
 		SDFWrapper wrap = idToWrapper.get(pubID);
 		return wrap.getMol(pubID);
 	}

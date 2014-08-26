@@ -21,7 +21,9 @@ import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
 import edu.mit.csail.ammolite.utils.CommandLineProgressBar;
 import edu.mit.csail.ammolite.utils.MolUtils;
 import edu.mit.csail.ammolite.utils.ParallelUtils;
+import edu.mit.csail.ammolite.utils.PubchemID;
 import edu.mit.csail.ammolite.utils.SDFUtils;
+import edu.mit.csail.ammolite.utils.StructID;
 import edu.ucla.sspace.graph.isomorphism.VF2IsomorphismTester;
 
 public class DatabaseCompression {
@@ -149,7 +151,7 @@ public class DatabaseCompression {
 	            	VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
 	            	boolean iso = candidate.isIsomorphic(fStruct, iso_tester);
 	            	if( iso ){
-	            		for(String id: fStruct.getIDNums()){
+	            		for(PubchemID id: fStruct.getIDNums()){
 	            			candidate.addID( id);
 	            		}
 	            		return iso;
@@ -184,9 +186,9 @@ public class DatabaseCompression {
 		List<String> sdfs = new ArrayList<String>(structs.size());
 		CommandLineProgressBar bar = new CommandLineProgressBar("Organization", structs.size());
 		for(MolStruct struct: structs){
-			String structID = MolUtils.getStructID(struct);
-			List<IAtomContainer> mols = new ArrayList<IAtomContainer>(struct.getIDNums().length);
-			for(String pubID: struct.getIDNums()){
+			StructID structID = MolUtils.getStructID(struct);
+			List<IAtomContainer> mols = new ArrayList<IAtomContainer>(struct.getIDNums().size());
+			for(PubchemID pubID: struct.getIDNums()){
 				IAtomContainer mol = unorganizedSDFs.getMol(pubID);
 				mols.add(mol);
 			}
@@ -198,8 +200,8 @@ public class DatabaseCompression {
 		return organizedSDFs;
 	}
 	
-	private static SDFWrapper makeSingleFile(String structID, String path, List<IAtomContainer> mols){
-		String fullPath = path + "/" + structID + ".sdf";
+	private static SDFWrapper makeSingleFile(StructID structID, String path, List<IAtomContainer> mols){
+		String fullPath = path + "/" + structID.asString() + ".sdf";
 		SDFUtils.writeToSDF(mols, fullPath);
 		SDFWrapper sdf = new SDFWrapper(fullPath);
 		return sdf;

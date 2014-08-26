@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -12,6 +13,8 @@ import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
+import edu.mit.csail.ammolite.utils.MolUtils;
+import edu.mit.csail.ammolite.utils.PubchemID;
 import edu.ucla.sspace.graph.Edge;
 import edu.ucla.sspace.graph.SparseUndirectedGraph;
 import edu.ucla.sspace.graph.SimpleEdge;
@@ -32,7 +35,7 @@ public class MolStruct extends AtomContainer implements Serializable, IAtomConta
 	 */
 	private static final long serialVersionUID = -5426987516210898334L;
 	protected int fingerprint;
-	protected ArrayList<String> mol_ids;
+	protected List<PubchemID> mol_ids;
 	protected SparseUndirectedGraph graph;
 	protected HashMap<IAtom,Integer> atomsToNodes = new HashMap<IAtom, Integer>();
 	protected HashMap<Integer, IAtom> nodesToAtoms = new HashMap<Integer, IAtom>();
@@ -47,7 +50,7 @@ public class MolStruct extends AtomContainer implements Serializable, IAtomConta
 	public MolStruct( IAtomContainer base )
 	{	
 		super( new AtomContainer(AtomContainerManipulator.removeHydrogens(base)) );
-		mol_ids = new ArrayList<String>();
+		mol_ids = new ArrayList<PubchemID>();
 		
 		Iterator<IAtom> atoms = this.atoms().iterator();
 		while( atoms.hasNext() ){
@@ -65,17 +68,10 @@ public class MolStruct extends AtomContainer implements Serializable, IAtomConta
 
 		setFingerprint();
 		
-		String id = (String) base.getProperty("PUBCHEM_COMPOUND_CID");
-		this.setID( id);
-		this.mol_ids.add( id );
+		
+		this.mol_ids.add( MolUtils.getPubID(base) );
 	}
 	
-	public Object getProperty(Object description){
-		if( description.equals("PUBCHEM_COMPOUND_CID")){
-			return this.getID();
-		}
-		return super.getProperty(description);
-	}
 	
 	@Override
 	public void removeAtom(IAtom atom){
@@ -144,13 +140,12 @@ public class MolStruct extends AtomContainer implements Serializable, IAtomConta
 	}
 	
 
-	public void addID(String id){
+	public void addID(PubchemID id){
 		mol_ids.add(id);
 	}
 	 
-	public String[] getIDNums(){
-		String[] a = {"plop"};
-		return mol_ids.toArray(a);
+	public List<PubchemID> getIDNums(){
+		return mol_ids;
 		
 	}
 	

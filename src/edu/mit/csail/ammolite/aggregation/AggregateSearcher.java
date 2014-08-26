@@ -1,39 +1,29 @@
 package edu.mit.csail.ammolite.aggregation;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInput;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeoutException;
 
-import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.io.SDFWriter;
-import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import edu.mit.csail.ammolite.IteratingSDFReader;
-import edu.mit.csail.ammolite.compression.CyclicStruct;
 import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.database.IStructDatabase;
-import edu.mit.csail.ammolite.database.StructDatabase;
-import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
 import edu.mit.csail.ammolite.mcs.AbstractMCS;
-import edu.mit.csail.ammolite.mcs.FMCS;
 import edu.mit.csail.ammolite.mcs.MCSFinder;
-import edu.mit.csail.ammolite.search.MolTriple;
 import edu.mit.csail.ammolite.utils.Logger;
 import edu.mit.csail.ammolite.utils.MCSUtils;
-import edu.mit.csail.ammolite.utils.Pair;
+import edu.mit.csail.ammolite.utils.MolTriple;
+import edu.mit.csail.ammolite.utils.MolUtils;
+import edu.mit.csail.ammolite.utils.PubchemID;
 
 public class AggregateSearcher {
 	private IStructDatabase db;
@@ -118,27 +108,27 @@ public class AggregateSearcher {
 			}
 			myCList.remove(c);
 		}
-		List<String> ids = new ArrayList<String>(3 * matches.size());
+		List<PubchemID> ids = new ArrayList<PubchemID>(3 * matches.size());
 		for(int i=0;i<matches.size(); i++){
 			IAtomContainer match = matches.get(i);
 			if( match instanceof MolStruct){
 				MolStruct sMatch = (MolStruct) match;
-				for(String id: sMatch.getIDNums()){
+				for(PubchemID id: sMatch.getIDNums()){
 					ids.add(id);
 				}
 			} else {
-				ids.add(match.getID());
+				ids.add(MolUtils.getPubID(match));
 			}
 		}
 		Logger.debug(ids, false);
 		return thresholdMoleculeMatches(query, ids, threshold);
 	}
 	
-	private List<MolTriple> thresholdMoleculeMatches( IAtomContainer query, List<String>  targetIDs, double threshold){
+	private List<MolTriple> thresholdMoleculeMatches( IAtomContainer query, List<PubchemID>  targetIDs, double threshold){
 		IAtomContainer target;
 		List<MolTriple> matches = new ArrayList<MolTriple>();
 		
-		for(String id: targetIDs){
+		for(PubchemID id: targetIDs){
 			target = db.getMolecule(id);
 			//target = new AtomContainer(AtomContainerManipulator.removeHydrogens(target));
 			boolean timeOut = false;

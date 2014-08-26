@@ -19,6 +19,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.utils.MolUtils;
+import edu.mit.csail.ammolite.utils.PubchemID;
 import edu.mit.csail.ammolite.utils.SDFUtils;
 
 public class SDFWrapper implements Serializable{
@@ -28,7 +29,7 @@ public class SDFWrapper implements Serializable{
 	private static final long serialVersionUID = -1027281343854616798L;
 	String filepath;
 	String filename;
-	Map<String,Long> idsToOffsets = new HashMap<String, Long>();
+	Map<PubchemID,Long> idsToOffsets = new HashMap<PubchemID, Long>();
 	
 	public SDFWrapper(String _filepath){
 		filepath = _filepath;
@@ -40,7 +41,7 @@ public class SDFWrapper implements Serializable{
 		for(int i=0; i<molecules.size(); i++){
 			IAtomContainer mol = molecules.get(i);
 			long off = offsets.get(i);
-			String pubID = MolUtils.getPubID(mol);
+			PubchemID pubID = MolUtils.getPubID(mol);
 			idsToOffsets.put(pubID, off);
 		}
 
@@ -86,7 +87,7 @@ public class SDFWrapper implements Serializable{
 		
 	}
 	
-	public IAtomContainer getMol(String pubID){
+	public IAtomContainer getMol(PubchemID pubID){
 		long off = idsToOffsets.get(pubID);
 		BufferedReader br = getBR();
 		try {
@@ -102,7 +103,7 @@ public class SDFWrapper implements Serializable{
 		return null;
 	}
 	
-	public Set<String> getIDs(){
+	public Set<PubchemID> getIDs(){
 		return idsToOffsets.keySet();
 	}
 	

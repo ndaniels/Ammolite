@@ -1,50 +1,28 @@
 package edu.mit.csail.ammolite.compression;
 
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.apache.commons.io.input.CountingInputStream;
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
-import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.KeyListMap;
-import edu.mit.csail.ammolite.StructSDFWriter;
 import edu.mit.csail.ammolite.database.CompressionType;
-import edu.mit.csail.ammolite.database.FilePair;
 import edu.mit.csail.ammolite.database.IDatabaseCoreData;
 import edu.mit.csail.ammolite.database.SDFSet;
-import edu.mit.csail.ammolite.database.StructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseCompressor;
 import edu.mit.csail.ammolite.database.StructDatabaseCoreData;
 import edu.mit.csail.ammolite.utils.CommandLineProgressBar;
 import edu.mit.csail.ammolite.utils.FileUtils;
 import edu.mit.csail.ammolite.utils.Logger;
+import edu.mit.csail.ammolite.utils.MolUtils;
 import edu.mit.csail.ammolite.utils.ParallelUtils;
 import edu.mit.csail.ammolite.utils.SDFUtils;
 import edu.ucla.sspace.graph.isomorphism.VF2IsomorphismTester;
@@ -182,7 +160,7 @@ public class StructCompressor {
 	            	VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
 	            	boolean iso = candidate.isIsomorphic(fStruct, iso_tester);
 	            	if( iso ){
-	            		candidate.addID( fStruct.getID());
+	            		candidate.addID( MolUtils.getPubID(fStruct));
 	            		return iso;
 	            	} else {
 	            		fruitless_comparisons.incrementAndGet();
