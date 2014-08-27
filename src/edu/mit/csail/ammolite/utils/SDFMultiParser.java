@@ -12,6 +12,7 @@ public class SDFMultiParser implements Iterator<IAtomContainer> {
 
 	public SDFMultiParser(List<String> _filenames){
 		filenames = _filenames.iterator();
+		loadNextIterator();
 		
 	}
 	
