@@ -108,6 +108,19 @@ public class SearchTest {
 		
 	}
 	
+	private static Iterator<IAtomContainer> getTargetIterator(IStructDatabase db, Iterator<IAtomContainer> oldIterator){
+		if( oldIterator == null){
+			return null;
+		}
+		if( db instanceof BigStructDatabase){
+			
+			return ((BigStructDatabase) db).getMolecules().iterator();
+		} else  {
+			List<String> sdfFiles = db.getSourceFiles().getFilenames();
+			return SDFUtils.parseSDFSetOnline(sdfFiles);
+		}
+	}
+	
 	private static void runTest(Tester tester, PrintStream stream, List<IAtomContainer> queries, IStructDatabase db, 
 										Iterator<IAtomContainer> targets, List<MolStruct> sTargets, double thresh, 
 										double prob, String name){
@@ -277,6 +290,7 @@ public class SearchTest {
 			List<SearchResult> results = new LinkedList<SearchResult>();
 			CommandLineProgressBar progressBar = new CommandLineProgressBar(name, queries.size());
 			for(IAtomContainer query: queries){
+				targets = getTargetIterator(db, targets);
 				List<SearchResult> result = singleTestMultipleResults(query, db, targets, sTargets, fineThresh, coarseThresh, name);
 				results.addAll(result);
 				progressBar.event();
