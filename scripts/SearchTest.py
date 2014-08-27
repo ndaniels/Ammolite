@@ -26,36 +26,37 @@ def parseSearchTestResults( searchTestResults):
 		inMethod = False
 		for line in f:
 			l = line.split()
-			if(not inQuery):
-				if( l[0] == "fine_threshold:"):
-					fineThresh = l[1]
-					coarseThresh = l[3]
-					print("~"*70)
-					print("Fine threshold: {} Coarse threshold; {}".format(fineThresh, coarseThresh))
-				elif( l[0] == "WALL_CLOCK"):
-					print(line)
+			if len(l) > 0:
+				if(not inQuery):
+					if( l[0] == "fine_threshold:"):
+						fineThresh = l[1]
+						coarseThresh = l[3]
+						print("~"*70)
+						print("Fine threshold: {} Coarse threshold; {}".format(fineThresh, coarseThresh))
+					elif( l[0] == "WALL_CLOCK"):
+						print(line)
 
-				elif(l[0] == "START_QUERY"):
-					inQuery = True
-					result = SearchResult(l[1], fineThresh, coarseThresh)
+					elif(l[0] == "START_QUERY"):
+						inQuery = True
+						result = SearchResult(l[1], fineThresh, coarseThresh)
 
-			elif( inQuery):
-				if(l[0] == "END_QUERY"):
-					inQuery = False
-					allResults.append( result)
-				elif("START_METHOD" == l[0]):
-					inMethod = True
-					methodResult = MethodResult(l[1])
-				elif(inMethod):
-					if("time" in l[0]):
-						methodResult.time = float( l[1])
+				elif( inQuery):
+					if(l[0] == "END_QUERY"):
+						inQuery = False
+						allResults.append( result)
+					elif("START_METHOD" == l[0]):
+						inMethod = True
+						methodResult = MethodResult(l[1])
+					elif(inMethod):
+						if("time" in l[0]):
+							methodResult.time = float( l[1])
 
-					elif("matches" in l[0]):
-						methodResult.matches = l[1:]
+						elif("matches" in l[0]):
+							methodResult.matches = l[1:]
 
-					if(l[0] == "END_METHOD"):
-						inMethod = False
-						result.addMethodResult(methodResult)
+						if(l[0] == "END_METHOD"):
+							inMethod = False
+							result.addMethodResult(methodResult)
 
 	return allResults
 

@@ -7,14 +7,19 @@ public class ID {
 		id = _id;
 	}
 	
+	@Deprecated
 	public String asString(){
+		return toString();
+	}
+	
+	public String toString(){
 		return id;
 	}
 	
 	public boolean equals(Object that){
 		if(that instanceof ID ){
 			ID iThat = (ID) that;
-			return id.equals(iThat.asString());
+			return id.equals(iThat.toString());
 		} else if(that instanceof String){
 			String sThat = (String) that;
 			return id.equals(sThat);
