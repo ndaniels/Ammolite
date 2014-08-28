@@ -1,6 +1,8 @@
 package edu.mit.csail.ammolite.utils;
 
-public class ID {
+import java.io.Serializable;
+
+public class ID implements Serializable{
 	protected String id;
 	
 	public ID(String _id){
