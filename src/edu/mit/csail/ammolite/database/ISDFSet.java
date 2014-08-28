@@ -14,6 +14,7 @@ public interface ISDFSet {
 	public Set<PubchemID> getMoleculeIDs();
 	public IAtomContainer getMol(PubchemID pubID);
 	public boolean isOrganized();
+	public String listSourceFiles();
 
 }
 

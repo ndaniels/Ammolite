@@ -144,6 +144,8 @@ public class StructDatabase implements IStructDatabase{
 		sb.append("Number of molecules: "+String.format("%,d", numMols())+"\n");
 		sb.append("Number of representatives: "+String.format("%,d", numReps())+"\n");
 		sb.append("Compression Type: "+compressionType+"\n");
+		sb.append("Source Files:\n");
+		sb.append(sdfFiles.listSourceFiles());
 		return sb.toString();
 	}
 	
@@ -154,7 +156,7 @@ public class StructDatabase implements IStructDatabase{
 			sb.append(struct.getProperty("PUBCHEM_COMPOUND_CID"));
 			sb.append(", ");
 			for(PubchemID id: struct.getIDNums()){
-				sb.append(id.asString());
+				sb.append(id.toString());
 				sb.append(", ");
 			}
 			sb.append("\n");

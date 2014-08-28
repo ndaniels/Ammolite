@@ -47,35 +47,7 @@ public class StructCompressor {
 	}
 	
 	
-	public static KeyListMap<MolStruct, IAtomContainer> compressQueries(Collection<IAtomContainer> queries, MoleculeStructFactory sF){
-		KeyListMap<Integer, MolStruct> structsByFinger = new KeyListMap<Integer,MolStruct>(queries.size());
-		KeyListMap<MolStruct, IAtomContainer> out = new KeyListMap<MolStruct, IAtomContainer>(queries.size());
-		for(IAtomContainer q: queries){
-			MolStruct sq = sF.makeMoleculeStruct(q);
-			int fingerprint = sq.fingerprint();
-			if(structsByFinger.containsKey(fingerprint)){
-				VF2IsomorphismTester isoTester = new VF2IsomorphismTester();
-				boolean foundMatch = false;
-				for(MolStruct candidate:structsByFinger.get(fingerprint)){
-					boolean iso = candidate.isIsomorphic(sq, isoTester);
-					if( iso){
-						foundMatch = true;
-						out.add(candidate, q);
-						break;
-					}
-				}
-				if(!foundMatch){
-					structsByFinger.add(fingerprint, sq);
-					out.add(sq, q);
-				}
-				
-			} else {
-				structsByFinger.add(fingerprint, sq);
-				out.add(sq, q);
-			}
-		}
-		return out;
-	}
+
 	
 	/**
 	 * Scans through an sdf library and compresses it.

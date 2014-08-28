@@ -177,7 +177,6 @@ public class DatabaseCompression {
 		ISDFSet newSDFs = organizeSDFSet(db.getName(), db.getStructs(), oldSDFs);
 		db.getCoreData().setSDFSet(newSDFs);
 		StructDatabaseCompressor.compress(db.getCoreData().getName(), db.getCoreData());
-		
 	}
 	
 	public static OrganizedSDFSet organizeSDFSet(String setName,  List<MolStruct> structs, ISDFSet unorganizedSDFs){
@@ -192,7 +191,7 @@ public class DatabaseCompression {
 				IAtomContainer mol = unorganizedSDFs.getMol(pubID);
 				mols.add(mol);
 			}
-			SDFWrapper sdf  = makeSingleFile(structID, sdfSet.getAbsolutePath(), mols);
+			SDFWrapper sdf = makeSingleFile(structID, sdfSet.getAbsolutePath(), mols);
 			sdfs.add(sdf.getFilepath());
 			bar.event();
 		}
@@ -201,7 +200,7 @@ public class DatabaseCompression {
 	}
 	
 	private static SDFWrapper makeSingleFile(StructID structID, String path, List<IAtomContainer> mols){
-		String fullPath = path + "/" + structID.asString() + ".sdf";
+		String fullPath = path + "/" + structID.toString() + ".sdf";
 		SDFUtils.writeToSDF(mols, fullPath);
 		SDFWrapper sdf = new SDFWrapper(fullPath);
 		return sdf;

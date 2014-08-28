@@ -32,12 +32,12 @@ public class SDFSet implements Serializable, ISDFSet {
 	
 	
 	public void addFile(String filename){
-		filenames.add(filename);
 		SDFWrapper wrap = new SDFWrapper(filename);
 		addFile(wrap);
 	}
 	
 	public void addFile(SDFWrapper wrap){
+		filenames.add(wrap.getFilepath());
 		for(PubchemID id: wrap.getIDs()){
 			idToWrapper.put(id, wrap);
 		}
@@ -67,6 +67,14 @@ public class SDFSet implements Serializable, ISDFSet {
 		}
 		throw new NullPointerException("PubchemID "+pubID+" not in this SDFset");
 	}
-
+	
+	public String listSourceFiles(){
+		StringBuilder sb = new StringBuilder();
+		for(String filename: filenames){
+			sb.append(filename);
+			sb.append("\n");
+		}
+		return sb.toString();
+	}
 
 }
