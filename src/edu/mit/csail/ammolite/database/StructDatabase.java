@@ -20,6 +20,7 @@ import edu.mit.csail.ammolite.compression.CyclicStruct;
 import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory;
 import edu.mit.csail.ammolite.utils.Logger;
+import edu.mit.csail.ammolite.utils.MolUtils;
 import edu.mit.csail.ammolite.utils.PubchemID;
 import edu.mit.csail.ammolite.utils.StructID;
 
@@ -144,8 +145,10 @@ public class StructDatabase implements IStructDatabase{
 		sb.append("Number of molecules: "+String.format("%,d", numMols())+"\n");
 		sb.append("Number of representatives: "+String.format("%,d", numReps())+"\n");
 		sb.append("Compression Type: "+compressionType+"\n");
-		sb.append("Source Files:\n");
-		sb.append(sdfFiles.listSourceFiles());
+		if(sdfFiles.getFilenames().size() < 50){
+			sb.append("Source Files:\n");
+			sb.append(sdfFiles.listSourceFiles());
+		}
 		return sb.toString();
 	}
 	
@@ -153,7 +156,7 @@ public class StructDatabase implements IStructDatabase{
 		StringBuilder sb = new StringBuilder();
 		sb.append("BEGIN_TABLE\n");
 		for(MolStruct struct: getStructs()){
-			sb.append(struct.getProperty("PUBCHEM_COMPOUND_CID"));
+			sb.append(MolUtils.getPubID(struct));
 			sb.append(", ");
 			for(PubchemID id: struct.getIDNums()){
 				sb.append(id.toString());
