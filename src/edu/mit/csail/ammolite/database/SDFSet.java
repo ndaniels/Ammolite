@@ -70,8 +70,10 @@ public class SDFSet implements Serializable, ISDFSet {
 	
 	public String listSourceFiles(){
 		StringBuilder sb = new StringBuilder();
-		for(String filename: filenames){
-			sb.append(filename);
+		for(SDFWrapper sdf: idToWrapper.values()){
+			sb.append(sdf.getFilename());
+			sb.append(" molecules: ");
+			sb.append(String.format("%,d", sdf.numMols()));
 			sb.append("\n");
 		}
 		return sb.toString();

@@ -47,6 +47,10 @@ public class SDFWrapper implements Serializable{
 
 	}
 	
+	public int numMols(){
+		return idsToOffsets.size();
+	}
+	
 	public String getFilename(){
 		return filename;
 	}
