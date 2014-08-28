@@ -16,7 +16,7 @@ public class SDFSet implements Serializable, ISDFSet {
 
 	private static final long serialVersionUID = 7582074972607192820L;
 	protected Map<PubchemID, SDFWrapper> idToWrapper = new HashMap<PubchemID, SDFWrapper>();
-	protected List<String> filenames = new ArrayList<String>();
+	protected List<SDFWrapper> sdfs = new ArrayList<SDFWrapper>();
 	protected Map<StructID,SDFWrapper> structIDToSDF = new HashMap<StructID,SDFWrapper>();
 	
 	public SDFSet(List<String> filenames){
@@ -37,7 +37,7 @@ public class SDFSet implements Serializable, ISDFSet {
 	}
 	
 	public void addFile(SDFWrapper wrap){
-		filenames.add(wrap.getFilepath());
+		sdfs.add(wrap);
 		for(PubchemID id: wrap.getIDs()){
 			idToWrapper.put(id, wrap);
 		}
@@ -52,7 +52,19 @@ public class SDFSet implements Serializable, ISDFSet {
 	}
 	
 	public List<String> getFilenames(){
-		return filenames;
+		List<String> out = new ArrayList<String>();
+		for(SDFWrapper sdf: sdfs){
+			out.add(sdf.getFilename());
+		}
+		return out;
+	}
+	
+	public List<String> getFilepaths(){
+		List<String> out = new ArrayList<String>();
+		for(SDFWrapper sdf: sdfs){
+			out.add(sdf.getFilepath());
+		}
+		return out;
 	}
 	
 	
@@ -70,7 +82,7 @@ public class SDFSet implements Serializable, ISDFSet {
 	
 	public String listSourceFiles(){
 		StringBuilder sb = new StringBuilder();
-		for(SDFWrapper sdf: idToWrapper.values()){
+		for(SDFWrapper sdf: sdfs){
 			sb.append(sdf.getFilename());
 			sb.append(" molecules: ");
 			sb.append(String.format("%,d", sdf.numMols()));
