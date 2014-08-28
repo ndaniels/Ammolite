@@ -61,8 +61,11 @@ public class SDFSet implements Serializable, ISDFSet {
 	}
 	
 	public IAtomContainer getMol(PubchemID pubID){
-		SDFWrapper wrap = idToWrapper.get(pubID);
-		return wrap.getMol(pubID);
+		if(idToWrapper.containsKey(pubID)){
+			SDFWrapper wrap = idToWrapper.get(pubID);
+			return wrap.getMol(pubID);
+		}
+		throw new NullPointerException("PubchemID "+pubID+" not in this SDFset");
 	}
 
 
