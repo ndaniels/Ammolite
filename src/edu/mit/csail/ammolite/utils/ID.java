@@ -34,7 +34,11 @@ public class ID implements Serializable{
 	
 	@Override
 	public int hashCode(){
-		return toString().hashCode();
+		String myID = toString();
+		if(myID != null){
+			return myID.hashCode();
+		}
+		throw new NullPointerException("Null ID String");
 	}
 
 }
