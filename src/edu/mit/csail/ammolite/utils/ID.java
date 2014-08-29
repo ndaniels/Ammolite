@@ -6,6 +6,9 @@ public class ID implements Serializable{
 	protected String id;
 	
 	public ID(String _id){
+		if(_id == null){
+			throw new NullPointerException("ID string cannot be initialized as null");
+		}
 		id = _id;
 	}
 	
