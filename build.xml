@@ -9,7 +9,7 @@
 
 	
 		<target name="init">
-			<property name="scala.home" 	    value="/usr/local/Cellar/scala/2.10.3" />
+			<property name="scala.home" 	    value="/usr/local/Cellar/scala/2.11.2" />
 			<property name="scala.home.lib"	    value="${scala.home}/libexec/lib" />
 
 			<path id="scala.path" cache="true">

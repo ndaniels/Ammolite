@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -35,7 +37,7 @@ public class MolStruct extends AtomContainer implements Serializable, IAtomConta
 	 */
 	private static final long serialVersionUID = -5426987516210898334L;
 	protected int fingerprint;
-	protected List<PubchemID> mol_ids;
+	protected Set<PubchemID> mol_ids;
 	protected SparseUndirectedGraph graph;
 	protected HashMap<IAtom,Integer> atomsToNodes = new HashMap<IAtom, Integer>();
 	protected HashMap<Integer, IAtom> nodesToAtoms = new HashMap<Integer, IAtom>();
@@ -50,7 +52,7 @@ public class MolStruct extends AtomContainer implements Serializable, IAtomConta
 	public MolStruct( IAtomContainer base )
 	{	
 		super( new AtomContainer(AtomContainerManipulator.removeHydrogens(base)) );
-		mol_ids = new ArrayList<PubchemID>();
+		mol_ids = new HashSet<PubchemID>();
 		
 		Iterator<IAtom> atoms = this.atoms().iterator();
 		while( atoms.hasNext() ){
@@ -144,7 +146,7 @@ public class MolStruct extends AtomContainer implements Serializable, IAtomConta
 		mol_ids.add(id);
 	}
 	 
-	public List<PubchemID> getIDNums(){
+	public Set<PubchemID> getIDNums(){
 		return mol_ids;
 		
 	}
