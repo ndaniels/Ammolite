@@ -1,5 +1,6 @@
 from random import choice, random
 from os import listdir
+from sys import argv
 
 
 def buildRandomizedSDFs( numMolsList, inputFolder, outputFilenameList):
@@ -29,12 +30,20 @@ def buildRandomizedSDFs( numMolsList, inputFolder, outputFilenameList):
 		outputFilename = outputFilenameList[i]
 
 		molsToGrab = []
+		grabbed = {}
 
 		while len(molsToGrab) < numMols:
 			fromFile = choice(fileOffsets)
 			fromFileInd = fileOffsets.index(fromFile)
 			at = choice(fromFile)
-			molsToGrab.append( (fromFileInd, at))
+			if fromFileInd not in grabbed:
+				molsToGrab.append( (fromFileInd, at))
+				grabbed[fromFileInd] = {at:True}
+			elif at not in grabbed[fromFileInd]:
+				molsToGrab.append( (fromFileInd, at))
+				grabbed[fromFileInd][at] = True
+			# print("grabbed!")
+		print("Finished grabbing mols")
 
 		outFile = open(outputFilename,"w")
 
@@ -55,15 +64,17 @@ def buildRandomizedSDFs( numMolsList, inputFolder, outputFilenameList):
 		outFile.close()
 		print( "Finished "+outputFilename)
 
-def main():
+def main(args):
+	assert len(args)  == 4
+	print(args)
 
-	sizes = [30]
-	names = ["30_random_molecules.sdf"]	
-	buildRandomizedSDFs(sizes, "/mnt/work/dcdanko/MolSearch/molecule_sets/1k/", names)
+	sizes =  [int(args[1])]
+	names = [args[2]]
+	buildRandomizedSDFs(sizes, args[3], names)
 
 
 if __name__ == "__main__":
-	main()
+	main(argv)
 
 
 
