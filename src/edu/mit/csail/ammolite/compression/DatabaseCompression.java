@@ -3,12 +3,16 @@ package edu.mit.csail.ammolite.compression;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.Callable;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import edu.mit.csail.ammolite.KeyListMap;
+import edu.mit.csail.ammolite.database.CompressionType;
 import edu.mit.csail.ammolite.database.IDatabaseCoreData;
 import edu.mit.csail.ammolite.database.ISDFSet;
 import edu.mit.csail.ammolite.database.IStructDatabase;
@@ -204,6 +208,58 @@ public class DatabaseCompression {
 		SDFUtils.writeToSDF(mols, fullPath);
 		SDFWrapper sdf = new SDFWrapper(fullPath);
 		return sdf;
+	}
+	
+	public static void CompressLargeDatabase(List<String> filenames, CompressionType compType){
+		MoleculeStructFactory structFactory = new MoleculeStructFactory( compType);
+		Set<Integer> fingerprints = new HashSet<Integer>();
+		KeyListMap<StructID, PubchemID> compressionMap = new KeyListMap<StructID, PubchemID>(1000*1000);
+		final String BASE_STRUCT_FILENAME = "_STRUCTURES.sdf";
+		
+		Iterator<IAtomContainer> mols  = SDFUtils.parseSDFSetOnline(filenames);
+		IAtomContainer mol = null;
+		MolStruct struct = null;
+		
+		while( mols.hasNext()){
+			mol = mols.next();
+			struct = structFactory.makeMoleculeStruct(mol);
+			int fingerprint = struct.fingerprint();
+			String name = fingerprint + BASE_STRUCT_FILENAME;
+			
+			if( fingerprints.contains(fingerprint)){
+				List<IAtomContainer> matchingStructs = SDFUtils.parseSDF(name);
+				VF2IsomorphismTester isoTester = new VF2IsomorphismTester();
+				MolStruct candidate = null;
+				boolean unique = true;
+				for(IAtomContainer potential: matchingStructs){
+					candidate = structFactory.makeMoleculeStruct(potential);
+					boolean iso = candidate.isIsomorphic(struct, isoTester);
+	            	if( iso ){
+	            		compressionMap.add(MolUtils.getStructID(candidate), MolUtils.getPubID(mol));
+	            		unique = false;
+	            		break;
+	            	} 
+				}
+				if(unique){
+					matchingStructs.add(struct);
+					compressionMap.add(MolUtils.getStructID(struct), MolUtils.getPubID(mol));
+					SDFUtils.writeToSDF(matchingStructs, name);
+				}
+				
+			} else {
+				List<MolStruct> l = new ArrayList<MolStruct>(1);
+				l.add(struct);
+				SDFUtils.writeToSDF(l, name);
+				compressionMap.add(MolUtils.getStructID(struct), MolUtils.getPubID(mol));
+			}
+			
+		}
+		
+	}
+	
+	private static String makeFingerprintFilename(int fingerprint){
+		final String BASE_STRUCT_FILENAME = "_STRUCTURES.sdf";
+		return fingerprint + BASE_STRUCT_FILENAME;
 	}
 
 }
