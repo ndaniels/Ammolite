@@ -13,6 +13,8 @@ import edu.mit.csail.ammolite.aggregation.AggregateSearcher
 import edu.mit.csail.ammolite.aggregation.ClusterDatabaseDecompressor
 import edu.mit.csail.ammolite.database.SDFWrapper
 import edu.mit.csail.ammolite.compression.DatabaseCompression
+import collection.mutable.Buffer
+import collection.Seq
 
 
 object AmmoliteMain{
@@ -30,7 +32,7 @@ object AmmoliteMain{
 			
 			val compress = new Subcommand("compress"){
 			  banner("Compress a database of SDF files")
-			  val source = opt[String]("source", required=true, descr="File or folder to compress")
+			  val source = opt[List[String]]("source", required=true, descr="File or folder to compress")
 			  val target = opt[String]("target", required=true, descr="Name of the new compressed database")
 			  val simple = opt[Boolean]("simple", descr="Use simple structures instead of cyclic structures")
 			}
@@ -107,7 +109,8 @@ object AmmoliteMain{
 
 			}
 			val examine = new Subcommand("examine"){
-			  val database = opt[String]("database", required=true, descr="Path to the database.")
+			  val database = trailArg[String]()
+			  // val database = opt[String]("database", required=true, descr="Path to the database.")
 			  val table = opt[Boolean]("table", default=Some(false))
 			} 
 			val aggexamine = new Subcommand("aggexamine"){
@@ -140,8 +143,8 @@ object AmmoliteMain{
 		  } 
 			  
 		  val compressor = new StructCompressor( compType )
-		  
-		  compressor.compress(opts.compress.source(), opts.compress.target())
+		  java.util.Arrays.asList(opts.compress.source().toArray: _*)
+		  compressor.compress(java.util.Arrays.asList(opts.compress.source().toArray: _*), opts.compress.target())
 		  
 		} else if( opts.subcommand == Some(opts.merge)){
 		  edu.mit.csail.ammolite.compression.DatabaseCompression.mergeDatabases(opts.merge.d1(), opts.merge.d2(), opts.merge.target())

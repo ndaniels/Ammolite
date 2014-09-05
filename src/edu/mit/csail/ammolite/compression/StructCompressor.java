@@ -59,20 +59,19 @@ public class StructCompressor {
 	 * @throws ExecutionException 
 	 * @throws InterruptedException 
 	 */
-	public void  compress(String inName, String filename) throws IOException, CDKException, InterruptedException, ExecutionException{
+	public void  compress(List<String> filenames, String filename) throws IOException, CDKException, InterruptedException, ExecutionException{
 		startTime =System.currentTimeMillis();
-		//File[] contents = FileUtils.expandWildcard(inName);
-		File[] contents = FileUtils.getContents(inName);
-		List<String> filenames = new ArrayList<String>();
-		CommandLineProgressBar progressBar = new CommandLineProgressBar("Matching Structures", contents.length);
-		for(File f: contents){
-			filenames.add(f.getAbsolutePath());
+		List<String> absoluteFilenames = new ArrayList<String>();
+		List<File> files = FileUtils.openFiles(filenames);
+		CommandLineProgressBar progressBar = new CommandLineProgressBar("Matching Structures", files.size());
+		for(File f: files){
+			absoluteFilenames.add(f.getAbsolutePath());
 			Iterator<IAtomContainer> molecule_database = SDFUtils.parseSDFOnline(f.getAbsolutePath());
 			checkDatabaseForIsomorphicStructs( molecule_database, structFactory );	
 			talk();
 			progressBar.event();
 		}
-		sdfFiles = new SDFSet(filenames);
+		sdfFiles = new SDFSet(absoluteFilenames);
 		produceClusteredDatabase( filename );
 		
 		talk();

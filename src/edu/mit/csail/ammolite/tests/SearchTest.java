@@ -36,11 +36,13 @@ import edu.mit.csail.ammolite.utils.MolUtils;
 import edu.mit.csail.ammolite.utils.ParallelUtils;
 import edu.mit.csail.ammolite.utils.PubchemID;
 import edu.mit.csail.ammolite.utils.SDFUtils;
+import edu.mit.csail.ammolite.utils.StructID;
 import edu.mit.csail.ammolite.utils.WallClock;
 
 public class SearchTest {
 	
 	private static final String ammoliteCompressed = "AMMOLITE_COMPRESSED_QUERIES";
+	private static final String ammoliteParallelCompressed = "AMMOLITE_COMPRESSED_QUERIES_PARALLEL";
 	private static final String ammoliteCoarseCompressed = "AMMOLITE_COMPRESSED_QUERIES_COARSE";
 
 	private static final String ammolite = "AMMOLITE_ISORANK";
@@ -100,8 +102,8 @@ public class SearchTest {
 			runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse, fmcs);
 		}
 		if( testAmmCompressedQuery){
-			Tester tester = new AmmoliteQuerySideCompressionSearch();
-			runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse, ammoliteCompressed);
+			Tester tester = new ParallelQuerySideCompression();
+			runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse, ammoliteParallelCompressed);
 		}
 
 		stream.close();
@@ -485,6 +487,115 @@ public class SearchTest {
 		}
 	}
 	
+	static class ParallelQuerySideCompression implements Tester {
+	    
+	    private final int CHUNK_SIZE = 1000;
+	    
+	    private List<List<Integer>> testSetOfMolecules(List<IAtomContainer> queries, List<IAtomContainer> targets){
+	        List<List<Integer>> results = new ArrayList<List<Integer>>(queries.size());
+	        List<Callable<Integer>> tests = new ArrayList<Callable<Integer>>(targets.size());
+	        
+	        for(IAtomContainer fineQuery: queries){
+	            tests.clear();
+                for(IAtomContainer fineTarget: targets){
+                    tests.add(MCS.getCallableSMSDOperation(fineTarget, fineQuery));
+                }
+                results.add( ParallelUtils.parallelFullExecution(tests));
+            }
+	        
+	        return results;
+	    }
+	    
+	    private void processTests(List<IAtomContainer> queries, List<IAtomContainer> targets, List<List<Integer>> testResults, List<SearchResult> searchResults, List<SearchResult> coarseSearchResults, double thresh){
+	        for(int i=0; i<queries.size(); ++i){
+                IAtomContainer query = queries.get(i);
+                List<Integer> myMatchSizes = testResults.get(i);
+                SearchResult mySearchResult = searchResults.get(i);
+                SearchResult myCoarseSearchResult = coarseSearchResults.get(i);
+                
+                for(int j=0; j<targets.size(); j++){
+                    int matchSize = myMatchSizes.get(j);
+                    IAtomContainer relevantTarget = targets.get(j);
+                    boolean result = MCSUtils.overlapCoeff(matchSize, query, relevantTarget) >= thresh;
+                    myCoarseSearchResult.addMatch(relevantTarget, matchSize);
+                    if(result){
+                        mySearchResult.addMatch(relevantTarget, matchSize);
+                    }
+                }
+            }
+	    }
+
+        @Override
+        public List<SearchResult> test(List<IAtomContainer> queries,
+                                        IStructDatabase db, Iterator<IAtomContainer> targets,
+                                        List<MolStruct> sTargets, double thresh, double prob,
+                                        String name) {
+            
+            KeyListMap<MolStruct,IAtomContainer> compressedQueries = DatabaseCompression.compressMoleculeSet(queries, db.getStructFactory());
+            CommandLineProgressBar bar = new CommandLineProgressBar(name, queries.size());
+            List<SearchResult> allResults = new ArrayList<SearchResult>();
+            
+            for(MolStruct coarseQuery: compressedQueries.keySet()){
+                List<IAtomContainer> fineQueries = compressedQueries.get(coarseQuery);
+                List<SearchResult> mySearchResults = new ArrayList<SearchResult>(fineQueries.size());
+                List<SearchResult> myCoarseSearchResults = new ArrayList<SearchResult>(fineQueries.size());
+                
+                // Results Processing
+                for(IAtomContainer fineQuery: fineQueries){
+                    SearchResult mySearchResult = new SearchResult(fineQuery, name);
+                    mySearchResult.start();
+                    mySearchResults.add( mySearchResult);
+                    allResults.add( mySearchResult);
+                    
+                    SearchResult myCoarseSearchResult = new SearchResult(fineQuery, name+"_COARSE");
+                    myCoarseSearchResult.start();
+                    myCoarseSearchResults.add( myCoarseSearchResult);
+                    allResults.add( myCoarseSearchResult);
+                }
+                
+                // Coarse Search
+                List<Callable<Boolean>> coarseTests = new ArrayList<Callable<Boolean>>();
+                for(MolStruct coarseTarget: sTargets){
+                    coarseTests.add(MCS.getCallableSMSDTest(coarseQuery, coarseTarget, prob));
+                }
+                List<Boolean> coarseResults = ParallelUtils.parallelFullExecution(coarseTests);
+                List<StructID> coarseMatchIDs = new ArrayList<StructID>();
+                
+                for(int i=0; i<coarseResults.size(); ++i){
+                    boolean result = coarseResults.get(i);
+                    if( result){
+                        MolStruct coarseMatch = sTargets.get(i);
+                        coarseMatchIDs.add(MolUtils.getStructID(coarseMatch));
+                    }
+                }
+                
+                // Fine Search
+                List<IAtomContainer> fineTargetChunk = new ArrayList<IAtomContainer>(CHUNK_SIZE);
+                for(StructID sID: coarseMatchIDs){
+                    if( fineTargetChunk.size() < CHUNK_SIZE){
+                        fineTargetChunk.addAll(db.getMatchingMolecules(sID));
+                    } else {
+                        List<List<Integer>> results = testSetOfMolecules(fineQueries, fineTargetChunk);
+                        processTests(fineQueries, fineTargetChunk, results, mySearchResults, myCoarseSearchResults, thresh);
+                    }  
+                }
+                List<List<Integer>> results = testSetOfMolecules(fineQueries, fineTargetChunk);
+                processTests(fineQueries, fineTargetChunk, results, mySearchResults, myCoarseSearchResults, thresh);
+                
+                // Results Processing
+                for(SearchResult result: mySearchResults){
+                    result.end();
+                    bar.event();
+                }
+                for(SearchResult coarseResult: myCoarseSearchResults){
+                    coarseResult.end();
+                }
+            }
+            return allResults;
+        }  
+	}
+	    
+	
 	static class SMSDSearch extends MultiSingleTester {
 
 		public SearchResult singleTest(IAtomContainer query, IStructDatabase db, 
@@ -535,7 +646,7 @@ public class SearchTest {
 		public List<SearchResult> test(List<IAtomContainer> queries,
 										IStructDatabase db, Iterator<IAtomContainer> targets, List<MolStruct> sTargets, 
 										double thresh, double prob, String name) {
-			KeyListMap<MolStruct,IAtomContainer> compressedQueries = StructCompressor.compressQueries(queries, db.getStructFactory());
+			KeyListMap<MolStruct,IAtomContainer> compressedQueries = DatabaseCompression.compressMoleculeSet(queries, db.getStructFactory());
 			double sThresh = prob; // !!! not using the conversion I came up with, yet.
 			List<SearchResult> allResults = new ArrayList<SearchResult>( 3* compressedQueries.keySet().size());
 			for(MolStruct cQuery: compressedQueries.keySet()){

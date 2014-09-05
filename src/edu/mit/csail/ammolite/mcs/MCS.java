@@ -117,5 +117,19 @@ public class MCS {
 		
 		return callable;
 	}
+	
+   public static Callable<Integer> getCallableSMSDOperation(IAtomContainer a, IAtomContainer b){
+        final IAtomContainer fa = a;
+        final IAtomContainer fb = b;
+        
+        Callable<Integer> callable = new Callable<Integer>(){
+            
+            public Integer call() throws Exception {
+                return getSMSDOverlap(fa, fb);
+            }
+        };
+        
+        return callable;
+    }
 
 }

@@ -2,6 +2,8 @@ package edu.mit.csail.ammolite.utils;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.io.filefilter.WildcardFileFilter;
 
@@ -26,6 +28,15 @@ public class FileUtils {
 		 FileFilter fileFilter = new WildcardFileFilter(wildcard);
 		 File[] files = dir.listFiles(fileFilter);
 		 return files;
+	}
+	
+	public static List<File> openFiles(List<String> filenames){
+		List<File> out = new ArrayList<File>();
+		for(String name: filenames){
+			File f = new File(name);
+			out.add(f);
+		}
+		return out;
 	}
 
 }
