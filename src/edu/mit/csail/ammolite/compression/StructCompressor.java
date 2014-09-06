@@ -41,6 +41,7 @@ public class StructCompressor {
 	private AtomicInteger fruitless_comparisons = new AtomicInteger(0);
 	private int total_comparisons = 0;
 	private long runningTime, startTime;
+	CommandLineProgressBar progressBar;
 
 	public StructCompressor(CompressionType compType){
 		structFactory = new MoleculeStructFactory( compType);
@@ -61,15 +62,19 @@ public class StructCompressor {
 	 */
 	public void  compress(List<String> filenames, String filename) throws IOException, CDKException, InterruptedException, ExecutionException{
 		startTime =System.currentTimeMillis();
+		int numMols = 0;
+		for(String name: filenames){
+		    numMols += SDFUtils.estimateNumMolsInSDF(name);
+		}
+	    progressBar = new CommandLineProgressBar("Matching Structures", numMols);
 		List<String> absoluteFilenames = new ArrayList<String>();
 		List<File> files = FileUtils.openFiles(filenames);
-		CommandLineProgressBar progressBar = new CommandLineProgressBar("Matching Structures", files.size());
+
 		for(File f: files){
 			absoluteFilenames.add(f.getAbsolutePath());
 			Iterator<IAtomContainer> molecule_database = SDFUtils.parseSDFOnline(f.getAbsolutePath());
 			checkDatabaseForIsomorphicStructs( molecule_database, structFactory );	
 			talk();
-			progressBar.event();
 		}
 		sdfFiles = new SDFSet(absoluteFilenames);
 		produceClusteredDatabase( filename );
@@ -115,7 +120,7 @@ public class StructCompressor {
         		structures++;
         		structsByFingerprint.add(structure.fingerprint(), structure);
         	}
-
+        	progressBar.event();
         }
 	}
 	

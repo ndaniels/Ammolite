@@ -1,6 +1,7 @@
 package edu.mit.csail.ammolite.utils;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -21,6 +22,25 @@ import org.openscience.cdk.io.SDFWriter;
 import edu.mit.csail.ammolite.IteratingSDFReader;
 
 public class SDFUtils {
+    
+    public static int countNumMolsInSDF(String filename){
+        Iterator<IAtomContainer> f = parseSDFOnline(filename);
+        int count = 0;
+        while(f.hasNext()){
+            count++;
+        }
+        return count;
+    }
+    
+    /**
+     * Estimates the number of molecules in an sdf file using size. Intentionally gives a slightly high estimate.
+     * @param filename
+     * @return
+     */
+    public static int estimateNumMolsInSDF(String filename){
+        File f = new File(filename);
+        return (int) (f.length() / 6500);
+    }
 	
 
 	
