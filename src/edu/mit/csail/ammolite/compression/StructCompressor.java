@@ -66,6 +66,7 @@ public class StructCompressor {
 		for(String name: filenames){
 		    numMols += SDFUtils.estimateNumMolsInSDF(name);
 		}
+		System.out.println("Compressing approximatley "+String.format("%,d", numMols)+" molecules.");
 	    progressBar = new CommandLineProgressBar("Matching Structures", numMols);
 		List<String> absoluteFilenames = new ArrayList<String>();
 		List<File> files = FileUtils.openFiles(filenames);
