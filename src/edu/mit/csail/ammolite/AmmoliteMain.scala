@@ -35,6 +35,7 @@ object AmmoliteMain{
 			  val source = opt[List[String]]("source", required=true, descr="File or folder to compress")
 			  val target = opt[String]("target", required=true, descr="Name of the new compressed database")
 			  val simple = opt[Boolean]("simple", descr="Use simple structures instead of cyclic structures")
+			  val threads = opt[Int]("threads", default=Some(-1), descr="Number of threads to use for compression")
 			}
 			val merge = new Subcommand("merge-databases"){
 			  banner("Compress a database of SDF files")
@@ -144,7 +145,7 @@ object AmmoliteMain{
 			  
 		  val compressor = new StructCompressor( compType )
 		  java.util.Arrays.asList(opts.compress.source().toArray: _*)
-		  compressor.compress(java.util.Arrays.asList(opts.compress.source().toArray: _*), opts.compress.target())
+		  compressor.compress(java.util.Arrays.asList(opts.compress.source().toArray: _*), opts.compress.target(), opts.compress.threads())
 		  
 		} else if( opts.subcommand == Some(opts.merge)){
 		  edu.mit.csail.ammolite.compression.DatabaseCompression.mergeDatabases(opts.merge.d1(), opts.merge.d2(), opts.merge.target())

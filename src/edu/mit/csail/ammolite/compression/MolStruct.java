@@ -109,7 +109,7 @@ public class MolStruct extends AtomContainer implements Serializable, IAtomConta
 		}
 		Arrays.sort(degree);
 		int bound = degree.length;
-		int maxBound = 6;
+		int maxBound = 8;
 		if(bound > maxBound){
 			bound = maxBound;// Max int32 is a 10 digit number so this is very unlikely to overflow.
 		}

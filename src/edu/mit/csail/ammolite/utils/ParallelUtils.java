@@ -16,11 +16,20 @@ public class ParallelUtils {
 	
 		private static ExecutorService getExecutorService(){
 			int numThreads = Runtime.getRuntime().availableProcessors();
-			if( numThreads > 12){
-				numThreads -= 4;
-			}
+			
 			return Executors.newFixedThreadPool(numThreads);
 		}
+		
+        private static ExecutorService getExecutorService(int numThreads){
+            if(numThreads <= 0){
+                return getExecutorService();
+            }
+            return Executors.newFixedThreadPool(numThreads);
+        }
+        
+        public static <T> List<T> parallelFullExecution(List<Callable<T>> callList){
+            return parallelFullExecution(callList, -1);
+        }
 		
 		/**
 		 * Runs a set of callables in parallel. 
@@ -30,9 +39,9 @@ public class ParallelUtils {
 		 * @param callables
 		 * @return
 		 */
-		public static <T> List<T> parallelFullExecution(List<Callable<T>> callList){
+		public static <T> List<T> parallelFullExecution(List<Callable<T>> callList, int numThreads){
 			
-			ExecutorService service = getExecutorService();
+			ExecutorService service = getExecutorService(numThreads);
 			List<Future<T>> futures = new ArrayList<Future<T>>( callList.size());
 			
 			for(Callable<T> callable: callList){
@@ -54,6 +63,11 @@ public class ParallelUtils {
 			
 			service.shutdown();
 			return results;
+		
+		}
+		
+		public static <T> T parallelSingleExecution(List<Callable<T>> callList){
+		    return parallelSingleExecution(callList, -1);
 		}
 		
 		/**
@@ -64,8 +78,8 @@ public class ParallelUtils {
 		 * @param callList
 		 * @return The first non null result or null if no non null result was obtained.
 		 */
-		public static <T> T parallelSingleExecution(List<Callable<T>> callList){
-			ExecutorService service = getExecutorService();
+		public static <T> T parallelSingleExecution(List<Callable<T>> callList, int numThreads){
+			ExecutorService service = getExecutorService(numThreads);
 			CompletionService<T> ecs = new ExecutorCompletionService<T>( service);
 			List<Future<T>> futures = new ArrayList<Future<T>>( callList.size());
 			T result = null;
@@ -94,7 +108,11 @@ public class ParallelUtils {
 		}
 		
 		public static <T> T parallelTimedSingleExecution(List<Callable<T>> callList, long timeoutInMillis){
-			ExecutorService service = getExecutorService();
+		    return parallelTimedSingleExecution(callList, timeoutInMillis, -1);
+		}
+		
+		public static <T> T parallelTimedSingleExecution(List<Callable<T>> callList, long timeoutInMillis, int numThreads){
+			ExecutorService service = getExecutorService(numThreads);
 			CompletionService<T> ecs = new ExecutorCompletionService<T>( service);
 			List<Future<T>> futures = new ArrayList<Future<T>>( callList.size());
 			T result = null;
