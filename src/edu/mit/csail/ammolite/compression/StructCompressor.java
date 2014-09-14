@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.openscience.cdk.exception.CDKException;
@@ -41,6 +42,7 @@ public class StructCompressor {
 	private AtomicInteger fruitless_comparisons = new AtomicInteger(0);
 	private int total_comparisons = 0;
 	private long runningTime, startTime;
+	private ExecutorService exService;
 	CommandLineProgressBar progressBar;
 
 	public StructCompressor(CompressionType compType){
@@ -72,16 +74,17 @@ public class StructCompressor {
 	    progressBar = new CommandLineProgressBar("Matching Structures", numMols);
 		List<String> absoluteFilenames = new ArrayList<String>();
 		List<File> files = FileUtils.openFiles(filenames);
-
+		exService = ParallelUtils.getExecutorService(numThreads);
+		
 		for(File f: files){
 			absoluteFilenames.add(f.getAbsolutePath());
 			Iterator<IAtomContainer> molecule_database = SDFUtils.parseSDFOnline(f.getAbsolutePath());
-			checkDatabaseForIsomorphicStructs( molecule_database, structFactory, numThreads );	
+			checkDatabaseForIsomorphicStructs( molecule_database, structFactory);	
 			talk();
 		}
 		sdfFiles = new SDFSet(absoluteFilenames);
 		produceClusteredDatabase( filename );
-		
+		exService.shutdown();
 		talk();
 	}
 
@@ -102,7 +105,7 @@ public class StructCompressor {
 	 * @throws ExecutionException 
 	 * @throws InterruptedException 
 	 */
-	private void checkDatabaseForIsomorphicStructs( Iterator<IAtomContainer> molecule_database, MoleculeStructFactory structFactory, int numThreads ) throws CDKException, InterruptedException, ExecutionException{
+	private void checkDatabaseForIsomorphicStructs( Iterator<IAtomContainer> molecule_database, MoleculeStructFactory structFactory) throws CDKException, InterruptedException, ExecutionException{
 
         while( molecule_database.hasNext() ){
         	
@@ -113,7 +116,7 @@ public class StructCompressor {
         	if( structsByFingerprint.containsKey( structure.fingerprint())){
         		
         		List<MolStruct> potentialMatches = structsByFingerprint.get( structure.fingerprint() );
-        		boolean match = parrallelIsomorphism( structure, potentialMatches, numThreads);
+        		boolean match = parrallelIsomorphism( structure, potentialMatches);
         		if( !match ){
         			structures++;
         			structsByFingerprint.add(structure.fingerprint(), structure);
@@ -127,7 +130,7 @@ public class StructCompressor {
         }
 	}
 	
-	private boolean parrallelIsomorphism(MolStruct structure, List<MolStruct> potentialMatches, int numThreads) throws InterruptedException, ExecutionException{
+	private boolean parrallelIsomorphism(MolStruct structure, List<MolStruct> potentialMatches) throws InterruptedException, ExecutionException{
 
 	    List<Callable<Boolean>> callList = new ArrayList<Callable<Boolean>>(potentialMatches.size());
 	    final MolStruct fStruct = structure;
@@ -150,7 +153,7 @@ public class StructCompressor {
 	        callList.add(callable);
 
 	    }
-	    Boolean success = ParallelUtils.parallelTimedSingleExecution( callList, 60*1000, numThreads);
+	    Boolean success = ParallelUtils.parallelTimedSingleExecution( callList, 60*1000, exService);
 	    if(success == null){
 	    	return false;
 	    } else {
