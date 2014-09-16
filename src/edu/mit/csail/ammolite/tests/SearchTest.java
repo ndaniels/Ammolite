@@ -14,6 +14,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
 
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -490,6 +491,7 @@ public class SearchTest {
 	static class ParallelQuerySideCompression implements Tester {
 	    
 	    private final int CHUNK_SIZE = 1000;
+	    private ExecutorService exService = ParallelUtils.getExecutorService();
 	    
 	    private List<List<Integer>> testSetOfMolecules(List<IAtomContainer> queries, List<IAtomContainer> targets){
 	        List<List<Integer>> results = new ArrayList<List<Integer>>(queries.size());
@@ -500,7 +502,7 @@ public class SearchTest {
                 for(IAtomContainer fineTarget: targets){
                     tests.add(MCS.getCallableSMSDOperation(fineTarget, fineQuery));
                 }
-                results.add( ParallelUtils.parallelFullExecution(tests));
+                results.add( ParallelUtils.parallelFullExecution(tests, exService));
             }
 	        
 	        return results;
@@ -558,7 +560,7 @@ public class SearchTest {
                 for(MolStruct coarseTarget: sTargets){
                     coarseTests.add(MCS.getCallableSMSDTest(coarseQuery, coarseTarget, prob));
                 }
-                List<Boolean> coarseResults = ParallelUtils.parallelFullExecution(coarseTests);
+                List<Boolean> coarseResults = ParallelUtils.parallelFullExecution(coarseTests, exService);
                 List<StructID> coarseMatchIDs = new ArrayList<StructID>();
                 
                 for(int i=0; i<coarseResults.size(); ++i){

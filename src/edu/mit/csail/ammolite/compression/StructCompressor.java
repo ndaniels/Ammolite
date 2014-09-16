@@ -80,19 +80,18 @@ public class StructCompressor {
 			absoluteFilenames.add(f.getAbsolutePath());
 			Iterator<IAtomContainer> molecule_database = SDFUtils.parseSDFOnline(f.getAbsolutePath());
 			checkDatabaseForIsomorphicStructs( molecule_database, structFactory);	
-			talk();
 		}
+		System.out.print("Collating sdf files... ");
 		sdfFiles = new SDFSet(absoluteFilenames);
+		System.out.println("Done.");
+		System.out.print("Serializing database... ");
 		produceClusteredDatabase( filename );
+        System.out.println("Done.");
+        System.out.print("Shutting down threads... ");
 		exService.shutdown();
-		talk();
+		System.out.println("Done.");
 	}
 
-	private void talk(){
-		runningTime = (System.currentTimeMillis() - startTime)/(1000);// Time in seconds
-		Logger.log("Molecules: "+ molecules +" Representatives: "+structures+" Seconds: "+runningTime,2);
-		//Logger.debug(" Fruitless Comparisons: "+fruitless_comparisons+" Hash Table Size: "+structsByFingerprint.size());
-	}
 	
 
 	
