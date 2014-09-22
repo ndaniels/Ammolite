@@ -84,9 +84,12 @@ public class DatabaseCompression {
 		if(d1.getCompressionType() != d2.getCompressionType()){
 			throw new RuntimeException("Databases do not use the same type of compression and cannot ber merged.");
 		}
-		
+		System.out.print("Merging structure tables... ");
 		KeyListMap<Integer, MolStruct> newStructsByFingerprint = mergeStructureTables( d1.getFingerprintTable(), d2.getFingerprintTable());
+		System.out.println("Done.");
+		System.out.print("Merging sdf sets... ");
 		ISDFSet newSDFSet = mergeSDFSets(d1.getSDFSet(), d2.getSDFSet());
+		System.out.println("Done.");
 		StructDatabaseCoreData newDB = new StructDatabaseCoreData(newStructsByFingerprint, newSDFSet, d1.getCompressionType(), d1.getVersion());
 		return newDB;
 	}
