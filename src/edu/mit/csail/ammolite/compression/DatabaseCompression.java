@@ -93,12 +93,12 @@ public class DatabaseCompression {
 	
 	private static ISDFSet mergeSDFSets(ISDFSet files1, ISDFSet files2) {
 		List<String> allFiles = new ArrayList<String>();
-		for(String filename: files1.getFilenames()){
+		for(String filename: files1.getFilepaths()){
 			if( !allFiles.contains(filename)){
 				allFiles.add(filename);
 			}
 		}
-		for(String filename: files2.getFilenames()){
+		for(String filename: files2.getFilepaths()){
 			if( !allFiles.contains(filename)){
 				allFiles.add(filename);
 			}
