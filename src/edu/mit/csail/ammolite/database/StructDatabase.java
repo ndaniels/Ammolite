@@ -28,7 +28,7 @@ public class StructDatabase implements IStructDatabase{
 	
 
 
-	protected KeyListMap<Integer, MolStruct> structsByHash;
+	protected KeyListMap<Integer, MolStruct> structsByFingerprint;
 	protected ISDFSet sdfFiles;
 	protected MoleculeStructFactory structFactory;
 	protected CompressionType compressionType;
@@ -43,7 +43,7 @@ public class StructDatabase implements IStructDatabase{
 
 	public StructDatabase(	IDatabaseCoreData _coreData){
 		coreData = _coreData;
-		structsByHash = coreData.getFingerprintTable();
+		structsByFingerprint = coreData.getFingerprintTable();
 		sdfFiles = coreData.getSDFSet();
 		compressionType = coreData.getCompressionType();
 		structFactory = new MoleculeStructFactory( compressionType);
@@ -72,12 +72,12 @@ public class StructDatabase implements IStructDatabase{
 		return structFactory;
 	}
 	
-	public List<MolStruct> getStructsByHash(int hash){
-		return structsByHash.get(hash);
+	public List<MolStruct> getstructsByFingerprint(int hash){
+		return structsByFingerprint.get(hash);
 	}
 	
-	public KeyListMap<Integer, MolStruct> getStructsByHash(){
-		return this.structsByHash;
+	public KeyListMap<Integer, MolStruct> getstructsByFingerprint(){
+		return this.structsByFingerprint;
 	}
 	
 //	public HashMap<String, FilePair> getFileLocsByID(){
@@ -103,7 +103,7 @@ public class StructDatabase implements IStructDatabase{
 	}
 	protected void buildLinearSet(){
 		linearStructs = new ArrayList<MolStruct>( numReps());
-		for(List<MolStruct> repSet: structsByHash.values()){
+		for(List<MolStruct> repSet: structsByFingerprint.values()){
 			linearStructs.addAll(repSet);
 		}
 
@@ -112,7 +112,7 @@ public class StructDatabase implements IStructDatabase{
 	public int numReps(){
 		if( numReps == -1){
 			numReps = 0;
-			for(List<MolStruct> repSet: structsByHash.values()){
+			for(List<MolStruct> repSet: structsByFingerprint.values()){
 				numReps += repSet.size();
 			}
 		}
@@ -123,7 +123,7 @@ public class StructDatabase implements IStructDatabase{
 	public int numMols(){
 		if( numMols == -1){
 			numMols = 0;
-			for(List<MolStruct> repSet: structsByHash.values()){
+			for(List<MolStruct> repSet: structsByFingerprint.values()){
 				for(MolStruct rep: repSet){
 					numMols += rep.getIDNums().size();
 				}
