@@ -70,8 +70,9 @@ public class MolStruct extends AtomContainer implements Serializable, IAtomConta
 
 		setFingerprint();
 		
-		
-		this.mol_ids.add( MolUtils.getPubID(base) );
+		PubchemID pubID = MolUtils.getPubID(base);
+		this.mol_ids.add( pubID);
+		this.setProperty("PUBCHEM_COMPOUND_CID", pubID.toString());
 	}
 	
 	
@@ -109,7 +110,7 @@ public class MolStruct extends AtomContainer implements Serializable, IAtomConta
 		}
 		Arrays.sort(degree);
 		int bound = degree.length;
-		int maxBound = 8;
+		int maxBound = 6;
 		if(bound > maxBound){
 			bound = maxBound;// Max int32 is a 10 digit number so this is very unlikely to overflow.
 		}

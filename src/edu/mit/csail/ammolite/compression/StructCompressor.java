@@ -113,7 +113,6 @@ public class StructCompressor {
         	molecules++;
         	
         	if( structsByFingerprint.containsKey( structure.fingerprint())){
-        		
         		List<MolStruct> potentialMatches = structsByFingerprint.get( structure.fingerprint() );
         		boolean match = parrallelIsomorphism( structure, potentialMatches);
         		if( !match ){
@@ -129,6 +128,30 @@ public class StructCompressor {
         }
 	}
 	
+	private boolean linearIsomorphism(MolStruct structure, List<MolStruct> potentialMatches){
+	    VF2IsomorphismTester isoTester = new VF2IsomorphismTester();
+	    for(MolStruct candidate: potentialMatches){
+	        boolean iso = candidate.isIsomorphic(structure, isoTester);
+	        if(iso){
+	            candidate.addID( MolUtils.getPubID(structure));
+                return iso;
+	        }
+	    }
+	    return false;
+	}
+	
+	/**
+	 * Checks whether a given structure is isomorphic to any structure in a list.
+	 * 
+	 * If an isomorphic structure is found the given structure's corresponding PubChem ID 
+	 * is added to the list of ids to the isomorphic structure
+	 * 
+	 * @param structure
+	 * @param potentialMatches
+	 * @return true if a match was found
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 */
 	private boolean parrallelIsomorphism(MolStruct structure, List<MolStruct> potentialMatches) throws InterruptedException, ExecutionException{
 
 	    List<Callable<Boolean>> callList = new ArrayList<Callable<Boolean>>(potentialMatches.size());
@@ -152,7 +175,8 @@ public class StructCompressor {
 	        callList.add(callable);
 
 	    }
-	    Boolean success = ParallelUtils.parallelTimedSingleExecution( callList, 60*1000, exService);
+//	    Boolean success = ParallelUtils.parallelTimedSingleExecution( callList, 60*1000, exService);
+	    Boolean success = ParallelUtils.parallelTimedSingleExecution(callList, 60*1000);
 	    if(success == null){
 	    	return false;
 	    } else {
