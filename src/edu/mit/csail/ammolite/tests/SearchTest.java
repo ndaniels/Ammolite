@@ -52,10 +52,17 @@ public class SearchTest {
 	private static final String smsd = "SMSD";
 	private static final String fmcs = "FMCS";
 	
+	public static void testSearch(String queryFile, String databaseName, String outName, double fine, double coarse, 
+                                    boolean testAmm, boolean testAmmPar, boolean testAmmCompressedQuery, 
+                                    boolean testSMSD, boolean testFMCS,boolean testAmmSMSD, boolean useCaching){
+	    SearchTest.testSearch(queryFile, databaseName, outName, fine, coarse, testAmm, testAmmPar, testAmmCompressedQuery, testSMSD, testFMCS, testAmmSMSD, useCaching, "no description");
+	    
+	}
+	
 	
 	public static void testSearch(String queryFile, String databaseName, String outName, double fine, double coarse, 
 									boolean testAmm, boolean testAmmPar, boolean testAmmCompressedQuery, 
-									boolean testSMSD, boolean testFMCS,boolean testAmmSMSD, boolean useCaching){
+									boolean testSMSD, boolean testFMCS,boolean testAmmSMSD, boolean useCaching, String description){
 		
 		boolean testingAmmolite = (testAmm || testAmmPar || testAmmCompressedQuery || testAmmSMSD);
 		boolean testingLinear = (testFMCS || testSMSD);
@@ -77,8 +84,10 @@ public class SearchTest {
 		PrintStream stream = getPrintStream(outName);
 		System.out.println("fine_threshold: "+fine+" coarse_threshold: "+coarse);
 		System.out.println(db.info());
+		System.out.println("Description: "+description);
 		stream.println("fine_threshold: "+fine+" coarse_threshold: "+coarse);
 		stream.println(db.info());
+		stream.println("Description: "+description);
 
 		
 		if( testAmm){
@@ -504,7 +513,6 @@ public class SearchTest {
                 }
                 results.add( ParallelUtils.parallelFullExecution(tests, exService));
             }
-	        
 	        return results;
 	    }
 	    
@@ -593,6 +601,7 @@ public class SearchTest {
                     coarseResult.end();
                 }
             }
+            exService.shutdown();
             return allResults;
         }  
 	}

@@ -77,10 +77,11 @@ object AmmoliteMain{
 			val devTestMCS = new Subcommand("test-mcs"){
 			  val sdf = opt[String]("filename")
 			}
-			val devTestSearch = new Subcommand("test-ammolite"){
+			val devTestSearch = new Subcommand("test"){
 			  val q = opt[String]("queries")
 			  val db = opt[String]("database")
 			  val out = opt[String]("outName")
+			  val description = opt[String]("description", required=false)
 			  val t = opt[Double]("threshold")
 			  val p = opt[Double]("prob")
 			  val smsd = opt[Boolean]("SMSD", default=Some(false))
@@ -170,7 +171,8 @@ object AmmoliteMain{
 					  												opts.devTestSearch.smsd(),
 					  												opts.devTestSearch.fmcs(),
 					  												opts.devTestSearch.ammSMSD(),
-					  												opts.devTestSearch.useCaching())
+					  												opts.devTestSearch.useCaching(),
+					  												opts.devTestSearch.description())
 		  
 		  
 		} else if( opts.subcommand == Some( opts.devTestAggSearch)){

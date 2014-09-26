@@ -17,11 +17,11 @@ public class ParallelUtils {
 	
 		public static ExecutorService getExecutorService(){
 			int numThreads = Runtime.getRuntime().availableProcessors();
-			
-			return Executors.newFixedThreadPool(numThreads);
+			return getExecutorService(numThreads);
 		}
 		
         public static ExecutorService getExecutorService(int numThreads){
+            Logger.log("Starting an ExecutorService with "+numThreads+" threads");
             if(numThreads <= 0){
                 return getExecutorService();
             }
