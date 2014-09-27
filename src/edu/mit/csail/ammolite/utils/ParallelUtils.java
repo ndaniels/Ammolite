@@ -57,7 +57,6 @@ public class ParallelUtils {
         for( Future<T> future: futures){
             try {
                 results.add( future.get());
-                future.cancel(true);
             } catch (InterruptedException ie) {
                 ie.printStackTrace();
                 System.exit(1);
