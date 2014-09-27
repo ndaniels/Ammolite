@@ -128,8 +128,7 @@ public class SearchTest {
 										double prob, String name){
 		
 		WallClock clock = new WallClock( name);
-		List<SearchResult> results = new ArrayList<SearchResult>();
-		results.addAll( tester.test(queries, db, targets, sTargets, thresh, prob, name));
+		List<SearchResult> results = tester.test(queries, db, targets, sTargets, thresh, prob, name);
 		clock.printElapsed();
 		stream.println(clock.getElapsedString());
 		processResults(results, stream);
@@ -491,8 +490,8 @@ public class SearchTest {
 	
 	static class ParallelQuerySideCompression implements Tester {
 	    
-	    private final int CHUNK_SIZE = 1000;
-	    private final ExecutorService service = ParallelUtils.buildNewExecutorService();
+	    private static final int CHUNK_SIZE = 1000;
+	    private static final ExecutorService service = ParallelUtils.buildNewExecutorService();
 	    
 	    /**
 	     * Creates and runs an SMSD operation between every matching in a set of queries and 
@@ -511,6 +510,7 @@ public class SearchTest {
                 for(IAtomContainer fineTarget: targets){
                     tests.add(MCS.getCallableSMSDOperation(fineTarget, fineQuery));
                 }
+                System.out.println("A");
                 results.add( ParallelUtils.parallelFullExecution(tests, service));
             }
 	        return results;
@@ -541,6 +541,7 @@ public class SearchTest {
             for(MolStruct coarseTarget: sTargets){
                 coarseTests.add(MCS.getCallableSMSDTest(coarseQuery, coarseTarget, coarseThresh));
             }
+            System.out.println("B");
             List<Boolean> coarseResults = ParallelUtils.parallelFullExecution(coarseTests, service);
             List<StructID> coarseMatchIDs = new ArrayList<StructID>();
             
