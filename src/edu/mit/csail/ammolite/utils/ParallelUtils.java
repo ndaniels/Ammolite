@@ -26,8 +26,9 @@ public class ParallelUtils {
     }
     
     public static ExecutorService buildNewExecutorService(int numThreads){
-        System.out.println("Building executor service with "+numThreads+" threads.");
-        return Executors.newFixedThreadPool(numThreads);
+        //System.out.println("Building executor service with "+numThreads+" threads.");
+        System.out.println("Building a cached executor service.");
+        return Executors.newCachedThreadPool();
     }
         
     /**

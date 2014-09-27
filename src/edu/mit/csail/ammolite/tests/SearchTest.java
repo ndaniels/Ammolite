@@ -1,31 +1,21 @@
 package edu.mit.csail.ammolite.tests;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
-import scala.reflect.internal.Trees.This;
-import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.KeyListMap;
 import edu.mit.csail.ammolite.compression.DatabaseCompression;
 import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory;
-import edu.mit.csail.ammolite.compression.StructCompressor;
 import edu.mit.csail.ammolite.database.BigStructDatabase;
 import edu.mit.csail.ammolite.database.CompressionType;
 import edu.mit.csail.ammolite.database.IStructDatabase;
