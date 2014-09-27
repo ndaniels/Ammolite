@@ -492,7 +492,7 @@ public class SearchTest {
 	static class ParallelQuerySideCompression implements Tester {
 	    
 	    private final int CHUNK_SIZE = 1000;
-	    private ExecutorService service = ParallelUtils.buildNewExecutorService();
+	    private final ExecutorService service = ParallelUtils.buildNewExecutorService();
 	    
 	    /**
 	     * Creates and runs an SMSD operation between every matching in a set of queries and 
@@ -610,7 +610,7 @@ public class SearchTest {
                     coarseResult.end();
                 }
             }
-            service.shutdown();
+            service.isShutdown();
             return allResults;
         }  
 	}

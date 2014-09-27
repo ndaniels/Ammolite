@@ -27,9 +27,18 @@ public class ParallelUtils {
     
     public static ExecutorService buildNewExecutorService(int numThreads){
         //System.out.println("Building executor service with "+numThreads+" threads.");
-        System.out.println("Building a cached executor service.");
-        return Executors.newCachedThreadPool();
+//        System.out.println("Building a cached executor service.");
+        return Executors.newFixedThreadPool( numThreads);
     }
+    
+    public static <T> List<T> parallelFullExecution(List<Callable<T>> callList){
+        ExecutorService service = buildNewExecutorService();
+        List<T> res = parallelFullExecution( callList, service);
+        service.shutdown();
+        return res;
+    }
+    
+    
         
     /**
      * Runs a set of callables in parallel and returns the results in the list.
@@ -42,7 +51,10 @@ public class ParallelUtils {
      * @param service
      * @return 
      */
-    public static <T> List<T> parallelFullExecution(List<Callable<T>> callList, ExecutorService service){
+    public static <T> List<T> parallelFullExecution(List<? extends Callable<T>> callList, ExecutorService service){
+        if( service.isShutdown() || service.isTerminated()){
+            throw new IllegalArgumentException("ExecutorService is shut down.");
+        }
         
         List<Future<T>> futures = new ArrayList<Future<T>>( callList.size());
         

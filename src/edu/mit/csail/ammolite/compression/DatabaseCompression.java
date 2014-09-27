@@ -83,7 +83,7 @@ public class DatabaseCompression {
 			throw new RuntimeException("Databases are not the same version and cannot be merged.");
 		}
 		if(d1.getCompressionType() != d2.getCompressionType()){
-			throw new RuntimeException("Databases do not use the same type of compression and cannot ber merged.");
+			throw new RuntimeException("Databases do not use the same type of compression and cannot be merged.");
 		}
 		System.out.print("Merging structure tables... ");
 		KeyListMap<Integer, MolStruct> newStructsByFingerprint = mergeStructureTables( d1.getFingerprintTable(), d2.getFingerprintTable());
