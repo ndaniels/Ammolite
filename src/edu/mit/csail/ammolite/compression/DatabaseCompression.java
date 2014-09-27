@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
@@ -169,7 +170,9 @@ public class DatabaseCompression {
 	        callList.add(callable);
 
 	    }
-	    Boolean success = ParallelUtils.parallelTimedSingleExecution( callList, 60*1000);
+	    ExecutorService service = ParallelUtils.buildNewExecutorService();
+	    Boolean success = ParallelUtils.parallelTimedSingleExecution( callList, 60*1000, service);
+	    service.shutdown();
 	    if(success == null){
 	    	return false;
 	    } else {

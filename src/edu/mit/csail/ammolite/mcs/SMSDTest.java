@@ -10,13 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import edu.mit.csail.ammolite.IteratingSDFReader;
 
+import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.compression.CyclicStruct;
 import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.mcs.AbstractMCS;
@@ -139,7 +140,9 @@ public class SMSDTest{
 				callList.add(callable);
 			}
 		}
-		ParallelUtils.parallelFullExecution(callList);
+		ExecutorService service = ParallelUtils.buildNewExecutorService();
+		ParallelUtils.parallelFullExecution(callList, service);
+		service.shutdown();
 		long aveTime = totalTime / numComp;
 		System.out.println("Matched "+numComp+" cyclic structure pairs in "+totalTime+" ms. Average Time: "+aveTime);
 	}

@@ -6,7 +6,6 @@ import org.openscience.cdk.ChemObject;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IChemObject;
 
-import edu.mit.csail.ammolite.aggregation.Cluster;
 
 public class MolTriple {
 

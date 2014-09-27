@@ -8,9 +8,6 @@ import edu.mit.csail.ammolite.utils.Logger
 import edu.mit.csail.ammolite.compression.CyclicStruct
 import edu.mit.csail.ammolite.database.CompressionType
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor
-import edu.mit.csail.ammolite.aggregation.Aggregator
-import edu.mit.csail.ammolite.aggregation.AggregateSearcher
-import edu.mit.csail.ammolite.aggregation.ClusterDatabaseDecompressor
 import edu.mit.csail.ammolite.database.SDFWrapper
 import edu.mit.csail.ammolite.compression.DatabaseCompression
 import collection.mutable.Buffer
@@ -175,9 +172,6 @@ object AmmoliteMain{
 					  												opts.devTestSearch.description())
 		  
 		  
-		} else if( opts.subcommand == Some( opts.devTestAggSearch)){
-		  edu.mit.csail.ammolite.tests.AggregateSearchTest.testAggSearch(opts.devTestAggSearch.db(), opts.devTestAggSearch.q(), opts.devTestAggSearch.f(), opts.devTestAggSearch.c(), opts.devTestAggSearch.a())
-		  
 		} else if( opts.subcommand == Some( opts.devTestSMSD)){
 		  edu.mit.csail.ammolite.tests.SearchTest.testSMSD(opts.devTestSMSD.mols())
 		}else if( opts.subcommand == Some( opts.devTestFMCS)){
@@ -197,16 +191,7 @@ object AmmoliteMain{
 		  edu.mit.csail.ammolite.MolDrawer.draw(opts.draw.f())
 		} else if( opts.subcommand == Some( opts.structs)){
 		  edu.mit.csail.ammolite.utils.DevUtils.makeStructFile(opts.structs.i(), opts.structs.o())
-		} else if(opts.subcommand == Some( opts.aggcompress)){
-
-		    val agg = new Aggregator( opts.aggcompress.source(), opts.aggcompress.repbound())
-		    agg.aggregate(opts.aggcompress.target(), opts.aggcompress.linearizeClustering())
-		} else if( opts.subcommand == Some( opts.aggsearch)){
-
-		    val aggSearcher = new AggregateSearcher(opts.aggsearch.cluster(), opts.aggsearch.searchbound())
-		    
-		    aggSearcher.doSearch(opts.aggsearch.queries(), opts.aggsearch.target(), opts.aggsearch.threshold(), opts.aggsearch.tanimoto())
-		} else if( opts.subcommand == Some( opts.organize)){
+		}   else if( opts.subcommand == Some( opts.organize)){
 			DatabaseCompression.organizeDatabase(opts.organize.db())
 		}
 	}

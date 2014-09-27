@@ -35,7 +35,6 @@ import edu.mit.csail.ammolite.utils.CommandLineProgressBar;
 import edu.mit.csail.ammolite.utils.MCSUtils;
 import edu.mit.csail.ammolite.utils.MolUtils;
 import edu.mit.csail.ammolite.utils.ParallelUtils;
-import edu.mit.csail.ammolite.utils.ParallelWorkerPool;
 import edu.mit.csail.ammolite.utils.PubchemID;
 import edu.mit.csail.ammolite.utils.SDFUtils;
 import edu.mit.csail.ammolite.utils.StructID;
@@ -448,6 +447,7 @@ public class SearchTest {
 	
 
 	static class AmmoliteParallelSearch implements Tester {
+	    private ExecutorService service = ParallelUtils.buildNewExecutorService();
 		
 		public List<SearchResult> test(List<IAtomContainer> queries, IStructDatabase db, 
 											Iterator<IAtomContainer> targets, List<MolStruct> sTargets,  double thresh, 
@@ -466,7 +466,7 @@ public class SearchTest {
 					coarseTests.add(MCS.getCallableIsoRankTest(sQuery, sTarget, sThresh));
 					coarseTargetsInOrder.add(sTarget);
 				}
-				List<Boolean> coarseResults = ParallelUtils.parallelFullExecution(coarseTests);
+				List<Boolean> coarseResults = ParallelUtils.parallelFullExecution(coarseTests, service);
 				List<Callable<Boolean>> fineTests = new LinkedList<Callable<Boolean>>();
 				List<IAtomContainer> fineTargetsInOrder = new LinkedList<IAtomContainer>();
 				for(int i=0; i<coarseResults.size(); i++){
@@ -482,7 +482,7 @@ public class SearchTest {
 					}
 				}
 				
-				List<Boolean> fineResults = ParallelUtils.parallelFullExecution(fineTests);
+				List<Boolean> fineResults = ParallelUtils.parallelFullExecution(fineTests, service);
 				for(int i=0; i<fineResults.size(); i++){
 					boolean fineMatch = fineResults.get(i);
 					if(fineMatch){
@@ -494,6 +494,7 @@ public class SearchTest {
 				result.end();
 				results.add(result);
 			}
+			service.shutdown();
 			return results;
 		}
 	}
@@ -501,7 +502,7 @@ public class SearchTest {
 	static class ParallelQuerySideCompression implements Tester {
 	    
 	    private final int CHUNK_SIZE = 1000;
-	    private ParallelWorkerPool workerPool = new ParallelWorkerPool();
+	    private ExecutorService service = ParallelUtils.buildNewExecutorService();
 	    
 	    /**
 	     * Creates and runs an SMSD operation between every matching in a set of queries and 
@@ -520,7 +521,7 @@ public class SearchTest {
                 for(IAtomContainer fineTarget: targets){
                     tests.add(MCS.getCallableSMSDOperation(fineTarget, fineQuery));
                 }
-                results.add( workerPool.parallelFullExecution(tests));
+                results.add( ParallelUtils.parallelFullExecution(tests, service));
             }
 	        return results;
 	    }
@@ -550,7 +551,7 @@ public class SearchTest {
             for(MolStruct coarseTarget: sTargets){
                 coarseTests.add(MCS.getCallableSMSDTest(coarseQuery, coarseTarget, coarseThresh));
             }
-            List<Boolean> coarseResults = workerPool.parallelFullExecution(coarseTests);
+            List<Boolean> coarseResults = ParallelUtils.parallelFullExecution(coarseTests, service);
             List<StructID> coarseMatchIDs = new ArrayList<StructID>();
             
             for(int i=0; i<coarseResults.size(); ++i){
@@ -619,7 +620,7 @@ public class SearchTest {
                     coarseResult.end();
                 }
             }
-            workerPool.shutdown();
+            service.shutdown();
             return allResults;
         }  
 	}

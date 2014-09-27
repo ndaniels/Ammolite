@@ -74,7 +74,7 @@ public class StructCompressor {
 	    progressBar = new CommandLineProgressBar("Matching Structures", numMols);
 		List<String> absoluteFilenames = new ArrayList<String>();
 		List<File> files = FileUtils.openFiles(filenames);
-		exService = ParallelUtils.getExecutorService(numThreads);
+		exService = ParallelUtils.buildNewExecutorService(numThreads);
 		
 		for(File f: files){
 			absoluteFilenames.add(f.getAbsolutePath());
@@ -175,8 +175,7 @@ public class StructCompressor {
 	        callList.add(callable);
 
 	    }
-//	    Boolean success = ParallelUtils.parallelTimedSingleExecution( callList, 60*1000, exService);
-	    Boolean success = ParallelUtils.parallelTimedSingleExecution(callList, 60*1000);
+	    Boolean success = ParallelUtils.parallelTimedSingleExecution( callList, 60*1000, exService);
 	    if(success == null){
 	    	return false;
 	    } else {
