@@ -56,6 +56,7 @@ public class ParallelUtils {
         for( Future<T> future: futures){
             try {
                 results.add( future.get());
+                future.cancel(true);
             } catch (InterruptedException ie) {
                 ie.printStackTrace();
                 System.exit(1);
@@ -78,30 +79,7 @@ public class ParallelUtils {
      * @return The first non null result or null if no non null result was obtained.
      */
     public static <T> T parallelSingleExecution(List<Callable<T>> callList, ExecutorService service){
-        CompletionService<T> ecs = new ExecutorCompletionService<T>( service);
-        List<Future<T>> futures = new ArrayList<Future<T>>( callList.size());
-        T result = null;
-        try{
-            for(Callable<T> task: callList){
-                futures.add(ecs.submit(task));
-            }
-            for(int i=0; i<callList.size(); ++i){
-                try{
-                    T r = ecs.take().get();
-                    if( r != null){
-                        result = r;
-                        break;
-                    }
-                } catch (ExecutionException ignore) {   
-                } catch (InterruptedException ignore) {}
-            }
-            
-        } finally {
-            for( Future<T> f: futures){
-                f.cancel(true);
-            }
-        }
-        return result;
+        return parallelTimedSingleExecution( callList, 0L, service);
     }
     
     /**
