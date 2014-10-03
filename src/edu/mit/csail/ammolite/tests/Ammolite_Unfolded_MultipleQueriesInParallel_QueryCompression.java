@@ -71,10 +71,10 @@ public class Ammolite_Unfolded_MultipleQueriesInParallel_QueryCompression implem
         CommandLineProgressBar bar = new CommandLineProgressBar(name, queries.size());
         List<SearchResult> allResults = new ArrayList<SearchResult>();
         
-        KeyListMap<StructID, MolStruct> coarseResults = new KeyListMap<>(CHUNK_SIZE);
+        KeyListMap<StructID, MolStruct> coarseResults = new KeyListMap<StructID, MolStruct>(CHUNK_SIZE);
 
         final MolStruct[] coarseQueries = compressedQueries.keySet().toArray(new MolStruct[0]);
-        List<Callable<Pair<StructID, List<MolStruct>>>> coarseChunk = new ArrayList<>(CHUNK_SIZE);
+        List<Callable<Pair<StructID, List<MolStruct>>>> coarseChunk = new ArrayList<Callable<Pair<StructID, List<MolStruct>>>>(CHUNK_SIZE);
         for(final MolStruct targetStruct: sTargets){
                 if( coarseChunk.size() == CHUNK_SIZE){
                     
@@ -92,7 +92,7 @@ public class Ammolite_Unfolded_MultipleQueriesInParallel_QueryCompression implem
         
             for(StructID id: coarseResults.keySet()){
                 List<MolStruct> matchingCoarseQueries = coarseResults.get(id);
-                List<IAtomContainer> matchingFineQueries = new ArrayList<>();
+                List<IAtomContainer> matchingFineQueries = new ArrayList<IAtomContainer>();
                 for(MolStruct coarseMatch: matchingCoarseQueries){
                     matchingFineQueries.addAll( compressedQueries.get(coarseMatch));
                 }

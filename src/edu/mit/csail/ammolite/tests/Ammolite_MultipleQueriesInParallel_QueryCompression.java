@@ -31,9 +31,9 @@ public class Ammolite_MultipleQueriesInParallel_QueryCompression implements Test
         
         KeyListMap<MolStruct,IAtomContainer> comQueries = DatabaseCompression.compressMoleculeSet(queries, db.getStructFactory());
         CommandLineProgressBar bar = new CommandLineProgressBar(name, queries.size());
-        List<SearchResult> allResults = new LinkedList<>();
+        List<SearchResult> allResults = new LinkedList<SearchResult>();
         
-        List<Callable<ResultList>> callChunk = new ArrayList<>(CHUNK_SIZE);
+        List<Callable<ResultList>> callChunk = new ArrayList<Callable<ResultList>>(CHUNK_SIZE);
         for(final MolStruct comQuery: comQueries.keySet()){
             if( callChunk.size() == CHUNK_SIZE){
                 List<ResultList> calledChunk = ParallelUtils.parallelFullExecution(callChunk, service);
@@ -62,7 +62,7 @@ public class Ammolite_MultipleQueriesInParallel_QueryCompression implements Test
                 ResultList results = new ResultList( queries, getName());
                 results.startAllResults();
                 // Coarse Search
-                List<StructID> coarseHits = new ArrayList<>();
+                List<StructID> coarseHits = new ArrayList<StructID>();
                 for(MolStruct coarseTarget: coarseTargets){
                     if( MCS.beatsOverlapThresholdSMSD(coarseTarget, comQuery, coarseThresh)){
                         coarseHits.add(MolUtils.getStructID(coarseTarget));

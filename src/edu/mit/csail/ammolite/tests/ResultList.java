@@ -9,7 +9,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 public class ResultList extends ArrayList<SearchResult> {
     
-    private Map<IAtomContainer, Integer> locationMap = new HashMap<>();
+    private Map<IAtomContainer, Integer> locationMap = new HashMap<IAtomContainer, Integer>();
     
     public ResultList(int size){
         super( size);
