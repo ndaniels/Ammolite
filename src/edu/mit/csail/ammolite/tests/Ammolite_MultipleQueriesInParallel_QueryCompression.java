@@ -24,13 +24,14 @@ public class Ammolite_MultipleQueriesInParallel_QueryCompression implements Test
     private static final String NAME = "Ammolite_MultipleQueriesInParallel_QueryCompression";
     private static final ExecutorService service = ParallelUtils.buildNewExecutorService();
     private static final int CHUNK_SIZE = 72;
+    private CommandLineProgressBar bar;
 
     @Override
     public List<SearchResult> test(List<IAtomContainer> queries, IStructDatabase db, 
                                     Iterator<IAtomContainer> targets, List<MolStruct> sTargets, double thresh, double coarseThresh, String name) {
         
         KeyListMap<MolStruct,IAtomContainer> comQueries = DatabaseCompression.compressMoleculeSet(queries, db.getStructFactory());
-        CommandLineProgressBar bar = new CommandLineProgressBar(name, queries.size());
+        bar = new CommandLineProgressBar(name, queries.size());
         List<SearchResult> allResults = new LinkedList<SearchResult>();
         
         List<Callable<ResultList>> callChunk = new ArrayList<Callable<ResultList>>(CHUNK_SIZE);
@@ -53,7 +54,6 @@ public class Ammolite_MultipleQueriesInParallel_QueryCompression implements Test
         callChunk.clear();
         for(ResultList rL: calledChunk){
             allResults.addAll(rL);
-            bar.event();
         }
         return allResults;
     }
@@ -86,6 +86,9 @@ public class Ammolite_MultipleQueriesInParallel_QueryCompression implements Test
                     }
                 }
                 results.endAllResults();
+                for(SearchResult arb: results){
+                    bar.event();
+                }
                 return results;
             }
         };
