@@ -49,7 +49,12 @@ public class Ammolite_MultipleQueriesInParallel_QueryCompression implements Test
             callChunk.add(callable);
         }
         
-        
+        List<ResultList> calledChunk = ParallelUtils.parallelFullExecution(callChunk, service);
+        callChunk.clear();
+        for(ResultList rL: calledChunk){
+            allResults.addAll(rL);
+            bar.event();
+        }
         return allResults;
     }
     

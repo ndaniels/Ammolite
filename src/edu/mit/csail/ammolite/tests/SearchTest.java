@@ -114,6 +114,7 @@ public class SearchTest {
 		String name = tester.getName();
 		WallClock clock = new WallClock( name);
 		List<SearchResult> results = tester.test(queries, db, targets, sTargets, thresh, prob, name);
+		System.out.println("");
 		clock.printElapsed();
 		stream.println(clock.getElapsedString());
 		processResults(results, stream);
