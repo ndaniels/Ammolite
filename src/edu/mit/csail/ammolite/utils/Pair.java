@@ -1,19 +1,19 @@
 package edu.mit.csail.ammolite.utils;
 
-public class Pair<T> {
-	private T left;
-	private T right;
+public class Pair<A, B> {
+	private A left;
+	private B right;
 	
-	public Pair(T l, T r){
+	public Pair(A l, B r){
 		left = l;
 		right = r;
 	}
 	
-	public T left(){ 
+	public A left(){ 
 		return left;
 	}
 	
-	public T right(){
+	public B right(){
 		return right;
 	}
 
