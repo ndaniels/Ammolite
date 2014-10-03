@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
@@ -22,7 +23,6 @@ import edu.mit.csail.ammolite.utils.StructID;
 
 public class Ammolite_MultipleQueriesInParallel_QueryCompression implements Tester {
     private static final String NAME = "Ammolite_MultipleQueriesInParallel_QueryCompression";
-    private static final ExecutorService service = ParallelUtils.buildNewExecutorService();
     private static final int CHUNK_SIZE = 72;
     private CommandLineProgressBar bar;
 
@@ -32,6 +32,9 @@ public class Ammolite_MultipleQueriesInParallel_QueryCompression implements Test
         
         KeyListMap<MolStruct,IAtomContainer> comQueries = DatabaseCompression.compressMoleculeSet(queries, db.getStructFactory());
         bar = new CommandLineProgressBar(name, queries.size());
+        
+        ExecutorService service = Executors.newFixedThreadPool( Runtime.getRuntime().availableProcessors());
+        
         List<SearchResult> allResults = new LinkedList<SearchResult>();
         
         List<Callable<ResultList>> callChunk = new ArrayList<Callable<ResultList>>(CHUNK_SIZE);
