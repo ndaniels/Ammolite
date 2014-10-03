@@ -53,7 +53,7 @@
 		
 		<target name="compile" depends="init">
 			<mkdir dir="${build.dir}"/>
-			<javac source="7" target="7" srcdir="${src.dir}" destdir="${build.dir}" classpathref="build.classpath" />
+			<javac source="7" target="6" srcdir="${src.dir}" destdir="${build.dir}" classpathref="build.classpath" />
 			<scalac srcdir="${src.dir}" destdir="${build.dir}" classpathref="build.classpath" force="changed" >
 				<include name="**/*.scala"/>
 				<exclude name="**/*.java"/>
