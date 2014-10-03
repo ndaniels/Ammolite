@@ -54,6 +54,7 @@ public class Ammolite_MultipleQueriesInParallel_QueryCompression implements Test
         }
         
         List<ResultList> calledChunk = ParallelUtils.parallelFullExecution(callChunk, service);
+        service.shutdown();
         callChunk.clear();
         for(ResultList rL: calledChunk){
             allResults.addAll(rL);
