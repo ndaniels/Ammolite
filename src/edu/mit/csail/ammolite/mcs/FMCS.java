@@ -183,8 +183,8 @@ public class FMCS extends AbstractMCS{
 			
 			IAtom counterpart = currentMapping.getVal( target );
 
-			IBond bondOne = smallCompound.getBond(atom1, target);
-			IBond bondTwo = bigCompound.getBond(atom2, counterpart );
+			IBond bondOne = smallCompound.getBond(atom1, target); // Slow
+			IBond bondTwo = bigCompound.getBond(atom2, counterpart ); // Slow
 			
 			if( bondOne.getOrder() != bondTwo.getOrder() ){
 				out.bondMisCount++;

@@ -16,6 +16,7 @@ import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.mcs.MCS;
 import edu.mit.csail.ammolite.utils.CommandLineProgressBar;
+import edu.mit.csail.ammolite.utils.DoubleProgressBar;
 import edu.mit.csail.ammolite.utils.MCSUtils;
 import edu.mit.csail.ammolite.utils.MolUtils;
 import edu.mit.csail.ammolite.utils.ParallelUtils;
@@ -24,14 +25,14 @@ import edu.mit.csail.ammolite.utils.StructID;
 public class Ammolite_MultipleQueriesInParallel_QueryCompression implements Tester {
     private static final String NAME = "Ammolite_MultipleQueriesInParallel_QueryCompression";
     private static final int CHUNK_SIZE = 72;
-    private CommandLineProgressBar bar;
+    private DoubleProgressBar bar;
 
     @Override
     public List<SearchResult> test(List<IAtomContainer> queries, IStructDatabase db, 
                                     Iterator<IAtomContainer> targets, List<MolStruct> sTargets, double thresh, double coarseThresh, String name) {
         
         KeyListMap<MolStruct,IAtomContainer> comQueries = DatabaseCompression.compressMoleculeSet(queries, db.getStructFactory());
-        bar = new CommandLineProgressBar(name, queries.size());
+        bar = new DoubleProgressBar(name, queries.size(), "Coarse", comQueries.keySet().size()*db.getStructs().size());
         
         ExecutorService service = Executors.newFixedThreadPool( Runtime.getRuntime().availableProcessors());
         
@@ -44,7 +45,6 @@ public class Ammolite_MultipleQueriesInParallel_QueryCompression implements Test
                 callChunk.clear();
                 for(ResultList rL: calledChunk){
                     allResults.addAll(rL);
-                    bar.event();
                 }
             }
             
@@ -76,6 +76,7 @@ public class Ammolite_MultipleQueriesInParallel_QueryCompression implements Test
                     if( MCS.beatsOverlapThresholdSMSD(coarseTarget, comQuery, coarseThresh)){
                         coarseHits.add(MolUtils.getStructID(coarseTarget));
                     }
+                    bar.secondEvent();
                 }
                 
                 for(StructID coarseHitID: coarseHits){
@@ -91,7 +92,7 @@ public class Ammolite_MultipleQueriesInParallel_QueryCompression implements Test
                 }
                 results.endAllResults();
                 for(SearchResult arb: results){
-                    bar.event();
+                    bar.firstEvent();
                 }
                 return results;
             }

@@ -1,0 +1,105 @@
+fine_threshold: 0.9 coarse_threshold: 0.9
+Ammolite Database Info
+Database Name: databases/smalls/10_mols
+Database version: dev_aug23_2014
+This database has been organized.
+Number of molecules: 10
+Number of representatives: 10
+Compression Type: CYCLIC
+Source Files:
+null_STRUCT.sdf molecules: 1
+null_STRUCT.sdf molecules: 1
+null_STRUCT.sdf molecules: 1
+null_STRUCT.sdf molecules: 1
+null_STRUCT.sdf molecules: 1
+null_STRUCT.sdf molecules: 1
+null_STRUCT.sdf molecules: 1
+null_STRUCT.sdf molecules: 1
+null_STRUCT.sdf molecules: 1
+null_STRUCT.sdf molecules: 1
+
+Description: A small test to make sure the program works. 10_molecules.sdf over 1M_random_unique_molecules.adb
+WALL_CLOCK Ammolite_MultipleQueriesInParallel_QueryCompression 3896ms
+START_QUERY 61561031
+START_METHOD Ammolite_MultipleQueriesInParallel_QueryCompression
+time: 3087
+matches: 
+START_DETAILED_MATCHES
+END_DETAILED_MATCHES
+END_METHOD
+END_QUERY
+START_QUERY 52790494
+START_METHOD Ammolite_MultipleQueriesInParallel_QueryCompression
+time: 1780
+matches: 
+START_DETAILED_MATCHES
+END_DETAILED_MATCHES
+END_METHOD
+END_QUERY
+START_QUERY 37285639
+START_METHOD Ammolite_MultipleQueriesInParallel_QueryCompression
+time: 2726
+matches: 
+START_DETAILED_MATCHES
+END_DETAILED_MATCHES
+END_METHOD
+END_QUERY
+START_QUERY 68742355
+START_METHOD Ammolite_MultipleQueriesInParallel_QueryCompression
+time: 1776
+matches: 
+START_DETAILED_MATCHES
+END_DETAILED_MATCHES
+END_METHOD
+END_QUERY
+START_QUERY 13041372
+START_METHOD Ammolite_MultipleQueriesInParallel_QueryCompression
+time: 863
+matches: 
+START_DETAILED_MATCHES
+END_DETAILED_MATCHES
+END_METHOD
+END_QUERY
+START_QUERY 58685014
+START_METHOD Ammolite_MultipleQueriesInParallel_QueryCompression
+time: 863
+matches: 
+START_DETAILED_MATCHES
+END_DETAILED_MATCHES
+END_METHOD
+END_QUERY
+START_QUERY 45094499
+START_METHOD Ammolite_MultipleQueriesInParallel_QueryCompression
+time: 453
+matches: 45094499 45094499 45094499 
+START_DETAILED_MATCHES
+45094499 16 16 16
+45094499 16 16 16
+45094499 16 16 16
+END_DETAILED_MATCHES
+END_METHOD
+END_QUERY
+START_QUERY 33039448
+START_METHOD Ammolite_MultipleQueriesInParallel_QueryCompression
+time: 1609
+matches: 
+START_DETAILED_MATCHES
+END_DETAILED_MATCHES
+END_METHOD
+END_QUERY
+START_QUERY 56075847
+START_METHOD Ammolite_MultipleQueriesInParallel_QueryCompression
+time: 1166
+matches: 
+START_DETAILED_MATCHES
+END_DETAILED_MATCHES
+END_METHOD
+END_QUERY
+START_QUERY 17679549
+START_METHOD Ammolite_MultipleQueriesInParallel_QueryCompression
+time: 715
+matches: 
+START_DETAILED_MATCHES
+END_DETAILED_MATCHES
+END_METHOD
+END_QUERY
