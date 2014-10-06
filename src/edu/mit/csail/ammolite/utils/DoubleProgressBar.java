@@ -37,24 +37,7 @@ public class DoubleProgressBar {
         int percentageDone = asPercent(currentEvent, maxEvents);
         int percentageWorking = asPercent(currentEvent+1, maxEvents);
         System.out.print(name);
-        System.out.print(" [");
-        int barWidth = width - name.length() - 8;
-        for(int i=0; i<barWidth; i++){
-            int barPercentage = asPercent(i, barWidth);
-            if( barPercentage <= percentageDone){
-                System.out.print("=");
-            } else if (barPercentage <= percentageWorking && percentageWorking <= 100){
-                int nextPercentage = asPercent(i+1, barWidth);
-                if( nextPercentage > percentageWorking){
-                    System.out.print("|");
-                } else {
-                    System.out.print("-");
-                }
-            }  else {
-                System.out.print(" ");
-            }
-        }
-        System.out.print("]  "+percentageDone+"%");
+        System.out.print(": "+percentageDone+"% - "+percentageWorking+"%");
         
     }
     
