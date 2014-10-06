@@ -9,9 +9,9 @@ public class DoubleProgressBar {
     String name2;
 
     public DoubleProgressBar(String _name1, int _maxEvents1,String _name2, int _maxEvents2) {
-        name1 = _name1;
+        name1 = _name1.substring(0, Math.min(40, _name1.length()));
         maxEvents1 = _maxEvents1;
-        name2 = _name2;
+        name2 = _name2.substring(0, Math.min(40, _name2.length()));
         maxEvents2 = _maxEvents2;
         display();
     }
@@ -28,9 +28,9 @@ public class DoubleProgressBar {
     
     public void display(){
         System.out.print("\r");
-        displayOne(100, currentEvent1, maxEvents1, name1);
+        displayOne(60, currentEvent1, maxEvents1, name1);
         System.out.print(" ");
-        displayOne(100, currentEvent2, maxEvents2, name2);
+        displayOne(60, currentEvent2, maxEvents2, name2);
     }
     
     private void displayOne(int width, int currentEvent, int maxEvents, String name){
