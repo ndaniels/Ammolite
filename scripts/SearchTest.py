@@ -32,7 +32,7 @@ def parseSearchTestResults( searchTestResults):
 						fineThresh = l[1]
 						coarseThresh = l[3]
 						print("~"*70)
-						print("Fine threshold: {} Coarse threshold; {}".format(fineThresh, coarseThresh))
+						print("Fine threshold: {0} Coarse threshold; {1}".format(fineThresh, coarseThresh))
 					elif( l[0] == "WALL_CLOCK"):
 						print(line)
 

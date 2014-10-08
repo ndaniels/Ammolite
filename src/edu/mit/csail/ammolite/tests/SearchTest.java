@@ -242,6 +242,11 @@ public class SearchTest {
 			out.print(MolUtils.getPubID(match));
 			out.print(" ");
 		}
+      out.print("\n misses: ");
+        for(IAtomContainer miss: result.misses){
+            out.print(MolUtils.getPubID(miss));
+            out.print(" ");
+        }
 		out.println("\nSTART_DETAILED_MATCHES");
 		for(int i=0; i< result.matches.size(); i++){
 			IAtomContainer match = result.matches.get(i);
@@ -255,6 +260,19 @@ public class SearchTest {
 			out.println(MCSUtils.getAtomCountNoHydrogen(result.query));
 		}
 		out.println("END_DETAILED_MATCHES");
+      out.println("\nSTART_DETAILED_MISSES");
+        for(int i=0; i< result.misses.size(); i++){
+            IAtomContainer miss = result.misses.get(i);
+            int missSize = result.missSizes.get(i);
+            out.print(MolUtils.getPubID(miss));
+            out.print(" ");
+            out.print(missSize);
+            out.print(" ");
+            out.print(MCSUtils.getAtomCountNoHydrogen(miss));
+            out.print(" ");
+            out.println(MCSUtils.getAtomCountNoHydrogen(result.query));
+        }
+        out.println("END_DETAILED_MISSES");
 		out.println("END_METHOD");
 		out.println("END_QUERY");
 	}

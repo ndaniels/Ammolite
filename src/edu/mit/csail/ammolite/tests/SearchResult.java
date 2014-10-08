@@ -13,6 +13,8 @@ public class SearchResult {
     public String methodName;
     public List<IAtomContainer> matches = new ArrayList<IAtomContainer>();
     public List<Integer> matchSizes = new ArrayList<Integer>();
+    public List<IAtomContainer> misses = new ArrayList<IAtomContainer>();
+    public List<Integer> missSizes = new ArrayList<Integer>();
     
     public SearchResult(IAtomContainer q, String _methodName){
         query = q;
@@ -61,5 +63,18 @@ public class SearchResult {
         }
         matches.add( match.getTarget());
         matchSizes.add( match.getOverlap());
+    }
+    
+    public void addMiss(IAtomContainer miss, int mcsSize){
+        misses.add(miss);
+        missSizes.add(mcsSize);
+    }
+    
+    public void addMiss(SearchMiss miss){
+        if( miss.getQuery() != query){
+            throw new IllegalArgumentException("Queries do not match");
+        }
+        misses.add( miss.getTarget());
+        missSizes.add( miss.getOverlap());
     }
 }

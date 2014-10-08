@@ -69,15 +69,24 @@ public class Ammolite_MultipleQueriesInParallel_QueryCompression implements Test
             
             public ResultList call(){
                 ResultList results = new ResultList( queries, getName());
+                SearchResult coarse = new SearchResult(comQuery, "COARSE_" + getName());
                 results.startAllResults();
+                coarse.start();
                 // Coarse Search
                 List<StructID> coarseHits = new ArrayList<StructID>();
                 for(MolStruct coarseTarget: coarseTargets){
-                    if( MCS.beatsOverlapThresholdSMSD(coarseTarget, comQuery, coarseThresh)){
+                    int cOverlap = MCS.getSMSDOverlap(comQuery, coarseTarget);
+                    if( MCSUtils.overlapCoeff(cOverlap, comQuery, coarseTarget) >= coarseThresh){
                         coarseHits.add(MolUtils.getStructID(coarseTarget));
+                        SearchMatch cMatch = new SearchMatch(comQuery, coarseTarget, cOverlap);
+                        coarse.addMatch(cMatch);
+                    } else {
+                        SearchMiss cMiss = new SearchMiss(comQuery, coarseTarget, cOverlap);
+                        coarse.addMiss(cMiss);
                     }
                     bar.secondEvent();
                 }
+                coarse.end();
                 
                 for(StructID coarseHitID: coarseHits){
                     for(IAtomContainer target: db.getMatchingMolecules(coarseHitID)){
@@ -86,6 +95,9 @@ public class Ammolite_MultipleQueriesInParallel_QueryCompression implements Test
                             if( MCSUtils.overlapCoeff(overlap, query, target) >= thresh){
                                 SearchMatch match = new SearchMatch(query, target, overlap);
                                 results.get(query).addMatch(match);
+                            } else {
+                                SearchMiss miss = new SearchMiss(query, target, overlap);
+                                results.get(query).addMiss(miss);
                             }
                         }
                     }
@@ -94,6 +106,7 @@ public class Ammolite_MultipleQueriesInParallel_QueryCompression implements Test
                 for(SearchResult arb: results){
                     bar.firstEvent();
                 }
+                results.add(coarse);
                 return results;
             }
         };
