@@ -239,19 +239,19 @@ public class SearchTest {
 		out.println("time: "+result.time());
 		out.print("matches: ");
 		for(IAtomContainer match: result.matches){
-			out.print(MolUtils.getPubID(match));
+			out.print(MolUtils.getUnknownOrID(match));
 			out.print(" ");
 		}
       out.print("\n misses: ");
         for(IAtomContainer miss: result.misses){
-            out.print(MolUtils.getPubID(miss));
+            out.print(MolUtils.getUnknownOrID(miss));
             out.print(" ");
         }
 		out.println("\nSTART_DETAILED_MATCHES");
 		for(int i=0; i< result.matches.size(); i++){
 			IAtomContainer match = result.matches.get(i);
 			int matchSize = result.matchSizes.get(i);
-			out.print(MolUtils.getPubID(match));
+			out.print(MolUtils.getUnknownOrID(match));
 			out.print(" ");
 			out.print(matchSize);
 			out.print(" ");
@@ -264,7 +264,7 @@ public class SearchTest {
         for(int i=0; i< result.misses.size(); i++){
             IAtomContainer miss = result.misses.get(i);
             int missSize = result.missSizes.get(i);
-            out.print(MolUtils.getPubID(miss));
+            out.print(MolUtils.getUnknownOrID(miss));
             out.print(" ");
             out.print(missSize);
             out.print(" ");

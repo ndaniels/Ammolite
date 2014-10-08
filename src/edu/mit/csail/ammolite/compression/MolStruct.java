@@ -170,5 +170,6 @@ public class MolStruct extends AtomContainer implements Serializable, IAtomConta
 	public int fingerprint(){
 		return fingerprint;
 	}
+	
 
 }
