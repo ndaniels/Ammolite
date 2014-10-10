@@ -181,13 +181,13 @@ public class DatabaseCompression {
 
 	}
 	
-	public static void resetDatabaseSource(String databaseFilename, List<String> sdfFiles, boolean organized){
+	public static void resetDatabaseSource(String databaseFilename, String sdfFolder, boolean organized){
 	    IStructDatabase db = StructDatabaseDecompressor.decompress(databaseFilename);
 	    ISDFSet newSDFSet;
 	    if( organized){
-	        newSDFSet = new OrganizedSDFSet(sdfFiles);
+	        newSDFSet = new OrganizedSDFSet(sdfFolder);
 	    } else {
-	        newSDFSet = new SDFSet(sdfFiles);
+	        newSDFSet = new SDFSet(sdfFolder);
 	    }
 	    db.getCoreData().setSDFSet(newSDFSet);
         StructDatabaseCompressor.compress(db.getCoreData().getName(), db.getCoreData());

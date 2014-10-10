@@ -16,6 +16,10 @@ public class OrganizedSDFSet extends SDFSet implements Serializable {
 		super(_filenames);
 	}
 	
+	   public OrganizedSDFSet(String foldername){
+	        super(foldername);
+	    }
+	
 	@Override
 	public boolean isOrganized(){
 		return true;

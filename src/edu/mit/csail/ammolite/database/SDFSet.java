@@ -1,5 +1,6 @@
 package edu.mit.csail.ammolite.database;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,6 +25,15 @@ public class SDFSet implements Serializable, ISDFSet {
 			addFile(f);
 		}
 		
+	}
+	
+	public SDFSet(String foldername){
+	    File f = new File(foldername);
+	    if( f.isDirectory()){
+	        for(File subF: f.listFiles()){
+	            addFile(f.getAbsolutePath());
+	        }
+	    }
 	}
 	
 	public boolean isOrganized(){
