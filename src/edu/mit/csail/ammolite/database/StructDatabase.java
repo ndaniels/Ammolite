@@ -148,6 +148,9 @@ public class StructDatabase implements IStructDatabase{
 		if(sdfFiles.getFilenames().size() < 50){
 			sb.append("Source Files:\n");
 			sb.append(sdfFiles.listSourceFiles());
+		} else {
+		    sb.append("Number of source files: ");
+		    sb.append(sdfFiles.getFilenames().size());
 		}
 		return sb.toString();
 	}
