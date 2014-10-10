@@ -45,6 +45,12 @@ object AmmoliteMain{
 			  banner("Organize a database")
 			  val db = opt[String]("database", required=true, descr="database to be organized")
 			}
+			val resetSource = new Subcommand("reset-source"){
+			  banner("Set the source files for a database")
+			  val db = opt[String]("database", required=true, descr="database to be organized")
+			  val sdfs = opt[List[String]]("source", required=true, descr="New source files")
+			  val isOrganized = opt[Boolean]("organized", required=true, descr="Are the new source files organized?")
+			}
 			val search = new Subcommand("search"){
 			  
 				val database = opt[String]("database", required=true, descr="Path to the database.")
@@ -193,6 +199,8 @@ object AmmoliteMain{
 		  edu.mit.csail.ammolite.utils.DevUtils.makeStructFile(opts.structs.i(), opts.structs.o())
 		}   else if( opts.subcommand == Some( opts.organize)){
 			DatabaseCompression.organizeDatabase(opts.organize.db())
+		} else if( opts.subcommand == Some( opts.resetSource)){
+			DatabaseCompression.resetDatabaseSource(opts.resetSource.db(), java.util.Arrays.asList(opts.resetSource.sdfs().toArray: _*), opts.resetSource.isOrganized())
 		}
 	}
 
