@@ -30,8 +30,10 @@ public class SDFSet implements Serializable, ISDFSet {
 	public SDFSet(String foldername){
 	    File f = new File(foldername);
 	    if( f.isDirectory()){
-	        for(File subF: f.listFiles()){
-	            addFile(f.getAbsolutePath());
+	        if( f.isFile()){
+    	        for(File subF: f.listFiles()){
+    	            addFile(f.getAbsolutePath());
+    	        }
 	        }
 	    }
 	}
