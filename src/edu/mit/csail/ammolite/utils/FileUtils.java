@@ -1,10 +1,17 @@
 package edu.mit.csail.ammolite.utils;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
 
 public class FileUtils {
@@ -38,5 +45,22 @@ public class FileUtils {
 		}
 		return out;
 	}
+	
+   public static void writeObjectToFile(String path, Object o) throws IOException{
+       OutputStream file = new FileOutputStream( path );
+       OutputStream buffer = new BufferedOutputStream( file );
+       ObjectOutput output = new ObjectOutputStream( buffer );
+       output.writeObject(o);
+       output.close();
+   }
+   
+   public static void writeObjectToFile(String baseDirectory, String filename, Object o) throws IOException{
+       String path = FilenameUtils.concat(baseDirectory, filename);
+       OutputStream file = new FileOutputStream( path );
+       OutputStream buffer = new BufferedOutputStream( file );
+       ObjectOutput output = new ObjectOutputStream( buffer );
+       output.writeObject(o);
+       output.close();
+   }
 
 }

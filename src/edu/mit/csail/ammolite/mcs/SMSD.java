@@ -33,7 +33,7 @@ public class SMSD extends AbstractMCS {
 
         
         
-        comparison = new Isomorphism(smallCompound, bigCompound, Algorithm.DEFAULT, bondSensitive, ringmatch);
+        comparison = new Isomorphism(smallCompound, bigCompound, Algorithm.DEFAULT, bondSensitive, ringmatch, true);
         comparison.setChemFilters(stereoMatch, fragmentMinimization, energyMinimization);     
 		
 	}
@@ -53,7 +53,7 @@ public class SMSD extends AbstractMCS {
 	
 	public IAtomContainer myGetFirstSolution(){
 		try {
-			return comparison.getFirstAtomMapping().getCommonFragmentInQuery();
+			return comparison.getFirstAtomMapping().getCommonFragment();
 		} catch (CloneNotSupportedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

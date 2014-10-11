@@ -19,6 +19,7 @@ import edu.mit.csail.ammolite.KeyListMap;
 import edu.mit.csail.ammolite.compression.CyclicStruct;
 import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory;
+import edu.mit.csail.ammolite.utils.FileUtils;
 import edu.mit.csail.ammolite.utils.Logger;
 import edu.mit.csail.ammolite.utils.MolUtils;
 import edu.mit.csail.ammolite.utils.PubchemID;
@@ -197,6 +198,7 @@ public class StructDatabase implements IStructDatabase{
 		return sdfFiles;
 	}
 
+
 	public List<IAtomContainer> getMatchingMolecules(StructID structID) {
 		if(sdfFiles instanceof OrganizedSDFSet){
 			return ((OrganizedSDFSet) sdfFiles).getMatchingMols(structID);
@@ -205,8 +207,21 @@ public class StructDatabase implements IStructDatabase{
 		}
 	}
 	
+	/** @return the name of the database, usually the file-root */
 	public String getName() {
 		return dbName;
+	}
+	
+	/** 
+	 * Save this database with any modified information 
+	 * @param baseDirectory, the location to save the modified database
+	 */
+	public void save(String baseDirectory){
+	    try {
+            FileUtils.writeObjectToFile(baseDirectory, dbName, this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 	
 	

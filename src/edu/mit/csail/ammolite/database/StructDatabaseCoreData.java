@@ -100,7 +100,7 @@ public class StructDatabaseCoreData implements Serializable, IDatabaseCoreData  
 
 	@Override
 	public void setName(String name) {
-		// TODO Auto-generated method stub
+		name = name;
 		
 	}
 }

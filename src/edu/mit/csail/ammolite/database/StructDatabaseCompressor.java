@@ -10,18 +10,19 @@ import java.io.OutputStream;
 
 public class StructDatabaseCompressor {
 	
-	public static void compress(String filename, IDatabaseCoreData db){
-		try {
-			writeObjectToFile(filename+ ".adb", db);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
+    public static void compress(String filename, IDatabaseCoreData db){
+
+        try {
+            writeObjectToFile(filename+ ".adb", db);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+    }
 	
-	private static void writeObjectToFile(String object_filename, Object o) throws IOException{
-			OutputStream file = new FileOutputStream( object_filename );
+	private static void writeObjectToFile(String filepath, Object o) throws IOException{
+			OutputStream file = new FileOutputStream( filepath );
 			OutputStream buffer = new BufferedOutputStream( file );
 			ObjectOutput output = new ObjectOutputStream( buffer );
 			output.writeObject(o);

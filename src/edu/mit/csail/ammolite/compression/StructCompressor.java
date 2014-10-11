@@ -198,4 +198,6 @@ public class StructCompressor {
 		StructDatabaseCompressor.compress(name, database);
 	}
 	
+	
+	
 }

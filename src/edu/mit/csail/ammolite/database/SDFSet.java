@@ -102,5 +102,14 @@ public class SDFSet implements Serializable, ISDFSet {
 		}
 		return sb.toString();
 	}
+	
+	public boolean checkAllFiles(){
+	    for(SDFWrapper wrap: sdfs){
+	        if(!wrap.check()){
+	            return false;
+	        }
+	    }
+	    return true;
+	}
 
 }

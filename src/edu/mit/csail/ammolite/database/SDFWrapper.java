@@ -123,5 +123,10 @@ public class SDFWrapper implements Serializable{
 		BufferedReader br = new BufferedReader( new InputStreamReader(fs ));
 		return br;
 	}
+	
+	public boolean check(){
+
+	    return true;
+	}
 
 }
