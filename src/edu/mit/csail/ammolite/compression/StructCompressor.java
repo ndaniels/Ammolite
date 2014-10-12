@@ -82,7 +82,7 @@ public class StructCompressor {
 		}
 		
 		for(File f: files){
-			absoluteFilenames.add(f.getAbsolutePath());
+			absoluteFilenames.add(f.getPath());
 			Iterator<IAtomContainer> molecule_database = SDFUtils.parseSDFOnline(f.getAbsolutePath());
 			checkDatabaseForIsomorphicStructs( molecule_database, structFactory);	
 		}

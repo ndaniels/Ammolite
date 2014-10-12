@@ -165,8 +165,12 @@ public class FMCS extends AbstractMCS{
 			}
 		}
 		
-
+		if(targetNeighborMapping.size() != currNeighborMapping.size()){
+		    System.out.println("lengths do not match");
+		    return out;
+		}
 		if (!targetNeighborMapping.equals(currNeighborMapping)) {
+		    System.out.println("neighbours do not match");
             return out;
         } else {
         	out.compatible = true;
@@ -329,6 +333,7 @@ public class FMCS extends AbstractMCS{
 	private void grow(MCSList<IAtom> atomListOne, MCSList<IAtom> atomListTwo, int indLevel){
 		MCSList<IAtom> atomListOneCopy = new MCSList<IAtom>( atomListOne );
 		MCSList<IAtom> atomListTwoCopy = new MCSList<IAtom>( atomListTwo );
+
 		MCSList<Integer> atomListOneDegrees = new MCSList<Integer>();
 		MCSList<Integer> atomListTwoDegrees = new MCSList<Integer>();
 
@@ -424,19 +429,20 @@ public class FMCS extends AbstractMCS{
                     int bondMisCount = compOut.bondMisCount;
                     boolean introducedNewComponent = compOut.introducedNewComponent;
                     boolean foundCompatible = compOut.compatible;
-
+//                    System.out.println(foundCompatible);
                     if ( foundCompatible ) {
 
                     	
                     	
                     	boolean tooManyBondMismatches = (bondMismatchCurr + bondMisCount) > bondMismatchUpperBound;
                         if (!tooManyBondMismatches) {
-                            
+
                             bondMismatchCurr += bondMisCount;
                             
                             if (introducedNewComponent) {
                                 ++currSubstructureNum;
-                            }
+                              
+                            } 
 
                             /**
                              * This is where the algorithm gets a bit tricky. The recursive call to
@@ -447,15 +453,17 @@ public class FMCS extends AbstractMCS{
                             
                             boolean aboveBound = currSubstructureNum > substructureNumLimit;
                             if ( !aboveBound ) {
-                            	
+                                System.out.println("growing...");
                                 currentMapping.push(topCandidateAtom, otherAtom);        			
                                 atomListTwo.remove(otherAtom);
-
+                                System.out.println("Exploring "+topCandidateAtom.getSymbol()+" ("+smallCompound.getConnectedAtomsCount(topCandidateAtom)+" knex), "+otherAtom.getSymbol()+" ("+bigCompound.getConnectedAtomsCount(otherAtom) +" knex)");
                                 grow(atomListOneCopy, atomListTwo, indLevel+1);
                              
                                 atomListTwo.push(otherAtom);
                                 currentMapping.pop();            
 
+                            }  else {
+                                System.out.println("only allow one connected component");
                             }
                             
                             if (introducedNewComponent) {
@@ -463,6 +471,8 @@ public class FMCS extends AbstractMCS{
                             }
                             
                             bondMismatchCurr -= bondMisCount;
+                        } else {
+                            System.out.println("bond orders do not match");
                         }
                     }
                     

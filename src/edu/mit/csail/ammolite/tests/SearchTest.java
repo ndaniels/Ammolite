@@ -15,6 +15,7 @@ import edu.mit.csail.ammolite.database.CompressionType;
 import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
 import edu.mit.csail.ammolite.mcs.MCS;
+import edu.mit.csail.ammolite.mcs.MyMCS;
 import edu.mit.csail.ammolite.utils.MCSUtils;
 import edu.mit.csail.ammolite.utils.MolUtils;
 import edu.mit.csail.ammolite.utils.SDFUtils;
@@ -170,12 +171,12 @@ public class SearchTest {
 		System.out.println(fmcs);
 		System.out.println("id1 id2 size(1) size(2) overlapSize(1,2) timeInMillis");
 		System.out.println("BEGIN_DATA");
-		for(int i=0; i<molecules.size(); i++){
-			for(int j=0; j<=i; j++){
+		for(int i=1; i<molecules.size(); i++){
+			for(int j=0; j<i; j++){
 				IAtomContainer a = molecules.get(i);
 				IAtomContainer b = molecules.get(j);
 				long wallClockStart = System.currentTimeMillis();
-				int mcsSize = MCS.getSMSDOverlap(a, b);
+				int mcsSize = MCS.getFMCSOverlap(a, b);
 				long wallClockElapsed = System.currentTimeMillis() - wallClockStart;
 				System.out.print(a.getProperty("PUBCHEM_COMPOUND_CID"));
 				System.out.print(" ");
@@ -192,6 +193,34 @@ public class SearchTest {
 		}
 		System.out.println("END_DATA");
 	}
+	
+	   public static void testMyMCS(String queryFile){
+	        List<IAtomContainer> molecules = SDFUtils.parseSDF( queryFile);
+	        System.out.println("MY_MCS");
+	        System.out.println("id1 id2 size(1) size(2) overlapSize(1,2) timeInMillis");
+	        System.out.println("BEGIN_DATA");
+	        for(int i=1; i<molecules.size(); i++){
+	            for(int j=0; j<i; j++){
+	                IAtomContainer a = molecules.get(i);
+	                IAtomContainer b = molecules.get(j);
+	                MyMCS mcs = new MyMCS(a,b);
+	                long wallClockElapsed = mcs.calculate();
+	                int mcsSize = mcs.size();
+	                System.out.print(a.getProperty("PUBCHEM_COMPOUND_CID"));
+	                System.out.print(" ");
+	                System.out.print(b.getProperty("PUBCHEM_COMPOUND_CID"));
+	                System.out.print(" ");
+	                System.out.print(MCSUtils.getAtomCountNoHydrogen(a));
+	                System.out.print(" ");
+	                System.out.print(MCSUtils.getAtomCountNoHydrogen(b));
+	                System.out.print(" ");
+	                System.out.print(mcsSize);
+	                System.out.print(" ");
+	                System.out.println( wallClockElapsed);
+	            }
+	        }
+	        System.out.println("END_DATA");
+	    }
 	
 	public static void testAmmoliteCoarse(String queryFile){
 		List<IAtomContainer> molecules = SDFUtils.parseSDF( queryFile);

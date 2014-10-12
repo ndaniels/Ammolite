@@ -14,7 +14,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 
-public abstract class AbstractMCS {
+public abstract class AbstractMCS implements IMCS{
 	protected IAtomContainer smallCompound;
 	protected IAtomContainer bigCompound;
 	protected boolean calculated = false;

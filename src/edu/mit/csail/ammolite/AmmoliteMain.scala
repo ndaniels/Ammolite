@@ -109,6 +109,10 @@ object AmmoliteMain{
 			  val mols = opt[String]("molecules")
 
 			}
+			val devTestMyMCS = new Subcommand("test-mymcs"){
+			  val mols = opt[String]("molecules")
+
+			}
 			val devTestAmmCoarse = new Subcommand("test-ammolite-coarse"){
 			  val mols = opt[String]("molecules")
 
@@ -180,8 +184,10 @@ object AmmoliteMain{
 		  
 		} else if( opts.subcommand == Some( opts.devTestSMSD)){
 		  edu.mit.csail.ammolite.tests.SearchTest.testSMSD(opts.devTestSMSD.mols())
-		}else if( opts.subcommand == Some( opts.devTestFMCS)){
+		} else if( opts.subcommand == Some( opts.devTestFMCS)){
 		  edu.mit.csail.ammolite.tests.SearchTest.testFMCS(opts.devTestFMCS.mols())
+		} else if( opts.subcommand == Some( opts.devTestMyMCS)){
+		  edu.mit.csail.ammolite.tests.SearchTest.testMyMCS(opts.devTestMyMCS.mols())
 		} else if( opts.subcommand == Some( opts.devTestAmmCoarse)){
 		  edu.mit.csail.ammolite.tests.SearchTest.testAmmoliteCoarse(opts.devTestAmmCoarse.mols())
 		} else if( opts.subcommand == Some( opts.examine)){

@@ -214,7 +214,7 @@ public class DatabaseCompression {
 				IAtomContainer mol = unorganizedSDFs.getMol(pubID);
 				mols.add(mol);
 			}
-			SDFWrapper sdf = makeSingleFile(structID, sdfSet.getAbsolutePath(), mols);
+			SDFWrapper sdf = makeSingleFile(structID, sdfSet.getName(), mols);
 			sdfs.add(sdf.getFilepath());
 			bar.event();
 		}
