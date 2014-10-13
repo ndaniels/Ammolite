@@ -102,8 +102,20 @@ public class SDFWrapper implements Serializable{
 		}
 		IteratingSDFReader molecules = new IteratingSDFReader( br, DefaultChemObjectBuilder.getInstance());
 		if(molecules.hasNext()){
+		    try {
+                br.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
 			return molecules.next();
 		}
+		try {
+            br.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 		return null;
 	}
 	
