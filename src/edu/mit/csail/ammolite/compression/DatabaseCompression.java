@@ -196,7 +196,7 @@ public class DatabaseCompression {
 	public static void organizeDatabase(String databaseFilename){
 		IStructDatabase db = StructDatabaseDecompressor.decompress(databaseFilename);
 		ISDFSet oldSDFs = db.getSourceFiles();
-		ISDFSet newSDFs = organizeSDFSet(db.getName() + "_organized_source_files", db.getStructs(), oldSDFs);
+		ISDFSet newSDFs = organizeSDFSet(databaseFilename + "_organized_source_files", db.getStructs(), oldSDFs);
 		db.getCoreData().setSDFSet(newSDFs);
 		StructDatabaseCompressor.compress(db.getCoreData().getName(), db.getCoreData());
 	}
