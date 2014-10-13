@@ -60,6 +60,12 @@ public class SDFUtils {
 		while(molecules.hasNext()){
 			mols.add( molecules.next());
 		}
+		
+		try {
+            molecules.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 		return mols;
 	}
 	
@@ -93,7 +99,7 @@ public class SDFUtils {
 		} catch (CDKException e) {
 			e.printStackTrace();
 			System.exit(1);
-		}
+		} 
 	}
 	
 	public static Iterator<IAtomContainer> parseSDFSetOnline(List<String> filenames){

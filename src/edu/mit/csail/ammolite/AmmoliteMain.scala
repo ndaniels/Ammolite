@@ -41,9 +41,9 @@ object AmmoliteMain{
 			  val target = opt[String]("target", required=true, descr="Name of the new compressed database")
 			}
 			
-			val organize = new Subcommand("organize-database"){
+			val organize = new Subcommand("organize"){
 			  banner("Organize a database")
-			  val db = opt[String]("database", required=true, descr="database to be organized")
+			  val db = trailArg[String](descr="database to be organized")
 			}
 			val resetSource = new Subcommand("reset-source"){
 			  banner("Set the source files for a database")
