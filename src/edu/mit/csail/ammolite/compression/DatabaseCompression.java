@@ -196,7 +196,7 @@ public class DatabaseCompression {
 	public static void organizeDatabase(String databaseFilename){
 		IStructDatabase db = StructDatabaseDecompressor.decompress(databaseFilename);
 		ISDFSet oldSDFs = db.getSourceFiles();
-		ISDFSet newSDFs = organizeSDFSet(databaseFilename + "_organized_source_files", db.getStructs(), oldSDFs);
+		ISDFSet newSDFs = organizeSDFSet(db.getName() + "_organized_source_files", db.getStructs(), oldSDFs);
 		db.getCoreData().setSDFSet(newSDFs);
 		StructDatabaseCompressor.compress(db.getCoreData().getName(), db.getCoreData());
 	}
@@ -214,7 +214,7 @@ public class DatabaseCompression {
 				IAtomContainer mol = unorganizedSDFs.getMol(pubID);
 				mols.add(mol);
 			}
-			SDFWrapper sdf = makeSingleFile(structID, sdfSet.getName(), mols);
+			SDFWrapper sdf = makeSingleFile(structID, setName, mols);
 			sdfs.add(sdf.getFilepath());
 			bar.event();
 		}
