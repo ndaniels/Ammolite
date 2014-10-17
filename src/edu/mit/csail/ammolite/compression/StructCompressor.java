@@ -201,6 +201,7 @@ public class StructCompressor {
 	private void produceClusteredDatabase( String name ){
 		IDatabaseCoreData database = new StructDatabaseCoreData( structsByFingerprint, sdfFiles, structFactory.getCompressionType(), name);
 		StructDatabaseCompressor.compress(name, database);
+		StructDatabaseCompressor.compressGeneric(name, database);
 	}
 	
 	

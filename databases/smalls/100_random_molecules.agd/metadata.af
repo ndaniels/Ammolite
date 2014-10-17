@@ -1,0 +1,11 @@
+NAME: databases/smalls/100_random_molecules
+VERSION: AMMOLITE_GENERIC_DATABASE_0_0_0
+COMPRESSION_TYPE: CYCLIC
+ORGANIZED: FALSE
+STRUCT_ID_TABLE: structids.af
+STRUCTURE_FILES: 
+struct_0.af
+
+SOURCE_FILES: 
+molecule_sets/smalls/100_random_molecules.sdf
+
