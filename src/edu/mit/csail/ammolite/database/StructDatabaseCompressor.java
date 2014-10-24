@@ -15,6 +15,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -49,20 +50,29 @@ public class StructDatabaseCompressor {
 		
 	}
 	
+	public static void makeGeneric(String dbName){
+	    IDatabaseCoreData dbCD = StructDatabaseDecompressor.decompressToCoreData(dbName);
+	    int ext = dbName.lastIndexOf(".");
+	    String name = dbName.substring(0, ext);
+	    compressGeneric(name, dbCD);
+	}
+	
 	public static void compressGeneric(String filename, IDatabaseCoreData dbCD){
-	    String exFilename = filename+ ".agd";
+	    String exFilename = filename+ ".gad";
 	    File dir = new File(exFilename);
 	    dir.mkdir();
 	    IStructDatabase db = new StructDatabase(dbCD);
 	    String structTable = writeStructIDFile(exFilename, db.iterator());
-	    List<String> structFiles = writeStructSDF( exFilename, db.iterator());
+	    List<String> structFiles = writeStructSDF( exFilename, "struct_files", db.iterator());
+
 	    writeMetadataFile( exFilename, db.getName(), "AMMOLITE_GENERIC_DATABASE_0_0_0", 
-	                        structTable, db.getCompressionType(), false, structFiles, db.getSourceFiles().getFilepaths());
+	                        structTable, 
+	                        db.getCompressionType(), false, structFiles, db.getSourceFiles().getFilenames());
 	    
 	}
 	
 	private static String writeStructIDFile(String folder, Iterator<MolStruct> structs){
-	    String structName = "structids.af";
+	    String structName = "structids.yml";
 	    String structPath = folder + File.separator + structName;
 	    BufferedWriter writer;
 	    try{
@@ -71,11 +81,13 @@ public class StructDatabaseCompressor {
     	    while( structs.hasNext()){
     	        MolStruct struct = structs.next();
     	        writer.write( MolUtils.getStructID(struct).toString());
-    	        writer.write(" : ");
+    	        writer.write(" : [");
     	        for(PubchemID pId: struct.getIDNums() ){
+    	     
     	            writer.write( pId.toString());
-    	            writer.write(" ");
+    	            writer.write(", ");
     	        }
+    	        writer.write("]");
     	        writer.newLine();
     	    }
     	    writer.close();
@@ -85,11 +97,13 @@ public class StructDatabaseCompressor {
 	    return structName;
 	}
 	
-	private static List<String> writeStructSDF(String folder, Iterator<MolStruct> structs){
+	private static List<String> writeStructSDF(String folder, String structFolder, Iterator<MolStruct> structs){
 	    int CHUNK_SIZE = 25*1000;
 	    int fileNum = -1;
 	    int structsInFile = 0;
-	    String structBaseName = "struct_%d.af";
+	    File dir = new File(folder+ File.separator + structFolder);
+	    dir.mkdir();
+	    String structBaseName = "struct_%d.sdf";
 	    OutputStream stream = null;
 	    SDFWriter writer = null;
 	    List<String> allFiles = new ArrayList<String>();
@@ -105,7 +119,7 @@ public class StructDatabaseCompressor {
 	                } catch( NullPointerException npe) {}
 	                
 	                String structName = String.format(structBaseName, fileNum);
-	                String structPath = folder + File.separator + structName;
+	                String structPath = dir.getAbsolutePath() + File.separator + structName;
 	                allFiles.add(structName);
 	                stream = new PrintStream(structPath);
 	                writer = new SDFWriter( stream);
@@ -133,9 +147,10 @@ public class StructDatabaseCompressor {
 	    return allFiles;
 	}
 	
-	private static void writeMetadataFile(String folder, String name, String version, String structTable, CompressionType compression, 
-	                                    boolean organized, List<String> structFiles, List<String> sourceFiles){
-	    String metaName = "metadata.af";
+	private static void writeMetadataFile( String folder, String name, String version, String structTable, 
+	                                        CompressionType compression, 
+	                                       boolean organized, List<String> structFiles, List<String> sourceFiles){
+	    String metaName = "metadata.yml";
         String metaPath = folder+ File.separator + metaName;
         BufferedWriter writer;
         try{
@@ -172,9 +187,10 @@ public class StructDatabaseCompressor {
             writer.write(structTable);
             writer.newLine();
             
-            writer.write("STRUCTURE_FILES: ");
+            writer.write("STRUCTURE_FILES:");
             writer.newLine();
             for(String sFilename: structFiles){
+                writer.write("\t - ");
                 writer.write(sFilename);
                 writer.newLine();
             }
@@ -183,6 +199,7 @@ public class StructDatabaseCompressor {
             writer.write("SOURCE_FILES: ");
             writer.newLine();
             for(String filename: sourceFiles){
+                writer.write("\t - ");
                 writer.write(filename);
                 writer.newLine();
             }

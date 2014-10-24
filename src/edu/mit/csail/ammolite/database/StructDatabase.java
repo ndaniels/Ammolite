@@ -61,6 +61,7 @@ public class StructDatabase implements IStructDatabase{
 		return structFactory;
 	}
 	
+	@Deprecated
 	public IDatabaseCoreData getCoreData(){
 		return coreData;
 	}
@@ -73,10 +74,12 @@ public class StructDatabase implements IStructDatabase{
 		return structFactory;
 	}
 	
+	@Deprecated
 	public List<MolStruct> getstructsByFingerprint(int hash){
 		return structsByFingerprint.get(hash);
 	}
 	
+	@Deprecated
 	public KeyListMap<Integer, MolStruct> getstructsByFingerprint(){
 		return this.structsByFingerprint;
 	}

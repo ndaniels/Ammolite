@@ -3,6 +3,7 @@ package edu.mit.csail.ammolite
 
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory
 import edu.mit.csail.ammolite.compression.StructCompressor
+import edu.mit.csail.ammolite.database.StructDatabaseCompressor
 import org.rogach.scallop._
 import edu.mit.csail.ammolite.utils.Logger
 import edu.mit.csail.ammolite.compression.CyclicStruct
@@ -45,6 +46,12 @@ object AmmoliteMain{
 			  banner("Organize a database")
 			  val db = trailArg[String](descr="database to be organized")
 			}
+
+			val generic = new Subcommand("make-generic"){
+			  banner("Organize a database")
+			  val db = trailArg[String](descr="serial database to be genericized")
+			}
+
 			val resetSource = new Subcommand("reset-source"){
 			  banner("Set the source files for a database")
 			  val db = opt[String]("database", required=true, descr="database to be organized")
@@ -207,6 +214,8 @@ object AmmoliteMain{
 			DatabaseCompression.organizeDatabase(opts.organize.db())
 		} else if( opts.subcommand == Some( opts.resetSource)){
 			DatabaseCompression.resetDatabaseSource(opts.resetSource.db(), opts.resetSource.sdfs(), opts.resetSource.isOrganized())
+		} else if( opts.subcommand == Some( opts.generic)){
+			StructDatabaseCompressor.makeGeneric(opts.generic.db())
 		}
 	}
 

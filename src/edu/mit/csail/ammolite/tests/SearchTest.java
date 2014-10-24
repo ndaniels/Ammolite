@@ -45,11 +45,7 @@ public class SearchTest {
 		IStructDatabase db = StructDatabaseDecompressor.decompress(databaseName, useCaching);
 		List<IAtomContainer> queries = SDFUtils.parseSDF( queryFile);
 		Iterator<IAtomContainer> targets = null;
-		if( db.numMols() < 50000){
-			db = new BigStructDatabase( db);
-			((BigStructDatabase) db).preloadMolecules();
-			targets = ((BigStructDatabase) db).getMolecules().iterator();
-		} else if( testingLinear) {
+		if( testingLinear) {
 			List<String> sdfFiles = db.getSourceFiles().getFilenames();
 			targets = SDFUtils.parseSDFSetOnline(sdfFiles);
 		} 

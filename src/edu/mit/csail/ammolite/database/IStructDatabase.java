@@ -23,6 +23,7 @@ public interface IStructDatabase {
 	public Iterator<MolStruct> iterator();
 	public MoleculeStructFactory getStructFactory();
 	public List<MolStruct> getStructs();
+	@Deprecated
 	public IDatabaseCoreData getCoreData();
 	public ISDFSet getSourceFiles();
 	public List<IAtomContainer> getMatchingMolecules(StructID structID);

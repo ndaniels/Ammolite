@@ -1,0 +1,11 @@
+NAME: databases/smalls/30_random_molecules
+VERSION: AMMOLITE_GENERIC_DATABASE_0_0_0
+COMPRESSION_TYPE: CYCLIC
+ORGANIZED: TRUE
+STRUCT_ID_TABLE: structids.yml
+STRUCTURE_FILES:
+ - ./struct_files/struct_0.sdf
+
+SOURCE_FILES: 
+ - ./source_files/*.sdf
+
