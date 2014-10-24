@@ -62,7 +62,7 @@ public class SearchTest {
 
 		
 		if( testAmm){
-			Tester tester = new Ammolite_SingleThread_IsoRank();
+			Tester tester = new Ammolite_QuerywiseParallel();
 			runTest(tester, stream, queries, db, targets, sTargets, fine, coarse);
 		}
 		if( testAmmSMSD){
