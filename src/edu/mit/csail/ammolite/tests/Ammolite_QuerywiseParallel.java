@@ -21,8 +21,8 @@ import edu.mit.csail.ammolite.utils.StructID;
 public class Ammolite_QuerywiseParallel implements Tester {
     
     private static final String NAME = "Ammolite_QuerywiseParallel_QueryCompression";
-    private static final int COARSE_CHUNK_SIZE = 3;
-    private static final int FINE_CHUNK_SIZE = 3;
+    private static final int COARSE_CHUNK_SIZE = 1000;
+    private static final int FINE_CHUNK_SIZE = 150;
     private static final ExecutorService service = ParallelUtils.buildNewExecutorService();
 
     public Ammolite_QuerywiseParallel() {
