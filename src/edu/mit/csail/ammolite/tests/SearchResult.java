@@ -5,15 +5,19 @@ import java.util.List;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
+import edu.mit.csail.ammolite.utils.ID;
+import edu.mit.csail.ammolite.utils.MolUtils;
+import edu.mit.csail.ammolite.utils.PubchemID;
+
 public class SearchResult {
     private long startTime;
     private long endTime;
     private long duration = -1;
     public IAtomContainer query;
     public String methodName;
-    public List<IAtomContainer> matches = new ArrayList<IAtomContainer>();
+    public List<ID> matches = new ArrayList<ID>();
     public List<Integer> matchSizes = new ArrayList<Integer>();
-    public List<IAtomContainer> misses = new ArrayList<IAtomContainer>();
+    public List<ID> misses = new ArrayList<ID>();
     public List<Integer> missSizes = new ArrayList<Integer>();
     
     public SearchResult(IAtomContainer q, String _methodName){
@@ -53,28 +57,22 @@ public class SearchResult {
     }
     
     public void addMatch(IAtomContainer match, int mcsSize){
-        matches.add(match);
+        matches.add(MolUtils.getUnknownOrID(match));
         matchSizes.add(mcsSize);
     }
     
     public void addMatch(SearchMatch match){
-        if( match.getQuery() != query){
-            throw new IllegalArgumentException("Queries do not match");
-        }
-        matches.add( match.getTarget());
+        matches.add( MolUtils.getUnknownOrID(match.getTarget()));
         matchSizes.add( match.getOverlap());
     }
     
     public void addMiss(IAtomContainer miss, int mcsSize){
-        misses.add(miss);
+        misses.add(MolUtils.getUnknownOrID(miss));
         missSizes.add(mcsSize);
     }
     
     public void addMiss(SearchMiss miss){
-        if( miss.getQuery() != query){
-            throw new IllegalArgumentException("Queries do not match");
-        }
-        misses.add( miss.getTarget());
+        misses.add( MolUtils.getUnknownOrID(miss.getTarget()));
         missSizes.add( miss.getOverlap());
     }
 }

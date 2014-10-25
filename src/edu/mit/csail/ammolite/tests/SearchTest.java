@@ -16,8 +16,10 @@ import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
 import edu.mit.csail.ammolite.mcs.MCS;
 import edu.mit.csail.ammolite.mcs.MyMCS;
+import edu.mit.csail.ammolite.utils.ID;
 import edu.mit.csail.ammolite.utils.MCSUtils;
 import edu.mit.csail.ammolite.utils.MolUtils;
+import edu.mit.csail.ammolite.utils.PubchemID;
 import edu.mit.csail.ammolite.utils.SDFUtils;
 import edu.mit.csail.ammolite.utils.WallClock;
 
@@ -263,39 +265,32 @@ public class SearchTest {
 		out.println("START_METHOD "+result.methodName);
 		out.println("time: "+result.time());
 		out.print("matches: ");
-		for(IAtomContainer match: result.matches){
-			out.print(MolUtils.getUnknownOrID(match));
+		for(ID match: result.matches){
+			out.print(match);
 			out.print(" ");
 		}
       out.print("\n misses: ");
-        for(IAtomContainer miss: result.misses){
-            out.print(MolUtils.getUnknownOrID(miss));
+        for(ID miss: result.misses){
+            out.print(miss);
             out.print(" ");
         }
 		out.println("\nSTART_DETAILED_MATCHES");
 		for(int i=0; i< result.matches.size(); i++){
-			IAtomContainer match = result.matches.get(i);
+			ID match = result.matches.get(i);
 			int matchSize = result.matchSizes.get(i);
-			out.print(MolUtils.getUnknownOrID(match));
+			out.print(match);
 			out.print(" ");
-			out.print(matchSize);
-			out.print(" ");
-			out.print(MCSUtils.getAtomCountNoHydrogen(match));
-			out.print(" ");
-			out.println(MCSUtils.getAtomCountNoHydrogen(result.query));
+			out.println(matchSize);
 		}
 		out.println("END_DETAILED_MATCHES");
       out.println("\nSTART_DETAILED_MISSES");
         for(int i=0; i< result.misses.size(); i++){
-            IAtomContainer miss = result.misses.get(i);
+            ID miss = result.misses.get(i);
             int missSize = result.missSizes.get(i);
-            out.print(MolUtils.getUnknownOrID(miss));
+            out.print(miss);
             out.print(" ");
-            out.print(missSize);
-            out.print(" ");
-            out.print(MCSUtils.getAtomCountNoHydrogen(miss));
-            out.print(" ");
-            out.println(MCSUtils.getAtomCountNoHydrogen(result.query));
+            out.println(missSize);
+
         }
         out.println("END_DETAILED_MISSES");
 		out.println("END_METHOD");

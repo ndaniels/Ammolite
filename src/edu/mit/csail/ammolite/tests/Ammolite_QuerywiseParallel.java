@@ -21,8 +21,8 @@ import edu.mit.csail.ammolite.utils.StructID;
 public class Ammolite_QuerywiseParallel implements Tester {
     
     private static final String NAME = "Ammolite_QuerywiseParallel_QueryCompression";
-    private static final int COARSE_CHUNK_SIZE = 1000;
-    private static final int FINE_CHUNK_SIZE = 150;
+    private static final int COARSE_CHUNK_SIZE = 50;
+    private static final int FINE_CHUNK_SIZE = 50;
     private static final ExecutorService service = ParallelUtils.buildNewExecutorService();
 
     public Ammolite_QuerywiseParallel() {
@@ -53,15 +53,15 @@ public class Ammolite_QuerywiseParallel implements Tester {
         List<StructID> hits = new ArrayList<StructID>();
    
         List<Callable<Integer>> tests = new ArrayList<Callable<Integer>>(COARSE_CHUNK_SIZE);
+        int startOfChunk = 0;
         for(int i=0; i<sTargets.size(); i++){
             MolStruct target = sTargets.get(i);
-            if(tests.size() < COARSE_CHUNK_SIZE){
-                tests.add(MCS.getCallableSMSDOperation(cQuery, target));
-            } 
+            tests.add(MCS.getCallableSMSDOperation(cQuery, target));
+
             if(tests.size() == COARSE_CHUNK_SIZE || i+1 == sTargets.size()){
                 List<Integer> testResults = ParallelUtils.parallelFullExecution(tests, service);
-                for(int j=0; j<COARSE_CHUNK_SIZE; j++){
-                    int molInd = i + 1 - tests.size() + j;
+                for(int j=0; j<tests.size(); j++){
+                    int molInd = startOfChunk + j;
                     int overlap = testResults.get(j);
                     MolStruct mol = sTargets.get(molInd);
                     
@@ -73,6 +73,7 @@ public class Ammolite_QuerywiseParallel implements Tester {
                     }
                     bar.event();
                 }
+                startOfChunk = i+1;
                 tests.clear();
             }
         }
