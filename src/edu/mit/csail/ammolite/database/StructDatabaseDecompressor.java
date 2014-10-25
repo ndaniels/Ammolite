@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -70,7 +71,8 @@ public class StructDatabaseDecompressor {
         };
 	    File meta = dbDir.listFiles( metaFilter)[0];
 	    try{
-    	    BufferedReader  metaStream= Files.newBufferedReader(meta.toPath());
+	        
+    	    BufferedReader  metaStream = new BufferedReader(new FileReader(meta));
     	    Yaml yaml = new Yaml();
     	    Map md = (Map) yaml.load(metaStream);
     	    
@@ -88,7 +90,7 @@ public class StructDatabaseDecompressor {
                 }
             };
             File idTable = dbDir.listFiles( idFilter)[0];
-    	    BufferedReader  idStream= Files.newBufferedReader(idTable.toPath());
+    	    BufferedReader  idStream = new BufferedReader(new FileReader(idTable));
     	    
             Map<String,List<Integer>> rawIds = (Map<String,List<Integer>>) yaml.load(idStream);
             
