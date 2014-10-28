@@ -1,6 +1,7 @@
 package edu.mit.csail.ammolite.tests;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -15,10 +16,10 @@ public class SearchResult {
     private long duration = -1;
     public IAtomContainer query;
     public String methodName;
-    public List<ID> matches = new ArrayList<ID>();
-    public List<Integer> matchSizes = new ArrayList<Integer>();
-    public List<ID> misses = new ArrayList<ID>();
-    public List<Integer> missSizes = new ArrayList<Integer>();
+    public List<ID> matches = new LinkedList<ID>();
+    public List<Integer> matchSizes = new LinkedList<Integer>();
+    public List<ID> misses = new LinkedList<ID>();
+    public List<Integer> missSizes = new LinkedList<Integer>();
     
     public SearchResult(IAtomContainer q, String _methodName){
         query = q;
