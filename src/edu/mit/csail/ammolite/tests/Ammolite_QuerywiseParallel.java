@@ -81,7 +81,7 @@ public class Ammolite_QuerywiseParallel implements Tester {
                         coarseResult.addMatch(new SearchMatch(cQuery, mol, overlap));
                         hits.add(MolUtils.getStructID(mol));
                     } else {
-                        coarseResult.addMiss(new SearchMiss(cQuery, mol, overlap));
+//                        coarseResult.addMiss(new SearchMiss(cQuery, mol, overlap));
                     }
                     bar.event();
                 }
