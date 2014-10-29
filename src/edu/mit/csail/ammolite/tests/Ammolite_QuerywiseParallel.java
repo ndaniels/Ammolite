@@ -1,5 +1,6 @@
 package edu.mit.csail.ammolite.tests;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -30,18 +31,29 @@ public class Ammolite_QuerywiseParallel implements Tester {
     }
 
     @Override
-    public List<SearchResult> test(List<IAtomContainer> queries,
+    public void test(List<IAtomContainer> queries,
             IStructDatabase db, Iterator<IAtomContainer> targets,
-            List<MolStruct> sTargets, double thresh, double prob, String name) {
-        List<SearchResult> allResults = new ArrayList<SearchResult>(2*queries.size());
+            List<MolStruct> sTargets, double thresh, double prob, String name, PrintStream  out) {
+        SearchResultDocumenter scribe = new SearchResultDocumenter( out);
+        
         for(IAtomContainer query: queries){
             MolStruct cQuery = db.makeMoleculeStruct(query);
             Pair<SearchResult, List<StructID>> p = coarseSearch(cQuery, query, sTargets, prob);
-            allResults.add(p.left());
-            allResults.add( fineSearch(query, p.right(), db, thresh));
+            
+            SearchResult coarseResult = p.left();
+            List<StructID> coarseHits = p.right();
+            System.out.println("Writing coarse results...");
+            scribe.documentSingleResult(coarseResult);
+            // Make sure the JVM automatically garbage collects these bad boys
+            p = null;
+            coarseResult = null;
+            
+            SearchResult fineResult = fineSearch(query, coarseHits, db, thresh);
+            scribe.documentSingleResult(fineResult);
+            System.out.println("Writing fine results...");
+            fineResult = null;
         }
         service.shutdown();
-        return allResults;
     }
     
     private Pair<SearchResult, List<StructID>> coarseSearch(MolStruct cQuery, IAtomContainer query, List<MolStruct> sTargets,        
@@ -58,7 +70,7 @@ public class Ammolite_QuerywiseParallel implements Tester {
             MolStruct target = sTargets.get(i);
             tests.add(MCS.getCallableSMSDOperation(cQuery, target));
 
-            if(tests.size() == COARSE_CHUNK_SIZE || i+1 == sTargets.size()){
+            if(tests.size() == COARSE_CHUNK_SIZE){
                 List<Integer> testResults = ParallelUtils.parallelFullExecution(tests, service);
                 for(int j=0; j<tests.size(); j++){
                     int molInd = startOfChunk + j;
@@ -66,16 +78,30 @@ public class Ammolite_QuerywiseParallel implements Tester {
                     MolStruct mol = sTargets.get(molInd);
                     
                     if(MCSUtils.overlapCoeff(overlap, mol, cQuery) > thresh){
-                        coarseResult.addMatch(new SearchMatch(cQuery, target, overlap));
+                        coarseResult.addMatch(new SearchMatch(cQuery, mol, overlap));
                         hits.add(MolUtils.getStructID(mol));
                     } else {
-                        coarseResult.addMiss(new SearchMiss(cQuery, target, overlap));
+                        coarseResult.addMiss(new SearchMiss(cQuery, mol, overlap));
                     }
                     bar.event();
                 }
                 startOfChunk = i+1;
                 tests.clear();
             }
+        }
+        List<Integer> testResults = ParallelUtils.parallelFullExecution(tests, service);
+        for(int j=0; j<tests.size(); j++){
+            int molInd = startOfChunk + j;
+            int overlap = testResults.get(j);
+            MolStruct mol = sTargets.get(molInd);
+            
+            if(MCSUtils.overlapCoeff(overlap, mol, cQuery) > thresh){
+                coarseResult.addMatch(new SearchMatch(cQuery, mol, overlap));
+                hits.add(MolUtils.getStructID(mol));
+            } else {
+                coarseResult.addMiss(new SearchMiss(cQuery, mol, overlap));
+            }
+            bar.event();
         }
         coarseResult.end();
         return new Pair<SearchResult, List<StructID>>(coarseResult,hits);    

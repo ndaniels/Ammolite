@@ -1,5 +1,6 @@
 package edu.mit.csail.ammolite.tests;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -28,38 +29,37 @@ public class Ammolite_MultipleQueriesInParallel_QueryCompression implements Test
     private DoubleProgressBar bar;
 
     @Override
-    public List<SearchResult> test(List<IAtomContainer> queries, IStructDatabase db, 
-                                    Iterator<IAtomContainer> targets, List<MolStruct> sTargets, double thresh, double coarseThresh, String name) {
-        
-        KeyListMap<MolStruct,IAtomContainer> comQueries = DatabaseCompression.compressMoleculeSet(queries, db.getStructFactory());
-        bar = new DoubleProgressBar(name, queries.size(), "Coarse", comQueries.keySet().size()*db.getStructs().size());
-        
-        ExecutorService service = Executors.newFixedThreadPool( Runtime.getRuntime().availableProcessors());
-        
-        List<SearchResult> allResults = new LinkedList<SearchResult>();
-        
-        List<Callable<ResultList>> callChunk = new ArrayList<Callable<ResultList>>(CHUNK_SIZE);
-        for(final MolStruct comQuery: comQueries.keySet()){
-            if( callChunk.size() == CHUNK_SIZE){
-                List<ResultList> calledChunk = ParallelUtils.parallelFullExecution(callChunk, service);
-                callChunk.clear();
-                for(ResultList rL: calledChunk){
-                    allResults.addAll(rL);
-                }
-            }
-            
-            final List<IAtomContainer> exQueries = comQueries.get(comQuery);
-            Callable<ResultList> callable = callableQueries(comQuery, exQueries, sTargets, db, thresh, coarseThresh);
-            callChunk.add(callable);
-        }
-        
-        List<ResultList> calledChunk = ParallelUtils.parallelFullExecution(callChunk, service);
-        service.shutdown();
-        callChunk.clear();
-        for(ResultList rL: calledChunk){
-            allResults.addAll(rL);
-        }
-        return allResults;
+    public void test(List<IAtomContainer> queries, IStructDatabase db, 
+                                    Iterator<IAtomContainer> targets, List<MolStruct> sTargets, double thresh, double coarseThresh, String name, PrintStream out) {
+        throw new UnsupportedOperationException();
+//        KeyListMap<MolStruct,IAtomContainer> comQueries = DatabaseCompression.compressMoleculeSet(queries, db.getStructFactory());
+//        bar = new DoubleProgressBar(name, queries.size(), "Coarse", comQueries.keySet().size()*db.getStructs().size());
+//        
+//        ExecutorService service = Executors.newFixedThreadPool( Runtime.getRuntime().availableProcessors());
+//        
+//        List<SearchResult> allResults = new LinkedList<SearchResult>();
+//        
+//        List<Callable<ResultList>> callChunk = new ArrayList<Callable<ResultList>>(CHUNK_SIZE);
+//        for(final MolStruct comQuery: comQueries.keySet()){
+//            if( callChunk.size() == CHUNK_SIZE){
+//                List<ResultList> calledChunk = ParallelUtils.parallelFullExecution(callChunk, service);
+//                callChunk.clear();
+//                for(ResultList rL: calledChunk){
+//                    allResults.addAll(rL);
+//                }
+//            }
+//            
+//            final List<IAtomContainer> exQueries = comQueries.get(comQuery);
+//            Callable<ResultList> callable = callableQueries(comQuery, exQueries, sTargets, db, thresh, coarseThresh);
+//            callChunk.add(callable);
+//        }
+//        
+//        List<ResultList> calledChunk = ParallelUtils.parallelFullExecution(callChunk, service);
+//        service.shutdown();
+//        callChunk.clear();
+//        for(ResultList rL: calledChunk){
+//            allResults.addAll(rL);
+//        }
     }
     
     private Callable<ResultList> callableQueries(final MolStruct comQuery, final List<IAtomContainer> queries, final List<MolStruct> coarseTargets, 

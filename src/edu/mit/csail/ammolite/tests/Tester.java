@@ -1,5 +1,6 @@
 package edu.mit.csail.ammolite.tests;
 
+import java.io.PrintStream;
 import java.util.Iterator;
 import java.util.List;
 
@@ -10,9 +11,9 @@ import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.tests.SearchResult;
 
 public interface Tester {
-    public List<SearchResult> test(List<IAtomContainer> queries, IStructDatabase db, 
+    public void test(List<IAtomContainer> queries, IStructDatabase db, 
             Iterator<IAtomContainer> targets,  List<MolStruct> sTargets, double thresh, 
-            double prob, String name);
+            double prob, String name, PrintStream out);
     
     public String getName();
 }

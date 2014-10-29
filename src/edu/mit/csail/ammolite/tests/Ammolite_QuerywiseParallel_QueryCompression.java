@@ -1,5 +1,6 @@
 package edu.mit.csail.ammolite.tests;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -104,47 +105,47 @@ public class Ammolite_QuerywiseParallel_QueryCompression implements Tester {
     }
 
     @Override
-    public List<SearchResult> test(List<IAtomContainer> queries,
+    public void test(List<IAtomContainer> queries,
                                     IStructDatabase db, Iterator<IAtomContainer> targets,
                                     List<MolStruct> sTargets, double thresh, double coarseThresh,
-                                    String name) {
-        
-        KeyListMap<MolStruct,IAtomContainer> compressedQueries = DatabaseCompression.compressMoleculeSet(queries, db.getStructFactory());
-        CommandLineProgressBar bar = new CommandLineProgressBar(name, queries.size());
-        List<SearchResult> allResults = new ArrayList<SearchResult>();
-        
-        for(MolStruct coarseQuery: compressedQueries.keySet()){
-            List<IAtomContainer> fineQueries = compressedQueries.get(coarseQuery);
-            List<SearchResult> mySearchResults = new ArrayList<SearchResult>(fineQueries.size());
-            List<SearchResult> myCoarseSearchResults = new ArrayList<SearchResult>(fineQueries.size());
-            
-            // Results pre-processing
-            for(IAtomContainer fineQuery: fineQueries){
-                SearchResult mySearchResult = new SearchResult(fineQuery, name);
-                mySearchResult.start();
-                mySearchResults.add( mySearchResult);
-                allResults.add( mySearchResult);
-                
-                SearchResult myCoarseSearchResult = new SearchResult(fineQuery, name+"_COARSE");
-                myCoarseSearchResult.start();
-                myCoarseSearchResults.add( myCoarseSearchResult);
-                allResults.add( myCoarseSearchResult);
-            }
+                                    String name, PrintStream out) {
+        throw new UnsupportedOperationException();
+//        KeyListMap<MolStruct,IAtomContainer> compressedQueries = DatabaseCompression.compressMoleculeSet(queries, db.getStructFactory());
+//        CommandLineProgressBar bar = new CommandLineProgressBar(name, queries.size());
+//        List<SearchResult> allResults = new ArrayList<SearchResult>();
+//        
+//        for(MolStruct coarseQuery: compressedQueries.keySet()){
+//            List<IAtomContainer> fineQueries = compressedQueries.get(coarseQuery);
+//            List<SearchResult> mySearchResults = new ArrayList<SearchResult>(fineQueries.size());
+//            List<SearchResult> myCoarseSearchResults = new ArrayList<SearchResult>(fineQueries.size());
+//            
+//            // Results pre-processing
+//            for(IAtomContainer fineQuery: fineQueries){
+//                SearchResult mySearchResult = new SearchResult(fineQuery, name);
+//                mySearchResult.start();
+//                mySearchResults.add( mySearchResult);
+//                allResults.add( mySearchResult);
+//                
+//                SearchResult myCoarseSearchResult = new SearchResult(fineQuery, name+"_COARSE");
+//                myCoarseSearchResult.start();
+//                myCoarseSearchResults.add( myCoarseSearchResult);
+//                allResults.add( myCoarseSearchResult);
+//            }
+//
+//            List<StructID> coarseMatchIDs = coarseSearch(coarseQuery, sTargets, coarseThresh);
+//            fineSearch( fineQueries, coarseMatchIDs, db, mySearchResults, myCoarseSearchResults, thresh);
+//            
+//            // Results Processing
+//            for(SearchResult result: mySearchResults){
+//                result.end();
+//                bar.event();
+//            }
+//            for(SearchResult coarseResult: myCoarseSearchResults){
+//                coarseResult.end();
+//            }
+//        }
+//        service.isShutdown();
 
-            List<StructID> coarseMatchIDs = coarseSearch(coarseQuery, sTargets, coarseThresh);
-            fineSearch( fineQueries, coarseMatchIDs, db, mySearchResults, myCoarseSearchResults, thresh);
-            
-            // Results Processing
-            for(SearchResult result: mySearchResults){
-                result.end();
-                bar.event();
-            }
-            for(SearchResult coarseResult: myCoarseSearchResults){
-                coarseResult.end();
-            }
-        }
-        service.isShutdown();
-        return allResults;
     }
 
 

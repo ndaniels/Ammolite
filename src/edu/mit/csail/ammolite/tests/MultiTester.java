@@ -1,5 +1,6 @@
 package edu.mit.csail.ammolite.tests;
 
+import java.io.PrintStream;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,18 +18,19 @@ public abstract class MultiTester implements Tester{
             Iterator<IAtomContainer> targets,  List<MolStruct> sTargets, double fineThresh, 
             double coarseThresh, String name);
 
-    public List<SearchResult> test(List<IAtomContainer> queries, IStructDatabase db, 
+    public void test(List<IAtomContainer> queries, IStructDatabase db, 
                 Iterator<IAtomContainer> targets, List<MolStruct> sTargets,  double fineThresh, 
-                double coarseThresh, String name){
-        List<SearchResult> results = new LinkedList<SearchResult>();
-        CommandLineProgressBar progressBar = new CommandLineProgressBar(name, queries.size());
-            for(IAtomContainer query: queries){
-            targets = SearchTest.getTargetIterator(db, targets);
-            List<SearchResult> result = singleTestMultipleResults(query, db, targets, sTargets, fineThresh, coarseThresh, name);
-            results.addAll(result);
-            progressBar.event();
-        }
-        return results;
+                double coarseThresh, String name, PrintStream out){
+        throw new UnsupportedOperationException();
+//        List<SearchResult> results = new LinkedList<SearchResult>();
+//        CommandLineProgressBar progressBar = new CommandLineProgressBar(name, queries.size());
+//            for(IAtomContainer query: queries){
+//            targets = SearchTest.getTargetIterator(db, targets);
+//            List<SearchResult> result = singleTestMultipleResults(query, db, targets, sTargets, fineThresh, coarseThresh, name);
+//            results.addAll(result);
+//            progressBar.event();
+//        }
+        
     }
     
     abstract public String getName();

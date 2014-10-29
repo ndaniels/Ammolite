@@ -112,11 +112,10 @@ public class SearchTest {
 	    
 		String name = tester.getName();
 		WallClock clock = new WallClock( name);
-		List<SearchResult> results = tester.test(queries, db, targets, sTargets, thresh, prob, name);
+		tester.test(queries, db, targets, sTargets, thresh, prob, name, stream);
 		System.out.println("");
 		clock.printElapsed();
 		stream.println(clock.getElapsedString());
-		processResults(results, stream);
 	}
 	
 	private static PrintStream getPrintStream(String outName){
@@ -254,46 +253,4 @@ public class SearchTest {
 		System.out.println("END_DATA");
 	}
 	
-	public static void processResults(List<SearchResult> results, PrintStream out){
-		for(SearchResult r: results){
-			processSingleResult( r, out);
-		}
-	}
-	
-	private static void processSingleResult(SearchResult result, PrintStream out){
-		out.println("START_QUERY "+result.query.getProperty("PUBCHEM_COMPOUND_CID"));
-		out.println("START_METHOD "+result.methodName);
-		out.println("time: "+result.time());
-		out.print("matches: ");
-		for(ID match: result.matches){
-			out.print(match);
-			out.print(" ");
-		}
-      out.print("\n misses: ");
-        for(ID miss: result.misses){
-            out.print(miss);
-            out.print(" ");
-        }
-		out.println("\nSTART_DETAILED_MATCHES");
-		for(int i=0; i< result.matches.size(); i++){
-			ID match = result.matches.get(i);
-			int matchSize = result.matchSizes.get(i);
-			out.print(match);
-			out.print(" ");
-			out.println(matchSize);
-		}
-		out.println("END_DETAILED_MATCHES");
-      out.println("\nSTART_DETAILED_MISSES");
-        for(int i=0; i< result.misses.size(); i++){
-            ID miss = result.misses.get(i);
-            int missSize = result.missSizes.get(i);
-            out.print(miss);
-            out.print(" ");
-            out.println(missSize);
-
-        }
-        out.println("END_DETAILED_MISSES");
-		out.println("END_METHOD");
-		out.println("END_QUERY");
-	}
 }
