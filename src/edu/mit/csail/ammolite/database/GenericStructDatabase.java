@@ -47,9 +47,10 @@ public class GenericStructDatabase implements IStructDatabase {
     }
     
     private void cacheStructs(){
-        if( structs != null){
+        if( this.structs != null){
             return;
         }
+        System.out.println("Caching Representatives...");
         structs = new ArrayList<MolStruct>();
         SDFMultiStructParser structParser = new SDFMultiStructParser( sourceFiles.getFilepaths(), sFactory);
         while( structParser.hasNext()){
@@ -87,7 +88,7 @@ public class GenericStructDatabase implements IStructDatabase {
     public int numMols() {
         if( numMols == -1){
             int num = 0;
-            for(MolStruct rep: this.structs){
+            for(MolStruct rep: this.getStructs()){
                 num += rep.getIDNums().size();
             }
             this.setNumMols(num);
@@ -109,8 +110,8 @@ public class GenericStructDatabase implements IStructDatabase {
         } else {
             sb.append("This database has NOT been organized.\n");
         }
-        sb.append("Number of molecules: "+String.format("%,d", numMols())+"\n");
-        sb.append("Number of representatives: "+String.format("%,d", numReps())+"\n");
+        sb.append(String.format("Number of molecules: %,d\n", numMols()));
+        sb.append(String.format("Number of representatives: %,d\n", numReps()));
         sb.append("Compression Type: "+compression+"\n");
         if(sourceFiles.getFilenames().size() < 50){
             sb.append("Source Files:\n");
@@ -167,6 +168,9 @@ public class GenericStructDatabase implements IStructDatabase {
 
     @Override
     public List<MolStruct> getStructs() {
+        if(structs == null){
+            this.cacheStructs();
+        }
         return structs;
     }
 

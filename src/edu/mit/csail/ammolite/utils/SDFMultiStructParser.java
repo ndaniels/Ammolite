@@ -19,6 +19,7 @@ public class SDFMultiStructParser implements Iterator<MolStruct>{
     
     public SDFMultiStructParser(List<String> filenames, MoleculeStructFactory factory) {
         molIterator = new SDFMultiParser( filenames);
+        this.factory = factory;
     }
 
     @Override
@@ -28,10 +29,7 @@ public class SDFMultiStructParser implements Iterator<MolStruct>{
 
     @Override
     public MolStruct next() {
-        if( hasNext()){
-            return factory.makeMoleculeStruct( molIterator.next());
-        }
-        return null;
+        return factory.makeMoleculeStruct( molIterator.next());
     }
 
 }
