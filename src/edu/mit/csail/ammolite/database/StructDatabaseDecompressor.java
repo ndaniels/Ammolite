@@ -154,9 +154,12 @@ public class StructDatabaseDecompressor {
             }
             Logger.log("Done.",1);
             
+            Logger.log("Building database...",1);
     	    GenericStructDatabase db =  new GenericStructDatabase( name, version, compression, 
     	                                        organized, ids, structFiles, 
     	                                        sourceFiles);
+    	    Logger.log("Done.",1);
+    	    
     	    if( md.containsKey("NUM_MOLS")){
     	        int numMols = (Integer) md.get("NUM_MOLS");
     	        db.setNumMols(numMols);

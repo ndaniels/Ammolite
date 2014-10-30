@@ -29,25 +29,41 @@ public class SDFWrapper implements Serializable{
 	private static final long serialVersionUID = -1027281343854616798L;
 	String filepath;
 	String filename;
-	Map<PubchemID,Long> idsToOffsets = new HashMap<PubchemID, Long>();
+	Map<PubchemID,Long> idsToOffsets = null;
 	
-	public SDFWrapper(String _filepath){
+	public SDFWrapper( String _filepath){
+	    this( _filepath, true);
+	}
+	
+	public SDFWrapper(String _filepath, boolean offsets){
 		filepath = _filepath;
 		String[] splitPath = filepath.split("/");
 		filename = splitPath[splitPath.length - 1];
-		List<IAtomContainer> molecules = SDFUtils.parseSDF(filepath);
-		List<Long> offsets = findOffsets();
-		
-		for(int i=0; i<molecules.size(); i++){
-			IAtomContainer mol = molecules.get(i);
-			long off = offsets.get(i);
-			PubchemID pubID = MolUtils.getPubID(mol);
-			idsToOffsets.put(pubID, off);
+		if(offsets){
+		    getOffsets();
 		}
 
 	}
 	
+	private void getOffsets(){
+	    if(idsToOffsets != null){
+	        return;
+	    }
+	    
+	    idsToOffsets = new HashMap<PubchemID, Long>();
+	    List<IAtomContainer> molecules = SDFUtils.parseSDF(filepath);
+        List<Long> offsets = findOffsets();
+        
+        for(int i=0; i<molecules.size(); i++){
+            IAtomContainer mol = molecules.get(i);
+            long off = offsets.get(i);
+            PubchemID pubID = MolUtils.getPubID(mol);
+            idsToOffsets.put(pubID, off);
+        }
+	}
+	
 	public int numMols(){
+	    getOffsets();
 		return idsToOffsets.size();
 	}
 	
@@ -92,6 +108,7 @@ public class SDFWrapper implements Serializable{
 	}
 	
 	public IAtomContainer getMol(PubchemID pubID){
+	    getOffsets();
 		long off = idsToOffsets.get(pubID);
 		BufferedReader br = getBR();
 		try {
@@ -120,6 +137,7 @@ public class SDFWrapper implements Serializable{
 	}
 	
 	public Set<PubchemID> getIDs(){
+	    getOffsets();
 		return idsToOffsets.keySet();
 	}
 	
