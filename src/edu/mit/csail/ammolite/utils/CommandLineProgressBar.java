@@ -42,12 +42,9 @@ public class CommandLineProgressBar {
 				System.out.print(" ");
 			}
 		}
-		if(percentageDone < 100){
-			System.out.print("]  "+percentageDone+"%");
-		} else {
-			System.out.print("] "+percentageDone+"%");
-			done();
-		}
+		System.out.print("] ");
+		System.out.print(String.format( "%,d / %,d", currentEvent, maxEvents));
+		
 		
 	}
 	

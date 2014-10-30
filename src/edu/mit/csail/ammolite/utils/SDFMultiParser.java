@@ -25,6 +25,7 @@ public class SDFMultiParser implements Iterator<IAtomContainer> {
 	private boolean loadNextIterator(){
 		if( filenames.hasNext()){
 			String nextFile = filenames.next();
+			System.out.println("Loading file "+nextFile);
 			currentIterator = SDFUtils.parseSDFOnline(nextFile);
 			return true;
 		}

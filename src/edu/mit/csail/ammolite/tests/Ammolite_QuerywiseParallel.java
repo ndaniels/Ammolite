@@ -67,7 +67,6 @@ public class Ammolite_QuerywiseParallel implements Tester {
         List<Callable<Integer>> tests = new ArrayList<Callable<Integer>>(COARSE_CHUNK_SIZE);
         List<MolStruct> chunkTargets = new ArrayList<MolStruct>(COARSE_CHUNK_SIZE);
         
-        int startOfChunk = 0;
         while(sTargets.hasNext()){
             
             MolStruct target = sTargets.next();
