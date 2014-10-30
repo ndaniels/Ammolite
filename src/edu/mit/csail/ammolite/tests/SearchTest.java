@@ -52,7 +52,7 @@ public class SearchTest {
 			targets = SDFUtils.parseSDFSetOnline(sdfFiles);
 		} 
 		
-		List<MolStruct> sTargets = db.getStructs();
+		Iterator<MolStruct> sTargets = db.iterator();
 		
 		PrintStream stream = getPrintStream(outName);
 		System.out.println("fine_threshold: "+fine+" coarse_threshold: "+coarse);
@@ -107,7 +107,7 @@ public class SearchTest {
 	}
 	
 	private static void runTest(Tester tester, PrintStream stream, List<IAtomContainer> queries, IStructDatabase db, 
-										Iterator<IAtomContainer> targets, List<MolStruct> sTargets, double thresh, 
+										Iterator<IAtomContainer> targets, Iterator<MolStruct> sTargets, double thresh, 
 										double prob){
 	    
 		String name = tester.getName();

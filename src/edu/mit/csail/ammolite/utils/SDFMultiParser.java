@@ -5,6 +5,12 @@ import java.util.List;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
+/**
+ * Iterates through every molecule in a set of sdf files.
+ * 
+ * @author dcdanko
+ *
+ */
 public class SDFMultiParser implements Iterator<IAtomContainer> {
 	
 	Iterator<String> filenames;
@@ -25,6 +31,7 @@ public class SDFMultiParser implements Iterator<IAtomContainer> {
 		return false;
 	}
 	
+	@Override
 	public boolean hasNext() {
 		if( currentIterator.hasNext()){
 			return true;

@@ -13,6 +13,7 @@ import edu.mit.csail.ammolite.compression.MoleculeStructFactory;
 import edu.mit.csail.ammolite.utils.MolUtils;
 import edu.mit.csail.ammolite.utils.PubchemID;
 import edu.mit.csail.ammolite.utils.SDFMultiParser;
+import edu.mit.csail.ammolite.utils.SDFMultiStructParser;
 import edu.mit.csail.ammolite.utils.StructID;
 
 public class GenericStructDatabase implements IStructDatabase {
@@ -20,8 +21,11 @@ public class GenericStructDatabase implements IStructDatabase {
     String version;
     CompressionType compression;
     MoleculeStructFactory sFactory;
-    List<MolStruct> structs;
+    List<MolStruct> structs = null;
+    Map<StructID, List<PubchemID>> idMap;
     ISDFSet sourceFiles;
+    int numMols = -1;
+    int numReps = -1;
     
     
     
@@ -32,17 +36,7 @@ public class GenericStructDatabase implements IStructDatabase {
         this.version = version;
         this.compression = CompressionType.valueOf(compression);
         this.sFactory = new MoleculeStructFactory(this.compression);
-        
-        structs = new ArrayList<MolStruct>();
-        SDFMultiParser structParser = new SDFMultiParser(structFiles);
-        while( structParser.hasNext()){
-            IAtomContainer rawStruct = structParser.next();
-            MolStruct struct = this.sFactory.makeMoleculeStruct(rawStruct);
-            for(PubchemID pID: idMap.get(MolUtils.getStructID(struct))){
-                struct.addID(pID);
-            }
-            structs.add(struct);
-        }
+        this.idMap = idMap;
         
         if( organized) {
             this.sourceFiles = new OrganizedSDFSet(sourceFiles);
@@ -50,6 +44,21 @@ public class GenericStructDatabase implements IStructDatabase {
             this.sourceFiles = new SDFSet( sourceFiles);
         }
         
+    }
+    
+    private void cacheStructs(){
+        if( structs != null){
+            return;
+        }
+        structs = new ArrayList<MolStruct>();
+        SDFMultiStructParser structParser = new SDFMultiStructParser( sourceFiles.getFilepaths(), sFactory);
+        while( structParser.hasNext()){
+            MolStruct struct = structParser.next();
+            for(PubchemID pID: idMap.get(MolUtils.getStructID(struct))){
+                struct.addID(pID);
+            }
+            structs.add(struct);
+        }
     }
     
 
@@ -65,16 +74,28 @@ public class GenericStructDatabase implements IStructDatabase {
 
     @Override
     public int numReps() {
-        return this.structs.size();
+        if( numReps == -1){
+            int num = this.getStructs().size();
+            this.setNumReps(num);
+            return num;
+        } else {
+            return numReps;
+        }
     }
 
     @Override
     public int numMols() {
-        int numMols = 0;
-        for(MolStruct rep: this.structs){
-            numMols += rep.getIDNums().size();
+        if( numMols == -1){
+            int num = 0;
+            for(MolStruct rep: this.structs){
+                num += rep.getIDNums().size();
+            }
+            this.setNumMols(num);
+            return num;
+        } else {
+            return numMols;
         }
-        return numMols;
+
     }
 
     @Override
@@ -132,7 +153,11 @@ public class GenericStructDatabase implements IStructDatabase {
 
     @Override
     public Iterator<MolStruct> iterator() {
-        return structs.iterator();
+        if( structs != null){
+            return structs.iterator();
+        }
+        SDFMultiStructParser structParser = new SDFMultiStructParser( sourceFiles.getFilepaths(), sFactory);
+        return structParser;
     }
 
     @Override
@@ -173,6 +198,14 @@ public class GenericStructDatabase implements IStructDatabase {
     @Override
     public boolean isOrganized() {
         return (sourceFiles instanceof OrganizedSDFSet);
+    }
+    
+    public void setNumMols(int num){
+        this.numMols = num;
+    }
+    
+    public void setNumReps(int num){
+        this.numReps = num;
     }
 
 }

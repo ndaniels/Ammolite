@@ -29,5 +29,6 @@ public interface IStructDatabase {
 	public List<IAtomContainer> getMatchingMolecules(StructID structID);
 	public String getName();
 	public boolean isOrganized();
+	
 
 }

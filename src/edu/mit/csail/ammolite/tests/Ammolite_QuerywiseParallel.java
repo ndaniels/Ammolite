@@ -33,12 +33,12 @@ public class Ammolite_QuerywiseParallel implements Tester {
     @Override
     public void test(List<IAtomContainer> queries,
             IStructDatabase db, Iterator<IAtomContainer> targets,
-            List<MolStruct> sTargets, double thresh, double prob, String name, PrintStream  out) {
+            Iterator<MolStruct> sTargets, double thresh, double prob, String name, PrintStream  out) {
         SearchResultDocumenter scribe = new SearchResultDocumenter( out);
         
         for(IAtomContainer query: queries){
             MolStruct cQuery = db.makeMoleculeStruct(query);
-            Pair<SearchResult, List<StructID>> p = coarseSearch(cQuery, query, sTargets, prob);
+            Pair<SearchResult, List<StructID>> p = coarseSearch(cQuery, query, sTargets, db.numReps(), prob);
             
             SearchResult coarseResult = p.left();
             List<StructID> coarseHits = p.right();
@@ -56,44 +56,47 @@ public class Ammolite_QuerywiseParallel implements Tester {
         service.shutdown();
     }
     
-    private Pair<SearchResult, List<StructID>> coarseSearch(MolStruct cQuery, IAtomContainer query, List<MolStruct> sTargets,        
+    private Pair<SearchResult, List<StructID>> coarseSearch(MolStruct cQuery, IAtomContainer query, Iterator<MolStruct> sTargets, int numReps,       
                                                             double thresh){
         
-        CommandLineProgressBar bar = new CommandLineProgressBar(MolUtils.getPubID(query).toString() + "_COARSE", sTargets.size());
+        CommandLineProgressBar bar = new CommandLineProgressBar(MolUtils.getPubID(query).toString() + "_COARSE", numReps);
         SearchResult coarseResult = new SearchResult(cQuery, getName() + "_COARSE");
         coarseResult.start();
         List<StructID> hits = new ArrayList<StructID>();
    
         List<Callable<Integer>> tests = new ArrayList<Callable<Integer>>(COARSE_CHUNK_SIZE);
+        List<MolStruct> chunkTargets = new ArrayList<MolStruct>(COARSE_CHUNK_SIZE);
+        
         int startOfChunk = 0;
-        for(int i=0; i<sTargets.size(); i++){
-            MolStruct target = sTargets.get(i);
+        while(sTargets.hasNext()){
+            
+            MolStruct target = sTargets.next();
+            chunkTargets.add(target);
             tests.add(MCS.getCallableSMSDOperation(cQuery, target));
 
             if(tests.size() == COARSE_CHUNK_SIZE){
                 List<Integer> testResults = ParallelUtils.parallelFullExecution(tests, service);
                 for(int j=0; j<tests.size(); j++){
-                    int molInd = startOfChunk + j;
                     int overlap = testResults.get(j);
-                    MolStruct mol = sTargets.get(molInd);
+                    MolStruct mol = chunkTargets.get(j);
                     
                     if(MCSUtils.overlapCoeff(overlap, mol, cQuery) > thresh){
                         coarseResult.addMatch(new SearchMatch(cQuery, mol, overlap));
                         hits.add(MolUtils.getStructID(mol));
                     } else {
-//                        coarseResult.addMiss(new SearchMiss(cQuery, mol, overlap));
+                        coarseResult.addMiss(new SearchMiss(cQuery, mol, overlap));
                     }
                     bar.event();
                 }
-                startOfChunk = i+1;
                 tests.clear();
+                chunkTargets.clear();
             }
         }
+        
         List<Integer> testResults = ParallelUtils.parallelFullExecution(tests, service);
         for(int j=0; j<tests.size(); j++){
-            int molInd = startOfChunk + j;
             int overlap = testResults.get(j);
-            MolStruct mol = sTargets.get(molInd);
+            MolStruct mol = chunkTargets.get(j);
             
             if(MCSUtils.overlapCoeff(overlap, mol, cQuery) > thresh){
                 coarseResult.addMatch(new SearchMatch(cQuery, mol, overlap));
@@ -103,6 +106,9 @@ public class Ammolite_QuerywiseParallel implements Tester {
             }
             bar.event();
         }
+        tests.clear();
+        chunkTargets.clear();
+        
         coarseResult.end();
         return new Pair<SearchResult, List<StructID>>(coarseResult,hits);    
     }

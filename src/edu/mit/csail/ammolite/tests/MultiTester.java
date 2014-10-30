@@ -19,7 +19,7 @@ public abstract class MultiTester implements Tester{
             double coarseThresh, String name);
 
     public void test(List<IAtomContainer> queries, IStructDatabase db, 
-                Iterator<IAtomContainer> targets, List<MolStruct> sTargets,  double fineThresh, 
+                Iterator<IAtomContainer> targets, Iterator<MolStruct> sTargets,  double fineThresh, 
                 double coarseThresh, String name, PrintStream out){
         throw new UnsupportedOperationException();
 //        List<SearchResult> results = new LinkedList<SearchResult>();

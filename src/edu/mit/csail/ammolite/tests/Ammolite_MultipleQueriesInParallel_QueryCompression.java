@@ -30,7 +30,7 @@ public class Ammolite_MultipleQueriesInParallel_QueryCompression implements Test
 
     @Override
     public void test(List<IAtomContainer> queries, IStructDatabase db, 
-                                    Iterator<IAtomContainer> targets, List<MolStruct> sTargets, double thresh, double coarseThresh, String name, PrintStream out) {
+                                    Iterator<IAtomContainer> targets, Iterator<MolStruct> sTargets, double thresh, double coarseThresh, String name, PrintStream out) {
         throw new UnsupportedOperationException();
 //        KeyListMap<MolStruct,IAtomContainer> comQueries = DatabaseCompression.compressMoleculeSet(queries, db.getStructFactory());
 //        bar = new DoubleProgressBar(name, queries.size(), "Coarse", comQueries.keySet().size()*db.getStructs().size());

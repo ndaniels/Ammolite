@@ -147,9 +147,20 @@ public class StructDatabaseDecompressor {
                 }
             }
             
-    	    return new GenericStructDatabase( name, version, compression, 
+    	    GenericStructDatabase db =  new GenericStructDatabase( name, version, compression, 
     	                                        organized, ids, structFiles, 
     	                                        sourceFiles);
+    	    if( md.containsKey("NUM_MOLS")){
+    	        int numMols = (Integer) md.get("NUM_MOLS");
+    	        db.setNumMols(numMols);
+    	    }
+    	    
+    	    if( md.containsKey("NUM_REPS")){
+                int numReps = (Integer) md.get("NUM_REPS");
+                db.setNumReps(numReps);
+            }
+    	    
+    	    return db; 
     	    
 	    } catch (IOException ioe){
 	        
