@@ -38,7 +38,7 @@ public class Ammolite_QuerywiseParallel implements Tester {
         
         for(IAtomContainer query: queries){
             MolStruct cQuery = db.makeMoleculeStruct(query);
-            Pair<SearchResult, List<StructID>> p = coarseSearch(cQuery, query, sTargets, db.numReps(), prob);
+            Pair<SearchResult, List<StructID>> p = coarseSearch(cQuery, query, db.iterator(), db.numReps(), prob);
             
             SearchResult coarseResult = p.left();
             List<StructID> coarseHits = p.right();

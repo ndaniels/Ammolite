@@ -22,6 +22,7 @@ public class GenericStructDatabase implements IStructDatabase {
     CompressionType compression;
     MoleculeStructFactory sFactory;
     List<MolStruct> structs = null;
+    List<String> structFiles;
     Map<StructID, List<PubchemID>> idMap;
     ISDFSet sourceFiles;
     int numMols = -1;
@@ -37,6 +38,7 @@ public class GenericStructDatabase implements IStructDatabase {
         this.compression = CompressionType.valueOf(compression);
         this.sFactory = new MoleculeStructFactory(this.compression);
         this.idMap = idMap;
+        this.structFiles = structFiles;
         
         if( organized) {
             this.sourceFiles = new OrganizedSDFSet(sourceFiles);
@@ -157,7 +159,7 @@ public class GenericStructDatabase implements IStructDatabase {
         if( structs != null){
             return structs.iterator();
         }
-        SDFMultiStructParser structParser = new SDFMultiStructParser( sourceFiles.getFilepaths(), sFactory);
+        SDFMultiStructParser structParser = new SDFMultiStructParser( structFiles, sFactory);
         return structParser;
     }
 
