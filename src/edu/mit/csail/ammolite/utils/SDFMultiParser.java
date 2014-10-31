@@ -1,9 +1,12 @@
 package edu.mit.csail.ammolite.utils;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+
+import edu.mit.csail.ammolite.IteratingSDFReader;
 
 /**
  * Iterates through every molecule in a set of sdf files.
@@ -14,7 +17,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 public class SDFMultiParser implements Iterator<IAtomContainer> {
 	
 	Iterator<String> filenames;
-	Iterator<IAtomContainer> currentIterator;
+	IteratingSDFReader currentIterator;
 
 	public SDFMultiParser(List<String> _filenames){
 		filenames = _filenames.iterator();
@@ -26,7 +29,7 @@ public class SDFMultiParser implements Iterator<IAtomContainer> {
 		if( filenames.hasNext()){
 			String nextFile = filenames.next();
 			System.out.println("Loading file "+nextFile);
-			currentIterator = SDFUtils.parseSDFOnline(nextFile);
+			currentIterator = (IteratingSDFReader) SDFUtils.parseSDFOnline(nextFile);
 			return true;
 		}
 		return false;
@@ -34,12 +37,18 @@ public class SDFMultiParser implements Iterator<IAtomContainer> {
 	
 	@Override
 	public boolean hasNext() {
-		if( currentIterator.hasNext()){
-			return true;
-		} else if( loadNextIterator()){
-			return true;
-		}
-		return false;
+	    try{ 
+    		if( currentIterator.hasNext()){
+    			return true;
+    		} else if( loadNextIterator()){
+    		    currentIterator.close();
+    			return true;
+    		}
+    		currentIterator.close();
+    		return false;
+	    } catch(IOException ignore){}
+	    
+    	return false;
 	}
 
 	@Override
