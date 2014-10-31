@@ -57,22 +57,22 @@ public class SearchResult {
         return duration;
     }
     
-    public void addMatch(IAtomContainer match, int mcsSize){
+    public synchronized void addMatch(IAtomContainer match, int mcsSize){
         matches.add(MolUtils.getUnknownOrID(match));
         matchSizes.add(mcsSize);
     }
     
-    public void addMatch(SearchMatch match){
+    public synchronized void addMatch(SearchMatch match){
         matches.add( MolUtils.getUnknownOrID(match.getTarget()));
         matchSizes.add( match.getOverlap());
     }
     
-    public void addMiss(IAtomContainer miss, int mcsSize){
+    public synchronized void addMiss(IAtomContainer miss, int mcsSize){
         misses.add(MolUtils.getUnknownOrID(miss));
         missSizes.add(mcsSize);
     }
     
-    public void addMiss(SearchMiss miss){
+    public synchronized void addMiss(SearchMiss miss){
         misses.add( MolUtils.getUnknownOrID(miss.getTarget()));
         missSizes.add( miss.getOverlap());
     }

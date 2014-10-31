@@ -11,7 +11,7 @@ public class CommandLineProgressBar {
 		display();
 	}
 	
-	public void event(){
+	public synchronized void event(){
 		currentEvent++;
 		display();
 	}

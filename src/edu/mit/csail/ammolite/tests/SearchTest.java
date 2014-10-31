@@ -64,7 +64,7 @@ public class SearchTest {
 
 		
 		if( testAmm){
-			Tester tester = new Ammolite_QuerywiseParallel();
+			Tester tester = new Ammolite_QuerywiseParallel_2();
 			runTest(tester, stream, queries, db, targets, sTargets, fine, coarse);
 		}
 		if( testAmmSMSD){

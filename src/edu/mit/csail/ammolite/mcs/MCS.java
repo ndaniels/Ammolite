@@ -71,10 +71,11 @@ public class MCS {
 	
 	public static int getSMSDOverlap(IAtomContainer a, IAtomContainer b){
 		SMSD smsd = new SMSD(a,b);
-		smsd.timedCalculate(2000);
+		smsd.calculate();
 		return smsd.size();
 	}
 	
+	@Deprecated
 	public static IAtomContainer getMCS(IAtomContainer a, IAtomContainer b){		
 		SMSD smsd = new SMSD(a,b);
 		smsd.timedCalculate(2000);
@@ -83,7 +84,7 @@ public class MCS {
 	
 	public static int getFMCSOverlap(IAtomContainer a, IAtomContainer b){
 		FMCS fmcs = new FMCS(a,b);
-		fmcs.timedCalculate(2000);
+		fmcs.calculate();
 		return fmcs.size();
 	}
 
