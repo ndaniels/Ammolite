@@ -83,6 +83,9 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
         try {
             producer.join();
             while(queue.size() > 0){
+                if(Math.random() < 0.01){
+                    System.out.println( "\n [Diagnostic] Queue Size:"+queue.size());
+                }
                 Thread.sleep(1000);
             }
             for(Thread t: consumers){
