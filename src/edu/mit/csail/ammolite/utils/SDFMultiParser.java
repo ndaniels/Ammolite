@@ -20,6 +20,7 @@ public class SDFMultiParser implements Iterator<IAtomContainer> {
 	IteratingSDFReader currentIterator;
 
 	public SDFMultiParser(List<String> _filenames){
+	    
 		filenames = _filenames.iterator();
 		loadNextIterator();
 		
@@ -28,7 +29,6 @@ public class SDFMultiParser implements Iterator<IAtomContainer> {
 	private boolean loadNextIterator(){
 		if( filenames.hasNext()){
 			String nextFile = filenames.next();
-			System.out.println("Loading file "+nextFile);
 			currentIterator = (IteratingSDFReader) SDFUtils.parseSDFOnline(nextFile);
 			return true;
 		}
@@ -39,21 +39,23 @@ public class SDFMultiParser implements Iterator<IAtomContainer> {
 	public boolean hasNext() {
 	    try{ 
     		if( currentIterator.hasNext()){
+    		    System.out.println("A");
     			return true;
     		} else if( loadNextIterator()){
+    		    System.out.println("B");
     		    currentIterator.close();
     			return true;
     		}
     		currentIterator.close();
     		return false;
 	    } catch(IOException ignore){}
-	    
+	    System.out.println("C");
     	return false;
 	}
 
 	@Override
 	public IAtomContainer next() {
-		if( hasNext()){
+		if( this.hasNext()){
 			return currentIterator.next();
 		}
 		return null;
@@ -63,6 +65,11 @@ public class SDFMultiParser implements Iterator<IAtomContainer> {
 	public void remove() {
 		throw new UnsupportedOperationException();
 		
+	}
+	
+	@Override
+	public String toString(){
+	    return currentIterator.toString();
 	}
 
 }

@@ -46,8 +46,9 @@ public class SearchTest {
 		
 		IStructDatabase db = StructDatabaseDecompressor.decompress(databaseName, useCaching);
 		List<IAtomContainer> queries = SDFUtils.parseSDF( queryFile);
+		
 		Iterator<IAtomContainer> targets = null;
-		if( testingLinear) {
+		if( testingLinear && false) {
 			List<String> sdfFiles = db.getSourceFiles().getFilenames();
 			targets = SDFUtils.parseSDFSetOnline(sdfFiles);
 		} 
@@ -77,7 +78,7 @@ public class SearchTest {
 			runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse);
 		}
 		if( testSMSD){
-			Tester tester = new SMSD_SingleThread();
+			Tester tester = new SMSD_QuerywiseParallel();
 			runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse);
 		}
 		if( testFMCS){
