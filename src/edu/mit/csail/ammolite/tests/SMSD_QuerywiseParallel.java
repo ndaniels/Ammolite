@@ -21,8 +21,8 @@ import edu.mit.csail.ammolite.utils.SDFUtils;
 
 public class SMSD_QuerywiseParallel implements Tester{
     private static final String NAME = "SMSD_QuerywiseParallel";
-    private static final int QUEUE_SIZE = 20;
-    private static final int NUM_THREADS = 1; //Runtime.getRuntime().availableProcessors();
+    private static final int QUEUE_SIZE = 500;
+    private static final int NUM_THREADS = Runtime.getRuntime().availableProcessors();
         
     public SMSD_QuerywiseParallel() {}
 
