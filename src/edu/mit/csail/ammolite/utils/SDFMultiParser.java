@@ -3,6 +3,7 @@ package edu.mit.csail.ammolite.utils;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
@@ -18,6 +19,7 @@ public class SDFMultiParser implements Iterator<IAtomContainer> {
 	
 	Iterator<String> filenames;
 	IteratingSDFReader currentIterator;
+	String curFile;
 
 	public SDFMultiParser(List<String> _filenames){
 	    
@@ -29,6 +31,7 @@ public class SDFMultiParser implements Iterator<IAtomContainer> {
 	private boolean loadNextIterator(){
 		if( filenames.hasNext()){
 			String nextFile = filenames.next();
+			curFile = nextFile;
 			currentIterator = (IteratingSDFReader) SDFUtils.parseSDFOnline(nextFile);
 			return true;
 		}
@@ -39,24 +42,28 @@ public class SDFMultiParser implements Iterator<IAtomContainer> {
 	public boolean hasNext() {
 	    try{ 
     		if( currentIterator.hasNext()){
-    		    System.out.println("A");
-    			return true;
-    		} else if( loadNextIterator()){
-    		    System.out.println("B");
+    			return currentIterator.hasNext();
+    		} else {
     		    currentIterator.close();
-    			return true;
+    		    boolean isNextIterator = loadNextIterator();
+    		    if( isNextIterator){
+    		        return this.hasNext();
+    		    } else {
+    		        return false;
+    		    }
     		}
-    		currentIterator.close();
-    		return false;
-	    } catch(IOException ignore){}
-	    System.out.println("C");
-    	return false;
+    		
+	    } catch(IOException ignore){
+	        return false;
+	    }
 	}
 
 	@Override
 	public IAtomContainer next() {
 		if( this.hasNext()){
-			return currentIterator.next();
+		    IAtomContainer nextOne;
+		    nextOne = currentIterator.next();
+		    return nextOne;
 		}
 		return null;
 	}

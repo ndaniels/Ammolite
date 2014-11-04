@@ -32,9 +32,7 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
     private static final int NUM_THREADS = Runtime.getRuntime().availableProcessors();
     private static final ExecutorService service = ParallelUtils.buildNewExecutorService();
         
-    public Ammolite_QuerywiseParallel_2() {
-        // TODO Auto-generated constructor stub
-    }
+    public Ammolite_QuerywiseParallel_2() {}
 
     @Override
     public void test(List<IAtomContainer> queries, IStructDatabase db,

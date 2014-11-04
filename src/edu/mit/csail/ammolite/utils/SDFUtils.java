@@ -67,15 +67,12 @@ public class SDFUtils {
 	}
 	
 	public static Iterator<IAtomContainer> parseSDFOnline(String filename){
-	    System.out.println("^^^^^^^^^^^^^^^^^^^");
-        System.out.println(filename);
-        System.out.println("vvvvvvvvvvvvvvvvvvv");
 		IteratingSDFReader molecules = null;
 		try{
 			
-		FileInputStream fs = new FileInputStream(filename);
-		BufferedReader br = new BufferedReader( new InputStreamReader(fs ));
-		molecules =new IteratingSDFReader( br, DefaultChemObjectBuilder.getInstance());
+    		FileInputStream fs = new FileInputStream(filename);
+    		BufferedReader br = new BufferedReader( new InputStreamReader(fs ));
+    		molecules =new IteratingSDFReader( br, DefaultChemObjectBuilder.getInstance());
 		} catch( IOException e){
 			Logger.error("Failed to read file: "+filename);
 			e.printStackTrace();

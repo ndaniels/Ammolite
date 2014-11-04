@@ -17,6 +17,7 @@ import edu.mit.csail.ammolite.utils.CommandLineProgressBar;
 import edu.mit.csail.ammolite.utils.MCSUtils;
 import edu.mit.csail.ammolite.utils.MolUtils;
 import edu.mit.csail.ammolite.utils.SDFMultiParser;
+import edu.mit.csail.ammolite.utils.SDFUtils;
 
 public class SMSD_QuerywiseParallel implements Tester{
     private static final String NAME = "SMSD_QuerywiseParallel";
@@ -31,12 +32,13 @@ public class SMSD_QuerywiseParallel implements Tester{
             double thresh, double prob, String name, PrintStream out) {
         
         SearchResultDocumenter scribe = new SearchResultDocumenter( out);
+        List<String> sdfFiles = db.getSourceFiles().getFilepaths();
 
         for(IAtomContainer query: queries){
           
-            Iterator<IAtomContainer> realTargets = new SDFMultiParser( db.getSourceFiles().getFilepaths());
+            Iterator<IAtomContainer> realTargets = targets = SDFUtils.parseSDFSetOnline(sdfFiles);
             SearchResult result = search(query, realTargets, thresh, db.numMols());
-            System.out.println("Writing results...");
+            System.out.println(" Writing results...");
             scribe.documentSingleResult(result);
             result = null;
         }
@@ -58,11 +60,9 @@ public class SMSD_QuerywiseParallel implements Tester{
         
         List<Thread> consumers = new ArrayList<Thread>(NUM_THREADS);
         for(int i=0; i<NUM_THREADS; i++){
-            System.out.print("\nMaking thread "+i+" of " + NUM_THREADS+"...");
             Thread t = new Thread( new Consumer(query, queue, result, bar, thresh));
             consumers.add(t);
             t.start();
-            System.out.println(" Done.");
         }
         
         try {
@@ -96,7 +96,7 @@ public class SMSD_QuerywiseParallel implements Tester{
     }
     
     
-    private class Producer implements Runnable {
+    private static class Producer implements Runnable {
         BlockingQueue< IAtomContainer> queue;
         Iterator<IAtomContainer> targets;
         
@@ -107,15 +107,16 @@ public class SMSD_QuerywiseParallel implements Tester{
 
         @Override
         public void run() {
+            IAtomContainer target;
             while(targets.hasNext()){
-                System.out.println("Producing");
-                IAtomContainer target = targets.next();
+                target = targets.next();
                 try {
                     queue.offer(target, 1, TimeUnit.MINUTES);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
+            return;
         } 
     }
     
