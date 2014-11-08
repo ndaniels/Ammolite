@@ -214,4 +214,10 @@ public class GenericStructDatabase implements IStructDatabase {
         this.numReps = num;
     }
 
+    @Override
+    public double guessCoarseThreshold(double fineThreshold) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
 }

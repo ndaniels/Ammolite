@@ -19,6 +19,7 @@ public interface IStructDatabase {
 	public String info();
 	public String asTable();
 	public double convertThreshold(double threshold, double probability, boolean useTanimoto);
+	public double guessCoarseThreshold(double fineThreshold);
 	public MolStruct makeMoleculeStruct(IAtomContainer mol);
 	public Iterator<MolStruct> iterator();
 	public MoleculeStructFactory getStructFactory();

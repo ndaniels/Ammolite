@@ -1,31 +1,31 @@
 package edu.mit.csail.ammolite.compression;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.io.SDFWriter;
 
 import edu.mit.csail.ammolite.KeyListMap;
 import edu.mit.csail.ammolite.database.CompressionType;
-import edu.mit.csail.ammolite.database.IDatabaseCoreData;
-import edu.mit.csail.ammolite.database.SDFSet;
-import edu.mit.csail.ammolite.database.StructDatabaseCompressor;
-import edu.mit.csail.ammolite.database.StructDatabaseCoreData;
 import edu.mit.csail.ammolite.utils.CommandLineProgressBar;
 import edu.mit.csail.ammolite.utils.FileUtils;
-import edu.mit.csail.ammolite.utils.Logger;
 import edu.mit.csail.ammolite.utils.MolUtils;
 import edu.mit.csail.ammolite.utils.ParallelUtils;
+import edu.mit.csail.ammolite.utils.PubchemID;
 import edu.mit.csail.ammolite.utils.SDFUtils;
+import edu.mit.csail.ammolite.utils.StructID;
 import edu.ucla.sspace.graph.isomorphism.VF2IsomorphismTester;
 
 /*
@@ -35,15 +35,17 @@ import edu.ucla.sspace.graph.isomorphism.VF2IsomorphismTester;
 
 public class StructCompressor {
 	private KeyListMap<Integer, MolStruct> structsByFingerprint = new KeyListMap<Integer,MolStruct>(1000);
-	private SDFSet sdfFiles;
 	private MoleculeStructFactory structFactory;
-	private int molecules = 0;
-	private int structures = 0;
-	private AtomicInteger fruitless_comparisons = new AtomicInteger(0);
-	private int total_comparisons = 0;
-	private long runningTime, startTime;
+	private int numMols = 0;
+	private int numReps = 0;
+
 	private ExecutorService exService;
 	CommandLineProgressBar progressBar;
+	
+	String dbName;
+	String dbFolder;
+	String structFolder;
+	String sourceFolder;
 
 	public StructCompressor(CompressionType compType){
 		structFactory = new MoleculeStructFactory( compType);
@@ -65,15 +67,16 @@ public class StructCompressor {
 	 * @throws InterruptedException 
 	 */
 	public void  compress(List<String> filenames, String filename, int numThreads) throws IOException, CDKException, InterruptedException, ExecutionException{
-		startTime =System.currentTimeMillis();
 		int numMols = 0;
 		for(String name: filenames){
 		    numMols += SDFUtils.estimateNumMolsInSDF(name);
 		}
 		System.out.println("Compressing approximatley "+String.format("%,d", numMols)+" molecules.");
-	    progressBar = new CommandLineProgressBar("Matching Structures", numMols);
-		List<String> absoluteFilenames = new ArrayList<String>();
-		List<File> files = FileUtils.openFiles(filenames);
+		
+		String[] splitFile = filename.split(File.separator);
+		this.dbName = splitFile[ splitFile.length - 1];
+		this.makeDBFolders(filename);
+		
 		if( numThreads > 0){
 		    exService = ParallelUtils.buildNewExecutorService(numThreads);
 		} else {
@@ -81,17 +84,19 @@ public class StructCompressor {
 		    exService = ParallelUtils.buildNewExecutorService(defaultThreads);
 		}
 		
+        progressBar = new CommandLineProgressBar("Matching Structures", numMols);
+        List<String> absoluteFilenames = new ArrayList<String>();
+        List<File> files = FileUtils.openFiles(filenames);
 		for(File f: files){
 			absoluteFilenames.add(f.getPath());
 			Iterator<IAtomContainer> molecule_database = SDFUtils.parseSDFOnline(f.getAbsolutePath());
 			checkDatabaseForIsomorphicStructs( molecule_database, structFactory);	
 		}
-		System.out.print("Collating sdf files... ");
-		sdfFiles = new SDFSet(absoluteFilenames);
-		System.out.println("Done.");
-		System.out.print("Serializing database... ");
+
+		System.out.print("Writing database... ");
 		produceClusteredDatabase( filename );
         System.out.println("Done.");
+        
         System.out.print("Shutting down threads... ");
 		exService.shutdown();
 		System.out.println("Done.");
@@ -115,35 +120,28 @@ public class StructCompressor {
         	
         	IAtomContainer molecule =  molecule_database.next();       	
         	MolStruct structure = structFactory.makeMoleculeStruct(molecule);
-        	molecules++;
+        	numMols++;
         	
         	if( structsByFingerprint.containsKey( structure.fingerprint())){
         		List<MolStruct> potentialMatches = structsByFingerprint.get( structure.fingerprint() );
-        		boolean match = parrallelIsomorphism( structure, potentialMatches);
-        		if( !match ){
-        			structures++;
+        		StructID matchID = parrallelIsomorphism( structure, potentialMatches);
+        		if( matchID == null ){
+        			numReps++;
         			structsByFingerprint.add(structure.fingerprint(), structure);
-        		} 
+        			this.putMolInSourceFile(MolUtils.getStructID(structure), molecule);
+        		} else {
+        		    this.putMolInSourceFile(matchID, molecule);
+        		}
         	}
         	else{
-        		structures++;
+        		numReps++;
         		structsByFingerprint.add(structure.fingerprint(), structure);
+        		this.putMolInSourceFile(MolUtils.getStructID(structure), molecule);
         	}
         	progressBar.event();
         }
 	}
 	
-	private boolean linearIsomorphism(MolStruct structure, List<MolStruct> potentialMatches){
-	    VF2IsomorphismTester isoTester = new VF2IsomorphismTester();
-	    for(MolStruct candidate: potentialMatches){
-	        boolean iso = candidate.isIsomorphic(structure, isoTester);
-	        if(iso){
-	            candidate.addID( MolUtils.getPubID(structure));
-                return iso;
-	        }
-	    }
-	    return false;
-	}
 	
 	/**
 	 * Checks whether a given structure is isomorphic to any structure in a list.
@@ -153,40 +151,67 @@ public class StructCompressor {
 	 * 
 	 * @param structure
 	 * @param potentialMatches
-	 * @return true if a match was found
+	 * @return The ID of the matching structure or null if no structure matched. 
 	 * @throws InterruptedException
 	 * @throws ExecutionException
 	 */
-	private boolean parrallelIsomorphism(MolStruct structure, List<MolStruct> potentialMatches) throws InterruptedException, ExecutionException{
+	private StructID parrallelIsomorphism(MolStruct structure, List<MolStruct> potentialMatches) throws InterruptedException, ExecutionException{
 
-	    List<Callable<Boolean>> callList = new ArrayList<Callable<Boolean>>(potentialMatches.size());
+	    List<Callable<MolStruct>> callList = new ArrayList<Callable<MolStruct>>(potentialMatches.size());
 	    final MolStruct fStruct = structure;
 	    for (final MolStruct candidate: potentialMatches) {
 	    	
-	        Callable<Boolean> callable = new Callable<Boolean>() {
+	        Callable<MolStruct> callable = new Callable<MolStruct>() {
 	        	
-	            public Boolean call() throws Exception {
+	            public MolStruct call() throws Exception {
 	            	VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
 	            	boolean iso = candidate.isIsomorphic(fStruct, iso_tester);
 	            	if( iso ){
 	            		candidate.addID( MolUtils.getPubID(fStruct));
-	            		return iso;
-	            	} else {
-	            		fruitless_comparisons.incrementAndGet();
-	            	}
+	            		return candidate;
+	            	} 
 	                return null;
 	            }
 	        };
 	        callList.add(callable);
 
 	    }
-	    Boolean success = ParallelUtils.parallelTimedSingleExecution( callList, 60*1000, exService);
-	    if(success == null){
-	    	return false;
+	    MolStruct match = ParallelUtils.parallelTimedSingleExecution( callList, 60*1000, exService);
+	    if(match == null){
+	    	return null;
 	    } else {
-	    	return true;
+	    	return MolUtils.getStructID( match);
 	    }
 
+	}
+	
+	private void makeDBFolders(String filename){
+	    this.dbFolder = filename+ ".gad";
+        File dir = new File(dbFolder);
+        dir.mkdir();
+        this.structFolder = dbFolder + File.separator + "struct_files";
+        File structdir = new File(structFolder);
+        structdir.mkdir();
+        this.sourceFolder = dbFolder + File.separator + "source_files";
+        File sourcedir = new File(sourceFolder);
+        sourcedir.mkdir();
+	}
+	
+	
+	private void putMolInSourceFile(StructID id, IAtomContainer mol){
+	    String filename = sourceFolder + File.separator + id.toString() +".sdf";
+	    try {
+            FileWriter fw = new FileWriter(filename, true);
+            SDFWriter writer = new SDFWriter(fw);
+            writer.write(mol);
+            writer.close();
+            fw.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } catch (CDKException ce) {
+            ce.printStackTrace();
+        }
+	    
 	}
 	
 		
@@ -199,10 +224,152 @@ public class StructCompressor {
 	 * @throws IOException
 	 */
 	private void produceClusteredDatabase( String name ){
-		IDatabaseCoreData database = new StructDatabaseCoreData( structsByFingerprint, sdfFiles, structFactory.getCompressionType(), name);
-		StructDatabaseCompressor.compress(name, database);
-		StructDatabaseCompressor.compressGeneric(name, database);
+	    
+	    String structTable = writeStructIDFile(structsByFingerprint.valueIterator());
+        writeStructSDF( structsByFingerprint.valueIterator());
+        writeMetadataFile("AMMOLITE_GENERIC_DATABASE_0_0_0", structTable);
+        
 	}
+	
+   private  String writeStructIDFile(Iterator<MolStruct> structs){
+        String structName = "structids.yml";
+        String structPath = dbFolder + File.separator + structName;
+        BufferedWriter writer;
+        try{
+            FileWriter fw = new FileWriter(structPath);
+            writer = new BufferedWriter(fw);
+            while( structs.hasNext()){
+                MolStruct struct = structs.next();
+                writer.write( MolUtils.getStructID(struct).toString());
+                writer.write(" : [");
+                for(PubchemID pId: struct.getIDNums() ){
+             
+                    writer.write( pId.toString());
+                    writer.write(", ");
+                }
+                writer.write("]");
+                writer.newLine();
+            }
+            writer.close();
+        } catch(IOException ioe){
+            ioe.printStackTrace();
+        }
+        return structName;
+    }
+	
+   private  List<String> writeStructSDF(Iterator<MolStruct> structs){
+        int CHUNK_SIZE = 25*1000;
+        int fileNum = -1;
+        int structsInFile = 0;
+
+        String structBaseName = "struct_%d.sdf";
+        OutputStream stream = null;
+        SDFWriter writer = null;
+        List<String> allFiles = new ArrayList<String>();
+        
+        while( structs.hasNext()){
+            if(structsInFile == CHUNK_SIZE || fileNum == -1){
+                fileNum++;
+                structsInFile = 0;
+                try{
+                    try{
+                        writer.close();
+                        stream.close();
+                    } catch( NullPointerException npe) {}
+                    
+                    String structName = String.format(structBaseName, fileNum);
+                    String structPath = structFolder + File.separator + structName;
+                    allFiles.add(structName);
+                    stream = new PrintStream(structPath);
+                    writer = new SDFWriter( stream);
+                } catch( IOException ioe){
+                    ioe.printStackTrace();
+                } 
+                
+            }
+            
+            MolStruct struct = structs.next();
+            struct.setProperty("AMMOLITE_STRUCTURE_ID", MolUtils.getUnknownOrID(struct));
+            try {
+                writer.write(struct);
+                structsInFile++;
+            } catch (CDKException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            writer.close();
+            stream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return allFiles;
+    }
+   
+   
+   private void writeMetadataFile(String version, String structTable){
+
+        String metaPath = dbFolder + File.separator +  "metadata.yml";
+        BufferedWriter writer;
+        try{
+            FileWriter fw = new FileWriter(metaPath);
+            writer = new BufferedWriter(fw);
+        
+            writer.write("NAME: ");
+            writer.write(dbName);
+            writer.newLine();
+        
+            writer.write("VERSION: ");
+            writer.write(version);
+            writer.newLine();
+        
+            writer.write("COMPRESSION_TYPE: ");
+            if( this.structFactory.getCompressionType() == CompressionType.CYCLIC){
+                writer.write("CYCLIC");
+            } else if (this.structFactory.getCompressionType() == CompressionType.BASIC){
+                writer.write("BASIC");
+            } else {
+                writer.write("OTHER");
+            }
+            writer.newLine();
+        
+            writer.write("ORGANIZED: ");
+            writer.write("TRUE");
+            writer.newLine();
+            
+            writer.write("NUM_MOLS: ");
+            writer.write(this.numMols);
+            writer.newLine();
+            
+            writer.write("NUM_REPS: ");
+            writer.write(this.numReps);
+            writer.newLine();
+        
+            writer.write("STRUCT_ID_TABLE: ");
+            writer.write(structTable);
+            writer.newLine();
+            
+            writer.write("STRUCTURE_FILES:");
+            writer.newLine();
+            writer.write("  - ");
+            writer.write("./struct_files/*");
+            writer.newLine();
+            
+            
+            writer.write("SOURCE_FILES: ");
+            writer.newLine();
+            writer.write("  - ");
+            writer.write("./source_files/*");
+            writer.newLine();
+            
+            writer.close();
+            
+        } catch(IOException ioe){
+        ioe.printStackTrace();
+        }
+    }
+   
+   
 	
 	
 	

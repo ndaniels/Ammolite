@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class SDFUtils {
     /**
      * Estimates the number of molecules in an sdf file using size. Intentionally gives a slightly high estimate.
      * @param filename
-     * @return
+     * @return 
      */
     public static int estimateNumMolsInSDF(String filename){
         File f = new File(filename);
@@ -80,7 +81,7 @@ public class SDFUtils {
 		return molecules;
 	}
 	
-	public static void writeToSDF(List<? extends IAtomContainer> molecules, String filename){
+	public static void writeToSDF(Collection<? extends IAtomContainer> molecules, String filename){
 		try {
 			OutputStream stream = new PrintStream(filename);
 			SDFWriter writer = new SDFWriter( stream);

@@ -68,25 +68,13 @@ public class SearchTest {
 			Tester tester = new Ammolite_QuerywiseParallel_2();
 			runTest(tester, stream, queries, db, targets, sTargets, fine, coarse);
 		}
-		if( testAmmSMSD){
-			Tester tester = new Ammolite_SingleThread_SMSD();
-			runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse);
-		}
-
-		if( testAmmPar){
-			Tester tester = new Ammolite_MultipleQueriesInParallel_QueryCompression();
-			runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse);
-		}
 		if( testSMSD){
 			Tester tester = new SMSD_QuerywiseParallel();
 			runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse);
 		}
-		if( testFMCS){
-			Tester tester = new FMCS_SingleThread();
-			runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse);
-		}
+
 		if( testAmmCompressedQuery){
-			Tester tester = new Ammolite_QuerywiseParallel_QueryCompression();
+			Tester tester = new Ammolite_QuerywiseParallel_QueryCompression_2();
 			runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse);
 		}
 
