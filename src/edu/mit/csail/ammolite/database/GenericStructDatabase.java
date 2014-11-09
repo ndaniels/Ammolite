@@ -14,6 +14,7 @@ import edu.mit.csail.ammolite.utils.MolUtils;
 import edu.mit.csail.ammolite.utils.PubchemID;
 import edu.mit.csail.ammolite.utils.SDFMultiParser;
 import edu.mit.csail.ammolite.utils.SDFMultiStructParser;
+import edu.mit.csail.ammolite.utils.SDFUtils;
 import edu.mit.csail.ammolite.utils.StructID;
 
 public class GenericStructDatabase implements IStructDatabase {
@@ -52,16 +53,23 @@ public class GenericStructDatabase implements IStructDatabase {
         if( this.structs != null){
             return;
         }
-        System.out.println("Caching Representatives...");
+        System.out.print("Caching Representatives... ");
         structs = new ArrayList<MolStruct>();
         SDFMultiStructParser structParser = new SDFMultiStructParser( sourceFiles.getFilepaths(), sFactory);
+
         while( structParser.hasNext()){
             MolStruct struct = structParser.next();
-            for(PubchemID pID: idMap.get(MolUtils.getStructID(struct))){
+
+            StructID key = MolUtils.getStructID(struct);
+
+            List<PubchemID> pIDs = idMap.get(key);
+
+            for(PubchemID pID: pIDs){
                 struct.addID(pID);
             }
             structs.add(struct);
         }
+        System.out.println("Done.");
     }
     
 
@@ -78,7 +86,10 @@ public class GenericStructDatabase implements IStructDatabase {
     @Override
     public int numReps() {
         if( numReps == -1){
-            int num = this.getStructs().size();
+            int num = 0;
+            for(String filename: this.structFiles){
+                num = SDFUtils.countNumMolsInSDF(filename);
+            }
             this.setNumReps(num);
             return num;
         } else {
