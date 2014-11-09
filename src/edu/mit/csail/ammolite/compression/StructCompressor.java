@@ -92,6 +92,8 @@ public class StructCompressor {
 			Iterator<IAtomContainer> molecule_database = SDFUtils.parseSDFOnline(f.getAbsolutePath());
 			checkDatabaseForIsomorphicStructs( molecule_database, structFactory);	
 		}
+		
+		progressBar.done();
 
 		System.out.print("Writing database... ");
 		produceClusteredDatabase( filename );
@@ -100,6 +102,9 @@ public class StructCompressor {
         System.out.print("Shutting down threads... ");
 		exService.shutdown();
 		System.out.println("Done.");
+		
+		System.out.println("Total number of molecules: " +numMols);
+		System.out.println("Total number of representatives: " +numReps);
 	}
 
 	
@@ -338,11 +343,11 @@ public class StructCompressor {
             writer.newLine();
             
             writer.write("NUM_MOLS: ");
-            writer.write(this.numMols);
+            writer.write(String.format("%d", this.numMols));
             writer.newLine();
             
             writer.write("NUM_REPS: ");
-            writer.write(this.numReps);
+            writer.write(String.format("%d", this.numReps));
             writer.newLine();
         
             writer.write("STRUCT_ID_TABLE: ");
