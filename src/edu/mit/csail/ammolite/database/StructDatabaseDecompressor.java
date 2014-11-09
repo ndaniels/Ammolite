@@ -161,12 +161,12 @@ public class StructDatabaseDecompressor {
     	    Logger.log("Done.",1);
     	    
     	    if( md.containsKey("NUM_MOLS")){
-    	        int numMols = (Integer) md.get("NUM_MOLS");
+    	        int numMols = Integer.parseInt((String) md.get("NUM_MOLS"));
     	        db.setNumMols(numMols);
     	    }
     	    
     	    if( md.containsKey("NUM_REPS")){
-                int numReps = (Integer) md.get("NUM_REPS");
+                int numReps = Integer.parseInt((String) md.get("NUM_REPS"));
                 db.setNumReps(numReps);
             }
     	    
