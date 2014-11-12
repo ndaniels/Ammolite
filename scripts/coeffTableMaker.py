@@ -175,10 +175,10 @@ def structOverlapTable(ammCoarse):
 
 	result = ammCoarse
 	for (idStr, matchSize) in result.detailedMatches.items():
-		hits[idStr] = matchSize
+		hits[idStr.strip()] = matchSize
 
 	for (idStr, matchSize) in result.detailedMisses.items():
-		hits[idStr] = matchSize
+		hits[idStr.strip()] = matchSize
 
 	return hits
 
