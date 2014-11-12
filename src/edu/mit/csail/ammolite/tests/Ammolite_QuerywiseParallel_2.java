@@ -157,7 +157,10 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
              while(targets.hasNext()){
                 target = targets.next();
                 try {
-                    queue.offer(target, 1, TimeUnit.MINUTES);
+                    boolean success = queue.offer(target, 1, TimeUnit.MINUTES);
+                    if(!success){
+                        System.out.println("Failed to load molecule onto queue");
+                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } 
@@ -224,6 +227,8 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
                             result.addMiss(new SearchMiss(query, target, overlap));
                         }
                         bar.event();
+                    } else {
+                        System.out.println("Unable to find molecule");
                     }
                 } catch (InterruptedException end) {
                     break;
