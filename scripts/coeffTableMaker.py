@@ -300,7 +300,8 @@ def printValTable( table):
 
 
 def overlapCoeff( overlap, a, b):
-	
+	if a < 1 || b < 1:
+		return 1.0
 	if a < b:
 		return (1.0*overlap) / a 
 	return (1.0*overlap) / b
