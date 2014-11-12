@@ -258,10 +258,13 @@ def main(args):
 
 		assert len(ammQueries) == len(smsdQueries)
 
+
+
 		for i in range( len(smsdQueries)):
 
 			sQuery = smsdQueries[i]
 			aQuery = ammQueries[i]
+			print( "{} {}".format(sQuery, aQuery))
 			relSMSDMethodResults = allSMSDSearchResults[i].methods.values()[0]
 			print(allSMSDSearchResults[i].query)
 			relAmmMethodResults = coarseAmmSearchResults[i].methods.values()[0]
