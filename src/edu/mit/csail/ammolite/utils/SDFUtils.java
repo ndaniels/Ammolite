@@ -103,4 +103,22 @@ public class SDFUtils {
 	public static Iterator<IAtomContainer> parseSDFSetOnline(List<String> filenames){
 		return new SDFMultiParser(filenames);
 	}
+	
+	public static void printOutSizeTable(List<String> filenames, boolean struct){
+	    Iterator<IAtomContainer> mols = parseSDFSetOnline(filenames);
+	    
+	    while( mols.hasNext()){
+	        IAtomContainer mol = mols.next();
+	        ID id = null;
+	        if( struct){
+	            id = MolUtils.getStructID(mol);
+	        } else {
+	            id = MolUtils.getPubID(mol);
+	        }
+	        
+	        System.out.print(id.toString());
+	        System.out.print(":");
+	        System.out.println(MolUtils.getAtomCountNoHydrogen(mol));
+	    }
+	}
 }

@@ -1,6 +1,7 @@
 package edu.mit.csail.ammolite.utils;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import edu.mit.csail.ammolite.compression.MolStruct;
 
@@ -27,5 +28,9 @@ public class MolUtils {
         }
         return out;
 	}
+	
+	public static int getAtomCountNoHydrogen(IAtomContainer mol){
+        return AtomContainerManipulator.removeHydrogens(mol).getAtomCount();
+    }
 
 }

@@ -72,6 +72,11 @@ public class SearchTest {
 			Tester tester = new SMSD_QuerywiseParallel();
 			runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse);
 		}
+		
+		if( testFMCS){
+            Tester tester = new Ammolite_QuerywiseParallel_Psychic();
+            runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse);
+        }
 
 		if( testAmmCompressedQuery){
 			Tester tester = new Ammolite_QuerywiseParallel_QueryCompression_2();

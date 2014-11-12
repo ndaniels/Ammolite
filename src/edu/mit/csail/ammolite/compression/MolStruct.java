@@ -49,6 +49,8 @@ public class MolStruct extends AtomContainer implements Serializable, IAtomConta
 	}
 	
 	
+	
+	
 	public MolStruct( IAtomContainer base )
 	{	
 		super( new AtomContainer(AtomContainerManipulator.removeHydrogens(base)) );

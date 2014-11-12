@@ -3,6 +3,7 @@ package edu.mit.csail.ammolite
 
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory
 import edu.mit.csail.ammolite.compression.StructCompressor
+import edu.mit.csail.ammolite.compression.Compressor_2
 import edu.mit.csail.ammolite.database.StructDatabaseCompressor
 import org.rogach.scallop._
 import edu.mit.csail.ammolite.utils.Logger
@@ -13,6 +14,7 @@ import edu.mit.csail.ammolite.database.SDFWrapper
 import edu.mit.csail.ammolite.compression.DatabaseCompression
 import collection.mutable.Buffer
 import collection.Seq
+import edu.mit.csail.ammolite.utils.SDFUtils
 
 
 object AmmoliteMain{
@@ -33,6 +35,7 @@ object AmmoliteMain{
 			  val source = opt[List[String]]("source", required=true, descr="File or folder to compress")
 			  val target = opt[String]("target", required=true, descr="Name of the new compressed database")
 			  val simple = opt[Boolean]("simple", descr="Use simple structures instead of cyclic structures")
+			  val iterated = opt[Boolean]("iterated", descr="Dev")
 			  val threads = opt[Int]("threads", default=Some(-1), descr="Number of threads to use for compression")
 			}
 			val merge = new Subcommand("merge-databases"){
@@ -129,6 +132,12 @@ object AmmoliteMain{
 			  // val database = opt[String]("database", required=true, descr="Path to the database.")
 			  val table = opt[Boolean]("table", default=Some(false))
 			} 
+
+			val sizeTable = new Subcommand("size-table"){
+			  val files = trailArg[List[String]]()
+			  // val database = opt[String]("database", required=true, descr="Path to the database.")
+			  val structs = opt[Boolean]("structs", default=Some(false))
+			}
 			val aggexamine = new Subcommand("aggexamine"){
 			  val database = opt[String]("database", required=true, descr="Path to the database.") 
 			} 
@@ -153,14 +162,20 @@ object AmmoliteMain{
 		Logger.setVerbosity( opts.verbosity())
 		
 		if( opts.subcommand == Some(opts.compress)){
-		  var compType = CompressionType.CYCLIC
-		  if( opts.compress.simple()){
-		    compType = CompressionType.BASIC 
-		  } 
-			  
-		  val compressor = new StructCompressor( compType )
-		  java.util.Arrays.asList(opts.compress.source().toArray: _*)
-		  compressor.compress(java.util.Arrays.asList(opts.compress.source().toArray: _*), opts.compress.target(), opts.compress.threads())
+			if( opts.compress.iterated()){
+				val compressor = new Compressor_2()
+		  		java.util.Arrays.asList(opts.compress.source().toArray: _*)
+		  		compressor.compress(java.util.Arrays.asList(opts.compress.source().toArray: _*), opts.compress.target(), opts.compress.threads())
+			} else {
+				  var compType = CompressionType.CYCLIC
+				  if( opts.compress.simple()){
+				    compType = CompressionType.BASIC 
+				  } 
+					  
+				  val compressor = new StructCompressor( compType )
+				  java.util.Arrays.asList(opts.compress.source().toArray: _*)
+				  compressor.compress(java.util.Arrays.asList(opts.compress.source().toArray: _*), opts.compress.target(), opts.compress.threads())
+			}
 		  
 		} else if( opts.subcommand == Some(opts.merge)){
 		  edu.mit.csail.ammolite.compression.DatabaseCompression.mergeDatabases(opts.merge.d1(), opts.merge.d2(), opts.merge.target())
@@ -216,6 +231,8 @@ object AmmoliteMain{
 			DatabaseCompression.resetDatabaseSource(opts.resetSource.db(), opts.resetSource.sdfs(), opts.resetSource.isOrganized())
 		} else if( opts.subcommand == Some( opts.generic)){
 			StructDatabaseCompressor.makeGeneric(opts.generic.db())
+		} else if(opts.subcommand == Some( opts.sizeTable)) {
+			SDFUtils.printOutSizeTable(java.util.Arrays.asList(opts.sizeTable.files().toArray: _*), opts.sizeTable.structs())
 		}
 	}
 
