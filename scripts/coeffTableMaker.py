@@ -194,9 +194,10 @@ def structIdsWithCoarseOverlapNumMols(structQueryId, structOverlapTable, structS
 			coeff = overlapCoeff( overlap, structQuerySize, structTargetSize)
 			matches.append((structId, numHits, coeff))
 		else:
-			for (key,val) in structOverlapTable.items():
-				print("{} : {}".format(key,val))
-			assert False
+			# for (key,val) in structOverlapTable.items():
+			# 	print("{} : {}".format(key,val))
+			# assert False
+			pass # silent fail
 		
 	sortedMatches = sorted(matches, key=lambda match: match[2])
 	return sortedMatches
