@@ -161,12 +161,32 @@ public class StructDatabaseDecompressor {
     	    Logger.log("Done.",1);
     	    
     	    if( md.containsKey("NUM_MOLS")){
-    	        int numMols = Integer.parseInt((String) md.get("NUM_MOLS"));
+    	        
+    	        Object rawNumMols = md.get("NUM_MOLS");
+    	        
+    	        int numMols = -1;
+    	        if( rawNumMols instanceof Integer){
+    	            
+    	            numMols = (Integer) rawNumMols;
+    	        } else if( rawNumMols instanceof String){
+    	            
+    	            numMols = Integer.parseInt((String) rawNumMols );
+    	        }
     	        db.setNumMols(numMols);
     	    }
     	    
     	    if( md.containsKey("NUM_REPS")){
-                int numReps = Integer.parseInt((String) md.get("NUM_REPS"));
+    	        
+    	        Object rawNumReps = md.get("NUM_REPS");
+    	        
+                int numReps = -1;
+                if( rawNumReps instanceof Integer){
+                    
+                    numReps = (Integer) rawNumReps;
+                } else if( rawNumReps instanceof String){
+                    
+                    numReps = Integer.parseInt((String) rawNumReps);
+                }
                 db.setNumReps(numReps);
             }
     	    

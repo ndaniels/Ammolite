@@ -35,10 +35,9 @@ def parseSearchTestResults( searchTestResults):
 					if( l[0] == "fine_threshold:"):
 						fineThresh = l[1]
 						coarseThresh = l[3]
-						print("~"*70)
-						print("Fine threshold: {0} Coarse threshold; {1}".format(fineThresh, coarseThresh))
+						
 					elif( l[0] == "WALL_CLOCK"):
-						print(line)
+						pass
 
 					elif(l[0] == "START_QUERY"):
 						inQuery = True
@@ -69,7 +68,7 @@ def parseSearchTestResults( searchTestResults):
 								inDetMatches = False
 							else:
 								idStr = l[0]
-								matchSize = l[1]
+								matchSize = int(l[1])
 								methodResult.detailedMatches[idStr] = matchSize
 
 						elif(inDetMisses):
@@ -77,7 +76,7 @@ def parseSearchTestResults( searchTestResults):
 								inDetMisses = False
 							else:
 								idStr = l[0]
-								matchSize = l[1]
+								matchSize = int(l[1])
 								methodResult.detailedMisses[idStr] = matchSize
 
 
@@ -106,13 +105,14 @@ def parseIDTable(tableName):
 			t = line.split(":")
 			structId = t[0]
 			pubIds = t[1]
-			pubIds.trim()
+			pubIds = pubIds.strip()
 			pubIds = pubIds[1:-1]
+			pubIds = pubIds.strip()
 			pubIds = pubIds.split(",")
-			pubIds = [anId.trim() for anId in pubIds]
+			pubIds = [anId.strip() for anId in pubIds if len(anId) > 0]
+
 
 			table[structId] = pubIds
-
 	return table
 
 def flipTable( table):
@@ -126,28 +126,29 @@ def parseSizeTable( tableName):
 	table = {}
 	with open(tableName) as t:
 		for line in t:
-			l = line.trim().split(":")
-			idStr = l[0].trim()
+			l = line.strip().split(":")
+			idStr = str(l[0].strip())
 			size = int( l[1])
 			table[idStr] = size
 	return table
 
-def hitsOverThresh(queryId, smsd, sizeTable, thresh):
+def hitsOverThresh(queryId, smsd, sizeTable, threshold):
 	hits = []
 	querySize = sizeTable[queryId]
-	for result in smsd:
-		resultSize = sizeTable[resultSize]
-		for (idStr, matchSize) in result.detailedMatches:
-			coeff = overlapCoeff(matchSize, resultSize, querySize)
+	result = smsd
 
-			if coeff >= threshold:
-				hits.append( (idStr, overlapCoeff))
+	for (idStr, matchSize) in result.detailedMatches.items():
 
-		for (idStr, matchSize) in result.detailedMisses:
-			coeff = overlapCoeff(matchSize, resultSize, querySize)
+		coeff = overlapCoeff(matchSize, sizeTable[idStr], querySize)
 
-			if coeff >= threshold:
-				hits.append( (idStr, overlapCoeff))
+		if coeff >= threshold:
+			hits.append( (idStr, coeff))
+
+	for (idStr, matchSize) in result.detailedMisses.items():
+		coeff = overlapCoeff(matchSize, sizeTable[idStr], querySize)
+
+		if coeff >= threshold:
+			hits.append( (idStr, coeff))
 
 	return hits
 
@@ -172,12 +173,12 @@ def structIdsOfHits( hits, idTable):
 def structOverlapTable(ammCoarse):
 	hits = {}
 
-	for result in ammCoarse:
-		for (idStr, matchSize) in result.detailedMatches:
-			hits[idStr] = matchSize
+	result = ammCoarse
+	for (idStr, matchSize) in result.detailedMatches.items():
+		hits[idStr] = matchSize
 
-		for (idStr, matchSize) in result.detailedMisses:
-			hits[idStr] = matchSize
+	for (idStr, matchSize) in result.detailedMisses.items():
+		hits[idStr] = matchSize
 
 	return hits
 
@@ -185,8 +186,8 @@ def structIdsWithCoarseOverlapNumMols(structQueryId, structOverlapTable, structS
 	matches = []
 	structQuerySize = structSizeTable[structQueryId]
 	for (structId, numHits) in structIds.items():
-		structTargetSize = structSizeTable[structID]
-		coeff = overlapCoeff( structOverlapTable[structId], structQuerySize, structTargetSize)
+		structTargetSize = structSizeTable[structId.strip()]
+		coeff = overlapCoeff( structOverlapTable[structId.strip()], structQuerySize, structTargetSize)
 		matches.append((structId, numHits, coeff))
 	sortedMatches = sorted(matches, key=lambda match: match[2])
 	return sortedMatches
@@ -195,14 +196,18 @@ def oneQuery( sizeTable, structSizeTable, idTable, queryId, structQueryId, smsd,
 	thresholds = sorted( [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
 	resultFracs = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
 	allHits  = hitsOverThresh( queryId, smsd, sizeTable, thresholds[0])
+
 	threshTable = {}
 	threshTable['column_key'] = [rFrac for rFrac in resultFracs + [1.0] ]
 	threshTable['row_key'] = [thresh for thresh in thresholds ]
 	for thresh in thresholds:
-		if thresh = thresholds[0]:
+
+
+		if thresh == thresholds[0]:
 			relevantHits = allHits
 		else:
 			relevantHits = hitsOverThreshSecond( relevantHits, thresh)
+
 
 		structIdsOfRelevantHits = structIdsOfHits( relevantHits, idTable)
 		overlapInAmmCoarse = structOverlapTable( ammCoarse)
@@ -215,16 +220,20 @@ def oneQuery( sizeTable, structSizeTable, idTable, queryId, structQueryId, smsd,
 		for fracOfResults in resultFracs:
 			# get at least 'fracOfResults' results
 
-			maxAllowedMisses = totalNumOfMolsRepped * ( 1 - fracOfResults)
-			missesSoFar = 0
+			minMatchesNeeded = totalNumOfMolsRepped * fracOfResults
+
+			matchesSoFar = 0
 			for i in range(len(structsSortedByCoeff)):
-				nextMisses = missesSoFar + structsSortedByCoeff[i][1]
-				if nextMisses < maxAllowedMisses:
-					missesSoFar = nextMisses
+				nextMatches = matchesSoFar + structsSortedByCoeff[i][1]
+				if nextMatches < minMatchesNeeded:
+					matchesSoFar = nextMatches
 				else:
+
 					threshTableRow[fracOfResults] = structsSortedByCoeff[i][2]
+					break;
 
 		threshTable[thresh] = threshTableRow
+
 	return threshTable
 
 def main(args):
@@ -245,7 +254,7 @@ def main(args):
 		coarseAmmSearchResults = parseSearchTestResults(args[3])[::2]
 		ammQueries = []
 		for sR in coarseAmmSearchResults:
-			ammQueries.append(sR.query)
+			ammQueries.append(sR.query +"_STRUCT")
 
 		assert len(ammQueries) == len(smsdQueries)
 
@@ -254,26 +263,33 @@ def main(args):
 			sQuery = smsdQueries[i]
 			aQuery = ammQueries[i]
 			relSMSDMethodResults = allSMSDSearchResults[i].methods.values()[0]
+			print(allSMSDSearchResults[i].query)
 			relAmmMethodResults = coarseAmmSearchResults[i].methods.values()[0]
 			valTable = oneQuery( sizeTable, structSizeTable, idTable, sQuery, aQuery, relSMSDMethodResults, relAmmMethodResults)
 			printValTable( valTable)
 
 
 def printValTable( table):
+	
 	colKey = table['column_key']
-	print(colKey)
+	print("Fraction of Results")
+
 	rowKey = table['row_key']
-	rowStrTemplate = "{0:2d} "
+	rowStrTemplate = "{0:2} | "
 	for i, entry in enumerate(colKey):
-		inBracketStr = '{}:{}d'.format(i+1,3*i+5)
+		inBracketStr = '{}:{}f'.format(i+1,i+3)
 		rowStrTemplate += " {" + inBracketStr +"} "
+
+	fmtRow = rowStrTemplate.format( "key", *colKey)
+	print(fmtRow)
+	print("-"*115)
 
 	for rowName in rowKey:
 		row = table[rowName] # row is a dictionary with the elements of colKey as keys
 		fmtRow = rowStrTemplate.format( rowName, *sorted(row.values()))
 		print(fmtRow)
 
-	print()
+	print("\n")
 
 
 
@@ -284,6 +300,7 @@ def printValTable( table):
 
 
 def overlapCoeff( overlap, a, b):
+	
 	if a < b:
 		return (1.0*overlap) / a 
 	return (1.0*overlap) / b
