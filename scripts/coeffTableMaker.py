@@ -204,7 +204,7 @@ def structIdsWithCoarseOverlapNumMols(structQueryId, structOverlapTable, structS
 
 def oneQuery( sizeTable, structSizeTable, idTable, queryId, structQueryId, smsd, ammCoarse):
 	thresholds = sorted( [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
-	resultFracs = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+	resultFracs = [el*0.05 for el in range(8, 20)]
 	allHits  = hitsOverThresh( queryId, smsd, sizeTable, thresholds[0])
 
 	threshTable = {}
