@@ -233,13 +233,13 @@ def oneQuery( sizeTable, structSizeTable, idTable, queryId, structQueryId, smsd,
 			minMatchesNeeded = totalNumOfMolsRepped * fracOfResults
 
 			matchesSoFar = 0
-			for i in range(len(structsSortedByCoeff)):
-				nextMatches = matchesSoFar + structsSortedByCoeff[i][1]
+			for (structID, numMols, coeff) in structsSortedByCoeff[::-1]:
+				nextMatches = matchesSoFar + numMols
 				if nextMatches < minMatchesNeeded:
 					matchesSoFar = nextMatches
 				else:
 
-					threshTableRow[fracOfResults] = structsSortedByCoeff[i][2]
+					threshTableRow[fracOfResults] = coeff
 					break;
 
 		threshTable[thresh] = threshTableRow
