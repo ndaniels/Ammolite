@@ -266,11 +266,10 @@ def main(args):
 		for sR in coarseAmmSearchResults:
 			ammQueries.append(sR.query +"_STRUCT")
 
-		assert len(ammQueries) == len(smsdQueries)
 
 
 
-		for i in range( len(smsdQueries)):
+		for i in range( min(len(smsdQueries), len(ammQueries))):
 
 			sQuery = smsdQueries[i]
 			aQuery = ammQueries[i]
