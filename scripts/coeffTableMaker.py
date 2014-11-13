@@ -282,9 +282,6 @@ def main(args):
 
 
 def printValTable( table):
-
-	for key, row in table.items():
-		print("{}: {}".format(key,row))
 	
 	colKey = table['column_key']
 	print("Fraction of Results")
