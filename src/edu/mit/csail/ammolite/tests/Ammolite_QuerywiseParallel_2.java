@@ -38,6 +38,7 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
     public void test(List<IAtomContainer> queries, IStructDatabase db,
             Iterator<IAtomContainer> targets, Iterator<MolStruct> sTargets,
             double thresh, double prob, String name, PrintStream out) {
+
         
         SearchResultDocumenter scribe = new SearchResultDocumenter( out);
         
@@ -157,10 +158,7 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
              while(targets.hasNext()){
                 target = targets.next();
                 try {
-                    boolean success = queue.offer(target, 1, TimeUnit.MINUTES);
-                    if(!success){
-                        System.out.println("Failed to load molecule onto queue");
-                    }
+                    queue.put(target);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } 
