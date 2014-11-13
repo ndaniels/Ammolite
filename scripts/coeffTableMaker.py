@@ -298,7 +298,7 @@ def printValTable( table):
 
 	for rowName in rowKey:
 		row = table[rowName] # row is a dictionary with the elements of colKey as keys
-		fmtRow = rowStrTemplate.format( rowName, *sorted(row.values()))
+		fmtRow = rowStrTemplate.format( rowName, *sorted(row.values())[::-1])
 		print(fmtRow)
 
 	print("\n")
