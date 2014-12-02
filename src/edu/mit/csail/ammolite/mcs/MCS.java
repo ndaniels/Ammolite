@@ -75,6 +75,12 @@ public class MCS {
 		return smsd.size();
 	}
 	
+	public static int getTimedSMSDOverlap(IAtomContainer a, IAtomContainer b){
+        SMSD smsd = new SMSD(a,b);
+        smsd.timedCalculate(2000);
+        return smsd.size();
+    }
+	
 	@Deprecated
 	public static IAtomContainer getMCS(IAtomContainer a, IAtomContainer b){		
 		SMSD smsd = new SMSD(a,b);

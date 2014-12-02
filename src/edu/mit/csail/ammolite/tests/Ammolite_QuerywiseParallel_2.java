@@ -26,7 +26,7 @@ import edu.mit.csail.ammolite.utils.ParallelUtils;
 import edu.mit.csail.ammolite.utils.StructID;
 
 public class Ammolite_QuerywiseParallel_2 implements Tester {
-    private static final String NAME = "Ammolite_QuerywiseParallel_QUEUE";
+    private static final String NAME = "Ammolite_QuerywiseParallel_Timeout";
     private static final int COARSE_QUEUE_SIZE = 250;
     private static final int FINE_QUEUE_SIZE = 250;
     private static final int NUM_THREADS = Runtime.getRuntime().availableProcessors();
@@ -217,7 +217,7 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
                     MolStruct target = queue.poll(500, TimeUnit.MILLISECONDS);
                     
                     if(target != null){
-                        int overlap = MCS.getSMSDOverlap(target, query);
+                        int overlap = MCS.getTimedSMSDOverlap(target, query);
                         if(MCSUtils.overlapCoeff(overlap, target, query) > threshold){
                             result.addMatch(new SearchMatch(query, target, overlap));
                             hits.add(MolUtils.getStructID(target));
@@ -257,7 +257,7 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
                 try {
                     IAtomContainer target = queue.poll(500, TimeUnit.MILLISECONDS);
                     if(target != null){
-                        int overlap = MCS.getSMSDOverlap(target, query);
+                        int overlap = MCS.getTimedSMSDOverlap(target, query);
                         if(MCSUtils.overlapCoeff(overlap, target, query) > threshold){
                             result.addMatch(new SearchMatch(query, target, overlap));
                         } else {

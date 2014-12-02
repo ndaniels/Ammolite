@@ -1,0 +1,72 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Fine threshold: 0.9 Coarse threshold; 0.75
+WALL_CLOCK Ammolite_QuerywiseParallel_QUEUE 226519415ms
+
+Note: This test was run with coarseProducer using .put() to put targets into the queue
+
+
+Average runtimes:
+Ammolite_QuerywiseParallel_QUEUE_COARSE, average running time: 19,100,806.1
+Ammolite_QuerywiseParallel_QUEUE, average running time: 2,302,793.7
+
+Average number of results:
+Ammolite_QuerywiseParallel_QUEUE_COARSE, average number of results: 24,430.9
+Ammolite_QuerywiseParallel_QUEUE, average number of results: 187.0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Fine threshold: 0.7 Coarse threshold; 0.7
+WALL_CLOCK Ammolite_QuerywiseParallel_QUEUE 227766199ms
+
+Note: This test was run with coarseProducer using .put() to put targets into the queue
+Includes long tails.
+
+
+Average runtimes:
+Ammolite_QuerywiseParallel_QUEUE_COARSE, average running time: 19,262,774.3
+Ammolite_QuerywiseParallel_QUEUE, average running time: 2,526,173.1
+
+Average number of results:
+Ammolite_QuerywiseParallel_QUEUE_COARSE, average number of results: 25,163.5
+Ammolite_QuerywiseParallel_QUEUE, average number of results: 6,786.9
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Fine threshold: 0.7 Coarse threshold; 0.6
+WALL_CLOCK Ammolite_QuerywiseParallel_QUEUE 242963969ms
+
+Note: This test was run with coarseProducer using .put() to put targets into the queue
+
+
+Average runtimes:
+Ammolite_QuerywiseParallel_QUEUE_COARSE, average running time: 19,051,202.7
+Ammolite_QuerywiseParallel_QUEUE, average running time: 4,073,409.6
+
+Average number of results:
+Ammolite_QuerywiseParallel_QUEUE_COARSE, average number of results: 35,819.2
+Ammolite_QuerywiseParallel_QUEUE, average number of results: 6,794.2
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Fine threshold: 0.9 Coarse threshold; 0.9
+WALL_CLOCK SMSD_QuerywiseParallel 289437080ms
+
+Note: This test was run with producer using .offer() and a timeout of 1 minute to put targets into the queue
+
+Average runtimes:
+SMSD_QuerywiseParallel, average running time: 24,231,523.1
+
+Average number of results:
+SMSD_QuerywiseParallel, average number of results: 192.1
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Fine threshold: 0.9 Coarse threshold; 0.9
+WALL_CLOCK Ammolite_QuerywiseParallel_QUEUE 31591302ms
+
+Note: This test was run with coarseProducer using .offer() and a timeout of 1 minute to put targets into the queue
+
+
+Average runtimes:
+Ammolite_QuerywiseParallel_QUEUE_COARSE, average running time: 2,768,423.1
+Ammolite_QuerywiseParallel_QUEUE, average running time: 348,636.1
+
+Average number of results:
+Ammolite_QuerywiseParallel_QUEUE_COARSE, average number of results: 5,282.5
+Ammolite_QuerywiseParallel_QUEUE, average number of results: 35.6
