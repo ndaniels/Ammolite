@@ -143,7 +143,7 @@ public class SMSD_QuerywiseParallel implements Tester{
                 try {
                     IAtomContainer target = queue.poll(500, TimeUnit.MILLISECONDS);
                     if(target != null){
-                        int overlap = MCS.getSMSDOverlap(target, query);
+                        int overlap = MCS.getTimedSMSDOverlap(target, query);
                         if(MCSUtils.overlapCoeff(overlap, target, query) > threshold){
                             result.addMatch(new SearchMatch(query, target, overlap));
                         } else {
