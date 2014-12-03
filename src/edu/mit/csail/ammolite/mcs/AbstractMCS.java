@@ -14,7 +14,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 
-public abstract class AbstractMCS implements IMCS{
+public abstract class AbstractMCS{
 	protected IAtomContainer smallCompound;
 	protected IAtomContainer bigCompound;
 	protected boolean calculated = false;
@@ -91,8 +91,7 @@ public abstract class AbstractMCS implements IMCS{
 		try {
 			future.get(timeoutInMillis, TimeUnit.MILLISECONDS);
 		} catch (InterruptedException ie) {
-			ie.printStackTrace();
-			System.exit(1);
+			// ignore 
 		} catch (ExecutionException ee) {
 			ee.printStackTrace();
 			System.exit(1);
