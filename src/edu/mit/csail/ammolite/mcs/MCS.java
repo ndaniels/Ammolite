@@ -71,7 +71,7 @@ public class MCS {
 	
 	public static int getSMSDOverlap(IAtomContainer a, IAtomContainer b){
 		SMSD smsd = new SMSD(a,b);
-		smsd.calculate();
+		smsd.timedCalculate(4000);
 		return smsd.size();
 	}
 	
