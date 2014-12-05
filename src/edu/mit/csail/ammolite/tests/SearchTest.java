@@ -65,7 +65,7 @@ public class SearchTest {
 
 		
 		if( testAmm){
-			Tester tester = new Ammolite_QuerywiseParallel_3();
+			Tester tester = new Ammolite_QuerywiseParallel_2();
 			runTest(tester, stream, queries, db, targets, sTargets, fine, coarse);
 		}
 		if( testSMSD){
@@ -81,6 +81,11 @@ public class SearchTest {
 		if( testAmmCompressedQuery){
 			Tester tester = new Ammolite_QuerywiseParallel_QueryCompression_2();
 			runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse);
+		} 
+		
+		if( testAmmPar){
+		    Tester tester = new Ammolite_QuerywiseParallel_3();
+            runTest(tester, stream, queries, db, targets, sTargets, fine, coarse);
 		}
 
 		stream.close();

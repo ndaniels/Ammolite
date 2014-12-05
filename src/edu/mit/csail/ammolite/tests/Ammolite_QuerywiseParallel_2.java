@@ -9,8 +9,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -22,7 +20,6 @@ import edu.mit.csail.ammolite.utils.CommandLineProgressBar;
 import edu.mit.csail.ammolite.utils.MCSUtils;
 import edu.mit.csail.ammolite.utils.MolUtils;
 import edu.mit.csail.ammolite.utils.Pair;
-import edu.mit.csail.ammolite.utils.ParallelUtils;
 import edu.mit.csail.ammolite.utils.StructID;
 
 public class Ammolite_QuerywiseParallel_2 implements Tester {
@@ -30,7 +27,6 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
     private static final int COARSE_QUEUE_SIZE = 250;
     private static final int FINE_QUEUE_SIZE = 250;
     private static final int NUM_THREADS = Runtime.getRuntime().availableProcessors();
-    private static final ExecutorService service = ParallelUtils.buildNewExecutorService();
         
     public Ammolite_QuerywiseParallel_2() {}
 
@@ -39,7 +35,7 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
             Iterator<IAtomContainer> targets, Iterator<MolStruct> sTargets,
             double thresh, double prob, String name, PrintStream out) {
 
-        
+        System.out.println(NAME);
         SearchResultDocumenter scribe = new SearchResultDocumenter( out);
         
         for(IAtomContainer query: queries){
@@ -59,7 +55,6 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
             System.out.println("Writing fine results...");
             fineResult = null;
         }
-        service.shutdown();
 
     }
     

@@ -56,7 +56,7 @@ public class Ammolite_QuerywiseParallel_3 implements Tester {
     public void test(List<IAtomContainer> queries, IStructDatabase db,
             Iterator<IAtomContainer> targets, Iterator<MolStruct> sTargets,
             double thresh, double prob, String name, PrintStream out) {
-
+        System.out.println(NAME);
         System.out.println("Using timeout of "+TIMEOUT);
         out.println("Using timeout of "+TIMEOUT);
         SearchResultDocumenter scribe = new SearchResultDocumenter( out);
