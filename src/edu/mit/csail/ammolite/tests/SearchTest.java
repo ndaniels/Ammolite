@@ -65,7 +65,7 @@ public class SearchTest {
 
 		
 		if( testAmm){
-			Tester tester = new Ammolite_QuerywiseParallel_2();
+			Tester tester = new Ammolite_QuerywiseParallel_3();
 			runTest(tester, stream, queries, db, targets, sTargets, fine, coarse);
 		}
 		if( testSMSD){
@@ -91,13 +91,9 @@ public class SearchTest {
 		if( oldIterator == null){
 			return null;
 		}
-		if( db instanceof BigStructDatabase){
-			
-			return ((BigStructDatabase) db).getMolecules().iterator();
-		} else  {
 			List<String> sdfFiles = db.getSourceFiles().getFilenames();
 			return SDFUtils.parseSDFSetOnline(sdfFiles);
-		}
+
 	}
 	
 	private static void runTest(Tester tester, PrintStream stream, List<IAtomContainer> queries, IStructDatabase db, 

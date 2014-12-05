@@ -20,6 +20,7 @@ public class SearchResult {
     public List<Integer> matchSizes = new LinkedList<Integer>();
     public List<ID> misses = new LinkedList<ID>();
     public List<Integer> missSizes = new LinkedList<Integer>();
+    public List<ID> timeouts = new LinkedList<ID>();
     
     public SearchResult(IAtomContainer q, String _methodName){
         query = q;
@@ -75,5 +76,9 @@ public class SearchResult {
     public synchronized void addMiss(SearchMiss miss){
         misses.add( MolUtils.getUnknownOrID(miss.getTarget()));
         missSizes.add( miss.getOverlap());
+    }
+    
+    public synchronized void addTimeout(SearchTimeout timeout){
+        timeouts.add( MolUtils.getUnknownOrID(timeout.getTarget()));
     }
 }
