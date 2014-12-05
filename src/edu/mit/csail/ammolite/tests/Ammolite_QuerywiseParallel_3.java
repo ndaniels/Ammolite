@@ -264,12 +264,14 @@ public class Ammolite_QuerywiseParallel_3 implements Tester {
                             timedOut = true;
                         }
                         
-                        IAtomContainer target = smsd.getCompoundTwo();
-                        if(target == query){
-                            target = smsd.getCompoundOne();
-                        }
+
                         
                         if(!timedOut){
+                            IAtomContainer target = smsd.getCompoundTwo();
+                            if(target == query){
+                                target = smsd.getCompoundOne();
+                            }
+                            
                             int overlap = smsd.size();
                             if(MCSUtils.overlapCoeff(overlap, target, query) > threshold){
                                 result.addMatch(new SearchMatch(query, target, overlap));
@@ -277,7 +279,7 @@ public class Ammolite_QuerywiseParallel_3 implements Tester {
                                 result.addMiss(new SearchMiss(query, target, overlap));
                             }
                         } else {
-                            result.addTimeout(new SearchTimeout(query, target));
+                            //result.addTimeout(new SearchTimeout(query, target));
                         }
                         bar.event();
                     }
@@ -323,12 +325,12 @@ public class Ammolite_QuerywiseParallel_3 implements Tester {
                             timedOut = true;
                         }
                         
-                        IAtomContainer target = smsd.getCompoundTwo();
-                        if(target == query){
-                            target = smsd.getCompoundOne();
-                        }
-                        
                         if(!timedOut){
+                            IAtomContainer target = smsd.getCompoundTwo();
+                            if(target == query){
+                                target = smsd.getCompoundOne();
+                            }
+                            
                             int overlap = smsd.size();
                             if(MCSUtils.overlapCoeff(overlap, target, query) > threshold){
                                 result.addMatch(new SearchMatch(query, target, overlap));
@@ -336,7 +338,7 @@ public class Ammolite_QuerywiseParallel_3 implements Tester {
                                 result.addMiss(new SearchMiss(query, target, overlap));
                             }
                         } else {
-                            result.addTimeout(new SearchTimeout(query, target));
+                            //result.addTimeout(new SearchTimeout(query, target));
                         }
                         bar.event();
                     }
