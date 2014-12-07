@@ -1,0 +1,178 @@
+29050647
+  CDK     1205141042
+
+ 33 34  0  0  0  0  0  0  0  0999 V2000
+    3.7320    1.5020    0.0000 S   0  0  0  0  0  0  0  0  0  0  0  0
+    4.7026    3.9965    0.0000 S   0  0  0  0  0  0  0  0  0  0  0  0
+    4.7320    1.5020    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    2.7320    1.5020    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    2.0000   -4.4980    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    3.7320   -4.4980    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    3.7320    2.5020    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5116    2.5953    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    3.7320    0.5020    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.8660    0.0020    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.5981    0.0020    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.7320   -1.4980    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.8660   -0.9980    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.5981   -0.9980    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.5981    3.0020    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6808    4.2044    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.7320   -2.4980    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.1808    3.3384    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.0875    5.1180    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.8660   -2.9980    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.8660   -3.9980    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.3291    0.3120    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.1350    0.3120    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.1951    2.8120    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    2.3291   -1.3080    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.1350   -1.3080    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.2690   -2.8080    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    6.7974    3.2736    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    6.6539    4.8658    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    6.3397    5.6844    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5211    5.3702    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    2.3291   -2.6880    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    2.0000   -5.1180    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  3  2  0  0  0  0 
+  1  4  2  0  0  0  0 
+  1  7  1  0  0  0  0 
+  1  9  1  0  0  0  0 
+  2 15  1  0  0  0  0 
+  2 16  1  0  0  0  0 
+  5 21  1  0  0  0  0 
+  5 33  1  0  0  0  0 
+  6 21  2  0  0  0  0 
+  7 15  1  0  0  0  0 
+  7 24  1  0  0  0  0 
+  8 15  2  0  0  0  0 
+  8 18  1  0  0  0  0 
+  9 10  2  0  0  0  0 
+  9 11  1  0  0  0  0 
+ 10 13  1  0  0  0  0 
+ 10 22  1  0  0  0  0 
+ 11 14  2  0  0  0  0 
+ 11 23  1  0  0  0  0 
+ 12 13  2  0  0  0  0 
+ 12 14  1  0  0  0  0 
+ 12 17  1  0  0  0  0 
+ 13 25  1  0  0  0  0 
+ 14 26  1  0  0  0  0 
+ 16 18  2  0  0  0  0 
+ 16 19  1  0  0  0  0 
+ 17 20  2  0  0  0  0 
+ 17 27  1  0  0  0  0 
+ 18 28  1  0  0  0  0 
+ 19 29  1  0  0  0  0 
+ 19 30  1  0  0  0  0 
+ 19 31  1  0  0  0  0 
+ 20 21  1  0  0  0  0 
+ 20 32  1  0  0  0  0 
+M  END
+> <cdk:Title>
+29050647
+
+> <cdk:Remark>
+null
+
+> <PUBCHEM_COMPOUND_CID>
+29050647
+
+> <PUBCHEM_COMPOUND_CANONICALIZED>
+1
+
+> <PUBCHEM_CACTVS_COMPLEXITY>
+493
+
+> <PUBCHEM_CACTVS_HBOND_ACCEPTOR>
+7
+
+> <PUBCHEM_CACTVS_HBOND_DONOR>
+2
+
+> <PUBCHEM_CACTVS_ROTATABLE_BOND>
+5
+
+> <PUBCHEM_CACTVS_SUBSKEYS>
+AAADccBzOABgAAAAAAAAAAAAAAAAAWAAAAAwAAAAAAAAAAABwAAAHgQQSAAADADB2gQ/mZJIEgqsAjD3bHBC8LlxCDlI2BwoQMiIJCLAERCEMAAggAJImacAgAAOEAAAAAAAAAAgAAAAAAAAAAAAAAAAAA==
+
+> <PUBCHEM_IUPAC_OPENEYE_NAME>
+(E)-3-[4-[(5-methylthiazol-2-yl)sulfamoyl]phenyl]prop-2-enoic acid
+
+> <PUBCHEM_IUPAC_CAS_NAME>
+(E)-3-[4-[(5-methyl-2-thiazolyl)sulfamoyl]phenyl]-2-propenoic acid
+
+> <PUBCHEM_IUPAC_NAME>
+(E)-3-[4-[(5-methyl-1,3-thiazol-2-yl)sulfamoyl]phenyl]prop-2-enoic acid
+
+> <PUBCHEM_IUPAC_SYSTEMATIC_NAME>
+(E)-3-[4-[(5-methyl-1,3-thiazol-2-yl)sulfamoyl]phenyl]prop-2-enoic acid
+
+> <PUBCHEM_IUPAC_TRADITIONAL_NAME>
+(E)-3-[4-[(5-methylthiazol-2-yl)sulfamoyl]phenyl]acrylic acid
+
+> <PUBCHEM_IUPAC_INCHI>
+InChI=1S/C13H12N2O4S2/c1-9-8-14-13(20-9)15-21(18,19)11-5-2-10(3-6-11)4-7-12(16)17/h2-8H,1H3,(H,14,15)(H,16,17)/b7-4+
+
+> <PUBCHEM_IUPAC_INCHIKEY>
+YLPDAFLPTQISIL-QPJJXVBHSA-N
+
+> <PUBCHEM_XLOGP3_AA>
+2.2
+
+> <PUBCHEM_EXACT_MASS>
+324.023849
+
+> <PUBCHEM_MOLECULAR_FORMULA>
+C13H12N2O4S2
+
+> <PUBCHEM_MOLECULAR_WEIGHT>
+324.37538
+
+> <PUBCHEM_OPENEYE_CAN_SMILES>
+CC1=CN=C(S1)NS(=O)(=O)C2=CC=C(C=C2)C=CC(=O)O
+
+> <PUBCHEM_OPENEYE_ISO_SMILES>
+CC1=CN=C(S1)NS(=O)(=O)C2=CC=C(C=C2)/C=C/C(=O)O
+
+> <PUBCHEM_CACTVS_TPSA>
+133
+
+> <PUBCHEM_MONOISOTOPIC_WEIGHT>
+324.023849
+
+> <PUBCHEM_TOTAL_CHARGE>
+0
+
+> <PUBCHEM_HEAVY_ATOM_COUNT>
+21
+
+> <PUBCHEM_ATOM_DEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_ATOM_UDEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_BOND_DEF_STEREO_COUNT>
+1
+
+> <PUBCHEM_BOND_UDEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_ISOTOPIC_ATOM_COUNT>
+0
+
+> <PUBCHEM_COMPONENT_COUNT>
+1
+
+> <PUBCHEM_CACTVS_TAUTO_COUNT>
+2
+
+> <PUBCHEM_COORDINATE_TYPE>
+1
+
+> <PUBCHEM_BONDANNOTATIONS>
+10  13  8
+
+$$$$

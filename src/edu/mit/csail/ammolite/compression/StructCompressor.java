@@ -26,6 +26,7 @@ import edu.mit.csail.ammolite.utils.ParallelUtils;
 import edu.mit.csail.ammolite.utils.PubchemID;
 import edu.mit.csail.ammolite.utils.SDFUtils;
 import edu.mit.csail.ammolite.utils.StructID;
+import edu.ucla.sspace.graph.isomorphism.AbstractIsomorphismTester;
 import edu.ucla.sspace.graph.isomorphism.VF2IsomorphismTester;
 
 /*
@@ -34,7 +35,7 @@ import edu.ucla.sspace.graph.isomorphism.VF2IsomorphismTester;
  */
 
 public class StructCompressor {
-	private KeyListMap<Integer, MolStruct> structsByFingerprint = new KeyListMap<Integer,MolStruct>(1000);
+	private KeyListMap<Integer, IMolStruct> structsByFingerprint = new KeyListMap<Integer,IMolStruct>(1000);
 	private MoleculeStructFactory structFactory;
 	private int numMols = 0;
 	private int numReps = 0;
@@ -122,14 +123,14 @@ public class StructCompressor {
 	private void checkDatabaseForIsomorphicStructs( Iterator<IAtomContainer> molecule_database, MoleculeStructFactory structFactory) throws CDKException, InterruptedException, ExecutionException{
 
         while( molecule_database.hasNext() ){
-        	
+            System.out.println("\nMOLECULE\n");
         	IAtomContainer molecule =  molecule_database.next();       	
-        	MolStruct structure = structFactory.makeMoleculeStruct(molecule);
+        	IMolStruct structure = structFactory.makeMoleculeStruct(molecule);
         	numMols++;
         	
         	if( structsByFingerprint.containsKey( structure.fingerprint())){
-        		List<MolStruct> potentialMatches = structsByFingerprint.get( structure.fingerprint() );
-        		StructID matchID = parrallelIsomorphism( structure, potentialMatches);
+        		List<IMolStruct> potentialMatches = structsByFingerprint.get( structure.fingerprint() );
+        		StructID matchID = linearIsomorphism( structure, potentialMatches);
         		if( matchID == null ){
         			numReps++;
         			structsByFingerprint.add(structure.fingerprint(), structure);
@@ -147,6 +148,37 @@ public class StructCompressor {
         }
 	}
 	
+	/**
+     * Checks whether a given structure is isomorphic to any structure in a list.
+     * 
+     * If an isomorphic structure is found the given structure's corresponding PubChem ID 
+     * is added to the list of ids to the isomorphic structure
+     * 
+     * @param structure
+     * @param potentialMatches
+     * @return The ID of the matching structure or null if no structure matched. 
+     * @throws InterruptedException
+     * @throws ExecutionException
+     */
+    private StructID linearIsomorphism(IMolStruct structure, List<IMolStruct> potentialMatches) throws InterruptedException, ExecutionException{
+        
+        List<Callable<IMolStruct>> callList = new ArrayList<Callable<IMolStruct>>(potentialMatches.size());
+        final IMolStruct fStruct = structure;
+        for (final IMolStruct candidate: potentialMatches) {
+            AbstractIsomorphismTester iso_tester = new LabeledVF2IsomorphismTester();
+            boolean iso = candidate.isIsomorphic(fStruct, iso_tester);
+            
+            if( iso ){
+                System.out.println("Match");
+                candidate.addID( MolUtils.getPubID(fStruct));
+                return MolUtils.getStructID( candidate);
+            } 
+            System.out.println("Miss");
+        }
+        return null;
+    }
+
+	
 	
 	/**
 	 * Checks whether a given structure is isomorphic to any structure in a list.
@@ -160,28 +192,31 @@ public class StructCompressor {
 	 * @throws InterruptedException
 	 * @throws ExecutionException
 	 */
-	private StructID parrallelIsomorphism(MolStruct structure, List<MolStruct> potentialMatches) throws InterruptedException, ExecutionException{
+	private StructID parrallelIsomorphism(IMolStruct structure, List<IMolStruct> potentialMatches) throws InterruptedException, ExecutionException{
 
-	    List<Callable<MolStruct>> callList = new ArrayList<Callable<MolStruct>>(potentialMatches.size());
-	    final MolStruct fStruct = structure;
-	    for (final MolStruct candidate: potentialMatches) {
+	    List<Callable<IMolStruct>> callList = new ArrayList<Callable<IMolStruct>>(potentialMatches.size());
+	    final IMolStruct fStruct = structure;
+	    for (final IMolStruct candidate: potentialMatches) {
 	    	
-	        Callable<MolStruct> callable = new Callable<MolStruct>() {
+	        Callable<IMolStruct> callable = new Callable<IMolStruct>() {
 	        	
-	            public MolStruct call() throws Exception {
-	            	VF2IsomorphismTester iso_tester = new VF2IsomorphismTester();
+	            public IMolStruct call() throws Exception {
+	            	AbstractIsomorphismTester iso_tester = new LabeledVF2IsomorphismTester();
 	            	boolean iso = candidate.isIsomorphic(fStruct, iso_tester);
+	            	
 	            	if( iso ){
+	            	    System.out.println("Match");
 	            		candidate.addID( MolUtils.getPubID(fStruct));
 	            		return candidate;
 	            	} 
+	            	System.out.println("Miss");
 	                return null;
 	            }
 	        };
 	        callList.add(callable);
 
 	    }
-	    MolStruct match = ParallelUtils.parallelTimedSingleExecution( callList, 60*1000, exService);
+	    IMolStruct match = ParallelUtils.parallelTimedSingleExecution( callList, 60*1000, exService);
 	    if(match == null){
 	    	return null;
 	    } else {
@@ -236,7 +271,7 @@ public class StructCompressor {
         
 	}
 	
-   private  String writeStructIDFile(Iterator<MolStruct> structs){
+   private  String writeStructIDFile(Iterator<IMolStruct> structs){
         String structName = "structids.yml";
         String structPath = dbFolder + File.separator + structName;
         BufferedWriter writer;
@@ -244,7 +279,7 @@ public class StructCompressor {
             FileWriter fw = new FileWriter(structPath);
             writer = new BufferedWriter(fw);
             while( structs.hasNext()){
-                MolStruct struct = structs.next();
+                IMolStruct struct = structs.next();
                 writer.write( MolUtils.getStructID(struct).toString());
                 writer.write(" : [");
                 for(PubchemID pId: struct.getIDNums() ){
@@ -262,7 +297,7 @@ public class StructCompressor {
         return structName;
     }
 	
-   private  List<String> writeStructSDF(Iterator<MolStruct> structs){
+   private  List<String> writeStructSDF(Iterator<IMolStruct> structs){
         int CHUNK_SIZE = 25*1000;
         int fileNum = -1;
         int structsInFile = 0;
@@ -293,7 +328,7 @@ public class StructCompressor {
                 
             }
             
-            MolStruct struct = structs.next();
+            IMolStruct struct = structs.next();
             struct.setProperty("AMMOLITE_STRUCTURE_ID", MolUtils.getUnknownOrID(struct));
             try {
                 writer.write(struct);

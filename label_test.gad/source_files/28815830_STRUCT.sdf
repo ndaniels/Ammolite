@@ -1,0 +1,183 @@
+28815830
+  CDK     1205141041
+
+ 35 37  0  0  0  0  0  0  0  0999 V2000
+    8.4742   -1.7984    0.0000 S   0  0  0  0  0  0  0  0  0  0  0  0
+    3.8660    1.4324    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    2.1340   -0.5676    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    3.8660   -0.5676    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    8.3113   -0.1886    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    9.9724   -0.8336    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    3.0000    0.9324    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.0000   -0.0676    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.7320   -0.0676    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.7320    0.9324    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.0000    0.9324    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.5000    1.7984    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6260   -0.6023    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6260    1.4670    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.5321   -0.0885    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.8660   -1.5676    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.5321    0.9532    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.3962   -0.5918    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.4968   -1.5867    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.9775   -0.9343    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.0369    2.1084    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    2.0000    1.5524    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    1.3800    0.9324    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    2.0000    0.3124    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    2.1900    2.3353    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    1.9631    1.4884    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6188   -1.2223    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6188    2.0870    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.2460   -1.5676    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.8660   -2.1876    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.4860   -1.5676    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.0678    1.2652    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.0345   -1.9998    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.3349   -1.3366    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.2268   -0.2682    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1 19  1  0  0  0  0 
+  1 20  1  0  0  0  0 
+  2  7  1  0  0  0  0 
+  2 10  1  0  0  0  0 
+  3  8  2  0  0  0  0 
+  4  8  1  0  0  0  0 
+  4  9  1  0  0  0  0 
+  4 16  1  0  0  0  0 
+  5 18  1  0  0  0  0 
+  5 20  2  0  0  0  0 
+  6 20  1  0  0  0  0 
+  6 34  1  0  0  0  0 
+  6 35  1  0  0  0  0 
+  7  8  1  0  0  0  0 
+  7 11  1  0  0  0  0 
+  7 12  1  0  0  0  0 
+  9 10  2  0  0  0  0 
+  9 13  1  0  0  0  0 
+ 10 14  1  0  0  0  0 
+ 11 22  1  0  0  0  0 
+ 11 23  1  0  0  0  0 
+ 11 24  1  0  0  0  0 
+ 12 21  1  0  0  0  0 
+ 12 25  1  0  0  0  0 
+ 12 26  1  0  0  0  0 
+ 13 15  2  0  0  0  0 
+ 13 27  1  0  0  0  0 
+ 14 17  2  0  0  0  0 
+ 14 28  1  0  0  0  0 
+ 15 17  1  0  0  0  0 
+ 15 18  1  0  0  0  0 
+ 16 29  1  0  0  0  0 
+ 16 30  1  0  0  0  0 
+ 16 31  1  0  0  0  0 
+ 17 32  1  0  0  0  0 
+ 18 19  2  0  0  0  0 
+ 19 33  1  0  0  0  0 
+M  END
+> <cdk:Title>
+28815830
+
+> <cdk:Remark>
+null
+
+> <PUBCHEM_COMPOUND_CID>
+28815830
+
+> <PUBCHEM_COMPOUND_CANONICALIZED>
+1
+
+> <PUBCHEM_CACTVS_COMPLEXITY>
+404
+
+> <PUBCHEM_CACTVS_HBOND_ACCEPTOR>
+5
+
+> <PUBCHEM_CACTVS_HBOND_DONOR>
+1
+
+> <PUBCHEM_CACTVS_ROTATABLE_BOND>
+1
+
+> <PUBCHEM_CACTVS_SUBSKEYS>
+AAADccBzMABAAAAAAAAAAAAAAAAAAWAAAAA8QAAAAAAAAACxwAAAHgQQAAAADEyF3gSz15NIFAisAyVydAKC+KlhKjkIiDV/bJiOJqLksZ+HOCjkxhPY6CeQ0IMOIAAAQAAAEABAAACAAAAgAAAAAAAAAA==
+
+> <PUBCHEM_IUPAC_OPENEYE_NAME>
+6-(2-aminothiazol-4-yl)-2,2,4-trimethyl-1,4-benzoxazin-3-one
+
+> <PUBCHEM_IUPAC_CAS_NAME>
+6-(2-amino-4-thiazolyl)-2,2,4-trimethyl-1,4-benzoxazin-3-one
+
+> <PUBCHEM_IUPAC_NAME>
+6-(2-amino-1,3-thiazol-4-yl)-2,2,4-trimethyl-1,4-benzoxazin-3-one
+
+> <PUBCHEM_IUPAC_SYSTEMATIC_NAME>
+6-(2-azanyl-1,3-thiazol-4-yl)-2,2,4-trimethyl-1,4-benzoxazin-3-one
+
+> <PUBCHEM_IUPAC_TRADITIONAL_NAME>
+6-(2-aminothiazol-4-yl)-2,2,4-trimethyl-1,4-benzoxazin-3-one
+
+> <PUBCHEM_IUPAC_INCHI>
+InChI=1S/C14H15N3O2S/c1-14(2)12(18)17(3)10-6-8(4-5-11(10)19-14)9-7-20-13(15)16-9/h4-7H,1-3H3,(H2,15,16)
+
+> <PUBCHEM_IUPAC_INCHIKEY>
+HASITCHWRLLYKG-UHFFFAOYSA-N
+
+> <PUBCHEM_XLOGP3_AA>
+2
+
+> <PUBCHEM_EXACT_MASS>
+289.088498
+
+> <PUBCHEM_MOLECULAR_FORMULA>
+C14H15N3O2S
+
+> <PUBCHEM_MOLECULAR_WEIGHT>
+289.3528
+
+> <PUBCHEM_OPENEYE_CAN_SMILES>
+CC1(C(=O)N(C2=C(O1)C=CC(=C2)C3=CSC(=N3)N)C)C
+
+> <PUBCHEM_OPENEYE_ISO_SMILES>
+CC1(C(=O)N(C2=C(O1)C=CC(=C2)C3=CSC(=N3)N)C)C
+
+> <PUBCHEM_CACTVS_TPSA>
+96.7
+
+> <PUBCHEM_MONOISOTOPIC_WEIGHT>
+289.088498
+
+> <PUBCHEM_TOTAL_CHARGE>
+0
+
+> <PUBCHEM_HEAVY_ATOM_COUNT>
+20
+
+> <PUBCHEM_ATOM_DEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_ATOM_UDEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_BOND_DEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_BOND_UDEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_ISOTOPIC_ATOM_COUNT>
+0
+
+> <PUBCHEM_COMPONENT_COUNT>
+1
+
+> <PUBCHEM_CACTVS_TAUTO_COUNT>
+2
+
+> <PUBCHEM_COORDINATE_TYPE>
+1
+
+> <PUBCHEM_BONDANNOTATIONS>
+1  19  8
+
+$$$$

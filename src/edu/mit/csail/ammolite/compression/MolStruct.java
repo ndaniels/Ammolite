@@ -30,7 +30,7 @@ import edu.ucla.sspace.graph.isomorphism.AbstractIsomorphismTester;
  * 
  * @author  David Danko
  */
-public class MolStruct extends AtomContainer implements Serializable, IAtomContainer {
+public class MolStruct extends AtomContainer implements Serializable, IMolStruct {
 	
 	/**
 	 * 
@@ -154,7 +154,7 @@ public class MolStruct extends AtomContainer implements Serializable, IAtomConta
 		
 	}
 	
-	public SparseUndirectedGraph getGraph(){
+	public Graph<? extends Edge> getGraph(){
 		if( this.graph == null){
 			makeGraph( this );
 		}

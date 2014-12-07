@@ -35,6 +35,7 @@ object AmmoliteMain{
 			  val source = opt[List[String]]("source", required=true, descr="File or folder to compress")
 			  val target = opt[String]("target", required=true, descr="Name of the new compressed database")
 			  val simple = opt[Boolean]("simple", descr="Use simple structures instead of cyclic structures")
+			  val labeled = opt[Boolean]("labeled", descr="Use labeled structures instead of cyclic structures")
 			  val iterated = opt[Boolean]("iterated", descr="Dev")
 			  val threads = opt[Int]("threads", default=Some(-1), descr="Number of threads to use for compression")
 			}
@@ -170,7 +171,9 @@ object AmmoliteMain{
 				  var compType = CompressionType.CYCLIC
 				  if( opts.compress.simple()){
 				    compType = CompressionType.BASIC 
-				  } 
+				  } else if( opts.compress.labeled()){
+				  	compType = CompressionType.LABELED
+				  }
 					  
 				  val compressor = new StructCompressor( compType )
 				  java.util.Arrays.asList(opts.compress.source().toArray: _*)

@@ -1,0 +1,483 @@
+15356007
+  CDK     1205141050
+
+ 24 26  0  0  0  0  0  0  0  0999 V2000
+    2.0000    0.8661    0.0000 Br  0  0  0  0  0  0  0  0  0  0  0  0
+    2.0000   -1.1822    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+    5.5301    1.8419    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2785    1.8765    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2785   -2.1927    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5301    0.8419    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1962    0.3627    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1962   -0.6789    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    4.6641    0.3419    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.6641   -0.6581    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.3961    0.3419    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.3961   -0.6581    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5301   -1.1581    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.7702    0.8766    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.7702   -1.1928    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2901    0.8766    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.8641    0.3627    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2901   -1.1928    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.8641   -0.6789    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5301   -1.7781    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.7773    1.4965    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.7773   -1.8127    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.9932    2.1519    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.8118    2.1927    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1 17  1  0  0  0  0 
+  2 19  1  0  0  0  0 
+  3  6  1  0  0  0  0 
+  3 23  1  0  0  0  0 
+  4 16  1  0  0  0  0 
+  4 24  1  0  0  0  0 
+  5 18  2  0  0  0  0 
+  6  9  1  0  0  0  0 
+  6 11  1  0  0  0  0 
+  7  8  2  0  0  0  0 
+  7 16  1  0  0  0  0 
+  8 18  1  0  0  0  0 
+  9 10  1  0  0  0  0 
+  9 14  2  0  0  0  0 
+ 10 13  1  0  0  0  0 
+ 10 15  2  0  0  0  0 
+ 11 12  1  0  0  0  0 
+ 11 16  2  0  0  0  0 
+ 12 13  2  0  0  0  0 
+ 12 18  1  0  0  0  0 
+ 13 20  1  0  0  0  0 
+ 14 17  1  0  0  0  0 
+ 14 21  1  0  0  0  0 
+ 15 19  1  0  0  0  0 
+ 15 22  1  0  0  0  0 
+ 17 19  2  0  0  0  0 
+M  END
+> <cdk:Title>
+15356007
+
+> <cdk:Remark>
+null
+
+> <PUBCHEM_COMPOUND_CID>
+15356007
+
+> <PUBCHEM_COMPOUND_CANONICALIZED>
+1
+
+> <PUBCHEM_CACTVS_COMPLEXITY>
+533
+
+> <PUBCHEM_CACTVS_HBOND_ACCEPTOR>
+5
+
+> <PUBCHEM_CACTVS_HBOND_DONOR>
+2
+
+> <PUBCHEM_CACTVS_ROTATABLE_BOND>
+0
+
+> <PUBCHEM_CACTVS_SUBSKEYS>
+AAADcYBzMAAEEAAAAAAAAAAAAAAAAAAAAAAwQIAAAAAAAACBAAAAHgJMCAABrAqBmCAwwIIQAgCKAiVSUACCAAAhJwQgiAEAZugIICrB05GEIAhggADIy5cQgAAOAgBAIAECAAIEAIBAAgQABAAAAAAAAA==
+
+> <PUBCHEM_IUPAC_OPENEYE_NAME>
+7-bromo-8-chloro-4,5-dihydroxy-pyridazino[4,5-b]quinolin-1-one
+
+> <PUBCHEM_IUPAC_CAS_NAME>
+7-bromo-8-chloro-4,5-dihydroxy-1-pyridazino[4,5-b]quinolinone
+
+> <PUBCHEM_IUPAC_NAME>
+7-bromo-8-chloro-4,5-dihydroxypyridazino[4,5-b]quinolin-1-one
+
+> <PUBCHEM_IUPAC_SYSTEMATIC_NAME>
+7-bromanyl-8-chloranyl-4,5-bis(oxidanyl)pyridazino[4,5-b]quinolin-1-one
+
+> <PUBCHEM_IUPAC_TRADITIONAL_NAME>
+7-bromo-8-chloro-4,5-dihydroxy-pyridazino[4,5-b]quinolin-1-one
+
+> <PUBCHEM_IUPAC_INCHI>
+InChI=1S/C11H5BrClN3O3/c12-6-3-8-4(2-7(6)13)1-5-9(16(8)19)11(18)15-14-10(5)17/h1-3,18-19H
+
+> <PUBCHEM_IUPAC_INCHIKEY>
+JJMWXPBNYSBVSA-UHFFFAOYSA-N
+
+> <PUBCHEM_XLOGP3_AA>
+3.4
+
+> <PUBCHEM_EXACT_MASS>
+340.920281
+
+> <PUBCHEM_MOLECULAR_FORMULA>
+C11H5BrClN3O3
+
+> <PUBCHEM_MOLECULAR_WEIGHT>
+342.5327
+
+> <PUBCHEM_OPENEYE_CAN_SMILES>
+C1=C2C=C3C(=C(N=NC3=O)O)N(C2=CC(=C1Cl)Br)O
+
+> <PUBCHEM_OPENEYE_ISO_SMILES>
+C1=C2C=C3C(=C(N=NC3=O)O)N(C2=CC(=C1Cl)Br)O
+
+> <PUBCHEM_CACTVS_TPSA>
+85.5
+
+> <PUBCHEM_MONOISOTOPIC_WEIGHT>
+340.920281
+
+> <PUBCHEM_TOTAL_CHARGE>
+0
+
+> <PUBCHEM_HEAVY_ATOM_COUNT>
+19
+
+> <PUBCHEM_ATOM_DEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_ATOM_UDEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_BOND_DEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_BOND_UDEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_ISOTOPIC_ATOM_COUNT>
+0
+
+> <PUBCHEM_COMPONENT_COUNT>
+1
+
+> <PUBCHEM_CACTVS_TAUTO_COUNT>
+2
+
+> <PUBCHEM_COORDINATE_TYPE>
+1
+
+> <PUBCHEM_BONDANNOTATIONS>
+10  13  8
+
+$$$$
+15356007
+  CDK     1205141403
+
+ 24 26  0  0  0  0  0  0  0  0999 V2000
+    2.0000    0.8661    0.0000 Br  0  0  0  0  0  0  0  0  0  0  0  0
+    2.0000   -1.1822    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+    5.5301    1.8419    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2785    1.8765    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2785   -2.1927    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5301    0.8419    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1962    0.3627    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1962   -0.6789    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    4.6641    0.3419    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.6641   -0.6581    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.3961    0.3419    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.3961   -0.6581    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5301   -1.1581    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.7702    0.8766    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.7702   -1.1928    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2901    0.8766    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.8641    0.3627    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2901   -1.1928    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.8641   -0.6789    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5301   -1.7781    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.7773    1.4965    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.7773   -1.8127    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.9932    2.1519    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.8118    2.1927    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1 17  1  0  0  0  0 
+  2 19  1  0  0  0  0 
+  3  6  1  0  0  0  0 
+  3 23  1  0  0  0  0 
+  4 16  1  0  0  0  0 
+  4 24  1  0  0  0  0 
+  5 18  2  0  0  0  0 
+  6  9  1  0  0  0  0 
+  6 11  1  0  0  0  0 
+  7  8  2  0  0  0  0 
+  7 16  1  0  0  0  0 
+  8 18  1  0  0  0  0 
+  9 10  1  0  0  0  0 
+  9 14  2  0  0  0  0 
+ 10 13  1  0  0  0  0 
+ 10 15  2  0  0  0  0 
+ 11 12  1  0  0  0  0 
+ 11 16  2  0  0  0  0 
+ 12 13  2  0  0  0  0 
+ 12 18  1  0  0  0  0 
+ 13 20  1  0  0  0  0 
+ 14 17  1  0  0  0  0 
+ 14 21  1  0  0  0  0 
+ 15 19  1  0  0  0  0 
+ 15 22  1  0  0  0  0 
+ 17 19  2  0  0  0  0 
+M  END
+> <cdk:Title>
+15356007
+
+> <cdk:Remark>
+null
+
+> <PUBCHEM_COMPOUND_CID>
+15356007
+
+> <PUBCHEM_COMPOUND_CANONICALIZED>
+1
+
+> <PUBCHEM_CACTVS_COMPLEXITY>
+533
+
+> <PUBCHEM_CACTVS_HBOND_ACCEPTOR>
+5
+
+> <PUBCHEM_CACTVS_HBOND_DONOR>
+2
+
+> <PUBCHEM_CACTVS_ROTATABLE_BOND>
+0
+
+> <PUBCHEM_CACTVS_SUBSKEYS>
+AAADcYBzMAAEEAAAAAAAAAAAAAAAAAAAAAAwQIAAAAAAAACBAAAAHgJMCAABrAqBmCAwwIIQAgCKAiVSUACCAAAhJwQgiAEAZugIICrB05GEIAhggADIy5cQgAAOAgBAIAECAAIEAIBAAgQABAAAAAAAAA==
+
+> <PUBCHEM_IUPAC_OPENEYE_NAME>
+7-bromo-8-chloro-4,5-dihydroxy-pyridazino[4,5-b]quinolin-1-one
+
+> <PUBCHEM_IUPAC_CAS_NAME>
+7-bromo-8-chloro-4,5-dihydroxy-1-pyridazino[4,5-b]quinolinone
+
+> <PUBCHEM_IUPAC_NAME>
+7-bromo-8-chloro-4,5-dihydroxypyridazino[4,5-b]quinolin-1-one
+
+> <PUBCHEM_IUPAC_SYSTEMATIC_NAME>
+7-bromanyl-8-chloranyl-4,5-bis(oxidanyl)pyridazino[4,5-b]quinolin-1-one
+
+> <PUBCHEM_IUPAC_TRADITIONAL_NAME>
+7-bromo-8-chloro-4,5-dihydroxy-pyridazino[4,5-b]quinolin-1-one
+
+> <PUBCHEM_IUPAC_INCHI>
+InChI=1S/C11H5BrClN3O3/c12-6-3-8-4(2-7(6)13)1-5-9(16(8)19)11(18)15-14-10(5)17/h1-3,18-19H
+
+> <PUBCHEM_IUPAC_INCHIKEY>
+JJMWXPBNYSBVSA-UHFFFAOYSA-N
+
+> <PUBCHEM_XLOGP3_AA>
+3.4
+
+> <PUBCHEM_EXACT_MASS>
+340.920281
+
+> <PUBCHEM_MOLECULAR_FORMULA>
+C11H5BrClN3O3
+
+> <PUBCHEM_MOLECULAR_WEIGHT>
+342.5327
+
+> <PUBCHEM_OPENEYE_CAN_SMILES>
+C1=C2C=C3C(=C(N=NC3=O)O)N(C2=CC(=C1Cl)Br)O
+
+> <PUBCHEM_OPENEYE_ISO_SMILES>
+C1=C2C=C3C(=C(N=NC3=O)O)N(C2=CC(=C1Cl)Br)O
+
+> <PUBCHEM_CACTVS_TPSA>
+85.5
+
+> <PUBCHEM_MONOISOTOPIC_WEIGHT>
+340.920281
+
+> <PUBCHEM_TOTAL_CHARGE>
+0
+
+> <PUBCHEM_HEAVY_ATOM_COUNT>
+19
+
+> <PUBCHEM_ATOM_DEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_ATOM_UDEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_BOND_DEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_BOND_UDEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_ISOTOPIC_ATOM_COUNT>
+0
+
+> <PUBCHEM_COMPONENT_COUNT>
+1
+
+> <PUBCHEM_CACTVS_TAUTO_COUNT>
+2
+
+> <PUBCHEM_COORDINATE_TYPE>
+1
+
+> <PUBCHEM_BONDANNOTATIONS>
+10  13  8
+
+$$$$
+15356007
+  CDK     1205141403
+
+ 24 26  0  0  0  0  0  0  0  0999 V2000
+    2.0000    0.8661    0.0000 Br  0  0  0  0  0  0  0  0  0  0  0  0
+    2.0000   -1.1822    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+    5.5301    1.8419    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2785    1.8765    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2785   -2.1927    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5301    0.8419    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1962    0.3627    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1962   -0.6789    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    4.6641    0.3419    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.6641   -0.6581    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.3961    0.3419    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.3961   -0.6581    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5301   -1.1581    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.7702    0.8766    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.7702   -1.1928    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2901    0.8766    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.8641    0.3627    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2901   -1.1928    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.8641   -0.6789    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5301   -1.7781    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.7773    1.4965    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.7773   -1.8127    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.9932    2.1519    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.8118    2.1927    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1 17  1  0  0  0  0 
+  2 19  1  0  0  0  0 
+  3  6  1  0  0  0  0 
+  3 23  1  0  0  0  0 
+  4 16  1  0  0  0  0 
+  4 24  1  0  0  0  0 
+  5 18  2  0  0  0  0 
+  6  9  1  0  0  0  0 
+  6 11  1  0  0  0  0 
+  7  8  2  0  0  0  0 
+  7 16  1  0  0  0  0 
+  8 18  1  0  0  0  0 
+  9 10  1  0  0  0  0 
+  9 14  2  0  0  0  0 
+ 10 13  1  0  0  0  0 
+ 10 15  2  0  0  0  0 
+ 11 12  1  0  0  0  0 
+ 11 16  2  0  0  0  0 
+ 12 13  2  0  0  0  0 
+ 12 18  1  0  0  0  0 
+ 13 20  1  0  0  0  0 
+ 14 17  1  0  0  0  0 
+ 14 21  1  0  0  0  0 
+ 15 19  1  0  0  0  0 
+ 15 22  1  0  0  0  0 
+ 17 19  2  0  0  0  0 
+M  END
+> <cdk:Title>
+15356007
+
+> <cdk:Remark>
+null
+
+> <PUBCHEM_COMPOUND_CID>
+15356007
+
+> <PUBCHEM_COMPOUND_CANONICALIZED>
+1
+
+> <PUBCHEM_CACTVS_COMPLEXITY>
+533
+
+> <PUBCHEM_CACTVS_HBOND_ACCEPTOR>
+5
+
+> <PUBCHEM_CACTVS_HBOND_DONOR>
+2
+
+> <PUBCHEM_CACTVS_ROTATABLE_BOND>
+0
+
+> <PUBCHEM_CACTVS_SUBSKEYS>
+AAADcYBzMAAEEAAAAAAAAAAAAAAAAAAAAAAwQIAAAAAAAACBAAAAHgJMCAABrAqBmCAwwIIQAgCKAiVSUACCAAAhJwQgiAEAZugIICrB05GEIAhggADIy5cQgAAOAgBAIAECAAIEAIBAAgQABAAAAAAAAA==
+
+> <PUBCHEM_IUPAC_OPENEYE_NAME>
+7-bromo-8-chloro-4,5-dihydroxy-pyridazino[4,5-b]quinolin-1-one
+
+> <PUBCHEM_IUPAC_CAS_NAME>
+7-bromo-8-chloro-4,5-dihydroxy-1-pyridazino[4,5-b]quinolinone
+
+> <PUBCHEM_IUPAC_NAME>
+7-bromo-8-chloro-4,5-dihydroxypyridazino[4,5-b]quinolin-1-one
+
+> <PUBCHEM_IUPAC_SYSTEMATIC_NAME>
+7-bromanyl-8-chloranyl-4,5-bis(oxidanyl)pyridazino[4,5-b]quinolin-1-one
+
+> <PUBCHEM_IUPAC_TRADITIONAL_NAME>
+7-bromo-8-chloro-4,5-dihydroxy-pyridazino[4,5-b]quinolin-1-one
+
+> <PUBCHEM_IUPAC_INCHI>
+InChI=1S/C11H5BrClN3O3/c12-6-3-8-4(2-7(6)13)1-5-9(16(8)19)11(18)15-14-10(5)17/h1-3,18-19H
+
+> <PUBCHEM_IUPAC_INCHIKEY>
+JJMWXPBNYSBVSA-UHFFFAOYSA-N
+
+> <PUBCHEM_XLOGP3_AA>
+3.4
+
+> <PUBCHEM_EXACT_MASS>
+340.920281
+
+> <PUBCHEM_MOLECULAR_FORMULA>
+C11H5BrClN3O3
+
+> <PUBCHEM_MOLECULAR_WEIGHT>
+342.5327
+
+> <PUBCHEM_OPENEYE_CAN_SMILES>
+C1=C2C=C3C(=C(N=NC3=O)O)N(C2=CC(=C1Cl)Br)O
+
+> <PUBCHEM_OPENEYE_ISO_SMILES>
+C1=C2C=C3C(=C(N=NC3=O)O)N(C2=CC(=C1Cl)Br)O
+
+> <PUBCHEM_CACTVS_TPSA>
+85.5
+
+> <PUBCHEM_MONOISOTOPIC_WEIGHT>
+340.920281
+
+> <PUBCHEM_TOTAL_CHARGE>
+0
+
+> <PUBCHEM_HEAVY_ATOM_COUNT>
+19
+
+> <PUBCHEM_ATOM_DEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_ATOM_UDEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_BOND_DEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_BOND_UDEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_ISOTOPIC_ATOM_COUNT>
+0
+
+> <PUBCHEM_COMPONENT_COUNT>
+1
+
+> <PUBCHEM_CACTVS_TAUTO_COUNT>
+2
+
+> <PUBCHEM_COORDINATE_TYPE>
+1
+
+> <PUBCHEM_BONDANNOTATIONS>
+10  13  8
+
+$$$$
