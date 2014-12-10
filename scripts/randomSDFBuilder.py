@@ -45,7 +45,7 @@ def buildRandomizedSDFs( numMolsList, inputFolder, outputFilenameList):
 			# print("grabbed!")
 		print("Finished grabbing mols")
 
-		maxNumMolsInFile = 3
+		maxNumMolsInFile = 20*1000
 		numMolsInFile = 0
 		fileNum = 0
 

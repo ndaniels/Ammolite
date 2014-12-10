@@ -21,12 +21,9 @@ public class LabeledVF2State extends VF2State {
     
     @Override
     protected boolean areCompatableVertices(int v1, int v2){
-        System.out.print("called: ");
         if(g1.labelOf(v1).equals(g2.labelOf(v2))){
-            System.out.println("true");
             return true;
         }
-        System.out.println("false");
         return false;
     }
     

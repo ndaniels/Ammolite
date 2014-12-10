@@ -123,14 +123,13 @@ public class StructCompressor {
 	private void checkDatabaseForIsomorphicStructs( Iterator<IAtomContainer> molecule_database, MoleculeStructFactory structFactory) throws CDKException, InterruptedException, ExecutionException{
 
         while( molecule_database.hasNext() ){
-            System.out.println("\nMOLECULE\n");
         	IAtomContainer molecule =  molecule_database.next();       	
         	IMolStruct structure = structFactory.makeMoleculeStruct(molecule);
         	numMols++;
         	
         	if( structsByFingerprint.containsKey( structure.fingerprint())){
         		List<IMolStruct> potentialMatches = structsByFingerprint.get( structure.fingerprint() );
-        		StructID matchID = linearIsomorphism( structure, potentialMatches);
+        		StructID matchID = parrallelIsomorphism( structure, potentialMatches);
         		if( matchID == null ){
         			numReps++;
         			structsByFingerprint.add(structure.fingerprint(), structure);
@@ -169,11 +168,9 @@ public class StructCompressor {
             boolean iso = candidate.isIsomorphic(fStruct, iso_tester);
             
             if( iso ){
-                System.out.println("Match");
                 candidate.addID( MolUtils.getPubID(fStruct));
                 return MolUtils.getStructID( candidate);
             } 
-            System.out.println("Miss");
         }
         return null;
     }
