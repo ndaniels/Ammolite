@@ -202,11 +202,9 @@ public class StructCompressor {
 	            	boolean iso = candidate.isIsomorphic(fStruct, iso_tester);
 	            	
 	            	if( iso ){
-	            	    System.out.println("Match");
 	            		candidate.addID( MolUtils.getPubID(fStruct));
 	            		return candidate;
 	            	} 
-	            	System.out.println("Miss");
 	                return null;
 	            }
 	        };
