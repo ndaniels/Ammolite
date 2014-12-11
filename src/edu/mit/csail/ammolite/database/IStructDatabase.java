@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
+import edu.mit.csail.ammolite.compression.IMolStruct;
 import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory;
 import edu.mit.csail.ammolite.utils.PubchemID;
@@ -20,12 +21,10 @@ public interface IStructDatabase {
 	public String asTable();
 	public double convertThreshold(double threshold, double probability, boolean useTanimoto);
 	public double guessCoarseThreshold(double fineThreshold);
-	public MolStruct makeMoleculeStruct(IAtomContainer mol);
-	public Iterator<MolStruct> iterator();
+	public IMolStruct makeMoleculeStruct(IAtomContainer mol);
+	public Iterator<IMolStruct> iterator();
 	public MoleculeStructFactory getStructFactory();
-	public List<MolStruct> getStructs();
-	@Deprecated
-	public IDatabaseCoreData getCoreData();
+	public List<IMolStruct> getStructs();
 	public ISDFSet getSourceFiles();
 	public List<IAtomContainer> getMatchingMolecules(StructID structID);
 	public String getName();

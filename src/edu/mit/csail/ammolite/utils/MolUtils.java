@@ -3,6 +3,7 @@ package edu.mit.csail.ammolite.utils;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
+import edu.mit.csail.ammolite.compression.IMolStruct;
 import edu.mit.csail.ammolite.compression.MolStruct;
 
 public class MolUtils {
@@ -18,7 +19,7 @@ public class MolUtils {
 	public static ID getUnknownOrID(IAtomContainer mol){
 	    ID out;
         try{
-            if( mol instanceof MolStruct){
+            if( mol instanceof IMolStruct){
                 out = getStructID(mol);
             } else {
                out = getPubID(mol);

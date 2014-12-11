@@ -8,6 +8,7 @@ import java.util.Map;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import edu.mit.csail.ammolite.KeyListMap;
+import edu.mit.csail.ammolite.compression.IMolStruct;
 import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory;
 import edu.mit.csail.ammolite.utils.MolUtils;
@@ -22,7 +23,7 @@ public class GenericStructDatabase implements IStructDatabase {
     String version;
     CompressionType compression;
     MoleculeStructFactory sFactory;
-    List<MolStruct> structs = null;
+    List<IMolStruct> structs = null;
     List<String> structFiles;
     Map<StructID, List<PubchemID>> idMap;
     ISDFSet sourceFiles;
@@ -54,11 +55,11 @@ public class GenericStructDatabase implements IStructDatabase {
             return;
         }
         System.out.print("Caching Representatives... ");
-        structs = new ArrayList<MolStruct>();
+        structs = new ArrayList<IMolStruct>();
         SDFMultiStructParser structParser = new SDFMultiStructParser( sourceFiles.getFilepaths(), sFactory);
 
         while( structParser.hasNext()){
-            MolStruct struct = structParser.next();
+            IMolStruct struct = structParser.next();
 
             StructID key = MolUtils.getStructID(struct);
 
@@ -101,7 +102,7 @@ public class GenericStructDatabase implements IStructDatabase {
     public int numMols() {
         if( numMols == -1){
             int num = 0;
-            for(MolStruct rep: this.getStructs()){
+            for(IMolStruct rep: this.getStructs()){
                 num += rep.getIDNums().size();
             }
             this.setNumMols(num);
@@ -140,7 +141,7 @@ public class GenericStructDatabase implements IStructDatabase {
     public String asTable() {
         StringBuilder sb = new StringBuilder();
         sb.append("BEGIN_TABLE\n");
-        for(MolStruct struct: getStructs()){
+        for(IMolStruct struct: getStructs()){
             sb.append(MolUtils.getPubID(struct));
             sb.append(", ");
             for(PubchemID id: struct.getIDNums()){
@@ -161,12 +162,12 @@ public class GenericStructDatabase implements IStructDatabase {
     }
 
     @Override
-    public MolStruct makeMoleculeStruct(IAtomContainer mol) {
+    public IMolStruct makeMoleculeStruct(IAtomContainer mol) {
         return sFactory.makeMoleculeStruct(mol);
     }
 
     @Override
-    public Iterator<MolStruct> iterator() {
+    public Iterator<IMolStruct> iterator() {
         if( structs != null){
             return structs.iterator();
         }
@@ -180,18 +181,13 @@ public class GenericStructDatabase implements IStructDatabase {
     }
 
     @Override
-    public List<MolStruct> getStructs() {
+    public List<IMolStruct> getStructs() {
         if(structs == null){
             this.cacheStructs();
         }
         return structs;
     }
 
-    @Override
-    @Deprecated
-    public IDatabaseCoreData getCoreData() {
-        throw new UnsupportedOperationException();
-    }
 
     @Override
     public ISDFSet getSourceFiles() {

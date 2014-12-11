@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
+import edu.mit.csail.ammolite.compression.IMolStruct;
 import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.mcs.MCS;
@@ -32,14 +33,14 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
 
     @Override
     public void test(List<IAtomContainer> queries, IStructDatabase db,
-            Iterator<IAtomContainer> targets, Iterator<MolStruct> sTargets,
+            Iterator<IAtomContainer> targets, Iterator<IMolStruct> sTargets,
             double thresh, double prob, String name, PrintStream out) {
 
         System.out.println(NAME);
         SearchResultDocumenter scribe = new SearchResultDocumenter( out);
         
         for(IAtomContainer query: queries){
-            MolStruct cQuery = db.makeMoleculeStruct(query);
+            IMolStruct cQuery = db.makeMoleculeStruct(query);
             Pair<SearchResult, Collection<StructID>> p = coarseSearch(cQuery, query, db.iterator(), db.numReps(), prob);
             
             SearchResult coarseResult = p.left();
@@ -97,11 +98,11 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
     }
     
     
-    private Pair<SearchResult, Collection<StructID>> coarseSearch(MolStruct cQuery, IAtomContainer query, Iterator<MolStruct> sTargets, int numReps, double thresh){
+    private Pair<SearchResult, Collection<StructID>> coarseSearch(IMolStruct cQuery, IAtomContainer query, Iterator<IMolStruct> sTargets, int numReps, double thresh){
         CommandLineProgressBar bar = new CommandLineProgressBar(MolUtils.getPubID(query).toString() + "_COARSE", numReps);
         SearchResult coarseResult = new SearchResult(cQuery, getName() + "_COARSE");
         coarseResult.start();
-        BlockingQueue<MolStruct> queue = new ArrayBlockingQueue<MolStruct>(COARSE_QUEUE_SIZE,false);
+        BlockingQueue<IMolStruct> queue = new ArrayBlockingQueue<IMolStruct>(COARSE_QUEUE_SIZE,false);
         Collection<StructID> hits = Collections.synchronizedCollection(new HashSet<StructID>());
         Thread producer = new Thread( new CoarseProducer(sTargets, queue));
         producer.start();
@@ -139,17 +140,17 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
     }
     
     private class CoarseProducer implements Runnable {
-        BlockingQueue< MolStruct> queue;
-        Iterator<MolStruct> targets;
+        BlockingQueue<IMolStruct> queue;
+        Iterator<IMolStruct> targets;
         
-        public CoarseProducer(Iterator<MolStruct> sTargets, BlockingQueue< MolStruct> queue){
+        public CoarseProducer(Iterator<IMolStruct> sTargets, BlockingQueue<IMolStruct> queue){
               this.targets = sTargets;
             this.queue = queue;
         }
 
         @Override
         public void run() {
-            MolStruct target;
+            IMolStruct target;
              while(targets.hasNext()){
                 target = targets.next();
                 try {
@@ -189,14 +190,14 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
     }
     
     private class CoarseConsumer implements Runnable {
-        BlockingQueue<MolStruct> queue;
-        MolStruct query;
+        BlockingQueue<IMolStruct> queue;
+        IMolStruct query;
         SearchResult result;
         Collection<StructID> hits;
         CommandLineProgressBar bar;
         double threshold;
         
-        public CoarseConsumer(MolStruct cQuery, BlockingQueue<MolStruct> queue, SearchResult result, Collection<StructID> hits, CommandLineProgressBar bar, double threshold){
+        public CoarseConsumer(IMolStruct cQuery, BlockingQueue<IMolStruct> queue, SearchResult result, Collection<StructID> hits, CommandLineProgressBar bar, double threshold){
             this.query = cQuery;
             this.queue = queue;
             this.result = result;
@@ -209,7 +210,7 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
         public void run() {
             while(!Thread.currentThread().isInterrupted()){
                 try {
-                    MolStruct target = queue.poll(500, TimeUnit.MILLISECONDS);
+                    IMolStruct target = queue.poll(500, TimeUnit.MILLISECONDS);
                     
                     if(target != null){
                         int overlap = MCS.getTimedSMSDOverlap(target, query);

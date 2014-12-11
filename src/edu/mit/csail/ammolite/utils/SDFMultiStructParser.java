@@ -3,6 +3,7 @@ package edu.mit.csail.ammolite.utils;
 import java.util.Iterator;
 import java.util.List;
 
+import edu.mit.csail.ammolite.compression.IMolStruct;
 import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory;
 
@@ -13,7 +14,7 @@ import edu.mit.csail.ammolite.compression.MoleculeStructFactory;
  * @author dcdanko
  *
  */
-public class SDFMultiStructParser implements Iterator<MolStruct>{
+public class SDFMultiStructParser implements Iterator<IMolStruct>{
     SDFMultiParser molIterator;
     MoleculeStructFactory factory;
     
@@ -28,7 +29,7 @@ public class SDFMultiStructParser implements Iterator<MolStruct>{
     }
 
     @Override
-    public MolStruct next() {
+    public IMolStruct next() {
         return factory.makeMoleculeStruct( molIterator.next());
     }
 
