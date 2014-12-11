@@ -41,13 +41,13 @@ public class StructDatabaseDecompressor {
 			}
 			
 			if(extension.equals("adb")){
-				if( useCaching){	
-					return new CachingStructDatabase( ammoliteCoreDatabase( databasename));
-				
-				
-				} else {
-					return new StructDatabase( ammoliteCoreDatabase( databasename));
-				}
+//				if( useCaching){	
+//					return new CachingStructDatabase( ammoliteCoreDatabase( databasename));
+//				
+//				
+//				} else {
+//					return new StructDatabase( ammoliteCoreDatabase( databasename));
+//				}
 			} else if(extension.equals("gad") || extension.equals("gad/")){
 			    return decompressGeneric(databasename);
 			} else {

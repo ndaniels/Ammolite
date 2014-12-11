@@ -363,7 +363,9 @@ public class StructCompressor {
                 writer.write("CYCLIC");
             } else if (this.structFactory.getCompressionType() == CompressionType.BASIC){
                 writer.write("BASIC");
-            } else {
+            } else if (this.structFactory.getCompressionType() == CompressionType.LABELED){
+                writer.write("LABELED");
+            }else {
                 writer.write("OTHER");
             }
             writer.newLine();
