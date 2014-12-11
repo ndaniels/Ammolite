@@ -82,13 +82,17 @@ def buildRandomizedSDFs( numMolsList, inputFolder, outputFilenameList):
 
 def main(args):
 	if( len(args) == 1):
-		print("usage: [size] [name] [source_files]")
-	elif (len(args)  == 4):
+		print("usage: [source_files] [names...] [sizes...]")
+	elif (len(args)  %2 == 0):
 		print(args)
-
-		sizes =  [int(args[1])]
-		names = [args[2]]
-		buildRandomizedSDFs(sizes, args[3], names)
+		inputFolder = args[1]
+		print(inputFolder)
+		numFilesToMake = (len(args) - 2) / 2
+		sizes =  [int(val) for val in args[(2+numFilesToMake):]]
+		print(sizes)
+		names = args[2:(2+numFilesToMake)]
+		print(names)
+		buildRandomizedSDFs(sizes, inputFolder, names)
 
 
 if __name__ == "__main__":

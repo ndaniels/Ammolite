@@ -365,7 +365,9 @@ public class StructCompressor {
                 writer.write("BASIC");
             } else if (this.structFactory.getCompressionType() == CompressionType.LABELED){
                 writer.write("LABELED");
-            }else {
+            } else if (this.structFactory.getCompressionType() == CompressionType.WEIGHTED){
+                writer.write("WEIGHTED");
+            } else {
                 writer.write("OTHER");
             }
             writer.newLine();
