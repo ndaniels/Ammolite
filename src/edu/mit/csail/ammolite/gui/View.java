@@ -1,10 +1,12 @@
 package edu.mit.csail.ammolite.gui;
 
+import java.awt.Dimension;
 import java.awt.GraphicsConfiguration;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.PrintStream;
 import java.util.List;
 
 import javax.swing.GroupLayout;
@@ -14,6 +16,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -36,6 +39,8 @@ public class View extends JFrame {
     private final View  self = this;
     private final  Controller c;
     
+    private final JTextArea consoleOut;
+    
     // private final List<JRadioButton> databaseButtons;
 
     public View(Controller _c){
@@ -55,8 +60,19 @@ public class View extends JFrame {
         
         thresholdLabel = new JLabel("Overlap Threshold: ");
         threshold = new JTextField();
+        threshold.setPreferredSize(new Dimension(20, 5));
         
         startSearch = new JButton("Start Search");
+        
+        consoleOut = new JTextArea();
+        consoleOut.setPreferredSize(new Dimension(600,600));
+        PrintStream out = new PrintStream(new TextAreaOutputStream(consoleOut));
+        System.setOut(out);
+        System.setErr(out);
+        
+        System.out.print("Welcome to the Ammolite GUI");
+        System.out.print("\r");
+        System.out.println("Welcome to the Ammolite GUI");
         
         this.loadQueryFile.addActionListener(new ActionListener(){
             
@@ -115,7 +131,8 @@ public class View extends JFrame {
                 .addGroup( layout.createSequentialGroup()
                                 .addComponent(thresholdLabel)
                                 .addComponent(threshold)
-                        ));
+                        )
+                 .addComponent(consoleOut));
         
         layout.setVerticalGroup( layout.createSequentialGroup()
                 .addGroup( layout.createParallelGroup()
@@ -127,7 +144,8 @@ public class View extends JFrame {
                 .addGroup( layout.createParallelGroup()
                         .addComponent(thresholdLabel)
                         .addComponent(threshold))
-                 .addComponent(startSearch));
+                 .addComponent(startSearch)
+                 .addComponent(consoleOut));
         
     }
     
