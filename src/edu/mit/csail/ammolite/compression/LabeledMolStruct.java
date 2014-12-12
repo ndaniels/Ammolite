@@ -104,7 +104,6 @@ public class LabeledMolStruct extends AtomContainer implements IMolStruct {
         }
         
         this.fingerprint = h;
-        this.fingerprint = 0;
     }
     
     protected void makeGraph(){
