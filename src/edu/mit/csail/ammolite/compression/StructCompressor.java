@@ -211,7 +211,7 @@ public class StructCompressor {
 	        callList.add(callable);
 
 	    }
-	    IMolStruct match = ParallelUtils.parallelTimedSingleExecution( callList, 5*1000, exService);
+	    IMolStruct match = ParallelUtils.parallelTimedSingleExecution( callList, 5, exService);
 	    if(match == null){
 	    	return null;
 	    } else {
