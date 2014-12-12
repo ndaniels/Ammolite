@@ -3,7 +3,7 @@ package edu.mit.csail.ammolite
 
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory
 import edu.mit.csail.ammolite.compression.StructCompressor
-import edu.mit.csail.ammolite.compression.Compressor_2
+import edu.mit.csail.ammolite.compression.CentroidCompressor
 import edu.mit.csail.ammolite.database.StructDatabaseCompressor
 import org.rogach.scallop._
 import edu.mit.csail.ammolite.utils.Logger
@@ -39,6 +39,9 @@ object AmmoliteMain{
 			  val weighted = opt[Boolean]("weighted", descr="Use labeled-weighted structures instead of cyclic structures")
 			  val iterated = opt[Boolean]("iterated", descr="Dev")
 			  val threads = opt[Int]("threads", default=Some(-1), descr="Number of threads to use for compression")
+
+			  val centroids = opt[Boolean]("centroids")
+			  val clusterThresh = opt[Double]("clusterThresh")
 			}
 			val merge = new Subcommand("merge-databases"){
 			  banner("Compress a database of SDF files")
@@ -164,10 +167,9 @@ object AmmoliteMain{
 		Logger.setVerbosity( opts.verbosity())
 		
 		if( opts.subcommand == Some(opts.compress)){
-			if( opts.compress.iterated()){
-				val compressor = new Compressor_2()
-		  		java.util.Arrays.asList(opts.compress.source().toArray: _*)
-		  		compressor.compress(java.util.Arrays.asList(opts.compress.source().toArray: _*), opts.compress.target(), opts.compress.threads())
+			if( opts.compress.centroids()){
+				val compressor = new CentroidCompressor( CompressionType.NONE)
+		  		compressor.compress(java.util.Arrays.asList(opts.compress.source().toArray: _*), opts.compress.target(), opts.compress.clusterThresh(), opts.compress.threads())
 			} else {
 				  var compType = CompressionType.CYCLIC
 				  if( opts.compress.simple()){
