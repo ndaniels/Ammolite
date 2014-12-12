@@ -118,7 +118,9 @@ public class ParallelUtils {
                       }
                   } catch (ExecutionException ignore) {   
                   } catch (InterruptedException ignore) {
-                  } catch (TimeoutException ignore) {}
+                  } catch (TimeoutException ignore) {
+                      System.out.println("\nTIMEOUT");
+                  }
               }
               
           } finally {
