@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
+import edu.mit.csail.ammolite.compression.IMolStruct;
 import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.mcs.MCS;
@@ -28,7 +29,7 @@ public class SMSD_QuerywiseParallel implements Tester{
 
     @Override
     public void test(List<IAtomContainer> queries, IStructDatabase db,
-            Iterator<IAtomContainer> targets, Iterator<MolStruct> sTargets,
+            Iterator<IAtomContainer> targets, Iterator<IMolStruct> sTargets,
             double thresh, double prob, String name, PrintStream out) {
         
         SearchResultDocumenter scribe = new SearchResultDocumenter( out);
@@ -143,7 +144,7 @@ public class SMSD_QuerywiseParallel implements Tester{
                 try {
                     IAtomContainer target = queue.poll(500, TimeUnit.MILLISECONDS);
                     if(target != null){
-                        int overlap = MCS.getTimedSMSDOverlap(target, query);
+                        int overlap = MCS.getSMSDOverlap(target, query);
                         if(MCSUtils.overlapCoeff(overlap, target, query) > threshold){
                             result.addMatch(new SearchMatch(query, target, overlap));
                         } else {
