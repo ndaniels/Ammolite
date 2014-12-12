@@ -211,7 +211,7 @@ public class StructCompressor {
 	        callList.add(callable);
 
 	    }
-	    System.out.println("\nJOBS SUBMITTED");
+	    System.out.println("\nJOBS SUBMITTED: "+ callList.size());
 	    IMolStruct match = ParallelUtils.parallelTimedSingleExecution( callList, 5, exService);
 	    if(match == null){
 	        System.out.println("NULL OUT");
