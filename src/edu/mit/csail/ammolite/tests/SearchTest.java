@@ -8,9 +8,9 @@ import java.util.List;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
+import edu.mit.csail.ammolite.compression.IMolStruct;
 import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory;
-import edu.mit.csail.ammolite.database.BigStructDatabase;
 import edu.mit.csail.ammolite.database.CompressionType;
 import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
@@ -29,15 +29,15 @@ public class SearchTest {
 	private static final String smsd = "SMSD";
 	private static final String fmcs = "FMCS";
 	
-	public static void testSearch(String queryFile, String databaseName, String outName, double fine, double coarse, 
+	public static void testSearch(List<String> queryFiles, String databaseName, String outName, double fine, double coarse, 
                                     boolean testAmm, boolean testAmmPar, boolean testAmmCompressedQuery, 
                                     boolean testSMSD, boolean testFMCS,boolean testAmmSMSD, boolean useCaching){
-	    SearchTest.testSearch(queryFile, databaseName, outName, fine, coarse, testAmm, testAmmPar, testAmmCompressedQuery, testSMSD, testFMCS, testAmmSMSD, useCaching, "no description");
+	    SearchTest.testSearch(queryFiles, databaseName, outName, fine, coarse, testAmm, testAmmPar, testAmmCompressedQuery, testSMSD, testFMCS, testAmmSMSD, useCaching, "no description");
 	    
 	}
 	
 	
-	public static void testSearch(String queryFile, String databaseName, String outName, double fine, double coarse, 
+	public static void testSearch(List<String> queryFiles, String databaseName, String outName, double fine, double coarse, 
 									boolean testAmm, boolean testAmmPar, boolean testAmmCompressedQuery, 
 									boolean testSMSD, boolean testFMCS,boolean testAmmSMSD, boolean useCaching, String description){
 		
@@ -45,50 +45,52 @@ public class SearchTest {
 		boolean testingLinear = (testFMCS || testSMSD);
 		
 		IStructDatabase db = StructDatabaseDecompressor.decompress(databaseName, useCaching);
-		List<IAtomContainer> queries = SDFUtils.parseSDF( queryFile);
-		
-		Iterator<IAtomContainer> targets = null;
-		if( testingLinear && false) {
-			List<String> sdfFiles = db.getSourceFiles().getFilenames();
-			targets = SDFUtils.parseSDFSetOnline(sdfFiles);
-		} 
-		
-		Iterator<MolStruct> sTargets = db.iterator();
-		
-		PrintStream stream = getPrintStream(outName);
-		System.out.println("fine_threshold: "+fine+" coarse_threshold: "+coarse);
-		System.out.println(db.info());
-		System.out.println("Description: "+description);
-		stream.println("fine_threshold: "+fine+" coarse_threshold: "+coarse);
-		stream.println(db.info());
-		stream.println("Description: "+description);
-
-		
-		if( testAmm){
-			Tester tester = new Ammolite_QuerywiseParallel_2();
-			runTest(tester, stream, queries, db, targets, sTargets, fine, coarse);
+		for(String queryFile: queryFiles){
+    		List<IAtomContainer> queries = SDFUtils.parseSDF( queryFile);
+    		
+    		Iterator<IAtomContainer> targets = null;
+    		if( testingLinear && false) {
+    			List<String> sdfFiles = db.getSourceFiles().getFilenames();
+    			targets = SDFUtils.parseSDFSetOnline(sdfFiles);
+    		} 
+    		
+    		Iterator<IMolStruct> sTargets = db.iterator();
+    		
+    		PrintStream stream = getPrintStream(outName);
+    		System.out.println("fine_threshold: "+fine+" coarse_threshold: "+coarse);
+    		System.out.println(db.info());
+    		System.out.println("Description: "+description);
+    		stream.println("fine_threshold: "+fine+" coarse_threshold: "+coarse);
+    		stream.println(db.info());
+    		stream.println("Description: "+description);
+    
+    		
+    		if( testAmm){
+    			Tester tester = new Ammolite_QuerywiseParallel_2();
+    			runTest(tester, stream, queries, db, targets, sTargets, fine, coarse);
+    		}
+    		if( testSMSD){
+    			Tester tester = new SMSD_QuerywiseParallel();
+    			runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse);
+    		}
+//    		
+//    		if( testFMCS){
+//                Tester tester = new Ammolite_QuerywiseParallel_Psychic();
+//                runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse);
+//            }
+//    
+//    		if( testAmmCompressedQuery){
+//    			Tester tester = new Ammolite_QuerywiseParallel_QueryCompression_2();
+//    			runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse);
+//    		} 
+//    		
+//    		if( testAmmPar){
+//    		    Tester tester = new Ammolite_QuerywiseParallel_3();
+//                runTest(tester, stream, queries, db, targets, sTargets, fine, coarse);
+//    		}
+    
+    		stream.close();
 		}
-		if( testSMSD){
-			Tester tester = new SMSD_QuerywiseParallel();
-			runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse);
-		}
-		
-		if( testFMCS){
-            Tester tester = new Ammolite_QuerywiseParallel_Psychic();
-            runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse);
-        }
-
-		if( testAmmCompressedQuery){
-			Tester tester = new Ammolite_QuerywiseParallel_QueryCompression_2();
-			runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse);
-		} 
-		
-		if( testAmmPar){
-		    Tester tester = new Ammolite_QuerywiseParallel_3();
-            runTest(tester, stream, queries, db, targets, sTargets, fine, coarse);
-		}
-
-		stream.close();
 		
 	}
 	
@@ -102,7 +104,7 @@ public class SearchTest {
 	}
 	
 	private static void runTest(Tester tester, PrintStream stream, List<IAtomContainer> queries, IStructDatabase db, 
-										Iterator<IAtomContainer> targets, Iterator<MolStruct> sTargets, double thresh, 
+										Iterator<IAtomContainer> targets, Iterator<IMolStruct> sTargets, double thresh, 
 										double prob){
 	    
 		String name = tester.getName();
@@ -223,8 +225,8 @@ public class SearchTest {
 			for(int j=0; j<=i; j++){
 				IAtomContainer a = molecules.get(i);
 				IAtomContainer b = molecules.get(j);
-				MolStruct sA = sf.makeMoleculeStruct(a);
-				MolStruct sB = sf.makeMoleculeStruct(b);
+				IMolStruct sA = sf.makeMoleculeStruct(a);
+				IMolStruct sB = sf.makeMoleculeStruct(b);
 				long wallClockStart = System.currentTimeMillis();
 				int mcsSize = MCS.getSMSDOverlap(sA, sB);
 				long wallClockElapsed = System.currentTimeMillis() - wallClockStart;

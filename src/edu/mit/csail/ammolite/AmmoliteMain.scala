@@ -66,7 +66,7 @@ object AmmoliteMain{
 			val search = new Subcommand("search"){
 			  
 				val database = opt[String]("database", required=true, descr="Path to the database.")
-				val queries = opt[String]("queries", required=true, descr="SDF file of queries.")
+				val queries = opt[List[String]]("queries", required=true, descr="SDF files of queries.")
 				val threshold = opt[Double]("threshold", descr="Threshold to use. Uses overlap coefficient by default.")
 				val probability = opt[Double]("probability", descr="Probability of finding a result over a certain threshold")
 			    val tanimoto = opt[Boolean]("tanimoto", descr="Use tanimoto coefficients.", default=Some(false))
@@ -93,7 +93,7 @@ object AmmoliteMain{
 			  val sdf = opt[String]("filename")
 			}
 			val devTestSearch = new Subcommand("test"){
-			  val q = opt[String]("queries")
+			  val q = opt[List[String]]("queries", required=true, descr="SDF files of queries.")
 			  val db = opt[String]("database")
 			  val out = opt[String]("outName")
 			  val description = opt[String]("description", required=false)
@@ -199,7 +199,7 @@ object AmmoliteMain{
 		  val s = new SDFWrapper( opts.devTestSDF.sdf())
 		} else if( opts.subcommand == Some( opts.devTestSearch)){
 
-			  edu.mit.csail.ammolite.tests.SearchTest.testSearch(opts.devTestSearch.q(), opts.devTestSearch.db(), opts.devTestSearch.out(), opts.devTestSearch.t(), opts.devTestSearch.p(), 
+			  edu.mit.csail.ammolite.tests.SearchTest.testSearch(java.util.Arrays.asList(opts.devTestSearch.q().toArray: _*), opts.devTestSearch.db(), opts.devTestSearch.out(), opts.devTestSearch.t(), opts.devTestSearch.p(), 
 					  												opts.devTestSearch.amm(),
 					  												opts.devTestSearch.par(),
 					  												opts.devTestSearch.queryComp(),
