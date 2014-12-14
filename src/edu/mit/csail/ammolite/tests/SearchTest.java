@@ -1,6 +1,8 @@
 package edu.mit.csail.ammolite.tests;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Iterator;
@@ -118,10 +120,10 @@ public class SearchTest {
 	private static PrintStream getPrintStream(String outName){
 		PrintStream writer= null;
 		try {
-			writer = new PrintStream(outName, "UTF-8");
+		    File f = new File(outName);
+		    FileOutputStream fos = new FileOutputStream(f, true);
+			writer = new PrintStream(fos);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
 		if(writer == null){
