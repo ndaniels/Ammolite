@@ -12,6 +12,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
+import edu.mit.csail.ammolite.mcs.MCS;
 import edu.mit.csail.ammolite.utils.MolUtils;
 import edu.mit.csail.ammolite.utils.PubchemID;
 import edu.ucla.sspace.graph.Edge;
@@ -31,6 +32,8 @@ public class LabeledMolStruct extends AtomContainer implements IMolStruct {
     protected HashMap<Integer, IAtom> nodesToAtoms = new HashMap<Integer, IAtom>();
     protected HashMap<IBond,Edge> bondsToEdges = new HashMap<IBond, Edge>();
     protected HashMap<Edge, IBond> edgesToBonds = new HashMap<Edge, IBond>();
+    protected int carbonCount = -1;
+    protected int nonCarbonCount = -1;
 
     public LabeledMolStruct() {}
     
@@ -133,7 +136,31 @@ public class LabeledMolStruct extends AtomContainer implements IMolStruct {
     public boolean isIsomorphic(IAtomContainer struct, AbstractIsomorphismTester tester) {
         if(tester instanceof LabeledVF2IsomorphismTester){
             if(struct instanceof LabeledMolStruct){
-                return ((LabeledVF2IsomorphismTester) tester).areIsomorphic(this.getGraph(), ((LabeledMolStruct) struct).getGraph());
+                LabeledMolStruct that = ((LabeledMolStruct) struct);
+                if(this.getAtomCount() == that.getAtomCount() && this.getBondCount() == that.getBondCount()){
+                    if(MCS.beatsOverlapThresholdSMSD(that, this, 0.9999999)){
+                        return true;
+                    }
+                    return false;
+                }    
+                return false;
+                
+                
+                
+//                if(this.carbons() == that.carbons() && this.nonCarbons() == that.nonCarbons()){
+//                    boolean iso = ((LabeledVF2IsomorphismTester) tester).areIsomorphic(this.getGraph(), that.getGraph());
+//                    if(iso){
+////                        System.out.println("\n---");
+////                        System.out.println(MolUtils.getPubID(this)+" "+MolUtils.getPubID(that));
+////                        System.out.println(this.carbons()+" "+that.carbons());
+////                        System.out.println(this.nonCarbons()+" "+that.nonCarbons());
+////                        System.out.println(this.getAtomCount()+" "+that.getAtomCount());
+//                    }
+//                   return iso;
+//                } else {
+//                    return false;
+//                }
+                
             }
             return false;
         }
@@ -159,6 +186,34 @@ public class LabeledMolStruct extends AtomContainer implements IMolStruct {
     @Override
     public int fingerprint() {
         return this.fingerprint;
+    }
+
+    @Override
+    public int nonCarbons() {
+        if( this.nonCarbonCount < 0){
+            nonCarbonCount = 0;
+            for(IAtom atom: this.atoms()){
+                if(!atom.getSymbol().equals("C")){
+                    nonCarbonCount++;
+                }
+            }
+        }
+        assert this.nonCarbonCount + this.carbons() == this.atoms.length;
+        return nonCarbonCount;
+    }
+
+    @Override
+    public int carbons() {
+        if( this.carbonCount < 0){
+            carbonCount = 0;
+            for(IAtom atom: this.atoms()){
+                if(atom.getSymbol().equals("C")){
+                    carbonCount++;
+                }
+            }
+        }
+        assert this.carbonCount + this.nonCarbons() == this.atoms.length;
+        return carbonCount;
     }
 
 }

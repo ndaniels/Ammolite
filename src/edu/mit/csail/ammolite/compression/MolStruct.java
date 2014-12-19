@@ -166,12 +166,36 @@ public class MolStruct extends AtomContainer implements Serializable, IMolStruct
 			that = new MolStruct( that );
 		}
 		MolStruct that_struct = (MolStruct) that;
-		return iso_tester.areIsomorphic(this.getGraph(), that_struct.getGraph() );
+		boolean iso = iso_tester.areIsomorphic(this.getGraph(), that_struct.getGraph() );
+		if(iso){
+		    System.out.println("\n---");
+            System.out.println(MolUtils.getPubID(this)+" "+MolUtils.getPubID(that));
+//            System.out.println(this.carbons()+" "+that.carbons());
+//            System.out.println(this.nonCarbons()+" "+that.nonCarbons());
+            System.out.println(this.getAtomCount()+" "+that.getAtomCount());
+		}
+		return iso;
 	}
 	
 	public int fingerprint(){
 		return fingerprint;
 	}
+
+
+
+
+    @Override
+    public int nonCarbons() {
+        return 0;
+    }
+
+
+
+
+    @Override
+    public int carbons() {
+        return this.atoms.length;
+    }
 	
 
 }
