@@ -137,29 +137,29 @@ public class LabeledMolStruct extends AtomContainer implements IMolStruct {
         if(tester instanceof LabeledVF2IsomorphismTester){
             if(struct instanceof LabeledMolStruct){
                 LabeledMolStruct that = ((LabeledMolStruct) struct);
-                if(this.getAtomCount() == that.getAtomCount() && this.getBondCount() == that.getBondCount()){
-                    if(MCS.beatsOverlapThresholdSMSD(that, this, 0.9999999)){
-                        return true;
-                    }
-                    return false;
-                }    
-                return false;
-                
-                
-                
-//                if(this.carbons() == that.carbons() && this.nonCarbons() == that.nonCarbons()){
-//                    boolean iso = ((LabeledVF2IsomorphismTester) tester).areIsomorphic(this.getGraph(), that.getGraph());
-//                    if(iso){
-////                        System.out.println("\n---");
-////                        System.out.println(MolUtils.getPubID(this)+" "+MolUtils.getPubID(that));
-////                        System.out.println(this.carbons()+" "+that.carbons());
-////                        System.out.println(this.nonCarbons()+" "+that.nonCarbons());
-////                        System.out.println(this.getAtomCount()+" "+that.getAtomCount());
+//                if(this.getAtomCount() == that.getAtomCount() && this.getBondCount() == that.getBondCount()){
+//                    if(MCS.beatsOverlapThresholdSMSD(that, this, 0.9999999)){
+//                        return true;
 //                    }
-//                   return iso;
-//                } else {
 //                    return false;
-//                }
+//                }    
+//                return false;
+                
+                
+                
+                if(this.carbons() == that.carbons() && this.nonCarbons() == that.nonCarbons()){
+                    boolean iso = ((LabeledVF2IsomorphismTester) tester).areIsomorphic(this.getGraph(), that.getGraph());
+                    if(iso){
+//                        System.out.println("\n---");
+//                        System.out.println(MolUtils.getPubID(this)+" "+MolUtils.getPubID(that));
+//                        System.out.println(this.carbons()+" "+that.carbons());
+//                        System.out.println(this.nonCarbons()+" "+that.nonCarbons());
+//                        System.out.println(this.getAtomCount()+" "+that.getAtomCount());
+                    }
+                   return iso;
+                } else {
+                    return false;
+                }
                 
             }
             return false;
