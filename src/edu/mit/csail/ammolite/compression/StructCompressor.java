@@ -212,6 +212,9 @@ public class StructCompressor {
 	        callList.add(callable);
 
 	    }
+	    if(callList.size() > 6000){
+	        System.out.println("\nThis could take a while, processing "+callList.size()+" isomorphisms.");
+	    }
 
 	    IMolStruct match = ParallelUtils.parallelTimedSingleExecution( callList, 5, exService);
 	    if(match == null){
