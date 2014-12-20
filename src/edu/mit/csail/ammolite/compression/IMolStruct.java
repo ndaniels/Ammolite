@@ -18,4 +18,7 @@ public interface IMolStruct extends IAtomContainer{
     public Set<PubchemID> getIDNums();
     public Graph<? extends Edge> getGraph();
     public int fingerprint();
+    
+    public int nonCarbons();
+    public int carbons();
 }

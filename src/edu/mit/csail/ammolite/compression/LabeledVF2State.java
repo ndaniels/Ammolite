@@ -5,23 +5,26 @@ import edu.ucla.sspace.graph.Graph;
 import edu.ucla.sspace.graph.isomorphism.VF2State;
 
 public class LabeledVF2State extends VF2State {
-    protected LabeledWeightedGraph g1;
-    protected LabeledWeightedGraph g2;
+    protected LabeledWeightedGraph lg1;
+    protected LabeledWeightedGraph lg2;
 
     
     public LabeledVF2State(VF2State copy) {
-        this(((LabeledVF2State) copy).g1, ((LabeledVF2State) copy).g2);
+        super(copy);
+        this.lg1 = ((LabeledVF2State) copy).labeledGraph1();
+        this.lg2 = ((LabeledVF2State) copy).labeledGraph2();
     }
 
     public LabeledVF2State(LabeledWeightedGraph g1, LabeledWeightedGraph g2) {
         super(g1, g2);
-        this.g1 = g1;
-        this.g2 = g2;
+        this.lg1 = g1;
+        this.lg2 = g2;
     } 
     
     @Override
     protected boolean areCompatableVertices(int v1, int v2){
-        if(g1.labelOf(v1).equals(g2.labelOf(v2))){
+        //System.out.println(lg1.labelOf(v1) +" "+lg2.labelOf(v2));
+        if(lg1.labelOf(v1).equals(lg2.labelOf(v2))){
             return true;
         }
         return false;
@@ -36,11 +39,16 @@ public class LabeledVF2State extends VF2State {
     }
     
     public LabeledWeightedGraph labeledGraph1(){
-        return g1;
+        return lg1;
     }
     
     public LabeledWeightedGraph labeledGraph2(){
-        return g2;
+        return lg2;
+    }
+    
+    @Override
+    public VF2State copy(){
+        return new LabeledVF2State(this);
     }
 
 }

@@ -198,6 +198,7 @@ public class StructCompressor {
 	        Callable<IMolStruct> callable = new Callable<IMolStruct>() {
 	        	
 	            public IMolStruct call() throws Exception {
+	                
 	            	AbstractIsomorphismTester iso_tester = new LabeledVF2IsomorphismTester();
 	            	boolean iso = candidate.isIsomorphic(fStruct, iso_tester);
 	            	
