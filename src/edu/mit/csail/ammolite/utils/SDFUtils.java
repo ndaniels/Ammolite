@@ -19,6 +19,8 @@ import org.openscience.cdk.io.SDFWriter;
 
 import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.compression.CyclicStruct;
+import edu.mit.csail.ammolite.compression.IMolStruct;
+import edu.mit.csail.ammolite.compression.MoleculeStructFactory;
 
 public class SDFUtils {
     
@@ -39,6 +41,31 @@ public class SDFUtils {
     public static int estimateNumMolsInSDF(String filename){
         File f = new File(filename);
         return (int) (f.length() / 6500);
+    }
+    
+    public static List<IMolStruct> parseSDFAsStructs(String filename, MoleculeStructFactory sFactory){
+        IteratingSDFReader molecules = null;
+        try{
+            
+        FileInputStream fs = new FileInputStream(filename);
+        BufferedReader br = new BufferedReader( new InputStreamReader(fs ));
+        molecules =new IteratingSDFReader( br, DefaultChemObjectBuilder.getInstance());
+        } catch( IOException e){
+            //edu.mit.csail.ammolite.Logger.error("Failed to read file");
+            e.printStackTrace();
+        }
+        
+        List<IMolStruct> mols = new ArrayList<IMolStruct>();
+        while(molecules.hasNext()){
+            mols.add( sFactory.makeMoleculeStruct( molecules.next()));
+        }
+        
+        try {
+            molecules.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return mols;
     }
 	
 

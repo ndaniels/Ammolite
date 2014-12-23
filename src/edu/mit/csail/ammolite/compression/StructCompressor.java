@@ -7,8 +7,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -35,7 +37,9 @@ import edu.ucla.sspace.graph.isomorphism.VF2IsomorphismTester;
  */
 
 public class StructCompressor {
-	private KeyListMap<Integer, IMolStruct> structsByFingerprint = new KeyListMap<Integer,IMolStruct>(1000);
+	//private KeyListMap<Integer, IMolStruct> structsByFingerprint = new KeyListMap<Integer,IMolStruct>(1000);
+    private final Set<Integer> fingerprints = new HashSet<Integer>();
+	private final KeyListMap<StructID, PubchemID> idMap = new KeyListMap<StructID,PubchemID>(1000);
 	private MoleculeStructFactory structFactory;
 	private int numMols = 0;
 	private int numReps = 0;
@@ -50,6 +54,7 @@ public class StructCompressor {
 
 	public StructCompressor(CompressionType compType){
 		structFactory = new MoleculeStructFactory( compType);
+		System.out.println("Compressing with "+compType.toString());
 	}
 	
 	
@@ -68,11 +73,11 @@ public class StructCompressor {
 	 * @throws InterruptedException 
 	 */
 	public void  compress(List<String> filenames, String filename, int numThreads) throws IOException, CDKException, InterruptedException, ExecutionException{
-		int numMols = 0;
+		int guessNumMols = 0;
 		for(String name: filenames){
-		    numMols += SDFUtils.estimateNumMolsInSDF(name);
+		    guessNumMols += SDFUtils.estimateNumMolsInSDF(name);
 		}
-		System.out.println("Compressing approximatley "+String.format("%,d", numMols)+" molecules.");
+		System.out.println("Compressing approximatley "+String.format("%,d", guessNumMols)+" molecules.");
 		
 		String[] splitFile = filename.split(File.separator);
 		this.dbName = splitFile[ splitFile.length - 1];
@@ -85,7 +90,7 @@ public class StructCompressor {
 		    exService = ParallelUtils.buildNewExecutorService(defaultThreads);
 		}
 		
-        progressBar = new CommandLineProgressBar("Matching Structures", numMols);
+        progressBar = new CommandLineProgressBar("Matching Structures", guessNumMols);
         List<String> absoluteFilenames = new ArrayList<String>();
         List<File> files = FileUtils.openFiles(filenames);
 		for(File f: files){
@@ -125,23 +130,31 @@ public class StructCompressor {
         while( molecule_database.hasNext() ){
         	IAtomContainer molecule =  molecule_database.next();       	
         	IMolStruct structure = structFactory.makeMoleculeStruct(molecule);
+        	StructID sID = MolUtils.getStructID(structure);
+        	PubchemID pID = MolUtils.getPubID(molecule);
         	numMols++;
         	
-        	if( structsByFingerprint.containsKey( structure.fingerprint())){
-        		List<IMolStruct> potentialMatches = structsByFingerprint.get( structure.fingerprint() );
+        	if( fingerprints.contains( structure.fingerprint())){
+        		//List<IMolStruct> potentialMatches = structsByFingerprint.get( structure.fingerprint() );
+        		List<IMolStruct> potentialMatches = this.readStructFile(structure.fingerprint());
         		StructID matchID = parrallelIsomorphism( structure, potentialMatches);
         		if( matchID == null ){
         			numReps++;
-        			structsByFingerprint.add(structure.fingerprint(), structure);
-        			this.putMolInSourceFile(MolUtils.getStructID(structure), molecule);
+        			//structsByFingerprint.add(structure.fingerprint(), structure);
+        			this.putMolInSourceFile(sID, molecule);
+        			this.putStructInFile(structure.fingerprint(), structure);
+        			idMap.add(sID, pID);
         		} else {
         		    this.putMolInSourceFile(matchID, molecule);
+        		    idMap.add(matchID, pID);
         		}
-        	}
-        	else{
+        	} else{
         		numReps++;
-        		structsByFingerprint.add(structure.fingerprint(), structure);
+        		//structsByFingerprint.add(structure.fingerprint(), structure);
+        		fingerprints.add(structure.fingerprint());
+        		this.putStructInFile(structure.fingerprint(), structure);
         		this.putMolInSourceFile(MolUtils.getStructID(structure), molecule);
+        		idMap.add(MolUtils.getStructID(structure), MolUtils.getPubID(molecule));
         	}
         	progressBar.event();
         }
@@ -160,8 +173,6 @@ public class StructCompressor {
      * @throws ExecutionException
      */
     private StructID linearIsomorphism(IMolStruct structure, List<IMolStruct> potentialMatches) throws InterruptedException, ExecutionException{
-        
-        List<Callable<IMolStruct>> callList = new ArrayList<Callable<IMolStruct>>(potentialMatches.size());
         final IMolStruct fStruct = structure;
         for (final IMolStruct candidate: potentialMatches) {
             AbstractIsomorphismTester iso_tester = new LabeledVF2IsomorphismTester();
@@ -200,6 +211,7 @@ public class StructCompressor {
 	            public IMolStruct call() throws Exception {
 	                
 	            	AbstractIsomorphismTester iso_tester = new LabeledVF2IsomorphismTester();
+	            	//AbstractIsomorphismTester iso_tester = new VF2IsomorphismTester();
 	            	boolean iso = candidate.isIsomorphic(fStruct, iso_tester);
 	            	
 	            	if( iso ){
@@ -216,7 +228,7 @@ public class StructCompressor {
 	        System.out.println("\nThis could take a while, processing "+callList.size()+" isomorphisms.");
 	    }
 
-	    IMolStruct match = ParallelUtils.parallelTimedSingleExecution( callList, 5, exService);
+	    IMolStruct match = ParallelUtils.parallelTimedSingleExecution( callList, 50, exService);
 	    if(match == null){
 	    	return null;
 	    } else {
@@ -228,6 +240,10 @@ public class StructCompressor {
 	private void makeDBFolders(String filename){
 	    this.dbFolder = filename+ ".gad";
         File dir = new File(dbFolder);
+        if( dir.exists()){
+            System.out.println("Database already exists. Aborting.");
+            System.exit(1);
+        }
         dir.mkdir();
         this.structFolder = dbFolder + File.separator + "struct_files";
         File structdir = new File(structFolder);
@@ -254,6 +270,27 @@ public class StructCompressor {
 	    
 	}
 	
+	private void putStructInFile(Integer fingerprint, IMolStruct struct){
+        String filename = structFolder + File.separator + fingerprint.toString() +".sdf";
+        try {
+            FileWriter fw = new FileWriter(filename, true);
+            SDFWriter writer = new SDFWriter(fw);
+            writer.write(struct);
+            writer.close();
+            fw.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } catch (CDKException ce) {
+            ce.printStackTrace();
+        }
+        
+    }
+	
+	private List<IMolStruct> readStructFile(Integer fingerprint){
+	    String filename = structFolder + File.separator + fingerprint.toString() +".sdf";
+	    return SDFUtils.parseSDFAsStructs(filename, structFactory);
+	}
+	
 		
 	
 	/**
@@ -265,24 +302,23 @@ public class StructCompressor {
 	 */
 	private void produceClusteredDatabase( String name ){
 	    
-	    String structTable = writeStructIDFile(structsByFingerprint.valueIterator());
-        writeStructSDF( structsByFingerprint.valueIterator());
+	    String structTable = writeStructIDFile();
+        //writeStructSDF( structsByFingerprint.valueIterator());
         writeMetadataFile("AMMOLITE_GENERIC_DATABASE_0_0_0", structTable);
         
 	}
 	
-   private  String writeStructIDFile(Iterator<IMolStruct> structs){
+   private  String writeStructIDFile(){
         String structName = "structids.yml";
         String structPath = dbFolder + File.separator + structName;
         BufferedWriter writer;
         try{
             FileWriter fw = new FileWriter(structPath);
             writer = new BufferedWriter(fw);
-            while( structs.hasNext()){
-                IMolStruct struct = structs.next();
-                writer.write( MolUtils.getStructID(struct).toString());
+            for(StructID sID: idMap.keySet()){
+                writer.write( sID.toString());
                 writer.write(" : [");
-                for(PubchemID pId: struct.getIDNums() ){
+                for(PubchemID pId: idMap.get(sID)){
              
                     writer.write( pId.toString());
                     writer.write(", ");
