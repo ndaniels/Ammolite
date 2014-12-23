@@ -255,8 +255,15 @@ public class StructCompressor {
 	
 	
 	private void putMolInSourceFile(StructID id, IAtomContainer mol){
-	    String filename = sourceFolder + File.separator + id.toString() +".sdf";
+	    String idStr = id.toString();
+	    String folders = sourceFolder + File.separator + idStr.charAt(0) + 
+	                                        File.separator + idStr.charAt(1) + 
+	                                        File.separator + idStr.charAt(2);
+	     
+	    String filename = folders + File.separator + idStr +".sdf";
 	    try {
+	        File f = new File(folders);
+            f.mkdirs();
             FileWriter fw = new FileWriter(filename, true);
             SDFWriter writer = new SDFWriter(fw);
             writer.write(mol);
@@ -271,8 +278,19 @@ public class StructCompressor {
 	}
 	
 	private void putStructInFile(Integer fingerprint, IMolStruct struct){
-        String filename = structFolder + File.separator + fingerprint.toString() +".sdf";
+	    String fStr = fingerprint.toString();
+        String folders = structFolder + File.separator + fStr.charAt(0);
+        
+        if(fStr.length() >= 2){
+            folders += File.separator + fStr.charAt(1);
+        } if(fStr.length() >= 3){
+            folders += File.separator + fStr.charAt(2);
+        }
+        
+        String filename = folders + File.separator + fStr +".sdf";
         try {
+            File f = new File(folders);
+            f.mkdirs();
             FileWriter fw = new FileWriter(filename, true);
             SDFWriter writer = new SDFWriter(fw);
             writer.write(struct);
@@ -287,7 +305,17 @@ public class StructCompressor {
     }
 	
 	private List<IMolStruct> readStructFile(Integer fingerprint){
-	    String filename = structFolder + File.separator + fingerprint.toString() +".sdf";
+	    String fStr = fingerprint.toString();
+        String folders = structFolder + File.separator + fStr.charAt(0);
+        
+        if(fStr.length() >= 2){
+            folders += File.separator + fStr.charAt(1);
+        } if(fStr.length() >= 3){
+            folders += File.separator + fStr.charAt(2);
+        }
+        
+        String filename = folders + File.separator + fStr +".sdf";
+        
 	    return SDFUtils.parseSDFAsStructs(filename, structFactory);
 	}
 	

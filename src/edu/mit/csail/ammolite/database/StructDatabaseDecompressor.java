@@ -12,9 +12,13 @@ import java.io.InputStream;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.IOFileFilter;
+import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
 import org.yaml.snakeyaml.Yaml;
 
@@ -121,8 +125,10 @@ public class StructDatabaseDecompressor {
 
 	            File dir = new File(location);
 	            FileFilter wildFilter = new WildcardFileFilter(wildcard);
-	            File[] allFiles = dir.listFiles(wildFilter);
+	            Collection<File> allFiles = FileUtils.listFiles(dir, (IOFileFilter) wildFilter, TrueFileFilter.INSTANCE);
+	            
 	            for(File f: allFiles){
+	                System.out.println(f);
 	                structFiles.add(f.getAbsolutePath());
 	            }
 
@@ -148,8 +154,10 @@ public class StructDatabaseDecompressor {
                 
                 File dir = new File(location);
                 FileFilter wildFilter = new WildcardFileFilter(wildcard);
-                File[] allFiles = dir.listFiles(wildFilter);
+                Collection<File> allFiles = FileUtils.listFiles(dir, (IOFileFilter) wildFilter, TrueFileFilter.INSTANCE);
+                
                 for(File f: allFiles){
+                    System.out.println(f);
                     sourceFiles.add(f.getAbsolutePath());
                 }
             }
@@ -199,6 +207,8 @@ public class StructDatabaseDecompressor {
 	    return null;
 	    
 	}
+	
+	
 	
 	
 	
