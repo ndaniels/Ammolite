@@ -228,7 +228,7 @@ public class StructCompressor {
 	        System.out.println("\nThis could take a while, processing "+callList.size()+" isomorphisms.");
 	    }
 
-	    IMolStruct match = ParallelUtils.parallelTimedSingleExecution( callList, 50, exService);
+	    IMolStruct match = ParallelUtils.parallelTimedSingleExecution( callList, 10, exService);
 	    if(match == null){
 	    	return null;
 	    } else {
