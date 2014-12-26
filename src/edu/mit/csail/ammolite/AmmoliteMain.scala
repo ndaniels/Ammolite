@@ -1,6 +1,6 @@
 package edu.mit.csail.ammolite
 
-
+import edu.mit.csail.ammolite.compression.CachingStructCompressor
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory
 import edu.mit.csail.ammolite.compression.StructCompressor
 import edu.mit.csail.ammolite.compression.Compressor_2
@@ -39,6 +39,7 @@ object AmmoliteMain{
 			  val weighted = opt[Boolean]("weighted", descr="Use labeled-weighted structures instead of cyclic structures")
 			  val iterated = opt[Boolean]("iterated", descr="Dev")
 			  val threads = opt[Int]("threads", default=Some(-1), descr="Number of threads to use for compression")
+			  val cache = opt[Boolean]("cache", descr="Dev")
 			}
 			val merge = new Subcommand("merge-databases"){
 			  banner("Compress a database of SDF files")
@@ -177,10 +178,17 @@ object AmmoliteMain{
 				  } else if( opts.compress.weighted()){
 				  	compType = CompressionType.WEIGHTED
 				  }
-					  
-				  val compressor = new StructCompressor( compType )
-				  java.util.Arrays.asList(opts.compress.source().toArray: _*)
-				  compressor.compress(java.util.Arrays.asList(opts.compress.source().toArray: _*), opts.compress.target(), opts.compress.threads())
+				
+
+				  if( opts.compress.cache()){
+				  	val compressor = new CachingStructCompressor( compType )
+				  	compressor.compress(java.util.Arrays.asList(opts.compress.source().toArray: _*), opts.compress.target(), opts.compress.threads())
+				  }  else {
+				  	val compressor = new StructCompressor( compType )
+				  	compressor.compress(java.util.Arrays.asList(opts.compress.source().toArray: _*), opts.compress.target(), opts.compress.threads())
+				  }
+				  // java.util.Arrays.asList(opts.compress.source().toArray: _*)
+				  //compressor.compress(java.util.Arrays.asList(opts.compress.source().toArray: _*), opts.compress.target(), opts.compress.threads())
 			}
 		  
 		} else if( opts.subcommand == Some(opts.merge)){
