@@ -111,10 +111,14 @@ public class ParallelUtils {
               }
               for(int i=0; i<callList.size(); ++i){
                   try{
-                      T r = ecs.poll(timeoutInMillis, TimeUnit.MILLISECONDS).get(timeoutInMillis, TimeUnit.MILLISECONDS);
-                      if( r != null){
-                          result = r;
-                          break;
+                      Future<T> f = ecs.poll(timeoutInMillis, TimeUnit.MILLISECONDS);
+
+                      if( f != null){
+                          T r = f.get(timeoutInMillis, TimeUnit.MILLISECONDS);
+                          if( r != null){
+                              result = r;
+                              break;
+                          }
                       }
                   } catch (ExecutionException ignore) {   
                   } catch (InterruptedException ignore) {
