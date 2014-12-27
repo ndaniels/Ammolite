@@ -21,7 +21,6 @@ import edu.mit.csail.ammolite.IteratingSDFReader;
 import edu.mit.csail.ammolite.compression.CyclicStruct;
 import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.mcs.AbstractMCS;
-import edu.mit.csail.ammolite.mcs.MCSFinder;
 import edu.mit.csail.ammolite.mcs.SMSD;
 import edu.mit.csail.ammolite.utils.ParallelUtils;
 

@@ -12,8 +12,7 @@ import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.tests.SearchResult;
 
 public interface Tester {
-    public void test(List<IAtomContainer> queries, IStructDatabase db, 
-            Iterator<IAtomContainer> targets,  Iterator<IMolStruct> sTargets, double thresh, 
+    public void test(List<IAtomContainer> queries, IStructDatabase db, Iterator<IMolStruct> sTargets, double thresh, 
             double prob, String name, PrintStream out);
     
     public String getName();

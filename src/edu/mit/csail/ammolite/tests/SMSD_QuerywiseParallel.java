@@ -29,7 +29,7 @@ public class SMSD_QuerywiseParallel implements Tester{
 
     @Override
     public void test(List<IAtomContainer> queries, IStructDatabase db,
-            Iterator<IAtomContainer> targets, Iterator<IMolStruct> sTargets,
+  Iterator<IMolStruct> sTargets,
             double thresh, double prob, String name, PrintStream out) {
         
         SearchResultDocumenter scribe = new SearchResultDocumenter( out);
@@ -37,7 +37,7 @@ public class SMSD_QuerywiseParallel implements Tester{
 
         for(IAtomContainer query: queries){
           
-            Iterator<IAtomContainer> realTargets = targets = SDFUtils.parseSDFSetOnline(sdfFiles);
+            Iterator<IAtomContainer> realTargets = SDFUtils.parseSDFSetOnline(sdfFiles);
             SearchResult result = search(query, realTargets, thresh, db.numMols());
             System.out.println(" Writing results...");
             scribe.documentSingleResult(result);

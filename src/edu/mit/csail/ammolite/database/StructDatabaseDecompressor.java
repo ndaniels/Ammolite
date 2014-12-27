@@ -29,14 +29,11 @@ import edu.mit.csail.ammolite.utils.StructID;
 
 public class StructDatabaseDecompressor {
 	
+	
+	
+	
+	
 	public static IStructDatabase decompress(String databasename){
-		return decompress(databasename, false);
-	}
-	
-	
-	
-	
-	public static IStructDatabase decompress(String databasename, boolean useCaching){
 			Logger.log("Decompressing "+databasename, 1);
 			String extension = "";
 			int i = databasename.lastIndexOf('.');
@@ -45,13 +42,7 @@ public class StructDatabaseDecompressor {
 			}
 			
 			if(extension.equals("adb")){
-//				if( useCaching){	
-//					return new CachingStructDatabase( ammoliteCoreDatabase( databasename));
-//				
-//				
-//				} else {
-//					return new StructDatabase( ammoliteCoreDatabase( databasename));
-//				}
+			    // deprecated
 			} else if(extension.equals("gad") || extension.equals("gad/")){
 			    return decompressGeneric(databasename);
 			} else {

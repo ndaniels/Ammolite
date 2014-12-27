@@ -33,7 +33,7 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
 
     @Override
     public void test(List<IAtomContainer> queries, IStructDatabase db,
-            Iterator<IAtomContainer> targets, Iterator<IMolStruct> sTargets,
+            Iterator<IMolStruct> sTargets,
             double thresh, double prob, String name, PrintStream out) {
 
         System.out.println(NAME);
