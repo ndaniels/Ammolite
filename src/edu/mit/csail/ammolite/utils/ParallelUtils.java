@@ -111,7 +111,7 @@ public class ParallelUtils {
               }
               for(int i=0; i<callList.size(); ++i){
                   try{
-                      T r = ecs.take().get(timeoutInMillis, TimeUnit.MILLISECONDS);
+                      T r = ecs.poll(timeoutInMillis, TimeUnit.MILLISECONDS).get(timeoutInMillis, TimeUnit.MILLISECONDS);
                       if( r != null){
                           result = r;
                           break;
