@@ -32,6 +32,9 @@ public class LabeledVF2State extends VF2State {
     
     @Override
     public boolean isFeasiblePair(int node1, int node2) {
+        if(Thread.currentThread().isInterrupted()){
+            return false;
+        }
         if( areCompatableVertices(node1, node2)){
             return super.isFeasiblePair(node1, node2);
         }

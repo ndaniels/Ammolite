@@ -20,5 +20,6 @@ public class LabeledVF2IsomorphismTester extends AbstractIsomorphismTester {
         }
         return new VF2State(arg0, arg1);
     }
+    
 
 }

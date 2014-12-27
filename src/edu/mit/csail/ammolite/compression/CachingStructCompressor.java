@@ -217,7 +217,7 @@ public class CachingStructCompressor {
             System.out.println("\nThis could take a while, processing "+callList.size()+" isomorphisms.");
         }
 
-        IMolStruct match = ParallelUtils.parallelTimedSingleExecution( callList, 5, exService);
+        IMolStruct match = ParallelUtils.parallelTimedSingleExecution( callList, 500, exService);
         if(match == null){
             return null;
         } else {
