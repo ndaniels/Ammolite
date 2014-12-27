@@ -26,10 +26,12 @@ public class MoleculeStructFactory implements Serializable{
 			return new CyclicStruct( base );
 		} else if( compressionType.equals( CompressionType.BASIC)){
 			return new MolStruct( base );
-		} else if(compressionType.equals( CompressionType.LABELED)){
+		} else if(compressionType.equals( CompressionType.FULLY_LABELED)){
 		    return new LabeledCyclicStruct(base);
 		} else if(compressionType.equals( CompressionType.WEIGHTED)){
             return new LabeledWeightedCyclicStruct(base);
+        } else if(compressionType.equals( CompressionType.BINARY_LABELED)){
+            return new BinaryLabeledCyclicStruct(base);
         }
 		else {
 			throw new IllegalArgumentException("Compression type not found");

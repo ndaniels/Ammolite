@@ -6,7 +6,8 @@ public enum CompressionType implements Serializable {
 	CYCLIC,
 	RING,
 	BASIC,
-	LABELED,
+	BINARY_LABELED,
+	FULLY_LABELED,
 	WEIGHTED,
 	NONE,
 }

@@ -174,7 +174,7 @@ object AmmoliteMain{
 				  if( opts.compress.simple()){
 				    compType = CompressionType.BASIC 
 				  } else if( opts.compress.labeled()){
-				  	compType = CompressionType.LABELED
+				  	compType = CompressionType.FULLY_LABELED
 				  } else if( opts.compress.weighted()){
 				  	compType = CompressionType.WEIGHTED
 				  }

@@ -41,15 +41,6 @@ public class LabeledMolStruct extends AtomContainer implements IMolStruct {
         super( new AtomContainer(AtomContainerManipulator.removeHydrogens(base)) );
         mol_ids = new HashSet<PubchemID>();
         
-        Iterator<IAtom> atoms = this.atoms().iterator();
-        while( atoms.hasNext() ){
-            IAtom atom = atoms.next();
-            String atomType = atom.getSymbol();
-            if(!atomType.equals("C")){
-                atom.setSymbol("N");
-            }
-            atom.setAtomTypeName("S");
-        }
         Iterator<IBond> bonds = this.bonds().iterator();
         while( bonds.hasNext() ){
             IBond bond = bonds.next();
@@ -112,12 +103,8 @@ public class LabeledMolStruct extends AtomContainer implements IMolStruct {
     protected void makeGraph(){
         graph = new LabeledWeightedGraph();
         for(int i=0; i<this.getAtomCount(); i++){
-            String atomTypeName = this.getAtom(i).getSymbol();
-            String label = "N";
-            if(atomTypeName.equals("C")){
-                label = "C";
-            }
-            graph.add(i, label);
+            
+            graph.add(i, this.getAtom(i).getSymbol());
             atomsToNodes.put(this.getAtom(i), i);
             nodesToAtoms.put(i, this.getAtom(i));
             for(int j=0; j<i; j++){
@@ -137,7 +124,7 @@ public class LabeledMolStruct extends AtomContainer implements IMolStruct {
         if(tester instanceof LabeledVF2IsomorphismTester){
             if(struct instanceof LabeledMolStruct){
                 LabeledMolStruct that = ((LabeledMolStruct) struct);
-                if(this.carbons() == that.carbons() && this.nonCarbons() == that.nonCarbons()){
+                if(this.carbons() == that.carbons()){
                    boolean iso = ((LabeledVF2IsomorphismTester) tester).areIsomorphic(this.getGraph(), that.getGraph());
                    return iso;
                 } else {

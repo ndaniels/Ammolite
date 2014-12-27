@@ -142,8 +142,8 @@ public class LabeledWeightedMolStruct extends AtomContainer implements IMolStruc
     @Override
     public boolean isIsomorphic(IAtomContainer struct, AbstractIsomorphismTester tester) {
         if(tester instanceof LabeledVF2IsomorphismTester){
-            if(struct instanceof LabeledMolStruct){
-                return ((LabeledVF2IsomorphismTester) tester).areIsomorphic(this.getGraph(), ((LabeledMolStruct) struct).getGraph());
+            if(struct instanceof BinaryLabeledMolStruct){
+                return ((LabeledVF2IsomorphismTester) tester).areIsomorphic(this.getGraph(), ((BinaryLabeledMolStruct) struct).getGraph());
             }
             return false;
         }
@@ -169,6 +169,18 @@ public class LabeledWeightedMolStruct extends AtomContainer implements IMolStruc
     @Override
     public int fingerprint() {
         return this.fingerprint;
+    }
+
+    @Override
+    public int nonCarbons() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public int carbons() {
+        // TODO Auto-generated method stub
+        return 0;
     }
 
 }
