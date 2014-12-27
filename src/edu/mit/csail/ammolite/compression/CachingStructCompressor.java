@@ -50,6 +50,7 @@ public class CachingStructCompressor {
 
     public CachingStructCompressor(CompressionType compType){
         structFactory = new MoleculeStructFactory( compType);
+        System.out.println("Compressing with "+compType.toString());
     }
     
     
@@ -228,6 +229,10 @@ public class CachingStructCompressor {
     private void makeDBFolders(String filename){
         this.dbFolder = filename+ ".gad";
         File dir = new File(dbFolder);
+        if( dir.exists()){
+            System.out.println("Database already exists. Aborting.");
+            System.exit(1);
+        }
         dir.mkdir();
         this.structFolder = dbFolder + File.separator + "struct_files";
         File structdir = new File(structFolder);
@@ -374,8 +379,8 @@ public class CachingStructCompressor {
                 writer.write("CYCLIC");
             } else if (this.structFactory.getCompressionType() == CompressionType.BASIC){
                 writer.write("BASIC");
-            } else if (this.structFactory.getCompressionType() == CompressionType.LABELED){
-                writer.write("LABELED");
+            } else if (this.structFactory.getCompressionType() == CompressionType.FULLY_LABELED){
+                writer.write("FULLY_LABELED");
             } else if (this.structFactory.getCompressionType() == CompressionType.WEIGHTED){
                 writer.write("WEIGHTED");
             } else {
