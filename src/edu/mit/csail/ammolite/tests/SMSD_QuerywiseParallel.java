@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutorCompletionService;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -17,6 +19,7 @@ import edu.mit.csail.ammolite.mcs.MCS;
 import edu.mit.csail.ammolite.utils.CommandLineProgressBar;
 import edu.mit.csail.ammolite.utils.MCSUtils;
 import edu.mit.csail.ammolite.utils.MolUtils;
+import edu.mit.csail.ammolite.utils.ParallelUtils;
 import edu.mit.csail.ammolite.utils.SDFMultiParser;
 import edu.mit.csail.ammolite.utils.SDFUtils;
 
@@ -24,6 +27,7 @@ public class SMSD_QuerywiseParallel implements Tester{
     private static final String NAME = "SMSD_QuerywiseParallel_Timeout";
     private static final int QUEUE_SIZE = 500;
     private static final int NUM_THREADS = Runtime.getRuntime().availableProcessors()/2;
+    private static final ExecutorService ecs = ParallelUtils.buildNewExecutorService(NUM_THREADS);
         
     public SMSD_QuerywiseParallel() {}
 

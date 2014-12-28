@@ -9,6 +9,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorCompletionService;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -21,13 +25,14 @@ import edu.mit.csail.ammolite.utils.CommandLineProgressBar;
 import edu.mit.csail.ammolite.utils.MCSUtils;
 import edu.mit.csail.ammolite.utils.MolUtils;
 import edu.mit.csail.ammolite.utils.Pair;
+import edu.mit.csail.ammolite.utils.ParallelUtils;
 import edu.mit.csail.ammolite.utils.StructID;
 
 public class Ammolite_QuerywiseParallel_2 implements Tester {
     private static final String NAME = "Ammolite_QuerywiseParallel_No_Timeout";
     private static final int COARSE_QUEUE_SIZE = 1000;
     private static final int FINE_QUEUE_SIZE = 1000;
-    private static final int NUM_THREADS = Runtime.getRuntime().availableProcessors()/2;
+    private static final int NUM_THREADS = Runtime.getRuntime().availableProcessors();
         
     public Ammolite_QuerywiseParallel_2() {}
 
@@ -62,62 +67,68 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
 
     
     private SearchResult fineSearch(IAtomContainer query, Collection<StructID> coarseHits, IStructDatabase db, double thresh){
+        ExecutorService ecs = ParallelUtils.buildNewExecutorService(NUM_THREADS);
         CommandLineProgressBar bar = new CommandLineProgressBar(MolUtils.getPubID(query).toString(), coarseHits.size()*12);
         SearchResult result = new SearchResult(query, getName());
         result.start();
         BlockingQueue<IAtomContainer> queue = new ArrayBlockingQueue<IAtomContainer>(FINE_QUEUE_SIZE,false);
-
-        Thread producer = new Thread( new FineProducer(coarseHits, db, queue));
-        producer.start();
-        List<Thread> consumers = new ArrayList<Thread>(NUM_THREADS);
+        Mediator<IAtomContainer> mediator = new Mediator<IAtomContainer>( queue);
+        Future<?> producerStatus = ecs.submit(new FineProducer(coarseHits, db, mediator));
+        List<Future<?>> consumers = new ArrayList<Future<?>>(NUM_THREADS);
+        try {
+            Thread.sleep(0);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         for(int i=0; i<NUM_THREADS; i++){
-            Thread t = new Thread( new FineConsumer(query, queue, result, bar, thresh));
-            consumers.add(t);
-            t.start();
+            consumers.add( ecs.submit(new FineConsumer(query, mediator, result, bar, thresh)));
         }
         try {
-            producer.join();
-            while(queue.size() > 0){
-                Thread.sleep(1000);
+            producerStatus.get();
+            for(Future<?> f: consumers){
+                f.get();
             }
-            for(Thread t: consumers){
-                t.interrupt();
-            }
-            for(Thread t: consumers){
-                t.join();
-            }
-        } catch (InterruptedException e) {}
+        } catch (InterruptedException ie){ 
+            ie.printStackTrace();
+        } catch(ExecutionException ee) {
+            ee.printStackTrace();
+        }
+        ecs.shutdown();
         result.end();
         return result;
     }
     
     
     private Pair<SearchResult, Collection<StructID>> coarseSearch(IMolStruct cQuery, IAtomContainer query, Iterator<IMolStruct> sTargets, int numReps, double thresh){
+        ExecutorService ecs = ParallelUtils.buildNewExecutorService(NUM_THREADS);
         CommandLineProgressBar bar = new CommandLineProgressBar(MolUtils.getPubID(query).toString() + "_COARSE", numReps);
         SearchResult coarseResult = new SearchResult(cQuery, getName() + "_COARSE");
         coarseResult.start();
         BlockingQueue<IMolStruct> queue = new ArrayBlockingQueue<IMolStruct>(COARSE_QUEUE_SIZE,false);
-        Collection<StructID> hits = Collections.synchronizedCollection(new HashSet<StructID>(100*1000));
-        Thread producer = new Thread( new CoarseProducer(sTargets, queue));
-        producer.start();
-        List<Thread> consumers = new ArrayList<Thread>(NUM_THREADS);
+        Mediator<IMolStruct> mediator = new Mediator<IMolStruct>(queue);
+        Future<?> producerStatus = ecs.submit( new CoarseProducer(sTargets, mediator));
+        List<Future<?>> consumers = new ArrayList<Future<?>>(NUM_THREADS);
+        try {
+            Thread.sleep(0);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        Collection<StructID> hits = Collections.synchronizedCollection(new HashSet<StructID>(1000));
         for(int i=0; i<NUM_THREADS; i++){
-            Thread t = new Thread( new CoarseConsumer(cQuery, queue, coarseResult, hits, bar, thresh));
-            consumers.add(t);
-            t.start();
+            consumers.add( ecs.submit( new CoarseConsumer(cQuery, mediator, coarseResult, hits, bar, thresh)));
         }
         try {
-            producer.join();
-            while(queue.size() > 0){
-                Thread.sleep(1000);
+            producerStatus.get();
+            for(Future<?> f: consumers){
+                f.get();
             }
-            for(Thread t: consumers){
-                t.interrupt();
-            }
-            for(Thread t: consumers){
-                t.join();
-            }
-        } catch (InterruptedException e) {}
+        } catch (InterruptedException ie){ 
+            ie.printStackTrace();
+        } catch(ExecutionException ee) {
+            ee.printStackTrace();
+        }
+        ecs.shutdown();
         coarseResult.end();
         return new Pair<SearchResult, Collection<StructID>>(coarseResult, hits);
     }
@@ -128,10 +139,10 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
     }
     
     private class CoarseProducer implements Runnable {
-        BlockingQueue<IMolStruct> queue;
+        Mediator<IMolStruct> queue;
         Iterator<IMolStruct> targets;
         
-        public CoarseProducer(Iterator<IMolStruct> sTargets, BlockingQueue<IMolStruct> queue){
+        public CoarseProducer(Iterator<IMolStruct> sTargets, Mediator<IMolStruct> queue){
               this.targets = sTargets;
             this.queue = queue;
         }
@@ -142,21 +153,22 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
              while(targets.hasNext()){
                 target = targets.next();
                 try {
-                    queue.offer(target, 1, TimeUnit.MINUTES);
+                    queue.put(target);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } 
             }
+            queue.adding = false; 
             return;
         } 
     }
     
     private class FineProducer implements Runnable {
-        BlockingQueue< IAtomContainer> queue;
+        Mediator< IAtomContainer> queue;
         Collection<StructID> hits;
         IStructDatabase db;
         
-        public FineProducer(Collection<StructID> hits, IStructDatabase db, BlockingQueue< IAtomContainer> queue){
+        public FineProducer(Collection<StructID> hits, IStructDatabase db, Mediator< IAtomContainer> queue){
             this.hits = hits;
             this.queue = queue;
             this.db = db;
@@ -167,25 +179,26 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
             for(StructID hit: hits){
                 for(IAtomContainer target: db.getMatchingMolecules(hit)){
                     try {
-                        queue.offer(target, 1, TimeUnit.MINUTES);
+                        queue.put(target);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
             }
+            queue.adding = false;
             return;
         } 
     }
     
     private class CoarseConsumer implements Runnable {
-        BlockingQueue<IMolStruct> queue;
+        Mediator<IMolStruct> queue;
         IMolStruct query;
         SearchResult result;
         Collection<StructID> hits;
         CommandLineProgressBar bar;
         double threshold;
         
-        public CoarseConsumer(IMolStruct cQuery, BlockingQueue<IMolStruct> queue, SearchResult result, Collection<StructID> hits, CommandLineProgressBar bar, double threshold){
+        public CoarseConsumer(IMolStruct cQuery, Mediator<IMolStruct> queue, SearchResult result, Collection<StructID> hits, CommandLineProgressBar bar, double threshold){
             this.query = cQuery;
             this.queue = queue;
             this.result = result;
@@ -196,38 +209,37 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
 
         @Override
         public void run() {
-            while(!Thread.currentThread().isInterrupted()){
-                try {
-                    IMolStruct target = queue.poll(500, TimeUnit.MILLISECONDS);
-                    
+            try{
+                IMolStruct target = queue.get();
+                while(queue.adding || target != null){
                     if(target != null){
                         int overlap = MCS.getSMSDOverlap(target, query);
                         if(MCSUtils.overlapCoeff(overlap, target, query) > threshold){
                             result.addMatch(new SearchMatch(query, target, overlap));
                             hits.add(MolUtils.getStructID(target));
                         } else {
-                            //result.addMiss(new SearchMiss(query, target, overlap));
+                            // result.addMiss(new SearchMiss(query, target, overlap));
                         }
                         bar.event();
-                    } 
-                } catch (InterruptedException end) {
-                    break;
+                    }
+                target = queue.get();
                 }
+            } catch (InterruptedException ie) {
+                ie.printStackTrace();
             }
-            return;
-            
+            return;  
         }
         
     }
     
     private class FineConsumer implements Runnable {
-        BlockingQueue<IAtomContainer> queue;
+        Mediator<IAtomContainer> queue;
         IAtomContainer query;
         SearchResult result;
         CommandLineProgressBar bar;
         double threshold;
         
-        public FineConsumer(IAtomContainer query, BlockingQueue<IAtomContainer> queue, SearchResult result, CommandLineProgressBar bar, double threshold){
+        public FineConsumer(IAtomContainer query, Mediator<IAtomContainer> queue, SearchResult result, CommandLineProgressBar bar, double threshold){
             this.query = query;
             this.queue = queue;
             this.result = result;
@@ -237,9 +249,9 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
 
         @Override
         public void run() {
-            while(!Thread.currentThread().isInterrupted()){
-                try {
-                    IAtomContainer target = queue.poll(500, TimeUnit.MILLISECONDS);
+            try{
+                IAtomContainer target = queue.get();
+                while(queue.adding || target != null){
                     if(target != null){
                         int overlap = MCS.getSMSDOverlap(target, query);
                         if(MCSUtils.overlapCoeff(overlap, target, query) > threshold){
@@ -249,12 +261,31 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
                         }
                         bar.event();
                     }
-                } catch (InterruptedException end) {
-                    break;
+                target = queue.get();
                 }
+            } catch (InterruptedException ie) {
+                ie.printStackTrace();
             }
             return;
             
+        }
+        
+    }
+    
+    private class Mediator<T> {
+        private BlockingQueue<T> queue;
+        public boolean adding = true;
+        
+        public Mediator(BlockingQueue<T> queue){
+            this.queue = queue;
+        }
+        
+        public void put(T data) throws InterruptedException{
+            queue.put(data);
+        }
+        
+        public T get() throws InterruptedException{
+            return this.queue.poll(1, TimeUnit.SECONDS);
         }
         
     }
