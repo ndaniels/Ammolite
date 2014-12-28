@@ -25,8 +25,8 @@ import edu.mit.csail.ammolite.utils.StructID;
 
 public class Ammolite_QuerywiseParallel_2 implements Tester {
     private static final String NAME = "Ammolite_QuerywiseParallel_No_Timeout";
-    private static final int COARSE_QUEUE_SIZE = 250;
-    private static final int FINE_QUEUE_SIZE = 250;
+    private static final int COARSE_QUEUE_SIZE = 1000;
+    private static final int FINE_QUEUE_SIZE = 1000;
     private static final int NUM_THREADS = Runtime.getRuntime().availableProcessors();
         
     public Ammolite_QuerywiseParallel_2() {}
@@ -78,9 +78,6 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
         try {
             producer.join();
             while(queue.size() > 0){
-                if(Math.random() < 0.01){
-                    System.out.println( "\n [Diagnostic] Queue Size:"+queue.size());
-                }
                 Thread.sleep(1000);
             }
             for(Thread t: consumers){
@@ -89,10 +86,7 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
             for(Thread t: consumers){
                 t.join();
             }
-        } catch (InterruptedException e) {
-            System.out.println("Fail from fine call");
-            e.printStackTrace();
-        }
+        } catch (InterruptedException e) {}
         result.end();
         return result;
     }
@@ -103,7 +97,7 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
         SearchResult coarseResult = new SearchResult(cQuery, getName() + "_COARSE");
         coarseResult.start();
         BlockingQueue<IMolStruct> queue = new ArrayBlockingQueue<IMolStruct>(COARSE_QUEUE_SIZE,false);
-        Collection<StructID> hits = Collections.synchronizedCollection(new HashSet<StructID>());
+        Collection<StructID> hits = Collections.synchronizedCollection(new HashSet<StructID>(100*1000));
         Thread producer = new Thread( new CoarseProducer(sTargets, queue));
         producer.start();
         List<Thread> consumers = new ArrayList<Thread>(NUM_THREADS);
@@ -115,9 +109,6 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
         try {
             producer.join();
             while(queue.size() > 0){
-                if(Math.random() < 0.01){
-                    System.out.println( "\n [Diagnostic] Queue Size:"+queue.size());
-                }
                 Thread.sleep(1000);
             }
             for(Thread t: consumers){
@@ -126,10 +117,7 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
             for(Thread t: consumers){
                 t.join();
             }
-        } catch (InterruptedException e) {
-            System.out.println("Fail from coarse call");
-            e.printStackTrace();
-        }
+        } catch (InterruptedException e) {}
         coarseResult.end();
         return new Pair<SearchResult, Collection<StructID>>(coarseResult, hits);
     }
@@ -218,7 +206,7 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
                             result.addMatch(new SearchMatch(query, target, overlap));
                             hits.add(MolUtils.getStructID(target));
                         } else {
-                            result.addMiss(new SearchMiss(query, target, overlap));
+                            //result.addMiss(new SearchMiss(query, target, overlap));
                         }
                         bar.event();
                     } 

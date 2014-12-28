@@ -128,7 +128,6 @@ public class StructDatabaseDecompressor {
 	            Collection<File> allFiles = FileUtils.listFiles(dir, (IOFileFilter) wildFilter, TrueFileFilter.INSTANCE);
 	            
 	            for(File f: allFiles){
-	                System.out.println(f);
 	                structFiles.add(f.getAbsolutePath());
 	            }
 
@@ -157,7 +156,6 @@ public class StructDatabaseDecompressor {
                 Collection<File> allFiles = FileUtils.listFiles(dir, (IOFileFilter) wildFilter, TrueFileFilter.INSTANCE);
                 
                 for(File f: allFiles){
-                    System.out.println(f);
                     sourceFiles.add(f.getAbsolutePath());
                 }
             }
