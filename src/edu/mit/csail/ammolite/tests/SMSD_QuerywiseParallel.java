@@ -23,7 +23,7 @@ import edu.mit.csail.ammolite.utils.SDFUtils;
 public class SMSD_QuerywiseParallel implements Tester{
     private static final String NAME = "SMSD_QuerywiseParallel_Timeout";
     private static final int QUEUE_SIZE = 500;
-    private static final int NUM_THREADS = Runtime.getRuntime().availableProcessors();
+    private static final int NUM_THREADS = Runtime.getRuntime().availableProcessors()/2;
         
     public SMSD_QuerywiseParallel() {}
 
