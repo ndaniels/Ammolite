@@ -36,6 +36,7 @@ object AmmoliteMain{
 			  val target = opt[String]("target", required=true, descr="Name of the new compressed database")
 			  val simple = opt[Boolean]("simple", descr="Use simple structures instead of cyclic structures")
 			  val labeled = opt[Boolean]("labeled", descr="Use labeled structures instead of cyclic structures")
+			  val connection = opt[Boolean]("connection", descr="Use connection structures instead of cyclic structures")
 			  val weighted = opt[Boolean]("weighted", descr="Use labeled-weighted structures instead of cyclic structures")
 			  val iterated = opt[Boolean]("iterated", descr="Dev")
 			  val threads = opt[Int]("threads", default=Some(-1), descr="Number of threads to use for compression")
@@ -177,6 +178,8 @@ object AmmoliteMain{
 				  	compType = CompressionType.FULLY_LABELED
 				  } else if( opts.compress.weighted()){
 				  	compType = CompressionType.WEIGHTED
+				  } else if( opts.compress.connection()){
+				  	compType = CompressionType.CONNECTION
 				  }
 				
 
@@ -223,7 +226,7 @@ object AmmoliteMain{
 		} else if( opts.subcommand == Some( opts.devTestFMCS)){
 		  edu.mit.csail.ammolite.tests.SearchTest.testFMCS(opts.devTestFMCS.mols())
 		} else if( opts.subcommand == Some( opts.devTestMyMCS)){
-		  edu.mit.csail.ammolite.tests.SearchTest.testMyMCS(opts.devTestMyMCS.mols())
+		  // edu.mit.csail.ammolite.tests.SearchTest.testMyMCS(opts.devTestMyMCS.mols())
 		} else if( opts.subcommand == Some( opts.devTestAmmCoarse)){
 		  edu.mit.csail.ammolite.tests.SearchTest.testAmmoliteCoarse(opts.devTestAmmCoarse.mols())
 		} else if( opts.subcommand == Some( opts.examine)){

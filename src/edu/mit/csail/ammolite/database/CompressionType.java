@@ -10,4 +10,5 @@ public enum CompressionType implements Serializable {
 	FULLY_LABELED,
 	WEIGHTED,
 	NONE,
+	CONNECTION
 }

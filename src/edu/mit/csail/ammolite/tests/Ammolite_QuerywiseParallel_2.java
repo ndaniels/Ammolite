@@ -16,6 +16,8 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.smsd.Isomorphism;
+import org.openscience.smsd.interfaces.Algorithm;
 
 import edu.mit.csail.ammolite.compression.IMolStruct;
 import edu.mit.csail.ammolite.compression.MolStruct;
@@ -138,6 +140,10 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
         return NAME;
     }
     
+    //////////////////////////////////////////////////////////////////////
+    // COARSE
+    //////////////////////////////////////////////////////////////////////
+    
     private class CoarseProducer implements Runnable {
         Mediator<IMolStruct> queue;
         Iterator<IMolStruct> targets;
@@ -162,6 +168,67 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
             return;
         } 
     }
+
+    
+    private class CoarseConsumer implements Runnable {
+        Mediator<IMolStruct> queue;
+        IAtomContainer query;
+        SearchResult result;
+        Collection<StructID> hits;
+        CommandLineProgressBar bar;
+        double threshold;
+        
+        public CoarseConsumer(IMolStruct cQuery, Mediator<IMolStruct> queue, SearchResult result, Collection<StructID> hits, CommandLineProgressBar bar, double threshold){
+            try {
+                this.query = (IAtomContainer) cQuery.clone();
+            } catch (CloneNotSupportedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            this.queue = queue;
+            this.result = result;
+            this.threshold = threshold;
+            this.hits = hits;
+            this.bar = bar;
+        }
+
+        @Override
+        public void run() {
+            try{
+                IMolStruct target = queue.get();
+                while(queue.adding || target != null){
+                    if(target != null){
+                        boolean bondSensitive = false;
+                        boolean ringmatch = false;
+                        boolean stereoMatch = true;
+                        boolean fragmentMinimization = true;
+                        boolean energyMinimization = true;
+                        Isomorphism comparison = new Isomorphism(query, target, Algorithm.DEFAULT, bondSensitive, ringmatch);
+                        
+                        comparison.setChemFilters(stereoMatch, fragmentMinimization, energyMinimization);   
+                        int overlap = comparison.getFirstAtomMapping().getCount();
+                        
+                        if(MCSUtils.overlapCoeff(overlap, target, query) > threshold){
+                            result.addMatch(new SearchMatch(query, target, overlap));
+                            hits.add(MolUtils.getStructID(target));
+                        } else {
+                            // result.addMiss(new SearchMiss(query, target, overlap));
+                        }
+                        bar.event();
+                    }
+                target = queue.get();
+                }
+            } catch (InterruptedException ie) {
+                ie.printStackTrace();
+            }
+            return;  
+        }
+        
+    }
+    
+    //////////////////////////////////////////////////////////////////////
+    // FINE
+    //////////////////////////////////////////////////////////////////////
     
     private class FineProducer implements Runnable {
         Mediator< IAtomContainer> queue;
@@ -190,48 +257,6 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
         } 
     }
     
-    private class CoarseConsumer implements Runnable {
-        Mediator<IMolStruct> queue;
-        IMolStruct query;
-        SearchResult result;
-        Collection<StructID> hits;
-        CommandLineProgressBar bar;
-        double threshold;
-        
-        public CoarseConsumer(IMolStruct cQuery, Mediator<IMolStruct> queue, SearchResult result, Collection<StructID> hits, CommandLineProgressBar bar, double threshold){
-            this.query = cQuery;
-            this.queue = queue;
-            this.result = result;
-            this.threshold = threshold;
-            this.hits = hits;
-            this.bar = bar;
-        }
-
-        @Override
-        public void run() {
-            try{
-                IMolStruct target = queue.get();
-                while(queue.adding || target != null){
-                    if(target != null){
-                        int overlap = MCS.getSMSDOverlap(target, query);
-                        if(MCSUtils.overlapCoeff(overlap, target, query) > threshold){
-                            result.addMatch(new SearchMatch(query, target, overlap));
-                            hits.add(MolUtils.getStructID(target));
-                        } else {
-                            // result.addMiss(new SearchMiss(query, target, overlap));
-                        }
-                        bar.event();
-                    }
-                target = queue.get();
-                }
-            } catch (InterruptedException ie) {
-                ie.printStackTrace();
-            }
-            return;  
-        }
-        
-    }
-    
     private class FineConsumer implements Runnable {
         Mediator<IAtomContainer> queue;
         IAtomContainer query;
@@ -240,7 +265,12 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
         double threshold;
         
         public FineConsumer(IAtomContainer query, Mediator<IAtomContainer> queue, SearchResult result, CommandLineProgressBar bar, double threshold){
-            this.query = query;
+            //try {
+                this.query = (IAtomContainer) query;
+//            } catch (CloneNotSupportedException e) {
+//                // TODO Auto-generated catch block
+//                e.printStackTrace();
+//            }
             this.queue = queue;
             this.result = result;
             this.threshold = threshold;
@@ -253,6 +283,14 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
                 IAtomContainer target = queue.get();
                 while(queue.adding || target != null){
                     if(target != null){
+//                        boolean bondSensitive = false;
+//                        boolean ringmatch = true;
+//                        boolean stereoMatch = true;
+//                        boolean fragmentMinimization = true;
+//                        boolean energyMinimization = true;
+//                        Isomorphism comparison = new Isomorphism(query, target, Algorithm.DEFAULT, bondSensitive, ringmatch);
+//                        comparison.setChemFilters(stereoMatch, fragmentMinimization, energyMinimization);   
+//                        int overlap = comparison.getFirstAtomMapping().getCount();
                         int overlap = MCS.getSMSDOverlap(target, query);
                         if(MCSUtils.overlapCoeff(overlap, target, query) > threshold){
                             result.addMatch(new SearchMatch(query, target, overlap));
