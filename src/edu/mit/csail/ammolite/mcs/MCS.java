@@ -125,14 +125,18 @@ public class MCS {
 		return callable;
 	}
 	
-   public static Callable<Integer> getCallableSMSDOperation(IAtomContainer a, IAtomContainer b){
-        final IAtomContainer fa = a;
-        final IAtomContainer fb = b;
+   public static Callable<MCSOperation> getCallableSMSDOperation(IAtomContainer query, IAtomContainer target){
+        final IAtomContainer fa = query;
+        final IAtomContainer fb = target;
         
-        Callable<Integer> callable = new Callable<Integer>(){
+        Callable<MCSOperation> callable = new Callable<MCSOperation>(){
             
-            public Integer call() throws Exception {
-                return getSMSDOverlap(fa, fb);
+            public MCSOperation call() throws Exception {
+                MCSOperation op = new MCSOperation();
+                op.query = fa;
+                op.target = fb;
+                op.overlap = getSMSDOverlap(fa, fb);
+                return op;
             }
         };
         
