@@ -36,7 +36,8 @@ object AmmoliteMain{
 			  val target = opt[String]("target", required=true, descr="Name of the new compressed database")
 			  val simple = opt[Boolean]("simple", descr="Use simple structures instead of cyclic structures")
 			  val labeled = opt[Boolean]("labeled", descr="Use labeled structures instead of cyclic structures")
-			  val connection = opt[Boolean]("connection", descr="Use connection structures instead of cyclic structures")
+			  val connection_2 = opt[Boolean]("connection-two", descr="Use connection two structures instead of cyclic structures")
+			  val connection_3 = opt[Boolean]("connection-three", descr="Use connection three structures instead of cyclic structures")
 			  val weighted = opt[Boolean]("weighted", descr="Use labeled-weighted structures instead of cyclic structures")
 			  val iterated = opt[Boolean]("iterated", descr="Dev")
 			  val threads = opt[Int]("threads", default=Some(-1), descr="Number of threads to use for compression")
@@ -178,8 +179,10 @@ object AmmoliteMain{
 				  	compType = CompressionType.FULLY_LABELED
 				  } else if( opts.compress.weighted()){
 				  	compType = CompressionType.WEIGHTED
-				  } else if( opts.compress.connection()){
-				  	compType = CompressionType.CONNECTION
+				  } else if( opts.compress.connection_2()){
+				  	compType = CompressionType.CONNECTION_2
+				  } else if( opts.compress.connection_3()){
+				  	compType = CompressionType.CONNECTION_3
 				  }
 				
 

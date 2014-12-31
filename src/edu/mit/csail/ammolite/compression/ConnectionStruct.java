@@ -30,15 +30,17 @@ import edu.ucla.sspace.matrix.Matrix;
 public class ConnectionStruct extends LabeledMolStruct implements IMolStruct  {
     
     private static final long serialVersionUID = 1L;
+    private int depth;
     
-    public ConnectionStruct(IAtomContainer base){
+    public ConnectionStruct(IAtomContainer base, int depth){
         super(base);
+        this.depth = depth;
         modifyGraph();
     }
     
     
     protected void modifyGraph(){
-        removeShallowNodes( sortAveConnections( getNodesWithAveConnections()), 2);
+        removeShallowNodes( sortAveConnections( getNodesWithAveConnections()), depth);
     }
     
     protected List<Pair<Integer,Double>> getNodesWithAveConnections(){
