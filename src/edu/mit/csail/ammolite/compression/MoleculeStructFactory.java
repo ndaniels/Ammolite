@@ -36,6 +36,12 @@ public class MoleculeStructFactory implements Serializable{
             return new ConnectionStruct(base,2);
         } else if(compressionType.equals( CompressionType.CONNECTION_3)){
             return new ConnectionStruct(base,3);
+        } else if(compressionType.equals( CompressionType.CONNECTION_4)){
+            return new ConnectionStruct(base,4);
+        } else if(compressionType.equals( CompressionType.CONNECTION_5)){
+            return new ConnectionStruct(base,5);
+        } else if(compressionType.equals( CompressionType.CONNECTION_6)){
+            return new ConnectionStruct(base,6);
         }
 		else {
 			throw new IllegalArgumentException("Compression type not found");

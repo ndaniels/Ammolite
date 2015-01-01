@@ -11,5 +11,8 @@ public enum CompressionType implements Serializable {
 	WEIGHTED,
 	NONE,
 	CONNECTION_2,
-	CONNECTION_3
+	CONNECTION_3,
+	CONNECTION_4,
+	CONNECTION_5,
+	CONNECTION_6
 }

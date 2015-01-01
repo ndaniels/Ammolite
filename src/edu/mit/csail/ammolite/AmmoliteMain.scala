@@ -38,6 +38,9 @@ object AmmoliteMain{
 			  val labeled = opt[Boolean]("labeled", descr="Use labeled structures instead of cyclic structures")
 			  val connection_2 = opt[Boolean]("connection-two", descr="Use connection two structures instead of cyclic structures")
 			  val connection_3 = opt[Boolean]("connection-three", descr="Use connection three structures instead of cyclic structures")
+			  val connection_4 = opt[Boolean]("connection-four", descr="Use connection four structures instead of cyclic structures")
+			  val connection_5 = opt[Boolean]("connection-five", descr="Use connection five structures instead of cyclic structures")
+			  val connection_6 = opt[Boolean]("connection-six", descr="Use connection six structures instead of cyclic structures")
 			  val weighted = opt[Boolean]("weighted", descr="Use labeled-weighted structures instead of cyclic structures")
 			  val iterated = opt[Boolean]("iterated", descr="Dev")
 			  val threads = opt[Int]("threads", default=Some(-1), descr="Number of threads to use for compression")
@@ -181,8 +184,18 @@ object AmmoliteMain{
 				  	compType = CompressionType.WEIGHTED
 				  } else if( opts.compress.connection_2()){
 				  	compType = CompressionType.CONNECTION_2
+
 				  } else if( opts.compress.connection_3()){
 				  	compType = CompressionType.CONNECTION_3
+
+				  } else if( opts.compress.connection_4()){
+				  	compType = CompressionType.CONNECTION_4
+
+				  } else if( opts.compress.connection_5()){
+				  	compType = CompressionType.CONNECTION_5
+
+				  } else if( opts.compress.connection_6()){
+				  	compType = CompressionType.CONNECTION_6
 				  }
 				
 
