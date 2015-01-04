@@ -87,6 +87,7 @@ public class OverlapStruct extends LabeledMolStruct implements IMolStruct  {
     protected void removeShallowNodes(List<Pair<Integer,Double>> sortedAveNodes){
         int atDepth = 1;
         double nodesKept = 0.0;
+        int originalNodes = this.getAtomCount();
         boolean removeRest = false;
         if(sortedAveNodes.size() > 0){
             double currentDepth = sortedAveNodes.get(0).right();
@@ -102,7 +103,7 @@ public class OverlapStruct extends LabeledMolStruct implements IMolStruct  {
                 } else if(Math.abs(aveNode.right() - currentDepth) > 0.000001 ){
                     atDepth++;
                     currentDepth = aveNode.right();
-                    if( nodesKept/this.getAtomCount() >= MIN_OVERLAP){
+                    if( nodesKept/originalNodes >= MIN_OVERLAP){
                         IAtom atom = this.nodesToAtoms.get(aveNode.left());
                         this.removeAtom( atom);
                         for(IBond bond: getConnectedBondsList( atom)){
@@ -121,6 +122,7 @@ public class OverlapStruct extends LabeledMolStruct implements IMolStruct  {
         } else {
             System.out.println("Zero Length Node List");
         }
+        //System.out.println("Kept "+nodesKept+" of "+originalNodes+" --> "+nodesKept/originalNodes);
     }
 
 }

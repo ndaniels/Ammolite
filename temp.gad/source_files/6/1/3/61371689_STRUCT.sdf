@@ -1,0 +1,178 @@
+61371689
+  CDK     0104151102
+
+ 33 34  0  0  0  0  0  0  0  0999 V2000
+    8.0524    1.8309    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    6.8934    3.1180    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    2.0000   -1.3080    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    4.5981    1.1920    0.0000 N   0  0  3  0  0  0  0  0  0  0  0  0
+    4.5981   -1.8080    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    2.8660   -2.8080    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    5.4071    1.7798    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    5.0981    2.7308    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0981    2.7308    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.7891    1.7798    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.3582    1.4707    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.5981    0.1920    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.1013    2.1399    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.7320   -0.3080    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.4641   -0.3080    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.7320   -1.3080    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.4641   -1.3080    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.8660   -1.8080    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5041    1.1674    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.7045    2.8597    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0333    3.3474    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.1629    3.3474    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.4916    2.8597    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.2227    2.0319    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.4791    1.2428    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    6.0671    0.9233    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    6.8467    1.0890    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.1951    0.0020    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    6.0010    0.0020    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    6.0010   -1.6180    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.5131    2.2457    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    2.3291   -3.1180    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.4030   -3.1180    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1 13  1  0  0  0  0 
+  1 31  1  0  0  0  0 
+  2 13  2  0  0  0  0 
+  3 18  2  0  0  0  0 
+  4  7  1  0  0  0  0 
+  4 10  1  0  0  0  0 
+  4 12  1  0  0  0  0 
+  5 16  2  0  0  0  0 
+  5 17  1  0  0  0  0 
+  6 18  1  0  0  0  0 
+  6 32  1  0  0  0  0 
+  6 33  1  0  0  0  0 
+  7  8  1  0  0  0  0 
+  7 11  1  0  0  0  0 
+  7 19  1  0  0  0  0 
+  8  9  1  0  0  0  0 
+  8 20  1  0  0  0  0 
+  8 21  1  0  0  0  0 
+  9 10  1  0  0  0  0 
+  9 22  1  0  0  0  0 
+  9 23  1  0  0  0  0 
+ 10 24  1  0  0  0  0 
+ 10 25  1  0  0  0  0 
+ 11 13  1  0  0  0  0 
+ 11 26  1  0  0  0  0 
+ 11 27  1  0  0  0  0 
+ 12 14  2  0  0  0  0 
+ 12 15  1  0  0  0  0 
+ 14 16  1  0  0  0  0 
+ 14 28  1  0  0  0  0 
+ 15 17  2  0  0  0  0 
+ 15 29  1  0  0  0  0 
+ 16 18  1  0  0  0  0 
+ 17 30  1  0  0  0  0 
+M  END
+> <cdk:Title>
+61371689
+
+> <cdk:Remark>
+null
+
+> <PUBCHEM_COMPOUND_CID>
+61371689
+
+> <PUBCHEM_COMPOUND_CANONICALIZED>
+1
+
+> <PUBCHEM_CACTVS_COMPLEXITY>
+335
+
+> <PUBCHEM_CACTVS_HBOND_ACCEPTOR>
+5
+
+> <PUBCHEM_CACTVS_HBOND_DONOR>
+2
+
+> <PUBCHEM_CACTVS_ROTATABLE_BOND>
+4
+
+> <PUBCHEM_CACTVS_SUBSKEYS>
+AAADccBzMAAAAAAAAAAAAAAAAAAAAWAAAAAsAAAAAAAAAAABgAAAHgAQCAAACCjBlgQ8yJNIEgCoATX3XACCgCA3AiAI2CG4ZNgIYHrA1fGUZQhmgADIyYecSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+
+> <PUBCHEM_IUPAC_OPENEYE_NAME>
+2-[1-(2-carbamoyl-4-pyridyl)pyrrolidin-2-yl]acetic acid
+
+> <PUBCHEM_IUPAC_CAS_NAME>
+2-[1-(2-carbamoyl-4-pyridinyl)-2-pyrrolidinyl]acetic acid
+
+> <PUBCHEM_IUPAC_NAME>
+2-[1-(2-carbamoylpyridin-4-yl)pyrrolidin-2-yl]acetic acid
+
+> <PUBCHEM_IUPAC_SYSTEMATIC_NAME>
+2-[1-(2-aminocarbonylpyridin-4-yl)pyrrolidin-2-yl]ethanoic acid
+
+> <PUBCHEM_IUPAC_TRADITIONAL_NAME>
+2-[1-(2-carbamoyl-4-pyridyl)pyrrolidin-2-yl]acetic acid
+
+> <PUBCHEM_IUPAC_INCHI>
+InChI=1S/C12H15N3O3/c13-12(18)10-6-9(3-4-14-10)15-5-1-2-8(15)7-11(16)17/h3-4,6,8H,1-2,5,7H2,(H2,13,18)(H,16,17)
+
+> <PUBCHEM_IUPAC_INCHIKEY>
+MFXHYCCENPFKDC-UHFFFAOYSA-N
+
+> <PUBCHEM_XLOGP3_AA>
+0.2
+
+> <PUBCHEM_EXACT_MASS>
+249.111341
+
+> <PUBCHEM_MOLECULAR_FORMULA>
+C12H15N3O3
+
+> <PUBCHEM_MOLECULAR_WEIGHT>
+249.2658
+
+> <PUBCHEM_OPENEYE_CAN_SMILES>
+C1CC(N(C1)C2=CC(=NC=C2)C(=O)N)CC(=O)O
+
+> <PUBCHEM_OPENEYE_ISO_SMILES>
+C1CC(N(C1)C2=CC(=NC=C2)C(=O)N)CC(=O)O
+
+> <PUBCHEM_CACTVS_TPSA>
+96.5
+
+> <PUBCHEM_MONOISOTOPIC_WEIGHT>
+249.111341
+
+> <PUBCHEM_TOTAL_CHARGE>
+0
+
+> <PUBCHEM_HEAVY_ATOM_COUNT>
+18
+
+> <PUBCHEM_ATOM_DEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_ATOM_UDEF_STEREO_COUNT>
+1
+
+> <PUBCHEM_BOND_DEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_BOND_UDEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_ISOTOPIC_ATOM_COUNT>
+0
+
+> <PUBCHEM_COMPONENT_COUNT>
+1
+
+> <PUBCHEM_CACTVS_TAUTO_COUNT>
+2
+
+> <PUBCHEM_COORDINATE_TYPE>
+1
+
+> <PUBCHEM_BONDANNOTATIONS>
+12  14  8
+
+$$$$
