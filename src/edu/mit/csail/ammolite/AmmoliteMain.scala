@@ -36,11 +36,21 @@ object AmmoliteMain{
 			  val target = opt[String]("target", required=true, descr="Name of the new compressed database")
 			  val simple = opt[Boolean]("simple", descr="Use simple structures instead of cyclic structures")
 			  val labeled = opt[Boolean]("labeled", descr="Use labeled structures instead of cyclic structures")
+
 			  val connection_2 = opt[Boolean]("connection-two", descr="Use connection two structures instead of cyclic structures")
 			  val connection_3 = opt[Boolean]("connection-three", descr="Use connection three structures instead of cyclic structures")
 			  val connection_4 = opt[Boolean]("connection-four", descr="Use connection four structures instead of cyclic structures")
 			  val connection_5 = opt[Boolean]("connection-five", descr="Use connection five structures instead of cyclic structures")
 			  val connection_6 = opt[Boolean]("connection-six", descr="Use connection six structures instead of cyclic structures")
+
+			  val overlap_4 = opt[Boolean]("overlap-five", descr="Use overlap five structures instead of cyclic structures")
+			  val overlap_5 = opt[Boolean]("overlap-six", descr="Use overlap six structures instead of cyclic structures")
+			  val overlap_6 = opt[Boolean]("overlap-seven", descr="Use overlap seven structures instead of cyclic structures")
+
+			  val binary_overlap_4 = opt[Boolean]("binary-overlap-five", descr="Use overlap five structures instead of cyclic structures")
+			  val binary_overlap_5 = opt[Boolean]("binary-overlap-six", descr="Use overlap six structures instead of cyclic structures")
+			  val binary_overlap_6 = opt[Boolean]("binary-overlap-seven", descr="Use overlap seven structures instead of cyclic structures")
+
 			  val weighted = opt[Boolean]("weighted", descr="Use labeled-weighted structures instead of cyclic structures")
 			  val iterated = opt[Boolean]("iterated", descr="Dev")
 			  val threads = opt[Int]("threads", default=Some(-1), descr="Number of threads to use for compression")
@@ -196,6 +206,28 @@ object AmmoliteMain{
 
 				  } else if( opts.compress.connection_6()){
 				  	compType = CompressionType.CONNECTION_6
+				  }
+
+				  else if( opts.compress.overlap_4()){
+				  	compType = CompressionType.OVERLAP_4
+
+				  } else if( opts.compress.overlap_5()){
+				  	compType = CompressionType.OVERLAP_5
+
+				  } else if( opts.compress.overlap_6()){
+				  	compType = CompressionType.OVERLAP_6
+
+				  } 
+
+				  else if( opts.compress.binary_overlap_4()){
+				  	compType = CompressionType.BINARY_OVERLAP_4
+
+				  } else if( opts.compress.binary_overlap_5()){
+				  	compType = CompressionType.BINARY_OVERLAP_5
+
+				  } else if( opts.compress.binary_overlap_6()){
+				  	compType = CompressionType.BINARY_OVERLAP_6
+
 				  }
 				
 
