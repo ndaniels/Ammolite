@@ -43,13 +43,13 @@ object AmmoliteMain{
 			  val connection_5 = opt[Boolean]("connection-five", descr="Use connection five structures instead of cyclic structures")
 			  val connection_6 = opt[Boolean]("connection-six", descr="Use connection six structures instead of cyclic structures")
 
-			  val overlap_4 = opt[Boolean]("overlap-five", descr="Use overlap five structures instead of cyclic structures")
-			  val overlap_5 = opt[Boolean]("overlap-six", descr="Use overlap six structures instead of cyclic structures")
-			  val overlap_6 = opt[Boolean]("overlap-seven", descr="Use overlap seven structures instead of cyclic structures")
+			  val overlap_4 = opt[Boolean]("overlap-four", descr="Use overlap five structures instead of cyclic structures")
+			  val overlap_5 = opt[Boolean]("overlap-five", descr="Use overlap six structures instead of cyclic structures")
+			  val overlap_6 = opt[Boolean]("overlap-six", descr="Use overlap seven structures instead of cyclic structures")
 
-			  val binary_overlap_4 = opt[Boolean]("binary-overlap-five", descr="Use overlap five structures instead of cyclic structures")
-			  val binary_overlap_5 = opt[Boolean]("binary-overlap-six", descr="Use overlap six structures instead of cyclic structures")
-			  val binary_overlap_6 = opt[Boolean]("binary-overlap-seven", descr="Use overlap seven structures instead of cyclic structures")
+			  val binary_overlap_4 = opt[Boolean]("binary-overlap-four", descr="Use overlap five structures instead of cyclic structures")
+			  val binary_overlap_5 = opt[Boolean]("binary-overlap-five", descr="Use overlap six structures instead of cyclic structures")
+			  val binary_overlap_6 = opt[Boolean]("binary-overlap-six", descr="Use overlap seven structures instead of cyclic structures")
 
 			  val weighted = opt[Boolean]("weighted", descr="Use labeled-weighted structures instead of cyclic structures")
 			  val iterated = opt[Boolean]("iterated", descr="Dev")
