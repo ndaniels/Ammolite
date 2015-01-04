@@ -54,7 +54,7 @@ public class ConnectionStruct extends LabeledMolStruct implements IMolStruct  {
             double[]  pathLengths = allPairsDistance.getRow(node);
             double totalPathLength = 0;
             for(double pathLength: pathLengths){
-                if(Double.isFinite(pathLength)){
+                if(!Double.isNaN(pathLength) && !Double.isInfinite(pathLength)){
                     totalPathLength += pathLength;
                 }
             }
