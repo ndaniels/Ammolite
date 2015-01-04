@@ -1,6 +1,7 @@
 package edu.mit.csail.ammolite.compression;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -65,7 +66,8 @@ public class ConnectionStruct extends LabeledMolStruct implements IMolStruct  {
     }
     
     protected List<Pair<Integer,Double>> sortAveConnections(List<Pair<Integer,Double>> aveNodes){
-        aveNodes.sort(new Comparator<Pair<Integer,Double>>(){
+        
+        Collections.sort(aveNodes, new Comparator<Pair<Integer,Double>>(){
 
             @Override
             public int compare(Pair<Integer, Double> p1, Pair<Integer, Double> p2) {
