@@ -177,13 +177,14 @@ public class Ammolite_Connection implements Tester {
         double threshold;
         
         public CoarseConsumer(IAtomContainer query, Mediator<IMolStruct> queue, SearchResult result, Collection<StructID> hits, CommandLineProgressBar bar, double threshold){
-            try {
-                this.query = (IAtomContainer) query.clone();
-                //this.query = (IAtomContainer) query;
-            } catch (CloneNotSupportedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+//            try {
+//                this.query = (IAtomContainer) query.clone();
+//                //this.query = (IAtomContainer) query;
+//            } catch (CloneNotSupportedException e) {
+//                // TODO Auto-generated catch block
+//                e.printStackTrace();
+//            }
+            this.query = (IAtomContainer) query;
             this.queue = queue;
             this.result = result;
             this.threshold = threshold;
