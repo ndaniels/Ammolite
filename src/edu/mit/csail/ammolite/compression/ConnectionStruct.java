@@ -86,23 +86,27 @@ public class ConnectionStruct extends LabeledMolStruct implements IMolStruct  {
     
     protected void removeShallowNodes(List<Pair<Integer,Double>> sortedAveNodes, int minDepth){
         int atDepth = 1;
-        double currentDepth = sortedAveNodes.get(0).right();
-        
-        for(Pair<Integer,Double> aveNode: sortedAveNodes){
-            if( atDepth <= minDepth){
-                if(Math.abs(aveNode.right() - currentDepth) > 0.000001 ){
-                    atDepth++;
-                    currentDepth = aveNode.right();
-                }
-            }
+        if(sortedAveNodes.size() > 0){
+            double currentDepth = sortedAveNodes.get(0).right();
             
-            if( atDepth > minDepth){
-                IAtom atom = this.nodesToAtoms.get(aveNode.left());
-                this.removeAtom( atom);
-                for(IBond bond: getConnectedBondsList( atom)){
-                    removeBond(bond);
+            for(Pair<Integer,Double> aveNode: sortedAveNodes){
+                if( atDepth <= minDepth){
+                    if(Math.abs(aveNode.right() - currentDepth) > 0.000001 ){
+                        atDepth++;
+                        currentDepth = aveNode.right();
+                    }
+                }
+                
+                if( atDepth > minDepth){
+                    IAtom atom = this.nodesToAtoms.get(aveNode.left());
+                    this.removeAtom( atom);
+                    for(IBond bond: getConnectedBondsList( atom)){
+                        removeBond(bond);
+                    }
                 }
             }
+        } else {
+            System.out.println("Zero Length Node List");
         }
     }
 
