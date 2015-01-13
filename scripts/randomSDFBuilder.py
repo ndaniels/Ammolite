@@ -75,6 +75,7 @@ def buildRandomizedSDFs( numMolsList, inputFolder, outputFilenameList):
 				outFile.close()
 				fileNum += 1
 				numMolsInFile = 0
+				print( "Finished "+outFilename)
 
 		outFile.close()
 

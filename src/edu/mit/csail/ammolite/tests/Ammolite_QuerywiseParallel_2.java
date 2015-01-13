@@ -199,7 +199,7 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
                 while(queue.adding || target != null){
                     if(target != null){
                         boolean bondSensitive = false;
-                        boolean ringmatch = false;
+                        boolean ringmatch = true;
                         boolean stereoMatch = true;
                         boolean fragmentMinimization = true;
                         boolean energyMinimization = true;
