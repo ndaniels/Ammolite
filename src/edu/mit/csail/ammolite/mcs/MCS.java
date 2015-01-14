@@ -75,9 +75,9 @@ public class MCS {
 		return smsd.size();
 	}
 	
-	public static int getTimedSMSDOverlap(IAtomContainer a, IAtomContainer b){
+	public static int getTimedSMSDOverlap(IAtomContainer a, IAtomContainer b, long timeout){
         SMSD smsd = new SMSD(a,b);
-        smsd.timedCalculate(2000);
+        smsd.timedCalculate(timeout);
         return smsd.size();
     }
 	

@@ -224,9 +224,8 @@ public class Ammolite_Connection_3 implements Tester {
 //                            boolean energyMinimization = true;
 //                            comparison.setChemFilters(stereoMatch, fragmentMinimization, energyMinimization);   
 //                            int overlap = comparison.getFirstAtomMapping().getCount();
-                              SMSD smsd = new SMSD(query, target);
-                              smsd.timedCalculate(60*1000);
-                              int overlap = smsd.getFirstSolution().getAtomCount();
+                              
+                              int overlap = MCS.getTimedSMSDOverlap(target, query, 60*1000);
                             
                             if(MCSUtils.overlapCoeff(overlap, target, query) > threshold){
                                 result.addMatch(new SearchMatch(query, target, overlap));
