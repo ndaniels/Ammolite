@@ -25,6 +25,7 @@ import org.openscience.smsd.interfaces.Algorithm;
 import edu.mit.csail.ammolite.compression.IMolStruct;
 import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.mcs.MCS;
+import edu.mit.csail.ammolite.mcs.SMSD;
 import edu.mit.csail.ammolite.utils.CommandLineProgressBar;
 import edu.mit.csail.ammolite.utils.MCSUtils;
 import edu.mit.csail.ammolite.utils.MolUtils;
@@ -200,29 +201,32 @@ public class Ammolite_Connection_3 implements Tester {
                     IMolStruct target = queue.get();
                     while(queue.adding || target != null){
                         if(target != null){
-                            final IMolStruct fTarget = target;
-                            Future<Isomorphism> futureIso = ecs.submit( new Callable<Isomorphism>(){
-                                public Isomorphism call(){
-                                    boolean bondSensitive = false;
-                                    boolean ringmatch = true;
-                                    return new Isomorphism(query, fTarget, Algorithm.DEFAULT, bondSensitive, ringmatch);
-                                }
-                            });
-                            Isomorphism comparison = null;
-                            try {
-                                comparison = futureIso.get(1, TimeUnit.MINUTES);
-                            } catch (ExecutionException e) {
-                               
-                                e.printStackTrace();
-                            } catch (TimeoutException e) {
-                                target = queue.get();
-                                continue;
-                            }
-                            boolean stereoMatch = true;
-                            boolean fragmentMinimization = true;
-                            boolean energyMinimization = true;
-                            comparison.setChemFilters(stereoMatch, fragmentMinimization, energyMinimization);   
-                            int overlap = comparison.getFirstAtomMapping().getCount();
+//                            final IMolStruct fTarget = target;
+//                            Future<Isomorphism> futureIso = ecs.submit( new Callable<Isomorphism>(){
+//                                public Isomorphism call(){
+//                                    boolean bondSensitive = false;
+//                                    boolean ringmatch = true;
+//                                    return new Isomorphism(query, fTarget, Algorithm.DEFAULT, bondSensitive, ringmatch);
+//                                }
+//                            });
+//                            Isomorphism comparison = null;
+//                            try {
+//                                comparison = futureIso.get(1, TimeUnit.MINUTES);
+//                            } catch (ExecutionException e) {
+//                               
+//                                e.printStackTrace();
+//                            } catch (TimeoutException e) {
+//                                target = queue.get();
+//                                continue;
+//                            }
+//                            boolean stereoMatch = true;
+//                            boolean fragmentMinimization = true;
+//                            boolean energyMinimization = true;
+//                            comparison.setChemFilters(stereoMatch, fragmentMinimization, energyMinimization);   
+//                            int overlap = comparison.getFirstAtomMapping().getCount();
+                              SMSD smsd = new SMSD(query, target);
+                              smsd.timedCalculate(60*1000);
+                              int overlap = smsd.getFirstSolution().getAtomCount();
                             
                             if(MCSUtils.overlapCoeff(overlap, target, query) > threshold){
                                 result.addMatch(new SearchMatch(query, target, overlap));
