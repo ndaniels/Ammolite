@@ -86,7 +86,7 @@ public class SearchTest {
 //    		} 
 //    		
     		if( testAmmPar){
-    		    Tester tester = new Ammolite_Connection();
+    		    Tester tester = new Ammolite_Connection_3();
                 runTest(tester, stream, queries, db, targets, sTargets, fine, coarse);
     		}
     
