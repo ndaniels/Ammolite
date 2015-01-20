@@ -34,7 +34,7 @@ public class SMSD extends AbstractMCS {
         
         
         comparison = new Isomorphism(smallCompound, bigCompound, Algorithm.DEFAULT, bondSensitive, ringmatch);
-        comparison.setChemFilters(stereoMatch, fragmentMinimization, energyMinimization);     
+        //comparison.setChemFilters(stereoMatch, fragmentMinimization, energyMinimization);     
 		
 	}
 

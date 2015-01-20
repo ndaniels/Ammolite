@@ -205,7 +205,7 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
                         boolean energyMinimization = true;
                         Isomorphism comparison = new Isomorphism(query, target, Algorithm.DEFAULT, bondSensitive, ringmatch);
                         
-                        comparison.setChemFilters(stereoMatch, fragmentMinimization, energyMinimization);   
+                        //comparison.setChemFilters(stereoMatch, fragmentMinimization, energyMinimization);   
                         int overlap = comparison.getFirstAtomMapping().getCount();
                         
                         if(MCSUtils.overlapCoeff(overlap, target, query) > threshold){
