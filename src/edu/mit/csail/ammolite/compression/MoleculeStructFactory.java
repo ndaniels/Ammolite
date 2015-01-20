@@ -51,6 +51,15 @@ public class MoleculeStructFactory implements Serializable{
         } else if(compressionType.equals( CompressionType.OVERLAP_6)){
             return new OverlapStruct(base,0.6);
             
+        } else if(compressionType.equals( CompressionType.OVERLAP_7)){
+            return new OverlapStruct(base,0.7);
+            
+        } else if(compressionType.equals( CompressionType.OVERLAP_8)){
+            return new OverlapStruct(base,0.8);
+            
+        } else if(compressionType.equals( CompressionType.OVERLAP_9)){
+            return new OverlapStruct(base,0.9);
+            
         } else if(compressionType.equals( CompressionType.BINARY_OVERLAP_4)){
             return new BinaryOverlapStruct(base,0.4);
         } else if(compressionType.equals( CompressionType.BINARY_OVERLAP_5)){

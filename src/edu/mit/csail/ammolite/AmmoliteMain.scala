@@ -46,6 +46,9 @@ object AmmoliteMain{
 			  val overlap_4 = opt[Boolean]("overlap-four", descr="Use overlap five structures instead of cyclic structures")
 			  val overlap_5 = opt[Boolean]("overlap-five", descr="Use overlap six structures instead of cyclic structures")
 			  val overlap_6 = opt[Boolean]("overlap-six", descr="Use overlap seven structures instead of cyclic structures")
+			  val overlap_7 = opt[Boolean]("overlap-seven", descr="Use overlap seven structures instead of cyclic structures")
+			  val overlap_8 = opt[Boolean]("overlap-eight", descr="Use overlap seven structures instead of cyclic structures")
+			  val overlap_9 = opt[Boolean]("overlap-nine", descr="Use overlap seven structures instead of cyclic structures")
 
 			  val binary_overlap_4 = opt[Boolean]("binary-overlap-four", descr="Use overlap five structures instead of cyclic structures")
 			  val binary_overlap_5 = opt[Boolean]("binary-overlap-five", descr="Use overlap six structures instead of cyclic structures")
@@ -216,6 +219,15 @@ object AmmoliteMain{
 
 				  } else if( opts.compress.overlap_6()){
 				  	compType = CompressionType.OVERLAP_6
+
+				  } else if( opts.compress.overlap_7()){
+				  	compType = CompressionType.OVERLAP_7
+
+				  } else if( opts.compress.overlap_8()){
+				  	compType = CompressionType.OVERLAP_8
+
+				  } else if( opts.compress.overlap_9()){
+				  	compType = CompressionType.OVERLAP_9
 
 				  } 
 

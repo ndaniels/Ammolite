@@ -20,6 +20,9 @@ public enum CompressionType implements Serializable {
 	OVERLAP_5,
 	OVERLAP_6,
 	OVERLAP_4,
+	OVERLAP_7,
+	OVERLAP_8,
+	OVERLAP_9,
 	
 	BINARY_OVERLAP_5,
 	BINARY_OVERLAP_6,
