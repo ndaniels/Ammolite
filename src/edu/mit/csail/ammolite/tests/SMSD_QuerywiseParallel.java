@@ -152,7 +152,7 @@ public class SMSD_QuerywiseParallel implements Tester{
                         if(MCSUtils.overlapCoeff(overlap, target, query) > threshold){
                             result.addMatch(new SearchMatch(query, target, overlap));
                         } else {
-                            result.addMiss(new SearchMiss(query, target, overlap));
+                            //result.addMiss(new SearchMiss(query, target, overlap));
                         }
                         bar.event();
                     }
