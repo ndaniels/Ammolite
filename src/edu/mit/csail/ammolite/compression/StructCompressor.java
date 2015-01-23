@@ -280,6 +280,9 @@ public class StructCompressor {
 	}
 	
 	private void putStructInFile(Integer fingerprint, IMolStruct struct){
+	    if( this.cachedStructsByFingerprint.containsKey(fingerprint)){
+	        this.cachedStructsByFingerprint.get(fingerprint).add(struct);
+	    }
 	    String fStr = fingerprint.toString();
         String folders = structFolder + File.separator + fStr.charAt(0);
         
