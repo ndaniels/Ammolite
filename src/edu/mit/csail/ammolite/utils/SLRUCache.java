@@ -15,8 +15,8 @@ private LinkedHashMap<K,V>   map;
 private long allowedMemory;
 
 
-public SLRUCache (float memoryLoading) {
-   allowedMemory = (long) (runtime.totalMemory() * memoryLoading);
+public SLRUCache (double d) {
+   allowedMemory = (long) (runtime.totalMemory() * d);
    int hashTableCapacity = 1000;
    map = new LinkedHashMap<K,V>(hashTableCapacity, hashTableLoadFactor, true) {
       // (an anonymous inner class)

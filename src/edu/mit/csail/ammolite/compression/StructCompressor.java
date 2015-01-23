@@ -27,6 +27,7 @@ import edu.mit.csail.ammolite.utils.MolUtils;
 import edu.mit.csail.ammolite.utils.ParallelUtils;
 import edu.mit.csail.ammolite.utils.PubchemID;
 import edu.mit.csail.ammolite.utils.SDFUtils;
+import edu.mit.csail.ammolite.utils.SLRUCache;
 import edu.mit.csail.ammolite.utils.StructID;
 import edu.ucla.sspace.graph.isomorphism.AbstractIsomorphismTester;
 import edu.ucla.sspace.graph.isomorphism.VF2IsomorphismTester;
@@ -39,6 +40,7 @@ import edu.ucla.sspace.graph.isomorphism.VF2IsomorphismTester;
 public class StructCompressor {
 	//private KeyListMap<Integer, IMolStruct> structsByFingerprint = new KeyListMap<Integer,IMolStruct>(1000);
     private final Set<Integer> fingerprints = new HashSet<Integer>();
+    private final SLRUCache<Integer, List<IMolStruct>> cachedStructsByFingerprint = new SLRUCache<Integer,List<IMolStruct>>(0.8);
 	private final KeyListMap<StructID, PubchemID> idMap = new KeyListMap<StructID,PubchemID>(1000);
 	private MoleculeStructFactory structFactory;
 	private int numMols = 0;
@@ -224,7 +226,7 @@ public class StructCompressor {
 	        callList.add(callable);
 
 	    }
-	    if(callList.size() > 6000){
+	    if(callList.size() > 1000*1000){
 	        System.out.println("\nThis could take a while, processing "+callList.size()+" isomorphisms.");
 	    }
 
@@ -305,18 +307,25 @@ public class StructCompressor {
     }
 	
 	private List<IMolStruct> readStructFile(Integer fingerprint){
-	    String fStr = fingerprint.toString();
-        String folders = structFolder + File.separator + fStr.charAt(0);
-        
-        if(fStr.length() >= 2){
-            folders += File.separator + fStr.charAt(1);
-        } if(fStr.length() >= 3){
-            folders += File.separator + fStr.charAt(2);
-        }
-        
-        String filename = folders + File.separator + fStr +".sdf";
-        
-	    return SDFUtils.parseSDFAsStructs(filename, structFactory);
+	    if( this.cachedStructsByFingerprint.containsKey(fingerprint)){
+	        return this.cachedStructsByFingerprint.get(fingerprint);
+	    } else {
+	        
+    	    String fStr = fingerprint.toString();
+            String folders = structFolder + File.separator + fStr.charAt(0);
+            
+            if(fStr.length() >= 2){
+                folders += File.separator + fStr.charAt(1);
+            } if(fStr.length() >= 3){
+                folders += File.separator + fStr.charAt(2);
+            }
+            
+            String filename = folders + File.separator + fStr +".sdf";
+            
+    	    List<IMolStruct> structures = SDFUtils.parseSDFAsStructs(filename, structFactory);
+    	    this.cachedStructsByFingerprint.put(fingerprint, structures);
+    	    return structures;
+	    }
 	}
 	
 		
