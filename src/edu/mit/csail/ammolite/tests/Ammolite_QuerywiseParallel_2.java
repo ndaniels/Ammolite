@@ -198,15 +198,7 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
                 IMolStruct target = queue.get();
                 while(queue.adding || target != null){
                     if(target != null){
-                        boolean bondSensitive = false;
-                        boolean ringmatch = true;
-                        boolean stereoMatch = true;
-                        boolean fragmentMinimization = true;
-                        boolean energyMinimization = true;
-                        Isomorphism comparison = new Isomorphism(query, target, Algorithm.DEFAULT, bondSensitive, ringmatch);
-                        
-                        //comparison.setChemFilters(stereoMatch, fragmentMinimization, energyMinimization);   
-                        int overlap = comparison.getFirstAtomMapping().getCount();
+                        int overlap = MCS.getSMSDOverlap(target, query);
                         
                         if(MCSUtils.overlapCoeff(overlap, target, query) > threshold){
                             result.addMatch(new SearchMatch(query, target, overlap));
