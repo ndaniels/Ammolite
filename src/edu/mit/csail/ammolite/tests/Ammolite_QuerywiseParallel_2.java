@@ -31,7 +31,7 @@ import edu.mit.csail.ammolite.utils.ParallelUtils;
 import edu.mit.csail.ammolite.utils.StructID;
 
 public class Ammolite_QuerywiseParallel_2 implements Tester {
-    private static final String NAME = "Ammolite_basic";
+    private static final String NAME = "Ammolite_basic_no_ringmatch";
     private static final int COARSE_QUEUE_SIZE = 1000;
     private static final int FINE_QUEUE_SIZE = 1000;
     private static final int NUM_THREADS = Runtime.getRuntime().availableProcessors()/2;
@@ -204,7 +204,7 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
                             result.addMatch(new SearchMatch(query, target, overlap));
                             hits.add(MolUtils.getStructID(target));
                         } else {
-                            // result.addMiss(new SearchMiss(query, target, overlap));
+                            result.addMiss(new SearchMiss(query, target, overlap));
                         }
                         bar.event();
                     }

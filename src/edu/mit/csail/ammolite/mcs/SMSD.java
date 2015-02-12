@@ -25,7 +25,7 @@ public class SMSD extends AbstractMCS {
 	@Override
 	protected void myCalculate() {
 		boolean bondSensitive = false;
-        boolean ringmatch = true;
+        boolean ringmatch = false;
         
         boolean stereoMatch = true;
         boolean fragmentMinimization = true;

@@ -24,7 +24,7 @@ import edu.mit.csail.ammolite.utils.SDFMultiParser;
 import edu.mit.csail.ammolite.utils.SDFUtils;
 
 public class SMSD_QuerywiseParallel implements Tester{
-    private static final String NAME = "SMSD_QuerywiseParallel_Timeout";
+    private static final String NAME = "SMSD_no_ringmatch";
     private static final int QUEUE_SIZE = 500;
     private static final int NUM_THREADS = Runtime.getRuntime().availableProcessors()/2;
     private static final ExecutorService ecs = ParallelUtils.buildNewExecutorService(NUM_THREADS);
