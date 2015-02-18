@@ -28,8 +28,8 @@ public class SearchResultDocumenter {
 
         
         docHits(result);
-        docMisses(result);
-        docTimeouts(result);
+        //docMisses(result);
+        //docTimeouts(result);
       
 
         out.println("END_METHOD");
@@ -43,16 +43,16 @@ public class SearchResultDocumenter {
             out.print(match);
             out.print(" ");
         }
-        out.println("\nSTART_DETAILED_MATCHES");
-        for(int i=0; i< result.matches.size(); i++){
-            ID match = result.matches.get(i);
-            int matchSize = result.matchSizes.get(i);
-            out.print(match);
-            out.print(" ");
-            out.println(matchSize);
-            
-        }
-        out.println("END_DETAILED_MATCHES");
+//        out.println("\nSTART_DETAILED_MATCHES");
+//        for(int i=0; i< result.matches.size(); i++){
+//            ID match = result.matches.get(i);
+//            int matchSize = result.matchSizes.get(i);
+//            out.print(match);
+//            out.print(" ");
+//            out.println(matchSize);
+//            
+//        }
+//        out.println("END_DETAILED_MATCHES");
     }
     
     private void docMisses(SearchResult result){
