@@ -1,0 +1,179 @@
+68049124
+  CDK     0104151102
+
+ 33 33  0  0  0  0  0  0  0  0999 V2000
+    3.7601    1.7852    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    4.6261    3.2852    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    5.4921    1.7852    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    4.6261    2.2852    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    4.2601   -0.7536    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    2.9511    0.1974    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    3.2601   -0.7536    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.5691    0.1974    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.7601    0.7852    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    4.8479   -1.5627    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.4411   -2.4762    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.0000    0.5064    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0289   -3.2852    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.4466   -2.5807    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.8724   -0.6566    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    2.5126   -0.2410    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    2.6536   -0.8825    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.3249   -1.3702    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.1355   -0.0548    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.8791    0.7344    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.3125    1.0667    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.3619   -1.9094    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.2786   -1.1167    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0767   -1.9746    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    2.1916    1.0961    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    1.4103    0.6980    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    1.8084   -0.0832    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.3818   -1.9641    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    2.8300   -2.6455    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.5114   -3.1973    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.5273   -3.6496    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.3933   -3.7868    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5305   -2.9208    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  4  1  0  0  0  0 
+  1  9  1  0  0  0  0 
+  2  4  1  0  0  0  0 
+  3  4  2  0  0  0  0 
+  5  7  1  0  0  0  0 
+  5  8  1  0  0  0  0 
+  5 10  1  0  0  0  0 
+  5 15  1  0  0  0  0 
+  6  7  1  0  0  0  0 
+  6  9  1  0  0  0  0 
+  6 12  1  0  0  0  0 
+  6 16  1  0  0  0  0 
+  7 17  1  0  0  0  0 
+  7 18  1  0  0  0  0 
+  8  9  1  0  0  0  0 
+  8 19  1  0  0  0  0 
+  8 20  1  0  0  0  0 
+  9 21  1  0  0  0  0 
+ 10 11  1  0  0  0  0 
+ 10 22  1  0  0  0  0 
+ 10 23  1  0  0  0  0 
+ 11 13  1  0  0  0  0 
+ 11 14  1  0  0  0  0 
+ 11 24  1  0  0  0  0 
+ 12 25  1  0  0  0  0 
+ 12 26  1  0  0  0  0 
+ 12 27  1  0  0  0  0 
+ 13 31  1  0  0  0  0 
+ 13 32  1  0  0  0  0 
+ 13 33  1  0  0  0  0 
+ 14 28  1  0  0  0  0 
+ 14 29  1  0  0  0  0 
+ 14 30  1  0  0  0  0 
+M  CHG  1   2  -1
+M  CHG  1   4   1
+M  END
+> <cdk:Title>
+68049124
+
+> <cdk:Remark>
+null
+
+> <PUBCHEM_COMPOUND_CID>
+68049124
+
+> <PUBCHEM_COMPOUND_CANONICALIZED>
+1
+
+> <PUBCHEM_CACTVS_COMPLEXITY>
+200
+
+> <PUBCHEM_CACTVS_HBOND_ACCEPTOR>
+3
+
+> <PUBCHEM_CACTVS_HBOND_DONOR>
+0
+
+> <PUBCHEM_CACTVS_ROTATABLE_BOND>
+3
+
+> <PUBCHEM_CACTVS_SUBSKEYS>
+AAADceByMAAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAAAAAAAAGgAEAAAADRSggAICAAAAQAABAAAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAEAAAAAAGAwPAOAAAAAAAAAAAAAAAAAAAAAYAABAAAAA==
+
+> <PUBCHEM_IUPAC_OPENEYE_NAME>
+(4-isobutyl-2-methyl-cyclopentyl) nitrate
+
+> <PUBCHEM_IUPAC_CAS_NAME>
+nitric acid [2-methyl-4-(2-methylpropyl)cyclopentyl] ester
+
+> <PUBCHEM_IUPAC_NAME>
+[2-methyl-4-(2-methylpropyl)cyclopentyl] nitrate
+
+> <PUBCHEM_IUPAC_SYSTEMATIC_NAME>
+[2-methyl-4-(2-methylpropyl)cyclopentyl] nitrate
+
+> <PUBCHEM_IUPAC_TRADITIONAL_NAME>
+nitric acid (4-isobutyl-2-methyl-cyclopentyl) ester
+
+> <PUBCHEM_IUPAC_INCHI>
+InChI=1S/C10H19NO3/c1-7(2)4-9-5-8(3)10(6-9)14-11(12)13/h7-10H,4-6H2,1-3H3
+
+> <PUBCHEM_IUPAC_INCHIKEY>
+XDDFNTYCGAVCER-UHFFFAOYSA-N
+
+> <PUBCHEM_XLOGP3_AA>
+4
+
+> <PUBCHEM_EXACT_MASS>
+201.136493
+
+> <PUBCHEM_MOLECULAR_FORMULA>
+C10H19NO3
+
+> <PUBCHEM_MOLECULAR_WEIGHT>
+201.26276
+
+> <PUBCHEM_OPENEYE_CAN_SMILES>
+CC1CC(CC1O[N+](=O)[O-])CC(C)C
+
+> <PUBCHEM_OPENEYE_ISO_SMILES>
+CC1CC(CC1O[N+](=O)[O-])CC(C)C
+
+> <PUBCHEM_CACTVS_TPSA>
+55
+
+> <PUBCHEM_MONOISOTOPIC_WEIGHT>
+201.136493
+
+> <PUBCHEM_TOTAL_CHARGE>
+0
+
+> <PUBCHEM_HEAVY_ATOM_COUNT>
+14
+
+> <PUBCHEM_ATOM_DEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_ATOM_UDEF_STEREO_COUNT>
+3
+
+> <PUBCHEM_BOND_DEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_BOND_UDEF_STEREO_COUNT>
+0
+
+> <PUBCHEM_ISOTOPIC_ATOM_COUNT>
+0
+
+> <PUBCHEM_COMPONENT_COUNT>
+1
+
+> <PUBCHEM_CACTVS_TAUTO_COUNT>
+1
+
+> <PUBCHEM_COORDINATE_TYPE>
+1
+
+> <PUBCHEM_BONDANNOTATIONS>
+9  1  3
+
+$$$$

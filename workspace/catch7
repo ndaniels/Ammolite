@@ -1,0 +1,3997 @@
+Decompressing 100_fully_labeled.gad/
+Grabbing metadata...
+Done.
+Building map...
+Done.
+Finding representatives...
+Done.
+Finding sources...
+Done.
+Building database...
+Done.
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 100_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 100
+Number of representatives: 84
+Compression Type: FULLY_LABELED
+Number of source files: 84
+Description: temp
+Ammolite_basic_high_pass
+52790494_COARSE [=                                                        ] 0 / 84Actual: 0.1 Approx: 0.0 Alt-Approx: NaN
+52790494_COARSE [=|                                                       ] 1 / 84Actual: 0.6666666666666666 Approx: 0.13414634146341464 Alt-Approx: 1.0
+beta
+beluga
+52790494_COARSE [==|                                                      ] 2 / 84Actual: 0.08333333333333333 Approx: 0.0 Alt-Approx: NaN
+52790494_COARSE [===|                                                     ] 3 / 84Actual: 0.7272727272727273 Approx: 0.0967741935483871 Alt-Approx: 0.9166666666666666
+beta
+beluga
+52790494_COARSE [====                                                     ] 4 / 84Actual: 0.7272727272727273 Approx: 0.08064516129032258 Alt-Approx: 0.8333333333333334
+beta
+beluga
+52790494_COARSE [====|                                                 Actual: 0.7272727272727273 Approx: 0.09154929577464789 Alt-Approx: 0.9166666666666666
+beta
+beluga
+   ] 5 / 8452790494_COARSE [=====                                                    ] 6 / 84Actual: 0.75 Approx: 0.08666666666666667 Alt-Approx: 1.0
+beta
+beluga
+52790494_COARSE [=====|                                                   ] 7 / 84Actual: 0.75 Approx: 0.10666666666666667 Alt-Approx: 1.0
+beta
+beluga
+52790494_COARSE [======|                                                  ] 8 / 84Actual: 0.8333333333333334 Approx: 0.08666666666666667 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+52790494_COARSE [=======|                                                 ] 9 / 84Actual: 0.6666666666666666 Approx: 0.08928571428571429 Alt-Approx: 1.0
+beta
+beluga
+52790494_COARSE [========                                                 ] 10 / 84Actual: 0.6923076923076923 Approx: 0.5 Alt-Approx: 0.8571428571428571
+sardine
+beta
+beluga
+52790494_COARSE [========|                                                ] 11 / 84Actual: 0.7692307692307693 Approx: 0.0707070707070707 Alt-Approx: 1.0
+beta
+beluga
+52790494_COARSE [=========                                                ] 12 / 84Actual: 0.46153846153846156 Approx: 0.06976744186046512 Alt-Approx: 0.8571428571428571
+beta
+beluga
+52790494_COARSE [=========|                                               ] 13 / 84Actual: 0.7142857142857143 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+52790494_COARSE [==========|                                              ] 14 / 84Actual: 0.46153846153846156 Approx: 0.06976744186046512 Alt-Approx: 0.8571428571428571
+beta
+beluga
+52790494_COARSE [===========|                                             ] 15 / 84Actual: 0.7692307692307693 Approx: 0.07471264367816093 Alt-Approx: 0.8666666666666667
+beta
+beluga
+52790494_COARSE [============                                             ] 16 / 84Actual: 0.5 Approx: 0.04887218045112782 Alt-Approx: 0.7647058823529411
+beta
+beluga
+52790494_COARSE [============|                                            ] 17 / 84Actual: 0.5333333333333333 Approx: 0.4444444444444444 Alt-Approx: 0.8235294117647058
+sardine
+beta
+beluga
+52790494_COARSE [=============|                                           ] 18 / 84Actual: 0.5625 Approx: 0.45075757575757575 Alt-Approx: 0.8888888888888888
+sardine
+beta
+beluga
+52790494_COARSE [==============                                           ] 19 / 84Actual: 0.5294117647058824 Approx: 0.05214723926380368 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [==============|                                          ] 20 / 84Actual: 0.47058823529411764 Approx: 0.45302013422818793 Alt-Approx: 0.9473684210526315
+sardine
+beta
+beluga
+52790494_COARSE [===============|                                         ] 21 / 84Actual: 0.47058823529411764 Approx: 0.0472972972972973 Alt-Approx: 0.7368421052631579
+beta
+beluga
+52790494_COARSE [================                                         ] 22 / 84Actual: 0.6428571428571429 Approx: 0.085 Alt-Approx: 0.875
+beta
+beluga
+52790494_COARSE [================|                                        ] 23 / 84Actual: 0.5555555555555556 Approx: 0.4940119760479042 Alt-Approx: 0.8947368421052632
+sardine
+beta
+beluga
+52790494_COARSE [=================|                                       ] 24 / 84Actual: 0.5555555555555556 Approx: 0.04491017964071856 Alt-Approx: 0.7894736842105263
+beta
+beluga
+52790494_COARSE [==================                                       ] 25 / 84Actual: 0.4444444444444444 Approx: 0.4431137724550898 Alt-Approx: 0.8421052631578947
+sardine
+beta
+beluga
+52790494_COARSE [==================|                                      ] 26 / 84Actual: 0.5 Approx: 0.041916167664670656 Alt-Approx: 0.7368421052631579
+beta
+beluga
+52790494_COARSE [===================|                                     ] 27 / 84Actual: 0.3888888888888889 Approx: 0.4491017964071856 Alt-Approx: 0.8947368421052632
+sardine
+beta
+beluga
+52790494_COARSE [====================|                                    ] 28 / 84Actual: 0.6111111111111112 Approx: 0.05089820359281437 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [=====================                                    ] 29 / 84Actual: 0.4444444444444444 Approx: 0.05089820359281437 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [=====================|                                   ] 30 / 84Actual: 0.4444444444444444 Approx: 0.45209580838323354 Alt-Approx: 0.9473684210526315
+sardine
+beta
+beluga
+52790494_COARSE [======================                                   ] 31 / 84Actual: 0.5 Approx: 0.05089820359281437 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [======================|                                  ] 32 / 84Actual: 0.4444444444444444 Approx: 0.05089820359281437 Alt-Approx: 0.8421052631578947
+beta
+beluga
+52790494_COARSE [=======================|                                 ] 33 / 84Actual: 0.5 Approx: 0.05089820359281437 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [========================|                                ] 34 / 84Actual: 0.6111111111111112 Approx: 0.04491017964071856 Alt-Approx: 0.7894736842105263
+beta
+beluga
+52790494_COARSE [=========================                                ] 35 / 84Actual: 0.3333333333333333 Approx: 0.03592814371257485 Alt-Approx: 0.631578947368421
+beluga
+52790494_COARSE [=========================|                               ] 36 / 84Actual: 0.4444444444444444 Approx: 0.05089820359281437 Alt-Approx: 0.7368421052631579
+beta
+beluga
+52790494_COARSE [==========================                               ] 37 / 84Actual: 0.5555555555555556 Approx: 0.05089820359281437 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [==========================|                              ] 38 / 84Actual: 0.6111111111111112 Approx: 0.05089820359281437 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [===========================|                             ] 39 / 84Actual: 0.5555555555555556 Approx: 0.05089820359281437 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [============================|                            ] 40 / 84Actual: 0.5 Approx: 0.05089820359281437 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [=============================                            ] 41 / 84Actual: 0.5555555555555556 Approx: 0.4491017964071856 Alt-Approx: 0.8947368421052632
+sardine
+beta
+beluga
+52790494_COARSE [=============================|                           ] 42 / 84Actual: 0.4444444444444444 Approx: 0.45209580838323354 Alt-Approx: 0.9473684210526315
+sardine
+beta
+beluga
+52790494_COARSE [==============================                           ] 43 / 84Actual: 0.5555555555555556 Approx: 0.4940119760479042 Alt-Approx: 0.8947368421052632
+sardine
+beta
+beluga
+52790494_COARSE [==============================-|                         ] 44 / 84Actual: 0.5555555555555556 Approx: 0.05089820359281437 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [================================                         ] 45 / 84Actual: 0.5 Approx: 0.04491017964071856 Alt-Approx: 0.7894736842105263
+beta
+beluga
+52790494_COARSE [================================|                        ] 46 / 84Actual: 0.4444444444444444 Approx: 0.44610778443113774 Alt-Approx: 0.8421052631578947
+sardine
+beta
+beluga
+52790494_COARSE [=================================                        ] 47 / 84Actual: 0.4444444444444444 Approx: 0.4431137724550898 Alt-Approx: 0.7894736842105263
+sardine
+beta
+beluga
+52790494_COARSE [=================================|                       ] 48 / 84Actual: 0.5555555555555556 Approx: 0.05089820359281437 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [==================================|                      ] 49 / 84Actual: 0.5 Approx: 0.05089820359281437 Alt-Approx: 0.8421052631578947
+beta
+beluga
+52790494_COARSE [===================================|                     ] 50 / 84Actual: 0.5555555555555556 Approx: 0.05089820359281437 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [====================================                     ] 51 / 84Actual: 0.5555555555555556 Approx: 0.49700598802395207 Alt-Approx: 0.9473684210526315
+sardine
+beta
+beluga
+52790494_COARSE [====================================|                    ] 52 / 84Actual: 0.5 Approx: 0.05089820359281437 Alt-Approx: 0.7368421052631579
+beta
+beluga
+52790494_COARSE [=====================================                    ] 53 / 84Actual: 0.5 Approx: 0.041916167664670656 Alt-Approx: 0.7368421052631579
+beta
+beluga
+52790494_COARSE [=====================================|                   ] 54 / 84Actual: 0.5555555555555556 Approx: 0.05089820359281437 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [======================================|                  ] 55 / 84Actual: 0.4444444444444444 Approx: 0.04491017964071856 Alt-Approx: 0.7894736842105263
+beta
+beluga
+52790494_COARSE [=======================================|                 ] 56 / 84Actual: 0.4444444444444444 Approx: 0.04491017964071856 Alt-Approx: 0.7894736842105263
+beta
+beluga
+52790494_COARSE [========================================                 ] 57 / 84Actual: 0.5555555555555556 Approx: 0.05089820359281437 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [========================================|                ] 58 / 84Actual: 0.5555555555555556 Approx: 0.45209580838323354 Alt-Approx: 0.9473684210526315
+sardine
+beta
+beluga
+52790494_COARSE [=========================================                ] 59 / 84Actual: 0.3333333333333333 Approx: 0.05389221556886228 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [=========================================|               ] 60 / 84Actual: 0.4444444444444444 Approx: 0.041916167664670656 Alt-Approx: 0.7368421052631579
+beta
+beluga
+52790494_COARSE [==========================================|              ] 61 / 84Actual: 0.5555555555555556 Approx: 0.05089820359281437 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [===========================================|             ] 62 / 84Actual: 0.5555555555555556 Approx: 0.04790419161676647 Alt-Approx: 0.8421052631578947
+beta
+beluga
+52790494_COARSE [============================================             ] 63 / 84Actual: 0.5555555555555556 Approx: 0.05089820359281437 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [============================================|            ] 64 / 84Actual: 0.5 Approx: 0.45209580838323354 Alt-Approx: 0.9473684210526315
+sardine
+beta
+beluga
+52790494_COARSE [=============================================|           ] 65 / 84Actual: 0.5 Approx: 0.05089820359281437 Alt-Approx: 0.7368421052631579
+beta
+beluga
+52790494_COARSE [==============================================           ] 66 / 84Actual: 0.5 Approx: 0.04491017964071856 Alt-Approx: 0.7894736842105263
+beta
+beluga
+52790494_COARSE [==============================================|          ] 67 / 84Actual: 0.5555555555555556 Approx: 0.05089820359281437 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [===============================================|         ] 68 / 84Actual: 0.6111111111111112 Approx: 0.04790419161676647 Alt-Approx: 0.8421052631578947
+beta
+beluga
+52790494_COARSE [================================================         ] 69 / 84Actual: 0.5555555555555556 Approx: 0.05089820359281437 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [================================================|        ] 70 / 84Actual: 0.5555555555555556 Approx: 0.05089820359281437 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [=================================================|       ] 71 / 84Actual: 0.6111111111111112 Approx: 0.05089820359281437 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [==================================================       ] 72 / 84Actual: 0.6111111111111112 Approx: 0.05089820359281437 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [==================================================|      ] 73 / 84Actual: 0.4444444444444444 Approx: 0.05089820359281437 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [===================================================|     ] 74 / 84Actual: 0.5 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+52790494_COARSE [====================================================     ] 75 / 84Actual: 0.5 Approx: 0.45209580838323354 Alt-Approx: 0.9473684210526315
+sardine
+beta
+beluga
+52790494_COARSE [====================================================|    ] 76 / 84Actual: 0.5 Approx: 0.05089820359281437 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [=====================================================|   ] 77 / 84Actual: 0.5 Approx: 0.05089820359281437 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [======================================================   ] 78 / 84Actual: 0.5555555555555556 Approx: 0.05089820359281437 Alt-Approx: 0.8947368421052632
+beta
+beluga
+52790494_COARSE [======================================================|  ] 79 / 84Actual: 1.0 Approx: 0.3333333333333333 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+52790494_COARSE [=======================================================| ] 80 / 84Actual: 1.0 Approx: 0.3333333333333333 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+52790494_COARSE [========================================================|] 81 / 84Actual: 0.8333333333333334 Approx: 0.1111111111111111 Alt-Approx: 0.6666666666666666
+goldfish
+whale
+beluga
+lobster
+52790494_COARSE [=========================================================] 82 / 84Actual: 1.0 Approx: 0.25 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+52790494_COARSE [=========================================================] 83 / 84Actual: 0.5 Approx: 0.4491017964071856 Alt-Approx: 0.8947368421052632
+sardine
+beta
+beluga
+52790494_COARSE [=========================================================] 84 / 84Writing coarse results...
+52790494 [=|                                                              ] 0 / 4852790494 [==|                                                             ] 1 / 4852790494 [===-|                                                           ] 2 / 4852790494 [=====|                                                          ] 3 / 4852790494 [======|                                                         ] 4 / 4852790494 [=======-|                                                       ] 5 / 4852790494 [=========|                                                      ] 6 / 4852790494 [==========-|                                                    ] 7 / 4852790494 [============|                                                   ] 8 / 4852790494 [=============|                                                  ] 9 / 4852790494 [==============-|                                                ] 10 / 4852790494 [================|                                               ] 11 / 4852790494 [=================|                                              ] 12 / 48Writing fine results...
+61561031_COARSE [=                                                        ] 0 / 84Actual: 0.1 Approx: 0.0 Alt-Approx: NaN
+61561031_COARSE [=|                                                       ] 1 / 84Actual: 0.8888888888888888 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+61561031_COARSE [==|                                                      ] 2 / 84Actual: 0.08333333333333333 Approx: 0.0 Alt-Approx: NaN
+61561031_COARSE [===|                                                     ] 3 / 84Actual: 0.7272727272727273 Approx: 0.5 Alt-Approx: 0.9166666666666666
+sardine
+beta
+beluga
+61561031_COARSE [====                                                     ] 4 / 84Actual: 0.8181818181818182 Approx: 0.5 Alt-Approx: 0.8333333333333334
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+61561031_COARSE [====|                                                    ] 5 / 84Actual: 0.8181818181818182 Approx: 0.5 Alt-Approx: 0.9166666666666666
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+61561031_COARSE [=====                                                    ] 6 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+61561031_COARSE [=====|                                                   ] 7 / 84Actual: 0.75 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+61561031_COARSE [======|                                                  ] 8 / 84Actual: 0.9166666666666666 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+61561031_COARSE [=======|                                                 ] 9 / 84Actual: 0.75 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+61561031_COARSE [========                                                 ] 10 / 84Actual: 0.46153846153846156 Approx: 0.05747126436781609 Alt-Approx: 0.7142857142857143
+beta
+beluga
+61561031_COARSE [========|                                                ] 11 / 84Actual: 0.9230769230769231 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+61561031_COARSE [=========                                                ] 12 / 84Actual: 0.46153846153846156 Approx: 0.06976744186046512 Alt-Approx: 0.8571428571428571
+beta
+beluga
+61561031_COARSE [=========|                                               ] 13 / 84Actual: 0.46153846153846156 Approx: 0.0755813953488372 Alt-Approx: 0.9285714285714286
+beta
+beluga
+61561031_COARSE [==========|                                              ] 14 / 84Actual: 0.5 Approx: 0.06435643564356436 Alt-Approx: 0.8666666666666667
+beta
+beluga
+61561031_COARSE [===========|                                             ] 15 / 84Actual: 0.6153846153846154 Approx: 0.5 Alt-Approx: 0.8666666666666667
+sardine
+beta
+beluga
+61561031_COARSE [============                                             ] 16 / 84Actual: 0.5625 Approx: 0.04887218045112782 Alt-Approx: 0.7647058823529411
+beta
+beluga
+61561031_COARSE [============|                                            ] 17 / 84Actual: 0.6 Approx: 0.05555555555555555 Alt-Approx: 0.7647058823529411
+beta
+beluga
+61561031_COARSE [=============|                                           ] 18 / 84Actual: 0.5625 Approx: 0.06060606060606061 Alt-Approx: 0.8888888888888888
+beta
+beluga
+61561031_COARSE [==============                                           ] 19 / 84Actual: 0.6428571428571429 Approx: 0.495 Alt-Approx: 0.9375
+sardine
+beta
+beluga
+61561031_COARSE [==============|                                          ] 20 / 84Actual: 0.5625 Approx: 0.4589041095890411 Alt-Approx: 1.0
+sardine
+beta
+beluga
+61561031_COARSE [===============|                                         ] 21 / 84Actual: 0.5625 Approx: 0.05136986301369863 Alt-Approx: 0.8333333333333334
+beta
+beluga
+61561031_COARSE [================                                         ] 22 / 84Actual: 0.5625 Approx: 0.05821917808219178 Alt-Approx: 0.9444444444444444
+beta
+beluga
+61561031_COARSE [================|                                        ] 23 / 84Actual: 0.5625 Approx: 0.0547945205479452 Alt-Approx: 0.8888888888888888
+beta
+beluga
+61561031_COARSE [=================|                                       ] 24 / 84Actual: 0.5625 Approx: 0.4726027397260274 Alt-Approx: 0.8333333333333334
+sardine
+beta
+beluga
+61561031_COARSE [==================                                       ] 25 / 84Actual: 0.5625 Approx: 0.0547945205479452 Alt-Approx: 0.8888888888888888
+beta
+beluga
+61561031_COARSE [==================|                                      ] 26 / 84Actual: 0.5625 Approx: 0.05136986301369863 Alt-Approx: 0.8333333333333334
+beta
+beluga
+61561031_COARSE [===================|                                     ] 27 / 84Actual: 0.5 Approx: 0.05821917808219178 Alt-Approx: 0.9444444444444444
+beta
+beluga
+61561031_COARSE [====================|                                    ] 28 / 84Actual: 0.625 Approx: 0.4828767123287671 Alt-Approx: 1.0
+sardine
+beta
+beluga
+61561031_COARSE [=====================                                    ] 29 / 84Actual: 0.5625 Approx: 0.476027397260274 Alt-Approx: 1.0
+sardine
+beta
+beluga
+61561031_COARSE [=====================|                                   ] 30 / 84Actual: 0.5 Approx: 0.06506849315068493 Alt-Approx: 1.0
+beta
+beluga
+61561031_COARSE [======================                                   ] 31 / 84Actual: 0.5 Approx: 0.4657534246575342 Alt-Approx: 0.9444444444444444
+sardine
+beta
+beluga
+61561031_COARSE [======================|                                  ] 32 / 84Actual: 0.5625 Approx: 0.06164383561643835 Alt-Approx: 1.0
+beta
+beluga
+61561031_COARSE [=======================|                                 ] 33 / 84Actual: 0.5625 Approx: 0.06164383561643835 Alt-Approx: 1.0
+beta
+beluga
+61561031_COARSE [========================|                                ] 34 / 84Actual: 0.5625 Approx: 0.0684931506849315 Alt-Approx: 0.8333333333333334
+beta
+beluga
+61561031_COARSE [=========================                                ] 35 / 84Actual: 0.5625 Approx: 0.476027397260274 Alt-Approx: 0.8333333333333334
+sardine
+beta
+beluga
+61561031_COARSE [=========================|                               ] 36 / 84Actual: 0.375 Approx: 0.04452054794520548 Alt-Approx: 0.7222222222222222
+beta
+beluga
+61561031_COARSE [==========================                               ] 37 / 84Actual: 0.6875 Approx: 0.4931506849315068 Alt-Approx: 1.0
+sardine
+beta
+beluga
+61561031_COARSE [==========================|                              ] 38 / 84Actual: 0.5625 Approx: 0.4828767123287671 Alt-Approx: 1.0
+sardine
+beta
+beluga
+61561031_COARSE [===========================|                             ] 39 / 84Actual: 0.5625 Approx: 0.4965753424657534 Alt-Approx: 0.9444444444444444
+sardine
+beta
+beluga
+61561031_COARSE [============================|                            ] 40 / 84Actual: 0.5 Approx: 0.06506849315068493 Alt-Approx: 1.0
+beta
+beluga
+61561031_COARSE [=============================                            ] 41 / 84Actual: 0.5625 Approx: 0.07191780821917808 Alt-Approx: 1.0
+beta
+beluga
+61561031_COARSE [=============================|                           ] 42 / 84Actual: 0.5625 Approx: 0.05821917808219178 Alt-Approx: 0.9444444444444444
+beta
+beluga
+61561031_COARSE [==============================                           ] 43 / 84Actual: 0.5625 Approx: 0.0547945205479452 Alt-Approx: 0.8888888888888888
+beta
+beluga
+61561031_COARSE [==============================-|                         ] 44 / 84Actual: 0.5 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+61561031_COARSE [================================                         ] 45 / 84Actual: 0.5625 Approx: 0.0547945205479452 Alt-Approx: 0.8888888888888888
+beta
+beluga
+61561031_COARSE [================================|                        ] 46 / 84Actual: 0.5625 Approx: 0.0547945205479452 Alt-Approx: 0.8888888888888888
+beta
+beluga
+61561031_COARSE [=================================                        ] 47 / 84Actual: 0.5625 Approx: 0.4931506849315068 Alt-Approx: 0.9444444444444444
+sardine
+beta
+beluga
+61561031_COARSE [=================================|                       ] 48 / 84Actual: 0.5625 Approx: 0.05136986301369863 Alt-Approx: 0.8333333333333334
+beta
+beluga
+61561031_COARSE [==================================|                      ] 49 / 84Actual: 0.875 Approx: 0.07191780821917808 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+61561031_COARSE [===================================|                     ] 50 / 84Actual: 0.5625 Approx: 0.05821917808219178 Alt-Approx: 0.9444444444444444
+beta
+beluga
+61561031_COARSE [====================================                     ] 51 / 84Actual: 0.5625 Approx: 0.06164383561643835 Alt-Approx: 1.0
+beta
+beluga
+61561031_COARSE [====================================|                    ] 52 / 84Actual: 0.5625 Approx: 0.05136986301369863 Alt-Approx: 0.8333333333333334
+beta
+beluga
+61561031_COARSE [=====================================                    ] 53 / 84Actual: 0.5625 Approx: 0.4828767123287671 Alt-Approx: 0.8333333333333334
+sardine
+beta
+beluga
+61561031_COARSE [=====================================|                   ] 54 / 84Actual: 0.375 Approx: 0.0547945205479452 Alt-Approx: 0.8333333333333334
+beta
+beluga
+61561031_COARSE [======================================|                  ] 55 / 84Actual: 0.5625 Approx: 0.05821917808219178 Alt-Approx: 0.8888888888888888
+beta
+beluga
+61561031_COARSE [=======================================|                 ] 56 / 84Actual: 0.5625 Approx: 0.4965753424657534 Alt-Approx: 1.0
+sardine
+beta
+beluga
+61561031_COARSE [========================================                 ] 57 / 84Actual: 1.0 Approx: 0.07191780821917808 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+61561031_COARSE [========================================|                ] 58 / 84Actual: 0.5625 Approx: 0.0547945205479452 Alt-Approx: 0.8888888888888888
+beta
+beluga
+61561031_COARSE [=========================================                ] 59 / 84Actual: 0.5 Approx: 0.05821917808219178 Alt-Approx: 0.9444444444444444
+beta
+beluga
+61561031_COARSE [=========================================|               ] 60 / 84Actual: 0.5 Approx: 0.0684931506849315 Alt-Approx: 1.0
+beta
+beluga
+61561031_COARSE [==========================================|              ] 61 / 84Actual: 0.5625 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+61561031_COARSE [===========================================|             ] 62 / 84Actual: 0.5625 Approx: 0.4863013698630137 Alt-Approx: 0.8333333333333334
+sardine
+beta
+beluga
+61561031_COARSE [============================================             ] 63 / 84Actual: 0.75 Approx: 0.05821917808219178 Alt-Approx: 0.9444444444444444
+beta
+beluga
+61561031_COARSE [============================================|            ] 64 / 84Actual: 0.5 Approx: 0.06506849315068493 Alt-Approx: 1.0
+beta
+beluga
+61561031_COARSE [=============================================|           ] 65 / 84Actual: 0.5625 Approx: 0.06164383561643835 Alt-Approx: 1.0
+beta
+beluga
+61561031_COARSE [==============================================           ] 66 / 84Actual: 0.5625 Approx: 0.0547945205479452 Alt-Approx: 0.8888888888888888
+beta
+beluga
+61561031_COARSE [==============================================|          ] 67 / 84Actual: 0.6875 Approx: 0.0684931506849315 Alt-Approx: 1.0
+beta
+beluga
+61561031_COARSE [===============================================|         ] 68 / 84Actual: 0.6875 Approx: 0.4931506849315068 Alt-Approx: 0.8888888888888888
+sardine
+beta
+beluga
+61561031_COARSE [================================================         ] 69 / 84Actual: 0.9375 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+61561031_COARSE [================================================|        ] 70 / 84Actual: 0.5625 Approx: 0.0821917808219178 Alt-Approx: 1.0
+beta
+beluga
+61561031_COARSE [=================================================|       ] 71 / 84Actual: 0.875 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+61561031_COARSE [==================================================       ] 72 / 84Actual: 0.5 Approx: 0.07876712328767123 Alt-Approx: 1.0
+beta
+beluga
+61561031_COARSE [==================================================|      ] 73 / 84Actual: 1.0 Approx: 0.06506849315068493 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+61561031_COARSE [===================================================|     ] 74 / 84Actual: 0.5625 Approx: 0.06506849315068493 Alt-Approx: 1.0
+beta
+beluga
+61561031_COARSE [====================================================     ] 75 / 84Actual: 0.5625 Approx: 0.0684931506849315 Alt-Approx: 1.0
+beta
+beluga
+61561031_COARSE [====================================================|    ] 76 / 84Actual: 1.0 Approx: 0.06164383561643835 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+61561031_COARSE [=====================================================|   ] 77 / 84Actual: 1.0 Approx: 0.0684931506849315 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+61561031_COARSE [======================================================   ] 78 / 84Actual: 0.5625 Approx: 0.05821917808219178 Alt-Approx: 0.9444444444444444
+beta
+beluga
+61561031_COARSE [======================================================|  ] 79 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+61561031_COARSE [=======================================================| ] 80 / 84Actual: 1.0 Approx: 0.3611111111111111 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+61561031_COARSE [========================================================|] 81 / 84Actual: 0.8333333333333334 Approx: 0.1111111111111111 Alt-Approx: 0.6666666666666666
+goldfish
+whale
+beluga
+lobster
+61561031_COARSE [=========================================================] 82 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+61561031_COARSE [=========================================================] 83 / 84Actual: 0.5625 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+61561031_COARSE [=========================================================] 84 / 84Writing coarse results...
+61561031 [=                                                               ] 0 / 19261561031 [=                                                               ] 1 / 19261561031 [=|                                                              ] 2 / 19261561031 [==                                                              ] 3 / 19261561031 [==|                                                             ] 4 / 19261561031 [===                                                             ] 5 / 19261561031 [===                                                             ] 6 / 19261561031 [===                                                             ] 7 / 19261561031 [===|                                                            ] 8 / 19261561031 [====                                                            ] 9 / 19261561031 [====|                                                           ] 10 / 19261561031 [=====                                                           ] 11 / 19261561031 [=====                                                           ] 12 / 19261561031 [=====                                                           ] 13 / 19261561031 [=====|                                                          ] 14 / 19261561031 [======                                                          ] 15 / 19261561031 [======|                                                         ] 16 / 19261561031 [=======                                                         ] 17 / 19261561031 [=======                                                         ] 18 / 19261561031 [=======                                                         ] 19 / 19261561031 [=======|                                                        ] 20 / 19261561031 [========                                                        ] 21 / 19261561031 [========                                                        ] 22 / 19261561031 [========|                                                       ] 23 / 19261561031 [=========                                                       ] 24 / 19261561031 [=========|                                                      ] 25 / 19261561031 [==========                                                      ] 26 / 19261561031 [==========                                                      ] 27 / 192Writing fine results...
+37285639_COARSE [=                                                        ] 0 / 84Actual: 0.1 Approx: 0.0 Alt-Approx: NaN
+37285639_COARSE [=|                                                       ] 1 / 84Actual: 1.0 Approx: 0.21951219512195122 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+37285639_COARSE [==|                                                      ] 2 / 84Actual: 0.08333333333333333 Approx: 0.0 Alt-Approx: NaN
+37285639_COARSE [===|                                                     ] 3 / 84Actual: 1.0 Approx: 0.1532258064516129 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+37285639_COARSE [====                                                     ] 4 / 84Actual: 0.9090909090909091 Approx: 0.13709677419354838 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+37285639_COARSE [====|                                                    ] 5 / 84Actual: 0.9090909090909091 Approx: 0.14084507042253522 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+37285639_COARSE [=====                                                    ] 6 / 84Actual: 0.75 Approx: 0.13333333333333333 Alt-Approx: 1.0
+beta
+beluga
+37285639_COARSE [=====|                                                   ] 7 / 84Actual: 0.75 Approx: 0.13095238095238096 Alt-Approx: 1.0
+beta
+beluga
+37285639_COARSE [======|                                                  ] 8 / 84Actual: 0.8333333333333334 Approx: 0.15333333333333332 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+37285639_COARSE [=======|                                                 ] 9 / 84Actual: 0.8333333333333334 Approx: 0.13333333333333333 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+37285639_COARSE [========                                                 ] 10 / 84Actual: 0.7692307692307693 Approx: 0.10606060606060606 Alt-Approx: 1.0
+beta
+beluga
+37285639_COARSE [========|                                                ] 11 / 84Actual: 0.46153846153846156 Approx: 0.4367816091954023 Alt-Approx: 0.9285714285714286
+sardine
+beta
+beluga
+37285639_COARSE [=========                                                ] 12 / 84Actual: 0.5384615384615384 Approx: 0.06976744186046512 Alt-Approx: 0.8571428571428571
+beta
+beluga
+37285639_COARSE [=========|                                               ] 13 / 84Actual: 0.46153846153846156 Approx: 0.06976744186046512 Alt-Approx: 0.8571428571428571
+beta
+beluga
+37285639_COARSE [==========|                                              ] 14 / 84Actual: 0.6923076923076923 Approx: 0.11494252873563218 Alt-Approx: 0.9333333333333333
+beta
+beluga
+37285639_COARSE [===========|                                             ] 15 / 84Actual: 0.42857142857142855 Approx: 0.4405940594059406 Alt-Approx: 0.9333333333333333
+sardine
+beta
+beluga
+37285639_COARSE [============                                             ] 16 / 84Actual: 0.5625 Approx: 0.04887218045112782 Alt-Approx: 0.7647058823529411
+beta
+beluga
+37285639_COARSE [============|                                            ] 17 / 84Actual: 0.6 Approx: 0.49145299145299143 Alt-Approx: 0.8823529411764706
+sardine
+beta
+beluga
+37285639_COARSE [=============|                                           ] 18 / 84Actual: 0.7142857142857143 Approx: 0.12 Alt-Approx: 0.875
+beta
+beluga
+37285639_COARSE [==============                                           ] 19 / 84Actual: 0.6470588235294118 Approx: 0.0736196319018405 Alt-Approx: 0.9473684210526315
+beta
+beluga
+37285639_COARSE [==============|                                          ] 20 / 84Actual: 0.5625 Approx: 0.4962121212121212 Alt-Approx: 0.9444444444444444
+sardine
+beta
+beluga
+37285639_COARSE [===============|                                         ] 21 / 84Actual: 0.5882352941176471 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+37285639_COARSE [================                                         ] 22 / 84Actual: 0.5882352941176471 Approx: 0.0472972972972973 Alt-Approx: 0.7368421052631579
+Actual: 0.47368421052631576 Approx: 0.44623655913978494 Alt-Approx: 0.8
+beta
+sardine
+beta
+beluga
+37285639_COARSE [================|                                        ] beluga
+23 / 8437285639_COARSE [=================|                                       ] 24 / 84Actual: 0.5555555555555556 Approx: 0.0658682634730539 Alt-Approx: 0.85
+beta
+beluga
+37285639_COARSE [==================                                       ] 25 / 84Actual: 0.5555555555555556 Approx: 0.0718562874251497 Alt-Approx: 0.8
+beta
+beluga
+37285639_COARSE [==================|                                      ] 26 / 84Actual: 0.6111111111111112 Approx: 0.49101796407185627 Alt-Approx: 0.85
+sardine
+beta
+beluga
+37285639_COARSE [===================|                                     ] 27 / 84Actual: 0.5 Approx: 0.033816425120772944 Alt-Approx: 0.6666666666666666
+beluga
+37285639_COARSE [====================|                                    ] 28 / 84Actual: 0.5263157894736842 Approx: 0.4918918918918919 Alt-Approx: 0.8571428571428571
+sardine
+beta
+beluga
+37285639_COARSE [=====================                                    ] 29 / 84Actual: 0.47368421052631576 Approx: 0.059113300492610835 Alt-Approx: 0.9047619047619048
+beta
+beluga
+37285639_COARSE [=====================|                                   ] 30 / 84Actual: 0.5263157894736842 Approx: 0.06486486486486487 Alt-Approx: 0.8571428571428571
+beta
+beluga
+37285639_COARSE [======================                                   ] 31 / 84Actual: 0.5789473684210527 Approx: 0.4972972972972973 Alt-Approx: 0.9523809523809523
+sardine
+beta
+beluga
+37285639_COARSE [======================|                                  ] 32 / 84Actual: 0.5263157894736842 Approx: 0.045454545454545456 Alt-Approx: 0.8095238095238095
+beta
+beluga
+37285639_COARSE [=======================|                                 ] 33 / 84Actual: 0.5263157894736842 Approx: 0.045454545454545456 Alt-Approx: 0.8095238095238095
+beta
+beluga
+37285639_COARSE [========================|                                ] 34 / 84Actual: 0.4 Approx: 0.0412621359223301 Alt-Approx: 0.7727272727272727
+beta
+beluga
+37285639_COARSE [=========================                                ] 35 / 84Actual: 0.35 Approx: 0.028985507246376812 Alt-Approx: 0.5454545454545454
+37285639_COARSE [=========================|                               ] 36 / 84Actual: 0.5 Approx: 0.057971014492753624 Alt-Approx: 0.8181818181818182
+beta
+beluga
+37285639_COARSE [==========================                               ] 37 / 84Actual: 0.5 Approx: 0.057971014492753624 Alt-Approx: 0.6363636363636364
+beluga
+37285639_COARSE [==========================|                              ] 38 / 84Actual: 0.55 Approx: 0.05825242718446602 Alt-Approx: 0.8181818181818182
+beta
+beluga
+37285639_COARSE [===========================|                             ] 39 / 84Actual: 0.5 Approx: 0.057971014492753624 Alt-Approx: 0.8636363636363636
+beta
+beluga
+37285639_COARSE [============================|                            ] 40 / 84Actual: 0.5238095238095238 Approx: 0.4889867841409692 Alt-Approx: 0.782608695652174
+sardine
+beta
+beluga
+37285639_COARSE [=============================                            ] Actual: 0.47619047619047616 Approx: 0.039647577092511016 Alt-Approx: 0.782608695652174
+beta
+beluga
+41 / 8437285639_COARSE [=============================|                           ] 42 / 84Actual: 0.45454545454545453 Approx: 0.4457831325301205 Alt-Approx: 0.6666666666666666
+sardine
+beluga
+37285639_COARSE [==============================                           ] 43 / 84Actual: 0.45454545454545453 Approx: 0.048 Alt-Approx: 0.75
+beta
+beluga
+37285639_COARSE [==============================-|                         ] 44 / 84Actual: 0.45454545454545453 Approx: 0.03 Alt-Approx: 0.625
+beluga
+37285639_COARSE [================================                         ] 45 / 84Actual: 0.9523809523809523 Approx: 0.4977973568281938 Alt-Approx: 0.9565217391304348
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+37285639_COARSE [================================|                        ] 46 / 84Actual: 0.5454545454545454 Approx: 0.4859437751004016 Alt-Approx: 0.7083333333333334
+sardine
+beta
+beluga
+37285639_COARSE [=================================                        ] 47 / 84Actual: 0.45454545454545453 Approx: 0.04819277108433735 Alt-Approx: 0.6666666666666666
+beluga
+37285639_COARSE [=================================|                       ] 48 / 84Actual: 0.36363636363636365 Approx: 0.03614457831325301 Alt-Approx: 0.75
+beta
+beluga
+37285639_COARSE [==================================|                      ] 49 / 84Actual: 0.5454545454545454 Approx: 0.4839357429718876 Alt-Approx: 0.6666666666666666
+sardine
+beluga
+37285639_COARSE [===================================|                     ] 50 / 84Actual: 0.45454545454545453 Approx: 0.034 Alt-Approx: 0.7083333333333334
+beta
+beluga
+37285639_COARSE [====================================                     ] 51 / 84Actual: 0.45454545454545453 Approx: 0.4495967741935484 Alt-Approx: 0.7083333333333334
+sardine
+beta
+beluga
+37285639_COARSE [====================================|                    ] 52 / 84Actual: 0.47619047619047616 Approx: 0.030837004405286344 Alt-Approx: 0.5833333333333334
+37285639_COARSE [=====================================                    ] 53 / 84Actual: 0.47619047619047616 Approx: 0.05263157894736842 Alt-Approx: 0.5833333333333334
+37285639_COARSE [=====================================|                   ] 54 / 84Actual: 0.42857142857142855 Approx: 0.03303964757709251 Alt-Approx: 0.625
+beluga
+37285639_COARSE [======================================|                  ] 55 / 84Actual: 0.5238095238095238 Approx: 0.05286343612334802 Alt-Approx: 0.75
+beta
+beluga
+37285639_COARSE [=======================================|                 ] 56 / 84Actual: 0.43478260869565216 Approx: 0.029411764705882353 Alt-Approx: 0.64
+beluga
+37285639_COARSE [========================================                 ] 57 / 84Actual: 0.43478260869565216 Approx: 0.03296703296703297 Alt-Approx: 0.72
+beta
+beluga
+37285639_COARSE [========================================|                ] 58 / 84Actual: 0.43478260869565216 Approx: 0.027573529411764705 Alt-Approx: 0.6
+37285639_COARSE [=========================================                ] 59 / 84Actual: 0.5217391304347826 Approx: 0.4908424908424908 Alt-Approx: 0.8
+sardine
+beta
+beluga
+37285639_COARSE [=========================================|               ] 60 / 84Actual: 0.4583333333333333 Approx: 0.028037383177570093 Alt-Approx: 0.72
+beta
+beluga
+37285639_COARSE [==========================================|              ] 61 / 84Actual: 0.45454545454545453 Approx: 0.04477611940298507 Alt-Approx: 0.72
+beta
+beluga
+37285639_COARSE [===========================================|             ] 62 / 84Actual: 0.4166666666666667 Approx: 0.02702702702702703 Alt-Approx: 0.6153846153846154
+beluga
+37285639_COARSE [============================================             ] 63 / 84Actual: 0.4166666666666667 Approx: 0.028716216216216218 Alt-Approx: 0.6538461538461539
+beluga
+37285639_COARSE [============================================|            ] 64 / 84Actual: 0.8260869565217391 Approx: 0.4889705882352941 Alt-Approx: 0.7692307692307693
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+37285639_COARSE [=============================================|           ] 65 / 84Actual: 0.43478260869565216 Approx: 0.027573529411764705 Alt-Approx: 0.5769230769230769
+37285639_COARSE [==============================================           ] 66 / 84Actual: 0.4583333333333333 Approx: 0.03785488958990536 Alt-Approx: 0.6666666666666666
+beluga
+37285639_COARSE [==============================================|          ] 67 / 84Actual: 0.45454545454545453 Approx: 0.04819277108433735 Alt-Approx: 0.56
+37285639_COARSE [===============================================|         ] 68 / 84Actual: 0.4166666666666667 Approx: 0.036163522012578615 Alt-Approx: 0.7037037037037037
+beta
+beluga
+37285639_COARSE [================================================         ] 69 / 84Actual: 0.4166666666666667 Approx: 0.030405405405405407 Alt-Approx: 0.6666666666666666
+beluga
+37285639_COARSE [================================================|        ] 70 / 84Actual: 0.4 Approx: 0.03125 Alt-Approx: 0.7142857142857143
+beta
+beluga
+37285639_COARSE [=================================================|       ] 71 / 84Actual: 0.44 Approx: 0.028037383177570093 Alt-Approx: 0.6428571428571429
+beluga
+37285639_COARSE [==================================================       ] 72 / 84Actual: 0.4 Approx: 0.037383177570093455 Alt-Approx: 0.6428571428571429
+beluga
+37285639_COARSE [==================================================|      ] 73 / 84Actual: 0.4 Approx: 0.029595015576323987 Alt-Approx: 0.6785714285714286
+beluga
+37285639_COARSE [===================================================|     ] 74 / 84Actual: 0.4 Approx: 0.48909657320872274 Alt-Approx: 0.6785714285714286
+sardine
+beluga
+37285639_COARSE [====================================================     ] 75 / 84Actual: 0.32 Approx: 0.46105919003115264 Alt-Approx: 0.6785714285714286
+sardine
+beluga
+37285639_COARSE [====================================================|    ] 76 / 84Actual: 0.4 Approx: 0.029595015576323987 Alt-Approx: 0.6785714285714286
+beluga
+37285639_COARSE [=====================================================|   ] 77 / 84Actual: 0.4 Approx: 0.037383177570093455 Alt-Approx: 0.6428571428571429
+beluga
+37285639_COARSE [======================================================   ] 78 / 84Actual: 0.4 Approx: 0.028037383177570093 Alt-Approx: 0.6428571428571429
+beluga
+37285639_COARSE [======================================================|  ] 79 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+37285639_COARSE [=======================================================| ] 80 / 84Actual: 1.0 Approx: 0.3333333333333333 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+37285639_COARSE [========================================================|] 81 / 84Actual: 0.8333333333333334 Approx: 0.1111111111111111 Alt-Approx: 0.6666666666666666
+goldfish
+whale
+beluga
+lobster
+37285639_COARSE [=========================================================] 82 / 84Actual: 1.0 Approx: 0.4444444444444444 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+37285639_COARSE [=========================================================] 83 / 84Actual: 0.72 Approx: 0.48753894080996885 Alt-Approx: 0.6428571428571429
+sardine
+beluga
+37285639_COARSE [=========================================================] 84 / 84Writing coarse results...
+37285639 [=                                                               ] 0 / 13237285639 [=|                                                              ] 1 / 13237285639 [==                                                              ] 2 / 13237285639 [==|                                                             ] 3 / 13237285639 [===                                                             ] 4 / 13237285639 [===|                                                            ] 5 / 13237285639 [====                                                            ] 6 / 13237285639 [====|                                                           ] 7 / 13237285639 [=====                                                           ] 8 / 13237285639 [=====|                                                          ] 9 / 13237285639 [======                                                          ] 10 / 13237285639 [======|                                                         ] 11 / 13237285639 [=======                                                         ] 12 / 13237285639 [=======|                                                        ] 13 / 13237285639 [========                                                        ] 14 / 13237285639 [========                                                        ] 15 / 13237285639 [========|                                                       ] 16 / 13237285639 [=========|                                                      ] 17 / 13237285639 [==========                                                      ] 18 / 13237285639 [==========                                                      ] 19 / 132Writing fine results...
+13041372_COARSE [=                                                        ] 0 / 84Actual: 0.16666666666666666 Approx: 0.0 Alt-Approx: NaN
+13041372_COARSE [=|                                                       ] 1 / 84Actual: 1.0 Approx: 0.16666666666666666 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [==|                                                      ] 2 / 84Actual: 0.16666666666666666 Approx: 0.0 Alt-Approx: NaN
+13041372_COARSE [===|                                                     ] 3 / 84Actual: 1.0 Approx: 0.19444444444444445 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [====                                                     ] 4 / 84Actual: 1.0 Approx: 0.1388888888888889 Alt-Approx: 0.8333333333333334
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [====|                                                    ] 5 / 84Actual: 1.0 Approx: 0.2222222222222222 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [=====                                                    ] 6 / 84Actual: 1.0 Approx: 0.2222222222222222 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [=====|                                                   ] 7 / 84Actual: 1.0 Approx: 0.2777777777777778 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [======|                                                  ] 8 / 84Actual: 1.0 Approx: 0.3055555555555556 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [=======|                                                 ] 9 / 84Actual: 1.0 Approx: 0.25 Alt-Approx: 1.0
+Actual: 1.0 Approx: 0.2222222222222222 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [========                                                 ] 10 / 8413041372_COARSE [========|                                                ] 11 / 84Actual: 1.0 Approx: 0.19444444444444445 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [=========                                                ] 12 / 84Actual: 1.0 Approx: 0.3333333333333333 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [=========|                                               ] 13 / 84Actual: 1.0 Approx: 0.3333333333333333 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [==========|                                              ] 14 / 84Actual: 0.8333333333333334 Approx: 0.2222222222222222 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [===========|                                             ] 15 / 84Actual: 1.0 Approx: 0.3888888888888889 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [============                                             ] 16 / 84Actual: 1.0 Approx: 0.2777777777777778 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [============|                                            ] 17 / 84Actual: 1.0 Approx: 0.25 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [=============|                                           ] 18 / 84Actual: 1.0 Approx: 0.3611111111111111 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [==============                                           ] 19 / 84Actual: 1.0 Approx: 0.3611111111111111 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [==============|                                          ] 20 / 84Actual: 1.0 Approx: 0.3333333333333333 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [===============|                                         ] 21 / 84Actual: 1.0 Approx: 0.4166666666666667 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [================                                         ] 22 / 84Actual: 1.0 Approx: 0.4166666666666667 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [================|            Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+     goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+                       ] 23 / 8413041372_COARSE [=================|                                       ] 24 / 84Actual: 1.0 Approx: 0.4166666666666667 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [==================                                       ] 25 / 84Actual: 1.0 Approx: 0.2777777777777778 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [==================|                                      ] 26 / 84Actual: 1.0 Approx: 0.4722222222222222 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [===================|                                     ] 27 / 84Actual: 1.0 Approx: 0.3611111111111111 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [====================|                                    ] 28 / 84Actual: 0.8333333333333334 Approx: 0.3611111111111111 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [=====================                                    ] 29 / 84Actual: 1.0 Approx: 0.4166666666666667 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [=====================|                                   ] 30 / 84Actual: 1.0 Approx: 0.3611111111111111 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [======================                                   ] 31 / 84Actual: 1.0 Approx: 0.3888888888888889 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [======================|                                  ] 32 / 84Actual: 1.0 Approx: 0.3888888888888889 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [=======================|                                 ] 33 / 84Actual: 1.0 Approx: 0.4444444444444444 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [========================|                                ] 34 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [=========================               Actual: 0.8333333333333334 Approx: 0.2777777777777778 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+                 ] 35 / 8413041372_COARSE [=========================|                               ] 36 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [==========================                               ] 37 / 84Actual: 1.0 Approx: 0.4166666666666667 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [==========================|                              ] 38 / 84Actual: 1.0 Approx: 0.4444444444444444 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [===========================|                             ] 39 / 84Actual: 1.0 Approx: 0.3333333333333333 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [============================|                            ] 40 / 84Actual: 1.0 Approx: 0.4722222222222222 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [=============================                            ] 41 / 84Actual: 1.0 Approx: 0.4166666666666667 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [=============================|                           ] 42 / 84Actual: 1.0 Approx: 0.3611111111111111 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [==============================                           ] 43 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [==============================-|                         ] 44 / 84Actual: 1.0 Approx: 0.4722222222222222 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [================================                         ] 45 / 84Actual: 1.0 Approx: 0.4722222222222222 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [================================|                        ] 46 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [=================================                        ] 47 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [=================================|                       ] 48 / 84Actual: 1.0 Approx: 0.3888888888888889 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [==================================|                      ] 49 / 84Actual: 1.0 Approx: 0.4722222222222222 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [===================================|                     ] 50 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [====================================                     ] 51 / 84Actual: 1.0 Approx: 0.4722222222222222 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [====================================|                    ] 52 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [=====================================                    ] 53 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [=====================================|                   ] 54 / 84Actual: 1.0 Approx: 0.4722222222222222 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [======================================|                  ] 55 / 84Actual: 1.0 Approx: 0.4722222222222222 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [=======================================|                 ] 56 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [========================================                 ] 57 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [========================================|                ] 58 / 84Actual: 1.0 Approx: 0.4166666666666667 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [=========================================                ] 59 / 84Actual: 1.0 Approx: 0.4444444444444444 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [=========================================|               ] 60 / 84Actual: 1.0 Approx: 0.4444444444444444 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [==========================================|              ] 61 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [===========================================|             ] 62 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [============================================             ] 63 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [============================================|            ] 64 / 84Actual: 1.0 Approx: 0.3888888888888889 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [=============================================|           ] 65 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [==============================================           ] 66 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [==============================================|          ] 67 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [===============================================|         ] 68 / 84Actual: 0.8333333333333334 Approx: 0.3055555555555556 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [================================================         ] 69 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [================================================|        ] 70 / 84Actual: 1.0 Approx: 0.4444444444444444 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [=================================================|       ] 71 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [==================================================       ] 72 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [==================================================|      ] 73 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [===================================================|     ] 74 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [====================================================     ] 75 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [====================================================|    ] 76 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [=====================================================|   ] 77 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [======================================================   ] 78 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [======================================================|  ] 79 / 84Actual: 0.8 Approx: 0.125 Alt-Approx: 0.6
+goldfish
+lobster
+13041372_COARSE [=======================================================| ] 80 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [========================================================|] 81 / 84Actual: 0.3333333333333333 Approx: 0.05555555555555555 Alt-Approx: 0.3333333333333333
+13041372_COARSE [=========================================================] 82 / 84Actual: 0.8333333333333334 Approx: 0.1111111111111111 Alt-Approx: 0.6666666666666666
+goldfish
+whale
+beluga
+lobster
+13041372_COARSE [=========================================================] 83 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+13041372_COARSE [=========================================================] 84 / 84Writing coarse results...
+13041372 [=                                                               ] 0 / 94813041372 [=                                                               ] 1 / 94813041372 [=                                                               ] 2 / 94813041372 [=                                                               ] 3 / 94813041372 [=                                                               ] 4 / 94813041372 [=                                                               ] 5 / 94813041372 [=                                                               ] 6 / 94813041372 [=                                                               ] 7 / 94813041372 [=                                                               ] 8 / 94813041372 [=                                                               ] 9 / 94813041372 [=                                                               ] 10 / 94813041372 [=                                                               ] 11 / 94813041372 [=                                                               ] 12 / 94813041372 [=                                                               ] 13 / 94813041372 [=|                                                              ] 14 / 94813041372 [==                                                              ] 15 / 94813041372 [==                                                              ] 16 / 94813041372 [==                                                              ] 17 / 94813041372 [==                                                              ] 18 / 94813041372 [==                                                              ] 19 / 94813041372 [==                                                              ] 20 / 94813041372 [==                                                              ] 21 / 94813041372 [==                                                              ] 22 / 94813041372 [==|                                                             ] 23 / 94813041372 [===                                                             ] 24 / 94813041372 [===                                                             ] 25 / 94813041372 [===                                                             ] 26 / 94813041372 [===                                                             ] 27 / 94813041372 [===                                                             ] 28 / 94813041372 [===                                                             ] 29 / 94813041372 [===                                                             ] 30 / 94813041372 [===                                                             ] 31 / 94813041372 [===                                                             ] 32 / 94813041372 [===                                                             ] 33 / 94813041372 [===                                                             ] 34 / 94813041372 [===                                                             ] 35 / 94813041372 [===                                                             ] 36 / 94813041372 [===                                                             ] 37 / 94813041372 [===                                                             ] 38 / 94813041372 [===                                                             ] 39 / 94813041372 [===                                                             ] 40 / 94813041372 [===                                                             ] 41 / 94813041372 [===|                                                            ] 42 / 94813041372 [====                                                            ] 43 / 94813041372 [====                                                            ] 44 / 94813041372 [====                                                            ] 45 / 94813041372 [====                                                            ] 46 / 94813041372 [====                                                            ] 47 / 94813041372 [====                                                            ] 48 / 94813041372 [====                                                            ] 49 / 94813041372 [====                                                            ] 50 / 94813041372 [====                                                            ] 51 / 94813041372 [====|                                                           ] 52 / 94813041372 [=====                                                           ] 53 / 94813041372 [=====                                                           ] 54 / 94813041372 [=====                                                           ] 55 / 94813041372 [=====                                                           ] 56 / 94813041372 [=====                                                           ] 57 / 94813041372 [=====                                                           ] 58 / 94813041372 [=====                                                           ] 59 / 94813041372 [=====                                                           ] 60 / 94813041372 [=====                                                           ] 61 / 94813041372 [=====                                                           ] 62 / 94813041372 [=====                                                           ] 63 / 94813041372 [=====                                                           ] 64 / 94813041372 [=====                                                           ] 65 / 94813041372 [=====                                                           ] 66 / 94813041372 [=====                                                           ] 67 / 94813041372 [=====                                                           ] 68 / 94813041372 [=====                                                           ] 69 / 94813041372 [=====                                                           ] 70 / 94813041372 [=====|                                                          ] 71 / 94813041372 [======                                                          ] 72 / 94813041372 [======                                                          ] 73 / 94813041372 [======                                                          ] 74 / 94813041372 [======                                                          ] 75 / 94813041372 [======                                                          ] 76 / 94813041372 [======                                                          ] 77 / 94813041372 [======                                                          ] 78 / 94813041372 [======                                                          ] 79 / 94813041372 [======|                                                         ] 80 / 94813041372 [=======                                                         ] 81 / 94813041372 [=======                                                         ] 82 / 94813041372 [=======                                                         ] 83 / 94813041372 [=======                                                         ] 84 / 94813041372 [=======                                                         ] 85 / 94813041372 [=======                                                         ] 86 / 94813041372 [=======                                                         ] 87 / 94813041372 [=======                                                         ] 88 / 94813041372 [=======                                                         ] 89 / 94813041372 [=======                                                         ] 90 / 94813041372 [=======                                                         ] 91 / 94813041372 [=======                                                         ] 92 / 94813041372 [=======                                                         ] 93 / 94813041372 [=======                                                         ] 94 / 948Writing fine results...
+68742355_COARSE [=                                                        ] 0 / 84Actual: 0.1 Approx: 0.0 Alt-Approx: NaN
+68742355_COARSE [=|                                                       ] 1 / 84Actual: 0.6666666666666666 Approx: 0.07317073170731707 Alt-Approx: 0.6
+68742355_COARSE [==|                                                      ] 2 / 84Actual: 0.08333333333333333 Approx: 0.0 Alt-Approx: NaN
+68742355_COARSE [===|                                                     ] 3 / 84Actual: 0.6363636363636364 Approx: 0.056451612903225805 Alt-Approx: 0.5833333333333334
+68742355_COARSE [====                                                     ] 4 / 84Actual: 0.5454545454545454 Approx: 0.04032258064516129 Alt-Approx: 0.4166666666666667
+68742355_COARSE [====|                                                    ] 5 / 84Actual: 0.5454545454545454 Approx: 0.056338028169014086 Alt-Approx: 0.6666666666666666
+beluga
+68742355_COARSE [=====                                                    ] 6 / 84Actual: 0.5 Approx: 0.05333333333333334 Alt-Approx: 0.6153846153846154
+beluga
+68742355_COARSE [=====|                                                   ] 7 / 84Actual: 0.9166666666666666 Approx: 0.07333333333333333 Alt-Approx: 0.8461538461538461
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+68742355_COARSE [======|                                                  ] 8 / 84Actual: 0.5833333333333334 Approx: 0.05333333333333334 Alt-Approx: 0.6153846153846154
+beluga
+68742355_COARSE [=======|                                                 ] 9 / 84Actual: 0.5384615384615384 Approx: 0.045454545454545456 Alt-Approx: 0.6428571428571429
+beluga
+68742355_COARSE [========                                                 ] 10 / 84Actual: 0.5 Approx: 0.05952380952380952 Alt-Approx: 0.7692307692307693
+beta
+beluga
+68742355_COARSE [========|                                                ] 11 / 84Actual: 0.46153846153846156 Approx: 0.040229885057471264 Alt-Approx: 0.5
+68742355_COARSE [=========                                                ] 12 / 84Actual: 0.46153846153846156 Approx: 0.06976744186046512 Alt-Approx: 0.8571428571428571
+beta
+beluga
+68742355_COARSE [=========|                                               ] 13 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+68742355_COARSE [==========|                                              ] 14 / 84Actual: 0.38461538461538464 Approx: 0.04597701149425287 Alt-Approx: 0.5714285714285714
+68742355_COARSE [===========|                                             ] 15 / 84Actual: 0.46153846153846156 Approx: 0.06060606060606061 Alt-Approx: 0.8571428571428571
+beta
+beluga
+68742355_COARSE [============                                             ] 16 / 84Actual: 0.46153846153846156 Approx: 0.050505050505050504 Alt-Approx: 0.7142857142857143
+beta
+beluga
+68742355_COARSE [============|                                            ] 17 / 84Actual: 0.6153846153846154 Approx: 0.045454545454545456 Alt-Approx: 0.6428571428571429
+beluga
+68742355_COARSE [=============|                                           ] 18 / 84Actual: 0.46153846153846156 Approx: 0.06565656565656566 Alt-Approx: 0.9285714285714286
+beta
+beluga
+68742355_COARSE [==============                                           ] 19 / 84Actual: 0.5384615384615384 Approx: 0.06565656565656566 Alt-Approx: 0.9285714285714286
+beta
+beluga
+68742355_COARSE [==============|                                          ] 20 / 84Actual: 0.46153846153846156 Approx: 0.06060606060606061 Alt-Approx: 0.8571428571428571
+beta
+beluga
+68742355_COARSE [===============|                                         ] 21 / 84Actual: 0.6923076923076923 Approx: 0.07575757575757576 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [================                                         ] 22 / 84Actual: 0.46153846153846156 Approx: 0.07575757575757576 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [================|                                        ] 23 / 84Actual: 0.6153846153846154 Approx: 0.050505050505050504 Alt-Approx: 0.7142857142857143
+beta
+beluga
+68742355_COARSE [=================|                                       ] 24 / 84Actual: 0.6923076923076923 Approx: 0.07575757575757576 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [==================                                       ] 25 / 84Actual: 0.46153846153846156 Approx: 0.0707070707070707 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [==================|                                      ] 26 / 84Actual: 1.0 Approx: 0.08080808080808081 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+68742355_COARSE [===================|                                     ] 27 / 84Actual: 0.46153846153846156 Approx: 0.06565656565656566 Alt-Approx: 0.9285714285714286
+beta
+beluga
+68742355_COARSE [====================|                                    ] 28 / 84Actual: 0.6923076923076923 Approx: 0.08585858585858586 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [=====================                                    ] 29 / 84Actual: 0.46153846153846156 Approx: 0.07575757575757576 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [=====================|                                   ] 30 / 84Actual: 0.6923076923076923 Approx: 0.06565656565656566 Alt-Approx: 0.9285714285714286
+beta
+beluga
+68742355_COARSE [======================                                   ] 31 / 84Actual: 0.46153846153846156 Approx: 0.06565656565656566 Alt-Approx: 0.9285714285714286
+beta
+beluga
+68742355_COARSE [======================|                                  ] 32 / 84Actual: 0.6923076923076923 Approx: 0.0707070707070707 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [=======================|                                 ] 33 / 84Actual: 0.5384615384615384 Approx: 0.0707070707070707 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [========================|                                ] 34 / 84Actual: 0.38461538461538464 Approx: 0.050505050505050504 Alt-Approx: 0.7142857142857143
+beta
+beluga
+68742355_COARSE [=========================                                ] 35 / 84Actual: 1.0 Approx: 0.10101010101010101 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+68742355_COARSE [=========================|                               ] 36 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+68742355_COARSE [==========================                               ] 37 / 84Actual: 0.5384615384615384 Approx: 0.07575757575757576 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [==========================|                              ] 38 / 84Actual: 0.5384615384615384 Approx: 0.06060606060606061 Alt-Approx: 0.8571428571428571
+beta
+beluga
+68742355_COARSE [===========================|                             ] 39 / 84Actual: 0.5384615384615384 Approx: 0.08080808080808081 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [============================|                            ] 40 / 84Actual: 0.5384615384615384 Approx: 0.08585858585858586 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [=============================                            ] 41 / 84Actual: 0.46153846153846156 Approx: 0.06565656565656566 Alt-Approx: 0.9285714285714286
+beta
+beluga
+68742355_COARSE [=============================|                           ] 42 / 84Actual: 0.5384615384615384 Approx: 0.07575757575757576 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [==============================                           ] 43 / 84Actual: 0.5384615384615384 Approx: 0.08585858585858586 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [==============================-|                         ] 44 / 84Actual: 0.5384615384615384 Approx: 0.08585858585858586 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [================================                         ] 45 / 84Actual: 0.5384615384615384 Approx: 0.09595959595959595 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [================================|                        ] 46 / 84Actual: 0.6923076923076923 Approx: 0.08585858585858586 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [=================================                        ] 47 / 84Actual: 0.5384615384615384 Approx: 0.10101010101010101 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [=================================|                       ] 48 / 84Actual: 0.46153846153846156 Approx: 0.0707070707070707 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [==================================|                      ] 49 / 84Actual: 1.0 Approx: 0.10101010101010101 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+68742355_COARSE [===================================|                     ] 50 / 84Actual: 0.5384615384615384 Approx: 0.09090909090909091 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [====================================                     ] 51 / 84Actual: 0.5384615384615384 Approx: 0.08585858585858586 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [====================================|                    ] 52 / 84Actual: 1.0 Approx: 0.10101010101010101 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+68742355_COARSE [=====================================                    ] 53 / 84Actual: 1.0 Approx: 0.09595959595959595 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+68742355_COARSE [=====================================|                   ] 54 / 84Actual: 1.0 Approx: 0.08585858585858586 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+68742355_COARSE [======================================|                  ] 55 / 84Actual: 0.5384615384615384 Approx: 0.08585858585858586 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [=======================================|                 ] 56 / 84Actual: 0.6153846153846154 Approx: 0.10101010101010101 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [========================================                 ] 57 / 84Actual: 0.5384615384615384 Approx: 0.07575757575757576 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [========================================|                ] 58 / 84Actual: 0.5384615384615384 Approx: 0.08080808080808081 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [=========================================                ] 59 / 84Actual: 0.5384615384615384 Approx: 0.09595959595959595 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [=========================================|               ] 60 / 84Actual: 0.46153846153846156 Approx: 0.08080808080808081 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [==========================================|              ] 61 / 84Actual: 1.0 Approx: 0.11616161616161616 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+68742355_COARSE [===========================================|             ] 62 / 84Actual: 0.8461538461538461 Approx: 0.10101010101010101 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+68742355_COARSE [============================================             ] 63 / 84Actual: 1.0 Approx: 0.09595959595959595 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+68742355_COARSE [============================================|            ] 64 / 84Actual: 0.5384615384615384 Approx: 0.0707070707070707 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [=============================================|           ] 65 / 84Actual: 1.0 Approx: 0.09595959595959595 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+68742355_COARSE [==============================================           ] 66 / 84Actual: 0.6153846153846154 Approx: 0.10101010101010101 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [==============================================|          ] 67 / 84Actual: 0.8461538461538461 Approx: 0.09090909090909091 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+68742355_COARSE [===============================================|         ] 68 / 84Actual: 0.38461538461538464 Approx: 0.05555555555555555 Alt-Approx: 0.7857142857142857
+beta
+beluga
+68742355_COARSE [================================================         ] 69 / 84Actual: 1.0 Approx: 0.10606060606060606 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+68742355_COARSE [================================================|        ] 70 / 84Actual: 0.8461538461538461 Approx: 0.1111111111111111 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+68742355_COARSE [=================================================|       ] 71 / 84Actual: 0.46153846153846156 Approx: 0.08080808080808081 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [==================================================       ] 72 / 84Actual: 0.7692307692307693 Approx: 0.09090909090909091 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [==================================================|      ] 73 / 84Actual: 0.6153846153846154 Approx: 0.12626262626262627 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [===================================================|     ] 74 / 84Actual: 0.5384615384615384 Approx: 0.1111111111111111 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [====================================================     ] 75 / 84Actual: 0.46153846153846156 Approx: 0.1111111111111111 Alt-Approx: 1.0
+beta
+beluga
+68742355_COARSE [====================================================|    ] 76 / 84Actual: 1.0 Approx: 0.1717171717171717 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+68742355_COARSE [=====================================================|   ] 77 / 84Actual: 1.0 Approx: 0.14646464646464646 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+68742355_COARSE [======================================================   ] 78 / 84Actual: 1.0 Approx: 0.18686868686868688 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+68742355_COARSE [======================================================|  ] 79 / 84Actual: 0.8 Approx: 0.125 Alt-Approx: 0.6
+goldfish
+lobster
+68742355_COARSE [=======================================================| ] 80 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+68742355_COARSE [========================================================|] 81 / 84Actual: 0.3333333333333333 Approx: 0.05555555555555555 Alt-Approx: 0.3333333333333333
+68742355_COARSE [=========================================================] 82 / 84Actual: 0.8333333333333334 Approx: 0.1111111111111111 Alt-Approx: 0.6666666666666666
+goldfish
+whale
+beluga
+lobster
+68742355_COARSE [=========================================================] 83 / 84Actual: 1.0 Approx: 0.15151515151515152 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+68742355_COARSE [=========================================================] 84 / 84Writing coarse results...
+68742355 [=                                                               ] 0 / 25268742355 [=                                                               ] 1 / 25268742355 [=                                                               ] 2 / 25268742355 [=|                                                              ] 3 / 25268742355 [==                                                              ] 4 / 25268742355 [==                                                              ] 5 / 25268742355 [==|                                                             ] 6 / 25268742355 [===                                                             ] 7 / 25268742355 [===                                                             ] 8 / 25268742355 [===                                                             ] 9 / 25268742355 [===                                                             ] 10 / 25268742355 [===|                                                            ] 11 / 25268742355 [====                                                            ] 12 / 25268742355 [====|                                                           ] 13 / 25268742355 [=====                                                           ] 14 / 25268742355 [=====                                                           ] 15 / 25268742355 [=====                                                           ] 16 / 25268742355 [=====                                                           ] 17 / 25268742355 [=====|                                                          ] 18 / 25268742355 [======                                                          ] 19 / 25268742355 [======                                                          ] 20 / 25268742355 [======|                                                         ] 21 / 25268742355 [=======                                                         ] 22 / 25268742355 [=======                                                         ] 23 / 25268742355 [=======                                                         ] 24 / 25268742355 [=======                                                         ] 25 / 25268742355 [=======|                                                        ] 26 / 25268742355 [========                                                        ] 27 / 25268742355 [========                                                        ] 28 / 25268742355 [========                                                        ] 29 / 25268742355 [========                                                        ] 30 / 25268742355 [========|                                                       ] 31 / 252Writing fine results...
+17679549_COARSE [=                                                        ] 0 / 84Actual: 0.1 Approx: 0.0 Alt-Approx: NaN
+17679549_COARSE [=|                                                       ] 1 / 84Actual: 0.8888888888888888 Approx: 0.15853658536585366 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+17679549_COARSE [==|                                                      ] 2 / 84Actual: 0.08333333333333333 Approx: 0.0 Alt-Approx: NaN
+17679549_COARSE [===|                                                     ] 3 / 84Actual: 0.7272727272727273 Approx: 0.11290322580645161 Alt-Approx: 1.0
+beta
+beluga
+17679549_COARSE [====                                                     ] 4 / 84Actual: 0.7272727272727273 Approx: 0.0967741935483871 Alt-Approx: 1.0
+beta
+beluga
+17679549_COARSE [====|                                                    ] 5 / 84Actual: 0.8181818181818182 Approx: 0.1056338028169014 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+17679549_COARSE [=====                                                    ] 6 / 84Actual: 0.75 Approx: 0.1 Alt-Approx: 1.0
+beta
+beluga
+17679549_COARSE [=====|                                                   ] 7 / 84Actual: 0.75 Approx: 0.10119047619047619 Alt-Approx: 1.0
+beta
+beluga
+17679549_COARSE [======|                                                  ] 8 / 84Actual: 0.75 Approx: 0.12 Alt-Approx: 1.0
+beta
+beluga
+17679549_COARSE [=======|                                                 ] 9 / 84Actual: 0.75 Approx: 0.1 Alt-Approx: 1.0
+beta
+beluga
+17679549_COARSE [========                                                 ] 10 / 84Actual: 0.6923076923076923 Approx: 0.08080808080808081 Alt-Approx: 1.0
+beta
+beluga
+17679549_COARSE [========|                                                ] 11 / 84Actual: 0.46153846153846156 Approx: 0.4367816091954023 Alt-Approx: 0.8571428571428571
+sardine
+beta
+beluga
+17679549_COARSE [=========                                                ] 12 / 84Actual: 0.6923076923076923 Approx: 0.08139534883720931 Alt-Approx: 1.0
+beta
+beluga
+17679549_COARSE [=========|                                               ] 13 / 84Actual: 0.5 Approx: 0.4405940594059406 Alt-Approx: 0.9333333333333333
+sardine
+beta
+beluga
+17679549_COARSE [==========|                                              ] 14 / 84Actual: 0.6153846153846154 Approx: 0.08620689655172414 Alt-Approx: 0.9333333333333333
+beta
+beluga
+17679549_COARSE [===========|                                             ] 15 / 84Actual: 0.46153846153846156 Approx: 0.08139534883720931 Alt-Approx: 1.0
+beta
+beluga
+17679549_COARSE [============                                             ] 16 / 84Actual: 0.5625 Approx: 0.05639097744360902 Alt-Approx: 0.8823529411764706
+beta
+beluga
+17679549_COARSE [============|                                            ] 17 / 84Actual: 0.6666666666666666 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+17679549_COARSE [=============|                                           ] 18 / 84Actual: 0.5 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+17679549_COARSE [==============                                           ] 19 / 84Actual: 0.6428571428571429 Approx: 0.105 Alt-Approx: 1.0
+beta
+beluga
+17679549_COARSE [==============|                                          ] 20 / 84Actual: 0.5294117647058824 Approx: 0.06134969325153374 Alt-Approx: 1.0
+beta
+beluga
+17679549_COARSE [===============|                                         ] 21 / 84Actual: 0.5294117647058824 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+17679549_COARSE [================                                         ] 22 / 84Actual: 0.6470588235294118 Approx: 0.060810810810810814 Alt-Approx: 0.9473684210526315
+beta
+beluga
+17679549_COARSE [================|                                        ] 23 / 84Actual: 0.47368421052631576 Approx: 0.45161290322580644 Alt-Approx: 0.9
+sardine
+beta
+beluga
+17679549_COARSE [=================|                                       ] 24 / 84Actual: 0.5 Approx: 0.05089820359281437 Alt-Approx: 0.85
+beta
+beluga
+17679549_COARSE [==================                                       ] 25 / 84Actual: 0.6111111111111112 Approx: 0.49700598802395207 Alt-Approx: 0.95
+sardine
+beta
+beluga
+17679549_COARSE [==================|                                      ] 26 / 84Actual: 0.55 Approx: 0.043478260869565216 Alt-Approx: 0.8571428571428571
+beta
+beluga
+17679549_COARSE [===================|                                     ] 27 / 84Actual: 0.7894736842105263 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+17679549_COARSE [====================|                                    ] 28 / 84Actual: 0.4444444444444444 Approx: 0.06287425149700598 Alt-Approx: 0.9
+beta
+beluga
+17679549_COARSE [=====================                                    ] 29 / 84Actual: 0.42105263157894735 Approx: 0.04926108374384237 Alt-Approx: 0.9523809523809523
+beta
+beluga
+17679549_COARSE [=====================|                                   ] 30 / 84Actual: 0.47368421052631576 Approx: 0.05675675675675676 Alt-Approx: 0.9523809523809523
+beta
+beluga
+17679549_COARSE [======================                                   ] 31 / 84Actual: 0.47368421052631576 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+17679549_COARSE [======================|                                  ] 32 / 84Actual: 0.47368421052631576 Approx: 0.05614973262032086 Alt-Approx: 1.0
+beta
+beluga
+17679549_COARSE [=======================|                                 ] 33 / 84Actual: 0.47368421052631576 Approx: 0.05614973262032086 Alt-Approx: 1.0
+beta
+beluga
+17679549_COARSE [========================|                                ] 34 / 84Actual: 0.5 Approx: 0.04611650485436893 Alt-Approx: 0.8636363636363636
+beta
+beluga
+17679549_COARSE [=========================                                ] 35 / 84Actual: 0.45 Approx: 0.050724637681159424 Alt-Approx: 0.7272727272727273
+beta
+beluga
+17679549_COARSE [=========================|                               ] 36 / 84Actual: 0.3 Approx: 0.033816425120772944 Alt-Approx: 0.6363636363636364
+beluga
+17679549_COARSE [==========================                               ] 37 / 84Actual: 0.45 Approx: 0.050724637681159424 Alt-Approx: 0.9090909090909091
+beta
+beluga
+17679549_COARSE [==========================|                              ] 38 / 84Actual: 0.45 Approx: 0.050970873786407765 Alt-Approx: 0.9090909090909091
+beta
+beluga
+17679549_COARSE [===========================|                             ] 39 / 84Actual: 0.45 Approx: 0.04589371980676329 Alt-Approx: 0.8636363636363636
+beta
+beluga
+17679549_COARSE [============================|                            ] 40 / 84Actual: 0.42857142857142855 Approx: 0.048458149779735685 Alt-Approx: 0.9565217391304348
+beta
+beluga
+17679549_COARSE [=============================                            ] 41 / 84Actual: 0.47619047619047616 Approx: 0.4933920704845815 Alt-Approx: 0.8695652173913043
+sardine
+beta
+beluga
+17679549_COARSE [=============================|                           ] 42 / 84Actual: 0.7619047619047619 Approx: 0.4955947136563877 Alt-Approx: 0.9130434782608695
+sardine
+beta
+beluga
+17679549_COARSE [==============================                           ] 43 / 84Actual: 0.4090909090909091 Approx: 0.4497991967871486 Alt-Approx: 0.75
+sardine
+beta
+beluga
+17679549_COARSE [==============================-|                         ] 44 / 84Actual: 0.36363636363636365 Approx: 0.042 Alt-Approx: 0.8333333333333334
+beta
+beluga
+17679549_COARSE [================================                         ] 45 / 84Actual: 0.4090909090909091 Approx: 0.038 Alt-Approx: 0.7916666666666666
+beta
+beluga
+17679549_COARSE [================================|                        ] 46 / 84Actual: 0.4090909090909091 Approx: 0.04216867469879518 Alt-Approx: 0.75
+beta
+beluga
+17679549_COARSE [=================================                        ] 47 / 84Actual: 0.5 Approx: 0.4939759036144578 Alt-Approx: 0.875
+sardine
+beta
+beluga
+17679549_COARSE [=================================|                       ] 48 / 84Actual: 0.4090909090909091 Approx: 0.04417670682730924 Alt-Approx: 0.9166666666666666
+beta
+beluga
+17679549_COARSE [==================================|                      ] 49 / 84Actual: 0.5 Approx: 0.4879518072289157 Alt-Approx: 0.75
+sardine
+beta
+beluga
+17679549_COARSE [===================================|                     ] 50 / 84Actual: 0.4090909090909091 Approx: 0.042 Alt-Approx: 0.875
+beta
+beluga
+17679549_COARSE [====================================                     ] 51 / 84Actual: 0.4090909090909091 Approx: 0.4536290322580645 Alt-Approx: 0.7916666666666666
+sardine
+beta
+beluga
+17679549_COARSE [====================================|                    ] 52 / 84Actual: 0.42857142857142855 Approx: 0.039647577092511016 Alt-Approx: 0.75
+beta
+beluga
+17679549_COARSE [=====================================                    ] 53 / 84Actual: 0.42857142857142855 Approx: 0.046052631578947366 Alt-Approx: 0.6666666666666666
+beluga
+17679549_COARSE [=====================================|                   ] 54 / 84Actual: 0.42857142857142855 Approx: 0.04185022026431718 Alt-Approx: 0.7916666666666666
+beta
+beluga
+17679549_COARSE [======================================|                  ] 55 / 84Actual: 0.391304347826087 Approx: 0.03676470588235294 Alt-Approx: 0.8
+beta
+beluga
+17679549_COARSE [=======================================|                 ] 56 / 84Actual: 0.391304347826087 Approx: 0.034926470588235295 Alt-Approx: 0.76
+beta
+beluga
+17679549_COARSE [========================================                 ] 57 / 84Actual: 0.42857142857142855 Approx: 0.046255506607929514 Alt-Approx: 0.8333333333333334
+beta
+beluga
+17679549_COARSE [========================================|                ] 58 / 84Actual: 0.391304347826087 Approx: 0.04044117647058824 Alt-Approx: 0.88
+beta
+beluga
+17679549_COARSE [=========================================                ] 59 / 84Actual: 0.4782608695652174 Approx: 0.4944852941176471 Alt-Approx: 0.88
+sardine
+beta
+beluga
+17679549_COARSE [=========================================|               ] 60 / 84Actual: 0.34782608695652173 Approx: 0.03676470588235294 Alt-Approx: 0.8
+beta
+beluga
+17679549_COARSE [==========================================|              ] 61 / 84Actual: 0.4090909090909091 Approx: 0.03917910447761194 Alt-Approx: 0.8
+beta
+beluga
+17679549_COARSE [===========================================|             ] 62 / 84Actual: 0.4782608695652174 Approx: 0.03676470588235294 Alt-Approx: 0.8
+beta
+beluga
+17679549_COARSE [============================================             ] 63 / 84Actual: 0.4090909090909091 Approx: 0.04216867469879518 Alt-Approx: 0.64
+beluga
+17679549_COARSE [============================================|            ] 64 / 84Actual: 0.391304347826087 Approx: 0.03860294117647059 Alt-Approx: 0.84
+beta
+beluga
+17679549_COARSE [=============================================|           ] 65 / 84Actual: 0.6521739130434783 Approx: 0.4963235294117647 Alt-Approx: 0.96
+sardine
+beta
+beluga
+17679549_COARSE [==============================================           ] 66 / 84Actual: 0.391304347826087 Approx: 0.034926470588235295 Alt-Approx: 0.76
+beta
+beluga
+17679549_COARSE [==============================================|          ] 67 / 84Actual: 0.391304347826087 Approx: 0.03860294117647059 Alt-Approx: 0.8
+beta
+beluga
+17679549_COARSE [===============================================|         ] 68 / 84Actual: 0.34782608695652173 Approx: 0.03308823529411765 Alt-Approx: 0.72
+beta
+beluga
+17679549_COARSE [================================================         ] 69 / 84Actual: 0.391304347826087 Approx: 0.04044117647058824 Alt-Approx: 0.88
+beta
+beluga
+17679549_COARSE [================================================|        ] 70 / 84Actual: 0.391304347826087 Approx: 0.042279411764705885 Alt-Approx: 0.92
+beta
+beluga
+17679549_COARSE [=================================================|       ] 71 / 84Actual: 0.391304347826087 Approx: 0.04044117647058824 Alt-Approx: 0.88
+beta
+beluga
+17679549_COARSE [==================================================       ] 72 / 84Actual: 0.391304347826087 Approx: 0.03860294117647059 Alt-Approx: 0.8
+beta
+beluga
+17679549_COARSE [==================================================|      ] 73 / 84Actual: 0.34782608695652173 Approx: 0.042279411764705885 Alt-Approx: 0.92
+beta
+beluga
+17679549_COARSE [===================================================|     ] 74 / 84Actual: 0.391304347826087 Approx: 0.4742647058823529 Alt-Approx: 0.92
+sardine
+beta
+beluga
+17679549_COARSE [====================================================     ] 75 / 84Actual: 0.391304347826087 Approx: 0.49264705882352944 Alt-Approx: 0.84
+sardine
+beta
+beluga
+17679549_COARSE [====================================================|    ] 76 / 84Actual: 0.4782608695652174 Approx: 0.042279411764705885 Alt-Approx: 0.92
+beta
+beluga
+17679549_COARSE [=====================================================|   ] 77 / 84Actual: 0.391304347826087 Approx: 0.03860294117647059 Alt-Approx: 0.8
+beta
+beluga
+17679549_COARSE [======================================================   ] 78 / 84Actual: 0.4782608695652174 Approx: 0.04044117647058824 Alt-Approx: 0.88
+beta
+beluga
+17679549_COARSE [======================================================|  ] 79 / 84Actual: 1.0 Approx: 0.4166666666666667 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+17679549_COARSE [=======================================================| ] 80 / 84Actual: 1.0 Approx: 0.3888888888888889 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+17679549_COARSE [========================================================|] 81 / 84Actual: 1.0 Approx: 0.16666666666666666 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+17679549_COARSE [=========================================================] 82 / 84Actual: 1.0 Approx: 0.3055555555555556 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+17679549_COARSE [=========================================================] 83 / 84Actual: 0.6086956521739131 Approx: 0.49080882352941174 Alt-Approx: 0.8
+sardine
+beta
+beluga
+17679549_COARSE [=========================================================] 84 / 84Writing coarse results...
+17679549 [=                                                               ] 0 / 7217679549 [=-|                                                             ] 1 / 7217679549 [===                                                             ] 2 / 7217679549 [===-|                                                           ] 3 / 7217679549 [=====                                                           ] 4 / 7217679549 [=====|                                                          ] 5 / 7217679549 [======|                                                         ] 6 / 7217679549 [=======|                                                        ] 7 / 7217679549 [========|                                                       ] 8 / 7217679549 [=========|                                                      ] 9 / 7217679549 [==========                                                      ] 10 / 7217679549 [==========-|                                                    ] 11 / 7217679549 [============                                                    ] 12 / 7217679549 [============|                                                   ] 13 / 7217679549 [=============|                                                  ] 14 / 7217679549 [==============|                                                 ] 15 / 72Writing fine results...
+33039448_COARSE [=                                                        ] 0 / 84Actual: 0.1 Approx: 0.0 Alt-Approx: NaN
+33039448_COARSE [=|                                                       ] 1 / 84Actual: 0.8888888888888888 Approx: 0.13414634146341464 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+33039448_COARSE [==|                                                      ] 2 / 84Actual: 0.08333333333333333 Approx: 0.0 Alt-Approx: NaN
+33039448_COARSE [===|                                                     ] 3 / 84Actual: 0.7272727272727273 Approx: 0.0967741935483871 Alt-Approx: 0.9166666666666666
+beta
+beluga
+33039448_COARSE [====                                                     ] 4 / 84Actual: 0.8181818181818182 Approx: 0.08064516129032258 Alt-Approx: 0.8333333333333334
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+33039448_COARSE [====|                                                    ] Actual: 0.9090909090909091 Approx: 0.09154929577464789 Alt-Approx: 0.9166666666666666
+goldfish
+beta
+5 / 84guppy
+whale
+beluga
+lobster
+33039448_COARSE [=====                                                    ] 6 / 84Actual: 1.0 Approx: 0.08666666666666667 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+33039448_COARSE [=====|                                                   ] 7 / 84Actual: 0.8333333333333334 Approx: 0.10666666666666667 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+33039448_COARSE [======|                                                  ] 8 / 84Actual: 0.8333333333333334 Approx: 0.08928571428571429 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+33039448_COARSE [=======|                                                 ] 9 / 84Actual: 0.9166666666666666 Approx: 0.08666666666666667 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+33039448_COARSE [========                                                 ] 10 / 84Actual: 0.46153846153846156 Approx: 0.4367816091954023 Alt-Approx: 0.8571428571428571
+sardine
+beta
+beluga
+33039448_COARSE [========|                                                ] 11 / 84Actual: 0.9230769230769231 Approx: 0.0707070707070707 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+33039448_COARSE [=========                                                ] 12 / 84Actual: 0.46153846153846156 Approx: 0.09302325581395349 Alt-Approx: 1.0
+beta
+beluga
+33039448_COARSE [=========|                                               ] 13 / 84Actual: 0.5 Approx: 0.4405940594059406 Alt-Approx: 0.9333333333333333
+sardine
+beta
+beluga
+33039448_COARSE [==========|                                              ] 14 / 84Actual: 0.6923076923076923 Approx: 0.07471264367816093 Alt-Approx: 0.8666666666666667
+beta
+beluga
+33039448_COARSE [===========|                                             ] 15 / 84Actual: 0.9230769230769231 Approx: 0.09302325581395349 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+33039448_COARSE [============                                             ] 16 / 84Actual: 0.7142857142857143 Approx: 0.095 Alt-Approx: 1.0
+beta
+beluga
+33039448_COARSE [============|                                            ] 17 / 84Actual: 0.5625 Approx: 0.06390977443609022 Alt-Approx: 0.9411764705882353
+beta
+beluga
+33039448_COARSE [=============|                                           ] 18 / 84Actual: 0.7333333333333333 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+33039448_COARSE [==============                                           ] 19 / 84Actual: 0.5882352941176471 Approx: 0.05521472392638037 Alt-Approx: 0.9473684210526315
+beta
+beluga
+33039448_COARSE [==============|                                          ] 20 / 84Actual: 0.8235294117647058 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+33039448_COARSE [===============|                                         ] 21 / 84Actual: 0.875 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+33039448_COARSE [================                                         ] 22 / 84Actual: 0.5263157894736842 Approx: 0.4543010752688172 Alt-Approx: 0.95
+sardine
+beta
+beluga
+33039448_COARSE [================|                                        ] 23 / 84Actual: 0.5555555555555556 Approx: 0.04491017964071856 Alt-Approx: 0.75
+beta
+beluga
+33039448_COARSE [=================|                                       ] 24 / 84Actual: 0.5555555555555556 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+33039448_COARSE [==================                                       ] 25 / 84Actual: 0.5882352941176471 Approx: 0.07094594594594594 Alt-Approx: 1.0
+beta
+beluga
+33039448_COARSE [==================|                                      ] 26 / 84Actual: 0.45 Approx: 0.05314009661835749 Alt-Approx: 0.9523809523809523
+beta
+beluga
+33039448_COARSE [===================|                                     ] 27 / 84Actual: 0.4444444444444444 Approx: 0.06287425149700598 Alt-Approx: 1.0
+beta
+beluga
+33039448_COARSE [====================|                                    ] 28 / 84Actual: 0.47368421052631576 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+33039448_COARSE [=====================                                    ] 29 / 84Actual: 0.5263157894736842 Approx: 0.04433497536945813 Alt-Approx: 0.8571428571428571
+beta
+beluga
+33039448_COARSE [=====================|                                   ] 30 / 84Actual: 0.5263157894736842 Approx: 0.05405405405405406 Alt-Approx: 0.9523809523809523
+beta
+beluga
+33039448_COARSE [======================                                   ] 31 / 84Actual: 0.47368421052631576 Approx: 0.4972972972972973 Alt-Approx: 0.9523809523809523
+sardine
+beta
+beluga
+33039448_COARSE [======================|                                  ] 32 / 84Actual: 0.5263157894736842 Approx: 0.06149732620320856 Alt-Approx: 1.0
+beta
+beluga
+33039448_COARSE [=======================|                                 ] 33 / 84Actual: 0.5263157894736842 Approx: 0.06149732620320856 Alt-Approx: 1.0
+beta
+beluga
+33039448_COARSE [========================|                                ] 34 / 84Actual: 0.45 Approx: 0.04611650485436893 Alt-Approx: 0.7727272727272727
+beta
+beluga
+33039448_COARSE [=========================                                ] 35 / 84Actual: 0.5 Approx: 0.050724637681159424 Alt-Approx: 0.8181818181818182
+beta
+beluga
+33039448_COARSE [=========================|                               ] 36 / 84Actual: 0.55 Approx: 0.04830917874396135 Alt-Approx: 0.9090909090909091
+beta
+beluga
+33039448_COARSE [==========================                               ] 37 / 84Actual: 0.5 Approx: 0.050970873786407765 Alt-Approx: 0.9545454545454546
+beta
+beluga
+33039448_COARSE [==========================|                              ] 38 / 84Actual: 0.3 Approx: 0.03864734299516908 Alt-Approx: 0.7272727272727273
+beta
+beluga
+33039448_COARSE [===========================|                             ] 39 / 84Actual: 0.5 Approx: 0.04106280193236715 Alt-Approx: 0.7727272727272727
+beta
+beluga
+33039448_COARSE [============================|                            ] 40 / 84Actual: 0.47619047619047616 Approx: 0.4977973568281938 Alt-Approx: 0.9565217391304348
+sardine
+beta
+beluga
+33039448_COARSE [=============================                            ] 41 / 84Actual: 0.5714285714285714 Approx: 0.05286343612334802 Alt-Approx: 0.9565217391304348
+beta
+beluga
+33039448_COARSE [=============================|                           ] 42 / 84Actual: 0.42857142857142855 Approx: 0.4933920704845815 Alt-Approx: 0.8695652173913043
+sardine
+beta
+beluga
+33039448_COARSE [==============================                           ] 43 / 84Actual: 0.45454545454545453 Approx: 0.042 Alt-Approx: 0.875
+beta
+beluga
+33039448_COARSE [==============================-|                         ] 44 / 84Actual: 0.5 Approx: 0.4538152610441767 Alt-Approx: 0.8333333333333334
+sardine
+beta
+beluga
+33039448_COARSE [================================                         ] 45 / 84Actual: 0.45454545454545453 Approx: 0.04216867469879518 Alt-Approx: 0.8333333333333334
+beta
+beluga
+33039448_COARSE [================================|                        ] 46 / 84Actual: 0.45454545454545453 Approx: 0.4979919678714859 Alt-Approx: 0.9583333333333334
+sardine
+beta
+beluga
+33039448_COARSE [=================================                        ] 47 / 84Actual: 0.7272727272727273 Approx: 0.046 Alt-Approx: 0.9166666666666666
+beta
+beluga
+33039448_COARSE [=================================|                       ] 48 / 84Actual: 0.45454545454545453 Approx: 0.4919678714859438 Alt-Approx: 0.8333333333333334
+sardine
+beta
+beluga
+33039448_COARSE [==================================|                      ] 49 / 84Actual: 0.45454545454545453 Approx: 0.05 Alt-Approx: 0.9583333333333334
+beta
+beluga
+33039448_COARSE [===================================|                     ] 50 / 84Actual: 0.45454545454545453 Approx: 0.4576612903225806 Alt-Approx: 0.875
+sardine
+beta
+beluga
+33039448_COARSE [====================================                     ] 51 / 84Actual: 0.47619047619047616 Approx: 0.046052631578947366 Alt-Approx: 0.75
+beta
+beluga
+33039448_COARSE [====================================|                    ] 52 / 84Actual: 0.7727272727272727 Approx: 0.04618473895582329 Alt-Approx: 0.875
+beta
+beluga
+33039448_COARSE [=====================================                    ] 53 / 84Actual: 0.5238095238095238 Approx: 0.048458149779735685 Alt-Approx: 0.8333333333333334
+beta
+beluga
+33039448_COARSE [=====================================|                   ] 54 / 84Actual: 0.6190476190476191 Approx: 0.048458149779735685 Alt-Approx: 0.8333333333333334
+beta
+beluga
+33039448_COARSE [======================================|                  ] 55 / 84Actual: 0.5652173913043478 Approx: 0.042279411764705885 Alt-Approx: 0.92
+beta
+beluga
+33039448_COARSE [=======================================|                 ] 56 / 84Actual: 0.47619047619047616 Approx: 0.046255506607929514 Alt-Approx: 0.875
+beta
+beluga
+33039448_COARSE [========================================                 ] 57 / 84Actual: 0.6521739130434783 Approx: 0.042279411764705885 Alt-Approx: 0.84
+beta
+beluga
+33039448_COARSE [========================================|                ] 58 / 84Actual: 0.6086956521739131 Approx: 0.04411764705882353 Alt-Approx: 0.88
+beta
+beluga
+33039448_COARSE [=========================================                ] 59 / 84Actual: 0.34782608695652173 Approx: 0.49264705882352944 Alt-Approx: 0.92
+sardine
+beta
+beluga
+33039448_COARSE [=========================================|               ] 60 / 84Actual: 0.45454545454545453 Approx: 0.03917910447761194 Alt-Approx: 0.84
+beta
+beluga
+33039448_COARSE [==========================================|              ] 61 / 84Actual: 0.34782608695652173 Approx: 0.04044117647058824 Alt-Approx: 0.88
+beta
+beluga
+33039448_COARSE [===========================================|             ] 62 / 84Actual: 0.5217391304347826 Approx: 0.04411764705882353 Alt-Approx: 0.8461538461538461
+beta
+beluga
+33039448_COARSE [============================================             ] 63 / 84Actual: 0.45454545454545453 Approx: 0.04216867469879518 Alt-Approx: 0.72
+beta
+beluga
+33039448_COARSE [============================================|            ] 64 / 84Actual: 0.5217391304347826 Approx: 0.4963235294117647 Alt-Approx: 0.9615384615384616
+sardine
+beta
+beluga
+33039448_COARSE [=============================================|           ] 65 / 84Actual: 0.43478260869565216 Approx: 0.04595588235294118 Alt-Approx: 0.8846153846153846
+beta
+beluga
+33039448_COARSE [==============================================           ] 66 / 84Actual: 0.6086956521739131 Approx: 0.042279411764705885 Alt-Approx: 0.8846153846153846
+beta
+beluga
+33039448_COARSE [==============================================|          ] 67 / 84Actual: 0.6521739130434783 Approx: 0.03860294117647059 Alt-Approx: 0.7777777777777778
+beta
+beluga
+33039448_COARSE [===============================================|         ] 68 / 84Actual: 0.43478260869565216 Approx: 0.029411764705882353 Alt-Approx: 0.5925925925925926
+33039448_COARSE [================================================         ] 69 / 84Actual: 0.4782608695652174 Approx: 0.04595588235294118 Alt-Approx: 0.8518518518518519
+beta
+beluga
+33039448_COARSE [================================================|        ] 70 / 84Actual: 0.6521739130434783 Approx: 0.04595588235294118 Alt-Approx: 0.8518518518518519
+beta
+beluga
+33039448_COARSE [=================================================|       ] 71 / 84Actual: 0.6086956521739131 Approx: 0.03860294117647059 Alt-Approx: 0.7777777777777778
+beta
+beluga
+33039448_COARSE [==================================================       ] 72 / 84Actual: 0.34782608695652173 Approx: 0.04595588235294118 Alt-Approx: 0.8518518518518519
+beta
+beluga
+33039448_COARSE [==================================================|      ] 73 / 84Actual: 0.8695652173913043 Approx: 0.04595588235294118 Alt-Approx: 0.8518518518518519
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+33039448_COARSE [===================================================|     ] 74 / 84Actual: 0.6521739130434783 Approx: 0.49264705882352944 Alt-Approx: 0.8518518518518519
+sardine
+beta
+beluga
+33039448_COARSE [====================================================     ] 75 / 84Actual: 0.5217391304347826 Approx: 0.47610294117647056 Alt-Approx: 0.9629629629629629
+sardine
+beta
+beluga
+33039448_COARSE [====================================================|    ] 76 / 84Actual: 0.43478260869565216 Approx: 0.04595588235294118 Alt-Approx: 0.8518518518518519
+beta
+beluga
+33039448_COARSE [=====================================================|   ] 77 / 84Actual: 0.43478260869565216 Approx: 0.03860294117647059 Alt-Approx: 0.7777777777777778
+beta
+beluga
+33039448_COARSE [======================================================   ] 78 / 84Actual: 0.391304347826087 Approx: 0.49080882352941174 Alt-Approx: 0.8148148148148148
+sardine
+beta
+beluga
+33039448_COARSE [======================================================|  ] 79 / 84Actual: 1.0 Approx: 0.3333333333333333 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+33039448_COARSE [=======================================================| ] 80 / 84Actual: 1.0 Approx: 0.4444444444444444 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+33039448_COARSE [========================================================|] 81 / 84Actual: 0.8333333333333334 Approx: 0.2222222222222222 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+33039448_COARSE [=========================================================] 82 / 84Actual: 1.0 Approx: 0.25 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+33039448_COARSE [=========================================================] 83 / 84Actual: 0.8695652173913043 Approx: 0.04595588235294118 Alt-Approx: 0.9259259259259259
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+33039448_COARSE [=========================================================] 84 / 84Writing coarse results...
+33039448 [=                                                               ] 0 / 20433039448 [=                                                               ] 1 / 20433039448 [=                                                               ] 2 / 20433039448 [=|                                                              ] 3 / 20433039448 [==                                                              ] 4 / 20433039448 [==|                                                             ] 5 / 20433039448 [===                                                             ] 6 / 20433039448 [===                                                             ] 7 / 20433039448 [===                                                             ] 8 / 20433039448 [===|                                                            ] 9 / 20433039448 [====                                                            ] 10 / 20433039448 [====|                                                           ] 11 / 20433039448 [=====                                                           ] 12 / 20433039448 [=====                                                           ] 13 / 20433039448 [=====                                                           ] 14 / 20433039448 [=====|                                                          ] 15 / 20433039448 [======                                                          ] 16 / 20433039448 [======|                                                         ] 17 / 20433039448 [=======                                                         ] 18 / 20433039448 [=======                                                         ] 19 / 20433039448 [=======                                                         ] 20 / 20433039448 [=======|                                                        ] 21 / 20433039448 [========                                                        ] 22 / 20433039448 [========                                                        ] 23 / 20433039448 [========                                                        ] 24 / 20433039448 [========|                                                       ] 25 / 20433039448 [=========                                                       ] 26 / 20433039448 [=========|                                                      ] 27 / 204Writing fine results...
+56075847_COARSE [=                                                        ] 0 / 84Actual: 0.1 Approx: 0.0 Alt-Approx: NaN
+56075847_COARSE [=|                                                       ] 1 / 84Actual: 1.0 Approx: 0.18292682926829268 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+56075847_COARSE [==|                                                      ] 2 / 84Actual: 0.08333333333333333 Approx: 0.0 Alt-Approx: NaN
+56075847_COARSE [===|                                                     ] 3 / 84Actual: 0.8181818181818182 Approx: 0.12903225806451613 Alt-Approx: 0.9166666666666666
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+56075847_COARSE [====                                                     ] 4 / 84Actual: 0.8181818181818182 Approx: 0.11290322580645161 Alt-Approx: 0.9166666666666666
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+56075847_COARSE [====|                                                    ] 5 / 84Actual: 0.9090909090909091 Approx: 0.11971830985915492 Alt-Approx: 0.9166666666666666
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+56075847_COARSE [=====                                                    ] 6 / 84Actual: 0.9166666666666666 Approx: 0.11333333333333333 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+56075847_COARSE [=====|                                                   ] 7 / 84Actual: 1.0 Approx: 0.1130952380952381 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+56075847_COARSE [======|                                                  ] 8 / 84Actual: 0.9166666666666666 Approx: 0.11333333333333333 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+56075847_COARSE [=======|                                                 ] 9 / 84Actual: 0.9166666666666666 Approx: 0.13333333333333333 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+56075847_COARSE [========                                                 ] 10 / 84Actual: 0.7692307692307693 Approx: 0.09090909090909091 Alt-Approx: 1.0
+beta
+beluga
+56075847_COARSE [========|                                                ] 11 / 84Actual: 0.46153846153846156 Approx: 0.4367816091954023 Alt-Approx: 0.8571428571428571
+sardine
+beta
+beluga
+56075847_COARSE [=========                                                ] 12 / 84Actual: 0.46153846153846156 Approx: 0.06976744186046512 Alt-Approx: 0.8571428571428571
+beta
+beluga
+56075847_COARSE [=========|                                               ] 13 / 84Actual: 0.5384615384615384 Approx: 0.11627906976744186 Alt-Approx: 1.0
+beta
+beluga
+56075847_COARSE [==========|                                              ] 14 / 84Actual: 0.5 Approx: 0.4405940594059406 Alt-Approx: 0.9333333333333333
+sardine
+beta
+beluga
+56075847_COARSE [===========|                                             ] 15 / 84Actual: 1.0 Approx: 0.09770114942528736 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+56075847_COARSE [============                                             ] 16 / 84Actual: 0.5625 Approx: 0.04887218045112782 Alt-Approx: 0.7647058823529411
+beta
+beluga
+56075847_COARSE [============|                                            ] 17 / 84Actual: 0.8 Approx: 0.49145299145299143 Alt-Approx: 0.8823529411764706
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+56075847_COARSE [=============|                                           ] 18 / 84Actual: 0.5625 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+56075847_COARSE [==============                                           ] 19 / 84Actual: 0.8235294117647058 Approx: 0.06748466257668712 Alt-Approx: 0.9473684210526315
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+56075847_COARSE [==============|                                          ] 20 / 84Actual: 1.0 Approx: 0.115 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+56075847_COARSE [===============|                                         ] 21 / 84Actual: 0.8235294117647058 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+56075847_COARSE [================                                         ] 22 / 84Actual: 0.5789473684210527 Approx: 0.4543010752688172 Alt-Approx: 0.95
+sardine
+beta
+beluga
+56075847_COARSE [================|                                        ] 23 / 84Actual: 0.8235294117647058 Approx: 0.057432432432432436 Alt-Approx: 0.8947368421052632
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+56075847_COARSE [=================|                                       ] 24 / 84Actual: 0.6666666666666666 Approx: 0.05688622754491018 Alt-Approx: 0.95
+beta
+beluga
+56075847_COARSE [==================                                       ] 25 / 84Actual: 0.7777777777777778 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+56075847_COARSE [==================|                                      ] 26 / 84Actual: 0.5 Approx: 0.04589371980676329 Alt-Approx: 0.9047619047619048
+beta
+beluga
+56075847_COARSE [===================|                                     ] 27 / 84Actual: 0.5789473684210527 Approx: 0.4945945945945946 Alt-Approx: 0.9047619047619048
+sardine
+beta
+beluga
+56075847_COARSE [====================|                                    ] 28 / 84Actual: 0.6111111111111112 Approx: 0.0748502994011976 Alt-Approx: 1.0
+beta
+beluga
+56075847_COARSE [=====================                                    ] 29 / 84Actual: 0.631578947368421 Approx: 0.054187192118226604 Alt-Approx: 0.9523809523809523
+beta
+beluga
+56075847_COARSE [=====================|                                   ] 30 / 84Actual: 0.631578947368421 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+56075847_COARSE [======================                                   ] 31 / 84Actual: 0.631578947368421 Approx: 0.06486486486486487 Alt-Approx: 1.0
+beta
+beluga
+56075847_COARSE [======================|                                  ] 32 / 84Actual: 0.5263157894736842 Approx: 0.05080213903743316 Alt-Approx: 0.9047619047619048
+beta
+beluga
+56075847_COARSE [=======================|                                 ] 33 / 84Actual: 0.4 Approx: 0.04830917874396135 Alt-Approx: 0.9090909090909091
+beta
+beluga
+56075847_COARSE [========================|                                ] 34 / 84Actual: 0.6 Approx: 0.04611650485436893 Alt-Approx: 0.8636363636363636
+beta
+beluga
+56075847_COARSE [=========================                                ] 35 / 84Actual: 0.8421052631578947 Approx: 0.05080213903743316 Alt-Approx: 0.9047619047619048
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+56075847_COARSE [=========================|                               ] 36 / 84Actual: 1.0 Approx: 0.057971014492753624 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+56075847_COARSE [==========================                               ] 37 / 84Actual: 0.6 Approx: 0.07004830917874397 Alt-Approx: 1.0
+beta
+beluga
+56075847_COARSE [==========================|                              ] 38 / 84Actual: 0.55 Approx: 0.06067961165048544 Alt-Approx: 0.9545454545454546
+beta
+beluga
+56075847_COARSE [===========================|                             ] 39 / 84Actual: 0.85 Approx: 0.050724637681159424 Alt-Approx: 0.9545454545454546
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+56075847_COARSE [============================|                            ] 40 / 84Actual: 0.5714285714285714 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+56075847_COARSE [=============================                            ] 41 / 84Actual: 0.6190476190476191 Approx: 0.046255506607929514 Alt-Approx: 0.9130434782608695
+beta
+beluga
+56075847_COARSE [=============================|                           ] 42 / 84Actual: 0.5238095238095238 Approx: 0.4933920704845815 Alt-Approx: 0.8695652173913043
+sardine
+beta
+beluga
+56075847_COARSE [==============================                           ] 43 / 84Actual: 0.5454545454545454 Approx: 0.052 Alt-Approx: 1.0
+beta
+beluga
+56075847_COARSE [==============================-|                         ] 44 / 84Actual: 0.6363636363636364 Approx: 0.4598393574297189 Alt-Approx: 0.9583333333333334
+sardine
+beta
+beluga
+56075847_COARSE [================================                         ] 45 / 84Actual: 0.5454545454545454 Approx: 0.04 Alt-Approx: 0.8333333333333334
+beta
+beluga
+56075847_COARSE [================================|                        ] 46 / 84Actual: 0.6363636363636364 Approx: 0.4959839357429719 Alt-Approx: 0.9166666666666666
+sardine
+beta
+beluga
+56075847_COARSE [=================================                        ] 47 / 84Actual: 0.6363636363636364 Approx: 0.05823293172690763 Alt-Approx: 1.0
+beta
+beluga
+56075847_COARSE [=================================|                       ] 48 / 84Actual: 0.6363636363636364 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+56075847_COARSE [==================================|                      ] 49 / 84Actual: 0.5 Approx: 0.04417670682730924 Alt-Approx: 0.9166666666666666
+beta
+beluga
+56075847_COARSE [===================================|                     ] 50 / 84Actual: 0.6363636363636364 Approx: 0.46169354838709675 Alt-Approx: 0.9583333333333334
+sardine
+beta
+beluga
+56075847_COARSE [====================================                     ] 51 / 84Actual: 0.8636363636363636 Approx: 0.044 Alt-Approx: 0.9166666666666666
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+56075847_COARSE [====================================|                    ] 52 / 84Actual: 0.7619047619047619 Approx: 0.048458149779735685 Alt-Approx: 0.9166666666666666
+beta
+beluga
+56075847_COARSE [=====================================                    ] 53 / 84Actual: 0.42857142857142855 Approx: 0.046255506607929514 Alt-Approx: 0.875
+beta
+beluga
+56075847_COARSE [=====================================|                   ] 54 / 84Actual: 0.9523809523809523 Approx: 0.05726872246696035 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+56075847_COARSE [======================================|                  ] 55 / 84Actual: 0.4782608695652174 Approx: 0.03676470588235294 Alt-Approx: 0.8
+beta
+beluga
+56075847_COARSE [=======================================|                 ] 56 / 84Actual: 0.7619047619047619 Approx: 0.06359649122807018 Alt-Approx: 0.9166666666666666
+beta
+beluga
+56075847_COARSE [========================================                 ] 57 / 84Actual: 0.5217391304347826 Approx: 0.04212454212454213 Alt-Approx: 0.92
+beta
+beluga
+56075847_COARSE [========================================|                ] 58 / 84Actual: 0.5652173913043478 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+56075847_COARSE [=========================================                ] 59 / 84Actual: 0.4583333333333333 Approx: 0.03109452736318408 Alt-Approx: 1.0
+beta
+beluga
+56075847_COARSE [=========================================|               ] 60 / 84Actual: 0.5652173913043478 Approx: 0.042279411764705885 Alt-Approx: 0.92
+beta
+beluga
+56075847_COARSE [==========================================|              ] 61 / 84Actual: 0.5454545454545454 Approx: 0.04664179104477612 Alt-Approx: 1.0
+beta
+beluga
+56075847_COARSE [===========================================|             ] 62 / 84Actual: 0.4583333333333333 Approx: 0.04054054054054054 Alt-Approx: 0.9230769230769231
+beta
+beluga
+56075847_COARSE [============================================             ] 63 / 84Actual: 0.5 Approx: 0.04054054054054054 Alt-Approx: 0.9230769230769231
+beta
+beluga
+56075847_COARSE [============================================|            ] 64 / 84Actual: 0.5217391304347826 Approx: 0.49264705882352944 Alt-Approx: 0.8461538461538461
+sardine
+beta
+beluga
+56075847_COARSE [=============================================|           ] 65 / 84Actual: 0.6521739130434783 Approx: 0.04044117647058824 Alt-Approx: 0.8461538461538461
+beta
+beluga
+56075847_COARSE [==============================================           ] 66 / 84Actual: 0.7272727272727273 Approx: 0.05823293172690763 Alt-Approx: 0.88
+beta
+beluga
+56075847_COARSE [==============================================|          ] 67 / 84Actual: 0.5833333333333334 Approx: 0.04222972972972973 Alt-Approx: 0.9259259259259259
+beta
+beluga
+56075847_COARSE [===============================================|         ] 68 / 84Actual: 0.4583333333333333 Approx: 0.031446540880503145 Alt-Approx: 0.7407407407407407
+beta
+beluga
+56075847_COARSE [================================================         ] 69 / 84Actual: 0.625 Approx: 0.04574132492113565 Alt-Approx: 1.0
+beta
+beluga
+56075847_COARSE [================================================|        ] 70 / 84Actual: 0.56 Approx: 0.0390625 Alt-Approx: 0.8620689655172413
+beta
+beluga
+56075847_COARSE [=================================================|       ] 71 / 84Actual: 0.4074074074074074 Approx: 0.034759358288770054 Alt-Approx: 0.8666666666666667
+beta
+beluga
+56075847_COARSE [==================================================       ] 72 / 84Actual: 0.48148148148148145 Approx: 0.036 Alt-Approx: 0.9
+beta
+beluga
+56075847_COARSE [==================================================|      ] 73 / 84Actual: 0.68 Approx: 0.04215116279069767 Alt-Approx: 0.9642857142857143
+beta
+beluga
+56075847_COARSE [===================================================|     ] 74 / 84Actual: 0.5 Approx: 0.49502487562189057 Alt-Approx: 0.8709677419354839
+sardine
+beta
+beluga
+56075847_COARSE [====================================================     ] 75 / 84Actual: 0.32142857142857145 Approx: 0.46766169154228854 Alt-Approx: 0.8709677419354839
+sardine
+beta
+beluga
+56075847_COARSE [====================================================|    ] 76 / 84Actual: 0.5357142857142857 Approx: 0.03233830845771144 Alt-Approx: 0.8387096774193549
+beta
+beluga
+56075847_COARSE [=====================================================|   ] 77 / 84Actual: 0.7857142857142857 Approx: 0.033582089552238806 Alt-Approx: 0.8709677419354839
+beta
+beluga
+56075847_COARSE [======================================================   ] 78 / 84Actual: 0.5357142857142857 Approx: 0.4937810945273632 Alt-Approx: 0.8387096774193549
+sardine
+beta
+beluga
+56075847_COARSE [======================================================|  ] 79 / 84Actual: 1.0 Approx: 0.375 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+56075847_COARSE [=======================================================| ] 80 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+56075847_COARSE [========================================================|] 81 / 84Actual: 0.8333333333333334 Approx: 0.1111111111111111 Alt-Approx: 0.6666666666666666
+goldfish
+whale
+beluga
+lobster
+56075847_COARSE [=========================================================] 82 / 84Actual: 1.0 Approx: 0.3333333333333333 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+56075847_COARSE [=========================================================] 83 / 84Actual: 0.7857142857142857 Approx: 0.036069651741293535 Alt-Approx: 0.8387096774193549
+beta
+beluga
+56075847_COARSE [=========================================================] 84 / 84Writing coarse results...
+56075847 [=                                                               ] 0 / 25256075847 [=                                                               ] 1 / 25256075847 [=                                                               ] 2 / 25256075847 [=|                                                              ] 3 / 25256075847 [==                                                              ] 4 / 25256075847 [==                                                              ] 5 / 25256075847 [==|                                                             ] 6 / 25256075847 [===                                                             ] 7 / 25256075847 [===                                                             ] 8 / 25256075847 [===                                                             ] 9 / 25256075847 [===                                                             ] 10 / 25256075847 [===|                                                            ] 11 / 25256075847 [====                                                            ] 12 / 25256075847 [====|                                                           ] 13 / 25256075847 [=====                                                           ] 14 / 25256075847 [=====                                                           ] 15 / 25256075847 [=====                                                           ] 16 / 25256075847 [=====                                                           ] 17 / 25256075847 [=====|                                                          ] 18 / 25256075847 [======                                                          ] 19 / 25256075847 [======                                                          ] 20 / 25256075847 [======|                                                         ] 21 / 25256075847 [=======                                                         ] 22 / 25256075847 [=======                                                         ] 23 / 25256075847 [=======                                                         ] 24 / 25256075847 [=======                                                         ] 25 / 25256075847 [=======|                                                        ] 26 / 25256075847 [========                                                        ] 27 / 25256075847 [========                                                        ] 28 / 25256075847 [========                                                        ] 29 / 25256075847 [========                                                        ] 30 / 252Writing fine results...
+58685014_COARSE [=                                                        ] 0 / 84Actual: 0.16666666666666666 Approx: 0.0 Alt-Approx: NaN
+58685014_COARSE [=|                                                       ] 1 / 84Actual: 1.0 Approx: 0.16666666666666666 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [==|                                                      ] 2 / 84Actual: 0.16666666666666666 Approx: 0.0 Alt-Approx: NaN
+58685014_COARSE [===|                                                     ] 3 / 84Actual: 1.0 Approx: 0.19444444444444445 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [====                                                     ] 4 / 84Actual: 1.0 Approx: 0.1388888888888889 Alt-Approx: 0.8333333333333334
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [====|                                                    ] 5 / 84Actual: 1.0 Approx: 0.2222222222222222 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [=====                                                    ] 6 / 84Actual: 1.0 Approx: 0.2222222222222222 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [=====|                                                   ] 7 / 84Actual: 1.0 Approx: 0.2777777777777778 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [======|                                                  ] 8 / 84Actual: 1.0 Approx: 0.2222222222222222 Alt-Approx: 1.0
+Actual: 1.0 Approx: 0.3055555555555556 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [=======|                                                 ] 9 / 8458685014_COARSE [========                                                 ] 10 / 84Actual: 1.0 Approx: 0.19444444444444445 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [========|                                                ] 11 / 84Actual: 1.0 Approx: 0.25 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [=========                                                ] 12 / 84Actual: 1.0 Approx: 0.3333333333333333 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [=========|                                               ] 13 / 84Actual: 1.0 Approx: 0.3333333333333333 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [==========|                                              ] 14 / 84Actual: 0.8333333333333334 Approx: 0.2222222222222222 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [===========|                                             ] 15 / 84Actual: 1.0 Approx: 0.3888888888888889 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [============                                             ] 16 / 84Actual: 1.0 Approx: 0.2777777777777778 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [============|                                            ] 17 / 84Actual: 1.0 Approx: 0.25 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [=============|                                           ] 18 / 84Actual: 1.0 Approx: 0.3611111111111111 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [==============                                           ] 19 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [==============|                                          ] 20 / 84Actual: 1.0 Approx: 0.3611111111111111 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [===============|                                         ] Actual: 1.0 Approx: 0.3333333333333333 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+21 / 84lobster
+58685014_COARSE [================                                         ] 22 / 84Actual: 1.0 Approx: 0.4166666666666667 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [================|                                 Actual: 1.0 Approx: 0.4166666666666667 Alt-Approx: 1.0
+       ] 23 / 84goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [=================|                                       ] 24 / 84Actual: 1.0 Approx: 0.4166666666666667 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [==================                                       ] Actual: 1.0 Approx: 0.2777777777777778 Alt-Approx: 1.0
+goldfish
+25 / 84beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [==================|                                      ] 26 / 84Actual: 1.0 Approx: 0.4722222222222222 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [===================|                                     ] 27 / 84Actual: 1.0 Approx: 0.3611111111111111 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [====================|                                    ] 28 / 84Actual: 0.8333333333333334 Approx: 0.3611111111111111 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [=====================                                    ] 29 / 84Actual: 1.0 Approx: 0.4166666666666667 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [=====================|                                   ] 30 / 84Actual: 1.0 Approx: 0.3611111111111111 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [======================                                   ] 31 / 84Actual: 1.0 Approx: 0.3888888888888889 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [======================|                                  ] 32 / 84Actual: 1.0 Approx: 0.4444444444444444 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [=======================|                                 ] 33 / 84Actual: 1.0 Approx: 0.3888888888888889 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [========================|                                ] 34 / 84Actual: 0.8333333333333334 Approx: 0.2777777777777778 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [=========================                                ] 35 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [=========================|                               ] 36 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [==========================                               ] 37 / 84Actual: 1.0 Approx: 0.4444444444444444 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [==========================|                              ] 38 / 84Actual: 1.0 Approx: 0.4166666666666667 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [===========================|                             ] 39 / 84Actual: 1.0 Approx: 0.3333333333333333 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [============================|                            ] 40 / 84Actual: 1.0 Approx: 0.4722222222222222 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [=============================                            ] 41 / 84Actual: 1.0 Approx: 0.4166666666666667 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [=============================|                           ] 42 / 84Actual: 1.0 Approx: 0.3611111111111111 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [==============================                           ] 43 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [==============================-|                         ] 44 / 84Actual: 1.0 Approx: 0.4722222222222222 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [================================                         ] 45 / 84Actual: 1.0 Approx: 0.4722222222222222 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [================================|                        ] 46 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [=================================                        ] 47 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [=================================|                       ] 48 / 84Actual: 1.0 Approx: 0.4722222222222222 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [==================================|                      ] 49 / 84Actual: 1.0 Approx: 0.3888888888888889 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [===================================|                     ] 50 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [====================================                     ] 51 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [====================================|                    ] Actual: 1.0 Approx: 0.4722222222222222 Alt-Approx: 1.0
+52 / 84goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [=====================================                    ] 53 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [=====================================|                   ] 54 / 84Actual: 1.0 Approx: 0.4722222222222222 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [======================================|                  ] 55 / 84Actual: 1.0 Approx: 0.4722222222222222 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [=======================================|                 ] 56 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [========================================                 ] 57 / 84Actual: 1.0 Approx: 0.4166666666666667 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [========================================|                ] 58 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [=========================================                ] 59 / 84Actual: 1.0 Approx: 0.4444444444444444 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [=========================================|               ] 60 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [==========================================|              ] 61 / 84Actual: 1.0 Approx: 0.4444444444444444 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [===========================================|             ] 62 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [============================================             ] 63 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [============================================|            ] 64 / 84Actual: 1.0 Approx: 0.3888888888888889 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [=============================================|           ] 65 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [==============================================           ] 66 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [==============================================|          ] 67 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [===============================================|         ] 68 / 84Actual: 0.8333333333333334 Approx: 0.3055555555555556 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [================================================         ] 69 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [================================================|        ] 70 / 84Actual: 1.0 Approx: 0.4444444444444444 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [=================================================|       ] 71 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [==================================================       ] 72 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [==================================================|      ] 73 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [===================================================|     ] 74 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [====================================================     ] 75 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [====================================================|    ] 76 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [=====================================================|   ] 77 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [======================================================   ] 78 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [======================================================|  ] 79 / 84Actual: 0.8 Approx: 0.125 Alt-Approx: 0.6
+goldfish
+lobster
+58685014_COARSE [=======================================================| ] 80 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [========================================================|] 81 / 84Actual: 0.3333333333333333 Approx: 0.05555555555555555 Alt-Approx: 0.3333333333333333
+58685014_COARSE [=========================================================] 82 / 84Actual: 0.8333333333333334 Approx: 0.1111111111111111 Alt-Approx: 0.6666666666666666
+goldfish
+whale
+beluga
+lobster
+58685014_COARSE [=========================================================] 83 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+58685014_COARSE [=========================================================] 84 / 84Writing coarse results...
+58685014 [=                                                               ] 0 / 94858685014 [=                                                               ] 1 / 94858685014 [=                                                               ] 2 / 94858685014 [=                                                               ] 3 / 94858685014 [=                                                               ] 4 / 94858685014 [=                                                               ] 5 / 94858685014 [=                                                               ] 6 / 94858685014 [=                                                               ] 7 / 94858685014 [=                                                               ] 8 / 94858685014 [=                                                               ] 9 / 94858685014 [=                                                               ] 10 / 94858685014 [=                                                               ] 11 / 94858685014 [=                                                               ] 12 / 94858685014 [=                                                               ] 13 / 94858685014 [=|                                                              ] 14 / 94858685014 [==                                                              ] 15 / 94858685014 [==                                                              ] 16 / 94858685014 [==                                                              ] 17 / 94858685014 [==                                                              ] 18 / 94858685014 [==                                                              ] 19 / 94858685014 [==                                                              ] 20 / 94858685014 [==                                                              ] 21 / 94858685014 [==                                                              ] 22 / 94858685014 [==|                                                             ] 23 / 94858685014 [===                                                             ] 24 / 94858685014 [===                                                             ] 25 / 94858685014 [===                                                             ] 26 / 94858685014 [===                                                             ] 27 / 94858685014 [===                                                             ] 28 / 94858685014 [===                                                             ] 29 / 94858685014 [===                                                             ] 30 / 94858685014 [===                                                             ] 31 / 94858685014 [===                                                             ] 32 / 94858685014 [===                                                             ] 33 / 94858685014 [===                                                             ] 34 / 94858685014 [===                                                             ] 35 / 94858685014 [===                                                             ] 36 / 94858685014 [===                                                             ] 37 / 94858685014 [===                                                             ] 38 / 94858685014 [===                                                             ] 39 / 94858685014 [===                                                             ] 40 / 94858685014 [===                                                             ] 41 / 94858685014 [===|                                                            ] 42 / 94858685014 [====                                                            ] 43 / 94858685014 [====                                                            ] 44 / 94858685014 [====                                                            ] 45 / 94858685014 [====                                                            ] 46 / 94858685014 [====                                                            ] 47 / 94858685014 [====                                                            ] 48 / 94858685014 [====                                                            ] 49 / 94858685014 [====                                                            ] 50 / 94858685014 [====                                                            ] 51 / 94858685014 [====|                                                           ] 52 / 94858685014 [=====                                                           ] 53 / 94858685014 [=====                                                           ] 54 / 94858685014 [=====                                                           ] 55 / 94858685014 [=====                                                           ] 56 / 94858685014 [=====                                                           ] 57 / 94858685014 [=====                                                           ] 58 / 94858685014 [=====                                                           ] 59 / 94858685014 [=====                                                           ] 60 / 94858685014 [=====                                                           ] 61 / 94858685014 [=====                                                           ] 62 / 94858685014 [=====                                                           ] 63 / 94858685014 [=====                                                           ] 64 / 94858685014 [=====                                                           ] 65 / 94858685014 [=====                                                           ] 66 / 94858685014 [=====                                                           ] 67 / 94858685014 [=====                                                           ] 68 / 94858685014 [=====                                                           ] 69 / 94858685014 [=====                                                           ] 70 / 94858685014 [=====|                                                          ] 71 / 94858685014 [======                                                          ] 72 / 94858685014 [======                                                          ] 73 / 94858685014 [======                                                          ] 74 / 94858685014 [======                                                          ] 75 / 94858685014 [======                                                          ] 76 / 94858685014 [======                                                          ] 77 / 94858685014 [======                                                          ] 78 / 94858685014 [======                                                          ] 79 / 94858685014 [======|                                                         ] 80 / 94858685014 [=======                                                         ] 81 / 94858685014 [=======                                                         ] 82 / 94858685014 [=======                                                         ] 83 / 94858685014 [=======                                                         ] 84 / 94858685014 [=======                                                         ] 85 / 94858685014 [=======                                                         ] 86 / 94858685014 [=======                                                         ] 87 / 94858685014 [=======                                                         ] 88 / 94858685014 [=======                                                         ] 89 / 94858685014 [=======                                                         ] 90 / 94858685014 [=======                                                         ] 91 / 94858685014 [=======                                                         ] 92 / 94858685014 [=======                                                         ] 93 / 94858685014 [=======                                                         ] 94 / 948Writing fine results...
+45094499_COARSE [=                                                        ] 0 / 84Actual: 0.1 Approx: 0.0 Alt-Approx: NaN
+45094499_COARSE [=|                                                       ] 1 / 84Actual: 0.6666666666666666 Approx: 0.07317073170731707 Alt-Approx: 0.6
+45094499_COARSE [==|                                                      ] 2 / 84Actual: 0.08333333333333333 Approx: 0.0 Alt-Approx: NaN
+45094499_COARSE [===|                                                     ] 3 / 84Actual: 0.5454545454545454 Approx: 0.04032258064516129 Alt-Approx: 0.4166666666666667
+45094499_COARSE [====                                                     ] 4 / 84Actual: 0.6363636363636364 Approx: 0.056451612903225805 Alt-Approx: 0.5833333333333334
+45094499_COARSE [====|                                                    ] 5 / 84Actual: 0.5454545454545454 Approx: 0.056338028169014086 Alt-Approx: 0.6666666666666666
+beluga
+45094499_COARSE [=====                                                    ] 6 / 84Actual: 0.5 Approx: 0.05333333333333334 Alt-Approx: 0.6153846153846154
+beluga
+45094499_COARSE [=====|                                                   ] 7 / 84Actual: 0.9166666666666666 Approx: 0.07333333333333333 Alt-Approx: 0.8461538461538461
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [======|                                                  ] 8 / 84Actual: 0.5833333333333334 Approx: 0.05333333333333334 Alt-Approx: 0.6153846153846154
+beluga
+45094499_COARSE [=======|                                                 ] 9 / 84Actual: 0.5384615384615384 Approx: 0.05172413793103448 Alt-Approx: 0.6428571428571429
+beluga
+45094499_COARSE [========                                                 ] 10 / 84Actual: 0.5 Approx: 0.05952380952380952 Alt-Approx: 0.7692307692307693
+beta
+beluga
+45094499_COARSE [========|                                                ] 11 / 84Actual: 0.46153846153846156 Approx: 0.040229885057471264 Alt-Approx: 0.5
+45094499_COARSE [=========                                                ] 12 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [=========|                                               ] 13 / 84Actual: 0.9230769230769231 Approx: 0.06976744186046512 Alt-Approx: 0.8571428571428571
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [==========|                                              ] 14 / 84Actual: 0.38461538461538464 Approx: 0.04597701149425287 Alt-Approx: 0.5714285714285714
+45094499_COARSE [===========|                                             ] 15 / 84Actual: 0.46153846153846156 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+beta
+beluga
+45094499_COARSE [============                                             ] 16 / 84Actual: 0.46153846153846156 Approx: 0.4885057471264368 Alt-Approx: 0.8571428571428571
+sardine
+beta
+beluga
+45094499_COARSE [============|                                            ] 17 / 84Actual: 0.8461538461538461 Approx: 0.06321839080459771 Alt-Approx: 0.7857142857142857
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [=============|                                           ] 18 / 84Actual: 0.46153846153846156 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+beta
+beluga
+45094499_COARSE [==============                                           ] 19 / 84Actual: 0.46153846153846156 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+beta
+beluga
+45094499_COARSE [==============|                                          ] 20 / 84Actual: 0.5384615384615384 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+beta
+beluga
+45094499_COARSE [===============|                                         ] 21 / 84Actual: 0.46153846153846156 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+beta
+beluga
+45094499_COARSE [================                                         ] 22 / 84Actual: 0.7692307692307693 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+45094499_COARSE [================|                                        ] 23 / 84Actual: 0.6153846153846154 Approx: 0.05747126436781609 Alt-Approx: 0.7142857142857143
+beta
+beluga
+45094499_COARSE [=================|                                       ] 24 / 84Actual: 0.46153846153846156 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+beta
+beluga
+45094499_COARSE [==================                                       ] 25 / 84Actual: 0.6923076923076923 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+beta
+beluga
+45094499_COARSE [==================|                                      ] 26 / 84Actual: 0.9230769230769231 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [===================|                                     ] 27 / 84Actual: 0.9230769230769231 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [====================|                                    ] 28 / 84Actual: 0.6923076923076923 Approx: 0.08045977011494253 Alt-Approx: 1.0
+beta
+beluga
+45094499_COARSE [=====================                                    ] 29 / 84Actual: 0.46153846153846156 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+beta
+beluga
+45094499_COARSE [=====================|                                   ] 30 / 84Actual: 0.46153846153846156 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+beta
+beluga
+45094499_COARSE [======================                                   ] 31 / 84Actual: 0.6923076923076923 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+beta
+beluga
+45094499_COARSE [======================|                                  ] 32 / 84Actual: 0.6923076923076923 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+45094499_COARSE [=======================|                                 ] 33 / 84Actual: 0.5384615384615384 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+45094499_COARSE [========================|                                ] 34 / 84Actual: 0.6153846153846154 Approx: 0.4885057471264368 Alt-Approx: 0.8571428571428571
+sardine
+beta
+beluga
+45094499_COARSE [=========================                                ] 35 / 84Actual: 0.9230769230769231 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [=========================|                               ] 36 / 84Actual: 0.9230769230769231 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [==========================                               ] 37 / 84Actual: 0.5384615384615384 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+beta
+beluga
+45094499_COARSE [==========================|                              ] 38 / 84Actual: 0.5384615384615384 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+beta
+beluga
+45094499_COARSE [===========================|                             ] 39 / 84Actual: 0.5384615384615384 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+beta
+beluga
+45094499_COARSE [============================|                            ] 40 / 84Actual: 0.5384615384615384 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+beta
+beluga
+45094499_COARSE [=============================                            ] 41 / 84Actual: 0.8461538461538461 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [=============================|                           ] 42 / 84Actual: 0.46153846153846156 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+beta
+beluga
+45094499_COARSE [==============================                           ] 43 / 84Actual: 0.5384615384615384 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+beta
+beluga
+45094499_COARSE [==============================-|                         ] 44 / 84Actual: 0.5384615384615384 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+beta
+beluga
+45094499_COARSE [================================                         ] 45 / 84Actual: 0.5384615384615384 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+beta
+beluga
+45094499_COARSE [================================|                        ] 46 / 84goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [=================================                        ] 47 / 84Actual: 0.9230769230769231 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [=================================|                       ] 48 / 84Actual: 0.7692307692307693 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+45094499_COARSE [==================================|                      ] 49 / 84Actual: 0.6923076923076923 Approx: 0.08045977011494253 Alt-Approx: 1.0
+beta
+beluga
+45094499_COARSE [===================================|                     ] 50 / 84Actual: 0.5384615384615384 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+beta
+beluga
+45094499_COARSE [====================================                     ] 51 / 84Actual: 0.5384615384615384 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+45094499_COARSE [====================================|                    ] 52 / 84Actual: 0.9230769230769231 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [=====================================                    ] 53 / 84Actual: 0.9230769230769231 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [=====================================|                   ] 54 / 84Actual: 0.9230769230769231 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [======================================|                  ] 55 / 84Actual: 0.7692307692307693 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+45094499_COARSE [=======================================|                 ] 56 / 84Actual: 0.9230769230769231 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [========================================                 ] 57 / 84Actual: 0.5384615384615384 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+45094499_COARSE [========================================|                ] 58 / 84Actual: 0.5384615384615384 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+beta
+beluga
+45094499_COARSE [=========================================                ] 59 / 84Actual: 0.5384615384615384 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+beta
+beluga
+45094499_COARSE [=========================================|               ] 60 / 84Actual: 0.46153846153846156 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+beta
+beluga
+45094499_COARSE [==========================================|              ] 61 / 84Actual: 0.9230769230769231 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [===========================================|             ] 62 / 84Actual: 0.7692307692307693 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+45094499_COARSE [============================================             ] 63 / 84Actual: 0.9230769230769231 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [============================================|            ] 64 / 84Actual: 0.6923076923076923 Approx: 0.09195402298850575 Alt-Approx: 1.0
+beta
+beluga
+45094499_COARSE [=============================================|           ] 65 / 84Actual: 0.9230769230769231 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [==============================================           ] 66 / 84Actual: 0.6153846153846154 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+beta
+beluga
+45094499_COARSE [==============================================|          ] 67 / 84Actual: 0.6923076923076923 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+beta
+beluga
+45094499_COARSE [===============================================|         ] 68 / 84Actual: 0.38461538461538464 Approx: 0.06321839080459771 Alt-Approx: 0.7857142857142857
+beta
+beluga
+45094499_COARSE [================================================         ] 69 / 84Actual: 0.8461538461538461 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [================================================|        ] 70 / 84Actual: 0.9230769230769231 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [=================================================|       ] 71 / 84Actual: 0.8461538461538461 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [==================================================       ] 72 / 84Actual: 0.7692307692307693 Approx: 0.5 Alt-Approx: 1.0
+sardine
+beta
+beluga
+45094499_COARSE [==================================================|      ] 73 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [===================================================|     ] 74 / 84Actual: 0.9230769230769231 Approx: 0.09770114942528736 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [====================================================     ] 75 / 84Actual: 0.6153846153846154 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+beta
+beluga
+45094499_COARSE [====================================================|    ] 76 / 84Actual: 0.9230769230769231 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [=====================================================|   ] 77 / 84Actual: 0.9230769230769231 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [======================================================   ] 78 / 84Actual: 0.9230769230769231 Approx: 0.06896551724137931 Alt-Approx: 0.8571428571428571
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [======================================================|  ] 79 / 84Actual: 0.8 Approx: 0.125 Alt-Approx: 0.6
+goldfish
+lobster
+45094499_COARSE [=======================================================| ] 80 / 84Actual: 1.0 Approx: 0.3333333333333333 Alt-Approx: 1.0
+goldfish
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [========================================================|] 81 / 84Actual: 0.8333333333333334 Approx: 0.4444444444444444 Alt-Approx: 0.6666666666666666
+goldfish
+minnow
+sardine
+whale
+beluga
+lobster
+45094499_COARSE [=========================================================] 82 / 84Actual: 0.8333333333333334 Approx: 0.1111111111111111 Alt-Approx: 0.6666666666666666
+goldfish
+whale
+beluga
+lobster
+45094499_COARSE [=========================================================] 83 / 84Actual: 1.0 Approx: 0.5 Alt-Approx: 1.0
+goldfish
+minnow
+sardine
+beta
+guppy
+whale
+beluga
+lobster
+45094499_COARSE [=========================================================] 84 / 84Writing coarse results...
+45094499 [=                                                               ] 0 / 33645094499 [=                                                               ] 1 / 33645094499 [=                                                               ] 2 / 33645094499 [=                                                               ] 3 / 33645094499 [=                                                               ] 4 / 33645094499 [=|                                                              ] 5 / 33645094499 [==                                                              ] 6 / 33645094499 [==                                                              ] 7 / 33645094499 [==|                                                             ] 8 / 33645094499 [===                                                             ] 9 / 33645094499 [===                                                             ] 10 / 33645094499 [===                                                             ] 11 / 33645094499 [===                                                             ] 12 / 33645094499 [===                                                             ] 13 / 33645094499 [===                                                             ] 14 / 33645094499 [===|                                                            ] 15 / 33645094499 [====                                                            ] 16 / 33645094499 [====                                                            ] 17 / 33645094499 [====|                                                           ] 18 / 33645094499 [=====                                                           ] 19 / 33645094499 [=====                                                           ] 20 / 33645094499 [=====                                                           ] 21 / 33645094499 [=====                                                           ] 22 / 33645094499 [=====                                                           ] 23 / 33645094499 [=====                                                           ] 24 / 33645094499 [=====|                                                          ] 25 / 33645094499 [======                                                          ] 26 / 33645094499 [======                                                          ] 27 / 33645094499 [======|                                                         ] 28 / 33645094499 [=======                                                         ] 29 / 33645094499 [=======                                                         ] 30 / 33645094499 [=======                                                         ] 31 / 33645094499 [=======                                                         ] 32 / 33645094499 [=======                                                         ] 33 / 33645094499 [=======                                                         ] 34 / 33645094499 [=======|                                                        ] 35 / 33645094499 [========                                                        ] 36 / 33645094499 [========                                                        ] 37 / 33645094499 [========                                                        ] 38 / 336Writing fine results...
+
+WALL_CLOCK Ammolite_basic_high_pass 931206ms

@@ -1,0 +1,2035 @@
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: temp
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1566
+matches: 33709847_STRUCT 58694713_STRUCT END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1251
+matches: 33709847 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 2298
+matches: 30129100_STRUCT 12891779_STRUCT 13041372_STRUCT 21960503_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1355
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 6506ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: temp
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1515
+matches: 33709847_STRUCT 58694713_STRUCT END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1239
+matches: 33709847 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 2328
+matches: 30129100_STRUCT 12891779_STRUCT 13041372_STRUCT 21960503_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1379
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 6526ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: temp
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1536
+matches: 33709847_STRUCT 58694713_STRUCT END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1240
+matches: 33709847 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 2223
+matches: 30129100_STRUCT 12891779_STRUCT 13041372_STRUCT 21960503_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1362
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 6408ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: temp
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1529
+matches: 33709847_STRUCT 58694713_STRUCT END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1235
+matches: 33709847 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 2260
+matches: 30129100_STRUCT 12891779_STRUCT 13041372_STRUCT 21960503_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1373
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 6440ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: temp
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1546
+matches: 33709847_STRUCT 58694713_STRUCT END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1241
+matches: 33709847 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 2382
+matches: 30129100_STRUCT 12891779_STRUCT 13041372_STRUCT 21960503_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1379
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 6591ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: temp
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1549
+matches: 33709847_STRUCT 58694713_STRUCT END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1218
+matches: 33709847 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 2243
+matches: 30129100_STRUCT 12891779_STRUCT 13041372_STRUCT 21960503_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1358
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 6401ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: caff_viagra
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 2
+Number of representatives: 2
+Compression Type: FULLY_LABELED
+Source Files:
+2519_STRUCT.sdf molecules: 1
+5212_STRUCT.sdf molecules: 1
+
+Description: temp
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1122
+matches: 2519_STRUCT END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1030
+matches: 2519 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1094
+matches: 5212_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1068
+matches: 5212 END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 4372ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: caff_viagra
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 2
+Number of representatives: 2
+Compression Type: FULLY_LABELED
+Source Files:
+2519_STRUCT.sdf molecules: 1
+5212_STRUCT.sdf molecules: 1
+
+Description: temp
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1120
+matches: 2519_STRUCT END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1026
+matches: 2519 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1093
+matches: 5212_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1077
+matches: 5212 END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 4365ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: caff_viagra
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 2
+Number of representatives: 2
+Compression Type: FULLY_LABELED
+Source Files:
+2519_STRUCT.sdf molecules: 1
+5212_STRUCT.sdf molecules: 1
+
+Description: temp
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1120
+matches: 2519_STRUCT END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1032
+matches: 2519 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1093
+matches: 5212_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1056
+matches: 5212 END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 4342ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: caff_viagra
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 2
+Number of representatives: 2
+Compression Type: FULLY_LABELED
+Source Files:
+2519_STRUCT.sdf molecules: 1
+5212_STRUCT.sdf molecules: 1
+
+Description: temp
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1117
+matches: 2519_STRUCT END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1031
+matches: 2519 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1093
+matches: 5212_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1086
+matches: 5212 END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 4369ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: caff_viagra
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 2
+Number of representatives: 2
+Compression Type: FULLY_LABELED
+Source Files:
+2519_STRUCT.sdf molecules: 1
+5212_STRUCT.sdf molecules: 1
+
+Description: temp
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1126
+matches: 2519_STRUCT END_METHOD
+END_QUERY
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: caff_viagra
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 2
+Number of representatives: 2
+Compression Type: FULLY_LABELED
+Source Files:
+2519_STRUCT.sdf molecules: 1
+5212_STRUCT.sdf molecules: 1
+
+Description: temp
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1117
+matches: 2519_STRUCT END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1028
+matches: 2519 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1115
+matches: 5212_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1065
+matches: 5212 END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 4380ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: caff_viagra
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 2
+Number of representatives: 2
+Compression Type: FULLY_LABELED
+Source Files:
+2519_STRUCT.sdf molecules: 1
+5212_STRUCT.sdf molecules: 1
+
+Description: temp
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1110
+matches: 2519_STRUCT END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1026
+matches: 2519 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1096
+matches: 5212_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1062
+matches: 5212 END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 4341ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: caff_viagra
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 2
+Number of representatives: 2
+Compression Type: FULLY_LABELED
+Source Files:
+2519_STRUCT.sdf molecules: 1
+5212_STRUCT.sdf molecules: 1
+
+Description: temp
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1116
+matches: 2519_STRUCT END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1027
+matches: 2519 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1102
+matches: 5212_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1066
+matches: 5212 END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 4405ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: caff_viagra
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 2
+Number of representatives: 2
+Compression Type: FULLY_LABELED
+Source Files:
+2519_STRUCT.sdf molecules: 1
+5212_STRUCT.sdf molecules: 1
+
+Description: temp
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1131
+matches: 2519_STRUCT END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1025
+matches: 2519 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1091
+matches: 5212_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1077
+matches: 5212 END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 4365ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: caff_viagra
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 2
+Number of representatives: 2
+Compression Type: FULLY_LABELED
+Source Files:
+2519_STRUCT.sdf molecules: 1
+5212_STRUCT.sdf molecules: 1
+
+Description: temp
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1112
+matches: 2519_STRUCT END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1030
+matches: 2519 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1087
+matches: 5212_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1059
+matches: 5212 END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 4364ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: caff_viagra
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 2
+Number of representatives: 2
+Compression Type: FULLY_LABELED
+Source Files:
+2519_STRUCT.sdf molecules: 1
+5212_STRUCT.sdf molecules: 1
+
+Description: temp
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1118
+matches: 2519_STRUCT END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1030
+matches: 2519 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1102
+matches: 5212_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1083
+matches: 5212 END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 4382ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: temp
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1580
+matches: 33709847_STRUCT 58694713_STRUCT END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1272
+matches: 33709847 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 2193
+matches: 30129100_STRUCT 12891779_STRUCT 13041372_STRUCT 21960503_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1403
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 6484ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: temp
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1585
+matches: 33709847_STRUCT 58694713_STRUCT END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1266
+matches: 33709847 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 2465
+matches: 30129100_STRUCT 12891779_STRUCT 13041372_STRUCT 21960503_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1429
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 6828ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: temp
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1585
+matches: 33709847_STRUCT 58694713_STRUCT END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1252
+matches: 33709847 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 2233
+matches: 30129100_STRUCT 12891779_STRUCT 13041372_STRUCT 21960503_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1354
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 6540ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: temp
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1585
+matches: 33709847_STRUCT 58694713_STRUCT END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1257
+matches: 33709847 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 2210
+matches: 30129100_STRUCT 12891779_STRUCT 13041372_STRUCT 21960503_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1325
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 6416ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: temp
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1555
+matches: 33709847_STRUCT 58694713_STRUCT END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1270
+matches: 33709847 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 2284
+matches: 30129100_STRUCT 12891779_STRUCT 13041372_STRUCT 21960503_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1385
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 6539ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: temp
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1534
+matches: 33709847_STRUCT 58694713_STRUCT END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1287
+matches: 33709847 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 2365
+matches: 30129100_STRUCT 12891779_STRUCT 13041372_STRUCT 21960503_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1378
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 6601ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: temp
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1557
+matches: 33709847_STRUCT 58694713_STRUCT END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1246
+matches: 33709847 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 2257
+matches: 30129100_STRUCT 12891779_STRUCT 13041372_STRUCT 21960503_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1325
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 6426ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 100_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 100
+Number of representatives: 84
+Compression Type: FULLY_LABELED
+Number of source files: 84
+Description: temp
+START_QUERY 52790494
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 6092
+matches: 16379568_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 52790494
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1258
+matches: END_METHOD
+END_QUERY
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 100_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 100
+Number of representatives: 84
+Compression Type: FULLY_LABELED
+Number of source files: 84
+Description: temp
+START_QUERY 52790494
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 6000
+matches: 16379568_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 52790494
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1304
+matches: END_METHOD
+END_QUERY
+START_QUERY 61561031
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 8507
+matches: 61367128_STRUCT 48497298_STRUCT 62678855_STRUCT 27173023_STRUCT 16379568_STRUCT 48131770_STRUCT 34066282_STRUCT 30544573_STRUCT 59293769_STRUCT 1525165_STRUCT 66851793_STRUCT 25309802_STRUCT 23870737_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 61561031
+START_METHOD Ammolite_basic_no_ringmatch
+time: 9974
+matches: 2398094 2398094 66851793 30544573 END_METHOD
+END_QUERY
+START_QUERY 37285639
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 2515
+matches: 61367128_STRUCT 51215349_STRUCT 48497298_STRUCT 62678855_STRUCT 23358082_STRUCT 16379568_STRUCT 7646972_STRUCT 7247461_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 37285639
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1181
+matches: END_METHOD
+END_QUERY
+START_QUERY 13041372
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1690
+matches: 61367128_STRUCT 51215349_STRUCT 48497298_STRUCT 62678855_STRUCT 27173023_STRUCT 23358082_STRUCT 10130194_STRUCT 16379568_STRUCT 48131770_STRUCT 29050647_STRUCT 57247322_STRUCT 40399283_STRUCT 4524519_STRUCT 65295144_STRUCT 3989000_STRUCT 28815830_STRUCT 10446339_STRUCT 50745572_STRUCT 22356779_STRUCT 17046933_STRUCT 33958512_STRUCT 19240983_STRUCT 56885935_STRUCT 17684074_STRUCT 32850434_STRUCT 30371023_STRUCT 64799108_STRUCT 41641047_STRUCT 18841895_STRUCT 8576134_STRUCT 29881511_STRUCT 890505_STRUCT 50980631_STRUCT 15919642_STRUCT 23890422_STRUCT 32660251_STRUCT 46542740_STRUCT 25619865_STRUCT 48875331_STRUCT 7646972_STRUCT 44495362_STRUCT 46420414_STRUCT 9930426_STRUCT 47862991_STRUCT 19576084_STRUCT 19772271_STRUCT 34066282_STRUCT 18198587_STRUCT 32667412_STRUCT 45841961_STRUCT 47899785_STRUCT 6133607_STRUCT 4703871_STRUCT 53460846_STRUCT 48329520_STRUCT 30544573_STRUCT 67298827_STRUCT 49119455_STRUCT 23100455_STRUCT 44182792_STRUCT 37545929_STRUCT 56370184_STRUCT 7247461_STRUCT 3390483_STRUCT 41190365_STRUCT 59293769_STRUCT 32215824_STRUCT 60547685_STRUCT 40382685_STRUCT 66851793_STRUCT 43992851_STRUCT 25309802_STRUCT 1525165_STRUCT 18722923_STRUCT 3437639_STRUCT 23870737_STRUCT 6512723_STRUCT 62452948_STRUCT 51682807_STRUCT 49785243_STRUCT END_METHOD
+END_QUERY
+START_QUERY 13041372
+START_METHOD Ammolite_basic_no_ringmatch
+time: 2455
+matches: END_METHOD
+END_QUERY
+START_QUERY 68742355
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 6005
+matches: 23358082_STRUCT 22356779_STRUCT 890505_STRUCT 23890422_STRUCT 15919642_STRUCT 19772271_STRUCT 6133607_STRUCT 53460846_STRUCT 4703871_STRUCT 41190365_STRUCT 37545929_STRUCT 56370184_STRUCT 45841961_STRUCT 3390483_STRUCT 60547685_STRUCT 1525165_STRUCT 3437639_STRUCT 23870737_STRUCT 6512723_STRUCT 62452948_STRUCT 51682807_STRUCT 49785243_STRUCT END_METHOD
+END_QUERY
+START_QUERY 68742355
+START_METHOD Ammolite_basic_no_ringmatch
+time: 636130
+matches: 18417958 END_METHOD
+END_QUERY
+START_QUERY 17679549
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 3737
+matches: 61367128_STRUCT 62678855_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 17679549
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1208
+matches: END_METHOD
+END_QUERY
+START_QUERY 33039448
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 11409
+matches: 61367128_STRUCT 48497298_STRUCT 62678855_STRUCT 27173023_STRUCT 23358082_STRUCT 10130194_STRUCT 16379568_STRUCT 48131770_STRUCT 57247322_STRUCT 17046933_STRUCT 10446339_STRUCT 66851793_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT 23870737_STRUCT END_METHOD
+END_QUERY
+START_QUERY 33039448
+START_METHOD Ammolite_basic_no_ringmatch
+time: 30491
+matches: END_METHOD
+END_QUERY
+START_QUERY 56075847
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 28266
+matches: 61367128_STRUCT 51215349_STRUCT 48497298_STRUCT 27173023_STRUCT 62678855_STRUCT 10130194_STRUCT 16379568_STRUCT 23358082_STRUCT 4524519_STRUCT 50745572_STRUCT 65295144_STRUCT 17046933_STRUCT 19240983_STRUCT 29881511_STRUCT 32660251_STRUCT 25619865_STRUCT 47899785_STRUCT 4703871_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 56075847
+START_METHOD Ammolite_basic_no_ringmatch
+time: 4985
+matches: 10130194 END_METHOD
+END_QUERY
+START_QUERY 58685014
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1615
+matches: 61367128_STRUCT 51215349_STRUCT 48497298_STRUCT 62678855_STRUCT 27173023_STRUCT 10130194_STRUCT 23358082_STRUCT 16379568_STRUCT 29050647_STRUCT 48131770_STRUCT 57247322_STRUCT 40399283_STRUCT 4524519_STRUCT 65295144_STRUCT 3989000_STRUCT 28815830_STRUCT 10446339_STRUCT 22356779_STRUCT 50745572_STRUCT 17046933_STRUCT 33958512_STRUCT 19240983_STRUCT 17684074_STRUCT 56885935_STRUCT 32850434_STRUCT 30371023_STRUCT 64799108_STRUCT 41641047_STRUCT 18841895_STRUCT 8576134_STRUCT 29881511_STRUCT 890505_STRUCT 50980631_STRUCT 15919642_STRUCT 23890422_STRUCT 32660251_STRUCT 46542740_STRUCT 25619865_STRUCT 48875331_STRUCT 44495362_STRUCT 7646972_STRUCT 46420414_STRUCT 9930426_STRUCT 47862991_STRUCT 19576084_STRUCT 19772271_STRUCT 34066282_STRUCT 18198587_STRUCT 32667412_STRUCT 47899785_STRUCT 45841961_STRUCT 6133607_STRUCT 4703871_STRUCT 48329520_STRUCT 53460846_STRUCT 30544573_STRUCT 67298827_STRUCT 49119455_STRUCT 23100455_STRUCT 44182792_STRUCT 37545929_STRUCT 56370184_STRUCT 7247461_STRUCT 3390483_STRUCT 41190365_STRUCT 59293769_STRUCT 32215824_STRUCT 60547685_STRUCT 40382685_STRUCT 66851793_STRUCT 43992851_STRUCT 1525165_STRUCT 25309802_STRUCT 18722923_STRUCT 3437639_STRUCT 23870737_STRUCT 6512723_STRUCT 62452948_STRUCT 51682807_STRUCT 49785243_STRUCT END_METHOD
+END_QUERY
+START_QUERY 58685014
+START_METHOD Ammolite_basic_no_ringmatch
+time: 4758
+matches: END_METHOD
+END_QUERY
+START_QUERY 45094499
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 2655
+matches: 23358082_STRUCT 22356779_STRUCT 57247322_STRUCT 28815830_STRUCT 890505_STRUCT 32850434_STRUCT 15919642_STRUCT 23890422_STRUCT 44495362_STRUCT 47862991_STRUCT 19772271_STRUCT 6133607_STRUCT 53460846_STRUCT 4703871_STRUCT 67298827_STRUCT 41190365_STRUCT 56370184_STRUCT 3390483_STRUCT 60547685_STRUCT 1525165_STRUCT 40382685_STRUCT 66851793_STRUCT 18722923_STRUCT 3437639_STRUCT 49785243_STRUCT 6512723_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT 23870737_STRUCT END_METHOD
+END_QUERY
+START_QUERY 45094499
+START_METHOD Ammolite_basic_no_ringmatch
+time: 8711
+matches: 1525165 1525165 3390483 15812686 18417958 53460846 22356779 6133607 END_METHOD
+END_QUERY
+START_QUERY 48826350
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 25283
+matches: 61367128_STRUCT 51215349_STRUCT 62678855_STRUCT 27173023_STRUCT 23358082_STRUCT 10130194_STRUCT 16379568_STRUCT 4524519_STRUCT 50745572_STRUCT 65295144_STRUCT 17046933_STRUCT 19240983_STRUCT 32660251_STRUCT 47899785_STRUCT 4703871_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 48826350
+START_METHOD Ammolite_basic_no_ringmatch
+time: 6967
+matches: 10130194 END_METHOD
+END_QUERY
+START_QUERY 33554626
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 5864
+matches: 61367128_STRUCT 51215349_STRUCT 62678855_STRUCT 10130194_STRUCT 16379568_STRUCT 23358082_STRUCT 4524519_STRUCT 50745572_STRUCT 17046933_STRUCT 65295144_STRUCT 19240983_STRUCT 48329520_STRUCT 67298827_STRUCT 3390483_STRUCT 23870737_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 33554626
+START_METHOD Ammolite_basic_no_ringmatch
+time: 7140
+matches: 10130194 END_METHOD
+END_QUERY
+START_QUERY 33709847
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 3971
+matches: 61367128_STRUCT 62678855_STRUCT 48497298_STRUCT 27173023_STRUCT 23358082_STRUCT 10130194_STRUCT 16379568_STRUCT 48131770_STRUCT 65295144_STRUCT 4524519_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 33709847
+START_METHOD Ammolite_basic_no_ringmatch
+time: 2375
+matches: 2398094 2398094 10130194 END_METHOD
+END_QUERY
+START_QUERY 21960503
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 6184
+matches: 61367128_STRUCT 51215349_STRUCT 48497298_STRUCT 62678855_STRUCT 27173023_STRUCT 10130194_STRUCT 16379568_STRUCT 48131770_STRUCT 29050647_STRUCT 23358082_STRUCT 57247322_STRUCT 40399283_STRUCT 22356779_STRUCT 3989000_STRUCT 28815830_STRUCT 65295144_STRUCT 50745572_STRUCT 10446339_STRUCT 17046933_STRUCT 33958512_STRUCT 19240983_STRUCT 56885935_STRUCT 17684074_STRUCT 32850434_STRUCT 30371023_STRUCT 64799108_STRUCT 41641047_STRUCT 18841895_STRUCT 8576134_STRUCT 29881511_STRUCT 890505_STRUCT 23890422_STRUCT 32660251_STRUCT 46542740_STRUCT 25619865_STRUCT 48875331_STRUCT 44495362_STRUCT 7646972_STRUCT 9930426_STRUCT 46420414_STRUCT 47862991_STRUCT 19576084_STRUCT 18198587_STRUCT 15919642_STRUCT 34066282_STRUCT 47899785_STRUCT 19772271_STRUCT 32667412_STRUCT 6133607_STRUCT 45841961_STRUCT 4703871_STRUCT 48329520_STRUCT 67298827_STRUCT 30544573_STRUCT 49119455_STRUCT 23100455_STRUCT 44182792_STRUCT 53460846_STRUCT 37545929_STRUCT 56370184_STRUCT 7247461_STRUCT 41190365_STRUCT 59293769_STRUCT 3390483_STRUCT 60547685_STRUCT 40382685_STRUCT 66851793_STRUCT 43992851_STRUCT 25309802_STRUCT 18722923_STRUCT 1525165_STRUCT 3437639_STRUCT 49785243_STRUCT 23870737_STRUCT 62452948_STRUCT 51682807_STRUCT 6512723_STRUCT END_METHOD
+END_QUERY
+START_QUERY 21960503
+START_METHOD Ammolite_basic_no_ringmatch
+time: 14637
+matches: END_METHOD
+END_QUERY
+START_QUERY 40242343
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 2359
+matches: 61367128_STRUCT 48497298_STRUCT 62678855_STRUCT 27173023_STRUCT 16379568_STRUCT 48131770_STRUCT 40399283_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 40242343
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1301
+matches: END_METHOD
+END_QUERY
+START_QUERY 70334086
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 2918
+matches: 48497298_STRUCT 27173023_STRUCT 40399283_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 70334086
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1627
+matches: END_METHOD
+END_QUERY
+START_QUERY 11772449
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 74604
+matches: 61367128_STRUCT 51215349_STRUCT 27173023_STRUCT 62678855_STRUCT 23358082_STRUCT 16379568_STRUCT 48131770_STRUCT 10130194_STRUCT 4524519_STRUCT 50745572_STRUCT 17046933_STRUCT 65295144_STRUCT 19240983_STRUCT 17684074_STRUCT 18198587_STRUCT 6133607_STRUCT 4703871_STRUCT 67298827_STRUCT 41190365_STRUCT 56370184_STRUCT 3390483_STRUCT 45841961_STRUCT 1525165_STRUCT 59293769_STRUCT 49785243_STRUCT 23870737_STRUCT 6512723_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT 3437639_STRUCT END_METHOD
+END_QUERY
+START_QUERY 11772449
+START_METHOD Ammolite_basic_no_ringmatch
+time: 181785
+matches: 10130194 END_METHOD
+END_QUERY
+START_QUERY 1185411
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 3420
+matches: 61367128_STRUCT 51215349_STRUCT 48497298_STRUCT 23358082_STRUCT 16379568_STRUCT 4524519_STRUCT 17684074_STRUCT 18841895_STRUCT 890505_STRUCT 4703871_STRUCT 49119455_STRUCT 23100455_STRUCT 59293769_STRUCT 60547685_STRUCT 43992851_STRUCT 23379805_STRUCT 62452948_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 1185411
+START_METHOD Ammolite_basic_no_ringmatch
+time: 2457
+matches: END_METHOD
+END_QUERY
+START_QUERY 12891779
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 23843
+matches: 61367128_STRUCT 51215349_STRUCT 62678855_STRUCT 23358082_STRUCT 10130194_STRUCT 16379568_STRUCT 4524519_STRUCT 22356779_STRUCT 28815830_STRUCT 50745572_STRUCT 17046933_STRUCT 65295144_STRUCT 33958512_STRUCT 19240983_STRUCT 56885935_STRUCT 17684074_STRUCT 64799108_STRUCT 890505_STRUCT 41641047_STRUCT 18841895_STRUCT 29881511_STRUCT 8576134_STRUCT 15919642_STRUCT 23890422_STRUCT 46542740_STRUCT 32660251_STRUCT 25619865_STRUCT 44495362_STRUCT 48875331_STRUCT 9930426_STRUCT 46420414_STRUCT 47862991_STRUCT 18198587_STRUCT 19576084_STRUCT 19772271_STRUCT 32667412_STRUCT 47899785_STRUCT 6133607_STRUCT 53460846_STRUCT 4703871_STRUCT 48329520_STRUCT 67298827_STRUCT 44182792_STRUCT 41190365_STRUCT 37545929_STRUCT 56370184_STRUCT 3390483_STRUCT 59293769_STRUCT 60547685_STRUCT 1525165_STRUCT 40382685_STRUCT 45841961_STRUCT 43992851_STRUCT 25309802_STRUCT 49785243_STRUCT 23870737_STRUCT 6512723_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT 3437639_STRUCT END_METHOD
+END_QUERY
+START_QUERY 12891779
+START_METHOD Ammolite_basic_no_ringmatch
+time: 38982
+matches: 10130194 3437639 END_METHOD
+END_QUERY
+START_QUERY 16523035
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 3120
+matches: 61367128_STRUCT 62678855_STRUCT 40399283_STRUCT 3989000_STRUCT 28815830_STRUCT 19240983_STRUCT 8576134_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 16523035
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1545
+matches: END_METHOD
+END_QUERY
+START_QUERY 41013647
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 13632
+matches: 61367128_STRUCT 51215349_STRUCT 62678855_STRUCT 10130194_STRUCT 16379568_STRUCT 23358082_STRUCT 57247322_STRUCT 4524519_STRUCT 22356779_STRUCT 65295144_STRUCT 50745572_STRUCT 17046933_STRUCT 19240983_STRUCT 17684074_STRUCT 32660251_STRUCT 6133607_STRUCT 45841961_STRUCT 4703871_STRUCT 56370184_STRUCT 41190365_STRUCT 23870737_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 41013647
+START_METHOD Ammolite_basic_no_ringmatch
+time: 15436
+matches: 10130194 END_METHOD
+END_QUERY
+START_QUERY 40099516
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 3230
+matches: 61367128_STRUCT 51215349_STRUCT 62678855_STRUCT 23358082_STRUCT 16379568_STRUCT 10130194_STRUCT 65295144_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 40099516
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1436
+matches: END_METHOD
+END_QUERY
+START_QUERY 47478534
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 17387
+matches: 61367128_STRUCT 48497298_STRUCT 51215349_STRUCT 62678855_STRUCT 27173023_STRUCT 23358082_STRUCT 10130194_STRUCT 16379568_STRUCT 48131770_STRUCT 4524519_STRUCT 65295144_STRUCT 19240983_STRUCT 56885935_STRUCT 17684074_STRUCT 46420414_STRUCT 19772271_STRUCT 32667412_STRUCT 19576084_STRUCT 45841961_STRUCT 30544573_STRUCT 37545929_STRUCT 3390483_STRUCT 59293769_STRUCT 1525165_STRUCT 41190365_STRUCT 66851793_STRUCT 25309802_STRUCT 49785243_STRUCT 23870737_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT 3437639_STRUCT END_METHOD
+END_QUERY
+START_QUERY 47478534
+START_METHOD Ammolite_basic_no_ringmatch
+time: 22453
+matches: 23870737 END_METHOD
+END_QUERY
+START_QUERY 37707024
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 22681
+matches: 61367128_STRUCT 51215349_STRUCT 48497298_STRUCT 62678855_STRUCT 23358082_STRUCT 27173023_STRUCT 10130194_STRUCT 16379568_STRUCT 48131770_STRUCT 22356779_STRUCT 4703871_STRUCT 30544573_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 37707024
+START_METHOD Ammolite_basic_no_ringmatch
+time: 7960
+matches: 2398094 2398094 10130194 48131770 48131770 END_METHOD
+END_QUERY
+START_QUERY 5370767
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 10534
+matches: 61367128_STRUCT 51215349_STRUCT 62678855_STRUCT 23358082_STRUCT 16379568_STRUCT 10130194_STRUCT 4524519_STRUCT 57247322_STRUCT 50745572_STRUCT 17046933_STRUCT 65295144_STRUCT 19240983_STRUCT 17684074_STRUCT 32660251_STRUCT 47862991_STRUCT 47899785_STRUCT 6133607_STRUCT 45841961_STRUCT 53460846_STRUCT 4703871_STRUCT 67298827_STRUCT 3390483_STRUCT 59293769_STRUCT 41190365_STRUCT 1525165_STRUCT 66851793_STRUCT 25309802_STRUCT 49785243_STRUCT 23870737_STRUCT 6512723_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT 3437639_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5370767
+START_METHOD Ammolite_basic_no_ringmatch
+time: 35511
+matches: 53460846 10130194 END_METHOD
+END_QUERY
+START_QUERY 33307105
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 2395
+matches: 61367128_STRUCT 51215349_STRUCT 62678855_STRUCT 10130194_STRUCT 16379568_STRUCT 23358082_STRUCT 65295144_STRUCT 50745572_STRUCT 17046933_STRUCT 19240983_STRUCT 17684074_STRUCT 23890422_STRUCT 32660251_STRUCT 25619865_STRUCT 9930426_STRUCT 18198587_STRUCT 19576084_STRUCT 19772271_STRUCT 47899785_STRUCT 6133607_STRUCT 45841961_STRUCT 4703871_STRUCT 67298827_STRUCT 41190365_STRUCT 56370184_STRUCT 3390483_STRUCT 59293769_STRUCT 1525165_STRUCT 25309802_STRUCT 49785243_STRUCT 23870737_STRUCT 3437639_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT 6512723_STRUCT END_METHOD
+END_QUERY
+START_QUERY 33307105
+START_METHOD Ammolite_basic_no_ringmatch
+time: 4405
+matches: 10130194 END_METHOD
+END_QUERY
+START_QUERY 30129100
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 2920
+matches: 61367128_STRUCT 51215349_STRUCT 62678855_STRUCT 10130194_STRUCT 16379568_STRUCT 23358082_STRUCT 4524519_STRUCT 65295144_STRUCT 50745572_STRUCT 17046933_STRUCT 19240983_STRUCT 56885935_STRUCT 17684074_STRUCT 29881511_STRUCT 23890422_STRUCT 32660251_STRUCT 25619865_STRUCT 48875331_STRUCT 9930426_STRUCT 46420414_STRUCT 19576084_STRUCT 18198587_STRUCT 47899785_STRUCT 19772271_STRUCT 32667412_STRUCT 6133607_STRUCT 45841961_STRUCT 4703871_STRUCT 67298827_STRUCT 44182792_STRUCT 56370184_STRUCT 41190365_STRUCT 3390483_STRUCT 59293769_STRUCT 25309802_STRUCT 1525165_STRUCT 3437639_STRUCT 49785243_STRUCT 6512723_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT 23870737_STRUCT END_METHOD
+END_QUERY
+START_QUERY 30129100
+START_METHOD Ammolite_basic_no_ringmatch
+time: 7127
+matches: 10130194 END_METHOD
+END_QUERY
+START_QUERY 58694713
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 19934
+matches: 61367128_STRUCT 51215349_STRUCT 48497298_STRUCT 62678855_STRUCT 10130194_STRUCT 23358082_STRUCT 16379568_STRUCT 65295144_STRUCT 4524519_STRUCT 50745572_STRUCT 19240983_STRUCT 17046933_STRUCT 64799108_STRUCT 41641047_STRUCT 46420414_STRUCT 19576084_STRUCT 4703871_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 58694713
+START_METHOD Ammolite_basic_no_ringmatch
+time: 19237
+matches: 10130194 END_METHOD
+END_QUERY
+START_QUERY 58694713
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 19697
+matches: 61367128_STRUCT 51215349_STRUCT 48497298_STRUCT 62678855_STRUCT 10130194_STRUCT 23358082_STRUCT 16379568_STRUCT 65295144_STRUCT 4524519_STRUCT 50745572_STRUCT 19240983_STRUCT 17046933_STRUCT 64799108_STRUCT 41641047_STRUCT 46420414_STRUCT 19576084_STRUCT 4703871_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 58694713
+START_METHOD Ammolite_basic_no_ringmatch
+time: 19332
+matches: 10130194 END_METHOD
+END_QUERY
+START_QUERY 55065205
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1712
+matches: 61367128_STRUCT 51215349_STRUCT 48497298_STRUCT 62678855_STRUCT 27173023_STRUCT 10130194_STRUCT 23358082_STRUCT 16379568_STRUCT 29050647_STRUCT 48131770_STRUCT 57247322_STRUCT 40399283_STRUCT 4524519_STRUCT 65295144_STRUCT 3989000_STRUCT 28815830_STRUCT 22356779_STRUCT 10446339_STRUCT 50745572_STRUCT 17046933_STRUCT 33958512_STRUCT 19240983_STRUCT 56885935_STRUCT 17684074_STRUCT 32850434_STRUCT 30371023_STRUCT 64799108_STRUCT 41641047_STRUCT 18841895_STRUCT 8576134_STRUCT 890505_STRUCT 29881511_STRUCT 50980631_STRUCT 15919642_STRUCT 23890422_STRUCT 46542740_STRUCT 32660251_STRUCT 25619865_STRUCT 48875331_STRUCT 7646972_STRUCT 44495362_STRUCT 46420414_STRUCT 9930426_STRUCT 47862991_STRUCT 19576084_STRUCT 19772271_STRUCT 34066282_STRUCT 18198587_STRUCT 32667412_STRUCT 47899785_STRUCT 45841961_STRUCT 6133607_STRUCT 4703871_STRUCT 48329520_STRUCT 53460846_STRUCT 67298827_STRUCT 30544573_STRUCT 49119455_STRUCT 44182792_STRUCT 23100455_STRUCT 37545929_STRUCT 56370184_STRUCT 7247461_STRUCT 3390483_STRUCT 41190365_STRUCT 59293769_STRUCT 32215824_STRUCT 60547685_STRUCT 40382685_STRUCT 66851793_STRUCT 43992851_STRUCT 25309802_STRUCT 1525165_STRUCT 18722923_STRUCT 3437639_STRUCT 23870737_STRUCT 6512723_STRUCT 62452948_STRUCT 51682807_STRUCT 49785243_STRUCT END_METHOD
+END_QUERY
+START_QUERY 55065205
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1786
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 1432873ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 100_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 100
+Number of representatives: 84
+Compression Type: FULLY_LABELED
+Number of source files: 84
+Description: temp
+START_QUERY 52790494
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 5452
+matches: 16379568_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 52790494
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1213
+matches: END_METHOD
+END_QUERY
+START_QUERY 61561031
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 7755
+matches: 61367128_STRUCT 48497298_STRUCT 62678855_STRUCT 27173023_STRUCT 16379568_STRUCT 48131770_STRUCT 34066282_STRUCT 30544573_STRUCT 59293769_STRUCT 1525165_STRUCT 66851793_STRUCT 25309802_STRUCT 23870737_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 61561031
+START_METHOD Ammolite_basic_no_ringmatch
+time: 10549
+matches: 2398094 2398094 66851793 30544573 END_METHOD
+END_QUERY
+START_QUERY 37285639
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 2561
+matches: 61367128_STRUCT 51215349_STRUCT 48497298_STRUCT 62678855_STRUCT 23358082_STRUCT 16379568_STRUCT 7646972_STRUCT 7247461_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 37285639
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1253
+matches: END_METHOD
+END_QUERY
+START_QUERY 13041372
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1696
+matches: 61367128_STRUCT 51215349_STRUCT 48497298_STRUCT 62678855_STRUCT 27173023_STRUCT 23358082_STRUCT 10130194_STRUCT 16379568_STRUCT 29050647_STRUCT 48131770_STRUCT 57247322_STRUCT 40399283_STRUCT 4524519_STRUCT 65295144_STRUCT 3989000_STRUCT 28815830_STRUCT 22356779_STRUCT 10446339_STRUCT 50745572_STRUCT 17046933_STRUCT 19240983_STRUCT 33958512_STRUCT 17684074_STRUCT 56885935_STRUCT 32850434_STRUCT 30371023_STRUCT 64799108_STRUCT 41641047_STRUCT 18841895_STRUCT 8576134_STRUCT 29881511_STRUCT 890505_STRUCT 50980631_STRUCT 15919642_STRUCT 23890422_STRUCT 32660251_STRUCT 46542740_STRUCT 25619865_STRUCT 48875331_STRUCT 44495362_STRUCT 7646972_STRUCT 9930426_STRUCT 46420414_STRUCT 47862991_STRUCT 19576084_STRUCT 19772271_STRUCT 34066282_STRUCT 18198587_STRUCT 32667412_STRUCT 45841961_STRUCT 47899785_STRUCT 6133607_STRUCT 4703871_STRUCT 48329520_STRUCT 53460846_STRUCT 30544573_STRUCT 67298827_STRUCT 23100455_STRUCT 49119455_STRUCT 44182792_STRUCT 37545929_STRUCT 56370184_STRUCT 7247461_STRUCT 3390483_STRUCT 41190365_STRUCT 59293769_STRUCT 32215824_STRUCT 60547685_STRUCT 40382685_STRUCT 66851793_STRUCT 43992851_STRUCT 25309802_STRUCT 1525165_STRUCT 18722923_STRUCT 3437639_STRUCT 23870737_STRUCT 6512723_STRUCT 62452948_STRUCT 51682807_STRUCT 49785243_STRUCT END_METHOD
+END_QUERY
+START_QUERY 13041372
+START_METHOD Ammolite_basic_no_ringmatch
+time: 2904
+matches: END_METHOD
+END_QUERY
+START_QUERY 68742355
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 7806
+matches: 23358082_STRUCT 22356779_STRUCT 890505_STRUCT 23890422_STRUCT 15919642_STRUCT 19772271_STRUCT 6133607_STRUCT 53460846_STRUCT 4703871_STRUCT 41190365_STRUCT 37545929_STRUCT 56370184_STRUCT 3390483_STRUCT 60547685_STRUCT 1525165_STRUCT 45841961_STRUCT 3437639_STRUCT 23870737_STRUCT 6512723_STRUCT 62452948_STRUCT 51682807_STRUCT 49785243_STRUCT END_METHOD
+END_QUERY
+START_QUERY 68742355
+START_METHOD Ammolite_basic_no_ringmatch
+time: 663239
+matches: 18417958 END_METHOD
+END_QUERY
+START_QUERY 17679549
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 4342
+matches: 61367128_STRUCT 62678855_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 17679549
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1283
+matches: END_METHOD
+END_QUERY
+START_QUERY 33039448
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 17509
+matches: 61367128_STRUCT 48497298_STRUCT 62678855_STRUCT 27173023_STRUCT 23358082_STRUCT 10130194_STRUCT 16379568_STRUCT 48131770_STRUCT 57247322_STRUCT 17046933_STRUCT 10446339_STRUCT 66851793_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT 23870737_STRUCT END_METHOD
+END_QUERY
+START_QUERY 33039448
+START_METHOD Ammolite_basic_no_ringmatch
+time: 40977
+matches: END_METHOD
+END_QUERY
+START_QUERY 56075847
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 45275
+matches: 61367128_STRUCT 51215349_STRUCT 48497298_STRUCT 27173023_STRUCT 62678855_STRUCT 10130194_STRUCT 16379568_STRUCT 23358082_STRUCT 4524519_STRUCT 50745572_STRUCT 65295144_STRUCT 17046933_STRUCT 19240983_STRUCT 29881511_STRUCT 32660251_STRUCT 25619865_STRUCT 47899785_STRUCT 4703871_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 56075847
+START_METHOD Ammolite_basic_no_ringmatch
+time: 8237
+matches: 10130194 END_METHOD
+END_QUERY
+START_QUERY 58685014
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 1973
+matches: 61367128_STRUCT 51215349_STRUCT 48497298_STRUCT 62678855_STRUCT 27173023_STRUCT 23358082_STRUCT 10130194_STRUCT 16379568_STRUCT 29050647_STRUCT 48131770_STRUCT 57247322_STRUCT 40399283_STRUCT 4524519_STRUCT 65295144_STRUCT 3989000_STRUCT 28815830_STRUCT 10446339_STRUCT 50745572_STRUCT 22356779_STRUCT 17046933_STRUCT 19240983_STRUCT 33958512_STRUCT 56885935_STRUCT 17684074_STRUCT 32850434_STRUCT 30371023_STRUCT 64799108_STRUCT 41641047_STRUCT 18841895_STRUCT 8576134_STRUCT 29881511_STRUCT 890505_STRUCT 50980631_STRUCT 15919642_STRUCT 23890422_STRUCT 46542740_STRUCT 32660251_STRUCT 25619865_STRUCT 48875331_STRUCT 44495362_STRUCT 7646972_STRUCT 46420414_STRUCT 9930426_STRUCT 47862991_STRUCT 19576084_STRUCT 19772271_STRUCT 34066282_STRUCT 18198587_STRUCT 32667412_STRUCT 45841961_STRUCT 47899785_STRUCT 6133607_STRUCT 4703871_STRUCT 48329520_STRUCT 53460846_STRUCT 30544573_STRUCT 67298827_STRUCT 49119455_STRUCT 23100455_STRUCT 44182792_STRUCT 37545929_STRUCT 56370184_STRUCT 7247461_STRUCT 3390483_STRUCT 41190365_STRUCT 59293769_STRUCT 32215824_STRUCT 60547685_STRUCT 40382685_STRUCT 66851793_STRUCT 43992851_STRUCT 25309802_STRUCT 1525165_STRUCT 18722923_STRUCT 3437639_STRUCT 23870737_STRUCT 6512723_STRUCT 62452948_STRUCT 51682807_STRUCT 49785243_STRUCT END_METHOD
+END_QUERY
+START_QUERY 58685014
+START_METHOD Ammolite_basic_no_ringmatch
+time: 7291
+matches: END_METHOD
+END_QUERY
+START_QUERY 45094499
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 3707
+matches: 23358082_STRUCT 22356779_STRUCT 57247322_STRUCT 28815830_STRUCT 890505_STRUCT 32850434_STRUCT 15919642_STRUCT 23890422_STRUCT 44495362_STRUCT 47862991_STRUCT 19772271_STRUCT 6133607_STRUCT 53460846_STRUCT 4703871_STRUCT 67298827_STRUCT 41190365_STRUCT 56370184_STRUCT 3390483_STRUCT 60547685_STRUCT 1525165_STRUCT 40382685_STRUCT 66851793_STRUCT 18722923_STRUCT 3437639_STRUCT 49785243_STRUCT 6512723_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT 23870737_STRUCT END_METHOD
+END_QUERY
+START_QUERY 45094499
+START_METHOD Ammolite_basic_no_ringmatch
+time: 14426
+matches: 1525165 1525165 3390483 15812686 18417958 53460846 22356779 6133607 END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 849498ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 100_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 100
+Number of representatives: 84
+Compression Type: FULLY_LABELED
+Number of source files: 84
+Description: temp
+START_QUERY 52790494
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 6673
+matches: 16379568_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 52790494
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1313
+matches: END_METHOD
+END_QUERY
+START_QUERY 61561031
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 10193
+matches: 61367128_STRUCT 48497298_STRUCT 62678855_STRUCT 27173023_STRUCT 16379568_STRUCT 48131770_STRUCT 34066282_STRUCT 30544573_STRUCT 59293769_STRUCT 1525165_STRUCT 66851793_STRUCT 25309802_STRUCT 23870737_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 61561031
+START_METHOD Ammolite_basic_no_ringmatch
+time: 11540
+matches: 2398094 2398094 66851793 30544573 END_METHOD
+END_QUERY
+START_QUERY 37285639
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 2945
+matches: 61367128_STRUCT 51215349_STRUCT 48497298_STRUCT 62678855_STRUCT 23358082_STRUCT 16379568_STRUCT 7646972_STRUCT 7247461_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 37285639
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1296
+matches: END_METHOD
+END_QUERY
+START_QUERY 13041372
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 2082
+matches: 61367128_STRUCT 48497298_STRUCT 51215349_STRUCT 62678855_STRUCT 27173023_STRUCT 10130194_STRUCT 16379568_STRUCT 48131770_STRUCT 29050647_STRUCT 23358082_STRUCT 57247322_STRUCT 40399283_STRUCT 4524519_STRUCT 65295144_STRUCT 3989000_STRUCT 28815830_STRUCT 22356779_STRUCT 10446339_STRUCT 50745572_STRUCT 17046933_STRUCT 19240983_STRUCT 33958512_STRUCT 56885935_STRUCT 17684074_STRUCT 32850434_STRUCT 30371023_STRUCT 64799108_STRUCT 41641047_STRUCT 18841895_STRUCT 8576134_STRUCT 29881511_STRUCT 890505_STRUCT 50980631_STRUCT 15919642_STRUCT 23890422_STRUCT 32660251_STRUCT 46542740_STRUCT 25619865_STRUCT 48875331_STRUCT 7646972_STRUCT 44495362_STRUCT 9930426_STRUCT 46420414_STRUCT 47862991_STRUCT 18198587_STRUCT 19576084_STRUCT 19772271_STRUCT 34066282_STRUCT 32667412_STRUCT 45841961_STRUCT 47899785_STRUCT 6133607_STRUCT 4703871_STRUCT 48329520_STRUCT 53460846_STRUCT 67298827_STRUCT 30544573_STRUCT 49119455_STRUCT 23100455_STRUCT 44182792_STRUCT 37545929_STRUCT 56370184_STRUCT 7247461_STRUCT 3390483_STRUCT 41190365_STRUCT 59293769_STRUCT 32215824_STRUCT 60547685_STRUCT 40382685_STRUCT 66851793_STRUCT 43992851_STRUCT 25309802_STRUCT 18722923_STRUCT 1525165_STRUCT 3437639_STRUCT 23870737_STRUCT 6512723_STRUCT 62452948_STRUCT 51682807_STRUCT 49785243_STRUCT END_METHOD
+END_QUERY
+START_QUERY 13041372
+START_METHOD Ammolite_basic_no_ringmatch
+time: 2916
+matches: END_METHOD
+END_QUERY
+START_QUERY 68742355
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 7840
+matches: 23358082_STRUCT 22356779_STRUCT 890505_STRUCT 23890422_STRUCT 15919642_STRUCT 19772271_STRUCT 6133607_STRUCT 53460846_STRUCT 4703871_STRUCT 41190365_STRUCT 37545929_STRUCT 56370184_STRUCT 3390483_STRUCT 60547685_STRUCT 1525165_STRUCT 45841961_STRUCT 3437639_STRUCT 23870737_STRUCT 6512723_STRUCT 62452948_STRUCT 51682807_STRUCT 49785243_STRUCT END_METHOD
+END_QUERY
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 100_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 100
+Number of representatives: 84
+Compression Type: FULLY_LABELED
+Number of source files: 84
+Description: temp
+START_QUERY 52790494
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 6838
+matches: 16379568_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 52790494
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1315
+matches: END_METHOD
+END_QUERY
+START_QUERY 61561031
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 10087
+matches: 61367128_STRUCT 48497298_STRUCT 62678855_STRUCT 27173023_STRUCT 16379568_STRUCT 48131770_STRUCT 34066282_STRUCT 30544573_STRUCT 59293769_STRUCT 1525165_STRUCT 66851793_STRUCT 25309802_STRUCT 23870737_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 61561031
+START_METHOD Ammolite_basic_no_ringmatch
+time: 11604
+matches: 2398094 2398094 66851793 30544573 END_METHOD
+END_QUERY
+START_QUERY 37285639
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 2951
+matches: 61367128_STRUCT 51215349_STRUCT 48497298_STRUCT 62678855_STRUCT 23358082_STRUCT 16379568_STRUCT 7646972_STRUCT 7247461_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 37285639
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1308
+matches: END_METHOD
+END_QUERY
+START_QUERY 13041372
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 2097
+matches: 61367128_STRUCT 51215349_STRUCT 48497298_STRUCT 62678855_STRUCT 27173023_STRUCT 10130194_STRUCT 16379568_STRUCT 48131770_STRUCT 29050647_STRUCT 23358082_STRUCT 57247322_STRUCT 40399283_STRUCT 4524519_STRUCT 65295144_STRUCT 3989000_STRUCT 28815830_STRUCT 10446339_STRUCT 50745572_STRUCT 17046933_STRUCT 19240983_STRUCT 33958512_STRUCT 22356779_STRUCT 56885935_STRUCT 17684074_STRUCT 32850434_STRUCT 30371023_STRUCT 64799108_STRUCT 41641047_STRUCT 18841895_STRUCT 8576134_STRUCT 29881511_STRUCT 890505_STRUCT 15919642_STRUCT 50980631_STRUCT 23890422_STRUCT 32660251_STRUCT 46542740_STRUCT 25619865_STRUCT 48875331_STRUCT 7646972_STRUCT 44495362_STRUCT 46420414_STRUCT 9930426_STRUCT 47862991_STRUCT 19576084_STRUCT 19772271_STRUCT 34066282_STRUCT 18198587_STRUCT 32667412_STRUCT 47899785_STRUCT 45841961_STRUCT 6133607_STRUCT 4703871_STRUCT 48329520_STRUCT 53460846_STRUCT 30544573_STRUCT 67298827_STRUCT 49119455_STRUCT 23100455_STRUCT 44182792_STRUCT 37545929_STRUCT 56370184_STRUCT 7247461_STRUCT 41190365_STRUCT 59293769_STRUCT 3390483_STRUCT 32215824_STRUCT 60547685_STRUCT 40382685_STRUCT 66851793_STRUCT 43992851_STRUCT 25309802_STRUCT 18722923_STRUCT 1525165_STRUCT 3437639_STRUCT 23870737_STRUCT 6512723_STRUCT 62452948_STRUCT 51682807_STRUCT 49785243_STRUCT END_METHOD
+END_QUERY
+START_QUERY 13041372
+START_METHOD Ammolite_basic_no_ringmatch
+time: 2999
+matches: END_METHOD
+END_QUERY
+START_QUERY 68742355
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 8707
+matches: 23358082_STRUCT 22356779_STRUCT 890505_STRUCT 23890422_STRUCT 15919642_STRUCT 19772271_STRUCT 6133607_STRUCT 53460846_STRUCT 4703871_STRUCT 41190365_STRUCT 37545929_STRUCT 56370184_STRUCT 3390483_STRUCT 60547685_STRUCT 1525165_STRUCT 45841961_STRUCT 3437639_STRUCT 23870737_STRUCT 6512723_STRUCT 62452948_STRUCT 51682807_STRUCT 49785243_STRUCT END_METHOD
+END_QUERY
+START_QUERY 68742355
+START_METHOD Ammolite_basic_no_ringmatch
+time: 739253
+matches: 18417958 END_METHOD
+END_QUERY
+START_QUERY 17679549
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 4384
+matches: 61367128_STRUCT 62678855_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 17679549
+START_METHOD Ammolite_basic_no_ringmatch
+time: 1282
+matches: END_METHOD
+END_QUERY
+START_QUERY 33039448
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 18770
+matches: 61367128_STRUCT 62678855_STRUCT 48497298_STRUCT 27173023_STRUCT 23358082_STRUCT 10130194_STRUCT 16379568_STRUCT 48131770_STRUCT 57247322_STRUCT 17046933_STRUCT 10446339_STRUCT 66851793_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT 23870737_STRUCT END_METHOD
+END_QUERY
+START_QUERY 33039448
+START_METHOD Ammolite_basic_no_ringmatch
+time: 44693
+matches: END_METHOD
+END_QUERY
+START_QUERY 56075847
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 50242
+matches: 61367128_STRUCT 51215349_STRUCT 48497298_STRUCT 62678855_STRUCT 27173023_STRUCT 10130194_STRUCT 16379568_STRUCT 23358082_STRUCT 4524519_STRUCT 50745572_STRUCT 17046933_STRUCT 65295144_STRUCT 19240983_STRUCT 29881511_STRUCT 32660251_STRUCT 25619865_STRUCT 47899785_STRUCT 4703871_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 56075847
+START_METHOD Ammolite_basic_no_ringmatch
+time: 8781
+matches: 10130194 END_METHOD
+END_QUERY
+START_QUERY 58685014
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 2301
+matches: 61367128_STRUCT 51215349_STRUCT 48497298_STRUCT 62678855_STRUCT 27173023_STRUCT 10130194_STRUCT 16379568_STRUCT 23358082_STRUCT 29050647_STRUCT 48131770_STRUCT 57247322_STRUCT 40399283_STRUCT 4524519_STRUCT 65295144_STRUCT 3989000_STRUCT 28815830_STRUCT 10446339_STRUCT 50745572_STRUCT 17046933_STRUCT 19240983_STRUCT 33958512_STRUCT 56885935_STRUCT 17684074_STRUCT 22356779_STRUCT 32850434_STRUCT 30371023_STRUCT 890505_STRUCT 41641047_STRUCT 64799108_STRUCT 8576134_STRUCT 29881511_STRUCT 18841895_STRUCT 50980631_STRUCT 15919642_STRUCT 23890422_STRUCT 32660251_STRUCT 46542740_STRUCT 48875331_STRUCT 25619865_STRUCT 44495362_STRUCT 7646972_STRUCT 9930426_STRUCT 46420414_STRUCT 19576084_STRUCT 47862991_STRUCT 19772271_STRUCT 34066282_STRUCT 18198587_STRUCT 32667412_STRUCT 45841961_STRUCT 47899785_STRUCT 6133607_STRUCT 4703871_STRUCT 48329520_STRUCT 67298827_STRUCT 30544573_STRUCT 49119455_STRUCT 23100455_STRUCT 53460846_STRUCT 44182792_STRUCT 37545929_STRUCT 56370184_STRUCT 7247461_STRUCT 3390483_STRUCT 59293769_STRUCT 41190365_STRUCT 32215824_STRUCT 60547685_STRUCT 40382685_STRUCT 66851793_STRUCT 43992851_STRUCT 1525165_STRUCT 25309802_STRUCT 18722923_STRUCT 3437639_STRUCT 23870737_STRUCT 6512723_STRUCT 62452948_STRUCT 51682807_STRUCT 49785243_STRUCT END_METHOD
+END_QUERY
+START_QUERY 58685014
+START_METHOD Ammolite_basic_no_ringmatch
+time: 9302
+matches: END_METHOD
+END_QUERY
+START_QUERY 45094499
+START_METHOD Ammolite_basic_no_ringmatch_COARSE
+time: 4294
+matches: 23358082_STRUCT 22356779_STRUCT 57247322_STRUCT 28815830_STRUCT 890505_STRUCT 32850434_STRUCT 15919642_STRUCT 23890422_STRUCT 44495362_STRUCT 47862991_STRUCT 19772271_STRUCT 6133607_STRUCT 53460846_STRUCT 4703871_STRUCT 67298827_STRUCT 41190365_STRUCT 56370184_STRUCT 3390483_STRUCT 60547685_STRUCT 1525165_STRUCT 40382685_STRUCT 66851793_STRUCT 18722923_STRUCT 49785243_STRUCT 3437639_STRUCT 6512723_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT 23870737_STRUCT END_METHOD
+END_QUERY
+START_QUERY 45094499
+START_METHOD Ammolite_basic_no_ringmatch
+time: 18330
+matches: 1525165 1525165 3390483 15812686 18417958 53460846 6133607 22356779 END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_no_ringmatch 949649ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 100_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 100
+Number of representatives: 84
+Compression Type: FULLY_LABELED
+Number of source files: 84
+Description: temp
+START_QUERY 52790494
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 6520
+matches: END_METHOD
+END_QUERY
+START_QUERY 52790494
+START_METHOD Ammolite_basic_high_pass
+time: 1005
+matches: END_METHOD
+END_QUERY
+START_QUERY 61561031
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 10780
+matches: END_METHOD
+END_QUERY
+START_QUERY 61561031
+START_METHOD Ammolite_basic_high_pass
+time: 1001
+matches: END_METHOD
+END_QUERY
+START_QUERY 37285639
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 3054
+matches: END_METHOD
+END_QUERY
+START_QUERY 37285639
+START_METHOD Ammolite_basic_high_pass
+time: 1005
+matches: END_METHOD
+END_QUERY
+START_QUERY 13041372
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 2109
+matches: END_METHOD
+END_QUERY
+START_QUERY 13041372
+START_METHOD Ammolite_basic_high_pass
+time: 1004
+matches: END_METHOD
+END_QUERY
+START_QUERY 68742355
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 8868
+matches: END_METHOD
+END_QUERY
+START_QUERY 68742355
+START_METHOD Ammolite_basic_high_pass
+time: 1002
+matches: END_METHOD
+END_QUERY
+START_QUERY 17679549
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 4387
+matches: END_METHOD
+END_QUERY
+START_QUERY 17679549
+START_METHOD Ammolite_basic_high_pass
+time: 1006
+matches: END_METHOD
+END_QUERY
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 100_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 100
+Number of representatives: 84
+Compression Type: FULLY_LABELED
+Number of source files: 84
+Description: temp
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 100_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 100
+Number of representatives: 84
+Compression Type: FULLY_LABELED
+Number of source files: 84
+Description: temp
+START_QUERY 52790494
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 7568
+matches: END_METHOD
+END_QUERY
+START_QUERY 52790494
+START_METHOD Ammolite_basic_high_pass
+time: 1005
+matches: END_METHOD
+END_QUERY
+START_QUERY 61561031
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 10106
+matches: END_METHOD
+END_QUERY
+START_QUERY 61561031
+START_METHOD Ammolite_basic_high_pass
+time: 1003
+matches: END_METHOD
+END_QUERY
+START_QUERY 37285639
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 3089
+matches: END_METHOD
+END_QUERY
+START_QUERY 37285639
+START_METHOD Ammolite_basic_high_pass
+time: 1005
+matches: END_METHOD
+END_QUERY
+START_QUERY 13041372
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 2054
+matches: END_METHOD
+END_QUERY
+START_QUERY 13041372
+START_METHOD Ammolite_basic_high_pass
+time: 1005
+matches: END_METHOD
+END_QUERY
+START_QUERY 68742355
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 8603
+matches: END_METHOD
+END_QUERY
+START_QUERY 68742355
+START_METHOD Ammolite_basic_high_pass
+time: 1004
+matches: END_METHOD
+END_QUERY
+START_QUERY 17679549
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 4422
+matches: END_METHOD
+END_QUERY
+START_QUERY 17679549
+START_METHOD Ammolite_basic_high_pass
+time: 1005
+matches: END_METHOD
+END_QUERY
+START_QUERY 33039448
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 18773
+matches: END_METHOD
+END_QUERY
+START_QUERY 33039448
+START_METHOD Ammolite_basic_high_pass
+time: 1001
+matches: END_METHOD
+END_QUERY
+START_QUERY 56075847
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 50750
+matches: END_METHOD
+END_QUERY
+START_QUERY 56075847
+START_METHOD Ammolite_basic_high_pass
+time: 1004
+matches: END_METHOD
+END_QUERY
+START_QUERY 58685014
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 2077
+matches: END_METHOD
+END_QUERY
+START_QUERY 58685014
+START_METHOD Ammolite_basic_high_pass
+time: 1008
+matches: END_METHOD
+END_QUERY
+START_QUERY 45094499
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 4266
+matches: END_METHOD
+END_QUERY
+START_QUERY 45094499
+START_METHOD Ammolite_basic_high_pass
+time: 1002
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_high_pass 121822ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 100_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 100
+Number of representatives: 84
+Compression Type: FULLY_LABELED
+Number of source files: 84
+Description: temp
+START_QUERY 52790494
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 7066
+matches: 16379568_STRUCT 23379805_STRUCT 62452948_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 52790494
+START_METHOD Ammolite_basic_high_pass
+time: 1248
+matches: END_METHOD
+END_QUERY
+START_QUERY 61561031
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 9800
+matches: 61367128_STRUCT 48497298_STRUCT 62678855_STRUCT 27173023_STRUCT 16379568_STRUCT 48131770_STRUCT 34066282_STRUCT 30544573_STRUCT 59293769_STRUCT 1525165_STRUCT 66851793_STRUCT 25309802_STRUCT 23870737_STRUCT 23379805_STRUCT 62452948_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 61561031
+START_METHOD Ammolite_basic_high_pass
+time: 10555
+matches: 66851793 30544573 END_METHOD
+END_QUERY
+START_QUERY 37285639
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 3013
+matches: 61367128_STRUCT 51215349_STRUCT 48497298_STRUCT 62678855_STRUCT 23358082_STRUCT 16379568_STRUCT 7646972_STRUCT 7247461_STRUCT 23379805_STRUCT 62452948_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 37285639
+START_METHOD Ammolite_basic_high_pass
+time: 1192
+matches: END_METHOD
+END_QUERY
+START_QUERY 13041372
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 2119
+matches: 61367128_STRUCT 51215349_STRUCT 48497298_STRUCT 62678855_STRUCT 27173023_STRUCT 10130194_STRUCT 23358082_STRUCT 16379568_STRUCT 48131770_STRUCT 29050647_STRUCT 57247322_STRUCT 40399283_STRUCT 4524519_STRUCT 65295144_STRUCT 3989000_STRUCT 28815830_STRUCT 10446339_STRUCT 50745572_STRUCT 17046933_STRUCT 19240983_STRUCT 33958512_STRUCT 22356779_STRUCT 17684074_STRUCT 56885935_STRUCT 32850434_STRUCT 30371023_STRUCT 64799108_STRUCT 41641047_STRUCT 18841895_STRUCT 8576134_STRUCT 29881511_STRUCT 890505_STRUCT 15919642_STRUCT 50980631_STRUCT 23890422_STRUCT 32660251_STRUCT 46542740_STRUCT 25619865_STRUCT 48875331_STRUCT 44495362_STRUCT 7646972_STRUCT 9930426_STRUCT 46420414_STRUCT 47862991_STRUCT 19576084_STRUCT 19772271_STRUCT 34066282_STRUCT 18198587_STRUCT 32667412_STRUCT 47899785_STRUCT 45841961_STRUCT 6133607_STRUCT 4703871_STRUCT 48329520_STRUCT 67298827_STRUCT 53460846_STRUCT 30544573_STRUCT 49119455_STRUCT 44182792_STRUCT 23100455_STRUCT 37545929_STRUCT 56370184_STRUCT 7247461_STRUCT 3390483_STRUCT 59293769_STRUCT 41190365_STRUCT 32215824_STRUCT 60547685_STRUCT 40382685_STRUCT 66851793_STRUCT 43992851_STRUCT 25309802_STRUCT 18722923_STRUCT 1525165_STRUCT 3437639_STRUCT 23870737_STRUCT 6512723_STRUCT 62452948_STRUCT 49785243_STRUCT END_METHOD
+END_QUERY
+START_QUERY 13041372
+START_METHOD Ammolite_basic_high_pass
+time: 3034
+matches: END_METHOD
+END_QUERY
+START_QUERY 68742355
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 7896
+matches: 23358082_STRUCT 22356779_STRUCT 890505_STRUCT 23890422_STRUCT 15919642_STRUCT 19772271_STRUCT 6133607_STRUCT 53460846_STRUCT 4703871_STRUCT 41190365_STRUCT 37545929_STRUCT 56370184_STRUCT 3390483_STRUCT 60547685_STRUCT 1525165_STRUCT 45841961_STRUCT 3437639_STRUCT 23870737_STRUCT 6512723_STRUCT 62452948_STRUCT 49785243_STRUCT END_METHOD
+END_QUERY
+START_QUERY 68742355
+START_METHOD Ammolite_basic_high_pass
+time: 768879
+matches: 18417958 END_METHOD
+END_QUERY
+START_QUERY 17679549
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 3666
+matches: 61367128_STRUCT 62678855_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 17679549
+START_METHOD Ammolite_basic_high_pass
+time: 1227
+matches: END_METHOD
+END_QUERY
+START_QUERY 33039448
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 14694
+matches: 61367128_STRUCT 48497298_STRUCT 62678855_STRUCT 27173023_STRUCT 23358082_STRUCT 10130194_STRUCT 16379568_STRUCT 48131770_STRUCT 57247322_STRUCT 17046933_STRUCT 10446339_STRUCT 66851793_STRUCT 23379805_STRUCT 62452948_STRUCT 2398094_STRUCT 51682807_STRUCT 23870737_STRUCT END_METHOD
+END_QUERY
+START_QUERY 33039448
+START_METHOD Ammolite_basic_high_pass
+time: 31797
+matches: END_METHOD
+END_QUERY
+START_QUERY 56075847
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 35090
+matches: 61367128_STRUCT 51215349_STRUCT 48497298_STRUCT 62678855_STRUCT 27173023_STRUCT 10130194_STRUCT 16379568_STRUCT 23358082_STRUCT 4524519_STRUCT 50745572_STRUCT 65295144_STRUCT 17046933_STRUCT 19240983_STRUCT 29881511_STRUCT 32660251_STRUCT 25619865_STRUCT 47899785_STRUCT 4703871_STRUCT 23379805_STRUCT 62452948_STRUCT 51682807_STRUCT END_METHOD
+END_QUERY
+START_QUERY 56075847
+START_METHOD Ammolite_basic_high_pass
+time: 6742
+matches: 10130194 END_METHOD
+END_QUERY
+START_QUERY 58685014
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 1849
+matches: 61367128_STRUCT 51215349_STRUCT 48497298_STRUCT 62678855_STRUCT 27173023_STRUCT 10130194_STRUCT 16379568_STRUCT 23358082_STRUCT 29050647_STRUCT 48131770_STRUCT 57247322_STRUCT 40399283_STRUCT 4524519_STRUCT 65295144_STRUCT 3989000_STRUCT 28815830_STRUCT 10446339_STRUCT 22356779_STRUCT 50745572_STRUCT 17046933_STRUCT 19240983_STRUCT 33958512_STRUCT 17684074_STRUCT 56885935_STRUCT 32850434_STRUCT 30371023_STRUCT 64799108_STRUCT 41641047_STRUCT 18841895_STRUCT 8576134_STRUCT 890505_STRUCT 29881511_STRUCT 50980631_STRUCT 15919642_STRUCT 23890422_STRUCT 46542740_STRUCT 32660251_STRUCT 25619865_STRUCT 48875331_STRUCT 44495362_STRUCT 7646972_STRUCT 9930426_STRUCT 46420414_STRUCT 47862991_STRUCT 19576084_STRUCT 19772271_STRUCT 18198587_STRUCT 34066282_STRUCT 32667412_STRUCT 45841961_STRUCT 47899785_STRUCT 6133607_STRUCT 4703871_STRUCT 48329520_STRUCT 53460846_STRUCT 30544573_STRUCT 67298827_STRUCT 49119455_STRUCT 23100455_STRUCT 44182792_STRUCT 37545929_STRUCT 56370184_STRUCT 7247461_STRUCT 3390483_STRUCT 59293769_STRUCT 41190365_STRUCT 32215824_STRUCT 60547685_STRUCT 40382685_STRUCT 66851793_STRUCT 43992851_STRUCT 25309802_STRUCT 18722923_STRUCT 1525165_STRUCT 3437639_STRUCT 23870737_STRUCT 6512723_STRUCT 62452948_STRUCT 49785243_STRUCT END_METHOD
+END_QUERY
+START_QUERY 58685014
+START_METHOD Ammolite_basic_high_pass
+time: 6300
+matches: END_METHOD
+END_QUERY
+START_QUERY 45094499
+START_METHOD Ammolite_basic_high_pass_COARSE
+time: 3219
+matches: 23358082_STRUCT 57247322_STRUCT 22356779_STRUCT 28815830_STRUCT 890505_STRUCT 32850434_STRUCT 15919642_STRUCT 23890422_STRUCT 44495362_STRUCT 47862991_STRUCT 19772271_STRUCT 6133607_STRUCT 53460846_STRUCT 4703871_STRUCT 67298827_STRUCT 41190365_STRUCT 56370184_STRUCT 3390483_STRUCT 60547685_STRUCT 1525165_STRUCT 40382685_STRUCT 66851793_STRUCT 18722923_STRUCT 3437639_STRUCT 49785243_STRUCT 6512723_STRUCT 62452948_STRUCT 23870737_STRUCT END_METHOD
+END_QUERY
+START_QUERY 45094499
+START_METHOD Ammolite_basic_high_pass
+time: 11715
+matches: 1525165 1525165 3390483 15812686 18417958 53460846 22356779 6133607 END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_basic_high_pass 931206ms
