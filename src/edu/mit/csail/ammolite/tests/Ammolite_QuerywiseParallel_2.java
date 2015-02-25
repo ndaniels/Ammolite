@@ -263,10 +263,10 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
                             } else {
                                 result.addMiss(new SearchMiss(query, target, overlap));
                             }
-                            bar.event();
                         } else {
                             result.addMiss(new SearchMiss(query, target, -1));
                         }
+                        bar.event();
                     }
                 target = queue.get();
                 }
@@ -352,10 +352,10 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
                             } else {
                                 result.addMiss(new SearchMiss(query, target, overlap));
                             }
-                            bar.event();
                         } else {
                             result.addMiss(new SearchMiss(query, target, -1));
                         }
+                        bar.event();
                     }
                 target = queue.get();
                 }
