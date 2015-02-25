@@ -33,7 +33,7 @@ import edu.mit.csail.ammolite.utils.ParallelUtils;
 import edu.mit.csail.ammolite.utils.StructID;
 
 public class Ammolite_QuerywiseParallel_2 implements Tester {
-    private static final String NAME = "Ammolite_shortest_path_high_pass";
+    private static final String NAME = "Ammolite";
     private static final int COARSE_QUEUE_SIZE = 1000;
     private static final int FINE_QUEUE_SIZE = 1000;
     private static final int NUM_THREADS = Runtime.getRuntime().availableProcessors()/2;
@@ -200,76 +200,17 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
                 IMolStruct target = queue.get();
                 while(queue.adding || target != null){
                     if(target != null){
- //                       int overlap = MCS.getSMSDOverlap(target, query);
-//                        double overlapCoeff = MCSUtils.overlapCoeff(overlap, target, query);
-                        double approxOverlapCoeff = StringApproximator.approximateOverlapCoeff(new LabeledMolStruct(target), new LabeledMolStruct(query));
-//                        double altApproxOverlapCoeff = StringApproximator.approximateOverlapCoeffDiff(target,query);
-
-//                        System.out.println("Actual: "+overlapCoeff+" Approx: "+approxOverlapCoeff+" Alt-Approx: "+altApproxOverlapCoeff);
-//                        System.err.println("Actual: "+overlapCoeff+" Approx: "+approxOverlapCoeff+" Alt-Approx: "+altApproxOverlapCoeff);
-//                        
-//                        if( (altApproxOverlapCoeff*2) > threshold && overlapCoeff >= threshold){
-//                              System.out.println("goldfish");
-//                          }
-//                        if( (approxOverlapCoeff*2) > threshold && overlapCoeff >= threshold){
-//                            System.out.println("minnow");
-//                        }
-//                        if( (approxOverlapCoeff*2) > threshold){
-//                            System.out.println("sardine");
-//                        }
-//                        if( (altApproxOverlapCoeff + 0.1) > threshold){
-//                            System.out.println("beta");
-//                        }
-//                        if( (altApproxOverlapCoeff + 0.1) > threshold && overlapCoeff >= threshold){
-//                            System.out.println("guppy");
-//                        }
-//                        if( (approxOverlapCoeff+ 0.1) > threshold && overlapCoeff >= threshold){
-//                              System.out.println("shark");
-//                        }
-//                        if( (approxOverlapCoeff+ 0.1) > threshold){
-//                            System.out.println("hammerhead");
-//                      }
-//                        if( (altApproxOverlapCoeff + 0.2) > threshold && overlapCoeff >= threshold){
-//                              System.out.println("whale");
-//                        }
-//                        if( (altApproxOverlapCoeff + 0.2) > threshold){
-//                            System.out.println("beluga");
-//                      }
-//                        if( (approxOverlapCoeff+0.2) > threshold && overlapCoeff >= threshold){
-//                            System.out.println("dolphin");
-//                        }
-//                        if( (approxOverlapCoeff+0.2) > threshold){
-//                            System.out.println("bottlenose");
-//                        }
-//                        if(overlapCoeff >= threshold){
-//                            System.out.println("lobster");
-//                        }
-                      
-                        // Completely Empirical...
-                        if(approxOverlapCoeff < 0.1){
-                            approxOverlapCoeff *= 9;
+                        int overlap = MCS.getSMSDOverlap(target, query);
+                        double overlapCoeff = MCSUtils.overlapCoeff(overlap, target, query);
+                        if(overlapCoeff > threshold){
+                            result.addMatch(new SearchMatch(query, target, overlap));
+                            hits.add(MolUtils.getStructID(target));
                         } else {
-                            approxOverlapCoeff  *= 2;
-                            approxOverlapCoeff += 0.5;
-                            
+                            result.addMiss(new SearchMiss(query, target, overlap));
                         }
-                        
-                            
-                        if(approxOverlapCoeff > 0.55){
-                            int overlap = MCS.getSMSDOverlap(target, query);
-                            double overlapCoeff = MCSUtils.overlapCoeff(overlap, target, query);
-                            if(overlapCoeff > threshold){
-                                result.addMatch(new SearchMatch(query, target, overlap));
-                                hits.add(MolUtils.getStructID(target));
-                            } else {
-                                result.addMiss(new SearchMiss(query, target, overlap));
-                            }
-                        } else {
-                            result.addMiss(new SearchMiss(query, target, -1));
-                        }
-                        bar.event();
-                    }
-                target = queue.get();
+                    } 
+                    bar.event();
+                    target = queue.get();
                 }
             } catch (InterruptedException ie) {
                 ie.printStackTrace();
@@ -335,39 +276,14 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
             try{
                 IAtomContainer target = queue.get();
                 while(queue.adding || target != null){
-                    if(target != null){
-//                        boolean bondSensitive = false;
-//                        boolean ringmatch = true;
-//                        boolean stereoMatch = true;
-//                        boolean fragmentMinimization = true;
-//                        boolean energyMinimization = true;
-//                        Isomorphism comparison = new Isomorphism(query, target, Algorithm.DEFAULT, bondSensitive, ringmatch);
-//                        comparison.setChemFilters(stereoMatch, fragmentMinimization, energyMinimization);   
-//                        int overlap = comparison.getFirstAtomMapping().getCount();
-                        double approxOverlapCoeff = StringApproximator.approximateOverlapCoeff(new LabeledMolStruct(target), new LabeledMolStruct(query));
-                        if(approxOverlapCoeff < 0.1){
-                            approxOverlapCoeff *= 9;
-                        } else {
-                            approxOverlapCoeff  *= 2;
-                            approxOverlapCoeff += 0.5;
-                            
-                        }
-                        
-                            
-                        if(approxOverlapCoeff > 0.55){
-                                
-                            int overlap = MCS.getSMSDOverlap(target, query);
-                            if(MCSUtils.overlapCoeff(overlap, target, query) > threshold){
-                                result.addMatch(new SearchMatch(query, target, overlap));
-                            } else {
-                                result.addMiss(new SearchMiss(query, target, overlap));
-                            }
-                        } else {
-                            result.addMiss(new SearchMiss(query, target, -1));
-                        }
-                        bar.event();
+                    int overlap = MCS.getSMSDOverlap(target, query);
+                    if(MCSUtils.overlapCoeff(overlap, target, query) > threshold){
+                        result.addMatch(new SearchMatch(query, target, overlap));
+                    } else {
+                        result.addMiss(new SearchMiss(query, target, overlap));
                     }
-                target = queue.get();
+                    bar.event();
+                    target = queue.get();
                 }
             } catch (InterruptedException ie) {
                 ie.printStackTrace();

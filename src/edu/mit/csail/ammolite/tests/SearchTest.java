@@ -86,7 +86,7 @@ public class SearchTest {
 //    		} 
 //    		
     		if( testAmmPar){
-    		    Tester tester = new Ammolite_Connection_3();
+    		    Tester tester = new Ammolite_HighPass();
                 runTest(tester, stream, queries, db, targets, sTargets, fine, coarse);
     		}
     
@@ -161,33 +161,7 @@ public class SearchTest {
 		System.out.println("END_DATA");
 	}
 	
-	public static void testFMCS(String queryFile){
-		List<IAtomContainer> molecules = SDFUtils.parseSDF( queryFile);
-		System.out.println(fmcs);
-		System.out.println("id1 id2 size(1) size(2) overlapSize(1,2) timeInMillis");
-		System.out.println("BEGIN_DATA");
-		for(int i=1; i<molecules.size(); i++){
-			for(int j=0; j<i; j++){
-				IAtomContainer a = molecules.get(i);
-				IAtomContainer b = molecules.get(j);
-				long wallClockStart = System.currentTimeMillis();
-				int mcsSize = MCS.getFMCSOverlap(a, b);
-				long wallClockElapsed = System.currentTimeMillis() - wallClockStart;
-				System.out.print(a.getProperty("PUBCHEM_COMPOUND_CID"));
-				System.out.print(" ");
-				System.out.print(b.getProperty("PUBCHEM_COMPOUND_CID"));
-				System.out.print(" ");
-				System.out.print(MCSUtils.getAtomCountNoHydrogen(a));
-				System.out.print(" ");
-				System.out.print(MCSUtils.getAtomCountNoHydrogen(b));
-				System.out.print(" ");
-				System.out.print(mcsSize);
-				System.out.print(" ");
-				System.out.println( wallClockElapsed);
-			}
-		}
-		System.out.println("END_DATA");
-	}
+
 	
 
 	
