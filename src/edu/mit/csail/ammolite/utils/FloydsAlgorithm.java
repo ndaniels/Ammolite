@@ -20,6 +20,8 @@ package edu.mit.csail.ammolite.utils;
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import edu.mit.csail.ammolite.compression.LabeledWeightedGraph;
@@ -74,6 +76,9 @@ public class FloydsAlgorithm {
                 }
             }
         }
+        
+        
+        
         // If unweighted, assume unit distance for all edges
         else {
             for (int i = 0; i < verts; ++i) {
@@ -103,4 +108,41 @@ public class FloydsAlgorithm {
         }
         return dm;
     }
+    
+    public static Map<Integer, Map<Integer, String>> getAllPairsPaths(LabeledWeightedGraph g){
+        Map<Integer, Map<Integer,String>> paths = new HashMap<Integer, Map<Integer,String>>();
+        int verts = g.order();
+        
+        for( int i=0; i < verts; i++){
+            paths.put(i, new HashMap<Integer,String>());
+        }
+        
+        for (int i = 0; i < verts; ++i) {
+            Set<Integer> adjacent = g.getNeighbors(i);
+            for (int j = 0; j < verts; ++j) {
+                if( adjacent.contains(j)){
+                    paths.get(i).put(j, g.labelOf(i) +  g.labelOf(j));
+                } else if( i == j) {
+                    paths.get(i).put(j, g.labelOf(i));
+                } else {
+                    paths.get(i).put(j, "");
+                }
+            }
+        }
+
+        for (int k = 0; k < verts; ++k) {
+            for (int i = 0; i < verts; ++i) {
+                for (int j = 0; j < verts; ++j) {
+                    String current = paths.get(i).get(j);
+                    String updated = paths.get(i).get(k) + paths.get(k).get(j);
+                    if(current.equals("") || (updated.length() < current.length() && updated.length() > 0)){
+                        paths.get(i).put(j, updated);
+                    }
+                }
+            }
+        }
+        return paths;
+    }
+    
+    
 }

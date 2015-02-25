@@ -20,9 +20,11 @@ import org.openscience.smsd.Isomorphism;
 import org.openscience.smsd.interfaces.Algorithm;
 
 import edu.mit.csail.ammolite.compression.IMolStruct;
+import edu.mit.csail.ammolite.compression.LabeledMolStruct;
 import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.mcs.MCS;
+import edu.mit.csail.ammolite.mcs.StringApproximator;
 import edu.mit.csail.ammolite.utils.CommandLineProgressBar;
 import edu.mit.csail.ammolite.utils.MCSUtils;
 import edu.mit.csail.ammolite.utils.MolUtils;
@@ -31,7 +33,7 @@ import edu.mit.csail.ammolite.utils.ParallelUtils;
 import edu.mit.csail.ammolite.utils.StructID;
 
 public class Ammolite_QuerywiseParallel_2 implements Tester {
-    private static final String NAME = "Ammolite_basic_no_ringmatch";
+    private static final String NAME = "Ammolite_basic_high_pass";
     private static final int COARSE_QUEUE_SIZE = 1000;
     private static final int FINE_QUEUE_SIZE = 1000;
     private static final int NUM_THREADS = Runtime.getRuntime().availableProcessors()/2;
@@ -198,15 +200,73 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
                 IMolStruct target = queue.get();
                 while(queue.adding || target != null){
                     if(target != null){
-                        int overlap = MCS.getSMSDOverlap(target, query);
-                        
-                        if(MCSUtils.overlapCoeff(overlap, target, query) > threshold){
-                            result.addMatch(new SearchMatch(query, target, overlap));
-                            hits.add(MolUtils.getStructID(target));
+//                        int overlap = MCS.getSMSDOverlap(target, query);
+//                        double overlapCoeff = MCSUtils.overlapCoeff(overlap, target, query);
+                        double approxOverlapCoeff = StringApproximator.approximateOverlapCoeff(new LabeledMolStruct(target), new LabeledMolStruct(query));
+//                        double altApproxOverlapCoeff = StringApproximator.approximateOverlapCoeffDiff(target,query);
+//                        if( approxOverlapCoeff > overlapCoeff && overlapCoeff < 0.7){
+//                            System.out.println("blipe");
+//                        }
+//                        if( approxOverlapCoeff > overlapCoeff && overlapCoeff >= 0.7){
+//                            System.out.println("oops");
+//                        }
+//                        if( (approxOverlapCoeff+0.1) > overlapCoeff && overlapCoeff >= 0.7){
+//                            System.out.println("guppy");
+//                        }
+//                        if( (approxOverlapCoeff+0.2) > overlapCoeff && overlapCoeff >= 0.7){
+//                            System.out.println("minnow");
+//                        }
+//                        if( (approxOverlapCoeff*2) > overlapCoeff && overlapCoeff >= 0.7){
+//                            System.out.println("shark");
+//                        }
+//                        if( approxOverlapCoeff < overlapCoeff && (approxOverlapCoeff+0.1) > overlapCoeff){
+//                            System.out.println("flibble");
+//                        }
+//                        if( approxOverlapCoeff < overlapCoeff && (approxOverlapCoeff+0.2) > overlapCoeff){
+//                            System.out.println("corn");
+//                        }
+//                        if( approxOverlapCoeff < overlapCoeff && (approxOverlapCoeff*2) > overlapCoeff){
+//                            System.out.println("fuego");
+//                        }
+//                        if( altApproxOverlapCoeff > overlapCoeff && overlapCoeff < 0.7){
+//                            System.out.println("tripe");
+//                        }
+//                        if( altApproxOverlapCoeff > overlapCoeff && overlapCoeff >= 0.7){
+//                            System.out.println("nope");
+//                        }
+//                        if( altApproxOverlapCoeff < overlapCoeff && (approxOverlapCoeff+0.1) > overlapCoeff){
+//                            System.out.println("kibble");
+//                        }
+//                        if( altApproxOverlapCoeff < overlapCoeff && (approxOverlapCoeff+0.2) > overlapCoeff){
+//                            System.out.println("candy");
+//                        }
+//                        if( altApproxOverlapCoeff < overlapCoeff && (approxOverlapCoeff*2) > overlapCoeff){
+//                            System.out.println("fire");
+//                        }
+//                        if( (altApproxOverlapCoeff+0.1) > overlapCoeff && overlapCoeff >= 0.7){
+//                            System.out.println("puppy");
+//                        }
+//                        if( (altApproxOverlapCoeff+0.2) > overlapCoeff && overlapCoeff >= 0.7){
+//                            System.out.println("cat");
+//                        }
+//                        if( (altApproxOverlapCoeff*2) > overlapCoeff && overlapCoeff >= 0.7){
+//                            System.out.println("goldfish");
+//                        }
+//                        
+//                        System.out.println("Actual: "+overlapCoeff+" Approx: "+approxOverlapCoeff);
+                        if(approxOverlapCoeff > threshold - 0.1){
+                            int overlap = MCS.getSMSDOverlap(target, query);
+                            double overlapCoeff = MCSUtils.overlapCoeff(overlap, target, query);
+                            if(overlapCoeff > threshold){
+                                result.addMatch(new SearchMatch(query, target, overlap));
+                                hits.add(MolUtils.getStructID(target));
+                            } else {
+                                result.addMiss(new SearchMiss(query, target, overlap));
+                            }
+                            bar.event();
                         } else {
-                            result.addMiss(new SearchMiss(query, target, overlap));
+                            result.addMiss(new SearchMiss(query, target, -1));
                         }
-                        bar.event();
                     }
                 target = queue.get();
                 }
@@ -283,13 +343,19 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
 //                        Isomorphism comparison = new Isomorphism(query, target, Algorithm.DEFAULT, bondSensitive, ringmatch);
 //                        comparison.setChemFilters(stereoMatch, fragmentMinimization, energyMinimization);   
 //                        int overlap = comparison.getFirstAtomMapping().getCount();
-                        int overlap = MCS.getSMSDOverlap(target, query);
-                        if(MCSUtils.overlapCoeff(overlap, target, query) > threshold){
-                            result.addMatch(new SearchMatch(query, target, overlap));
+                        double approxOverlapCoeff = StringApproximator.approximateOverlapCoeff(new LabeledMolStruct(target), new LabeledMolStruct(query));
+                        if(approxOverlapCoeff > threshold - 0.1){
+                                
+                            int overlap = MCS.getSMSDOverlap(target, query);
+                            if(MCSUtils.overlapCoeff(overlap, target, query) > threshold){
+                                result.addMatch(new SearchMatch(query, target, overlap));
+                            } else {
+                                result.addMiss(new SearchMiss(query, target, overlap));
+                            }
+                            bar.event();
                         } else {
-                            result.addMiss(new SearchMiss(query, target, overlap));
+                            result.addMiss(new SearchMiss(query, target, -1));
                         }
-                        bar.event();
                     }
                 target = queue.get();
                 }
