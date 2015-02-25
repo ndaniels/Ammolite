@@ -33,7 +33,7 @@ import edu.mit.csail.ammolite.utils.ParallelUtils;
 import edu.mit.csail.ammolite.utils.StructID;
 
 public class Ammolite_QuerywiseParallel_2 implements Tester {
-    private static final String NAME = "Ammolite_basic_high_pass";
+    private static final String NAME = "Ammolite_shortest_path_high_pass";
     private static final int COARSE_QUEUE_SIZE = 1000;
     private static final int FINE_QUEUE_SIZE = 1000;
     private static final int NUM_THREADS = Runtime.getRuntime().availableProcessors()/2;
@@ -200,86 +200,62 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
                 IMolStruct target = queue.get();
                 while(queue.adding || target != null){
                     if(target != null){
-//                        int overlap = MCS.getSMSDOverlap(target, query);
+ //                       int overlap = MCS.getSMSDOverlap(target, query);
 //                        double overlapCoeff = MCSUtils.overlapCoeff(overlap, target, query);
-//                        double approxOverlapCoeff = StringApproximator.approximateOverlapCoeff(new LabeledMolStruct(target), new LabeledMolStruct(query));
-                        double altApproxOverlapCoeff = StringApproximator.approximateOverlapCoeffDiff(target,query);
-//                        if( approxOverlapCoeff > overlapCoeff && overlapCoeff < 0.7){
-//                            System.out.println("blipe");
-//                        }
-//                        if( approxOverlapCoeff > overlapCoeff && overlapCoeff >= 0.7){
-//                            System.out.println("oops");
-//                        }
-//                        if( (approxOverlapCoeff+0.1) > overlapCoeff && overlapCoeff >= 0.7){
-//                            System.out.println("guppy");
-//                        }
-//                        if( (approxOverlapCoeff+0.2) > overlapCoeff && overlapCoeff >= 0.7){
-//                            System.out.println("minnow");
-//                        }
-//                        if( (approxOverlapCoeff*2) > overlapCoeff && overlapCoeff >= 0.7){
-//                            System.out.println("shark");
-//                        }
-//                        if( approxOverlapCoeff < overlapCoeff && (approxOverlapCoeff+0.1) > overlapCoeff){
-//                            System.out.println("flibble");
-//                        }
-//                        if( approxOverlapCoeff < overlapCoeff && (approxOverlapCoeff+0.2) > overlapCoeff){
-//                            System.out.println("corn");
-//                        }
-//                        if( approxOverlapCoeff < overlapCoeff && (approxOverlapCoeff*2) > overlapCoeff){
-//                            System.out.println("fuego");
-//                        }
-//                        if( altApproxOverlapCoeff > overlapCoeff && overlapCoeff < 0.7){
-//                            System.out.println("tripe");
-//                        }
-//                        if( altApproxOverlapCoeff > overlapCoeff && overlapCoeff >= 0.7){
-//                            System.out.println("nope");
-//                        }
-//                        if( altApproxOverlapCoeff < overlapCoeff && (approxOverlapCoeff+0.1) > overlapCoeff){
-//                            System.out.println("kibble");
-//                        }
-//                        if( altApproxOverlapCoeff < overlapCoeff && (approxOverlapCoeff+0.2) > overlapCoeff){
-//                            System.out.println("candy");
-//                        }
-//                        if( altApproxOverlapCoeff < overlapCoeff && (approxOverlapCoeff*2) > overlapCoeff){
-//                            System.out.println("fire");
-//                        }
-//                        if( (altApproxOverlapCoeff+0.1) > overlapCoeff && overlapCoeff >= 0.7){
-//                            System.out.println("puppy");
-//                        }
-//                        if( (altApproxOverlapCoeff+0.2) > overlapCoeff && overlapCoeff >= 0.7){
-//                            System.out.println("cat");
-//                        }
-//                        if( (altApproxOverlapCoeff*2) > overlapCoeff && overlapCoeff >= 0.7){
-//                            System.out.println("goldfish");
-//                        }
+                        double approxOverlapCoeff = StringApproximator.approximateOverlapCoeff(new LabeledMolStruct(target), new LabeledMolStruct(query));
+//                        double altApproxOverlapCoeff = StringApproximator.approximateOverlapCoeffDiff(target,query);
+
+//                        System.out.println("Actual: "+overlapCoeff+" Approx: "+approxOverlapCoeff+" Alt-Approx: "+altApproxOverlapCoeff);
+//                        System.err.println("Actual: "+overlapCoeff+" Approx: "+approxOverlapCoeff+" Alt-Approx: "+altApproxOverlapCoeff);
 //                        
-//                        System.out.println("Actual: "+overlapCoeff+" Approx: "+approxOverlapCoeff);
-                        
 //                        if( (altApproxOverlapCoeff*2) > threshold && overlapCoeff >= threshold){
 //                              System.out.println("goldfish");
 //                          }
 //                        if( (approxOverlapCoeff*2) > threshold && overlapCoeff >= threshold){
 //                            System.out.println("minnow");
 //                        }
+//                        if( (approxOverlapCoeff*2) > threshold){
+//                            System.out.println("sardine");
+//                        }
+//                        if( (altApproxOverlapCoeff + 0.1) > threshold){
+//                            System.out.println("beta");
+//                        }
 //                        if( (altApproxOverlapCoeff + 0.1) > threshold && overlapCoeff >= threshold){
 //                            System.out.println("guppy");
 //                        }
-//                      if( (approxOverlapCoeff+ 0.1) > threshold && overlapCoeff >= threshold){
-//                          System.out.println("shark");
+//                        if( (approxOverlapCoeff+ 0.1) > threshold && overlapCoeff >= threshold){
+//                              System.out.println("shark");
+//                        }
+//                        if( (approxOverlapCoeff+ 0.1) > threshold){
+//                            System.out.println("hammerhead");
 //                      }
-//                      if( (altApproxOverlapCoeff + 0.2) > threshold && overlapCoeff >= threshold){
-//                          System.out.println("whale");
+//                        if( (altApproxOverlapCoeff + 0.2) > threshold && overlapCoeff >= threshold){
+//                              System.out.println("whale");
+//                        }
+//                        if( (altApproxOverlapCoeff + 0.2) > threshold){
+//                            System.out.println("beluga");
 //                      }
-//                    if( (approxOverlapCoeff+0.2) > threshold && overlapCoeff >= threshold){
-//                        System.out.println("dolphin");
-//                    }
-//                    if(overlapCoeff >= threshold){
-//                        System.out.println("lobster");
-//                    }
+//                        if( (approxOverlapCoeff+0.2) > threshold && overlapCoeff >= threshold){
+//                            System.out.println("dolphin");
+//                        }
+//                        if( (approxOverlapCoeff+0.2) > threshold){
+//                            System.out.println("bottlenose");
+//                        }
+//                        if(overlapCoeff >= threshold){
+//                            System.out.println("lobster");
+//                        }
                       
+                        // Completely Empirical...
+                        if(approxOverlapCoeff < 0.1){
+                            approxOverlapCoeff *= 9;
+                        } else {
+                            approxOverlapCoeff  *= 2;
+                            approxOverlapCoeff += 0.5;
+                            
+                        }
                         
                             
-                        if(altApproxOverlapCoeff > threshold - 0.1){
+                        if(approxOverlapCoeff > 0.55){
                             int overlap = MCS.getSMSDOverlap(target, query);
                             double overlapCoeff = MCSUtils.overlapCoeff(overlap, target, query);
                             if(overlapCoeff > threshold){
@@ -368,8 +344,17 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
 //                        Isomorphism comparison = new Isomorphism(query, target, Algorithm.DEFAULT, bondSensitive, ringmatch);
 //                        comparison.setChemFilters(stereoMatch, fragmentMinimization, energyMinimization);   
 //                        int overlap = comparison.getFirstAtomMapping().getCount();
-                        double approxOverlapCoeff = StringApproximator.approximateOverlapCoeffDiff(target,query);
-                        if(approxOverlapCoeff > threshold - 0.2){
+                        double approxOverlapCoeff = StringApproximator.approximateOverlapCoeff(new LabeledMolStruct(target), new LabeledMolStruct(query));
+                        if(approxOverlapCoeff < 0.1){
+                            approxOverlapCoeff *= 9;
+                        } else {
+                            approxOverlapCoeff  *= 2;
+                            approxOverlapCoeff += 0.5;
+                            
+                        }
+                        
+                            
+                        if(approxOverlapCoeff > 0.55){
                                 
                             int overlap = MCS.getSMSDOverlap(target, query);
                             if(MCSUtils.overlapCoeff(overlap, target, query) > threshold){
