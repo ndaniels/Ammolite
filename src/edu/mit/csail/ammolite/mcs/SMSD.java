@@ -31,8 +31,6 @@ public class SMSD extends AbstractMCS {
         boolean fragmentMinimization = true;
         boolean energyMinimization = true;
 
-        
-        
         comparison = new Isomorphism(smallCompound, bigCompound, Algorithm.DEFAULT, bondSensitive, ringmatch);
         //comparison.setChemFilters(stereoMatch, fragmentMinimization, energyMinimization);     
 		

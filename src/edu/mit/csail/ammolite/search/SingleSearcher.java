@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
-import edu.mit.csail.ammolite.compression.MolStruct;
+import edu.mit.csail.ammolite.compression.IMolStruct;
 import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.mcs.MCS;
 import edu.mit.csail.ammolite.utils.CommandLineProgressBar;
@@ -84,16 +84,16 @@ public class SingleSearcher implements Runnable {
     }
     
     public Collection<IAtomContainer> searchForMatches(IAtomContainer query){
-        MolStruct cQuery = db.makeMoleculeStruct(query);
+        IMolStruct cQuery = db.makeMoleculeStruct(query);
         Collection<StructID> coarseHits = coarseSearch(cQuery);
         Collection<IAtomContainer> matches = fineSearch(query, coarseHits);
         return matches;
     }
     
-    private Collection<StructID> coarseSearch(MolStruct cQuery){
+    private Collection<StructID> coarseSearch(IMolStruct cQuery){
         CommandLineProgressBar bar = new CommandLineProgressBar(MolUtils.getStructID(cQuery).toString(), db.numReps());
         
-        BlockingQueue<MolStruct> queue = new ArrayBlockingQueue<MolStruct>(COARSE_QUEUE_SIZE,false);
+        BlockingQueue<IMolStruct> queue = new ArrayBlockingQueue<IMolStruct>(COARSE_QUEUE_SIZE,false);
         Collection<StructID> hits = Collections.synchronizedCollection(new HashSet<StructID>());
         
         Thread producer = new Thread( new AmmoliteCoarseProducer(db.iterator(), queue));
