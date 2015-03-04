@@ -70,7 +70,6 @@ object AmmoliteMain{
 			    val target = opt[String]("target", required=true, descr="Make an SDF file of the search results. First molecule is the query, second is the match, third is the overlap.")
 			    
 			}
-<<<<<<< HEAD
 			val mcs = new Subcommand("mcs"){
 			  val sdfA = opt[String]("a", required=true, descr="Name of the file where you want the overlap results")
 			  val sdfB = opt[String]("b", required=true, descr="Name of the file where you want the overlap results")
@@ -90,8 +89,7 @@ object AmmoliteMain{
 			val devTestMCS = new Subcommand("test-mcs"){
 			  val sdf = opt[String]("filename")
 			}
-=======
->>>>>>> fmcs-jni
+
 			val devTestSearch = new Subcommand("test"){
 			  val q = opt[List[String]]("queries", required=true, descr="SDF files of queries.")
 			  val db = opt[String]("database")
@@ -183,16 +181,12 @@ object AmmoliteMain{
 		} else if( opts.subcommand == Some(opts.search)){
 			
 		  
-<<<<<<< HEAD
 		} else if( opts.subcommand ==Some(opts.mcs)){
 		  edu.mit.csail.ammolite.utils.MCSTableMaker.printMCSTable( opts.mcs.sdfA(), opts.mcs.sdfB())
 		  
-		} else if( opts.subcommand == Some( opts.devTestMCS)){
-		  edu.mit.csail.ammolite.tests.MCSTest.testMCS(opts.devTestMCS.sdf())
 		}  else if( opts.subcommand == Some( opts.devTestSDF)){
 		  val s = new SDFWrapper( opts.devTestSDF.sdf())
-=======
->>>>>>> fmcs-jni
+
 		} else if( opts.subcommand == Some( opts.devTestSearch)){
 
 			  edu.mit.csail.ammolite.tests.SearchTest.testSearch(java.util.Arrays.asList(opts.devTestSearch.q().toArray: _*), opts.devTestSearch.db(), opts.devTestSearch.out(), opts.devTestSearch.t(), opts.devTestSearch.p(), 
@@ -206,17 +200,6 @@ object AmmoliteMain{
 					  												opts.devTestSearch.description())
 		  
 		  
-<<<<<<< HEAD
-		} else if( opts.subcommand == Some( opts.devTestSMSD)){
-		  edu.mit.csail.ammolite.tests.SearchTest.testSMSD(opts.devTestSMSD.mols())
-		} else if( opts.subcommand == Some( opts.devTestFMCS)){
-		  // edu.mit.csail.ammolite.tests.SearchTest.testFMCS(opts.devTestFMCS.mols())
-		} else if( opts.subcommand == Some( opts.devTestMyMCS)){
-		  // edu.mit.csail.ammolite.tests.SearchTest.testMyMCS(opts.devTestMyMCS.mols())
-		} else if( opts.subcommand == Some( opts.devTestAmmCoarse)){
-		  edu.mit.csail.ammolite.tests.SearchTest.testAmmoliteCoarse(opts.devTestAmmCoarse.mols())
-=======
->>>>>>> fmcs-jni
 		} else if( opts.subcommand == Some( opts.examine)){
 			val db = StructDatabaseDecompressor.decompress( opts.examine.database())
 		    Logger.log(db.info())

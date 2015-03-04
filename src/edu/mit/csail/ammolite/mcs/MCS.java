@@ -3,7 +3,6 @@ package edu.mit.csail.ammolite.mcs;
 import java.util.concurrent.Callable;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.utils.MCSUtils;
