@@ -2033,3 +2033,1899 @@ time: 11715
 matches: 1525165 1525165 3390483 15812686 18417958 53460846 22356779 6133607 END_METHOD
 END_QUERY
 WALL_CLOCK Ammolite_basic_high_pass 931206ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 80
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1003
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 39
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1011
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 2188ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 74
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1004
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 45
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1007
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 2198ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 65
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1005
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 38
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1011
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 2157ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 69
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1001
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 44
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1003
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 2175ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 79
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1003
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 38
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1010
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 2164ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 60
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1004
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 31
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1015
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 2149ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 67
+matches: END_METHOD
+END_QUERY
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 67
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1007
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 51
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1020
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 2183ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 68
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1006
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 50
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1013
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 2196ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 70
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1005
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 43
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1014
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 2182ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 69
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1005
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 46
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1011
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 2179ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 1076
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1002
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 1042
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1001
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 4167ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 1111
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1003
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 1044
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1004
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 4201ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 1080
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1004
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 1044
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1004
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 4237ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 1207
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1002
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 1131
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1004
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 4396ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 1268
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1004
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 1114
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1006
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 4435ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 1181
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1002
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 1175
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1004
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 4402ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 1291
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1002
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 1168
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1005
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 4503ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 1375
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1012
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 1162
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1002
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 4594ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 1278
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1007
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 1154
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1006
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 4534ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 1231
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1002
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 1175
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1006
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 4453ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 1244
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1004
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 1174
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1004
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 4465ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 1217
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1005
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 1157
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1005
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 4419ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 1270
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1006
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 1169
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1006
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 4491ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 1378
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1004
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 2138
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1005
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 5560ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 1443
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1006
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 2200
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1004
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 5713ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD SMSD_no_ringmatch
+time: 1096
+matches: 33709847 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD SMSD_no_ringmatch
+time: 4072
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK SMSD_no_ringmatch 5172ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_COARSE
+time: 1416
+matches: 33709847_STRUCT 58694713_STRUCT END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite
+time: 1281
+matches: 33709847 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_COARSE
+time: 2152
+matches: 30129100_STRUCT 12891779_STRUCT 13041372_STRUCT 21960503_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite
+time: 1335
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite 6254ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 1374
+matches: END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1001
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 2190
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1003
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 5607ms
+fine_threshold: 0.9 coarse_threshold: 0.8
+Ammolite Database Info
+Database Name: 30_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 30
+Number of representatives: 27
+Compression Type: FULLY_LABELED
+Source Files:
+11772449_STRUCT.sdf molecules: 1
+1185411_STRUCT.sdf molecules: 1
+12891779_STRUCT.sdf molecules: 1
+13041372_STRUCT.sdf molecules: 3
+16523035_STRUCT.sdf molecules: 1
+17679549_STRUCT.sdf molecules: 1
+21960503_STRUCT.sdf molecules: 1
+30129100_STRUCT.sdf molecules: 1
+33039448_STRUCT.sdf molecules: 1
+33307105_STRUCT.sdf molecules: 1
+33554626_STRUCT.sdf molecules: 1
+33709847_STRUCT.sdf molecules: 1
+37285639_STRUCT.sdf molecules: 1
+37707024_STRUCT.sdf molecules: 1
+40099516_STRUCT.sdf molecules: 1
+40242343_STRUCT.sdf molecules: 1
+41013647_STRUCT.sdf molecules: 1
+45094499_STRUCT.sdf molecules: 1
+47478534_STRUCT.sdf molecules: 1
+48826350_STRUCT.sdf molecules: 1
+52790494_STRUCT.sdf molecules: 1
+5370767_STRUCT.sdf molecules: 1
+56075847_STRUCT.sdf molecules: 1
+58694713_STRUCT.sdf molecules: 1
+61561031_STRUCT.sdf molecules: 1
+68742355_STRUCT.sdf molecules: 1
+70334086_STRUCT.sdf molecules: 1
+
+Description: testing fmcs interface
+START_QUERY 2519
+START_METHOD Ammolite_FMCS_COARSE
+time: 1303
+matches: 33709847_STRUCT 58694713_STRUCT END_METHOD
+END_QUERY
+START_QUERY 2519
+START_METHOD Ammolite_FMCS
+time: 1071
+matches: 33709847 END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS_COARSE
+time: 2005
+matches: 13041372_STRUCT 21960503_STRUCT END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_FMCS
+time: 1105
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_FMCS 5530ms

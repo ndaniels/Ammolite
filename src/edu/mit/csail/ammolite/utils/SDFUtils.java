@@ -1,6 +1,7 @@
 package edu.mit.csail.ammolite.utils;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -126,6 +127,23 @@ public class SDFUtils {
 			e.printStackTrace();
 			System.exit(1);
 		} 
+	}
+	
+	public static String sdfString(IAtomContainer mol){
+	    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+	    SDFWriter writer = new SDFWriter(stream);
+	    try {
+            writer.write(mol);
+            writer.close();
+        } catch (CDKException e) {
+            e.printStackTrace();
+            System.exit(1);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+	    
+	    return stream.toString();
 	}
 	
 	public static Iterator<IAtomContainer> parseSDFSetOnline(List<String> filenames){

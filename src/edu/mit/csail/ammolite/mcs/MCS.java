@@ -7,6 +7,7 @@ import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.utils.MCSUtils;
+import edu.mit.csail.ammolite.utils.SDFUtils;
 
 public class MCS {
 	
@@ -37,7 +38,8 @@ public class MCS {
 	
 	
 	public static int getFMCSOverlap(IAtomContainer a, IAtomContainer b){
-	    return -48;
+	    InterfaceFMCS fmcs = new InterfaceFMCS();
+	    return fmcs.getMCSSize(SDFUtils.sdfString(a), SDFUtils.sdfString(b));
 	}
 
 	
