@@ -21,6 +21,12 @@ public class MCSUtils {
 		return ( (double) overlap) / ( a + b - overlap);
 	}
 	
+	public static double tanimotoCoeff(int overlap, IAtomContainer a, IAtomContainer b){
+	    int aC = getAtomCountNoHydrogen(a);
+	    int bC = getAtomCountNoHydrogen(b);
+        return ( (double) overlap) / ( aC + bC - overlap);
+    }
+	
 	public static double overlapCoeff(int overlap, int a, int b){
 		if( a < b){
 			return ( 1.0*overlap) / a;

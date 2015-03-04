@@ -24,7 +24,7 @@ import edu.mit.csail.ammolite.utils.SDFMultiParser;
 import edu.mit.csail.ammolite.utils.SDFUtils;
 
 public class SMSD_QuerywiseParallel implements Tester{
-    private static final String NAME = "SMSD_no_ringmatch";
+    private static final String NAME = "SMSD_tanimoto";
     private static final int QUEUE_SIZE = 500;
     private static final int NUM_THREADS = Runtime.getRuntime().availableProcessors()/2;
     private static final ExecutorService ecs = ParallelUtils.buildNewExecutorService(NUM_THREADS);
@@ -149,7 +149,7 @@ public class SMSD_QuerywiseParallel implements Tester{
                     IAtomContainer target = queue.poll(500, TimeUnit.MILLISECONDS);
                     if(target != null){
                         int overlap = MCS.getSMSDOverlap(target, query);
-                        if(MCSUtils.overlapCoeff(overlap, target, query) > threshold){
+                        if(MCSUtils.tanimotoCoeff(overlap, target, query) > threshold){
                             result.addMatch(new SearchMatch(query, target, overlap));
                         } else {
                             //result.addMiss(new SearchMiss(query, target, overlap));
