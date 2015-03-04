@@ -1,6 +1,6 @@
 package edu.mit.csail.ammolite.mcs;
 
-public class FMCSJ {
+public class InterfaceFMCS {
     
     static {
         System.loadLibrary("fmcs-jni");

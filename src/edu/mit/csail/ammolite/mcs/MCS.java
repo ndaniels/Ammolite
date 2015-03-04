@@ -35,6 +35,10 @@ public class MCS {
 		return false;
 	}
 	
+	
+	public static int getFMCSOverlap(IAtomContainer a, IAtomContainer b){
+	    return -48;
+	}
 
 	
 	
