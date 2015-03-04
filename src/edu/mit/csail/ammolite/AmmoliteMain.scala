@@ -15,6 +15,7 @@ import edu.mit.csail.ammolite.compression.DatabaseCompression
 import collection.mutable.Buffer
 import collection.Seq
 import edu.mit.csail.ammolite.utils.SDFUtils
+import edu.mit.csail.ammolite.utils.MCSTableMaker
 
 
 object AmmoliteMain{
@@ -93,8 +94,8 @@ object AmmoliteMain{
 			    
 			}
 			val mcs = new Subcommand("mcs"){
-			  val molecules = opt[String]("molecules", required=true, descr="sdf file containing the two molecules you want the max common subgraph of")
-			  val sdf = opt[String]("sdf", required=true, descr="Name of the file where you want the overlap results")
+			  val sdfA = opt[String]("a", required=true, descr="Name of the file where you want the overlap results")
+			  val sdfB = opt[String]("b", required=true, descr="Name of the file where you want the overlap results")
 			}
 			val draw = new Subcommand("draw"){
 			  val f = opt[String]("filename")
@@ -261,8 +262,7 @@ object AmmoliteMain{
 			
 		  
 		} else if( opts.subcommand ==Some(opts.mcs)){
-		  Logger.log("Finding mcs of two molecules")
-		  edu.mit.csail.ammolite.utils.MCSUtils.doFMCS(opts.mcs.molecules(), opts.mcs.sdf())
+		  edu.mit.csail.ammolite.utils.MCSTableMaker.printMCSTable( opts.mcs.sdfA(), opts.mcs.sdfB())
 		  
 		} else if( opts.subcommand == Some( opts.devTestMCS)){
 		  edu.mit.csail.ammolite.tests.MCSTest.testMCS(opts.devTestMCS.sdf())
@@ -284,7 +284,7 @@ object AmmoliteMain{
 		} else if( opts.subcommand == Some( opts.devTestSMSD)){
 		  edu.mit.csail.ammolite.tests.SearchTest.testSMSD(opts.devTestSMSD.mols())
 		} else if( opts.subcommand == Some( opts.devTestFMCS)){
-		  edu.mit.csail.ammolite.tests.SearchTest.testFMCS(opts.devTestFMCS.mols())
+		  // edu.mit.csail.ammolite.tests.SearchTest.testFMCS(opts.devTestFMCS.mols())
 		} else if( opts.subcommand == Some( opts.devTestMyMCS)){
 		  // edu.mit.csail.ammolite.tests.SearchTest.testMyMCS(opts.devTestMyMCS.mols())
 		} else if( opts.subcommand == Some( opts.devTestAmmCoarse)){
