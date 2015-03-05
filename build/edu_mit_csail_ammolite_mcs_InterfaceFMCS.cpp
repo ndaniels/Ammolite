@@ -21,7 +21,7 @@ extern "C" {
 JNIEXPORT jint JNICALL Java_edu_mit_csail_ammolite_mcs_InterfaceFMCS_mcsSize
   (JNIEnv *env, jobject thisObj, jstring structureJStringOne, jstring structureJStringTwo)
 {
-	printf("Entered C\n")
+	printf("Entered C\n");
 	int atomMismatchLowerBound = 0;
 	int atomMismatchUpperBound = 0;
 	int bondMismatchLowerBound = 0;
@@ -58,7 +58,7 @@ JNIEXPORT jint JNICALL Java_edu_mit_csail_ammolite_mcs_InterfaceFMCS_mcsSize
             matchType, runningMode, timeout);
 
 	mcs.calculate();
-	printf("Returning from c\n")
+	printf("Returning from c\n");
 
 	return mcs.size();
 }
