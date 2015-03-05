@@ -264,6 +264,7 @@ namespace FMCS {
           if(!timeoutStop && _timeout != 0 && diff >= _timeout){
               // warning("FMCS did not complete, timeout of %dms exceeded\n",_timeout);
               timeoutStop = true;
+              printf("timeout-top... ");
               return -1;
           }
         size_t bestCandidateAtom = atomList.front();
@@ -307,6 +308,7 @@ namespace FMCS {
 		  if(!timeoutStop && _timeout != 0 && diff >= _timeout){
 			  // warning("FMCS did not complete, timeout of %dms exceeded\n",_timeout);
 			  timeoutStop = true;
+              printf("timeout-boundary... ");
 		  }
 
         if (runningMode == FAST) {
@@ -338,6 +340,7 @@ namespace FMCS {
 #ifndef WINDOWS
         if (timeoutStop) {
             _isTimeout = true;
+            printf("timeout-stop-1\n");
             return;
         }
 #endif
@@ -413,6 +416,7 @@ namespace FMCS {
 #ifndef WINDOWS
             if (timeoutStop) {
                 _isTimeout = true;
+                printf("timeout-stop-2\n");
                 return;
             }
 #endif
