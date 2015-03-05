@@ -31,8 +31,8 @@ JNIEXPORT jint JNICALL Java_edu_mit_csail_ammolite_mcs_InterfaceFMCS_mcsSize
     int timeout = 5*60*1000; // Probably in milliseconds?
 
 
-	MCS::RunningMode runningMode = MCS::DETAIL;
-	MCS::MatchType matchType = MCS::RING_SENSETIVE;
+	MCS::RunningMode runningMode = MCS::FAST;
+	MCS::MatchType matchType = MCS::DEFAULT;
 
 	MCSCompound compoundOne, compoundTwo;
 

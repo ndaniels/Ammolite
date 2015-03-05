@@ -22,7 +22,7 @@ public class MCSTableMaker {
                 String idB = MolUtils.getPubID(b).toString();
                 int sizeB = MolUtils.getAtomCountNoHydrogen(b);
                 
-                int mcs = MCS.getSMSDOverlap(a, b);
+                int mcs = MCS.getFMCSOverlap(a, b);
                 
                 System.out.println(idA +", "+ idB+", "+sizeA+", "+sizeB+", "+mcs);
                 
