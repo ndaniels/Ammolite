@@ -75,7 +75,7 @@ namespace FMCS {
 	}
     
     void MCS::calculate() {
-        
+        printf("calculate\n");
         clearResult();
         /*
 #ifndef WINDOWS
@@ -181,6 +181,7 @@ namespace FMCS {
     }
     
     void MCS::max() {
+        printf("max\n");
         MCSList<size_t> atomListOne = compoundOne.getAtomList();
         MCSList<size_t> atomListTwo = compoundTwo.getAtomList();
         grow(atomListOne, atomListTwo);
@@ -188,7 +189,7 @@ namespace FMCS {
     
     bool MCS::compatible(size_t atomOne, size_t atomTwo,
     		size_t& bondMisCount, bool& introducedNewComponent) const {
-
+        printf("compatible\n");
         MCSList<size_t> targetNeighborMapping;
         
         const MCSList<size_t>& atomOneNeighborList = compoundOne[atomOne];
@@ -259,6 +260,7 @@ namespace FMCS {
     }
     
     size_t MCS::top(MCSList<size_t>& atomList) {
+        printf("top\n");
         double diff = (double)(clock() - startTime) / CLOCKS_PER_SEC * 1000 ;
           //printf("%f  at boundary. timeout: %d\n",diff,_timeout);
           if(!timeoutStop && _timeout != 0 && diff >= _timeout){
@@ -303,6 +305,7 @@ namespace FMCS {
     }
     
     void MCS::boundary() {
+        printf("boundary\n");
         double diff = (double)(clock() - startTime) / CLOCKS_PER_SEC * 1000 ;
 		  //printf("%f  at boundary. timeout: %d\n",diff,_timeout);
 		  if(!timeoutStop && _timeout != 0 && diff >= _timeout){
@@ -337,6 +340,7 @@ namespace FMCS {
     }
     
     void MCS::grow(MCSList<size_t>& atomListOne, MCSList<size_t>& atomListTwo) {
+        printf("grow\n");
 #ifndef WINDOWS
         if (timeoutStop) {
             _isTimeout = true;
