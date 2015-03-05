@@ -259,7 +259,7 @@ namespace FMCS {
     }
     
     size_t MCS::top(MCSList<size_t>& atomList) {
-        double diff = (double)(clock() - startTime) / (CLOCKS_PER_SEC * 1000) ;
+        double diff = (double)(clock() - startTime) / CLOCKS_PER_SEC * 1000 ;
           //printf("%f  at boundary. timeout: %d\n",diff,_timeout);
           if(!timeoutStop && _timeout != 0 && diff >= _timeout){
               // warning("FMCS did not complete, timeout of %dms exceeded\n",_timeout);
@@ -302,7 +302,7 @@ namespace FMCS {
     }
     
     void MCS::boundary() {
-        double diff = (double)(clock() - startTime) / (CLOCKS_PER_SEC * 1000) ;
+        double diff = (double)(clock() - startTime) / CLOCKS_PER_SEC * 1000 ;
 		  //printf("%f  at boundary. timeout: %d\n",diff,_timeout);
 		  if(!timeoutStop && _timeout != 0 && diff >= _timeout){
 			  // warning("FMCS did not complete, timeout of %dms exceeded\n",_timeout);
