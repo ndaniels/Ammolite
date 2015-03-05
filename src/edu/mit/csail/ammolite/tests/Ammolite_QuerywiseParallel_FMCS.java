@@ -36,7 +36,7 @@ public class Ammolite_QuerywiseParallel_FMCS implements Tester {
     private static final String NAME = "Ammolite_FMCS_tanimoto";
     private static final int COARSE_QUEUE_SIZE = 1000;
     private static final int FINE_QUEUE_SIZE = 1000;
-    private static final int NUM_THREADS = 1;
+    private static final int NUM_THREADS = 2;
         
     public Ammolite_QuerywiseParallel_FMCS() {}
 
