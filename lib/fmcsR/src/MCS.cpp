@@ -188,13 +188,6 @@ namespace FMCS {
     
     bool MCS::compatible(size_t atomOne, size_t atomTwo,
     		size_t& bondMisCount, bool& introducedNewComponent) const {
-        double diff = (double)(clock() - startTime) / (CLOCKS_PER_SEC * 1000) ;
-        //printf("%f  at boundary. timeout: %d\n",diff,_timeout);
-        if(!timeoutStop && _timeout != 0 && diff >= _timeout){
-          // warning("FMCS did not complete, timeout of %dms exceeded\n",_timeout);
-          timeoutStop = true;
-          return false;
-        }
 
         MCSList<size_t> targetNeighborMapping;
         
