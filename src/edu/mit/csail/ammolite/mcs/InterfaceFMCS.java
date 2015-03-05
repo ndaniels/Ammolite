@@ -9,9 +9,10 @@ public class InterfaceFMCS {
     private native int mcsSize(String compoundA, String compoundB);
     
     public int getMCSSize(String sdfA, String sdfB){
-        System.out.println("Entering C");
+        int id = Thread.currentThread().hashCode(); 
+        System.out.println("Entering C from "+id);
         int a = this.mcsSize(sdfA, sdfB);
-        System.out.println("Returned from C");
+        System.out.println("Returned from C from "+id);
         return a;
     }
 
