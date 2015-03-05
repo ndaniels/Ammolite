@@ -21,6 +21,7 @@ extern "C" {
 JNIEXPORT jint JNICALL Java_edu_mit_csail_ammolite_mcs_InterfaceFMCS_mcsSize
   (JNIEnv *env, jobject thisObj, jstring structureJStringOne, jstring structureJStringTwo)
 {
+	printf("Entered C\n")
 	int atomMismatchLowerBound = 0;
 	int atomMismatchUpperBound = 0;
 	int bondMismatchLowerBound = 0;
@@ -50,19 +51,16 @@ JNIEXPORT jint JNICALL Java_edu_mit_csail_ammolite_mcs_InterfaceFMCS_mcsSize
 	compoundTwo.read(structureStringTwo);
 
 
-	MCS * myMCS = new MCS(compoundOne, compoundTwo,
+	MCS mcs(compoundOne, compoundTwo,
             userDefinedLowerBound, substructureNumLimit,
             atomMismatchLowerBound, atomMismatchUpperBound,
             bondMismatchLowerBound, bondMismatchUpperBound,
             matchType, runningMode, timeout);
 
-	myMCS->calculate();
+	mcs.calculate();
+	printf("Returning from c\n")
 
-	int s = myMCS->size();
-
-	delete myMCS;
-
-	return s;
+	return mcs.size();
 }
 
 }
