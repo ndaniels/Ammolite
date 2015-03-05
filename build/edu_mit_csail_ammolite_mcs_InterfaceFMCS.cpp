@@ -19,9 +19,16 @@ using namespace FMCS;
 extern "C" {
 
 JNIEXPORT jint JNICALL Java_edu_mit_csail_ammolite_mcs_InterfaceFMCS_mcsSize
-  (JNIEnv *env, jobject thisObj, jstring structureJStringOne, jstring structureJStringTwo)
+  (JNIEnv *env, jobject thisObj, jstring structureJStringOne, jstring structureJStringTwo, jstring idj)
 {
-	printf("Entered C\n");
+	string id;
+	const char *s3 = env->GetStringUTFChars(idj,NULL);
+	id = s3;
+	env->ReleaseStringUTFChars(idj,s3);
+
+	printf("Entered C from ");
+	printf(s3);
+	printf("\n");
 	int atomMismatchLowerBound = 0;
 	int atomMismatchUpperBound = 0;
 	int bondMismatchLowerBound = 0;
@@ -34,11 +41,14 @@ JNIEXPORT jint JNICALL Java_edu_mit_csail_ammolite_mcs_InterfaceFMCS_mcsSize
 
 	MCS::RunningMode runningMode = MCS::FAST;
 	MCS::MatchType matchType = MCS::DEFAULT;
-
+	
+	printf("Building compounds ");
+	printf(s3);
+	printf("\n");
+	
 	MCSCompound compoundOne, compoundTwo;
 
 	string structureStringOne;
-
 	const char *s1 = env->GetStringUTFChars(structureJStringOne,NULL);
 	structureStringOne = s1;
 	env->ReleaseStringUTFChars(structureJStringOne,s1);
@@ -50,15 +60,24 @@ JNIEXPORT jint JNICALL Java_edu_mit_csail_ammolite_mcs_InterfaceFMCS_mcsSize
 	env->ReleaseStringUTFChars(structureJStringTwo,s2);
 	compoundTwo.read(structureStringTwo);
 
+	printf("Building mcs ");
+	printf(s3);
+	printf("\n");
 
 	MCS mcs(compoundOne, compoundTwo,
             userDefinedLowerBound, substructureNumLimit,
             atomMismatchLowerBound, atomMismatchUpperBound,
             bondMismatchLowerBound, bondMismatchUpperBound,
             matchType, runningMode, timeout);
+	printf("Calculating size ");
+	printf(s3);
+	printf("\n");
 
 	mcs.calculate();
-	printf("Returning from c\n");
+
+	printf("Returning from c ");
+	printf(s3);
+	printf("\n");
 
 	return mcs.size();
 }
