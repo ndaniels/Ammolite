@@ -28,7 +28,7 @@ JNIEXPORT jint JNICALL Java_edu_mit_csail_ammolite_mcs_InterfaceFMCS_mcsSize
 
 	int substructureNumLimit = 1;
     int userDefinedLowerBound = 0;
-    int timeout = 5*60*1000; // Probably in milliseconds?
+    int timeout = 30*1000; // Probably in milliseconds?
 
 
 	MCS::RunningMode runningMode = MCS::FAST;
