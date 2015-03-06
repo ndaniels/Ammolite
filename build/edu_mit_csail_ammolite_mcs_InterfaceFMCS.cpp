@@ -21,14 +21,9 @@ extern "C" {
 JNIEXPORT jint JNICALL Java_edu_mit_csail_ammolite_mcs_InterfaceFMCS_mcsSize
   (JNIEnv *env, jobject thisObj, jstring structureJStringOne, jstring structureJStringTwo, jstring idj)
 {
-	string id;
-	const char *s3 = env->GetStringUTFChars(idj,NULL);
-	id = s3;
-	env->ReleaseStringUTFChars(idj,s3);
 
-	printf("Entered C from ");
-	printf(s3);
-	printf("\n");
+	// printf("Entered C \n");
+
 	int atomMismatchLowerBound = 0;
 	int atomMismatchUpperBound = 0;
 	int bondMismatchLowerBound = 0;

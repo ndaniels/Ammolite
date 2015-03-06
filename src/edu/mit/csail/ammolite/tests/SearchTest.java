@@ -86,8 +86,8 @@ public class SearchTest {
 //    		} 
 //    		
     		if( testAmmPar){
-    		    Tester tester = new Ammolite_HighPass();
-                runTest(tester, stream, queries, db, targets, sTargets, fine, coarse);
+    		    Tester tester = new FMCS_QuerywiseParallel();
+                runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse);
     		}
     
     		stream.close();

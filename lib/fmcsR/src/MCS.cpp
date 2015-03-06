@@ -75,7 +75,7 @@ namespace FMCS {
 	}
     
     void MCS::calculate() {
-        printf("calculate\n");
+        //printf("calculate\n");
         clearResult();
         /*
 #ifndef WINDOWS
@@ -181,7 +181,7 @@ namespace FMCS {
     }
     
     void MCS::max() {
-        printf("max\n");
+        //printf("max\n");
         MCSList<size_t> atomListOne = compoundOne.getAtomList();
         MCSList<size_t> atomListTwo = compoundTwo.getAtomList();
         grow(atomListOne, atomListTwo);
@@ -189,7 +189,7 @@ namespace FMCS {
     
     bool MCS::compatible(size_t atomOne, size_t atomTwo,
     		size_t& bondMisCount, bool& introducedNewComponent) const {
-        printf("compatible\n");
+        //printf("compatible\n");
         MCSList<size_t> targetNeighborMapping;
         
         const MCSList<size_t>& atomOneNeighborList = compoundOne[atomOne];
@@ -260,13 +260,13 @@ namespace FMCS {
     }
     
     size_t MCS::top(MCSList<size_t>& atomList) {
-        printf("top\n");
+        //printf("top\n");
         double diff = (double)(clock() - startTime) / CLOCKS_PER_SEC * 1000 ;
-          //printf("%f  at boundary. timeout: %d\n",diff,_timeout);
+          ////printf("%f  at boundary. timeout: %d\n",diff,_timeout);
           if(!timeoutStop && _timeout != 0 && diff >= _timeout){
               // warning("FMCS did not complete, timeout of %dms exceeded\n",_timeout);
               timeoutStop = true;
-              printf("timeout-top... ");
+              //printf("timeout-top... ");
               return -1;
           }
         size_t bestCandidateAtom = atomList.front();
@@ -305,13 +305,13 @@ namespace FMCS {
     }
     
     void MCS::boundary() {
-        printf("boundary\n");
+        //printf("boundary\n");
         double diff = (double)(clock() - startTime) / CLOCKS_PER_SEC * 1000 ;
-		  //printf("%f  at boundary. timeout: %d\n",diff,_timeout);
+		  ////printf("%f  at boundary. timeout: %d\n",diff,_timeout);
 		  if(!timeoutStop && _timeout != 0 && diff >= _timeout){
 			  // warning("FMCS did not complete, timeout of %dms exceeded\n",_timeout);
 			  timeoutStop = true;
-              printf("timeout-boundary... ");
+              //printf("timeout-boundary... ");
 		  }
 
         if (runningMode == FAST) {
@@ -340,11 +340,11 @@ namespace FMCS {
     }
     
     void MCS::grow(MCSList<size_t>& atomListOne, MCSList<size_t>& atomListTwo) {
-        printf("grow\n");
+        //printf("grow\n");
 #ifndef WINDOWS
         if (timeoutStop) {
             _isTimeout = true;
-            printf("timeout-stop-1\n");
+            //printf("timeout-stop-1\n");
             return;
         }
 #endif
@@ -420,7 +420,7 @@ namespace FMCS {
 #ifndef WINDOWS
             if (timeoutStop) {
                 _isTimeout = true;
-                printf("timeout-stop-2\n");
+                //printf("timeout-stop-2\n");
                 return;
             }
 #endif
