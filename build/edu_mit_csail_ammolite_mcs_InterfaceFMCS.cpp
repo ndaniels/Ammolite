@@ -37,9 +37,7 @@ JNIEXPORT jint JNICALL Java_edu_mit_csail_ammolite_mcs_InterfaceFMCS_mcsSize
 	MCS::RunningMode runningMode = MCS::FAST;
 	MCS::MatchType matchType = MCS::DEFAULT;
 	
-	printf("Building compounds ");
-	printf(s3);
-	printf("\n");
+	// printf("Building compounds ");
 	
 	MCSCompound compoundOne, compoundTwo;
 
@@ -55,24 +53,19 @@ JNIEXPORT jint JNICALL Java_edu_mit_csail_ammolite_mcs_InterfaceFMCS_mcsSize
 	env->ReleaseStringUTFChars(structureJStringTwo,s2);
 	compoundTwo.read(structureStringTwo);
 
-	printf("Building mcs ");
-	printf(s3);
-	printf("\n");
+	// printf("Building mcs ");
+
 
 	MCS mcs(compoundOne, compoundTwo,
             userDefinedLowerBound, substructureNumLimit,
             atomMismatchLowerBound, atomMismatchUpperBound,
             bondMismatchLowerBound, bondMismatchUpperBound,
             matchType, runningMode, timeout);
-	printf("Calculating size ");
-	printf(s3);
-	printf("\n");
+	// printf("Calculating size ");
 
 	mcs.calculate();
 
-	printf("Returning from c ");
-	printf(s3);
-	printf("\n");
+	// printf("Returning from c ");
 
 	return mcs.size();
 }
