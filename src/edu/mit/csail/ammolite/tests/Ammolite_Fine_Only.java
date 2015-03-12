@@ -1,5 +1,8 @@
 package edu.mit.csail.ammolite.tests;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -32,13 +35,12 @@ import edu.mit.csail.ammolite.utils.Pair;
 import edu.mit.csail.ammolite.utils.ParallelUtils;
 import edu.mit.csail.ammolite.utils.StructID;
 
-public class Ammolite_QuerywiseParallel_2 implements Tester {
-    private static final String NAME = "Ammolite_Tanimoto";
-    private static final int COARSE_QUEUE_SIZE = 1000;
+public class Ammolite_Fine_Only implements Tester {
+    private static final String NAME = "Ammolite_Tanimoto_Fine_Only";
     private static final int FINE_QUEUE_SIZE = 1000;
     private static final int NUM_THREADS = Runtime.getRuntime().availableProcessors()/2;
         
-    public Ammolite_QuerywiseParallel_2() {}
+    public Ammolite_Fine_Only() {}
 
     @Override
     public void test(List<IAtomContainer> queries, IStructDatabase db,
@@ -49,16 +51,8 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
         SearchResultDocumenter scribe = new SearchResultDocumenter( out);
         
         for(IAtomContainer query: queries){
-            IMolStruct cQuery = db.makeMoleculeStruct(query);
-            Pair<SearchResult, Collection<StructID>> p = coarseSearch(cQuery, query, db.iterator(), db.numReps(), prob);
             
-            SearchResult coarseResult = p.left();
-            Collection<StructID> coarseHits = p.right();
-            System.out.println(" Writing coarse results...");
-            scribe.documentSingleResult(coarseResult);
-            // Make sure the JVM automatically garbage collects these 
-            p = null;
-            coarseResult = null;
+            Collection<StructID> coarseHits = loadCoarseHits();
             
             SearchResult fineResult = fineSearch(query, coarseHits, db, thresh);
             scribe.documentSingleResult(fineResult);
@@ -66,6 +60,29 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
             fineResult = null;
         }
 
+    }
+    
+    private Collection<StructID> loadCoarseHits(){
+        Collection<StructID> hits = Collections.synchronizedCollection(new HashSet<StructID>(1000));
+        
+        try{
+            BufferedReader br =  new BufferedReader(new InputStreamReader(System.in));
+     
+            String input;
+     
+            while((input=br.readLine())!=null){
+                for(String id: input.split(" ")){
+                    if(id.matches("[0-9]+_STRUCT")){
+                        hits.add(new StructID(id));
+                    }
+                }
+            }
+     
+        }catch(IOException io){
+            io.printStackTrace();
+        }
+        
+        return hits;
     }
     
 
@@ -103,120 +120,13 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
     }
     
     
-    private Pair<SearchResult, Collection<StructID>> coarseSearch(IMolStruct cQuery, IAtomContainer query, Iterator<IMolStruct> sTargets, int numReps, double thresh){
-        ExecutorService ecs = ParallelUtils.buildNewExecutorService(NUM_THREADS);
-        CommandLineProgressBar bar = new CommandLineProgressBar(MolUtils.getPubID(query).toString() + "_COARSE", numReps);
-        SearchResult coarseResult = new SearchResult(cQuery, getName() + "_COARSE");
-        coarseResult.start();
-        BlockingQueue<IMolStruct> queue = new ArrayBlockingQueue<IMolStruct>(COARSE_QUEUE_SIZE,false);
-        Mediator<IMolStruct> mediator = new Mediator<IMolStruct>(queue);
-        Future<?> producerStatus = ecs.submit( new CoarseProducer(sTargets, mediator));
-        List<Future<?>> consumers = new ArrayList<Future<?>>(NUM_THREADS);
-        try {
-            Thread.sleep(0);
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        Collection<StructID> hits = Collections.synchronizedCollection(new HashSet<StructID>(1000));
-        for(int i=0; i<NUM_THREADS; i++){
-            consumers.add( ecs.submit( new CoarseConsumer(cQuery, mediator, coarseResult, hits, bar, thresh)));
-        }
-        try {
-            producerStatus.get();
-            for(Future<?> f: consumers){
-                f.get();
-            }
-        } catch (InterruptedException ie){ 
-            ie.printStackTrace();
-        } catch(ExecutionException ee) {
-            ee.printStackTrace();
-        }
-        ecs.shutdown();
-        coarseResult.end();
-        return new Pair<SearchResult, Collection<StructID>>(coarseResult, hits);
-    }
 
     @Override
     public String getName() {
         return NAME;
     }
     
-    //////////////////////////////////////////////////////////////////////
-    // COARSE
-    //////////////////////////////////////////////////////////////////////
-    
-    private class CoarseProducer implements Runnable {
-        Mediator<IMolStruct> queue;
-        Iterator<IMolStruct> targets;
-        
-        public CoarseProducer(Iterator<IMolStruct> sTargets, Mediator<IMolStruct> queue){
-              this.targets = sTargets;
-            this.queue = queue;
-        }
-
-        @Override
-        public void run() {
-            IMolStruct target;
-             while(targets.hasNext()){
-                target = targets.next();
-                try {
-                    queue.put(target);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } 
-            }
-            queue.adding = false; 
-            return;
-        } 
-    }
-
-    
-    private class CoarseConsumer implements Runnable {
-        Mediator<IMolStruct> queue;
-        IAtomContainer query;
-        SearchResult result;
-        Collection<StructID> hits;
-        CommandLineProgressBar bar;
-        double threshold;
-        
-        public CoarseConsumer(IMolStruct cQuery, Mediator<IMolStruct> queue, SearchResult result, Collection<StructID> hits, CommandLineProgressBar bar, double threshold){
-            try {
-                this.query = (IAtomContainer) cQuery.clone();
-            } catch (CloneNotSupportedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            this.queue = queue;
-            this.result = result;
-            this.threshold = threshold;
-            this.hits = hits;
-            this.bar = bar;
-        }
-
-        @Override
-        public void run() {
-            try{
-                IMolStruct target = queue.get();
-                while(queue.adding || target != null){
-                    if(target != null){
-                        int overlap = MCS.getSMSDOverlap(target, query);
-                        double overlapCoeff = MCSUtils.tanimotoCoeff(overlap, target, query);
-                        if(overlapCoeff > threshold){
-                            result.addMatch(new SearchMatch(query, target, overlap));
-                            hits.add(MolUtils.getStructID(target));
-                        } 
-                    } 
-                    bar.event();
-                    target = queue.get();
-                }
-            } catch (InterruptedException ie) {
-                ie.printStackTrace();
-            }
-            return;  
-        }
-        
-    }
+  
     
     //////////////////////////////////////////////////////////////////////
     // FINE
@@ -257,12 +167,7 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
         double threshold;
         
         public FineConsumer(IAtomContainer query, Mediator<IAtomContainer> queue, SearchResult result, CommandLineProgressBar bar, double threshold){
-            //try {
-                this.query = (IAtomContainer) query;
-//            } catch (CloneNotSupportedException e) {
-//                // TODO Auto-generated catch block
-//                e.printStackTrace();
-//            }
+            this.query = query;
             this.queue = queue;
             this.result = result;
             this.threshold = threshold;

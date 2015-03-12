@@ -4940,3 +4940,108 @@ time: 1011
 matches: 10880661 END_METHOD
 END_QUERY
 WALL_CLOCK Ammolite_FMCS_tanimoto 894724ms
+fine_threshold: 0.8 coarse_threshold: 0.6
+Ammolite Database Info
+Database Name: 100_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 100
+Number of representatives: 84
+Compression Type: FULLY_LABELED
+Number of source files: 84
+Description: fine only test
+START_QUERY 2519
+START_METHOD Ammolite_Tanimoto
+time: 1009
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_Tanimoto
+time: 1003
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_Tanimoto 2042ms
+fine_threshold: 0.8 coarse_threshold: 0.6
+Ammolite Database Info
+Database Name: 100_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 100
+Number of representatives: 84
+Compression Type: FULLY_LABELED
+Number of source files: 84
+Description: fine only test
+START_QUERY 2519
+START_METHOD Ammolite_Tanimoto
+time: 1006
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_Tanimoto
+time: 1001
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_Tanimoto 2062ms
+fine_threshold: 0.8 coarse_threshold: 0.6
+Ammolite Database Info
+Database Name: 100_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 100
+Number of representatives: 84
+Compression Type: FULLY_LABELED
+Number of source files: 84
+Description: fine only test
+START_QUERY 2519
+START_METHOD Ammolite_Tanimoto
+time: 1011
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_Tanimoto
+time: 1004
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_Tanimoto 2062ms
+fine_threshold: 0.8 coarse_threshold: 0.6
+Ammolite Database Info
+Database Name: 100_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 100
+Number of representatives: 84
+Compression Type: FULLY_LABELED
+Number of source files: 84
+Description: fine only test
+START_QUERY 2519
+START_METHOD Ammolite_Tanimoto
+time: 1006
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_Tanimoto
+time: 1006
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_Tanimoto 2080ms
+fine_threshold: 0.8 coarse_threshold: 0.6
+Ammolite Database Info
+Database Name: 100_fully_labeled
+Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
+This database has been organized.
+Number of molecules: 100
+Number of representatives: 84
+Compression Type: FULLY_LABELED
+Number of source files: 84
+Description: fine only test
+START_QUERY 2519
+START_METHOD Ammolite_Tanimoto
+time: 22
+matches: END_METHOD
+END_QUERY
+START_QUERY 5212
+START_METHOD Ammolite_Tanimoto
+time: 1005
+matches: END_METHOD
+END_QUERY
+WALL_CLOCK Ammolite_Tanimoto 1060ms

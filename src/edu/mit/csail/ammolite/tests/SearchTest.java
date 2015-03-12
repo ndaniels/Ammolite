@@ -86,7 +86,7 @@ public class SearchTest {
 //    		} 
 //    		
     		if( testAmmPar){
-    		    Tester tester = new FMCS_QuerywiseParallel();
+    		    Tester tester = new Ammolite_Fine_Only();
                 runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse);
     		}
     

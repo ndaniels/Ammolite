@@ -19,7 +19,7 @@ using namespace FMCS;
 extern "C" {
 
 JNIEXPORT jint JNICALL Java_edu_mit_csail_ammolite_mcs_InterfaceFMCS_mcsSize
-  (JNIEnv *env, jobject thisObj, jstring structureJStringOne, jstring structureJStringTwo, jstring idj)
+  (JNIEnv *env, jobject thisObj, jstring structureJStringOne, jstring structureJStringTwo)
 {
 
 	// printf("Entered C \n");
