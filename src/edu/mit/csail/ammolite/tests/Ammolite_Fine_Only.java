@@ -89,7 +89,7 @@ public class Ammolite_Fine_Only implements Tester {
     
     private SearchResult fineSearch(IAtomContainer query, Collection<StructID> coarseHits, IStructDatabase db, double thresh){
         ExecutorService ecs = ParallelUtils.buildNewExecutorService(NUM_THREADS);
-        CommandLineProgressBar bar = new CommandLineProgressBar(MolUtils.getPubID(query).toString(), coarseHits.size()*12);
+        CommandLineProgressBar bar = new CommandLineProgressBar(MolUtils.getPubID(query).toString(), db.countFineHits(coarseHits));
         SearchResult result = new SearchResult(query, getName());
         result.start();
         BlockingQueue<IAtomContainer> queue = new ArrayBlockingQueue<IAtomContainer>(FINE_QUEUE_SIZE,false);
