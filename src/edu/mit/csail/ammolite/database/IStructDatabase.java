@@ -1,5 +1,6 @@
 package edu.mit.csail.ammolite.database;
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -29,6 +30,7 @@ public interface IStructDatabase {
 	public List<IAtomContainer> getMatchingMolecules(StructID structID);
 	public String getName();
 	public boolean isOrganized();
+	public int  countFineHits(Collection<StructID> coarseHits);
 	
 
 }

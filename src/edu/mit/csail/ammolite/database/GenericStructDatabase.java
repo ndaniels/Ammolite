@@ -1,6 +1,7 @@
 package edu.mit.csail.ammolite.database;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -225,6 +226,14 @@ public class GenericStructDatabase implements IStructDatabase {
     public double guessCoarseThreshold(double fineThreshold) {
         // TODO Auto-generated method stub
         return 0;
+    }
+    
+    public int countFineHits(Collection<StructID> coarseHits){
+        int count = 0;
+        for(StructID sID: coarseHits){
+            count += idMap.get(sID).size();
+        }
+        return count;
     }
 
 }
