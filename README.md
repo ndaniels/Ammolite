@@ -45,11 +45,11 @@ The test command requires a number of arguments:
 * -A, --Ammolite  Tell the program to run an ammolite search
 * -S, --SMSD  Tell the program to run an SMSD search
 
-### A sample test command is as follows:
+### A sample test command:
 
 ./Ammolite test -d path/to/Ammolite-Database.gad -q path/to/queries.sdf -o path/to/output/file -t 0.8 -c 0.6 -A
 
-Arguments can be supplied to the jvm by replacine ./Ammolite with
+Arguments can be supplied to the jvm by replacing ./Ammolite with
 
 java <java arguments> -jar Ammolite.jar test <ammolite test arguments>
 
@@ -76,6 +76,5 @@ We want to integrate Ammolite into as many workflows as possible and would great
 
 You may contact us by email at
 
-dcdanko@mit.edu (preffered)
-ndaniels@csail.mit.edu
+dcdanko@mit.edu (preffered) or ndaniels@csail.mit.edu
 
