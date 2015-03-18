@@ -1,1 +1,0 @@
-ant;  ./Ammolite test-mcs -f "$1" > "$2"/"$3"; cd "$2"; python ../../scripts/figure-generators/smsdIsoCompare.py "$3"; mol

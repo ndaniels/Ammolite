@@ -1,2582 +1,0 @@
-Decompressing 100_fully_labeled.gad/
-Grabbing metadata...
-Done.
-Building map...
-Done.
-Finding representatives...
-Done.
-Finding sources...
-Done.
-Building database...
-Done.
-fine_threshold: 0.9 coarse_threshold: 0.8
-Ammolite Database Info
-Database Name: 100_fully_labeled
-Database version: AMMOLITE_GENERIC_DATABASE_0_0_0
-This database has been organized.
-Number of molecules: 100
-Number of representatives: 84
-Compression Type: FULLY_LABELED
-Number of source files: 84
-Description: temp
-Ammolite_basic_no_ringmatch
-52790494_COARSE [=                                                        ] 0 / 84{FF=72}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-corn
-Actual: 0.1 Approx: 0.0
-52790494_COARSE [=|                                                       ] 1 / 84{NN=40, CC=12, NC=15, CN=15}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=12, NC=4, CN=4}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.6666666666666666 Approx: 0.13414634146341464
-52790494_COARSE [==|                                                      ] 2 / 84{II=110}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-flibble
-corn
-Actual: 0.08333333333333333 Approx: 0.0
-52790494_COARSE [===|                                                     ] 3 / 84{NN=72, CC=10, NC=21, CN=21}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{NN=2, CC=10, NC=6, CN=6}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-nope
-Actual: 0.7272727272727273 Approx: 0.08064516129032258
-52790494_COARSE [====                                                     ] 4 / 84{NN=72, CC=14, NC=19, CN=19}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{NN=2, CC=14, NC=4, CN=4}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-nope
-Actual: 0.7272727272727273 Approx: 0.0967741935483871
-52790494_COARSE [====|                                                    ] 5 / 84{NN=90, CC=16, NC=18, CN=18}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{NN=2, CC=16, NC=3, CN=3}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-nope
-Actual: 0.7272727272727273 Approx: 0.09154929577464789
-52790494_COARSE [=====                                                    ] 6 / 84{NN=88, CC=16, NC=23, CN=23}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=16, NC=5, CN=5}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-nope
-Actual: 0.75 Approx: 0.08666666666666667
-52790494_COARSE [=====|                                                   ] 7 / 84{CC=22, NN=88, NC=20, CN=20}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=22, NC=2, CN=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-nope
-Actual: 0.75 Approx: 0.10666666666666667
-52790494_COARSE [======|                                                  ] 8 / 84{NN=88, CC=16, NC=23, CN=23}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=16, NC=5, CN=5}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-nope
-Actual: 0.8333333333333334 Approx: 0.08666666666666667
-52790494_COARSE [=======|                                                 ] 9 / 84{CC=20, NN=90, NC=29, CN=29}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=20, NC=3, CN=3}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.6666666666666666 Approx: 0.08928571428571429
-52790494_COARSE [========                                                 ] 10 / 84{SC=12, SS=108, CS=12, CC=14, NS=11, NC=3, SN=11, CN=3}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{SC=3, CS=3, CC=14, NS=1, NC=3, SN=1, CN=3}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-corn
-fuego
-tripe
-Actual: 0.6923076923076923 Approx: 0.5
-52790494_COARSE [========|                                                ] 11 / 84{NN=110, CC=18, NC=35, CN=35}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=18, NC=5, CN=5}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-nope
-Actual: 0.7692307692307693 Approx: 0.0707070707070707
-52790494_COARSE [=========                                                ] 12 / 84{CC=24, OO=108, OC=20, CO=20}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=24, OC=2, CO=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.46153846153846156 Approx: 0.06976744186046512
-52790494_COARSE [=========|                                               ] 13 / 84{SC=11, SS=130, CC=24, CS=11, NS=12, NC=1, SN=12, CN=1}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{SC=1, CC=24, CS=1, NS=1, NC=1, SN=1, CN=1}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-fuego
-nope
-Actual: 0.7142857142857143 Approx: 0.5
-52790494_COARSE [==========|                                              ] 14 / 84{CC=172}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=28}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.46153846153846156 Approx: 0.06976744186046512
-52790494_COARSE [===========|                                             ] 15 / 84{NN=106, CC=16, NC=26, CN=26}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=16, NC=7, CN=7}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-nope
-Actual: 0.7692307692307693 Approx: 0.07471264367816093
-52790494_COARSE [============                                             ] 16 / 84{OO=180, CC=20, NO=1, OC=29, NC=3, CN=3, CO=29, ON=1}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=20, NO=1, OC=3, NC=3, CN=3, CO=3, ON=1}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5 Approx: 0.04887218045112782
-52790494_COARSE [============|                                            ] 17 / 84{SC=26, SS=152, CC=18, CS=26, OC=2, NC=4, CN=4, CO=2}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{SC=2, CC=18, CS=2, OC=2, NC=4, CN=4, CO=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5333333333333333 Approx: 0.4444444444444444
-52790494_COARSE [=============|                                           ] 18 / 84{SC=27, SS=178, CC=26, CS=27, NC=3, CN=3}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{SC=2, CC=26, CS=2, NC=3, CN=3}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-corn
-fuego
-tripe
-Actual: 0.5625 Approx: 0.45075757575757575
-52790494_COARSE [==============                                           ] 19 / 84{NN=238, CC=26, NC=31, CN=31}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{NN=2, CC=26, NC=5, CN=5}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5294117647058824 Approx: 0.05214723926380368
-52790494_COARSE [==============|                                          ] 20 / 84{SC=29, SS=206, CC=24, CS=29, NC=5, CN=5}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{SC=2, CC=24, CS=2, NC=5, CN=5}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-flibble
-corn
-fuego
-tripe
-Actual: 0.47058823529411764 Approx: 0.45302013422818793
-52790494_COARSE [===============|                                         ] 21 / 84{OO=206, CC=30, OC=28, NC=2, CN=2, CO=28}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=30, OC=2, NC=2, CN=2, CO=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.47058823529411764 Approx: 0.0472972972972973
-52790494_COARSE [================                                         ] 22 / 84{CC=28, NN=128, NC=22, CN=22}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=28, NC=2, CN=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.6428571428571429 Approx: 0.085
-52790494_COARSE [================|                                        ] 23 / 84{SC=16, SS=270, CC=30, CS=16, NS=17, NC=3, SN=17, CN=3}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{SC=1, CC=30, CS=1, NS=1, NC=3, SN=1, CN=3}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5555555555555556 Approx: 0.4940119760479042
-52790494_COARSE [=================|                                       ] 24 / 84{NN=238, CC=20, NC=38, CN=38}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{NN=2, CC=20, NC=9, CN=9}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5555555555555556 Approx: 0.04491017964071856
-52790494_COARSE [==================                                       ] 25 / 84{SC=31, SS=236, CC=30, CS=31, NC=3, CN=3}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{SC=2, CC=30, CS=2, NC=3, CN=3}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-flibble
-corn
-fuego
-tripe
-Actual: 0.4444444444444444 Approx: 0.4431137724550898
-52790494_COARSE [==================|                                      ] 26 / 84{OO=304, CC=34, OC=36, NC=2, CN=2, CO=36}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=34, OC=2, NC=2, CN=2, CO=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5 Approx: 0.041916167664670656
-52790494_COARSE [===================|                                     ] 27 / 84{SC=32, SS=268, CS=32, CC=26, OC=2, NC=4, CN=4, CO=2}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{SC=2, CS=2, CC=26, OC=2, NC=4, CN=4, CO=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-blipe
-tripe
-Actual: 0.3888888888888889 Approx: 0.4491017964071856
-52790494_COARSE [====================|                                    ] 28 / 84{NN=304, CC=26, NC=38, CN=38}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{NN=2, CC=26, NC=7, CN=7}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.6111111111111112 Approx: 0.05089820359281437
-52790494_COARSE [=====================                                    ] 29 / 84{NN=268, CC=30, NC=36, CN=36}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=30, NC=6, CN=6}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.4444444444444444 Approx: 0.05089820359281437
-52790494_COARSE [=====================|                                   ] 30 / 84{SC=32, SS=268, CS=32, CC=26, NC=6, CN=6}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{SC=2, CS=2, CC=26, NC=6, CN=6}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-blipe
-tripe
-Actual: 0.4444444444444444 Approx: 0.45209580838323354
-52790494_COARSE [======================                                   ] 31 / 84{OO=268, CC=28, OC=34, NC=5, CN=5, CO=34}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=28, OC=2, NC=5, CN=5, CO=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5 Approx: 0.05089820359281437
-52790494_COARSE [======================|                                  ] 32 / 84{OO=268, CC=28, OC=34, NC=5, CN=5, CO=34}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=28, OC=2, NC=5, CN=5, CO=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5 Approx: 0.05089820359281437
-52790494_COARSE [=======================|                                 ] 33 / 84{NN=236, CC=32, NC=33, CN=33}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=32, NC=4, CN=4}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.4444444444444444 Approx: 0.05089820359281437
-52790494_COARSE [========================|                                ] 34 / 84{CC=414}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=44}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.3333333333333333 Approx: 0.03592814371257485
-52790494_COARSE [======================{OO=302, NN=2, CC=20, OC=35, NC=9, CN=9, CO=35}
-={SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{NN=2, CC=20, OC=2, NC=9, CN=9, CO=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.6111111111111112 Approx: 0.04491017964071856
-==                                ] 35 / 8452790494_COARSE [=========================|                               ] 36 / 84{CC=40, NN=302, NC=36, CN=36}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=40, NC=2, CN=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.4444444444444444 Approx: 0.05089820359281437
-52790494_COARSE [==========================                               ] 37 / 84{NN=302, CC=30, NC=41, CN=41}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=30, NC=7, CN=7}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.6111111111111112 Approx: 0.05089820359281437
-52790494_COARSE [==========================|                              ] 38 / 84{NN=304, CC=24, NC=43, CN=43}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{NN=2, CC=24, NC=9, CN=9}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5555555555555556 Approx: 0.05089820359281437
-52790494_COARSE [===========================|                             ] 39 / 84{NN=304, CC=32, NC=38, CN=38}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{NN=2, CC=32, NC=5, CN=5}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5555555555555556 Approx: 0.05089820359281437
-52790494_COARSE [============================|                            ] 40 / 84{SC=37, SS=338, CC=34, CS=37, NC=4, CN=4}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{SC=2, CC=34, CS=2, NC=4, CN=4}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-corn
-fuego
-tripe
-Actual: 0.5555555555555556 Approx: 0.4491017964071856
-52790494_COARSE [=============================                            ] 41 / 84{OO=338, CC=30, OC=37, NC=6, CN=6, CO=37}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=30, OC=2, NC=6, CN=6, CO=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5 Approx: 0.05089820359281437
-52790494_COARSE [=============================|                           ] 42 / 84{SC=37, SS=338, NN=6, CS=37, CC=26, NC=5, CN=5}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{SC=2, NN=6, CS=2, CC=26, NC=5, CN=5}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-blipe
-tripe
-Actual: 0.4444444444444444 Approx: 0.45209580838323354
-52790494_COARSE [==============================                           ] 43 / 84{SC=19, SS=376, CC=38, CS=19, NS=20, NC=3, SN=20, CN=3}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{SC=1, CC=38, CS=1, NS=1, NC=3, SN=1, CN=3}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5555555555555556 Approx: 0.4940119760479042
-52790494_COARSE [==============================-|                         ] 44 / 84{NN=376, CC=34, NC=45, CN=45}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=34, NC=7, CN=7}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5555555555555556 Approx: 0.05089820359281437
-52790494_COARSE [================================                         ] 45 / 84{OO=376, CC=34, NO=20, OC=22, NC=3, CN=3, CO=22, ON=20}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=34, NO=1, OC=3, NC=3, CN=3, CO=3, ON=1}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5 Approx: 0.04491017964071856
-52790494_COARSE [================================|                        ] 46 / 84{SC=39, SS=376, CC=34, CS=39, OC=2, NC=3, CN=3, CO=2}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{SC=2, CC=34, CS=2, OC=2, NC=3, CN=3, CO=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-blipe
-tripe
-Actual: 0.4444444444444444 Approx: 0.44610778443113774
-52790494_COARSE [=================================                        ] 47 / 84{SC=39, SS=376, CC=40, CS=39, NC=2, CN=2}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{SC=2, CC=40, CS=2, NC=2, CN=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-flibble
-corn
-fuego
-tripe
-Actual: 0.4444444444444444 Approx: 0.4431137724550898
-52790494_COARSE [=================================|                       ] 48 / 84{OO=376, CC=28, OC=39, NC=8, CN=8, CO=39}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=28, OC=2, NC=8, CN=8, CO=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5555555555555556 Approx: 0.05089820359281437
-52790494_COARSE [==================================|                      ] 49 / 84{NN=376, CC=40, NC=41, CN=41}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=40, NC=4, CN=4}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5 Approx: 0.05089820359281437
-52790494_COARSE [===================================|                     ] 50 / 84{SC=19, SS=376, CC=36, CS=19, NS=19, NC=4, SN=19, CN=4}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{SC=1, CC=36, CS=1, NS=1, NC=4, SN=1, CN=4}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5555555555555556 Approx: 0.49700598802395207
-52790494_COARSE [====================================                     ] 51 / 84{OO=376, CC=34, OC=40, NC=5, CN=5, CO=40}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=34, OC=2, NC=5, CN=5, CO=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5555555555555556 Approx: 0.05089820359281437
-52790494_COARSE [====================================|                    ] 52 / 84{NN=336, CC=44, NC=38, CN=38}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=44, NC=2, CN=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5 Approx: 0.05089820359281437
-52790494_COARSE [=====================================                    ] 53 / 84{OO=336, CC=40, OC=37, NC=2, CN=2, CO=37}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=40, OC=2, NC=2, CN=2, CO=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5 Approx: 0.041916167664670656
-52790494_COARSE [=====================================|                   ] 54 / 84{NN=336, CC=34, NC=42, CN=42}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=34, NC=7, CN=7}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5555555555555556 Approx: 0.05089820359281437
-52790494_COARSE [======================================|                  ] 55 / 84{OO=416, NN=2, CC=34, OC=43, NC=3, CN=3, CO=43}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{NN=2, CC=34, OC=4, NC=3, CN=3, CO=4}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.4444444444444444 Approx: 0.04491017964071856
-52790494_COARSE [=======================================|                 ] 56 / 84{OO=416, CC=40, OC=41, NC=3, CN=3, CO=41}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=40, OC=2, NC=3, CN=3, CO=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.4444444444444444 Approx: 0.04491017964071856
-52790494_COARSE [========================================                 ] 57 / 84{OO=416, CC=30, OC=42, NC=8, CN=8, CO=42}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=30, OC=2, NC=8, CN=8, CO=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5555555555555556 Approx: 0.05089820359281437
-52790494_COARSE [========================================|                ] 58 / 84{SC=42, SS=416, CC=32, CS=42, NC=7, CN=7}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{SC=2, CC=32, CS=2, NC=7, CN=7}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-corn
-fuego
-tripe
-Actual: 0.5555555555555556 Approx: 0.45209580838323354
-52790494_COARSE [=========================================                ] 59 / 84{NN=2, OO=336, CC=38, OC=37, NC=2, CN=2, CO=37}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{NN=2, CC=38, OC=2, NC=2, CN=2, CO=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.4444444444444444 Approx: 0.041916167664670656
-52790494_COARSE [=========================================|               ] 60 / 84{Br=959, rB=456, SC=2, CS=2, CC=38, NC=4, CN=4}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{SC=2, CS=2, CC=38, NC=4, CN=4}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.3333333333333333 Approx: 0.05389221556886228
-52790494_COARSE [==========================================|              ] 61 / 84{NN=376, CC=32, NC=64, CN=64}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=32, NC=9, CN=9}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5555555555555556 Approx: 0.05089820359281437
-52790494_COARSE [===========================================|             ] 62 / 84{OO=458, CC=40, OC=43, NC=4, CN=4, CO=43}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=40, OC=2, NC=4, CN=4, CO=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5555555555555556 Approx: 0.04790419161676647
-52790494_COARSE [============================================             ] 63 / 84{OO=458, CC=38, OC=43, NC=5, CN=5, CO=43}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=38, OC=2, NC=5, CN=5, CO=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5555555555555556 Approx: 0.05089820359281437
-52790494_COARSE [============================================|            ] 64 / 84{SC=41, SS=414, CS=41, CC=28, OC=4, NC=6, CN=6, CO=4}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{SC=2, CS=2, CC=28, OC=4, NC=6, CN=6, CO=4}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5 Approx: 0.45209580838323354
-52790494_COARSE [=============================================|           ] 65 / 84{CC=46, NN=374, NC=39, CN=39}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=46, NC=2, CN=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5 Approx: 0.05089820359281437
-52790494_COARSE [==============================================           ] 66 / 84{OO=414, CC=38, OC=43, NC=3, CN=3, CO=43}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=38, OC=4, NC=3, CN=3, CO=4}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5 Approx: 0.04491017964071856
-52790494_COARSE [==============================================|          ] 67 / 84{NN=458, CC=40, NC=68, CN=68}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=40, NC=7, CN=7}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5555555555555556 Approx: 0.05089820359281437
-52790494_COARSE [===============================================|         ] 68 / 84{NN=504, CC=22, NC=55, CN=55}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{NN=4, CC=22, NC=14, CN=14}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.6111111111111112 Approx: 0.04790419161676647
-52790494_COARSE [================================================         ] 69 / 84{OO=456, CC=36, OC=43, NC=7, CN=7, CO=43}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=36, OC=2, NC=7, CN=7, CO=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5555555555555556 Approx: 0.05089820359281437
-52790494_COARSE [================================================|        ] 70 / 84{OO=498, NN=4, CC=32, OC=44, NC=9, CN=9, CO=44}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{NN=4, CC=32, OC=2, NC=9, CN=9, CO=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5555555555555556 Approx: 0.05089820359281437
-52790494_COARSE [=================================================|       ] 71 / 84{OO=594, CC=44, OC=49, NC=6, CN=6, CO=49}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=44, OC=2, NC=6, CN=6, CO=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.6111111111111112 Approx: 0.05089820359281437
-52790494_COARSE [==================================================       ] 72 / 84{NN=502, CC=42, NC=72, CN=72}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=42, NC=7, CN=7}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.6111111111111112 Approx: 0.05089820359281437
-52790494_COARSE [==================================================|      ] 73 / 84{OO=594, NN=2, CC=36, OC=50, NC=9, CN=9, CO=50}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{NN=2, CC=36, OC=2, NC=9, CN=9, CO=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.4444444444444444 Approx: 0.05089820359281437
-52790494_COARSE [===================================================|     ] 74 / 84{SC=28, SS=862, CC=44, CS=28, NO=1, OC=5, NC=6, NS=29, SN=29, CN=6, CO=5, ON=1}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{SC=1, CC=44, CS=1, NO=1, OC=5, NC=6, NS=1, SN=1, CN=6, CO=5, ON=1}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5 Approx: 0.5
-52790494_COARSE [====================================================     ] 75 / 84{SC=53, SS=696, CC=50, CS=53, NC=5, CN=5}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{SC=2, CC=50, CS=2, NC=5, CN=5}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5 Approx: 0.45209580838323354
-52790494_COARSE [====================================================|    ] 76 / 84{OO=918, NN=2, CC=60, OC=61, NC=6, CN=6, CO=61}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{NN=2, CC=60, OC=2, NC=6, CN=6, CO=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5 Approx: 0.05089820359281437
-52790494_COARSE [=====================================================|   ] 77 / 84{NN=982, CC=68, NC=98, CN=98}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=68, NC=6, CN=6}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5 Approx: 0.05089820359281437
-52790494_COARSE [======================================================   ] 78 / 84{OO=1046, CC=58, OC=65, NC=7, CN=7, CO=65}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=58, OC=4, NC=7, CN=7, CO=4}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-tripe
-Actual: 0.5555555555555556 Approx: 0.05089820359281437
-52790494_COARSE [======================================================|  ] 79 / 84{CC=6, NN=6, NC=6, CN=6}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=6, NC=2, CN=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-Actual: 1.0 Approx: 0.3333333333333333
-52790494_COARSE [=======================================================| ] 80 / 84{CC=36}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=12}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-Actual: 1.0 Approx: 0.3333333333333333
-52790494_COARSE [========================================================|] 81 / 84{OO=12, CC=4, OC=8, NC=2, CN=2, CO=8}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=4, OC=2, NC=2, CN=2, CO=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-Actual: 0.8333333333333334 Approx: 0.1111111111111111
-52790494_COARSE [=========================================================] 82 / 84{CC=8, NN=12, NC=8, CN=8}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{CC=8, NC=2, CN=2}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-Actual: 1.0 Approx: 0.25
-52790494_COARSE [=========================================================] 83 / 84{SC=73, SS=1324, CC=74, CS=73, NC=4, CN=4}
-{SC=15, SS=238, CC=24, CS=15, NC=5, NS=16, SN=16, CN=5}
-{SC=2, CC=74, CS=2, NC=4, CN=4}
-{SC=1, CC=24, CS=1, NC=5, NS=1, SN=1, CN=5}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5 Approx: 0.4491017964071856
-52790494_COARSE [=========================================================] 84 / 84Writing coarse results...
-52790494 [=|                                                              ] 0 / 6052790494 [==|                                                             ] 1 / 6052790494 [===|                                                            ] 2 / 6052790494 [====|                                                           ] 3 / 6052790494 [=====|                                                          ] 4 / 6052790494 [======|                                                         ] 5 / 6052790494 [=======|                                                        ] 6 / 6052790494 [========|                                                       ] 7 / 6052790494 [=========|                                                      ] 8 / 6052790494 [==========-|                                                    ] 9 / 6052790494 [============                                                    ] 10 / 6052790494 [============-|                                                  ] 11 / 6052790494 [==============|                                                 ] 12 / 6052790494 [===============|                                                ] 13 / 6052790494 [================|                                               ] 14 / 60Writing fine results...
-61561031_COARSE [=                                                        ] 0 / 84{FF=72}
-{NN=180, CC=26, NC=43, CN=43}
-{}
-{CC=26, NC=5, CN=5}
-corn
-Actual: 0.1 Approx: 0.0
-61561031_COARSE [=|                                                       ] 1 / 84{NN=40, CC=12, NC=15, CN=15}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=12, NC=4, CN=4}
-{CC=26, NC=5, CN=5}
-fuego
-nope
-Actual: 0.8888888888888888 Approx: 0.5
-61561031_COARSE [==|                                                      ] 2 / 84{II=110}
-{NN=180, CC=26, NC=43, CN=43}
-{}
-{CC=26, NC=5, CN=5}
-flibble
-corn
-Actual: 0.08333333333333333 Approx: 0.0
-61561031_COARSE [===|                                                     ] 3 / 84{NN=72, CC=14, NC=19, CN=19}
-{NN=180, CC=26, NC=43, CN=43}
-{NN=2, CC=14, NC=4, CN=4}
-{CC=26, NC=5, CN=5}
-fuego
-nope
-Actual: 0.7272727272727273 Approx: 0.5
-61561031_COARSE [====                                                     ] 4 / 84{NN=72, CC=10, NC=21, CN=21}
-{NN=180, CC=26, NC=43, CN=43}
-{NN=2, CC=10, NC=6, CN=6}
-{CC=26, NC=5, CN=5}
-fuego
-nope
-Actual: 0.8181818181818182 Approx: 0.5
-61561031_COARSE [====|                                                    ] 5 / 84{NN=90, CC=16, NC=18, CN=18}
-{NN=180, CC=26, NC=43, CN=43}
-{NN=2, CC=16, NC=3, CN=3}
-{CC=26, NC=5, CN=5}
-fuego
-nope
-Actual: 0.8181818181818182 Approx: 0.5
-61561031_COARSE [=====                                                    ] 6 / 84{NN=88, CC=16, NC=23, CN=23}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=16, NC=5, CN=5}
-{CC=26, NC=5, CN=5}
-Actual: 1.0 Approx: 0.5
-61561031_COARSE [=====|                                                   ] 7 / 84{CC=22, NN=88, NC=20, CN=20}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=22, NC=2, CN=2}
-{CC=26, NC=5, CN=5}
-fuego
-nope
-Actual: 0.75 Approx: 0.5
-61561031_COARSE [======|                                                  ] 8 / 84{NN=88, CC=16, NC=23, CN=23}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=16, NC=5, CN=5}
-{CC=26, NC=5, CN=5}
-fuego
-nope
-Actual: 0.9166666666666666 Approx: 0.5
-61561031_COARSE [=======|                                                 ] 9 / 84{CC=20, NN=90, NC=29, CN=29}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=20, NC=3, CN=3}
-{CC=26, NC=5, CN=5}
-fuego
-nope
-Actual: 0.75 Approx: 0.5
-61561031_COARSE [========                                                 ] 10 / 84{SC=12, SS=108, CS=12, CC=14, NS=11, NC=3, SN=11, CN=3}
-{NN=180, CC=26, NC=43, CN=43}
-{SC=3, CS=3, CC=14, NS=1, NC=3, SN=1, CN=3}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.46153846153846156 Approx: 0.05747126436781609
-61561031_COARSE [========|                                                ] 11 / 84{NN=110, CC=18, NC=35, CN=35}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=18, NC=5, CN=5}
-{CC=26, NC=5, CN=5}
-fuego
-nope
-Actual: 0.9230769230769231 Approx: 0.5
-61561031_COARSE [=========                                                ] 12 / 84{CC=24, OO=108, OC=20, CO=20}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=24, OC=2, CO=2}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.46153846153846156 Approx: 0.06976744186046512
-61561031_COARSE [=========|                                               ] 13 / 84{SC=11, SS=130, CC=24, CS=11, NS=12, NC=1, SN=12, CN=1}
-{NN=180, CC=26, NC=43, CN=43}
-{SC=1, CC=24, CS=1, NS=1, NC=1, SN=1, CN=1}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5 Approx: 0.06435643564356436
-61561031_COARSE [==========|                                              ] 14 / 84{NN=106, CC=16, NC=26, CN=26}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=16, NC=7, CN=7}
-{CC=26, NC=5, CN=5}
-corn
-fuego
-tripe
-Actual: 0.6153846153846154 Approx: 0.5
-61561031_COARSE [===========|                                             ] 15 / 84{CC=172}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=28}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.46153846153846156 Approx: 0.0755813953488372
-61561031_COARSE [============                                             ] 16 / 84{OO=180, CC=20, NO=1, OC=29, NC=3, CN=3, CO=29, ON=1}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=20, NO=1, OC=3, NC=3, CN=3, CO=3, ON=1}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.04887218045112782
-61561031_COARSE [============|                                            ] 17 / 84{SC=26, SS=152, CC=18, CS=26, OC=2, NC=4, CN=4, CO=2}
-{NN=180, CC=26, NC=43, CN=43}
-{SC=2, CC=18, CS=2, OC=2, NC=4, CN=4, CO=2}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.6 Approx: 0.05555555555555555
-61561031_COARSE [=============|                                           ] 18 / 84{SC=27, SS=178, CC=26, CS=27, NC=3, CN=3}
-{NN=180, CC=26, NC=43, CN=43}
-{SC=2, CC=26, CS=2, NC=3, CN=3}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.06060606060606061
-61561031_COARSE [==============                                           ] 19 / 84{CC=28, NN=128, NC=22, CN=22}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=28, NC=2, CN=2}
-{CC=26, NC=5, CN=5}
-corn
-fuego
-tripe
-Actual: 0.6428571428571429 Approx: 0.495
-61561031_COARSE [==============|                                          ] 20 / 84{NN=238, CC=26, NC=31, CN=31}
-{NN=180, CC=26, NC=43, CN=43}
-{NN=2, CC=26, NC=5, CN=5}
-{CC=26, NC=5, CN=5}
-corn
-fuego
-tripe
-Actual: 0.5625 Approx: 0.4589041095890411
-61561031_COARSE [===============|                                         ] 21 / 84{OO=206, CC=30, OC=28, NC=2, CN=2, CO=28}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=30, OC=2, NC=2, CN=2, CO=2}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.05136986301369863
-61561031_COARSE [================                                         ] 22 / 84{SC=16, SS=270, CC=30, CS=16, NS=17, NC=3, SN=17, CN=3}
-{NN=180, CC=26, NC=43, CN=43}
-{SC=1, CC=30, CS=1, NS=1, NC=3, SN=1, CN=3}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.0547945205479452
-61561031_COARSE [================|                                        ] 23 / 84{SC=29, SS=206, CC=24, CS=29, NC=5, CN=5}
-{NN=180, CC=26, NC=43, CN=43}
-{SC=2, CC=24, CS=2, NC=5, CN=5}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.05821917808219178
-61561031_COARSE [=================|                                       ] 24 / 84{NN=238, CC=20, NC=38, CN=38}
-{NN=180, CC=26, NC=43, CN=43}
-{NN=2, CC=20, NC=9, CN=9}
-{CC=26, NC=5, CN=5}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5625 Approx: 0.4726027397260274
-61561031_COARSE [==================                                       ] 25 / 84{SC=31, SS=236, CC=30, CS=31, NC=3, CN=3}
-{NN=180, CC=26, NC=43, CN=43}
-{SC=2, CC=30, CS=2, NC=3, CN=3}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.0547945205479452
-61561031_COARSE [==================|                                      ] 26 / 84{OO=304, CC=34, OC=36, NC=2, CN=2, CO=36}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=34, OC=2, NC=2, CN=2, CO=2}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.05136986301369863
-61561031_COARSE [===================|                                     ] 27 / 84{SC=32, SS=268, CS=32, CC=26, OC=2, NC=4, CN=4, CO=2}
-{NN=180, CC=26, NC=43, CN=43}
-{SC=2, CS=2, CC=26, OC=2, NC=4, CN=4, CO=2}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5 Approx: 0.05821917808219178
-61561031_COARSE [====================|                                    ] 28 / 84{NN=304, CC=26, NC=38, CN=38}
-{NN=180, CC=26, NC=43, CN=43}
-{NN=2, CC=26, NC=7, CN=7}
-{CC=26, NC=5, CN=5}
-corn
-fuego
-tripe
-Actual: 0.625 Approx: 0.4828767123287671
-61561031_COARSE [=====================                                    ] 29 / 84{NN=236, CC=32, NC=33, CN=33}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=32, NC=4, CN=4}
-{CC=26, NC=5, CN=5}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5 Approx: 0.4657534246575342
-61561031_COARSE [=====================|                                   ] 30 / 84{NN=268, CC=30, NC=36, CN=36}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=30, NC=6, CN=6}
-{CC=26, NC=5, CN=5}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5625 Approx: 0.476027397260274
-61561031_COARSE [======================                                   ] 31 / 84{SC=32, SS=268, CS=32, CC=26, NC=6, CN=6}
-{NN=180, CC=26, NC=43, CN=43}
-{SC=2, CS=2, CC=26, NC=6, CN=6}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5 Approx: 0.06506849315068493
-61561031_COARSE [======================|                                  ] 32 / 84{OO=268, CC=28, OC=34, NC=5, CN=5, CO=34}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=28, OC=2, NC=5, CN=5, CO=2}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.06164383561643835
-61561031_COARSE [=======================|                                 ] 33 / 84{OO=268, CC=28, OC=34, NC=5, CN=5, CO=34}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=28, OC=2, NC=5, CN=5, CO=2}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.06164383561643835
-61561031_COARSE [========================|                                ] 34 / 84{OO=302, NN=2, CC=20, OC=35, NC=9, CN=9, CO=35}
-{NN=180, CC=26, NC=43, CN=43}
-{NN=2, CC=20, OC=2, NC=9, CN=9, CO=2}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.0684931506849315
-61561031_COARSE [=========================                                ] 35 / 84{CC=40, NN=302, NC=36, CN=36}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=40, NC=2, CN=2}
-{CC=26, NC=5, CN=5}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5625 Approx: 0.476027397260274
-61561031_COARSE [=========================|                               ] 36 / 84{NN=302, CC=30, NC=41, CN=41}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=30, NC=7, CN=7}
-{CC=26, NC=5, CN=5}
-corn
-fuego
-tripe
-Actual: 0.6875 Approx: 0.4931506849315068
-61561031_COARSE [==========================                               ] 37 / 84{CC=414}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=44}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.375 Approx: 0.04452054794520548
-61561031_COARSE [==========================|                              ] 38 / 84{NN=304, CC=32, NC=38, CN=38}
-{NN=180, CC=26, NC=43, CN=43}
-{NN=2, CC=32, NC=5, CN=5}
-{CC=26, NC=5, CN=5}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5625 Approx: 0.4828767123287671
-61561031_COARSE [===========================|                             ] 39 / 84{NN=304, CC=24, NC=43, CN=43}
-{NN=180, CC=26, NC=43, CN=43}
-{NN=2, CC=24, NC=9, CN=9}
-{CC=26, NC=5, CN=5}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5625 Approx: 0.4965753424657534
-61561031_COARSE [============================|                            ] 40 / 84{OO=338, CC=30, OC=37, NC=6, CN=6, CO=37}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=30, OC=2, NC=6, CN=6, CO=2}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5 Approx: 0.06506849315068493
-61561031_COARSE [=============================                            ] 41 / 84{SC=37, SS=338, NN=6, CS=37, CC=26, NC=5, CN=5}
-{NN=180, CC=26, NC=43, CN=43}
-{SC=2, NN=6, CS=2, CC=26, NC=5, CN=5}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.07191780821917808
-61561031_COARSE [=============================|                           ] 42 / 84{SC=37, SS=338, CC=34, CS=37, NC=4, CN=4}
-{NN=180, CC=26, NC=43, CN=43}
-{SC=2, CC=34, CS=2, NC=4, CN=4}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.05821917808219178
-61561031_COARSE [==============================                           ] 43 / 84{SC=19, SS=376, CC=38, CS=19, NS=20, NC=3, SN=20, CN=3}
-{NN=180, CC=26, NC=43, CN=43}
-{SC=1, CC=38, CS=1, NS=1, NC=3, SN=1, CN=3}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.0547945205479452
-61561031_COARSE [==============================-|                         ] 44 / 84{NN=376, CC=34, NC=45, CN=45}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=34, NC=7, CN=7}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5 Approx: 0.5
-61561031_COARSE [================================                         ] 45 / 84{OO=376, CC=34, NO=20, OC=22, NC=3, CN=3, CO=22, ON=20}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=34, NO=1, OC=3, NC=3, CN=3, CO=3, ON=1}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.0547945205479452
-61561031_COARSE [================================|                        ] 46 / 84{SC=39, SS=376, CC=34, CS=39, OC=2, NC=3, CN=3, CO=2}
-{NN=180, CC=26, NC=43, CN=43}
-{SC=2, CC=34, CS=2, OC=2, NC=3, CN=3, CO=2}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.0547945205479452
-61561031_COARSE [=================================                        ] 47 / 84{NN=376, CC=40, NC=41, CN=41}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=40, NC=4, CN=4}
-{CC=26, NC=5, CN=5}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5625 Approx: 0.4931506849315068
-61561031_COARSE [=================================|                       ] 48 / 84{SC=39, SS=376, CC=40, CS=39, NC=2, CN=2}
-{NN=180, CC=26, NC=43, CN=43}
-{SC=2, CC=40, CS=2, NC=2, CN=2}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.05136986301369863
-61561031_COARSE [==================================|                      ] 49 / 84{OO=376, CC=28, OC=39, NC=8, CN=8, CO=39}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=28, OC=2, NC=8, CN=8, CO=2}
-{CC=26, NC=5, CN=5}
-nope
-Actual: 0.875 Approx: 0.07191780821917808
-61561031_COARSE [===================================|                     ] 50 / 84{SC=19, SS=376, CC=36, CS=19, NS=19, NC=4, SN=19, CN=4}
-{NN=180, CC=26, NC=43, CN=43}
-{SC=1, CC=36, CS=1, NS=1, NC=4, SN=1, CN=4}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.05821917808219178
-61561031_COARSE [====================================                     ] 51 / 84{OO=376, CC=34, OC=40, NC=5, CN=5, CO=40}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=34, OC=2, NC=5, CN=5, CO=2}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.06164383561643835
-61561031_COARSE [====================================|                    ] 52 / 84{OO=336, CC=40, OC=37, NC=2, CN=2, CO=37}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=40, OC=2, NC=2, CN=2, CO=2}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.05136986301369863
-61561031_COARSE [=====================================                    ] 53 / 84{NN=336, CC=44, NC=38, CN=38}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=44, NC=2, CN=2}
-{CC=26, NC=5, CN=5}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5625 Approx: 0.4828767123287671
-61561031_COARSE [=====================================|                   ] 54 / 84{NN=2, OO=336, CC=38, OC=37, NC=2, CN=2, CO=37}
-{NN=180, CC=26, NC=43, CN=43}
-{NN=2, CC=38, OC=2, NC=2, CN=2, CO=2}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.375 Approx: 0.0547945205479452
-61561031_COARSE [======================================|                  ] 55 / 84{OO=416, NN=2, CC=34, OC=43, NC=3, CN=3, CO=43}
-{NN=180, CC=26, NC=43, CN=43}
-{NN=2, CC=34, OC=4, NC=3, CN=3, CO=4}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.05821917808219178
-61561031_COARSE [=======================================|                 ] 56 / 84{OO=416, CC=40, OC=41, NC=3, CN=3, CO=41}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=40, OC=2, NC=3, CN=3, CO=2}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.0547945205479452
-61561031_COARSE [========================================                 ] 57 / 84{NN=336, CC=34, NC=42, CN=42}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=34, NC=7, CN=7}
-{CC=26, NC=5, CN=5}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5625 Approx: 0.4965753424657534
-61561031_COARSE [========================================|                ] 58 / 84{OO=416, CC=30, OC=42, NC=8, CN=8, CO=42}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=30, OC=2, NC=8, CN=8, CO=2}
-{CC=26, NC=5, CN=5}
-Actual: 1.0 Approx: 0.07191780821917808
-61561031_COARSE [=========================================                ] 59 / 84{Br=959, rB=456, SC=2, CS=2, CC=38, NC=4, CN=4}
-{NN=180, CC=26, NC=43, CN=43}
-{SC=2, CS=2, CC=38, NC=4, CN=4}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5 Approx: 0.05821917808219178
-61561031_COARSE [=========================================|               ] 60 / 84{SC=42, SS=416, CC=32, CS=42, NC=7, CN=7}
-{NN=180, CC=26, NC=43, CN=43}
-{SC=2, CC=32, CS=2, NC=7, CN=7}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5 Approx: 0.0684931506849315
-61561031_COARSE [==========================================|              ] 61 / 84{NN=376, CC=32, NC=64, CN=64}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=32, NC=9, CN=9}
-{CC=26, NC=5, CN=5}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5625 Approx: 0.5
-61561031_COARSE [===========================================|             ] 62 / 84{CC=46, NN=374, NC=39, CN=39}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=46, NC=2, CN=2}
-{CC=26, NC=5, CN=5}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5625 Approx: 0.4863013698630137
-61561031_COARSE [============================================             ] 63 / 84{OO=458, CC=40, OC=43, NC=4, CN=4, CO=43}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=40, OC=2, NC=4, CN=4, CO=2}
-{CC=26, NC=5, CN=5}
-nope
-Actual: 0.75 Approx: 0.05821917808219178
-61561031_COARSE [============================================|            ] 64 / 84{OO=458, CC=38, OC=43, NC=5, CN=5, CO=43}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=38, OC=2, NC=5, CN=5, CO=2}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.06164383561643835
-61561031_COARSE [=============================================|           ] 65 / 84{SC=41, SS=414, CS=41, CC=28, OC=4, NC=6, CN=6, CO=4}
-{NN=180, CC=26, NC=43, CN=43}
-{SC=2, CS=2, CC=28, OC=4, NC=6, CN=6, CO=4}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5 Approx: 0.06506849315068493
-61561031_COARSE [==============================================           ] 66 / 84{OO=414, CC=38, OC=43, NC=3, CN=3, CO=43}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=38, OC=4, NC=3, CN=3, CO=4}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.0547945205479452
-61561031_COARSE [==============================================|          ] 67 / 84{OO=456, CC=36, OC=43, NC=7, CN=7, CO=43}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=36, OC=2, NC=7, CN=7, CO=2}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.6875 Approx: 0.0684931506849315
-61561031_COARSE [===============================================|         ] 68 / 84{NN=504, CC=22, NC=55, CN=55}
-{NN=180, CC=26, NC=43, CN=43}
-{NN=4, CC=22, NC=14, CN=14}
-{CC=26, NC=5, CN=5}
-corn
-fuego
-tripe
-Actual: 0.6875 Approx: 0.4931506849315068
-61561031_COARSE [================================================         ] 69 / 84{NN=458, CC=40, NC=68, CN=68}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=40, NC=7, CN=7}
-{CC=26, NC=5, CN=5}
-fuego
-nope
-Actual: 0.9375 Approx: 0.5
-61561031_COARSE [================================================|        ] 70 / 84{OO=498, NN=4, CC=32, OC=44, NC=9, CN=9, CO=44}
-{NN=180, CC=26, NC=43, CN=43}
-{NN=4, CC=32, OC=2, NC=9, CN=9, CO=2}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.0821917808219178
-61561031_COARSE [=================================================|       ] 71 / 84{NN=502, CC=42, NC=72, CN=72}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=42, NC=7, CN=7}
-{CC=26, NC=5, CN=5}
-fuego
-nope
-Actual: 0.875 Approx: 0.5
-61561031_COARSE [==================================================       ] 72 / 84{OO=594, CC=44, OC=49, NC=6, CN=6, CO=49}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=44, OC=2, NC=6, CN=6, CO=2}
-{CC=26, NC=5, CN=5}
-Actual: 1.0 Approx: 0.06506849315068493
-61561031_COARSE [==================================================|      ] 73 / 84{OO=594, NN=2, CC=36, OC=50, NC=9, CN=9, CO=50}
-{NN=180, CC=26, NC=43, CN=43}
-{NN=2, CC=36, OC=2, NC=9, CN=9, CO=2}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5 Approx: 0.07876712328767123
-61561031_COARSE [===================================================|     ] 74 / 84{SC=28, SS=862, CC=44, CS=28, NO=1, OC=5, NC=6, NS=29, SN=29, CN=6, CO=5, ON=1}
-{NN=180, CC=26, NC=43, CN=43}
-{SC=1, CC=44, CS=1, NO=1, OC=5, NC=6, NS=1, SN=1, CN=6, CO=5, ON=1}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.06506849315068493
-61561031_COARSE [====================================================     ] 75 / 84{OO=918, NN=2, CC=60, OC=61, NC=6, CN=6, CO=61}
-{NN=180, CC=26, NC=43, CN=43}
-{NN=2, CC=60, OC=2, NC=6, CN=6, CO=2}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.0684931506849315
-61561031_COARSE [====================================================|    ] 76 / 84{SC=53, SS=696, CC=50, CS=53, NC=5, CN=5}
-{NN=180, CC=26, NC=43, CN=43}
-{SC=2, CC=50, CS=2, NC=5, CN=5}
-{CC=26, NC=5, CN=5}
-Actual: 1.0 Approx: 0.06164383561643835
-61561031_COARSE [=====================================================|   ] 77 / 84{OO=1046, CC=58, OC=65, NC=7, CN=7, CO=65}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=58, OC=4, NC=7, CN=7, CO=4}
-{CC=26, NC=5, CN=5}
-Actual: 1.0 Approx: 0.0684931506849315
-61561031_COARSE [======================================================   ] 78 / 84{SC=73, SS=1324, CC=74, CS=73, NC=4, CN=4}
-{NN=180, CC=26, NC=43, CN=43}
-{SC=2, CC=74, CS=2, NC=4, CN=4}
-{CC=26, NC=5, CN=5}
-tripe
-Actual: 0.5625 Approx: 0.05821917808219178
-61561031_COARSE [======================================================|  ] 79 / 84{CC=6, NN=6, NC=6, CN=6}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=6, NC=2, CN=2}
-{CC=26, NC=5, CN=5}
-Actual: 1.0 Approx: 0.5
-61561031_COARSE [=======================================================| ] 80 / 84{CC=36}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=12}
-{CC=26, NC=5, CN=5}
-Actual: 1.0 Approx: 0.3611111111111111
-61561031_COARSE [========================================================|] 81 / 84{OO=12, CC=4, OC=8, NC=2, CN=2, CO=8}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=4, OC=2, NC=2, CN=2, CO=2}
-{CC=26, NC=5, CN=5}
-Actual: 0.8333333333333334 Approx: 0.1111111111111111
-61561031_COARSE [=========================================================] 82 / 84{CC=8, NN=12, NC=8, CN=8}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=8, NC=2, CN=2}
-{CC=26, NC=5, CN=5}
-Actual: 1.0 Approx: 0.5
-61561031_COARSE [=========================================================] 83 / 84{NN=982, CC=68, NC=98, CN=98}
-{NN=180, CC=26, NC=43, CN=43}
-{CC=68, NC=6, CN=6}
-{CC=26, NC=5, CN=5}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5625 Approx: 0.5
-61561031_COARSE [=========================================================] 84 / 84Writing coarse results...
-61561031 [=                                                               ] 0 / 20461561031 [=                                                               ] 1 / 20461561031 [=                                                               ] 2 / 20461561031 [=|                                                              ] 3 / 20461561031 [==                                                              ] 4 / 20461561031 [==|                                                             ] 5 / 20461561031 [===                                                             ] 6 / 20461561031 [===                                                             ] 7 / 20461561031 [===                                                             ] 8 / 20461561031 [===|                                                            ] 9 / 20461561031 [====                                                            ] 10 / 20461561031 [====|                                                           ] 11 / 20461561031 [=====                                                           ] 12 / 20461561031 [=====                                                           ] 13 / 20461561031 [=====                                                           ] 14 / 20461561031 [=====|                                                          ] 15 / 20461561031 [======                                                          ] 16 / 20461561031 [======|                                                         ] 17 / 20461561031 [=======                                                         ] 18 / 20461561031 [=======                                                         ] 19 / 20461561031 [=======                                                         ] 20 / 20461561031 [=======|                                                        ] 21 / 20461561031 [========                                                        ] 22 / 20461561031 [========                                                        ] 23 / 20461561031 [========                                                        ] 24 / 20461561031 [========|                                                       ] 25 / 20461561031 [=========                                                       ] 26 / 20461561031 [=========|                                                      ] 27 / 20461561031 [==========                                                      ] 28 / 20461561031 [==========                                                      ] 29 / 204Writing fine results...
-37285639_COARSE [=                                                        ] 0 / 84{FF=72}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-corn
-Actual: 0.1 Approx: 0.0
-37285639_COARSE [=|                                                       ] 1 / 84{NN=40, CC=12, NC=15, CN=15}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=12, NC=4, CN=4}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-Actual: 1.0 Approx: 0.21951219512195122
-37285639_COARSE [==|                                                      ] 2 / 84{II=110}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-flibble
-corn
-Actual: 0.08333333333333333 Approx: 0.0
-37285639_COARSE [===|                                                     ] 3 / 84{NN=72, CC=14, NC=19, CN=19}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{NN=2, CC=14, NC=4, CN=4}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-Actual: 1.0 Approx: 0.1532258064516129
-37285639_COARSE [====                                                     ] 4 / 84{NN=72, CC=10, NC=21, CN=21}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{NN=2, CC=10, NC=6, CN=6}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-nope
-Actual: 0.9090909090909091 Approx: 0.13709677419354838
-37285639_COARSE [====|                                                    ] 5 / 84{NN=90, CC=16, NC=18, CN=18}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{NN=2, CC=16, NC=3, CN=3}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-nope
-Actual: 0.9090909090909091 Approx: 0.14084507042253522
-37285639_COARSE [=====                                                    ] 6 / 84{NN=88, CC=16, NC=23, CN=23}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=16, NC=5, CN=5}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-nope
-Actual: 0.75 Approx: 0.13333333333333333
-37285639_COARSE [=====|                                                   ] 7 / 84{CC=20, NN=90, NC=29, CN=29}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=20, NC=3, CN=3}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-nope
-Actual: 0.75 Approx: 0.13095238095238096
-37285639_COARSE [======|                                                  ] 8 / 84{CC=22, NN=88, NC=20, CN=20}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=22, NC=2, CN=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-nope
-Actual: 0.8333333333333334 Approx: 0.15333333333333332
-37285639_COARSE [=======|                                                 ] 9 / 84{NN=88, CC=16, NC=23, CN=23}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=16, NC=5, CN=5}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-nope
-Actual: 0.8333333333333334 Approx: 0.13333333333333333
-37285639_COARSE [========                                                 ] 10 / 84{NN=110, CC=18, NC=35, CN=35}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=18, NC=5, CN=5}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-nope
-Actual: 0.7692307692307693 Approx: 0.10606060606060606
-37285639_COARSE [========|                                                ] 11 / 84{SC=12, SS=108, CS=12, CC=14, NS=11, NC=3, SN=11, CN=3}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{SC=3, CS=3, CC=14, NS=1, NC=3, SN=1, CN=3}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-flibble
-corn
-fuego
-tripe
-Actual: 0.46153846153846156 Approx: 0.4367816091954023
-37285639_COARSE [=========                                                ] 12 / 84{CC=172}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=28}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.5384615384615384 Approx: 0.06976744186046512
-37285639_COARSE [=========|                                               ] 13 / 84{CC=24, OO=108, OC=20, CO=20}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=24, OC=2, CO=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.46153846153846156 Approx: 0.06976744186046512
-37285639_COARSE [==========|                                              ] 14 / 84{SC=11, SS=130, CC=24, CS=11, NS=12, NC=1, SN=12, CN=1}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{SC=1, CC=24, CS=1, NS=1, NC=1, SN=1, CN=1}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-blipe
-tripe
-Actual: 0.42857142857142855 Approx: 0.4405940594059406
-37285639_COARSE [===========|                                             ] 15 / 84{NN=106, CC=16, NC=26, CN=26}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=16, NC=7, CN=7}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.6923076923076923 Approx: 0.11494252873563218
-37285639_COARSE [============                                             ] 16 / 84{OO=180, CC=20, NO=1, OC=29, NC=3, CN=3, CO=29, ON=1}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=20, NO=1, OC=3, NC=3, CN=3, CO=3, ON=1}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.5625 Approx: 0.04887218045112782
-37285639_COARSE [============|                                            ] 17 / 84{SC=26, SS=152, CC=18, CS=26, OC=2, NC=4, CN=4, CO=2}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{SC=2, CC=18, CS=2, OC=2, NC=4, CN=4, CO=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-corn
-fuego
-tripe
-Actual: 0.6 Approx: 0.49145299145299143
-37285639_COARSE [=============|                                           ] 18 / 84{CC=28, NN=128, NC=22, CN=22}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=28, NC=2, CN=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-nope
-Actual: 0.7142857142857143 Approx: 0.12
-37285639_COARSE [==============                                           ] 19 / 84{NN=238, CC=26, NC=31, CN=31}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{NN=2, CC=26, NC=5, CN=5}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.6470588235294118 Approx: 0.0736196319018405
-37285639_COARSE [==============|                                          ] 20 / 84{SC=27, SS=178, CC=26, CS=27, NC=3, CN=3}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{SC=2, CC=26, CS=2, NC=3, CN=3}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5625 Approx: 0.4962121212121212
-37285639_COARSE [===============|                                         ] 21 / 84{SC=29, SS=206, CC=24, CS=29, NC=5, CN=5}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{SC=2, CC=24, CS=2, NC=5, CN=5}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5882352941176471 Approx: 0.5
-37285639_COARSE [================                                         ] 22 / 84{OO=206, CC=30, OC=28, NC=2, CN=2, CO=28}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=30, OC=2, NC=2, CN=2, CO=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.5882352941176471 Approx: 0.0472972972972973
-37285639_COARSE [================|                                        ] 23 / 84{SC=16, SS=270, CC=30, CS=16, NS=17, NC=3, SN=17, CN=3}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{SC=1, CC=30, CS=1, NS=1, NC=3, SN=1, CN=3}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-flibble
-corn
-fuego
-tripe
-Actual: 0.47368421052631576 Approx: 0.44623655913978494
-37285639_COARSE [=================|                                       ] 24 / 84{NN=238, CC=20, NC=38, CN=38}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{NN=2, CC=20, NC=9, CN=9}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.5555555555555556 Approx: 0.0658682634730539
-37285639_COARSE [==================                                       ] 25 / 84{NN=236, CC=32, NC=33, CN=33}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=32, NC=4, CN=4}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.5555555555555556 Approx: 0.0718562874251497
-37285639_COARSE [==================|                                      ] 26 / 84{OO=304, CC=34, OC=36, NC=2, CN=2, CO=36}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=34, OC=2, NC=2, CN=2, CO=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.5 Approx: 0.033816425120772944
-37285639_COARSE [===================|                                     ] 27 / 84{SC=31, SS=236, CC=30, CS=31, NC=3, CN=3}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{SC=2, CC=30, CS=2, NC=3, CN=3}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-corn
-fuego
-tripe
-Actual: 0.6111111111111112 Approx: 0.49101796407185627
-37285639_COARSE [====================|                                    ] 28 / 84{NN=304, CC=26, NC=38, CN=38}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{NN=2, CC=26, NC=7, CN=7}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.47368421052631576 Approx: 0.059113300492610835
-37285639_COARSE [=====================                                    ] 29 / 84{SC=32, SS=268, CS=32, CC=26, OC=2, NC=4, CN=4, CO=2}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{SC=2, CS=2, CC=26, OC=2, NC=4, CN=4, CO=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5263157894736842 Approx: 0.4918918918918919
-37285639_COARSE [=====================|                                   ] 30 / 84{NN=268, CC=30, NC=36, CN=36}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=30, NC=6, CN=6}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.5263157894736842 Approx: 0.06486486486486487
-37285639_COARSE [======================                                   ] 31 / 84{SC=32, SS=268, CS=32, CC=26, NC=6, CN=6}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{SC=2, CS=2, CC=26, NC=6, CN=6}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5789473684210527 Approx: 0.4972972972972973
-37285639_COARSE [======================|                                  ] 32 / 84{OO=268, CC=28, OC=34, NC=5, CN=5, CO=34}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=28, OC=2, NC=5, CN=5, CO=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.5263157894736842 Approx: 0.045454545454545456
-37285639_COARSE [=======================|                                 ] 33 / 84{OO=268, CC=28, OC=34, NC=5, CN=5, CO=34}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=28, OC=2, NC=5, CN=5, CO=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.5263157894736842 Approx: 0.045454545454545456
-37285639_COARSE [========================|                                ] 34 / 84{OO=302, NN=2, CC=20, OC=35, NC=9, CN=9, CO=35}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{NN=2, CC=20, OC=2, NC=9, CN=9, CO=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.4 Approx: 0.0412621359223301
-37285639_COARSE [=========================                                ] 35 / 84{CC=414}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=44}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.35 Approx: 0.028985507246376812
-37285639_COARSE [=========================|                               ] 36 / 84{CC=40, NN=302, NC=36, CN=36}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=40, NC=2, CN=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.5 Approx: 0.057971014492753624
-37285639_COARSE [==========================                               ] 37 / 84{NN=302, CC=30, NC=41, CN=41}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=30, NC=7, CN=7}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.5 Approx: 0.057971014492753624
-37285639_COARSE [==========================|                              ] 38 / 84{NN=304, CC=32, NC=38, CN=38}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{NN=2, CC=32, NC=5, CN=5}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.55 Approx: 0.05825242718446602
-37285639_COARSE [===========================|                             ] 39 / 84{NN=304, CC=24, NC=43, CN=43}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{NN=2, CC=24, NC=9, CN=9}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.5 Approx: 0.057971014492753624
-37285639_COARSE [============================|                            ] 40 / 84{SC=37, SS=338, CC=34, CS=37, NC=4, CN=4}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{SC=2, CC=34, CS=2, NC=4, CN=4}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5238095238095238 Approx: 0.4889867841409692
-37285639_COARSE [=============================                            ] 41 / 84{OO=338, CC=30, OC=37, NC=6, CN=6, CO=37}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=30, OC=2, NC=6, CN=6, CO=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.47619047619047616 Approx: 0.039647577092511016
-37285639_COARSE [=============================|                           ] 42 / 84{SC=19, SS=376, CC=38, CS=19, NS=20, NC=3, SN=20, CN=3}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{SC=1, CC=38, CS=1, NS=1, NC=3, SN=1, CN=3}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-flibble
-corn
-fuego
-tripe
-Actual: 0.45454545454545453 Approx: 0.4457831325301205
-37285639_COARSE [==============================                           ] 43 / 84{NN=376, CC=34, NC=45, CN=45}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=34, NC=7, CN=7}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.45454545454545453 Approx: 0.048
-37285639_COARSE [==============================-|                         ] 44 / 84{OO=376, CC=34, NO=20, OC=22, NC=3, CN=3, CO=22, ON=20}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=34, NO=1, OC=3, NC=3, CN=3, CO=3, ON=1}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.45454545454545453 Approx: 0.03
-37285639_COARSE [================================                         ] 45 / 84{SC=37, SS=338, NN=6, CS=37, CC=26, NC=5, CN=5}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{SC=2, NN=6, CS=2, CC=26, NC=5, CN=5}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-fuego
-nope
-Actual: 0.9523809523809523 Approx: 0.4977973568281938
-37285639_COARSE [================================|                        ] 46 / 84{SC=39, SS=376, CC=34, CS=39, OC=2, NC=3, CN=3, CO=2}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{SC=2, CC=34, CS=2, OC=2, NC=3, CN=3, CO=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5454545454545454 Approx: 0.4859437751004016
-37285639_COARSE [=================================                        ] 47 / 84{NN=376, CC=40, NC=41, CN=41}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=40, NC=4, CN=4}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.45454545454545453 Approx: 0.04819277108433735
-37285639_COARSE [=================================|                       ] 48 / 84{OO=376, CC=28, OC=39, NC=8, CN=8, CO=39}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=28, OC=2, NC=8, CN=8, CO=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.36363636363636365 Approx: 0.03614457831325301
-37285639_COARSE [==================================|                      ] 49 / 84{SC=39, SS=376, CC=40, CS=39, NC=2, CN=2}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{SC=2, CC=40, CS=2, NC=2, CN=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5454545454545454 Approx: 0.4839357429718876
-37285639_COARSE [===================================|                     ] 50 / 84{OO=376, CC=34, OC=40, NC=5, CN=5, CO=40}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=34, OC=2, NC=5, CN=5, CO=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.45454545454545453 Approx: 0.034
-37285639_COARSE [====================================                     ] 51 / 84{SC=19, SS=376, CC=36, CS=19, NS=19, NC=4, SN=19, CN=4}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{SC=1, CC=36, CS=1, NS=1, NC=4, SN=1, CN=4}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-flibble
-corn
-fuego
-tripe
-Actual: 0.45454545454545453 Approx: 0.4495967741935484
-37285639_COARSE [====================================|                    ] 52 / 84{OO=336, CC=40, OC=37, NC=2, CN=2, CO=37}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=40, OC=2, NC=2, CN=2, CO=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.47619047619047616 Approx: 0.030837004405286344
-37285639_COARSE [=====================================                    ] 53 / 84{NN=336, CC=44, NC=38, CN=38}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=44, NC=2, CN=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.47619047619047616 Approx: 0.05263157894736842
-37285639_COARSE [=====================================|                   ] 54 / 84{NN=2, OO=336, CC=38, OC=37, NC=2, CN=2, CO=37}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{NN=2, CC=38, OC=2, NC=2, CN=2, CO=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.42857142857142855 Approx: 0.03303964757709251
-37285639_COARSE [======================================|                  ] 55 / 84{NN=336, CC=34, NC=42, CN=42}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=34, NC=7, CN=7}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.5238095238095238 Approx: 0.05286343612334802
-37285639_COARSE [=======================================|                 ] 56 / 84{OO=416, NN=2, CC=34, OC=43, NC=3, CN=3, CO=43}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{NN=2, CC=34, OC=4, NC=3, CN=3, CO=4}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.43478260869565216 Approx: 0.029411764705882353
-37285639_COARSE [========================================                 ] 57 / 84{OO=416, CC=30, OC=42, NC=8, CN=8, CO=42}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=30, OC=2, NC=8, CN=8, CO=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.43478260869565216 Approx: 0.03296703296703297
-37285639_COARSE [========================================|                ] 58 / 84{OO=416, CC=40, OC=41, NC=3, CN=3, CO=41}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=40, OC=2, NC=3, CN=3, CO=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.43478260869565216 Approx: 0.027573529411764705
-37285639_COARSE [=========================================                ] 59 / 84{SC=42, SS=416, CC=32, CS=42, NC=7, CN=7}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{SC=2, CC=32, CS=2, NC=7, CN=7}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-flibble
-corn
-fuego
-tripe
-Actual: 0.5217391304347826 Approx: 0.4908424908424908
-37285639_COARSE [=========================================|               ] 60 / 84{Br=959, rB=456, SC=2, CS=2, CC=38, NC=4, CN=4}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{SC=2, CS=2, CC=38, NC=4, CN=4}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.4583333333333333 Approx: 0.028037383177570093
-37285639_COARSE [==========================================|              ] 61 / 84{NN=376, CC=32, NC=64, CN=64}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=32, NC=9, CN=9}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.45454545454545453 Approx: 0.04477611940298507
-37285639_COARSE [===========================================|             ] 62 / 84{OO=458, CC=40, OC=43, NC=4, CN=4, CO=43}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=40, OC=2, NC=4, CN=4, CO=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.4166666666666667 Approx: 0.02702702702702703
-37285639_COARSE [============================================             ] 63 / 84{OO=458, CC=38, OC=43, NC=5, CN=5, CO=43}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=38, OC=2, NC=5, CN=5, CO=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.4166666666666667 Approx: 0.028716216216216218
-37285639_COARSE [============================================|            ] 64 / 84{SC=41, SS=414, CS=41, CC=28, OC=4, NC=6, CN=6, CO=4}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{SC=2, CS=2, CC=28, OC=4, NC=6, CN=6, CO=4}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-fuego
-fire
-Actual: 0.8260869565217391 Approx: 0.4889705882352941
-37285639_COARSE [=============================================|           ] 65 / 84{OO=414, CC=38, OC=43, NC=3, CN=3, CO=43}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=38, OC=4, NC=3, CN=3, CO=4}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.43478260869565216 Approx: 0.027573529411764705
-37285639_COARSE [==============================================           ] 66 / 84{CC=46, NN=374, NC=39, CN=39}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=46, NC=2, CN=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.45454545454545453 Approx: 0.04819277108433735
-37285639_COARSE [==============================================|          ] 67 / 84{NN=458, CC=40, NC=68, CN=68}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=40, NC=7, CN=7}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.4583333333333333 Approx: 0.03785488958990536
-37285639_COARSE [===============================================|         ] 68 / 84{NN=504, CC=22, NC=55, CN=55}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{NN=4, CC=22, NC=14, CN=14}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.4166666666666667 Approx: 0.036163522012578615
-37285639_COARSE [================================================         ] 69 / 84{OO=456, CC=36, OC=43, NC=7, CN=7, CO=43}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=36, OC=2, NC=7, CN=7, CO=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.4166666666666667 Approx: 0.030405405405405407
-37285639_COARSE [================================================|        ] 70 / 84{OO=498, NN=4, CC=32, OC=44, NC=9, CN=9, CO=44}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{NN=4, CC=32, OC=2, NC=9, CN=9, CO=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.4 Approx: 0.03125
-37285639_COARSE [=================================================|       ] 71 / 84{OO=594, CC=44, OC=49, NC=6, CN=6, CO=49}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=44, OC=2, NC=6, CN=6, CO=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.44 Approx: 0.028037383177570093
-37285639_COARSE [==================================================       ] 72 / 84{NN=502, CC=42, NC=72, CN=72}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=42, NC=7, CN=7}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.4 Approx: 0.037383177570093455
-37285639_COARSE [==================================================|      ] 73 / 84{OO=594, NN=2, CC=36, OC=50, NC=9, CN=9, CO=50}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{NN=2, CC=36, OC=2, NC=9, CN=9, CO=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.4 Approx: 0.029595015576323987
-37285639_COARSE [===================================================|     ] 74 / 84{SC=53, SS=696, CC=50, CS=53, NC=5, CN=5}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{SC=2, CC=50, CS=2, NC=5, CN=5}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-blipe
-tripe
-Actual: 0.4 Approx: 0.48909657320872274
-37285639_COARSE [====================================================     ] 75 / 84{SC=28, SS=862, CC=44, CS=28, NO=1, OC=5, NC=6, NS=29, SN=29, CN=6, CO=5, ON=1}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{SC=1, CC=44, CS=1, NO=1, OC=5, NC=6, NS=1, SN=1, CN=6, CO=5, ON=1}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-blipe
-tripe
-Actual: 0.32 Approx: 0.46105919003115264
-37285639_COARSE [====================================================|    ] 76 / 84{OO=918, NN=2, CC=60, OC=61, NC=6, CN=6, CO=61}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{NN=2, CC=60, OC=2, NC=6, CN=6, CO=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.4 Approx: 0.029595015576323987
-37285639_COARSE [=====================================================|   ] 77 / 84{NN=982, CC=68, NC=98, CN=98}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=68, NC=6, CN=6}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.4 Approx: 0.037383177570093455
-37285639_COARSE [======================================================   ] 78 / 84{OO=1046, CC=58, OC=65, NC=7, CN=7, CO=65}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=58, OC=4, NC=7, CN=7, CO=4}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-tripe
-Actual: 0.4 Approx: 0.028037383177570093
-37285639_COARSE [======================================================|  ] 79 / 84{CC=6, NN=6, NC=6, CN=6}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=6, NC=2, CN=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-Actual: 1.0 Approx: 0.5
-37285639_COARSE [=======================================================| ] 80 / 84{CC=36}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=12}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-Actual: 1.0 Approx: 0.3333333333333333
-37285639_COARSE [========================================================|] 81 / 84{OO=12, CC=4, OC=8, NC=2, CN=2, CO=8}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=4, OC=2, NC=2, CN=2, CO=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-Actual: 0.8333333333333334 Approx: 0.1111111111111111
-37285639_COARSE [=========================================================] 82 / 84{CC=8, NN=12, NC=8, CN=8}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{CC=8, NC=2, CN=2}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-Actual: 1.0 Approx: 0.4444444444444444
-37285639_COARSE [=========================================================] 83 / 84{SC=73, SS=1324, CC=74, CS=73, NC=4, CN=4}
-{SC=47, SS=500, NN=12, CC=24, CS=47, NC=6, CN=6}
-{SC=2, CC=74, CS=2, NC=4, CN=4}
-{SC=4, NN=12, CC=24, CS=4, NC=6, CN=6}
-fuego
-fire
-Actual: 0.72 Approx: 0.48753894080996885
-37285639_COARSE [=========================================================] 84 / 84Writing coarse results...
-37285639 [=                                                               ] 0 / 14437285639 [=                                                               ] 1 / 14437285639 [=|                                                              ] 2 / 14437285639 [==|                                                             ] 3 / 14437285639 [===                                                             ] 4 / 14437285639 [===                                                             ] 5 / 14437285639 [===|                                                            ] 6 / 14437285639 [====|                                                           ] 7 / 14437285639 [=====                                                           ] 8 / 14437285639 [=====                                                           ] 9 / 14437285639 [=====|                                                          ] 10 / 14437285639 [======                                                          ] 11 / 14437285639 [======|                                                         ] 12 / 14437285639 [=======                                                         ] 13 / 14437285639 [=======                                                         ] 14 / 14437285639 [=======|                                                        ] 15 / 14437285639 [========                                                        ] 16 / 14437285639 [========|                                                       ] 17 / 14437285639 [=========                                                       ] 18 / 14437285639 [=========|                                                      ] 19 / 14437285639 [==========                                                      ] 20 / 14437285639 [==========                                                      ] 21 / 144Writing fine results...
-13041372_COARSE [=                                                        ] 0 / 84{FF=72}
-{CC=36}
-{}
-{CC=12}
-corn
-Actual: 0.16666666666666666 Approx: 0.0
-13041372_COARSE [=|                                                       ] 1 / 84{NN=40, CC=12, NC=15, CN=15}
-{CC=36}
-{CC=12, NC=4, CN=4}
-{CC=12}
-Actual: 1.0 Approx: 0.16666666666666666
-13041372_COARSE [==|                                                      ] 2 / 84{II=110}
-{CC=36}
-{}
-{CC=12}
-corn
-Actual: 0.16666666666666666 Approx: 0.0
-13041372_COARSE [===|                                                     ] 3 / 84{NN=72, CC=10, NC=21, CN=21}
-{CC=36}
-{NN=2, CC=10, NC=6, CN=6}
-{CC=12}
-Actual: 1.0 Approx: 0.1388888888888889
-13041372_COARSE [====                                                     ] 4 / 84{NN=72, CC=14, NC=19, CN=19}
-{CC=36}
-{NN=2, CC=14, NC=4, CN=4}
-{CC=12}
-Actual: 1.0 Approx: 0.19444444444444445
-{NN=90, CC=16, NC=18, CN=18}
-{CC=36}
-{NN=2, CC=16, NC=3, CN=3}
-{CC=12}
-Actual: 1.0 Approx: 0.2222222222222222
-13041372_COARSE [====|                                                    ] 5 / 8413041372_COARSE [=====                                                    ] 6 / 84{NN=88, CC=16, NC=23, CN=23}
-{CC=36}
-{CC=16, NC=5, CN=5}
-{CC=12}
-Actual: 1.0 Approx: 0.2222222222222222
-13041372_COARSE [=====|                                                   ] 7 / 84{CC=20, NN=90, NC=29, CN=29}
-{CC=36}
-{CC=20, NC=3, CN=3}
-{CC=12}
-Actual: 1.0 Approx: 0.2777777777777778
-13041372_COARSE [======|                                                  ] 8 / 84{NN=88, CC=16, NC=23, CN=23}
-{CC=36}
-{CC=16, NC=5, CN=5}
-{CC=12}
-Actual: 1.0 Approx: 0.2222222222222222
-13041372_COARSE [=======|                                                 ] 9 / 84{NN=110, CC=18, NC=35, CN=35}
-{CC=36}
-{CC=18, NC=5, CN=5}
-{CC=12}
-Actual: 1.0 Approx: 0.25
-13041372_COARSE [========                                                 ] 10 / 84{SC=12, SS=108, CS=12, CC=14, NS=11, NC=3, SN=11, CN=3}
-{CC=36}
-{SC=3, CS=3, CC=14, NS=1, NC=3, SN=1, CN=3}
-{CC=12}
-Actual: 1.0 Approx: 0.19444444444444445
-13041372_COARSE [========|                                                ] 11 / 84{CC=22, NN=88, NC=20, CN=20}
-{CC=36}
-{CC=22, NC=2, CN=2}
-{CC=12}
-Actual: 1.0 Approx: 0.3055555555555556
-13041372_COARSE [=========                                                ] 12 / 84{CC=24, OO=108, OC=20, CO=20}
-{CC=36}
-{CC=24, OC=2, CO=2}
-{CC=12}
-Actual: 1.0 Approx: 0.3333333333333333
-13041372_COARSE [=========|                                               ] 13 / 84{SC=11, SS=130, CC=24, CS=11, NS=12, NC=1, SN=12, CN=1}
-{CC=36}
-{SC=1, CC=24, CS=1, NS=1, NC=1, SN=1, CN=1}
-{CC=12}
-Actual: 1.0 Approx: 0.3333333333333333
-13041372_COARSE [==========|                                              ] 14 / 84{NN=106, CC=16, NC=26, CN=26}
-{CC=36}
-{CC=16, NC=7, CN=7}
-{CC=12}
-nope
-Actual: 0.8333333333333334 Approx: 0.2222222222222222
-13041372_COARSE [===========|                                             ] 15 / 84{CC=28, NN=128, NC=22, CN=22}
-{CC=36}
-{CC=28, NC=2, CN=2}
-{CC=12}
-Actual: 1.0 Approx: 0.3888888888888889
-13041372_COARSE [============                                             ] 16 / 84{OO=180, CC=20, NO=1, OC=29, NC=3, CN=3, CO=29, ON=1}
-{CC=36}
-{CC=20, NO=1, OC=3, NC=3, CN=3, CO=3, ON=1}
-{CC=12}
-Actual: 1.0 Approx: 0.2777777777777778
-13041372_COARSE [============|                                            ] 17 / 84{SC=26, SS=152, CC=18, CS=26, OC=2, NC=4, CN=4, CO=2}
-{CC=36}
-{SC=2, CC=18, CS=2, OC=2, NC=4, CN=4, CO=2}
-{CC=12}
-Actual: 1.0 Approx: 0.25
-13041372_COARSE [=============|                                           ] 18 / 84{CC=172}
-{CC=36}
-{CC=28}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [==============                                           ] 19 / 84{SC=27, SS=178, CC=26, CS=27, NC=3, CN=3}
-{CC=36}
-{SC=2, CC=26, CS=2, NC=3, CN=3}
-{CC=12}
-Actual: 1.0 Approx: 0.3611111111111111
-13041372_COARSE [==============|                                          ] 20 / 84{NN=238, CC=26, NC=31, CN=31}
-{CC=36}
-{NN=2, CC=26, NC=5, CN=5}
-{CC=12}
-Actual: 1.0 Approx: 0.3611111111111111
-13041372_COARSE [===============|                                         ] 21 / 84{SC=29, SS=206, CC=24, CS=29, NC=5, CN=5}
-{CC=36}
-{SC=2, CC=24, CS=2, NC=5, CN=5}
-{CC=12}
-Actual: 1.0 Approx: 0.3333333333333333
-13041372_COARSE [================                                         ] 22 / 84{OO=206, CC=30, OC=28, NC=2, CN=2, CO=28}
-{CC=36}
-{CC=30, OC=2, NC=2, CN=2, CO=2}
-{CC=12}
-Actual: 1.0 Approx: 0.4166666666666667
-13041372_COARSE [================|                                        ] 23 / 84{SC=16, SS=270, CC=30, CS=16, NS=17, NC=3, SN=17, CN=3}
-{CC=36}
-{SC=1, CC=30, CS=1, NS=1, NC=3, SN=1, CN=3}
-{CC=12}
-Actual: 1.0 Approx: 0.4166666666666667
-13041372_COARSE [=================|                                       ] 24 / 84{NN=238, CC=20, NC=38, CN=38}
-{CC=36}
-{NN=2, CC=20, NC=9, CN=9}
-{CC=12}
-Actual: 1.0 Approx: 0.2777777777777778
-13041372_COARSE [==================                                       ] 25 / 84{SC=31, SS=236, CC=30, CS=31, NC=3, CN=3}
-{CC=36}
-{SC=2, CC=30, CS=2, NC=3, CN=3}
-{CC=12}
-Actual: 1.0 Approx: 0.4166666666666667
-13041372_COARSE [==================|                                      ] 26 / 84{OO=304, CC=34, OC=36, NC=2, CN=2, CO=36}
-{CC=36}
-{CC=34, OC=2, NC=2, CN=2, CO=2}
-{CC=12}
-Actual: 1.0 Approx: 0.4722222222222222
-13041372_COARSE [===================|                                     ] 27 / 84{SC=32, SS=268, CS=32, CC=26, OC=2, NC=4, CN=4, CO=2}
-{CC=36}
-{SC=2, CS=2, CC=26, OC=2, NC=4, CN=4, CO=2}
-{CC=12}
-Actual: 1.0 Approx: 0.3611111111111111
-13041372_COARSE [====================|                                    ] 28 / 84{NN=304, CC=26, NC=38, CN=38}
-{CC=36}
-{NN=2, CC=26, NC=7, CN=7}
-{CC=12}
-nope
-Actual: 0.8333333333333334 Approx: 0.3611111111111111
-13041372_COARSE [=====================                                    ] 29 / 84{NN=268, CC=30, NC=36, CN=36}
-{CC=36}
-{CC=30, NC=6, CN=6}
-{CC=12}
-Actual: 1.0 Approx: 0.4166666666666667
-13041372_COARSE [=====================|                                   ] 30 / 84{SC=32, SS=268, CS=32, CC=26, NC=6, CN=6}
-{CC=36}
-{SC=2, CS=2, CC=26, NC=6, CN=6}
-{CC=12}
-Actual: 1.0 Approx: 0.3611111111111111
-13041372_COARSE [======================                                   ] 31 / 84{OO=268, CC=28, OC=34, NC=5, CN=5, CO=34}
-{CC=36}
-{CC=28, OC=2, NC=5, CN=5, CO=2}
-{CC=12}
-Actual: 1.0 Approx: 0.3888888888888889
-13041372_COARSE [======================|                                  ] 32 / 84{OO=268, CC=28, OC=34, NC=5, CN=5, CO=34}
-{CC=36}
-{CC=28, OC=2, NC=5, CN=5, CO=2}
-{CC=12}
-Actual: 1.0 Approx: 0.3888888888888889
-13041372_COARSE [=======================|                                 ] 33 / 84{NN=236, CC=32, NC=33, CN=33}
-{CC=36}
-{CC=32, NC=4, CN=4}
-{CC=12}
-Actual: 1.0 Approx: 0.4444444444444444
-13041372_COARSE [========================|                                ] 34 / 84{OO=302, NN=2, CC=20, OC=35, NC=9, CN=9, CO=35}
-{CC=36}
-{NN=2, CC=20, OC=2, NC=9, CN=9, CO=2}
-{CC=12}
-nope
-Actual: 0.8333333333333334 Approx: 0.2777777777777778
-13041372_COARSE [=========================                                ] 35 / 84{CC=414}
-{CC=36}
-{CC=44}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [=========================|                               ] 36 / 84{CC=40, NN=302, NC=36, CN=36}
-{CC=36}
-{CC=40, NC=2, CN=2}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [==========================                               ] 37 / 84{NN=302, CC=30, NC=41, CN=41}
-{CC=36}
-{CC=30, NC=7, CN=7}
-{CC=12}
-Actual: 1.0 Approx: 0.4166666666666667
-13041372_COARSE [==========================|                              ] 38 / 84{NN=304, CC=32, NC=38, CN=38}
-{CC=36}
-{NN=2, CC=32, NC=5, CN=5}
-{CC=12}
-Actual: 1.0 Approx: 0.4444444444444444
-13041372_COARSE [===========================|                             ] 39 / 84{NN=304, CC=24, NC=43, CN=43}
-{CC=36}
-{NN=2, CC=24, NC=9, CN=9}
-{CC=12}
-Actual: 1.0 Approx: 0.3333333333333333
-13041372_COARSE [============================|                            ] 40 / 84{SC=37, SS=338, CC=34, CS=37, NC=4, CN=4}
-{CC=36}
-{SC=2, CC=34, CS=2, NC=4, CN=4}
-{CC=12}
-Actual: 1.0 Approx: 0.4722222222222222
-13041372_COARSE [=============================                            ] 41 / 84{SC=37, SS=338, NN=6, CS=37, CC=26, NC=5, CN=5}
-{CC=36}
-{SC=2, NN=6, CS=2, CC=26, NC=5, CN=5}
-{CC=12}
-Actual: 1.0 Approx: 0.3611111111111111
-13041372_COARSE [=============================|                           ] 42 / 84{OO=338, CC=30, OC=37, NC=6, CN=6, CO=37}
-{CC=36}
-{CC=30, OC=2, NC=6, CN=6, CO=2}
-{CC=12}
-Actual: 1.0 Approx: 0.4166666666666667
-13041372_COARSE [==============================                           ] 43 / 84{SC=19, SS=376, CC=38, CS=19, NS=20, NC=3, SN=20, CN=3}
-{CC=36}
-{SC=1, CC=38, CS=1, NS=1, NC=3, SN=1, CN=3}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [==============================-|                         ] 44 / 84{NN=376, CC=34, NC=45, CN=45}
-{CC=36}
-{CC=34, NC=7, CN=7}
-{CC=12}
-Actual: 1.0 Approx: 0.4722222222222222
-{OO=376, CC=34, NO=20, OC=22, NC=3, CN=3, CO=22, ON=20}
-{CC=36}
-{CC=34, NO=1, OC=3, NC=3, CN=3, CO=3, ON=1}
-{CC=12}
-Actual: 1.0 Approx: 0.4722222222222222
-13041372_COARSE [================================                         ] 45 / 8413041372_COARSE [================================|                        ] 46 / 84{SC=39, SS=376, CC=34, CS=39, OC=2, NC=3, CN=3, CO=2}
-{CC=36}
-{SC=2, CC=34, CS=2, OC=2, NC=3, CN=3, CO=2}
-{CC=12}
-Actual: 1.0 Approx: 0.4722222222222222
-13041372_COARSE [=================================                        ] 47 / 84{NN=376, CC=40, NC=41, CN=41}
-{CC=36}
-{CC=40, NC=4, CN=4}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [=================================|                       ] {SC=39, SS=376, CC=40, CS=39, NC=2, CN=2}
-{CC=36}
-48 / 84{SC=2, CC=40, CS=2, NC=2, CN=2}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [==================================|                      ] 49 / 84{OO=376, CC=28, OC=39, NC=8, CN=8, CO=39}
-{CC=36}
-{CC=28, OC=2, NC=8, CN=8, CO=2}
-{CC=12}
-Actual: 1.0 Approx: 0.3888888888888889
-13041372_COARSE [===================================|                     ] 50 / 84{SC=19, SS=376, CC=36, CS=19, NS=19, NC=4, SN=19, CN=4}
-{CC=36}
-{SC=1, CC=36, CS=1, NS=1, NC=4, SN=1, CN=4}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [====================================                     ] 51 / 84{NN=336, CC=44, NC=38, CN=38}
-{CC=36}
-{CC=44, NC=2, CN=2}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [====================================|                    ] 52 / 84{OO=376, CC=34, OC=40, NC=5, CN=5, CO=40}
-{CC=36}
-{CC=34, OC=2, NC=5, CN=5, CO=2}
-{CC=12}
-Actual: 1.0 Approx: 0.4722222222222222
-13041372_COARSE [=====================================                    ] 53 / 84{OO=336, CC=40, OC=37, NC=2, CN=2, CO=37}
-{CC=36}
-{CC=40, OC=2, NC=2, CN=2, CO=2}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [=====================================|                   ] 54 / 84{NN=336, CC=34, NC=42, CN=42}
-{CC=36}
-{CC=34, NC=7, CN=7}
-{CC=12}
-Actual: 1.0 Approx: 0.4722222222222222
-13041372_COARSE [======================================|                  ] 55 / 84{OO=416, NN=2, CC=34, OC=43, NC=3, CN=3, CO=43}
-{CC=36}
-{NN=2, CC=34, OC=4, NC=3, CN=3, CO=4}
-{CC=12}
-Actual: 1.0 Approx: 0.4722222222222222
-13041372_COARSE [=======================================|                 ] 56 / 84{NN=2, OO=336, CC=38, OC=37, NC=2, CN=2, CO=37}
-{CC=36}
-{NN=2, CC=38, OC=2, NC=2, CN=2, CO=2}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [========================================                 ] 57 / 84{OO=416, CC=40, OC=41, NC=3, CN=3, CO=41}
-{CC=36}
-{CC=40, OC=2, NC=3, CN=3, CO=2}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [========================================|                ] 58 / 84{OO=416, CC=30, OC=42, NC=8, CN=8, CO=42}
-{CC=36}
-{CC=30, OC=2, NC=8, CN=8, CO=2}
-{CC=12}
-Actual: 1.0 Approx: 0.4166666666666667
-13041372_COARSE [=========================================                ] 59 / 84{SC=42, SS=416, CC=32, CS=42, NC=7, CN=7}
-{CC=36}
-{SC=2, CC=32, CS=2, NC=7, CN=7}
-{CC=12}
-Actual: 1.0 Approx: 0.4444444444444444
-13041372_COARSE [=========================================|               ] 60 / 84{Br=959, rB=456, SC=2, CS=2, CC=38, NC=4, CN=4}
-{CC=36}
-{SC=2, CS=2, CC=38, NC=4, CN=4}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [==========================================|              ] 61 / 84{NN=376, CC=32, NC=64, CN=64}
-{CC=36}
-{CC=32, NC=9, CN=9}
-{CC=12}
-Actual: 1.0 Approx: 0.4444444444444444
-13041372_COARSE [===========================================|             ] 62 / 84{OO=458, CC=40, OC=43, NC=4, CN=4, CO=43}
-{CC=36}
-{CC=40, OC=2, NC=4, CN=4, CO=2}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [============================================             ] 63 / 84{OO=458, CC=38, OC=43, NC=5, CN=5, CO=43}
-{CC=36}
-{CC=38, OC=2, NC=5, CN=5, CO=2}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [============================================|            ] 64 / 84{SC=41, SS=414, CS=41, CC=28, OC=4, NC=6, CN=6, CO=4}
-{CC=36}
-{SC=2, CS=2, CC=28, OC=4, NC=6, CN=6, CO=4}
-{CC=12}
-Actual: 1.0 Approx: 0.3888888888888889
-13041372_COARSE [=============================================|           ] 65 / 84{OO=414, CC=38, OC=43, NC=3, CN=3, CO=43}
-{CC=36}
-{CC=38, OC=4, NC=3, CN=3, CO=4}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [==============================================           ] 66 / 84{CC=46, NN=374, NC=39, CN=39}
-{CC=36}
-{CC=46, NC=2, CN=2}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [==============================================|          ] 67 / 84{NN=458, CC=40, NC=68, CN=68}
-{CC=36}
-{CC=40, NC=7, CN=7}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [===============================================|         ] 68 / 84{NN=504, CC=22, NC=55, CN=55}
-{CC=36}
-{NN=4, CC=22, NC=14, CN=14}
-{CC=12}
-nope
-Actual: 0.8333333333333334 Approx: 0.3055555555555556
-13041372_COARSE [================================================         ] 69 / 84{OO=456, CC=36, OC=43, NC=7, CN=7, CO=43}
-{CC=36}
-{CC=36, OC=2, NC=7, CN=7, CO=2}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [================================================|        ] 70 / 84{OO=498, NN=4, CC=32, OC=44, NC=9, CN=9, CO=44}
-{CC=36}
-{NN=4, CC=32, OC=2, NC=9, CN=9, CO=2}
-{CC=12}
-Actual: 1.0 Approx: 0.4444444444444444
-13041372_COARSE [=================================================|       ] 71 / 84{OO=594, CC=44, OC=49, NC=6, CN=6, CO=49}
-{CC=36}
-{CC=44, OC=2, NC=6, CN=6, CO=2}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [==================================================       ] 72 / 84{OO=594, NN=2, CC=36, OC=50, NC=9, CN=9, CO=50}
-{CC=36}
-{NN=2, CC=36, OC=2, NC=9, CN=9, CO=2}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [==================================================|      ] 73 / 84{SC=53, SS=696, CC=50, CS=53, NC=5, CN=5}
-{CC=36}
-{SC=2, CC=50, CS=2, NC=5, CN=5}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [===================================================|     ] 74 / 84{SC=28, SS=862, CC=44, CS=28, NO=1, OC=5, NC=6, NS=29, SN=29, CN=6, CO=5, ON=1}
-{CC=36}
-{SC=1, CC=44, CS=1, NO=1, OC=5, NC=6, NS=1, SN=1, CN=6, CO=5, ON=1}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [====================================================     ] 75 / 84{NN=502, CC=42, NC=72, CN=72}
-{CC=36}
-{CC=42, NC=7, CN=7}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [====================================================|    ] 76 / 84{NN=982, CC=68, NC=98, CN=98}
-{CC=36}
-{CC=68, NC=6, CN=6}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [=====================================================|   ] 77 / 84{OO=1046, CC=58, OC=65, NC=7, CN=7, CO=65}
-{CC=36}
-{CC=58, OC=4, NC=7, CN=7, CO=4}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [======================================================   ] 78 / 84{SC=73, SS=1324, CC=74, CS=73, NC=4, CN=4}
-{CC=36}
-{SC=2, CC=74, CS=2, NC=4, CN=4}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [======================================================|  ] 79 / 84{CC=6, NN=6, NC=6, CN=6}
-{CC=36}
-{CC=6, NC=2, CN=2}
-{CC=12}
-Actual: 0.8 Approx: 0.125
-13041372_COARSE [=======================================================| ] 80 / 84{CC=36}
-{CC=36}
-{CC=12}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [========================================================|] 81 / 84{OO=12, CC=4, OC=8, NC=2, CN=2, CO=8}
-{CC=36}
-{CC=4, OC=2, NC=2, CN=2, CO=2}
-{CC=12}
-Actual: 0.3333333333333333 Approx: 0.05555555555555555
-13041372_COARSE [=========================================================] 82 / 84{CC=8, NN=12, NC=8, CN=8}
-{CC=36}
-{CC=8, NC=2, CN=2}
-{CC=12}
-Actual: 0.8333333333333334 Approx: 0.1111111111111111
-13041372_COARSE [=========================================================] 83 / 84{OO=918, NN=2, CC=60, OC=61, NC=6, CN=6, CO=61}
-{CC=36}
-{NN=2, CC=60, OC=2, NC=6, CN=6, CO=2}
-{CC=12}
-Actual: 1.0 Approx: 0.5
-13041372_COARSE [=========================================================] 84 / 84Writing coarse results...
-13041372 [=                                                               ] 0 / 96013041372 [=                                                               ] 1 / 96013041372 [=                                                               ] 2 / 96013041372 [=                                                               ] 3 / 96013041372 [=                                                               ] 4 / 96013041372 [=                                                               ] 5 / 96013041372 [=                                                               ] 6 / 96013041372 [=                                                               ] 7 / 96013041372 [=                                                               ] 8 / 96013041372 [=                                                               ] 9 / 96013041372 [=                                                               ] 10 / 96013041372 [=                                                               ] 11 / 96013041372 [=                                                               ] 12 / 96013041372 [=                                                               ] 13 / 96013041372 [=|                                                              ] 14 / 96013041372 [==                                                              ] 15 / 96013041372 [==                                                              ] 16 / 96013041372 [==                                                              ] 17 / 96013041372 [==                                                              ] 18 / 96013041372 [==                                                              ] 19 / 96013041372 [==                                                              ] 20 / 96013041372 [==                                                              ] 21 / 96013041372 [==                                                              ] 22 / 96013041372 [==|                                                             ] 23 / 96013041372 [===                                                             ] 24 / 96013041372 [===                                                             ] 25 / 96013041372 [===                                                             ] 26 / 96013041372 [===                                                             ] 27 / 96013041372 [===                                                             ] 28 / 96013041372 [===                                                             ] 29 / 96013041372 [===                                                             ] 30 / 96013041372 [===                                                             ] 31 / 96013041372 [===                                                             ] 32 / 96013041372 [===                                                             ] 33 / 96013041372 [===                                                             ] 34 / 96013041372 [===                                                             ] 35 / 96013041372 [===                                                             ] 36 / 96013041372 [===                                                             ] 37 / 96013041372 [===                                                             ] 38 / 96013041372 [===                                                             ] 39 / 96013041372 [===                                                             ] 40 / 96013041372 [===                                                             ] 41 / 96013041372 [===                                                             ] 42 / 96013041372 [===|                                                            ] 43 / 96013041372 [====                                                            ] 44 / 96013041372 [====                                                            ] 45 / 96013041372 [====                                                            ] 46 / 96013041372 [====                                                            ] 47 / 96013041372 [====                                                            ] 48 / 96013041372 [====                                                            ] 49 / 96013041372 [====                                                            ] 50 / 96013041372 [====                                                            ] 51 / 96013041372 [====|                                                           ] 52 / 96013041372 [=====                                                           ] 53 / 96013041372 [=====                                                           ] 54 / 96013041372 [=====                                                           ] 55 / 96013041372 [=====                                                           ] 56 / 96013041372 [=====                                                           ] 57 / 96013041372 [=====                                                           ] 58 / 96013041372 [=====                                                           ] 59 / 96013041372 [=====                                                           ] 60 / 96013041372 [=====                                                           ] 61 / 96013041372 [=====                                                           ] 62 / 96013041372 [=====                                                           ] 63 / 96013041372 [=====                                                           ] 64 / 96013041372 [=====                                                           ] 65 / 96013041372 [=====                                                           ] 66 / 96013041372 [=====                                                           ] 67 / 96013041372 [=====                                                           ] 68 / 96013041372 [=====                                                           ] 69 / 96013041372 [=====                                                           ] 70 / 96013041372 [=====|                                                          ] 71 / 96013041372 [======                                                          ] 72 / 96013041372 [======                                                          ] 73 / 96013041372 [======                                                          ] 74 / 96013041372 [======                                                          ] 75 / 96013041372 [======                                                          ] 76 / 96013041372 [======                                                          ] 77 / 96013041372 [======                                                          ] 78 / 96013041372 [======                                                          ] 79 / 96013041372 [======                                                          ] 80 / 96013041372 [======|                                                         ] 81 / 96013041372 [=======                                                         ] 82 / 96013041372 [=======                                                         ] 83 / 96013041372 [=======                                                         ] 84 / 96013041372 [=======                                                         ] 85 / 96013041372 [=======                                                         ] 86 / 96013041372 [=======                                                         ] 87 / 96013041372 [=======                                                         ] 88 / 96013041372 [=======                                                         ] 89 / 96013041372 [=======                                                         ] 90 / 96013041372 [=======                                                         ] 91 / 96013041372 [=======                                                         ] 92 / 96013041372 [=======                                                         ] 93 / 96013041372 [=======                                                         ] 94 / 96013041372 [=======                                                         ] 95 / 960Writing fine results...
-68742355_COARSE [=                                                        ] 0 / 84{FF=72}
-{CC=198}
-{}
-{CC=28}
-corn
-Actual: 0.1 Approx: 0.0
-68742355_COARSE [=|                                                       ] 1 / 84{NN=40, CC=12, NC=15, CN=15}
-{CC=198}
-{CC=12, NC=4, CN=4}
-{CC=28}
-Actual: 0.6666666666666666 Approx: 0.07317073170731707
-68742355_COARSE [==|                                                      ] 2 / 84{II=110}
-{CC=198}
-{}
-{CC=28}
-flibble
-corn
-Actual: 0.08333333333333333 Approx: 0.0
-68742355_COARSE [===|                                                     ] 3 / 84{NN=72, CC=14, NC=19, CN=19}
-{CC=198}
-{NN=2, CC=14, NC=4, CN=4}
-{CC=28}
-Actual: 0.6363636363636364 Approx: 0.056451612903225805
-68742355_COARSE [====                                                     ] 4 / 84{NN=72, CC=10, NC=21, CN=21}
-{CC=198}
-{NN=2, CC=10, NC=6, CN=6}
-{CC=28}
-Actual: 0.5454545454545454 Approx: 0.04032258064516129
-68742355_COARSE [====|                                                    ] 5 / 84{NN=90, CC=16, NC=18, CN=18}
-{CC=198}
-{NN=2, CC=16, NC=3, CN=3}
-{CC=28}
-tripe
-Actual: 0.5454545454545454 Approx: 0.056338028169014086
-68742355_COARSE [=====                                                    ] 6 / 84{NN=88, CC=16, NC=23, CN=23}
-{CC=198}
-{CC=16, NC=5, CN=5}
-{CC=28}
-tripe
-Actual: 0.5 Approx: 0.05333333333333334
-68742355_COARSE [=====|                                                   ] 7 / 84{CC=20, NN=90, NC=29, CN=29}
-{CC=198}
-{CC=20, NC=3, CN=3}
-{CC=28}
-tripe
-Actual: 0.5 Approx: 0.05952380952380952
-68742355_COARSE [======|                                                  ] 8 / 84{NN=88, CC=16, NC=23, CN=23}
-{CC=198}
-{CC=16, NC=5, CN=5}
-{CC=28}
-tripe
-Actual: 0.5833333333333334 Approx: 0.05333333333333334
-68742355_COARSE [=======|                                        {CC=22, NN=88, NC=20, CN=20}
-{CC=198}
-{CC=22, NC=2, CN=2}
-         ] {CC=28}
-Actual: 0.9166666666666666 Approx: 0.07333333333333333
-9 / 8468742355_COARSE [========                                                 ] 10 / 84{NN=110, CC=18, NC=35, CN=35}
-{CC=198}
-{CC=18, NC=5, CN=5}
-{CC=28}
-tripe
-Actual: 0.5384615384615384 Approx: 0.045454545454545456
-68742355_COARSE [========|                                                ] 11 / 84{SC=12, SS=108, CS=12, CC=14, NS=11, NC=3, SN=11, CN=3}
-{CC=198}
-{SC=3, CS=3, CC=14, NS=1, NC=3, SN=1, CN=3}
-{CC=28}
-tripe
-Actual: 0.46153846153846156 Approx: 0.040229885057471264
-68742355_COARSE [=========                                                ] 12 / 84{CC=24, OO=108, OC=20, CO=20}
-{CC=198}
-{CC=24, OC=2, CO=2}
-{CC=28}
-tripe
-Actual: 0.46153846153846156 Approx: 0.06976744186046512
-68742355_COARSE [=========|                                               ] 13 / 84{CC=172}
-{CC=198}
-{CC=28}
-{CC=28}
-Actual: 1.0 Approx: 0.5
-68742355_COARSE [==========|                                              ] 14 / 84{NN=106, CC=16, NC=26, CN=26}
-{CC=198}
-{CC=16, NC=7, CN=7}
-{CC=28}
-tripe
-Actual: 0.38461538461538464 Approx: 0.04597701149425287
-68742355_COARSE [===========|                                             ] 15 / 84{SC=11, SS=130, CC=24, CS=11, NS=12, NC=1, SN=12, CN=1}
-{CC=198}
-{SC=1, CC=24, CS=1, NS=1, NC=1, SN=1, CN=1}
-{CC=28}
-tripe
-Actual: 0.46153846153846156 Approx: 0.06060606060606061
-68742355_COARSE [============                                             ] 16 / 84{OO=180, CC=20, NO=1, OC=29, NC=3, CN=3, CO=29, ON=1}
-{CC=198}
-{CC=20, NO=1, OC=3, NC=3, CN=3, CO=3, ON=1}
-{CC=28}
-tripe
-Actual: 0.46153846153846156 Approx: 0.050505050505050504
-68742355_COARSE [============|                                            ] 17 / 84{SC=26, SS=152, CC=18, CS=26, OC=2, NC=4, CN=4, CO=2}
-{CC=198}
-{SC=2, CC=18, CS=2, OC=2, NC=4, CN=4, CO=2}
-{CC=28}
-tripe
-Actual: 0.6153846153846154 Approx: 0.045454545454545456
-68742355_COARSE [=============|                                           ] 18 / 84{SC=27, SS=178, CC=26, CS=27, NC=3, CN=3}
-{CC=198}
-{SC=2, CC=26, CS=2, NC=3, CN=3}
-{CC=28}
-tripe
-Actual: 0.46153846153846156 Approx: 0.06565656565656566
-68742355_COARSE [==============                                           ] 19 / 84{NN=238, CC=26, NC=31, CN=31}
-{CC=198}
-{NN=2, CC=26, NC=5, CN=5}
-{CC=28}
-tripe
-Actual: 0.5384615384615384 Approx: 0.06565656565656566
-68742355_COARSE [==============|                                          ] 20 / 84{SC=29, SS=206, CC=24, CS=29, NC=5, CN=5}
-{CC=198}
-{SC=2, CC=24, CS=2, NC=5, CN=5}
-{CC=28}
-tripe
-Actual: 0.46153846153846156 Approx: 0.06060606060606061
-68742355_COARSE [===============|                                         ] 21 / 84{OO=206, CC=30, OC=28, NC=2, CN=2, CO=28}
-{CC=198}
-{CC=30, OC=2, NC=2, CN=2, CO=2}
-{CC=28}
-tripe
-Actual: 0.6923076923076923 Approx: 0.07575757575757576
-68742355_COARSE [================                                         ] 22 / 84{SC=16, SS=270, CC=30, CS=16, NS=17, NC=3, SN=17, CN=3}
-{CC=198}
-{SC=1, CC=30, CS=1, NS=1, NC=3, SN=1, CN=3}
-{CC=28}
-tripe
-Actual: 0.46153846153846156 Approx: 0.07575757575757576
-68742355_COARSE [================|                                        ] 23 / 84{NN=238, CC=20, NC=38, CN=38}
-{CC=198}
-{NN=2, CC=20, NC=9, CN=9}
-{CC=28}
-tripe
-Actual: 0.6153846153846154 Approx: 0.050505050505050504
-68742355_COARSE [=================|                                       ] 24 / 84{SC=31, SS=236, CC=30, CS=31, NC=3, CN=3}
-{CC=198}
-{SC=2, CC=30, CS=2, NC=3, CN=3}
-{CC=28}
-tripe
-Actual: 0.6923076923076923 Approx: 0.07575757575757576
-68742355_COARSE [==================                                       ] 25 / 84{CC=28, NN=128, NC=22, CN=22}
-{CC=198}
-{CC=28, NC=2, CN=2}
-{CC=28}
-tripe
-Actual: 0.46153846153846156 Approx: 0.0707070707070707
-68742355_COARSE [==================|                                      ] 26 / 84{OO=304, CC=34, OC=36, NC=2, CN=2, CO=36}
-{CC=198}
-{CC=34, OC=2, NC=2, CN=2, CO=2}
-{CC=28}
-tripe
-Actual: 0.6923076923076923 Approx: 0.08585858585858586
-68742355_COARSE [===================|                                     ] 27 / 84{SC=32, SS=268, CS=32, CC=26, OC=2, NC=4, CN=4, CO=2}
-{CC=198}
-{SC=2, CS=2, CC=26, OC=2, NC=4, CN=4, CO=2}
-{CC=28}
-tripe
-Actual: 0.46153846153846156 Approx: 0.06565656565656566
-68742355_COARSE [====================|                                    ] 28 / 84{NN=236, CC=32, NC=33, CN=33}
-{CC=198}
-{CC=32, NC=4, CN=4}
-{CC=28}
-Actual: 1.0 Approx: 0.08080808080808081
-68742355_COARSE [=====================                                    ] 29 / 84{NN=304, CC=26, NC=38, CN=38}
-{CC=198}
-{NN=2, CC=26, NC=7, CN=7}
-{CC=28}
-tripe
-Actual: 0.46153846153846156 Approx: 0.06565656565656566
-68742355_COARSE [=====================|                                   ] 30 / 84{NN=268, CC=30, NC=36, CN=36}
-{CC=198}
-{CC=30, NC=6, CN=6}
-{CC=28}
-tripe
-Actual: 0.46153846153846156 Approx: 0.07575757575757576
-68742355_COARSE [======================                                   ] 31 / 84{SC=32, SS=268, CS=32, CC=26, NC=6, CN=6}
-{CC=198}
-{SC=2, CS=2, CC=26, NC=6, CN=6}
-{CC=28}
-tripe
-Actual: 0.6923076923076923 Approx: 0.06565656565656566
-68742355_COARSE [======================|                                  ] 32 / 84{OO=268, CC=28, OC=34, NC=5, CN=5, CO=34}
-{CC=198}
-{CC=28, OC=2, NC=5, CN=5, CO=2}
-{CC=28}
-tripe
-Actual: 0.6923076923076923 Approx: 0.0707070707070707
-68742355_COARSE [=======================|                                 ] 33 / 84{OO=268, CC=28, OC=34, NC=5, CN=5, CO=34}
-{CC=198}
-{CC=28, OC=2, NC=5, CN=5, CO=2}
-{CC=28}
-tripe
-Actual: 0.5384615384615384 Approx: 0.0707070707070707
-68742355_COARSE [========================|                                ] 34 / 84{OO=302, NN=2, CC=20, OC=35, NC=9, CN=9, CO=35}
-{CC=198}
-{NN=2, CC=20, OC=2, NC=9, CN=9, CO=2}
-{CC=28}
-tripe
-Actual: 0.38461538461538464 Approx: 0.050505050505050504
-68742355_COARSE [=========================                                ] 35 / 84{CC=40, NN=302, NC=36, CN=36}
-{CC=198}
-{CC=40, NC=2, CN=2}
-{CC=28}
-Actual: 1.0 Approx: 0.10101010101010101
-68742355_COARSE [=========================|                               ] 36 / 84{CC=414}
-{CC=198}
-{CC=44}
-{CC=28}
-Actual: 1.0 Approx: 0.5
-68742355_COARSE [==========================                               ] 37 / 84{NN=302, CC=30, NC=41, CN=41}
-{CC=198}
-{CC=30, NC=7, CN=7}
-{CC=28}
-tripe
-Actual: 0.5384615384615384 Approx: 0.07575757575757576
-68742355_COARSE [==========================|                              ] 38 / 84{NN=304, CC=24, NC=43, CN=43}
-{CC=198}
-{NN=2, CC=24, NC=9, CN=9}
-{CC=28}
-tripe
-Actual: 0.5384615384615384 Approx: 0.06060606060606061
-68742355_COARSE [===========================|                             ] 39 / 84{SC=37, SS=338, CC=34, CS=37, NC=4, CN=4}
-{CC=198}
-{SC=2, CC=34, CS=2, NC=4, CN=4}
-{CC=28}
-tripe
-Actual: 0.5384615384615384 Approx: 0.08585858585858586
-68742355_COARSE [============================|                            ] 40 / 84{NN=304, CC=32, NC=38, CN=38}
-{CC=198}
-{NN=2, CC=32, NC=5, CN=5}
-{CC=28}
-tripe
-Actual: 0.5384615384615384 Approx: 0.08080808080808081
-68742355_COARSE [=============================                            ] 41 / 84{OO=338, CC=30, OC=37, NC=6, CN=6, CO=37}
-{CC=198}
-{CC=30, OC=2, NC=6, CN=6, CO=2}
-{CC=28}
-tripe
-Actual: 0.5384615384615384 Approx: 0.07575757575757576
-68742355_COARSE [=============================|                           ] 42 / 84{SC=37, SS=338, NN=6, CS=37, CC=26, NC=5, CN=5}
-{CC=198}
-{SC=2, NN=6, CS=2, CC=26, NC=5, CN=5}
-{CC=28}
-tripe
-Actual: 0.46153846153846156 Approx: 0.06565656565656566
-68742355_COARSE [==============================                           ] 43 / 84{NN=376, CC=34, NC=45, CN=45}
-{CC=198}
-{CC=34, NC=7, CN=7}
-{CC=28}
-tripe
-Actual: 0.5384615384615384 Approx: 0.08585858585858586
-68742355_COARSE [==============================-|                         ] 44 / 84{OO=376, CC=34, NO=20, OC=22, NC=3, CN=3, CO=22, ON=20}
-{CC=198}
-{CC=34, NO=1, OC=3, NC=3, CN=3, CO=3, ON=1}
-{CC=28}
-tripe
-Actual: 0.5384615384615384 Approx: 0.08585858585858586
-68742355_COARSE [================================                         ] 45 / 84{SC=19, SS=376, CC=38, CS=19, NS=20, NC=3, SN=20, CN=3}
-{CC=198}
-{SC=1, CC=38, CS=1, NS=1, NC=3, SN=1, CN=3}
-{CC=28}
-tripe
-Actual: 0.5384615384615384 Approx: 0.09595959595959595
-68742355_COARSE [================================|                        ] 46 / 84{SC=39, SS=376, CC=34, CS=39, OC=2, NC=3, CN=3, CO=2}
-{CC=198}
-{SC=2, CC=34, CS=2, OC=2, NC=3, CN=3, CO=2}
-{CC=28}
-tripe
-Actual: 0.6923076923076923 Approx: 0.08585858585858586
-68742355_COARSE [=================================                        ] 47 / 84{NN=376, CC=40, NC=41, CN=41}
-{CC=198}
-{CC=40, NC=4, CN=4}
-{CC=28}
-tripe
-Actual: 0.5384615384615384 Approx: 0.10101010101010101
-68742355_COARSE [=================================|                       ] 48 / 84{OO=376, CC=28, OC=39, NC=8, CN=8, CO=39}
-{CC=198}
-{CC=28, OC=2, NC=8, CN=8, CO=2}
-{CC=28}
-tripe
-Actual: 0.46153846153846156 Approx: 0.0707070707070707
-68742355_COARSE [==================================|                      ] 49 / 84{SC=39, SS=376, CC=40, CS=39, NC=2, CN=2}
-{CC=198}
-{SC=2, CC=40, CS=2, NC=2, CN=2}
-{CC=28}
-Actual: 1.0 Approx: 0.10101010101010101
-68742355_COARSE [===================================|                     ] 50 / 84{SC=19, SS=376, CC=36, CS=19, NS=19, NC=4, SN=19, CN=4}
-{CC=198}
-{SC=1, CC=36, CS=1, NS=1, NC=4, SN=1, CN=4}
-{CC=28}
-tripe
-Actual: 0.5384615384615384 Approx: 0.09090909090909091
-68742355_COARSE [====================================                     ] 51 / 84{OO=376, CC=34, OC=40, NC=5, CN=5, CO=40}
-{CC=198}
-{CC=34, OC=2, NC=5, CN=5, CO=2}
-{CC=28}
-tripe
-Actual: 0.5384615384615384 Approx: 0.08585858585858586
-68742355_COARSE [====================================|                    ] 52 / 84{OO=336, CC=40, OC=37, NC=2, CN=2, CO=37}
-{CC=198}
-{CC=40, OC=2, NC=2, CN=2, CO=2}
-{CC=28}
-Actual: 1.0 Approx: 0.10101010101010101
-68742355_COARSE [=====================================                    ] 53 / 84{NN=2, OO=336, CC=38, OC=37, NC=2, CN=2, CO=37}
-{CC=198}
-{NN=2, CC=38, OC=2, NC=2, CN=2, CO=2}
-{CC=28}
-Actual: 1.0 Approx: 0.09595959595959595
-68742355_COARSE [=====================================|                   ] 54 / 84{NN=336, CC=34, NC=42, CN=42}
-{CC=198}
-{CC=34, NC=7, CN=7}
-{CC=28}
-Actual: 1.0 Approx: 0.08585858585858586
-68742355_COARSE [======================================|                  ] 55 / 84{OO=416, NN=2, CC=34, OC=43, NC=3, CN=3, CO=43}
-{CC=198}
-{NN=2, CC=34, OC=4, NC=3, CN=3, CO=4}
-{CC=28}
-tripe
-Actual: 0.5384615384615384 Approx: 0.08585858585858586
-68742355_COARSE [=======================================|                 ] 56 / 84{OO=416, CC=40, OC=41, NC=3, CN=3, CO=41}
-{CC=198}
-{CC=40, OC=2, NC=3, CN=3, CO=2}
-{CC=28}
-tripe
-Actual: 0.6153846153846154 Approx: 0.10101010101010101
-68742355_COARSE [========================================                 ] 57 / 84{OO=416, CC=30, OC=42, NC=8, CN=8, CO=42}
-{CC=198}
-{CC=30, OC=2, NC=8, CN=8, CO=2}
-{CC=28}
-tripe
-Actual: 0.5384615384615384 Approx: 0.07575757575757576
-68742355_COARSE [========================================|                ] 58 / 84{SC=42, SS=416, CC=32, CS=42, NC=7, CN=7}
-{CC=198}
-{SC=2, CC=32, CS=2, NC=7, CN=7}
-{CC=28}
-tripe
-Actual: 0.5384615384615384 Approx: 0.08080808080808081
-68742355_COARSE [=========================================                ] 59 / 84{Br=959, rB=456, SC=2, CS=2, CC=38, NC=4, CN=4}
-{CC=198}
-{SC=2, CS=2, CC=38, NC=4, CN=4}
-{CC=28}
-tripe
-Actual: 0.5384615384615384 Approx: 0.09595959595959595
-68742355_COARSE [=========================================|               ] 60 / 84{NN=376, CC=32, NC=64, CN=64}
-{CC=198}
-{CC=32, NC=9, CN=9}
-{CC=28}
-tripe
-Actual: 0.46153846153846156 Approx: 0.08080808080808081
-68742355_COARSE [==========================================|              ] 61 / 84{CC=46, NN=374, NC=39, CN=39}
-{CC=198}
-{CC=46, NC=2, CN=2}
-{CC=28}
-Actual: 1.0 Approx: 0.11616161616161616
-68742355_COARSE [===========================================|             ] 62 / 84{OO=458, CC=40, OC=43, NC=4, CN=4, CO=43}
-{CC=198}
-{CC=40, OC=2, NC=4, CN=4, CO=2}
-{CC=28}
-nope
-Actual: 0.8461538461538461 Approx: 0.10101010101010101
-68742355_COARSE [============================================             ] 63 / 84{OO=458, CC=38, OC=43, NC=5, CN=5, CO=43}
-{CC=198}
-{CC=38, OC=2, NC=5, CN=5, CO=2}
-{CC=28}
-Actual: 1.0 Approx: 0.09595959595959595
-68742355_COARSE [============================================|            ] 64 / 84{SC=41, SS=414, CS=41, CC=28, OC=4, NC=6, CN=6, CO=4}
-{CC=198}
-{SC=2, CS=2, CC=28, OC=4, NC=6, CN=6, CO=4}
-{CC=28}
-tripe
-Actual: 0.5384615384615384 Approx: 0.0707070707070707
-68742355_COARSE [=============================================|           ] 65 / 84{OO=414, CC=38, OC=43, NC=3, CN=3, CO=43}
-{CC=198}
-{CC=38, OC=4, NC=3, CN=3, CO=4}
-{CC=28}
-Actual: 1.0 Approx: 0.09595959595959595
-68742355_COARSE [==============================================           ] 66 / 84{NN=458, CC=40, NC=68, CN=68}
-{CC=198}
-{CC=40, NC=7, CN=7}
-{CC=28}
-tripe
-Actual: 0.6153846153846154 Approx: 0.10101010101010101
-68742355_COARSE [==============================================|          ] 67 / 84{OO=456, CC=36, OC=43, NC=7, CN=7, CO=43}
-{CC=198}
-{CC=36, OC=2, NC=7, CN=7, CO=2}
-{CC=28}
-nope
-Actual: 0.8461538461538461 Approx: 0.09090909090909091
-68742355_COARSE [===============================================|         ] 68 / 84{NN=504, CC=22, NC=55, CN=55}
-{CC=198}
-{NN=4, CC=22, NC=14, CN=14}
-{CC=28}
-tripe
-Actual: 0.38461538461538464 Approx: 0.05555555555555555
-68742355_COARSE [================================================         ] 69 / 84{NN=502, CC=42, NC=72, CN=72}
-{CC=198}
-{CC=42, NC=7, CN=7}
-{CC=28}
-Actual: 1.0 Approx: 0.10606060606060606
-68742355_COARSE [================================================|        ] 70 / 84{OO=498, NN=4, CC=32, OC=44, NC=9, CN=9, CO=44}
-{CC=198}
-{NN=4, CC=32, OC=2, NC=9, CN=9, CO=2}
-{CC=28}
-tripe
-Actual: 0.46153846153846156 Approx: 0.08080808080808081
-68742355_COARSE [=================================================|       ] 71 / 84{OO=594, CC=44, OC=49, NC=6, CN=6, CO=49}
-{CC=198}
-{CC=44, OC=2, NC=6, CN=6, CO=2}
-{CC=28}
-tripe
-Actual: 0.5384615384615384 Approx: 0.1111111111111111
-68742355_COARSE [==================================================       ] 72 / 84{OO=594, NN=2, CC=36, OC=50, NC=9, CN=9, CO=50}
-{CC=198}
-{NN=2, CC=36, OC=2, NC=9, CN=9, CO=2}
-{CC=28}
-nope
-Actual: 0.7692307692307693 Approx: 0.09090909090909091
-68742355_COARSE [==================================================|      ] 73 / 84{NN=336, CC=44, NC=38, CN=38}
-{CC=198}
-{CC=44, NC=2, CN=2}
-{CC=28}
-nope
-Actual: 0.8461538461538461 Approx: 0.1111111111111111
-68742355_COARSE [===================================================|     ] 74 / 84{SC=28, SS=862, CC=44, CS=28, NO=1, OC=5, NC=6, NS=29, SN=29, CN=6, CO=5, ON=1}
-{CC=198}
-{SC=1, CC=44, CS=1, NO=1, OC=5, NC=6, NS=1, SN=1, CN=6, CO=5, ON=1}
-{CC=28}
-tripe
-Actual: 0.46153846153846156 Approx: 0.1111111111111111
-68742355_COARSE [====================================================     ] 75 / 84{SC=53, SS=696, CC=50, CS=53, NC=5, CN=5}
-{CC=198}
-{SC=2, CC=50, CS=2, NC=5, CN=5}
-{CC=28}
-tripe
-Actual: 0.6153846153846154 Approx: 0.12626262626262627
-68742355_COARSE [====================================================|    ] 76 / 84{NN=982, CC=68, NC=98, CN=98}
-{CC=198}
-{CC=68, NC=6, CN=6}
-{CC=28}
-Actual: 1.0 Approx: 0.1717171717171717
-68742355_COARSE [=====================================================|   ] 77 / 84{OO=1046, CC=58, OC=65, NC=7, CN=7, CO=65}
-{CC=198}
-{CC=58, OC=4, NC=7, CN=7, CO=4}
-{CC=28}
-Actual: 1.0 Approx: 0.14646464646464646
-68742355_COARSE [======================================================   ] 78 / 84{SC=73, SS=1324, CC=74, CS=73, NC=4, CN=4}
-{CC=198}
-{SC=2, CC=74, CS=2, NC=4, CN=4}
-{CC=28}
-Actual: 1.0 Approx: 0.18686868686868688
-68742355_COARSE [======================================================|  ] 79 / 84{CC=6, NN=6, NC=6, CN=6}
-{CC=198}
-{CC=6, NC=2, CN=2}
-{CC=28}
-Actual: 0.8 Approx: 0.125
-68742355_COARSE [=======================================================| ] 80 / 84{CC=36}
-{CC=198}
-{CC=12}
-{CC=28}
-Actual: 1.0 Approx: 0.5
-68742355_COARSE [========================================================|] 81 / 84{OO=12, CC=4, OC=8, NC=2, CN=2, CO=8}
-{CC=198}
-{CC=4, OC=2, NC=2, CN=2, CO=2}
-{CC=28}
-Actual: 0.3333333333333333 Approx: 0.05555555555555555
-68742355_COARSE [=========================================================] 82 / 84{CC=8, NN=12, NC=8, CN=8}
-{CC=198}
-{CC=8, NC=2, CN=2}
-{CC=28}
-Actual: 0.8333333333333334 Approx: 0.1111111111111111
-68742355_COARSE [=========================================================] 83 / 84{OO=918, NN=2, CC=60, OC=61, NC=6, CN=6, CO=61}
-{CC=198}
-{NN=2, CC=60, OC=2, NC=6, CN=6, CO=2}
-{CC=28}
-Actual: 1.0 Approx: 0.15151515151515152
-68742355_COARSE [=========================================================] 84 / 84Writing coarse results...
-68742355 [=                                                               ] 0 / 26468742355 [=                                                               ] 1 / 26468742355 [=                                                               ] 2 / 26468742355 [=|                                                              ] 3 / 26468742355 [==                                                              ] 4 / 26468742355 [==                                                              ] 5 / 26468742355 [==|                                                             ] 6 / 26468742355 [===                                                             ] 7 / 26468742355 [===                                                             ] 8 / 26468742355 [===                                                             ] 9 / 26468742355 [===                                                             ] 10 / 26468742355 [===|                                                            ] 11 / 26468742355 [====                                                            ] 12 / 264

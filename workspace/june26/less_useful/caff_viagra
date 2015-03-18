@@ -1,9 +1,0 @@
-Did 1 comparisons of structures in 415ms with SMSD. Average time: 415
-Did 1 comparisons of structures in 208ms with IsoRank. Average time: 208
-Did 1 comparisons of structures in 63ms with IsoRank. Average time: 63
-COMPARISON_DELIMITER
-IsoRank_bt=14.0 smsd
-6 9
-COMPARISON_DELIMITER
-IsoRank_bt=16.0 smsd
-5 9
