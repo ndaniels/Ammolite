@@ -1,4 +1,4 @@
- # How to use Ammolite
+# How to use Ammolite
 
 The current version of Ammolite supports three basic commands useful for testing.
 
