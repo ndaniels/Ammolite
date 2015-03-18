@@ -1,6 +1,5 @@
 test_data/*
 test_results/*
-molecule_sets/*
 results/*
 *.meta
 
