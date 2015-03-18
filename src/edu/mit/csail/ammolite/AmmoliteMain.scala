@@ -25,40 +25,39 @@ object AmmoliteMain{
 		val opts = new ScallopConf(args){
 			guessOptionName = true
 			banner("Welcome to Ammolite Aligned Molecule Matching!")
-			version("Version 0.0.0")
+			version("Beta Version")
 
 			footer("\nHope you find your molecule!")
 			
-			val verbosity = opt[Int]("verbosity", default=Some(1), descr="Set the verbosity. 0 is quiet, 2 is verbose, etc")
 			
 			val compress = new Subcommand("compress"){
 			  banner("Compress a database of SDF files")
 			  val source = opt[List[String]]("source", required=true, descr="File or folder to compress")
 			  val target = opt[String]("target", required=true, descr="Name of the new compressed database")
-			  val simple = opt[Boolean]("simple", descr="Use simple structures instead of cyclic structures")
-			  val labeled = opt[Boolean]("labeled", descr="Use labeled structures instead of cyclic structures")
+			  // val simple = opt[Boolean]("simple", descr="Use simple structures instead of cyclic structures")
+			  // val labeled = opt[Boolean]("labeled", descr="Use labeled structures instead of cyclic structures")
 
-			  val connection_2 = opt[Boolean]("connection-two", descr="Use connection two structures instead of cyclic structures")
-			  val connection_3 = opt[Boolean]("connection-three", descr="Use connection three structures instead of cyclic structures")
-			  val connection_4 = opt[Boolean]("connection-four", descr="Use connection four structures instead of cyclic structures")
-			  val connection_5 = opt[Boolean]("connection-five", descr="Use connection five structures instead of cyclic structures")
-			  val connection_6 = opt[Boolean]("connection-six", descr="Use connection six structures instead of cyclic structures")
+			  // val connection_2 = opt[Boolean]("connection-two", descr="Use connection two structures instead of cyclic structures")
+			  // val connection_3 = opt[Boolean]("connection-three", descr="Use connection three structures instead of cyclic structures")
+			  // val connection_4 = opt[Boolean]("connection-four", descr="Use connection four structures instead of cyclic structures")
+			  // val connection_5 = opt[Boolean]("connection-five", descr="Use connection five structures instead of cyclic structures")
+			  // val connection_6 = opt[Boolean]("connection-six", descr="Use connection six structures instead of cyclic structures")
 
-			  val overlap_4 = opt[Boolean]("overlap-four", descr="Use overlap five structures instead of cyclic structures")
-			  val overlap_5 = opt[Boolean]("overlap-five", descr="Use overlap six structures instead of cyclic structures")
-			  val overlap_6 = opt[Boolean]("overlap-six", descr="Use overlap seven structures instead of cyclic structures")
-			  val overlap_7 = opt[Boolean]("overlap-seven", descr="Use overlap seven structures instead of cyclic structures")
-			  val overlap_8 = opt[Boolean]("overlap-eight", descr="Use overlap seven structures instead of cyclic structures")
-			  val overlap_9 = opt[Boolean]("overlap-nine", descr="Use overlap seven structures instead of cyclic structures")
+			  // val overlap_4 = opt[Boolean]("overlap-four", descr="Use overlap five structures instead of cyclic structures")
+			  // val overlap_5 = opt[Boolean]("overlap-five", descr="Use overlap six structures instead of cyclic structures")
+			  // val overlap_6 = opt[Boolean]("overlap-six", descr="Use overlap seven structures instead of cyclic structures")
+			  // val overlap_7 = opt[Boolean]("overlap-seven", descr="Use overlap seven structures instead of cyclic structures")
+			  // val overlap_8 = opt[Boolean]("overlap-eight", descr="Use overlap seven structures instead of cyclic structures")
+			  // val overlap_9 = opt[Boolean]("overlap-nine", descr="Use overlap seven structures instead of cyclic structures")
 
-			  val binary_overlap_4 = opt[Boolean]("binary-overlap-four", descr="Use overlap five structures instead of cyclic structures")
-			  val binary_overlap_5 = opt[Boolean]("binary-overlap-five", descr="Use overlap six structures instead of cyclic structures")
-			  val binary_overlap_6 = opt[Boolean]("binary-overlap-six", descr="Use overlap seven structures instead of cyclic structures")
+			  // val binary_overlap_4 = opt[Boolean]("binary-overlap-four", descr="Use overlap five structures instead of cyclic structures")
+			  // val binary_overlap_5 = opt[Boolean]("binary-overlap-five", descr="Use overlap six structures instead of cyclic structures")
+			  // val binary_overlap_6 = opt[Boolean]("binary-overlap-six", descr="Use overlap seven structures instead of cyclic structures")
 
-			  val weighted = opt[Boolean]("weighted", descr="Use labeled-weighted structures instead of cyclic structures")
-			  val iterated = opt[Boolean]("iterated", descr="Dev")
-			  val threads = opt[Int]("threads", default=Some(-1), descr="Number of threads to use for compression")
-			  val cache = opt[Boolean]("cache", descr="Dev")
+			  // val weighted = opt[Boolean]("weighted", descr="Use labeled-weighted structures instead of cyclic structures")
+			  // val iterated = opt[Boolean]("iterated", descr="Dev")
+			  val threads = opt[Int]("threads", default=Some(-1), descr="Number of threads to use for compression. Leave blank to use half the available processing cores.")
+			  // val cache = opt[Boolean]("cache", descr="Dev")
 			}
 			val search = new Subcommand("search"){
 			  
@@ -71,125 +70,108 @@ object AmmoliteMain{
 			    
 			}
 			val mcs = new Subcommand("mcs"){
-			  val sdfA = opt[String]("a", required=true, descr="Name of the file where you want the overlap results")
-			  val sdfB = opt[String]("b", required=true, descr="Name of the file where you want the overlap results")
+			  val sdfA = opt[String]("a", required=true, descr="First file for MCS table")
+			  val sdfB = opt[String]("b", required=true, descr="Second file for MCS table")
 			}
-			val draw = new Subcommand("draw"){
-			  val f = opt[String]("filename")
-			  val s = opt[Boolean]("struct")
-			}
-			val structs = new Subcommand("as-structures"){
-			  val i = opt[String]("in")
-			  val o = opt[String]("out")
 
-			}
-			val devTestSDF = new Subcommand("test-sdf"){
-			  val sdf = opt[String]("filename")
-			}
-			val devTestMCS = new Subcommand("test-mcs"){
-			  val sdf = opt[String]("filename")
-			}
 
 			val devTestSearch = new Subcommand("test"){
 			  val q = opt[List[String]]("queries", required=true, descr="SDF files of queries.")
-			  val db = opt[String]("database")
-			  val out = opt[String]("outName")
-			  val description = opt[String]("description", required=false)
+			  val db = opt[String]("database", required=true, descr="Path to the database.")
+			  val out = opt[String]("outName", required=true, descr="Where search results should be written to.")
+			  val description = opt[String]("description", default=Some(""), descr="A brief description of the test.")
 			  val t = opt[Double]("threshold")
-			  val p = opt[Double]("prob")
-			  val smsd = opt[Boolean]("SMSD", default=Some(false))
-			  val par = opt[Boolean]("Parallel", default=Some(false))
-			  val fmcs = opt[Boolean]("FMCS", default=Some(false))
-			  val amm = opt[Boolean]("Amm", default=Some(false))
-			  val ammSMSD = opt[Boolean]("AmmSMSD", default=Some(false))
-			  val queryComp = opt[Boolean]("QueryCompression", default=Some(false))
-			  val useCaching = opt[Boolean]("Caching", default=Some(false))
+			  val c = opt[Double]("coarse-threshold")
+			  val smsd = opt[Boolean]("SMSD", default=Some(false), descr="Search the database using SMSD")
+			  val par = opt[Boolean]("Parallel", default=Some(false), descr="Development Only.")
+			  val fmcs = opt[Boolean]("FMCS", default=Some(false), descr="Development Only.")
+			  val amm = opt[Boolean]("Ammolite", default=Some(false), descr="Search the database using Ammolite")
+			  val ammSMSD = opt[Boolean]("AmmSMSD", default=Some(false), descr="Development Only.")
+			  val queryComp = opt[Boolean]("QueryCompression", default=Some(false), descr="Development Only.")
+			  val useCaching = opt[Boolean]("Caching", default=Some(false), descr="Development Only.")
 			}
 			val examine = new Subcommand("examine"){
 			  val database = trailArg[String]()
-			  // val database = opt[String]("database", required=true, descr="Path to the database.")
-			  val table = opt[Boolean]("table", default=Some(false))
+			  val table = opt[Boolean]("table", default=Some(false), descr="Show a table of the compressed database structure. Not reccomended for databases over 1K molecules.")
 			} 
 
 			
 			
 		}
 		
-		Logger.setVerbosity( opts.verbosity())
+		Logger.setVerbosity( 1)
 		
 		if( opts.subcommand == Some(opts.compress)){
-			var compType = CompressionType.CYCLIC
-			if( opts.compress.simple()){
-			compType = CompressionType.BASIC 
-			} else if( opts.compress.labeled()){
-				compType = CompressionType.FULLY_LABELED
-			} else if( opts.compress.weighted()){
-				compType = CompressionType.WEIGHTED
-			} else if( opts.compress.connection_2()){
-				compType = CompressionType.CONNECTION_2
-
-			} else if( opts.compress.connection_3()){
-				compType = CompressionType.CONNECTION_3
-
-			} else if( opts.compress.connection_4()){
-				compType = CompressionType.CONNECTION_4
-
-			} else if( opts.compress.connection_5()){
-				compType = CompressionType.CONNECTION_5
-
-			} else if( opts.compress.connection_6()){
-				compType = CompressionType.CONNECTION_6
-			}
-
-			else if( opts.compress.overlap_4()){
-				compType = CompressionType.OVERLAP_4
-
-			} else if( opts.compress.overlap_5()){
-				compType = CompressionType.OVERLAP_5
-
-			} else if( opts.compress.overlap_6()){
-				compType = CompressionType.OVERLAP_6
-
-			} else if( opts.compress.overlap_7()){
-				compType = CompressionType.OVERLAP_7
-
-			} else if( opts.compress.overlap_8()){
-				compType = CompressionType.OVERLAP_8
-
-			} else if( opts.compress.overlap_9()){
-				compType = CompressionType.OVERLAP_9
-
-			} 
-
-			else if( opts.compress.binary_overlap_4()){
-				compType = CompressionType.BINARY_OVERLAP_4
-
-			} else if( opts.compress.binary_overlap_5()){
-				compType = CompressionType.BINARY_OVERLAP_5
-
-			} else if( opts.compress.binary_overlap_6()){
-				compType = CompressionType.BINARY_OVERLAP_6
-
-			}
-
-
+			var compType = CompressionType.FULLY_LABELED
 
 			val compressor = new CachingStructCompressor( compType )
 			compressor.compress(java.util.Arrays.asList(opts.compress.source().toArray: _*), opts.compress.target(), opts.compress.threads())
 
+			// if( opts.compress.simple()){
+			// compType = CompressionType.BASIC 
+			// } else if( opts.compress.labeled()){
+			// 	compType = CompressionType.FULLY_LABELED
+			// } else if( opts.compress.weighted()){
+			// 	compType = CompressionType.WEIGHTED
+			// } else if( opts.compress.connection_2()){
+			// 	compType = CompressionType.CONNECTION_2
+
+			// } else if( opts.compress.connection_3()){
+			// 	compType = CompressionType.CONNECTION_3
+
+			// } else if( opts.compress.connection_4()){
+			// 	compType = CompressionType.CONNECTION_4
+
+			// } else if( opts.compress.connection_5()){
+			// 	compType = CompressionType.CONNECTION_5
+
+			// } else if( opts.compress.connection_6()){
+			// 	compType = CompressionType.CONNECTION_6
+			// }
+
+			// else if( opts.compress.overlap_4()){
+			// 	compType = CompressionType.OVERLAP_4
+
+			// } else if( opts.compress.overlap_5()){
+			// 	compType = CompressionType.OVERLAP_5
+
+			// } else if( opts.compress.overlap_6()){
+			// 	compType = CompressionType.OVERLAP_6
+
+			// } else if( opts.compress.overlap_7()){
+			// 	compType = CompressionType.OVERLAP_7
+
+			// } else if( opts.compress.overlap_8()){
+			// 	compType = CompressionType.OVERLAP_8
+
+			// } else if( opts.compress.overlap_9()){
+			// 	compType = CompressionType.OVERLAP_9
+
+			// } 
+
+			// else if( opts.compress.binary_overlap_4()){
+			// 	compType = CompressionType.BINARY_OVERLAP_4
+
+			// } else if( opts.compress.binary_overlap_5()){
+			// 	compType = CompressionType.BINARY_OVERLAP_5
+
+			// } else if( opts.compress.binary_overlap_6()){
+			// 	compType = CompressionType.BINARY_OVERLAP_6
+
+			// }
+
+
+
 		  
 		} else if( opts.subcommand == Some(opts.search)){
-			
+			Logger.log("Option unsupported in beta version. Please use \'test\' subcommand for search. See README.")
 		  
 		} else if( opts.subcommand ==Some(opts.mcs)){
 		  edu.mit.csail.ammolite.utils.MCSTableMaker.printMCSTable( opts.mcs.sdfA(), opts.mcs.sdfB())
 		  
-		}  else if( opts.subcommand == Some( opts.devTestSDF)){
-		  val s = new SDFWrapper( opts.devTestSDF.sdf())
-
 		} else if( opts.subcommand == Some( opts.devTestSearch)){
 
-			  edu.mit.csail.ammolite.tests.SearchTest.testSearch(java.util.Arrays.asList(opts.devTestSearch.q().toArray: _*), opts.devTestSearch.db(), opts.devTestSearch.out(), opts.devTestSearch.t(), opts.devTestSearch.p(), 
+			  edu.mit.csail.ammolite.tests.SearchTest.testSearch(java.util.Arrays.asList(opts.devTestSearch.q().toArray: _*), opts.devTestSearch.db(), opts.devTestSearch.out(), opts.devTestSearch.t(), opts.devTestSearch.c(), 
 					  												opts.devTestSearch.amm(),
 					  												opts.devTestSearch.par(),
 					  												opts.devTestSearch.queryComp(),
