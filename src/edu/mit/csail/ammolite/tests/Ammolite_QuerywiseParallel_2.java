@@ -200,12 +200,16 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
                 IMolStruct target = queue.get();
                 while(queue.adding || target != null){
                     if(target != null){
-                        int overlap = MCS.getSMSDOverlap(target, query);
-                        double overlapCoeff = MCSUtils.tanimotoCoeff(overlap, target, query);
-                        if(overlapCoeff > threshold){
-                            result.addMatch(new SearchMatch(query, target, overlap));
-                            hits.add(MolUtils.getStructID(target));
-                        } 
+                        int upperBoundOverlap = StringApproximator.upperBoundMCSSize(target, query);
+                        double upperTanimoto = MCSUtils.tanimotoCoeff(upperBoundOverlap, target, query);
+                        if( upperTanimoto > threshold){
+                            int overlap = MCS.getSMSDOverlap(target, query);
+                            double overlapCoeff = MCSUtils.tanimotoCoeff(overlap, target, query);
+                            if(overlapCoeff > threshold){
+                                result.addMatch(new SearchMatch(query, target, overlap));
+                                hits.add(MolUtils.getStructID(target));
+                            } 
+                        }
                     } 
                     bar.event();
                     target = queue.get();
@@ -274,10 +278,14 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
             try{
                 IAtomContainer target = queue.get();
                 while(queue.adding || target != null){
-                    int overlap = MCS.getSMSDOverlap(target, query);
-                    if(MCSUtils.tanimotoCoeff(overlap, target, query) > threshold){
-                        result.addMatch(new SearchMatch(query, target, overlap));
-                    } 
+                    int upperBoundOverlap = StringApproximator.upperBoundMCSSize(target, query);
+                    double upperTanimoto = MCSUtils.tanimotoCoeff(upperBoundOverlap, target, query);
+                    if( upperTanimoto > threshold){
+                        int overlap = MCS.getSMSDOverlap(target, query);
+                        if(MCSUtils.tanimotoCoeff(overlap, target, query) > threshold){
+                            result.addMatch(new SearchMatch(query, target, overlap));
+                        }
+                    }
                     bar.event();
                     target = queue.get();
                 }
