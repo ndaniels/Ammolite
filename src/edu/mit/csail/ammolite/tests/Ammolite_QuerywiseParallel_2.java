@@ -33,7 +33,7 @@ import edu.mit.csail.ammolite.utils.ParallelUtils;
 import edu.mit.csail.ammolite.utils.StructID;
 
 public class Ammolite_QuerywiseParallel_2 implements Tester {
-    private static final String NAME = "Ammolite_Tanimoto_High_Pass";
+    private static final String NAME = "Ammolite_Tanimoto_Simple_High_Pass";
     private static final int COARSE_QUEUE_SIZE = 1000;
     private static final int FINE_QUEUE_SIZE = 50000;
     private static final int NUM_THREADS = Runtime.getRuntime().availableProcessors()/2;
@@ -200,8 +200,7 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
                 IMolStruct target = queue.get();
                 while(queue.adding || target != null){
                     if(target != null){
-                        int upperBoundOverlap = StringApproximator.upperBoundMCSSize(target, query);
-                        double upperTanimoto = MCSUtils.tanimotoCoeff(upperBoundOverlap, target, query);
+                        double upperTanimoto = (1.0 * Math.min(target.getAtomCount(),  query.getAtomCount())) / Math.max(target.getAtomCount(),  query.getAtomCount());
                         if( upperTanimoto > threshold){
                             int overlap = MCS.getSMSDOverlap(target, query);
                             double overlapCoeff = MCSUtils.tanimotoCoeff(overlap, target, query);
@@ -278,8 +277,7 @@ public class Ammolite_QuerywiseParallel_2 implements Tester {
             try{
                 IAtomContainer target = queue.get();
                 while(queue.adding || target != null){
-                    int upperBoundOverlap = StringApproximator.upperBoundMCSSize(target, query);
-                    double upperTanimoto = MCSUtils.tanimotoCoeff(upperBoundOverlap, target, query);
+                    double upperTanimoto = (1.0 * Math.min(target.getAtomCount(),  query.getAtomCount())) / Math.max(target.getAtomCount(),  query.getAtomCount());
                     if( upperTanimoto > threshold){
                         int overlap = MCS.getSMSDOverlap(target, query);
                         if(MCSUtils.tanimotoCoeff(overlap, target, query) > threshold){
