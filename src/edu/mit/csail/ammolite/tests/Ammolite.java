@@ -32,13 +32,13 @@ import edu.mit.csail.ammolite.utils.Pair;
 import edu.mit.csail.ammolite.utils.ParallelUtils;
 import edu.mit.csail.ammolite.utils.StructID;
 
-public class Ammolite_QuerywiseParallel_2 implements Tester {
-    private static final String NAME = "Ammolite_Tanimoto_Simple_High_Pass";
+public class Ammolite implements Tester {
+    private static final String NAME = "Ammolite_HighPass";
     private static final int COARSE_QUEUE_SIZE = 1000;
     private static final int FINE_QUEUE_SIZE = 50000;
     private static final int NUM_THREADS = Runtime.getRuntime().availableProcessors()/2;
         
-    public Ammolite_QuerywiseParallel_2() {}
+    public Ammolite() {}
 
     @Override
     public void test(List<IAtomContainer> queries, IStructDatabase db,

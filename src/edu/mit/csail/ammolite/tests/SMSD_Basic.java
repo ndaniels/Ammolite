@@ -23,13 +23,13 @@ import edu.mit.csail.ammolite.utils.ParallelUtils;
 import edu.mit.csail.ammolite.utils.SDFMultiParser;
 import edu.mit.csail.ammolite.utils.SDFUtils;
 
-public class SMSD_QuerywiseParallel implements Tester{
-    private static final String NAME = "SMSD_tanimoto";
+public class SMSD_Basic implements Tester{
+    private static final String NAME = "SMSD_Basic";
     private static final int QUEUE_SIZE = 500;
     private static final int NUM_THREADS = Runtime.getRuntime().availableProcessors()/2;
     private static final ExecutorService ecs = ParallelUtils.buildNewExecutorService(NUM_THREADS);
         
-    public SMSD_QuerywiseParallel() {}
+    public SMSD_Basic() {}
 
     @Override
     public void test(List<IAtomContainer> queries, IStructDatabase db,
