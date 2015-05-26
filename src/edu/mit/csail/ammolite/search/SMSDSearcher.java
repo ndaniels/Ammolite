@@ -48,37 +48,7 @@ public class SMSDSearcher {
 
     
     private void search(IAtomContainer query, Iterator<IAtomContainer> targets, double thresh, int numMols){
-//        
-//        CommandLineProgressBar bar = new CommandLineProgressBar(MolUtils.getPubID(query).toString(), numMols);
-//        
-//        BlockingQueue<IAtomContainer> queue = new ArrayBlockingQueue<IAtomContainer>(QUEUE_SIZE,false);
-//        Mediator<IAtomContainer> mediator = new Mediator<IAtomContainer>(queue);
-//
-//        Thread producer = new Thread( new Producer(targets, mediator));
-//        producer.start();
-//        
-//        List<Thread> consumers = new ArrayList<Thread>(NUM_THREADS);
-//        for(int i=0; i<NUM_THREADS; i++){
-//            Thread t = new Thread( new Consumer(query, mediator, bar, thresh));
-//            consumers.add(t);
-//            t.start();
-//        }
-//        
-//        try {
-//            producer.join();
-//            while(queue.size() > 0){
-//                Thread.sleep(1000);
-//            }
-//            for(Thread t: consumers){
-//                t.interrupt();
-//            }
-//            for(Thread t: consumers){
-//                t.join();
-//            }
-//        } catch (InterruptedException e) {
-//            System.out.println("Failed from search call");
-//            e.printStackTrace();
-//        }
+
         ExecutorService ecs = ParallelUtils.buildNewExecutorService(NUM_THREADS);
         CommandLineProgressBar bar = new CommandLineProgressBar(MolUtils.getPubID(query).toString(), numMols);
         
@@ -105,6 +75,7 @@ public class SMSDSearcher {
             ee.printStackTrace();
         }
         ecs.shutdown();
+        bar.done();
     }
     
    
@@ -153,7 +124,7 @@ public class SMSDSearcher {
         public void run() {
             try{
                 IAtomContainer target = queue.get();
-                while(queue.adding || target != null){
+                while(queue.adding && target != null){
                     int targetSize = MCSUtils.getAtomCountNoHydrogen(target);
                     int querySize = MCSUtils.getAtomCountNoHydrogen(query);
                     double smaller = Math.min(targetSize, querySize);

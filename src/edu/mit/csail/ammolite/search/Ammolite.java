@@ -40,28 +40,19 @@ public class Ammolite{
         System.out.println(NAME);
         
         this.resultHandler = resultHandler;
-        Iterator<IMolStruct> sTargets = db.iterator();
         IMolStruct cQuery = db.makeMoleculeStruct(query);
-        Pair<SearchResult, Collection<StructID>> p = coarseSearch(cQuery, query, db.iterator(), db.numReps(), coarseThresh);
         
-        SearchResult coarseResult = p.left();
-        Collection<StructID> coarseHits = p.right();
-        
-        // Make sure the JVM automatically garbage collects these 
-        p = null;
-        coarseResult = null;
-        
+        Collection<StructID> coarseHits = coarseSearch(cQuery, query, db.iterator(), db.numReps(), coarseThresh);
         fineSearch(query, coarseHits, db, fineThresh);
 
     }
     
 
     
-    private SearchResult fineSearch(IAtomContainer query, Collection<StructID> coarseHits, IStructDatabase db, double thresh){
+    private void fineSearch(IAtomContainer query, Collection<StructID> coarseHits, IStructDatabase db, double thresh){
         ExecutorService ecs = ParallelUtils.buildNewExecutorService(NUM_THREADS);
         CommandLineProgressBar bar = new CommandLineProgressBar(MolUtils.getPubID(query).toString(), db.countFineHits(coarseHits));
-        SearchResult result = new SearchResult(query, NAME);
-        result.start();
+        
         BlockingQueue<IAtomContainer> queue = new ArrayBlockingQueue<IAtomContainer>(FINE_QUEUE_SIZE,false);
         Mediator<IAtomContainer> mediator = new Mediator<IAtomContainer>( queue);
         Future<?> producerStatus = ecs.submit(new FineProducer(coarseHits, db, mediator));
@@ -72,7 +63,7 @@ public class Ammolite{
             e.printStackTrace();
         }
         for(int i=0; i<NUM_THREADS; i++){
-            consumers.add( ecs.submit(new FineConsumer(query, mediator, result, bar, thresh)));
+            consumers.add( ecs.submit(new FineConsumer(query, mediator, bar, thresh)));
         }
         try {
             producerStatus.get();
@@ -85,16 +76,14 @@ public class Ammolite{
             ee.printStackTrace();
         }
         ecs.shutdown();
-        result.end();
-        return result;
+        bar.done();
     }
     
     
-    private Pair<SearchResult, Collection<StructID>> coarseSearch(IMolStruct cQuery, IAtomContainer query, Iterator<IMolStruct> sTargets, int numReps, double thresh){
+    private Collection<StructID> coarseSearch(IMolStruct cQuery, IAtomContainer query, Iterator<IMolStruct> sTargets, int numReps, double thresh){
         ExecutorService ecs = ParallelUtils.buildNewExecutorService(NUM_THREADS);
         CommandLineProgressBar bar = new CommandLineProgressBar(MolUtils.getPubID(query).toString() + "_COARSE", numReps);
-        SearchResult coarseResult = new SearchResult(cQuery, COARSE_NAME);
-        coarseResult.start();
+
         BlockingQueue<IMolStruct> queue = new ArrayBlockingQueue<IMolStruct>(COARSE_QUEUE_SIZE,false);
         Mediator<IMolStruct> mediator = new Mediator<IMolStruct>(queue);
         Future<?> producerStatus = ecs.submit( new CoarseProducer(sTargets, mediator));
@@ -107,7 +96,7 @@ public class Ammolite{
         }
         Collection<StructID> hits = Collections.synchronizedCollection(new HashSet<StructID>(1000));
         for(int i=0; i<NUM_THREADS; i++){
-            consumers.add( ecs.submit( new CoarseConsumer(cQuery, mediator, coarseResult, hits, bar, thresh)));
+            consumers.add( ecs.submit( new CoarseConsumer(cQuery, mediator, hits, bar, thresh)));
         }
         try {
             producerStatus.get();
@@ -120,8 +109,8 @@ public class Ammolite{
             ee.printStackTrace();
         }
         ecs.shutdown();
-        coarseResult.end();
-        return new Pair<SearchResult, Collection<StructID>>(coarseResult, hits);
+        bar.done();
+        return hits;
     }
 
 
@@ -159,12 +148,11 @@ public class Ammolite{
     private class CoarseConsumer implements Runnable {
         Mediator<IMolStruct> queue;
         IAtomContainer query;
-        SearchResult result;
         Collection<StructID> hits;
         CommandLineProgressBar bar;
         double threshold;
         
-        public CoarseConsumer(IMolStruct cQuery, Mediator<IMolStruct> queue, SearchResult result, Collection<StructID> hits, CommandLineProgressBar bar, double threshold){
+        public CoarseConsumer(IMolStruct cQuery, Mediator<IMolStruct> queue,  Collection<StructID> hits, CommandLineProgressBar bar, double threshold){
             try {
                 this.query = (IAtomContainer) cQuery.clone();
             } catch (CloneNotSupportedException e) {
@@ -172,7 +160,6 @@ public class Ammolite{
                 e.printStackTrace();
             }
             this.queue = queue;
-            this.result = result;
             this.threshold = threshold;
             this.hits = hits;
             this.bar = bar;
@@ -193,7 +180,7 @@ public class Ammolite{
                             int overlap = MCS.getSMSDOverlap(target, query);
                             double overlapCoeff = MCSUtils.tanimotoCoeff(overlap, targetSize, querySize);
                             if(overlapCoeff > threshold){
-                                result.addMatch(new SearchMatch(query, target, overlap));
+                                resultHandler.handleCoarse(new SearchMatch(query, target, overlap));
                                 hits.add(MolUtils.getStructID(target));
                             } 
                         }
@@ -243,19 +230,12 @@ public class Ammolite{
     private class FineConsumer implements Runnable {
         Mediator<IAtomContainer> queue;
         IAtomContainer query;
-        SearchResult result;
         CommandLineProgressBar bar;
         double threshold;
         
-        public FineConsumer(IAtomContainer query, Mediator<IAtomContainer> queue, SearchResult result, CommandLineProgressBar bar, double threshold){
-            //try {
-                this.query = (IAtomContainer) query;
-//            } catch (CloneNotSupportedException e) {
-//                // TODO Auto-generated catch block
-//                e.printStackTrace();
-//            }
+        public FineConsumer(IAtomContainer query, Mediator<IAtomContainer> queue, CommandLineProgressBar bar, double threshold){
+            this.query = (IAtomContainer) query;
             this.queue = queue;
-            this.result = result;
             this.threshold = threshold;
             this.bar = bar;
         }

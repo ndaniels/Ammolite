@@ -40,8 +40,13 @@ public class SearchHandler {
         if( linearSearch){
             List<String> sdfFiles = new ArrayList<String>();
             for(String dbName: databaseNames){
-                String ext = FilenameUtils.getExtension(dbName);
-                
+                String ext;
+                if(dbName.charAt(dbName.length() -1) == File.separatorChar){
+                    ext = FilenameUtils.getExtension(dbName.substring(0, dbName.length() -1));
+                } else {
+                    ext = FilenameUtils.getExtension(dbName);
+                }
+
                 if(ext.equals("adb") || ext.equals("gad")){
                     IStructDatabase db = StructDatabaseDecompressor.decompress(dbName);
                     sdfFiles.addAll( db.getSourceFiles().getFilepaths());
