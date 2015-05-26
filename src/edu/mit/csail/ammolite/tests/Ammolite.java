@@ -24,7 +24,6 @@ import edu.mit.csail.ammolite.compression.LabeledMolStruct;
 import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.mcs.MCS;
-import edu.mit.csail.ammolite.mcs.StringApproximator;
 import edu.mit.csail.ammolite.utils.CommandLineProgressBar;
 import edu.mit.csail.ammolite.utils.MCSUtils;
 import edu.mit.csail.ammolite.utils.MolUtils;
@@ -205,10 +204,10 @@ public class Ammolite implements Tester {
                         double smaller = Math.min(targetSize, querySize);
                         double larger  = Math.max(targetSize, querySize);
                         double upperTanimoto = smaller / larger;
-                        if( upperTanimoto > threshold){
+                        if( upperTanimoto >= threshold){
                             int overlap = MCS.getSMSDOverlap(target, query);
                             double overlapCoeff = MCSUtils.tanimotoCoeff(overlap, targetSize, querySize);
-                            if(overlapCoeff > threshold){
+                            if(overlapCoeff >= threshold){
                                 result.addMatch(new SearchMatch(query, target, overlap));
                                 hits.add(MolUtils.getStructID(target));
                             } 
@@ -286,9 +285,9 @@ public class Ammolite implements Tester {
                     double smaller = Math.min(targetSize, querySize);
                     double larger  = Math.max(targetSize, querySize);
                     double upperTanimoto = smaller / larger;
-                    if( upperTanimoto > threshold){
+                    if( upperTanimoto >= threshold){
                         int overlap = MCS.getSMSDOverlap(target, query);
-                        if(MCSUtils.tanimotoCoeff(overlap, targetSize, querySize) > threshold){
+                        if(MCSUtils.tanimotoCoeff(overlap, targetSize, querySize) >= threshold){
                             result.addMatch(new SearchMatch(query, target, overlap));
                         }
                     }

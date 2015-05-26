@@ -236,4 +236,9 @@ public class GenericStructDatabase implements IStructDatabase {
         return count;
     }
 
+    @Override
+    public Map<StructID, List<PubchemID>> getIDMap() {
+        return this.idMap;
+    }
+
 }

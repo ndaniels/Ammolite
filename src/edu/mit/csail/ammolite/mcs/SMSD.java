@@ -24,6 +24,7 @@ public class SMSD extends AbstractMCS {
 
 	@Override
 	protected void myCalculate() {
+	    
 		boolean bondSensitive = false;
         boolean ringmatch = false;
         
@@ -50,15 +51,17 @@ public class SMSD extends AbstractMCS {
 	}
 	
 	public IAtomContainer myGetFirstSolution(){
-//		try {
-////			return comparison.getFirstAtomMapping().getCommonFragment();
-//		} catch (CloneNotSupportedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			System.exit(1);
-//		}
+		try {
+			return comparison.getFirstAtomMapping().getCommonFragmentInQuery();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.exit(1);
+		}
 		return null;
 	}
+	
+
 
 	@Override
 	public List<IAtomContainer> myGetSolutions() {

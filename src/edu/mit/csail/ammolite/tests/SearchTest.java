@@ -70,6 +70,10 @@ public class SearchTest {
     			Tester tester = new Ammolite();
     			runTest(tester, stream, queries, db, targets, sTargets, fine, coarse);
     		}
+    		if( testAmmPar){
+                Tester tester = new Ammolite_NoHP();
+                runTest(tester, stream, queries, db, targets, sTargets, fine, coarse);
+            }
     		if( testSMSD){
     			Tester tester = new SMSD_Basic();
     			runTest(tester, stream, queries, db, targets, sTargets,  fine, coarse);

@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,8 @@ import edu.mit.csail.ammolite.utils.PubchemID;
 import edu.mit.csail.ammolite.utils.StructID;
 
 public class StructDatabaseDecompressor {
+    
+    private static final String[] DB_EXTENSIONS = new String[] {"gad", "gad/", "adb", "adb/"};
 	
 	public static IStructDatabase decompress(String databasename){
 		return decompress(databasename, false);
@@ -43,21 +46,12 @@ public class StructDatabaseDecompressor {
 			if (i > 0) {
 			    extension = databasename.substring(i+1);
 			}
-			
-			if(extension.equals("adb")){
-//				if( useCaching){	
-//					return new CachingStructDatabase( ammoliteCoreDatabase( databasename));
-//				
-//				
-//				} else {
-//					return new StructDatabase( ammoliteCoreDatabase( databasename));
-//				}
-			} else if(extension.equals("gad") || extension.equals("gad/")){
+		
+			if(Arrays.asList(DB_EXTENSIONS).contains(extension)){
 			    return decompressGeneric(databasename);
 			} else {
 				throw new IllegalArgumentException("Cannot build a database from this filetype");
 			}
-			return null;
 
 	}
 	

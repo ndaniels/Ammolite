@@ -11,6 +11,7 @@ import edu.mit.csail.ammolite.compression.CyclicStruct
 import edu.mit.csail.ammolite.database.CompressionType
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor
 import edu.mit.csail.ammolite.database.SDFWrapper
+import edu.mit.csail.ammolite.search.SearchHandler
 
 import collection.mutable.Buffer
 import collection.Seq
@@ -61,12 +62,12 @@ object AmmoliteMain{
 			}
 			val search = new Subcommand("search"){
 			  
-				val database = opt[String]("database", required=true, descr="Path to the database.")
+				val database = opt[List[String]]("database", required=true, descr="Path to the database. If using linear search this may include multiple files and sdf files.")
 				val queries = opt[List[String]]("queries", required=true, descr="SDF files of queries.")
-				val threshold = opt[Double]("threshold", descr="Threshold to use. Uses overlap coefficient by default.")
-				val probability = opt[Double]("probability", descr="Probability of finding a result over a certain threshold")
-			    val tanimoto = opt[Boolean]("tanimoto", descr="Use tanimoto coefficients.", default=Some(false))
-			    val target = opt[String]("target", required=true, descr="Make an SDF file of the search results. First molecule is the query, second is the match, third is the overlap.")
+				val threshold = opt[Double]("threshold", required=true, descr="Matching threshold to use.")
+			    val writeSDF = opt[Boolean]("write-sdfs", descr="Make a SDF files of the search results.")
+			    val linear = opt[Boolean]("linear-search", descr="Search the database exhaustively.")
+			    val out = opt[String]("out-file", default=Some("-"), descr="Where search results should be written to. Std out by default.")
 			    
 			}
 			val mcs = new Subcommand("mcs"){
@@ -164,7 +165,13 @@ object AmmoliteMain{
 
 		  
 		} else if( opts.subcommand == Some(opts.search)){
-			Logger.log("Option unsupported in beta version. Please use \'test\' subcommand for search. See README.")
+
+			SearchHandler.handleSearch(	java.util.Arrays.asList(opts.search.queries().toArray: _*), 
+										java.util.Arrays.asList(opts.search.database().toArray: _*), 
+										opts.search.out(),
+										opts.search.threshold(), 
+										opts.search.writeSDF(),
+										opts.search.linear())
 		  
 		} else if( opts.subcommand ==Some(opts.mcs)){
 		  edu.mit.csail.ammolite.utils.MCSTableMaker.printMCSTable( opts.mcs.sdfA(), opts.mcs.sdfB())

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -19,6 +20,8 @@ import org.openscience.cdk.io.SDFWriter;
 
 import edu.mit.csail.ammolite.KeyListMap;
 import edu.mit.csail.ammolite.database.CompressionType;
+import edu.mit.csail.ammolite.database.IStructDatabase;
+import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
 import edu.mit.csail.ammolite.utils.CommandLineProgressBar;
 import edu.mit.csail.ammolite.utils.FileUtils;
 import edu.mit.csail.ammolite.utils.MolUtils;
@@ -69,15 +72,28 @@ public class CachingStructCompressor {
      * @throws InterruptedException 
      */
     public void  compress(List<String> filenames, String filename, int numThreads) throws IOException, CDKException, InterruptedException, ExecutionException{
-        int numMols = 0;
+        int molsInFiles = 0;
         for(String name: filenames){
-            numMols += SDFUtils.estimateNumMolsInSDF(name);
+            molsInFiles += SDFUtils.estimateNumMolsInSDF(name);
         }
-        System.out.println("Compressing approximatley "+String.format("%,d", numMols)+" molecules.");
+        System.out.println("Compressing approximatley "+String.format("%,d", molsInFiles)+" molecules.");
         
         String[] splitFile = filename.split(File.separator);
-        this.dbName = splitFile[ splitFile.length - 1];
-        this.makeDBFolders(filename);
+
+        
+        File appendTester = new File(filename);
+        if(appendTester.exists()){
+
+            this.dbName = splitFile[ splitFile.length - 1];
+            System.out.println("Appending to existing database "+this.dbName);        
+            this.dbFolder = filename;
+            parseDBForAppend(filename);
+        } else {
+            
+            System.out.println("Making new database "+filename);
+            this.dbName = splitFile[ splitFile.length - 1];
+            this.makeDBFolders(filename);
+        }
         
         if( numThreads > 0){
             exService = ParallelUtils.buildNewExecutorService(numThreads);
@@ -86,7 +102,7 @@ public class CachingStructCompressor {
             exService = ParallelUtils.buildNewExecutorService(defaultThreads);
         }
         
-        progressBar = new CommandLineProgressBar("Matching Structures", numMols);
+        progressBar = new CommandLineProgressBar("Matching Structures", molsInFiles);
         List<String> absoluteFilenames = new ArrayList<String>();
         List<File> files = FileUtils.openFiles(filenames);
         for(File f: files){
@@ -105,8 +121,8 @@ public class CachingStructCompressor {
         exService.shutdown();
         System.out.println("Done.");
         
-        System.out.println("Total number of molecules: " +numMols);
-        System.out.println("Total number of representatives: " +numReps);
+        System.out.println("Total number of molecules: " +this.numMols);
+        System.out.println("Total number of representatives: " +this.numReps);
     }
 
     
@@ -278,7 +294,7 @@ public class CachingStructCompressor {
         
         String structTable = writeStructIDFile(structsByFingerprint.valueIterator());
         writeStructSDF( structsByFingerprint.valueIterator());
-        writeMetadataFile("AMMOLITE_GENERIC_DATABASE_0_0_0", structTable);
+        writeMetadataFile("AMMOLITE_DATABASE_1_0_0", structTable);
         
     }
     
@@ -414,6 +430,17 @@ public class CachingStructCompressor {
         }
     }
    
+   private void parseDBForAppend(String dbName){
+       IStructDatabase db = StructDatabaseDecompressor.decompress(dbName);
+       System.out.println( db.info());
+       Iterator<IMolStruct> structs = db.iterator();
+       IMolStruct struct = null;
+
+       this.numMols = db.numMols();
+       this.numReps = db.numReps();
+       this.sourceFolder = dbFolder + File.separator + "source_files";
+       this.structFolder = dbFolder + File.separator + "struct_files";
+   }
    
     
     

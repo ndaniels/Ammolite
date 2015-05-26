@@ -3,6 +3,7 @@ package edu.mit.csail.ammolite.database;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
@@ -31,6 +32,7 @@ public interface IStructDatabase {
 	public String getName();
 	public boolean isOrganized();
 	public int  countFineHits(Collection<StructID> coarseHits);
+	public Map<StructID, List<PubchemID>> getIDMap();
 	
 
 }

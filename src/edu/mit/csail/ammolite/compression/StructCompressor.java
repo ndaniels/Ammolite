@@ -21,6 +21,8 @@ import org.openscience.cdk.io.SDFWriter;
 
 import edu.mit.csail.ammolite.KeyListMap;
 import edu.mit.csail.ammolite.database.CompressionType;
+import edu.mit.csail.ammolite.database.IStructDatabase;
+import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
 import edu.mit.csail.ammolite.utils.CommandLineProgressBar;
 import edu.mit.csail.ammolite.utils.FileUtils;
 import edu.mit.csail.ammolite.utils.MolUtils;
@@ -41,7 +43,7 @@ public class StructCompressor {
 	//private KeyListMap<Integer, IMolStruct> structsByFingerprint = new KeyListMap<Integer,IMolStruct>(1000);
     private final Set<Integer> fingerprints = new HashSet<Integer>();
     private final SLRUCache<Integer, List<IMolStruct>> cachedStructsByFingerprint = new SLRUCache<Integer,List<IMolStruct>>(0.8);
-	private final KeyListMap<StructID, PubchemID> idMap = new KeyListMap<StructID,PubchemID>(1000);
+	private KeyListMap<StructID, PubchemID> idMap = new KeyListMap<StructID,PubchemID>(1000);
 	private MoleculeStructFactory structFactory;
 	private int numMols = 0;
 	private int numReps = 0;
@@ -56,7 +58,7 @@ public class StructCompressor {
 
 	public StructCompressor(CompressionType compType){
 		structFactory = new MoleculeStructFactory( compType);
-		System.out.println("Compressing with "+compType.toString());
+		System.out.println("Compressing database with "+compType.toString());
 	}
 	
 	
@@ -79,11 +81,21 @@ public class StructCompressor {
 		for(String name: filenames){
 		    guessNumMols += SDFUtils.estimateNumMolsInSDF(name);
 		}
-		System.out.println("Compressing approximatley "+String.format("%,d", guessNumMols)+" molecules.");
+		System.out.println("Compressing approximately "+String.format("%,d", guessNumMols)+" molecules.");
 		
-		String[] splitFile = filename.split(File.separator);
-		this.dbName = splitFile[ splitFile.length - 1];
-		this.makeDBFolders(filename);
+        String[] splitFile = filename.split(File.separator);
+        this.dbName = splitFile[ splitFile.length - 1];
+        
+        System.out.println(filename);
+        File appendTester = new File(filename);
+		if(appendTester.exists()){
+		    System.out.println("Appending to existing database "+filename);
+		    parseDBForAppend(filename);
+		} else {
+		    System.out.println("Making new database "+filename);
+	        this.makeDBFolders(filename);
+		}
+		
 		
 		if( numThreads > 0){
 		    exService = ParallelUtils.buildNewExecutorService(numThreads);
@@ -344,7 +356,7 @@ public class StructCompressor {
 	    
 	    String structTable = writeStructIDFile();
         //writeStructSDF( structsByFingerprint.valueIterator());
-        writeMetadataFile("AMMOLITE_GENERIC_DATABASE_0_0_0", structTable);
+        writeMetadataFile("AMMOLITE_DATABASE_1_0_0", structTable);
         
 	}
 	
@@ -478,6 +490,24 @@ public class StructCompressor {
         ioe.printStackTrace();
         }
     }
+   
+   
+   private void parseDBForAppend(String dbName){
+       IStructDatabase db = StructDatabaseDecompressor.decompress(dbName);
+       
+       Iterator<IMolStruct> structs = db.iterator();
+       IMolStruct struct = null;
+       while(structs.hasNext()){
+           struct = structs.next();
+           this.fingerprints.add(struct.fingerprint());
+       }
+       
+       this.idMap = (KeyListMap<StructID, PubchemID>) db.getIDMap();
+       this.numMols = db.numMols();
+       this.numReps = db.numReps();
+       this.sourceFolder = dbFolder + File.separator + "source_files";
+       this.structFolder = dbFolder + File.separator + "struct_files";
+   }
    
    
 	
