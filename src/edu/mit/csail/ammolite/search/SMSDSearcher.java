@@ -45,9 +45,12 @@ public class SMSDSearcher {
             search(query, targets, thresh, approxNumTargets);
     }
     
-
+    public void search(IAtomContainer query, Iterator<IAtomContainer> targets, double thresh, IResultHandler resultHandler){
+        this.resultHandler = resultHandler;
+        search(query, targets, thresh, 0);
+    }
     
-    private void search(IAtomContainer query, Iterator<IAtomContainer> targets, double thresh, int numMols){
+    public void search(IAtomContainer query, Iterator<IAtomContainer> targets, double thresh, int numMols){
 
         ExecutorService ecs = ParallelUtils.buildNewExecutorService(NUM_THREADS);
         CommandLineProgressBar bar = new CommandLineProgressBar(MolUtils.getPubID(query).toString(), numMols);

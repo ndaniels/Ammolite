@@ -51,6 +51,10 @@ public class SMSD extends AbstractMCS {
 	}
 	
 	public IAtomContainer myGetFirstSolution(){
+	    boolean stereoMatch = true;
+        boolean fragmentMinimization = true;
+        boolean energyMinimization = true;
+	  comparison.setChemFilters(stereoMatch, fragmentMinimization, energyMinimization);
 		try {
 			return comparison.getFirstAtomMapping().getCommonFragmentInQuery();
 		} catch (CloneNotSupportedException e) {
