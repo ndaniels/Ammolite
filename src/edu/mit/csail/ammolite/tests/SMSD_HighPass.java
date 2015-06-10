@@ -16,6 +16,7 @@ import edu.mit.csail.ammolite.compression.IMolStruct;
 import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.mcs.MCS;
+import edu.mit.csail.ammolite.mcs.SMSD;
 import edu.mit.csail.ammolite.utils.CommandLineProgressBar;
 import edu.mit.csail.ammolite.utils.MCSUtils;
 import edu.mit.csail.ammolite.utils.MolUtils;
@@ -144,14 +145,18 @@ public class SMSD_HighPass implements Tester{
         public void run() {
             try{
                 IAtomContainer target = queue.get();
-                while(queue.adding || target != null){
+                while(queue.adding && target != null){
                     int targetSize = MCSUtils.getAtomCountNoHydrogen(target);
                     int querySize = MCSUtils.getAtomCountNoHydrogen(query);
                     double smaller = Math.min(targetSize, querySize);
                     double larger  = Math.max(targetSize, querySize);
                     double upperTanimoto = smaller / larger;
                     if( upperTanimoto > threshold){
-                        int overlap = MCS.getSMSDOverlap(target, query);
+                        
+                        SMSD smsd = new SMSD(target, query);
+                        smsd.timedCalculate();
+                        int overlap = smsd.size(); 
+                        
                         if(MCSUtils.tanimotoCoeff(overlap, targetSize, querySize) > threshold){
                             result.addMatch(new SearchMatch(query, target, overlap));
                         }
