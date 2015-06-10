@@ -127,7 +127,7 @@ public class SMSDSearcher {
         public void run() {
             try{
                 IAtomContainer target = queue.get();
-                while(queue.adding || target != null){
+                while(queue.adding && target != null){
                     int targetSize = MCSUtils.getAtomCountNoHydrogen(target);
                     int querySize = MCSUtils.getAtomCountNoHydrogen(query);
                     double smaller = Math.min(targetSize, querySize);
