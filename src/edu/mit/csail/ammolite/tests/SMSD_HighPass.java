@@ -145,24 +145,26 @@ public class SMSD_HighPass implements Tester{
         public void run() {
             try{
                 IAtomContainer target = queue.get();
-                while(queue.adding && target != null){
-                    int targetSize = MCSUtils.getAtomCountNoHydrogen(target);
-                    int querySize = MCSUtils.getAtomCountNoHydrogen(query);
-                    double smaller = Math.min(targetSize, querySize);
-                    double larger  = Math.max(targetSize, querySize);
-                    double upperTanimoto = smaller / larger;
-                    if( upperTanimoto > threshold){
-                        
-                        SMSD smsd = new SMSD(target, query);
-                        smsd.timedCalculate();
-                        int overlap = smsd.size(); 
-                        
-                        if(MCSUtils.tanimotoCoeff(overlap, targetSize, querySize) > threshold){
-                            result.addMatch(new SearchMatch(query, target, overlap));
+                while(queue.adding || target != null){
+                    if(target != null){
+                        int targetSize = MCSUtils.getAtomCountNoHydrogen(target);
+                        int querySize = MCSUtils.getAtomCountNoHydrogen(query);
+                        double smaller = Math.min(targetSize, querySize);
+                        double larger  = Math.max(targetSize, querySize);
+                        double upperTanimoto = smaller / larger;
+                        if( upperTanimoto > threshold){
+                            
+                            SMSD smsd = new SMSD(target, query);
+                            smsd.timedCalculate();
+                            int overlap = smsd.size(); 
+                            
+                            if(MCSUtils.tanimotoCoeff(overlap, targetSize, querySize) > threshold){
+                                result.addMatch(new SearchMatch(query, target, overlap));
+                            }
                         }
+                        bar.event();
+                        target = queue.get();
                     }
-                    bar.event();
-                    target = queue.get();
                 }
             } catch (InterruptedException ie) {
                 ie.printStackTrace();

@@ -280,19 +280,21 @@ public class Ammolite implements Tester {
             try{
                 IAtomContainer target = queue.get();
                 while(queue.adding || target != null){
-                    int targetSize = MCSUtils.getAtomCountNoHydrogen(target);
-                    int querySize = MCSUtils.getAtomCountNoHydrogen(query);
-                    double smaller = Math.min(targetSize, querySize);
-                    double larger  = Math.max(targetSize, querySize);
-                    double upperTanimoto = smaller / larger;
-                    if( upperTanimoto >= threshold){
-                        int overlap = MCS.getSMSDOverlap(target, query);
-                        if(MCSUtils.tanimotoCoeff(overlap, targetSize, querySize) >= threshold){
-                            result.addMatch(new SearchMatch(query, target, overlap));
+                    if(target != null){
+                        int targetSize = MCSUtils.getAtomCountNoHydrogen(target);
+                        int querySize = MCSUtils.getAtomCountNoHydrogen(query);
+                        double smaller = Math.min(targetSize, querySize);
+                        double larger  = Math.max(targetSize, querySize);
+                        double upperTanimoto = smaller / larger;
+                        if( upperTanimoto >= threshold){
+                            int overlap = MCS.getSMSDOverlap(target, query);
+                            if(MCSUtils.tanimotoCoeff(overlap, targetSize, querySize) >= threshold){
+                                result.addMatch(new SearchMatch(query, target, overlap));
+                            }
                         }
+                        bar.event();
+                        target = queue.get();
                     }
-                    bar.event();
-                    target = queue.get();
                 }
             } catch (InterruptedException ie) {
                 ie.printStackTrace();
