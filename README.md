@@ -100,7 +100,7 @@ Ammolite.search(arguments ...) which allows for compressively-accelerated search
 
 SMSDSearcher.search(arguments ...) which allows for linear-search from CDK objects stored in memory.
 
-To use either Ammolite.search() or SMSDSearcher.search developers will have to implement an instance of the IResultHandler interface. There are two examples of the result hanlder interface in the ammolite.search package. Implementation of a custom instance should be relatively easy.
+To use either Ammolite.search() or SMSDSearcher.search developers may have to implement an instance of the IResultHandler interface. There are three examples of the result hanlder interface in the ammolite.search package. Implementation of a custom instance should be relatively easy. Most developers will find the MatchingMoleculeHandler either meets their needs or provides a good basis for building a custom result handler. 
 
 
 ## Development Notes:
