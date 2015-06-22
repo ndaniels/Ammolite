@@ -243,7 +243,7 @@ public class CachingStructCompressor {
     }
     
     private void makeDBFolders(String filename){
-        this.dbFolder = filename+ ".gad";
+        this.dbFolder = filename+ ".adb";
         File dir = new File(dbFolder);
         if( dir.exists()){
             System.out.println("Database already exists. Aborting.");

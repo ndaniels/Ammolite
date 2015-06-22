@@ -1,8 +1,17 @@
+# Ammolite, Aligned Molecule Matching
+
+Ammolite is a software tool for finding structurally similar molecules. Ammolite is espescially good for searching large molecule databases, like pubchem, quickly. Among its potential uses Ammolite would help researchers with novel molecules to predict the properties of their molecule by finding known molecules with similar structures.
+
+Ammolite matches pairs of molecules based on their tanimoto coefficient. Two molecules with a tanimoto coefficient of 1 are identical while lower coefficients (down to 0) indicate increasingly different molecules. Typical searches with Ammolite look for molecules matching a query with tanimoto coefficient at least 0.7-0.9.
+
+For efficient search Ammolite requires that a molecule database be properly compressed. Compression is quite a slow process so pre-compressed versions of the pubchem database are available for download at WEBSITE. 
+
+For more information about the algorithm behind Ammolite see PAPER
+
+
 # How to use Ammolite
 
-The current version of Ammolite supports three basic commands useful for testing.
-
-These commands are: compress, test, and examine.
+The command line version of Ammolite supports three basic commands: compress, search, and examine.
 
 ## Compress:
 
@@ -12,11 +21,11 @@ The syntax is as follows
 
 ./Ammolite compress --source list/of/sdf/files/to/compress --target name/of/new/database
 
-Short options may also be used.
+If an existing Ammolite database is given as the target the SDF files in source will be appended to the existing database.
 
-Optionally a number of threads can be specified using
+Optionally a maximum number of threads can be specified using
 
---threads 12
+--threads <number of threads>
 
 To use JVM settings other than the default (Usually to increase the RAM available to the JVM) replace './Ammolite' with
 
@@ -28,32 +37,46 @@ java -Xmx360g -jar Ammolite.jar compress -s all/pubchem/sdf/*.sdf -t all-pubchem
 
 Compression of large databases is resource intensive and is only recommended on machines with a large amount of RAM and CPU. Compression of a ~50M molecule database took about 10 days on a machine with 20 processing cores and 360GB of RAM. 
 
-Several sample databases are available for download.
+## Search: 
 
-## Test:
+The search command is used to search an Ammolite database or a set of SDF files.
 
-The test command is used to search an Ammolite database.
+Ammolite search outputs results as a CSV file with the following structure:
 
-The test command requires a number of arguments:
+Query_ID, Target_ID, Size_of_Query, Size_of_Target, Size_of_Overlap, Tanimoto_Coefficient
 
-* -d, --database  A path to the database to be searched. Ammolite databases uses .gad as an extension
-* -q, --queries  A list of sdf files to search against the database
-* -o, --out  A location and file name for where to write the search results
-* --description  A brief description of the test being conducted. This may be ommitted
-* -t, --threshold  A minimum tanimoto coefficient for search matches
-* -c, --coarse-threshold  A minimum tanimoto coefficient for coarse search matches. Usually 0.2 less than the value of threshold
-* -A, --Ammolite  Tell the program to run an ammolite search
-* -S, --SMSD  Tell the program to run an SMSD search
+Optionally Ammolite search can also write a series of SDF files detailing the structure of the overlaps between query and target molecules.
 
-### A sample test command:
+The test command requires only three arguments:
 
-./Ammolite test -d path/to/Ammolite-Database.gad -q path/to/queries.sdf -o path/to/output/file -t 0.8 -c 0.6 -A
+*  -d, --database  <arg>...   Path to the database. If using linear search this may
+                             include multiple files and SDF files. Otherwise this must be a compressed Ammolite-database.
+*  -q, --queries  <arg>...    SDF files of queries.
+*  -t, --threshold  <arg>     The minimum tanimoto coefficient for search results
 
-Arguments can be supplied to the jvm by replacing ./Ammolite with
+Optional arguments are:
 
-java <java arguments> -jar Ammolite.jar test <ammolite test arguments>
+*  -l, --linear-search        Search the database exhaustively using linear search.
+*  -o, --out-file  <arg>      By default Ammolite will write its results to stdout. Instead a file may be specified.
+*  -w, --write-sdfs           Make SDF files detailing the overlap between targets and queries.
 
-Typically search requires much less RAM than compression but a search of the entire pubchem database can still require up to 80GB of RAM. This can be supplied to the JVM with the argument 
+### The difference between linear-search and regular search:
+
+By default Ammolite uses compressive acceleration to search only a subset of a large database. This results in signifigant speed gains but has a slight loss of accuracy and requires that databases be compressed before search. 
+
+If search speed is not a concern (for small sets of molecules - up to 100k depending on the situation) or if accuracy is paramount linear-search may be preferable. 
+
+linear-search does not require a special database format; target files may be given as SDF files. 
+
+### A sample search command:
+
+./Ammolite search -d path/to/Ammolite-Database.adb -q path/to/queries.sdf -o ammolite-search-results.csv -t 0.9 
+
+Arguments can be supplied directly to the jvm by replacing ./Ammolite with
+
+java <java arguments> -jar Ammolite.jar search <ammolite test arguments>
+
+Typically search requires much less RAM than compression but a search of the entire pubchem database can still benefit from up to 80GB of RAM. This can be supplied to the JVM with the argument 
 
 java -Xmx80g <Ammolite>
 
@@ -66,15 +89,9 @@ The examine command is useful for listing some basic statistics about a database
 
 ## Development Notes:
 
-The first release version of Ammolite will have two new major features.
+Ammolite is a new piece of software and may have a few bugs. To report bugs or suggest changes feel free to contact us.
 
-It will support appending new files to an already compressed database.
-
-It will have a dedicated search commmand with a simpler interface and different output. 
-
-We want to integrate Ammolite into as many workflows as possible and would greatly appreciate suggestions about how we could format search results. If you have other suggestions for features please let us know as well. 
-
-You may contact us by email at
+You may contact us by email at:
 
 dcdanko@mit.edu (preffered) or ndaniels@csail.mit.edu
 
