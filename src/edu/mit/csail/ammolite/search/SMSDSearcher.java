@@ -45,6 +45,12 @@ public class SMSDSearcher {
             search(query, targets, thresh, approxNumTargets);
     }
     
+    /**
+     * @param query, a query molecule
+     * @param targets, a set of molecules to search
+     * @param thresh, the minimum tanimoto coefficient for matching molecules
+     * @param resultHandler, a class to handle results from search
+     */
     public void search(IAtomContainer query, Iterator<IAtomContainer> targets, double thresh, IResultHandler resultHandler){
         this.resultHandler = resultHandler;
         search(query, targets, thresh, 0);

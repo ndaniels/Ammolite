@@ -36,6 +36,15 @@ public class Ammolite{
         
     public Ammolite() {}
 
+    /**
+     * Run a compressively-accelerated search 
+     * 
+     * @param query, a query molecule
+     * @param db, a decompressed ammolite database
+     * @param fineThresh, the minimum tanimoto coefficient for matching molecules
+     * @param coarseThresh, the minimum tanimoto coefficient for matching representative-molecules. Typically 0.1 less than the fine threshold
+     * @param resultHandler, a class to handle results from search
+     */
     public void search(IAtomContainer query, IStructDatabase db, double fineThresh, double coarseThresh, IResultHandler resultHandler) {
         System.out.println(NAME);
         

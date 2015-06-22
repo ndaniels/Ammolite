@@ -16,10 +16,16 @@ public interface IResultHandler {
     public void handleCoarse(SearchMatch result);
     
     /**
-     * Capture and process a match found in fine
+     * Capture and process a match found in fine search.
      * @param result
      */
     public void handleFine(SearchMatch result);
+    
+    /**
+     * Called when the searcher finishes processing a query molecule.
+     * 
+     * Typically when output to a file would occur.
+     */
     public void finishOneQuery();
 
 }
