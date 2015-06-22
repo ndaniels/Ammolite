@@ -9,7 +9,7 @@
 
 	
 		<target name="init">
-			<property name="scala.home" 	    value="/usr/local/Cellar/scala/2.10.3" />
+			<property name="scala.home" 	    value="/usr/local/Cellar/scala/2.11.2" />
 			<property name="scala.home.lib"	    value="${scala.home}/libexec/lib" />
 
 			<path id="scala.path" cache="true">
@@ -53,7 +53,7 @@
 		
 		<target name="compile" depends="init">
 			<mkdir dir="${build.dir}"/>
-			<javac source="1.6" target="1.6" srcdir="${src.dir}" destdir="${build.dir}" classpathref="build.classpath" />
+			<javac source="6" target="6" srcdir="${src.dir}" destdir="${build.dir}" classpathref="build.classpath" />
 			<scalac srcdir="${src.dir}" destdir="${build.dir}" classpathref="build.classpath" force="changed" >
 				<include name="**/*.scala"/>
 				<exclude name="**/*.java"/>

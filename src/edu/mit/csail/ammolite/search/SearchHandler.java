@@ -1,38 +1,101 @@
 package edu.mit.csail.ammolite.search;
 
-import edu.mit.csail.ammolite.database.StructDatabase;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.commons.io.FilenameUtils;
+import org.openscience.cdk.interfaces.IAtomContainer;
+
+import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
+import edu.mit.csail.ammolite.utils.SDFUtils;
 
 public class SearchHandler {
-	private SearchType searchType;
-	
-	private enum SearchType{
-		LINEAR, CYCLIC, RING 
-	}
+    
+    public static void handleSearch(List<String> queryFiles, List<String> databaseNames, String outName, double fineThresh, boolean writeSDF, boolean linearSearch){
+        IResultHandler resultHandler = null;
+        
+        if( writeSDF){
+            if( outName.equals("-")){
+                resultHandler = new SDFWritingResultHandler("search-results");
+            } else {
+                resultHandler = new SDFWritingResultHandler(outName);
+            }
+        } else { // Simple
+            if( outName.equals("-")){
+                resultHandler = new SimpleResultHandler( System.out);
+            } else {
+                
+                resultHandler = new SimpleResultHandler( getPrintStream(outName +".csv"));
+            } 
+        }
+        
+        Iterator<IAtomContainer> queries = SDFUtils.parseSDFSetOnline(queryFiles);
+        IAtomContainer query = null;
+        if( linearSearch){
+            List<String> sdfFiles = new ArrayList<String>();
+            for(String dbName: databaseNames){
+                String ext;
+                if(dbName.charAt(dbName.length() -1) == File.separatorChar){
+                    ext = FilenameUtils.getExtension(dbName.substring(0, dbName.length() -1));
+                } else {
+                    ext = FilenameUtils.getExtension(dbName);
+                }
 
-	public SearchHandler(String databaseFilename, String queryFilename, String outFilename, double threshold, double probability, boolean useTanimoto){
-		pickSearchType( threshold,probability, useTanimoto);
-		IBatchSearcher searcher = null;
-		if( searchType == SearchType.LINEAR){
-			searcher = new LinearSearcher();
-		}
-		else if( searchType == SearchType.CYCLIC){
-			searcher = new ParallelSearcher();
-		}
-		searcher.search(databaseFilename, queryFilename, outFilename, threshold, probability, useTanimoto);
-		
-	}
-	
-	public void handleSearch(){
+                if(ext.equals("adb") || ext.equals("gad")){
+                    IStructDatabase db = StructDatabaseDecompressor.decompress(dbName);
+                    sdfFiles.addAll( db.getSourceFiles().getFilepaths());
+                } else {
+                    sdfFiles.add(dbName);
+                }
+            }
+            
+            SMSDSearcher searcher = new SMSDSearcher();
+            while( queries.hasNext()){
+                query = queries.next();
+                searcher.search(query, sdfFiles, fineThresh, resultHandler);  
+                resultHandler.finishOneQuery();
+            }
+            
+            
+        } else {
+            if(databaseNames.size() != 1){
+                System.err.println("Ammolite-Error: Exactly one database must be specified for compressive search.");
+                System.exit(1);
+            } else {
+                IStructDatabase db = StructDatabaseDecompressor.decompress(databaseNames.get(0));
+                Ammolite searcher = new Ammolite();
+                
+                while( queries.hasNext()){
+                    query = queries.next();
+                    searcher.search(query, db, fineThresh, fineThresh - 0.1, resultHandler);  
+                    resultHandler.finishOneQuery();
+                }
+                
+            }
+        }
 
-	}
-	
-	private void pickSearchType(double threshold, double probability, boolean useTanimoto){
-		if( probability > 0.98){
-			searchType = SearchType.LINEAR;
-		} else {
-			searchType = SearchType.CYCLIC;
-		}
-	}
-	
+    }
+    
+    private static PrintStream getPrintStream(String outName){
+        PrintStream writer= null;
+        try {
+            File f = new File(outName);
+            FileOutputStream fos = new FileOutputStream(f, true);
+            writer = new PrintStream(fos);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        if(writer == null){
+            System.exit(1);
+        }
+        return writer;
+        
+    }
+
 }
