@@ -13,6 +13,8 @@ import edu.mit.csail.ammolite.database.StructDatabaseDecompressor
 import edu.mit.csail.ammolite.database.SDFWrapper
 import edu.mit.csail.ammolite.search.SearchHandler
 
+import edu.mit.csail.ammolite.spark.SparkSearchHandler
+
 import collection.mutable.Buffer
 import collection.Seq
 import edu.mit.csail.ammolite.utils.SDFUtils
@@ -35,30 +37,7 @@ object AmmoliteMain{
 			  banner("Compress a database of SDF files")
 			  val source = opt[List[String]]("source", required=true, descr="File or folder to compress")
 			  val target = opt[String]("target", required=true, descr="Name of the new compressed database")
-			  // val simple = opt[Boolean]("simple", descr="Use simple structures instead of cyclic structures")
-			  // val labeled = opt[Boolean]("labeled", descr="Use labeled structures instead of cyclic structures")
-
-			  // val connection_2 = opt[Boolean]("connection-two", descr="Use connection two structures instead of cyclic structures")
-			  // val connection_3 = opt[Boolean]("connection-three", descr="Use connection three structures instead of cyclic structures")
-			  // val connection_4 = opt[Boolean]("connection-four", descr="Use connection four structures instead of cyclic structures")
-			  // val connection_5 = opt[Boolean]("connection-five", descr="Use connection five structures instead of cyclic structures")
-			  // val connection_6 = opt[Boolean]("connection-six", descr="Use connection six structures instead of cyclic structures")
-
-			  // val overlap_4 = opt[Boolean]("overlap-four", descr="Use overlap five structures instead of cyclic structures")
-			  // val overlap_5 = opt[Boolean]("overlap-five", descr="Use overlap six structures instead of cyclic structures")
-			  // val overlap_6 = opt[Boolean]("overlap-six", descr="Use overlap seven structures instead of cyclic structures")
-			  // val overlap_7 = opt[Boolean]("overlap-seven", descr="Use overlap seven structures instead of cyclic structures")
-			  // val overlap_8 = opt[Boolean]("overlap-eight", descr="Use overlap seven structures instead of cyclic structures")
-			  // val overlap_9 = opt[Boolean]("overlap-nine", descr="Use overlap seven structures instead of cyclic structures")
-
-			  // val binary_overlap_4 = opt[Boolean]("binary-overlap-four", descr="Use overlap five structures instead of cyclic structures")
-			  // val binary_overlap_5 = opt[Boolean]("binary-overlap-five", descr="Use overlap six structures instead of cyclic structures")
-			  // val binary_overlap_6 = opt[Boolean]("binary-overlap-six", descr="Use overlap seven structures instead of cyclic structures")
-
-			  // val weighted = opt[Boolean]("weighted", descr="Use labeled-weighted structures instead of cyclic structures")
-			  // val iterated = opt[Boolean]("iterated", descr="Dev")
 			  val threads = opt[Int]("threads", default=Some(-1), descr="Number of threads to use for compression. Leave blank to use half the available processing cores.")
-			  // val cache = opt[Boolean]("cache", descr="Dev")
 			}
 			val search = new Subcommand("search"){
 			  
@@ -95,6 +74,14 @@ object AmmoliteMain{
 			  val database = trailArg[String]()
 			  val table = opt[Boolean]("table", default=Some(false), descr="Show a table of the compressed database structure. Not reccomended for databases over 1K molecules.")
 			} 
+			val spark = new Subcommand("spark"){
+				val database = opt[List[String]]("database", required=true, descr="Path to the database. If using linear search this may include multiple files and sdf files.")
+				val queries = opt[List[String]]("queries", required=true, descr="SDF files of queries.")
+				val threshold = opt[Double]("threshold", required=true, descr="Matching threshold to use.")
+			    val writeSDF = opt[Boolean]("write-sdfs", descr="Make a SDF files of the search results.")
+			    val linear = opt[Boolean]("linear-search", descr="Search the database exhaustively.")
+			    val out = opt[String]("out-file", default=Some("-"), descr="Where search results should be written to. Std out by default.")
+			}
 
 			
 			
@@ -107,63 +94,7 @@ object AmmoliteMain{
 
 			val compressor = new CachingStructCompressor( compType )
 			compressor.compress(java.util.Arrays.asList(opts.compress.source().toArray: _*), opts.compress.target(), opts.compress.threads())
-
-			// if( opts.compress.simple()){
-			// compType = CompressionType.BASIC 
-			// } else if( opts.compress.labeled()){
-			// 	compType = CompressionType.FULLY_LABELED
-			// } else if( opts.compress.weighted()){
-			// 	compType = CompressionType.WEIGHTED
-			// } else if( opts.compress.connection_2()){
-			// 	compType = CompressionType.CONNECTION_2
-
-			// } else if( opts.compress.connection_3()){
-			// 	compType = CompressionType.CONNECTION_3
-
-			// } else if( opts.compress.connection_4()){
-			// 	compType = CompressionType.CONNECTION_4
-
-			// } else if( opts.compress.connection_5()){
-			// 	compType = CompressionType.CONNECTION_5
-
-			// } else if( opts.compress.connection_6()){
-			// 	compType = CompressionType.CONNECTION_6
-			// }
-
-			// else if( opts.compress.overlap_4()){
-			// 	compType = CompressionType.OVERLAP_4
-
-			// } else if( opts.compress.overlap_5()){
-			// 	compType = CompressionType.OVERLAP_5
-
-			// } else if( opts.compress.overlap_6()){
-			// 	compType = CompressionType.OVERLAP_6
-
-			// } else if( opts.compress.overlap_7()){
-			// 	compType = CompressionType.OVERLAP_7
-
-			// } else if( opts.compress.overlap_8()){
-			// 	compType = CompressionType.OVERLAP_8
-
-			// } else if( opts.compress.overlap_9()){
-			// 	compType = CompressionType.OVERLAP_9
-
-			// } 
-
-			// else if( opts.compress.binary_overlap_4()){
-			// 	compType = CompressionType.BINARY_OVERLAP_4
-
-			// } else if( opts.compress.binary_overlap_5()){
-			// 	compType = CompressionType.BINARY_OVERLAP_5
-
-			// } else if( opts.compress.binary_overlap_6()){
-			// 	compType = CompressionType.BINARY_OVERLAP_6
-
-			// }
-
-
-
-		  
+  
 		} else if( opts.subcommand == Some(opts.search)){
 
 			SearchHandler.handleSearch(	java.util.Arrays.asList(opts.search.queries().toArray: _*), 
@@ -195,7 +126,14 @@ object AmmoliteMain{
 			if(opts.examine.table()){  
 		    	Logger.log(db.asTable())
 		    }
-		} 
+		} else if( opts.subcommand == Some( opts.spark)){
+			SparkSearchHandler.handleDistributedSearch(java.util.Arrays.asList(opts.search.queries().toArray: _*), 
+														java.util.Arrays.asList(opts.search.database().toArray: _*), 
+														opts.search.out(),
+														opts.search.threshold(), 
+														opts.search.writeSDF(),
+														opts.search.linear())
+		}
 	}
 
 		

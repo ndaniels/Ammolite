@@ -28,6 +28,7 @@ public interface IStructDatabase {
 	public MoleculeStructFactory getStructFactory();
 	public List<IMolStruct> getStructs();
 	public ISDFSet getSourceFiles();
+	public List<String> getStructFilepaths();
 	public List<IAtomContainer> getMatchingMolecules(StructID structID);
 	public String getName();
 	public boolean isOrganized();

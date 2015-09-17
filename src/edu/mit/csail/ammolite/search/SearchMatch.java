@@ -1,8 +1,10 @@
 package edu.mit.csail.ammolite.search;
 
+import java.io.Serializable;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 
-public class SearchMatch{
+public class SearchMatch implements Serializable {
     
     protected IAtomContainer query;
     protected IAtomContainer target;

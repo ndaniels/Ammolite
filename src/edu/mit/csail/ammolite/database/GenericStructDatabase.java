@@ -58,16 +58,14 @@ public class GenericStructDatabase implements IStructDatabase {
         System.out.print("Caching Representatives... ");
         structs = new ArrayList<IMolStruct>();
         SDFMultiStructParser structParser = new SDFMultiStructParser( sourceFiles.getFilepaths(), sFactory);
-
         while( structParser.hasNext()){
             IMolStruct struct = structParser.next();
-
             StructID key = MolUtils.getStructID(struct);
-
             List<PubchemID> pIDs = idMap.get(key);
-
-            for(PubchemID pID: pIDs){
-                struct.addID(pID);
+            if(pIDs != null){
+                for(PubchemID pID: pIDs){
+                    struct.addID(pID);
+                }
             }
             structs.add(struct);
         }
@@ -239,6 +237,11 @@ public class GenericStructDatabase implements IStructDatabase {
     @Override
     public Map<StructID, List<PubchemID>> getIDMap() {
         return this.idMap;
+    }
+
+    @Override
+    public List<String> getStructFilepaths() {
+        return this.structFiles;
     }
 
 }

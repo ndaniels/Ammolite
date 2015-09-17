@@ -96,6 +96,22 @@ public class SDFUtils {
 		return mols;
 	}
 	
+	public static List<IAtomContainer> parseSDFSet(List<String> filenames){
+	    List<IAtomContainer> allMolecules = new ArrayList<IAtomContainer>();
+	    for(String sdf: filenames){
+	        allMolecules.addAll( parseSDF(sdf));
+	    }
+	    return allMolecules;
+	}
+	
+	public static List<IMolStruct> parseSDFSetAsStructs(List<String> filenames, MoleculeStructFactory sFactory){
+        List<IMolStruct> allStructs = new ArrayList<IMolStruct>();
+        for(String sdf: filenames){
+            allStructs.addAll( parseSDFAsStructs(sdf, sFactory));
+        }
+        return allStructs;
+    }
+	
 	public static Iterator<IAtomContainer> parseSDFOnline(String filename){
 		IteratingSDFReader molecules = null;
 		try{
