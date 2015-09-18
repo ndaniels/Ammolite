@@ -134,9 +134,13 @@ public class CachingStructCompressor implements Serializable {
         produceClusteredDatabase( filename );
         System.out.println("Done.");
         
-        System.out.print("Shutting down threads... ");
-        exService.shutdown();
-        System.out.println("Done.");
+        if(distributed){
+            sparkCTX.close();
+        } else {
+            System.out.print("Shutting down threads... ");
+            exService.shutdown();
+            System.out.println("Done.");
+        }
         
         System.out.println("Total number of molecules: " +this.numMols);
         System.out.println("Total number of representatives: " +this.numReps);
@@ -179,7 +183,6 @@ public class CachingStructCompressor implements Serializable {
                     }
                     this.putMolInSourceFile(MolUtils.getStructID(structure), molecule);
                 } else {
-                    System.out.println("THREE");
                     if(distributed){
                         structsByID.get(matchID).addID( MolUtils.getPubID(molecule));
                     }
@@ -190,6 +193,9 @@ public class CachingStructCompressor implements Serializable {
                 numReps++;
                 structsByFingerprint.add(structure.fingerprint(), structure);
                 this.putMolInSourceFile(MolUtils.getStructID(structure), molecule);
+                if(distributed){
+                    structsByID.put(MolUtils.getStructID(structure), structure);
+                }
             }
             progressBar.event();
         }
