@@ -73,7 +73,6 @@ public class SparkSearchHandler {
                 }
             }
             
-            JavaRDD<IAtomContainer> targets = ctx.parallelize(SDFUtils.parseSDFSet(sdfFiles), 100);
    
             
             while( queries.hasNext()){
