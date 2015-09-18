@@ -27,7 +27,7 @@ import edu.mit.csail.ammolite.utils.SDFUtils;
 
 public class SparkSearchHandler {
     
-    private static final int CHUNK_SIZE = 10*1000;
+    private static final int CHUNK_SIZE = 1000;
     
     public static void handleDistributedSearch(List<String> queryFiles, List<String> databaseNames, String outName, 
                                                 double fineThresh, boolean writeSDF, boolean linearSearch){
