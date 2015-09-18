@@ -74,13 +74,19 @@ object AmmoliteMain{
 			  val database = trailArg[String]()
 			  val table = opt[Boolean]("table", default=Some(false), descr="Show a table of the compressed database structure. Not reccomended for databases over 1K molecules.")
 			} 
-			val spark = new Subcommand("spark"){
+			val sparkSearch = new Subcommand("spark-search"){
 				val database = opt[List[String]]("database", required=true, descr="Path to the database. If using linear search this may include multiple files and sdf files.")
 				val queries = opt[List[String]]("queries", required=true, descr="SDF files of queries.")
 				val threshold = opt[Double]("threshold", required=true, descr="Matching threshold to use.")
 			    val writeSDF = opt[Boolean]("write-sdfs", descr="Make a SDF files of the search results.")
 			    val linear = opt[Boolean]("linear-search", descr="Search the database exhaustively.")
 			    val out = opt[String]("out-file", default=Some("-"), descr="Where search results should be written to. Std out by default.")
+			}
+			val sparkCompress = new Subcommand("spark-compress"){
+			  banner("Compress a database of SDF files")
+			  val source = opt[List[String]]("source", required=true, descr="File or folder to compress")
+			  val target = opt[String]("target", required=true, descr="Name of the new compressed database")
+			  val threads = opt[Int]("threads", default=Some(-1), descr="Number of threads to use for compression. Leave blank to use half the available processing cores.")
 			}
 
 			
@@ -126,13 +132,19 @@ object AmmoliteMain{
 			if(opts.examine.table()){  
 		    	Logger.log(db.asTable())
 		    }
-		} else if( opts.subcommand == Some( opts.spark)){
+		} else if( opts.subcommand == Some( opts.sparkSearch)){
 			SparkSearchHandler.handleDistributedSearch(java.util.Arrays.asList(opts.search.queries().toArray: _*), 
 														java.util.Arrays.asList(opts.search.database().toArray: _*), 
 														opts.search.out(),
 														opts.search.threshold(), 
 														opts.search.writeSDF(),
 														opts.search.linear())
+		} else if( opts.subcommand == Some(opts.sparkCompress)){
+			var compType = CompressionType.FULLY_LABELED
+
+			val compressor = new CachingStructCompressor( compType )
+			compressor.compress(java.util.Arrays.asList(opts.compress.source().toArray: _*), opts.compress.target(), opts.compress.threads(), true)
+  
 		}
 	}
 

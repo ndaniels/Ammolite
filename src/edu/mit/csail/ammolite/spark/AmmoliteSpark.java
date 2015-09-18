@@ -28,15 +28,14 @@ import edu.mit.csail.ammolite.utils.StructID;
 public class AmmoliteSpark {
 
     
-   public static List<SearchMatch> distributedAmmoliteSearch(IAtomContainer query, IStructDatabase db, JavaSparkContext ctx, IResultHandler handler, double fineThresh, double coarseThresh){
+   public static List<SearchMatch> distributedAmmoliteSearch(IAtomContainer query, IStructDatabase db, JavaSparkContext ctx, IResultHandler handler, double fineThresh, double coarseThresh, int chunkSize){
         
         IMolStruct coarseQuery = db.makeMoleculeStruct(query);
         
         List<String> structFilepaths = db.getStructFilepaths();
-        List<IAtomContainer> localCoarseTargets = SDFUtils.parseSDFSet(structFilepaths);
-        JavaRDD<IAtomContainer> coarseTargets = ctx.parallelize(localCoarseTargets,100);
+        Iterator<IAtomContainer> coarseTargetIterator = SDFUtils.parseSDFSetOnline(structFilepaths);
 
-        List<SearchMatch> coarseMatches = SMSDSpark.distributedLinearSearch(coarseQuery, coarseTargets, ctx, handler, coarseThresh);
+        List<SearchMatch> coarseMatches = SMSDSpark.distributedChunkyLinearSearch(coarseQuery, coarseTargetIterator, ctx, handler, coarseThresh, chunkSize);
 
         List<StructID> matchingCoarseIDs = new ArrayList<StructID>();
         for(SearchMatch match: coarseMatches){

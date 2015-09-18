@@ -6,14 +6,20 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 
+import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.Function;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.io.SDFWriter;
@@ -22,6 +28,7 @@ import edu.mit.csail.ammolite.KeyListMap;
 import edu.mit.csail.ammolite.database.CompressionType;
 import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
+import edu.mit.csail.ammolite.spark.SparkCompressor;
 import edu.mit.csail.ammolite.utils.CommandLineProgressBar;
 import edu.mit.csail.ammolite.utils.FileUtils;
 import edu.mit.csail.ammolite.utils.MolUtils;
@@ -37,14 +44,16 @@ import edu.ucla.sspace.graph.isomorphism.VF2IsomorphismTester;
  * 
  */
 
-public class CachingStructCompressor {
+public class CachingStructCompressor implements Serializable {
     private KeyListMap<Integer, IMolStruct> structsByFingerprint = new KeyListMap<Integer,IMolStruct>(1000);
+    private HashMap<StructID, IMolStruct> structsByID; // Only necessary for distributed compression.
     private MoleculeStructFactory structFactory;
     private int numMols = 0;
     private int numReps = 0;
 
     private ExecutorService exService;
     CommandLineProgressBar progressBar;
+    private JavaSparkContext sparkCTX;
     
     String dbName;
     String dbFolder;
@@ -61,6 +70,10 @@ public class CachingStructCompressor {
         compress(filenames, filename, -1);
     }
     
+    public void  compress(List<String> filenames, String filename, int numThreads) throws IOException, CDKException, InterruptedException, ExecutionException{
+        compress(filenames, filename, numThreads, false);
+    }
+    
     /**
      * Scans through an sdf library and compresses it.
      * 
@@ -71,7 +84,7 @@ public class CachingStructCompressor {
      * @throws ExecutionException 
      * @throws InterruptedException 
      */
-    public void  compress(List<String> filenames, String filename, int numThreads) throws IOException, CDKException, InterruptedException, ExecutionException{
+    public void  compress(List<String> filenames, String filename, int numThreads, boolean distributed) throws IOException, CDKException, InterruptedException, ExecutionException{
         int molsInFiles = 0;
         for(String name: filenames){
             molsInFiles += SDFUtils.estimateNumMolsInSDF(name);
@@ -95,7 +108,11 @@ public class CachingStructCompressor {
             this.makeDBFolders(filename);
         }
         
-        if( numThreads > 0){
+        if(distributed){
+            SparkConf sparkConf = new SparkConf().setAppName("AmmoliteDistributedCompression");
+            sparkCTX = new JavaSparkContext(sparkConf);
+            structsByID = new HashMap<StructID, IMolStruct>();
+        } else if( numThreads > 0){
             exService = ParallelUtils.buildNewExecutorService(numThreads);
         } else {
             int defaultThreads = Runtime.getRuntime().availableProcessors() / 2;
@@ -108,7 +125,7 @@ public class CachingStructCompressor {
         for(File f: files){
             absoluteFilenames.add(f.getPath());
             Iterator<IAtomContainer> molecule_database = SDFUtils.parseSDFOnline(f.getAbsolutePath());
-            checkDatabaseForIsomorphicStructs( molecule_database, structFactory);   
+            checkDatabaseForIsomorphicStructs( molecule_database, structFactory, distributed);   
         }
         
         progressBar.done();
@@ -137,7 +154,7 @@ public class CachingStructCompressor {
      * @throws ExecutionException 
      * @throws InterruptedException 
      */
-    private void checkDatabaseForIsomorphicStructs( Iterator<IAtomContainer> molecule_database, MoleculeStructFactory structFactory) throws CDKException, InterruptedException, ExecutionException{
+    private void checkDatabaseForIsomorphicStructs( Iterator<IAtomContainer> molecule_database, MoleculeStructFactory structFactory, boolean distributed) throws CDKException, InterruptedException, ExecutionException{
 
         while( molecule_database.hasNext() ){
             IAtomContainer molecule =  molecule_database.next();        
@@ -146,16 +163,30 @@ public class CachingStructCompressor {
             
             if( structsByFingerprint.containsKey( structure.fingerprint())){
                 List<IMolStruct> potentialMatches = structsByFingerprint.get( structure.fingerprint() );
-                StructID matchID = parrallelIsomorphism( structure, potentialMatches);
+                StructID matchID;
+                
+                if( distributed){
+                    matchID = SparkCompressor.distributedIsomorphism( structure, potentialMatches, sparkCTX);
+                } else {
+                    matchID = parrallelIsomorphism( structure, potentialMatches);
+                }
+                
                 if( matchID == null ){
                     numReps++;
                     structsByFingerprint.add(structure.fingerprint(), structure);
+                    if(distributed){
+                        structsByID.put(matchID, structure);
+                    }
                     this.putMolInSourceFile(MolUtils.getStructID(structure), molecule);
                 } else {
+                    System.out.println("THREE");
+                    if(distributed){
+                        structsByID.get(matchID).addID( MolUtils.getPubID(molecule));
+                    }
                     this.putMolInSourceFile(matchID, molecule);
+                    
                 }
-            }
-            else{
+            } else{
                 numReps++;
                 structsByFingerprint.add(structure.fingerprint(), structure);
                 this.putMolInSourceFile(MolUtils.getStructID(structure), molecule);

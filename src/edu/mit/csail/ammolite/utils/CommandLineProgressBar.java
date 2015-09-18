@@ -1,6 +1,8 @@
 package edu.mit.csail.ammolite.utils;
 
-public class CommandLineProgressBar {
+import java.io.Serializable;
+
+public class CommandLineProgressBar implements Serializable {
 	int maxEvents;
 	int currentEvent = 0;
 	String name;

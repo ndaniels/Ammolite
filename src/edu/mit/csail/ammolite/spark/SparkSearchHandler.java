@@ -27,6 +27,8 @@ import edu.mit.csail.ammolite.utils.SDFUtils;
 
 public class SparkSearchHandler {
     
+    private static final int CHUNK_SIZE = 10*1000;
+    
     public static void handleDistributedSearch(List<String> queryFiles, List<String> databaseNames, String outName, 
                                                 double fineThresh, boolean writeSDF, boolean linearSearch){
         
@@ -47,7 +49,7 @@ public class SparkSearchHandler {
             } 
         }
         
-        SparkConf sparkConf = new SparkConf().setAppName("AmmoliteDistributed");
+        SparkConf sparkConf = new SparkConf().setAppName("AmmoliteDistributedSearch");
         JavaSparkContext ctx = new JavaSparkContext(sparkConf);
         
         Iterator<IAtomContainer> queries = SDFUtils.parseSDFSetOnline(queryFiles);
@@ -76,9 +78,13 @@ public class SparkSearchHandler {
             
             while( queries.hasNext()){
                 query = queries.next();
-                for(SearchMatch match: SMSDSpark.distributedLinearSearch(query, targets, ctx, resultHandler, fineThresh)){
+                
+                Iterator<IAtomContainer> targetIterator = SDFUtils.parseSDFSetOnline(sdfFiles);
+                List<SearchMatch> matches = SMSDSpark.distributedChunkyLinearSearch(query, targetIterator, ctx, resultHandler, fineThresh, CHUNK_SIZE);
+                for(SearchMatch match: matches){
                     resultHandler.handleFine(match);
                 }
+
                 resultHandler.finishOneQuery();
             }
             
@@ -93,7 +99,7 @@ public class SparkSearchHandler {
                 
                 while( queries.hasNext()){
                     query = queries.next();
-                    for(SearchMatch match: AmmoliteSpark.distributedAmmoliteSearch(query, db, ctx, resultHandler, fineThresh, coarseThresh)){
+                    for(SearchMatch match: AmmoliteSpark.distributedAmmoliteSearch(query, db, ctx, resultHandler, fineThresh, coarseThresh, CHUNK_SIZE)){
                         resultHandler.handleFine(match);
                     } 
                     resultHandler.finishOneQuery();
