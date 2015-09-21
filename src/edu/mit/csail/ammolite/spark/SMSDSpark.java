@@ -32,7 +32,7 @@ public class SMSDSpark {
                     localTargetChunk.add(targetIterator.next());
                 }
             }
-            JavaRDD<IAtomContainer> targetChunk = ctx.parallelize(localTargetChunk, chunkSize / 5);
+            JavaRDD<IAtomContainer> targetChunk = ctx.parallelize(localTargetChunk, chunkSize);
             
             resultCollector.addAll(distributedLinearSearch(query, targetChunk, ctx, handler, threshold));
         }
