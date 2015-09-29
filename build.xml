@@ -73,8 +73,34 @@
 				        <attribute name="Main-Class" value="${main-class}"/>
 				        <attribute name="Class-Path" value="${depends}"/>
 				    </manifest>
+				    <zipgroupfileset dir="${lib.dir}" includes="**/*.jar" />
 				</jar>
 		</target>
+
+		<target name="superjar" depends="compile,jar,cleanjar">
+
+				<mkdir dir="${jar.dir}"/>
+
+				<manifestclasspath property="depends" jarfile="${jar.dir}/${ant.project.name}-super.jar">
+    				<classpath refid="lib"/>
+				</manifestclasspath>
+
+				<jar jarfile="${jar.dir}/${ant.project.name}.jar" basedir="${build.dir}" >
+				    <manifest>
+				        <attribute name="Main-Class" value="${main-class}"/>
+				        <attribute name="Class-Path" value="${depends}"/>
+				    </manifest>
+				    <zipgroupfileset dir="${lib.dir}" includes="**/*.jar" />
+				</jar>
+		</target>
+
+
+<!-- 		<jar destfile="${jar.file}" 
+    basedir="${build.dir}" 
+    manifest="${manifest.file}">
+    <fileset dir="${classes.dir}" includes="**/*.class" />
+    <zipgroupfileset dir="${lib.dir}" includes="**/*.jar" />
+</jar> -->
 		
 		<target name="run" depends="jar">
 			<java jar="${jar.dir}/${ant.project.name}.jar" inputstring="--help" fork="true"/>
