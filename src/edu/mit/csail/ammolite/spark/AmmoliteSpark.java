@@ -48,7 +48,7 @@ public class AmmoliteSpark {
             localFineTargets.addAll(db.getMatchingMolecules(id));
         }
         JavaRDD<IAtomContainer> fineTargets = ctx.parallelize(localFineTargets,100);
-        return SMSDSpark.distributedLinearSearch(query, fineTargets, ctx, handler, fineThresh);
+        return null; //SMSDSpark.distributedLinearSearch(query, fineTargets, ctx, handler, fineThresh);
     }
     
  

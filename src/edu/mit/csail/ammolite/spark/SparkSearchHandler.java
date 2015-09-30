@@ -27,7 +27,7 @@ import edu.mit.csail.ammolite.utils.SDFUtils;
 
 public class SparkSearchHandler {
     
-    private static final int CHUNK_SIZE = 100;
+    private static final int CHUNK_SIZE = 10*1000;
     
     public static void handleDistributedSearch(List<String> queryFiles, List<String> databaseNames, String outName, 
                                                 double fineThresh, boolean writeSDF, boolean linearSearch){
@@ -50,6 +50,12 @@ public class SparkSearchHandler {
         }
         
         SparkConf sparkConf = new SparkConf().setAppName("AmmoliteDistributedSearch");
+        
+        sparkConf.set("spark.serializer", "org.apache.spark.serializer.KryoSerializer");
+        Class<?>[] registeredClasses = {IAtomContainer.class, SearchMatch.class};
+        sparkConf.registerKryoClasses(registeredClasses);
+        sparkConf.set("spark.kryoserializer.buffer.max", "512k");
+        
         JavaSparkContext ctx = new JavaSparkContext(sparkConf);
         
         Iterator<IAtomContainer> queries = SDFUtils.parseSDFSetOnline(queryFiles);

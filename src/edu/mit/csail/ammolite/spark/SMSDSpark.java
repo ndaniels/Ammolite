@@ -18,12 +18,15 @@ import edu.mit.csail.ammolite.utils.MCSUtils;
 
 
 
+
 import org.apache.spark.api.java.function.Function;
+import org.apache.spark.broadcast.Broadcast;
 
 public class SMSDSpark {
     
     public static List<SearchMatch> distributedChunkyLinearSearch(IAtomContainer query, Iterator<IAtomContainer> targetIterator, JavaSparkContext ctx, IResultHandler handler, double threshold, int chunkSize){
         List<SearchMatch> resultCollector = new ArrayList<SearchMatch>();
+        Broadcast<IAtomContainer> broadcastQuery = ctx.broadcast(query);
         
         List<IAtomContainer> localTargetChunk = new ArrayList<IAtomContainer>(chunkSize);
         while(targetIterator.hasNext()){
@@ -32,17 +35,18 @@ public class SMSDSpark {
                     localTargetChunk.add(targetIterator.next());
                 }
             }
-            JavaRDD<IAtomContainer> targetChunk = ctx.parallelize(localTargetChunk, chunkSize);
+            JavaRDD<IAtomContainer> targetChunk = ctx.parallelize(localTargetChunk);
             
-            resultCollector.addAll(distributedLinearSearch(query, targetChunk, ctx, handler, threshold));
+            resultCollector.addAll(distributedLinearSearch(broadcastQuery, targetChunk, ctx, handler, threshold));
         }
         
         return resultCollector;
     }
     
-    public static List<SearchMatch> distributedLinearSearch(final IAtomContainer query, JavaRDD<IAtomContainer> targets, JavaSparkContext ctx, IResultHandler handler, final double threshold){
+    public static List<SearchMatch> distributedLinearSearch(final Broadcast<IAtomContainer> query, JavaRDD<IAtomContainer> targets, JavaSparkContext ctx, IResultHandler handler, final double threshold){
 
-        final boolean recordStructs = handler.recordingStructures();
+        final Broadcast<Boolean> recordStructs = ctx.broadcast( handler.recordingStructures());
+        
         
         JavaRDD<SearchMatch> matchings = targets.map(new Function<IAtomContainer, SearchMatch>(){
             
@@ -50,26 +54,26 @@ public class SMSDSpark {
                 SearchMatch match = null;
                 
                 int targetSize = MCSUtils.getAtomCountNoHydrogen(target);
-                int querySize = MCSUtils.getAtomCountNoHydrogen(query);
+                int querySize = MCSUtils.getAtomCountNoHydrogen(query.value());
                 double smaller = Math.min(targetSize, querySize);
                 double larger  = Math.max(targetSize, querySize);
                 double upperTanimoto = smaller / larger;
                 if( upperTanimoto > threshold){
                     
-                    SMSD smsd = new SMSD(target, query);
+                    SMSD smsd = new SMSD(target, query.value());
                     smsd.timedCalculate();
                     int overlap = smsd.size();
                     
                     if(MCSUtils.tanimotoCoeff(overlap, targetSize, querySize) > threshold){
-                        match = new SearchMatch(query, target, overlap);
-                        if( recordStructs){
+                        match = new SearchMatch(query.value(), target, overlap);
+                        if( recordStructs.value()){
                             match.setMCS(smsd.getFirstSolution());
                         }
                     }
                 }
                 
                 if(match == null){
-                    match = new SearchMatch(query, target, 0);
+                    match = new SearchMatch(query.value(), target, 0);
                 }
                 
                 return match;
