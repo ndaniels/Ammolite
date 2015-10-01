@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 
+
 //import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -16,6 +17,7 @@ import edu.mit.csail.ammolite.compression.IMolStruct;
 import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.mcs.SMSD;
 import edu.mit.csail.ammolite.search.IResultHandler;
+import edu.mit.csail.ammolite.search.ISearchMatch;
 import edu.mit.csail.ammolite.search.SearchMatch;
 import edu.mit.csail.ammolite.utils.MCSUtils;
 import edu.mit.csail.ammolite.utils.MolUtils;
@@ -28,17 +30,17 @@ import edu.mit.csail.ammolite.utils.StructID;
 public class AmmoliteSpark {
 
     
-   public static List<SearchMatch> distributedAmmoliteSearch(IAtomContainer query, IStructDatabase db, JavaSparkContext ctx, IResultHandler handler, double fineThresh, double coarseThresh, int chunkSize){
+   public static List<ISearchMatch> distributedAmmoliteSearch(IAtomContainer query, IStructDatabase db, JavaSparkContext ctx, IResultHandler handler, double fineThresh, double coarseThresh, int chunkSize){
         
         IMolStruct coarseQuery = db.makeMoleculeStruct(query);
         
         List<String> structFilepaths = db.getStructFilepaths();
         Iterator<IAtomContainer> coarseTargetIterator = SDFUtils.parseSDFSetOnline(structFilepaths);
 
-        List<SearchMatch> coarseMatches = SMSDSpark.distributedChunkyLinearSearch(coarseQuery, coarseTargetIterator, ctx, handler, coarseThresh, chunkSize);
+        List<ISearchMatch> coarseMatches = SMSDSpark.distributedChunkyLinearSearch(coarseQuery, coarseTargetIterator, ctx, handler, coarseThresh, chunkSize);
 
         List<StructID> matchingCoarseIDs = new ArrayList<StructID>();
-        for(SearchMatch match: coarseMatches){
+        for(ISearchMatch match: coarseMatches){
             handler.handleCoarse(match);
             matchingCoarseIDs.add(MolUtils.getStructID(match.getTarget()));
         }       

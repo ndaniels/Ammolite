@@ -13,13 +13,13 @@ public interface IResultHandler {
      * 
      * @param result
      */
-    public void handleCoarse(SearchMatch result);
+    public void handleCoarse(ISearchMatch result);
     
     /**
      * Capture and process a match found in fine search.
      * @param result
      */
-    public void handleFine(SearchMatch result);
+    public void handleFine(ISearchMatch result);
     
     /**
      * Called when the searcher finishes processing a query molecule.

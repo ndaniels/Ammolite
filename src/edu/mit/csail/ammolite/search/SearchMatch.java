@@ -4,11 +4,15 @@ import java.io.Serializable;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
-public class SearchMatch implements Serializable {
+import edu.mit.csail.ammolite.utils.ID;
+import edu.mit.csail.ammolite.utils.MolUtils;
+
+public class SearchMatch implements ISearchMatch {
     
     protected IAtomContainer query;
     protected IAtomContainer target;
     protected IAtomContainer mcs = null;
+    
     
     protected int overlap;
 
@@ -16,6 +20,18 @@ public class SearchMatch implements Serializable {
         this.query = query;
         this.target = target;
         this.overlap = overlap;
+    }
+    
+    public boolean moleculeStructuresAvailable(){
+        return true;
+    }
+    
+    public int getQuerySize(){
+        return MolUtils.getAtomCountNoHydrogen(query);
+    }
+    
+    public int getTargetSize(){
+        return MolUtils.getAtomCountNoHydrogen(target);
     }
 
     public IAtomContainer getQuery() {
@@ -32,6 +48,16 @@ public class SearchMatch implements Serializable {
     }
     public IAtomContainer getMCS() {
         return mcs;
+    }
+
+    @Override
+    public ID getQueryID() {
+        return MolUtils.getUnknownOrID(query);
+    }
+
+    @Override
+    public ID getTargetID() {
+        return MolUtils.getUnknownOrID(target);
     }
     
 

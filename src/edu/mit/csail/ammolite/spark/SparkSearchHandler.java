@@ -18,6 +18,7 @@ import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
 import edu.mit.csail.ammolite.search.Ammolite;
 import edu.mit.csail.ammolite.search.IResultHandler;
+import edu.mit.csail.ammolite.search.ISearchMatch;
 import edu.mit.csail.ammolite.search.SDFWritingResultHandler;
 import edu.mit.csail.ammolite.search.SMSDSearcher;
 import edu.mit.csail.ammolite.search.SearchMatch;
@@ -85,8 +86,8 @@ public class SparkSearchHandler {
                 query = queries.next();
                 
                 Iterator<IAtomContainer> targetIterator = SDFUtils.parseSDFSetOnline(sdfFiles);
-                List<SearchMatch> matches = SMSDSpark.distributedChunkyLinearSearch(query, targetIterator, ctx, resultHandler, fineThresh, CHUNK_SIZE);
-                for(SearchMatch match: matches){
+                List<ISearchMatch> matches = SMSDSpark.distributedChunkyLinearSearch(query, targetIterator, ctx, resultHandler, fineThresh, CHUNK_SIZE);
+                for(ISearchMatch match: matches){
                     resultHandler.handleFine(match);
                 }
 
@@ -104,7 +105,7 @@ public class SparkSearchHandler {
                 
                 while( queries.hasNext()){
                     query = queries.next();
-                    for(SearchMatch match: AmmoliteSpark.distributedAmmoliteSearch(query, db, ctx, resultHandler, fineThresh, coarseThresh, CHUNK_SIZE)){
+                    for(ISearchMatch match: AmmoliteSpark.distributedAmmoliteSearch(query, db, ctx, resultHandler, fineThresh, coarseThresh, CHUNK_SIZE)){
                         resultHandler.handleFine(match);
                     } 
                     resultHandler.finishOneQuery();

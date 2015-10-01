@@ -11,9 +11,13 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import edu.mit.csail.ammolite.mcs.SMSD;
 import edu.mit.csail.ammolite.search.IResultHandler;
+import edu.mit.csail.ammolite.search.ISearchMatch;
+import edu.mit.csail.ammolite.search.MinimalSearchMatch;
 import edu.mit.csail.ammolite.search.SearchMatch;
 import edu.mit.csail.ammolite.utils.MCSUtils;
 //import edu.mit.csail.ammolite.utils.SDFUtils;
+
+
 
 
 
@@ -24,8 +28,10 @@ import org.apache.spark.broadcast.Broadcast;
 
 public class SMSDSpark {
     
-    public static List<SearchMatch> distributedChunkyLinearSearch(IAtomContainer query, Iterator<IAtomContainer> targetIterator, JavaSparkContext ctx, IResultHandler handler, double threshold, int chunkSize){
-        List<SearchMatch> resultCollector = new ArrayList<SearchMatch>();
+    private static final int MOLS_PER_TASK = 5;
+    
+    public static List<ISearchMatch> distributedChunkyLinearSearch(IAtomContainer query, Iterator<IAtomContainer> targetIterator, JavaSparkContext ctx, IResultHandler handler, double threshold, int chunkSize){
+        JavaRDD<ISearchMatch> resultCollector = ctx.parallelize( new ArrayList<ISearchMatch>());
         Broadcast<IAtomContainer> broadcastQuery = ctx.broadcast(query);
         
         List<IAtomContainer> localTargetChunk = new ArrayList<IAtomContainer>(chunkSize);
@@ -35,23 +41,23 @@ public class SMSDSpark {
                     localTargetChunk.add(targetIterator.next());
                 }
             }
-            JavaRDD<IAtomContainer> targetChunk = ctx.parallelize(localTargetChunk);
+            JavaRDD<IAtomContainer> targetChunk = ctx.parallelize(localTargetChunk, chunkSize / MOLS_PER_TASK);
             
-            resultCollector.addAll(distributedLinearSearch(broadcastQuery, targetChunk, ctx, handler, threshold));
+            resultCollector = resultCollector.union( distributedLinearSearch(broadcastQuery, targetChunk, ctx, handler, threshold));
         }
         
-        return resultCollector;
+        return resultCollector.collect();
     }
     
-    public static List<SearchMatch> distributedLinearSearch(final Broadcast<IAtomContainer> query, JavaRDD<IAtomContainer> targets, JavaSparkContext ctx, IResultHandler handler, final double threshold){
+    public static JavaRDD<ISearchMatch> distributedLinearSearch(final Broadcast<IAtomContainer> query, JavaRDD<IAtomContainer> targets, JavaSparkContext ctx, IResultHandler handler, final double threshold){
 
         final Broadcast<Boolean> recordStructs = ctx.broadcast( handler.recordingStructures());
         
         
-        JavaRDD<SearchMatch> matchings = targets.map(new Function<IAtomContainer, SearchMatch>(){
+        JavaRDD<ISearchMatch> matchings = targets.map(new Function<IAtomContainer, ISearchMatch>(){
             
-            public SearchMatch call(IAtomContainer target){
-                SearchMatch match = null;
+            public ISearchMatch call(IAtomContainer target){
+                ISearchMatch match = null;
                 
                 int targetSize = MCSUtils.getAtomCountNoHydrogen(target);
                 int querySize = MCSUtils.getAtomCountNoHydrogen(query.value());
@@ -65,23 +71,24 @@ public class SMSDSpark {
                     int overlap = smsd.size();
                     
                     if(MCSUtils.tanimotoCoeff(overlap, targetSize, querySize) > threshold){
-                        match = new SearchMatch(query.value(), target, overlap);
+                        match = new MinimalSearchMatch(query.value(), target, overlap);
                         if( recordStructs.value()){
+                            match = new SearchMatch(query.value(), target, overlap);
                             match.setMCS(smsd.getFirstSolution());
                         }
                     }
                 }
                 
                 if(match == null){
-                    match = new SearchMatch(query.value(), target, 0);
+                    match = new MinimalSearchMatch(query.value(), target, 0);
                 }
                 
                 return match;
             }
         });
         
-        JavaRDD<SearchMatch> filtered = matchings.filter(new Function<SearchMatch, Boolean>(){
-            public Boolean call(SearchMatch match){
+        JavaRDD<ISearchMatch> filtered = matchings.filter(new Function<ISearchMatch, Boolean>(){
+            public Boolean call(ISearchMatch match){
                 if(match.getOverlap() > 0){
                     return true;
                 }
@@ -89,8 +96,10 @@ public class SMSDSpark {
             }
         });
         
-       List<SearchMatch> collected = filtered.collect();
-       return collected;
+       return filtered;
+       
+//       List<SearchMatch> collected = filtered.collect();
+//       return collected;
 
     }
 

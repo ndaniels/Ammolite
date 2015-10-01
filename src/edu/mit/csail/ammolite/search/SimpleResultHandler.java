@@ -10,7 +10,7 @@ import edu.mit.csail.ammolite.utils.MolUtils;
 
 public class SimpleResultHandler implements IResultHandler {
     PrintStream stream;
-    List<SearchMatch> matches = new LinkedList<SearchMatch>();
+    List<ISearchMatch> matches = new LinkedList<ISearchMatch>();
     
     public SimpleResultHandler(){
         stream = System.out;
@@ -24,12 +24,12 @@ public class SimpleResultHandler implements IResultHandler {
         stream.println("ID1, ID2, Size1, Size2, Overlap, Tanimoto");
     }
 
-    public void handleCoarse(SearchMatch match) {
+    public void handleCoarse(ISearchMatch match) {
         // Do nothing. For now.
         
     }
 
-    public void handleFine(SearchMatch match) {
+    public void handleFine(ISearchMatch match) {
             matches.add(match);
             
     }
@@ -40,18 +40,18 @@ public class SimpleResultHandler implements IResultHandler {
     
     public void finishOneQuery(){
         printHeader();
-        for(SearchMatch match: matches){
-            stream.print( MolUtils.getPubID( match.query));
+        for(ISearchMatch match: matches){
+            stream.print( match.getQueryID());
             stream.print(", ");
-            stream.print( MolUtils.getPubID( match.getTarget()));
+            stream.print( match.getTargetID());
             stream.print(", ");
-            stream.print(MolUtils.getAtomCountNoHydrogen(match.query));
+            stream.print(match.getQuerySize());
             stream.print(", ");
-            stream.print(MolUtils.getAtomCountNoHydrogen( match.getTarget()));
+            stream.print(match.getTargetSize());
             stream.print(", ");
             stream.print(match.getOverlap());
             stream.print(", ");
-            stream.print(MCSUtils.tanimotoCoeff(match.getOverlap(), match.query, match.getTarget()));
+            stream.print(MCSUtils.tanimotoCoeff(match.getOverlap(), match.getQuerySize(), match.getTargetSize()));
             stream.println();
         }
     }

@@ -19,12 +19,12 @@ import edu.mit.csail.ammolite.utils.MolUtils;
 
 public class SDFWritingResultHandler implements IResultHandler {
     
-    List<SearchMatch> matches = null;
+    List<ISearchMatch> matches = null;
     String resultFolder;
     
     public SDFWritingResultHandler(String resultFolder){
         this.resultFolder = resultFolder;
-        this.matches = new LinkedList<SearchMatch>();
+        this.matches = new LinkedList<ISearchMatch>();
     }
 
     @Override
@@ -33,13 +33,13 @@ public class SDFWritingResultHandler implements IResultHandler {
     }
 
     @Override
-    public void handleCoarse(SearchMatch result) {
+    public void handleCoarse(ISearchMatch result) {
         // Do nothing
 
     }
 
     @Override
-    public void handleFine(SearchMatch result) {
+    public void handleFine(ISearchMatch result) {
         matches.add(result);
 
     }
@@ -64,19 +64,19 @@ public class SDFWritingResultHandler implements IResultHandler {
             String simpleName = queryFolder + "result-table.csv";
             writer = new PrintWriter(simpleName, "UTF-8");
         
-        for(SearchMatch match: matches){
+        for(ISearchMatch match: matches){
             // Write to simple result file
-            writer.print( MolUtils.getPubID( match.query));
+            writer.print( match.getQueryID());
             writer.print(", ");
-            writer.print( MolUtils.getPubID( match.getTarget()));
+            writer.print( match.getTargetID());
             writer.print(", ");
-            writer.print(MolUtils.getAtomCountNoHydrogen(match.query));
+            writer.print(match.getQuerySize());
             writer.print(", ");
-            writer.print(MolUtils.getAtomCountNoHydrogen( match.getTarget()));
+            writer.print(match.getTargetSize());
             writer.print(", ");
             writer.print(match.getOverlap());
             writer.print(", ");
-            writer.print(MCSUtils.tanimotoCoeff(match.getOverlap(), match.query, match.getTarget()));
+            writer.print(MCSUtils.tanimotoCoeff(match.getOverlap(), match.getQuerySize(), match.getTargetSize()));
             writer.println();
             
             // Write all <match>.sdf
