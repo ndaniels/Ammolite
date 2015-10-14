@@ -9,12 +9,11 @@
 
 	
 		<target name="init">
-			<property name="scala.home" 	    value="/usr/local/Cellar/scala/2.11.2" />
-			<property name="scala.home.lib"	    value="${scala.home}/libexec/lib" />
+			<property name="scala.home" 	    value="/usr/share/java" />
 
 			<path id="scala.path" cache="true">
-				<fileset dir="${scala.home.lib}">
-					<include name="**/*.jar"/>
+				<fileset dir="${scala.home}">
+					<include name="scala*.jar"/>
       			</fileset>
       		</path>
 
@@ -31,9 +30,9 @@
 	
 			<taskdef resource="scala/tools/ant/antlib.xml">
 				<classpath>
-					<pathelement location="${scala.home.lib}/scala-compiler.jar"   />
-					<pathelement location="${scala.home.lib}/scala-reflect.jar"   />
-					<pathelement location="${scala.home.lib}/scala-library.jar"   />
+					<pathelement location="${scala.home}/scala-compiler.jar"   />
+					<pathelement location="${scala.home}/scala-reflect.jar"   />
+					<pathelement location="${scala.home}/scala-library.jar"   />
 				</classpath>
 			</taskdef>
 
