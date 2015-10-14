@@ -2,7 +2,6 @@ package edu.mit.csail.ammolite
 
 import edu.mit.csail.ammolite.compression.CachingStructCompressor
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory
-import edu.mit.csail.ammolite.compression.StructCompressor
 
 
 import org.rogach.scallop._

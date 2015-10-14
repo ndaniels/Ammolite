@@ -40,7 +40,7 @@ public class StructDatabaseDecompressor {
 	
 	
 	public static IStructDatabase decompress(String databasename, boolean useCaching){
-			Logger.log("Decompressing "+databasename, 1);
+			System.out.print("Decompressing "+databasename);
 			String extension = "";
 			int i = databasename.lastIndexOf('.');
 			if (i > 0) {
@@ -70,12 +70,12 @@ public class StructDatabaseDecompressor {
     	    Yaml yaml = new Yaml();
     	    Map md = (Map) yaml.load(metaStream);
     	    
-    	    Logger.log("Grabbing metadata...",1);
+    	    System.out.print("Grabbing metadata...");
     	    String name = (String) md.get("NAME");
     	    String version = (String) md.get("VERSION");
     	    String compression = (String) md.get("COMPRESSION_TYPE");
     	    boolean organized = (Boolean) md.get("ORGANIZED");
-    	    Logger.log("Done.",1);
+    	    System.out.println("Done.");
     	    String structIDTableName = (String) md.get("STRUCT_ID_TABLE");
 
     	    FilenameFilter idFilter = new FilenameFilter() {
@@ -87,7 +87,7 @@ public class StructDatabaseDecompressor {
             File idTable = dbDir.listFiles( idFilter)[0];
     	    BufferedReader  idStream = new BufferedReader(new FileReader(idTable));
     	    
-    	    Logger.log("Building map...",1);
+    	    System.out.print("Building map...");
             Map<String,List<Integer>> rawIds = (Map<String,List<Integer>>) yaml.load(idStream);
             
             KeyListMap<StructID, PubchemID> ids = new KeyListMap<StructID, PubchemID>(10);
@@ -99,9 +99,9 @@ public class StructDatabaseDecompressor {
                 }
                 
             }
-            Logger.log("Done.",1);
+            System.out.println("Done.");
 
-            Logger.log("Finding representatives...",1);
+            System.out.print("Finding representatives...");
     	    List<String> rawStructFiles = (List<String>) md.get("STRUCTURE_FILES");
     	    List<String> structFiles = new ArrayList<String>();
     	    
@@ -126,9 +126,9 @@ public class StructDatabaseDecompressor {
 	            }
 
     	    }
-    	    Logger.log("Done.",1);
+    	    System.out.println("Done.");
     	    
-    	    Logger.log("Finding sources...",1);
+    	    System.out.print("Finding sources...");
     	    List<String> rawSourceFiles = (List<String>) md.get("SOURCE_FILES");
             List<String> sourceFiles = new ArrayList<String>();
             
@@ -153,13 +153,13 @@ public class StructDatabaseDecompressor {
                     sourceFiles.add(f.getAbsolutePath());
                 }
             }
-            Logger.log("Done.",1);
+            System.out.println("Done.");
             
-            Logger.log("Building database...",1);
+            System.out.print("Building database...");
     	    GenericStructDatabase db =  new GenericStructDatabase( name, version, compression, 
     	                                        organized, ids, structFiles, 
     	                                        sourceFiles);
-    	    Logger.log("Done.",1);
+    	    System.out.println("Done.");
     	    
     	    if( md.containsKey("NUM_MOLS")){
     	        

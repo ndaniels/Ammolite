@@ -21,13 +21,13 @@ public class MatchingMoleculesHandler implements IResultHandler {
     }
 
     @Override
-    public void handleCoarse(SearchMatch result) {
+    public void handleCoarse(ISearchMatch result) {
         // Pass
     }
 
     @Override
-    public void handleFine(SearchMatch result) {
-        matchingMolecules.add(result.target);
+    public void handleFine(ISearchMatch result) {
+        matchingMolecules.add(result.getTarget());
 
     }
 
