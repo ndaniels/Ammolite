@@ -13,6 +13,7 @@ import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import edu.mit.csail.ammolite.mcs.MCS;
+import edu.mit.csail.ammolite.utils.AmmoliteID;
 import edu.mit.csail.ammolite.utils.MolUtils;
 import edu.mit.csail.ammolite.utils.PubchemID;
 import edu.ucla.sspace.graph.Edge;
@@ -26,7 +27,7 @@ public class LabeledMolStruct extends AtomContainer implements IMolStruct {
      * 
      */
     protected int fingerprint;
-    protected Set<PubchemID> mol_ids;
+    protected Set<AmmoliteID> mol_ids;
     protected LabeledWeightedGraph graph;
     protected HashMap<IAtom,Integer> atomsToNodes = new HashMap<IAtom, Integer>();
     protected HashMap<Integer, IAtom> nodesToAtoms = new HashMap<Integer, IAtom>();
@@ -39,7 +40,7 @@ public class LabeledMolStruct extends AtomContainer implements IMolStruct {
     
     public LabeledMolStruct(IAtomContainer base){
         super( new AtomContainer(AtomContainerManipulator.removeHydrogens(base)) );
-        mol_ids = new HashSet<PubchemID>();
+        mol_ids = new HashSet<AmmoliteID>();
         
         Iterator<IBond> bonds = this.bonds().iterator();
         while( bonds.hasNext() ){
@@ -51,7 +52,7 @@ public class LabeledMolStruct extends AtomContainer implements IMolStruct {
 
         setFingerprint();
         
-        PubchemID pubID = MolUtils.getPubID(base);
+        AmmoliteID pubID = MolUtils.getAmmoliteID(base);
         this.mol_ids.add( pubID);
         this.setProperty("PUBCHEM_COMPOUND_CID", pubID.toString());
     }
@@ -138,13 +139,13 @@ public class LabeledMolStruct extends AtomContainer implements IMolStruct {
     }
 
     @Override
-    public void addID(PubchemID id) {
+    public void addID(AmmoliteID id) {
         this.mol_ids.add(id);
         
     }
 
     @Override
-    public Set<PubchemID> getIDNums() {
+    public Set<AmmoliteID> getIDNums() {
         return mol_ids;
     }
 

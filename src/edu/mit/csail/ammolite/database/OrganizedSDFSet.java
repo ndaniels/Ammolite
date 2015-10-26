@@ -10,6 +10,7 @@ import java.util.Set;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
+import edu.mit.csail.ammolite.utils.AmmoliteID;
 import edu.mit.csail.ammolite.utils.PubchemID;
 import edu.mit.csail.ammolite.utils.StructID;
 
@@ -105,12 +106,12 @@ public class OrganizedSDFSet implements ISDFSet, Serializable {
     }
 
     @Override
-    public Set<PubchemID> getMoleculeIDs() {
+    public Set<AmmoliteID> getMoleculeIDs() {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public IAtomContainer getMol(PubchemID pubID) {
+    public IAtomContainer getMol(AmmoliteID pubID) {
         throw new UnsupportedOperationException();
     }
 

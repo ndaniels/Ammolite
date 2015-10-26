@@ -6,7 +6,6 @@ import edu.mit.csail.ammolite.compression.MoleculeStructFactory
 
 import org.rogach.scallop._
 import edu.mit.csail.ammolite.utils.Logger
-import edu.mit.csail.ammolite.compression.CyclicStruct
 import edu.mit.csail.ammolite.database.CompressionType
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor
 import edu.mit.csail.ammolite.database.SDFWrapper

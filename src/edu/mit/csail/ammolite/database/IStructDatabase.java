@@ -10,13 +10,14 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import edu.mit.csail.ammolite.compression.IMolStruct;
 import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory;
+import edu.mit.csail.ammolite.utils.AmmoliteID;
 import edu.mit.csail.ammolite.utils.PubchemID;
 import edu.mit.csail.ammolite.utils.StructID;
 
 public interface IStructDatabase {
 	
 	public CompressionType getCompressionType();
-	public IAtomContainer getMolecule(PubchemID pubchemID);
+	public IAtomContainer getMolecule(AmmoliteID ammID);
 	public int numReps();
 	public int numMols();
 	public String info();
@@ -33,7 +34,7 @@ public interface IStructDatabase {
 	public String getName();
 	public boolean isOrganized();
 	public int  countFineHits(Collection<StructID> coarseHits);
-	public Map<StructID, List<PubchemID>> getIDMap();
+	public Map<StructID, List<AmmoliteID>> getIDMap();
 	
 
 }

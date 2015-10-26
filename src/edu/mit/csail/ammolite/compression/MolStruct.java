@@ -15,6 +15,7 @@ import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
+import edu.mit.csail.ammolite.utils.AmmoliteID;
 import edu.mit.csail.ammolite.utils.MolUtils;
 import edu.mit.csail.ammolite.utils.PubchemID;
 import edu.ucla.sspace.graph.Edge;
@@ -37,7 +38,7 @@ public class MolStruct extends AtomContainer implements Serializable, IMolStruct
 	 */
 	private static final long serialVersionUID = -5426987516210898334L;
 	protected int fingerprint;
-	protected Set<PubchemID> mol_ids;
+	protected Set<AmmoliteID> mol_ids;
 	protected SparseUndirectedGraph graph;
 	protected HashMap<IAtom,Integer> atomsToNodes = new HashMap<IAtom, Integer>();
 	protected HashMap<Integer, IAtom> nodesToAtoms = new HashMap<Integer, IAtom>();
@@ -54,7 +55,7 @@ public class MolStruct extends AtomContainer implements Serializable, IMolStruct
 	public MolStruct( IAtomContainer base )
 	{	
 		super( new AtomContainer(AtomContainerManipulator.removeHydrogens(base)) );
-		mol_ids = new HashSet<PubchemID>();
+		mol_ids = new HashSet<AmmoliteID>();
 		
 		Iterator<IAtom> atoms = this.atoms().iterator();
 		while( atoms.hasNext() ){
@@ -72,9 +73,9 @@ public class MolStruct extends AtomContainer implements Serializable, IMolStruct
 
 		setFingerprint();
 		
-		PubchemID pubID = MolUtils.getPubID(base);
-		this.mol_ids.add( pubID);
-		this.setProperty("PUBCHEM_COMPOUND_CID", pubID.toString());
+		AmmoliteID ammID = MolUtils.getAmmoliteID(base);
+		this.mol_ids.add( ammID);
+		this.setProperty("AMMOLITE_COMPOUND_CID", ammID.toString());
 	}
 	
 	
@@ -145,11 +146,11 @@ public class MolStruct extends AtomContainer implements Serializable, IMolStruct
 	}
 	
 
-	public void addID(PubchemID id){
+	public void addID(AmmoliteID id){
 		mol_ids.add(id);
 	}
 	 
-	public Set<PubchemID> getIDNums(){
+	public Set<AmmoliteID> getIDNums(){
 		return mol_ids;
 		
 	}

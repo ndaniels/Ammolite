@@ -29,6 +29,7 @@ import edu.mit.csail.ammolite.database.CompressionType;
 import edu.mit.csail.ammolite.database.IStructDatabase;
 import edu.mit.csail.ammolite.database.StructDatabaseDecompressor;
 import edu.mit.csail.ammolite.spark.SparkCompressor;
+import edu.mit.csail.ammolite.utils.AmmoliteID;
 import edu.mit.csail.ammolite.utils.CommandLineProgressBar;
 import edu.mit.csail.ammolite.utils.FileUtils;
 import edu.mit.csail.ammolite.utils.MolUtils;
@@ -184,7 +185,7 @@ public class CachingStructCompressor implements Serializable {
                     this.putMolInSourceFile(MolUtils.getStructID(structure), molecule);
                 } else {
                     if(distributed){
-                        structsByID.get(matchID).addID( MolUtils.getPubID(molecule));
+                        structsByID.get(matchID).addID( MolUtils.getAmmoliteID(molecule));
                     }
                     this.putMolInSourceFile(matchID, molecule);
                     
@@ -222,7 +223,7 @@ public class CachingStructCompressor implements Serializable {
             boolean iso = candidate.isIsomorphic(fStruct, iso_tester);
             
             if( iso ){
-                candidate.addID( MolUtils.getPubID(fStruct));
+                candidate.addID( MolUtils.getAmmoliteID(fStruct));
                 return MolUtils.getStructID( candidate);
             } 
         }
@@ -257,7 +258,7 @@ public class CachingStructCompressor implements Serializable {
                     boolean iso = candidate.isIsomorphic(fStruct, iso_tester);
                     
                     if( iso ){
-                        candidate.addID( MolUtils.getPubID(fStruct));
+                        candidate.addID( MolUtils.getAmmoliteID(fStruct));
                         return candidate;
                     } 
                     return null;
@@ -346,7 +347,7 @@ public class CachingStructCompressor implements Serializable {
                 IMolStruct struct = structs.next();
                 writer.write( MolUtils.getStructID(struct).toString());
                 writer.write(" : [");
-                for(PubchemID pId: struct.getIDNums() ){
+                for(AmmoliteID pId: struct.getIDNums() ){
              
                     writer.write( pId.toString());
                     writer.write(", ");

@@ -24,6 +24,7 @@ import org.apache.commons.io.filefilter.WildcardFileFilter;
 import org.yaml.snakeyaml.Yaml;
 
 import edu.mit.csail.ammolite.KeyListMap;
+import edu.mit.csail.ammolite.utils.AmmoliteID;
 import edu.mit.csail.ammolite.utils.Logger;
 import edu.mit.csail.ammolite.utils.PubchemID;
 import edu.mit.csail.ammolite.utils.StructID;
@@ -90,11 +91,11 @@ public class StructDatabaseDecompressor {
     	    System.out.print("Building map...");
             Map<String,List<Integer>> rawIds = (Map<String,List<Integer>>) yaml.load(idStream);
             
-            KeyListMap<StructID, PubchemID> ids = new KeyListMap<StructID, PubchemID>(10);
+            KeyListMap<StructID, AmmoliteID> ids = new KeyListMap<StructID, AmmoliteID>(10);
             for(String rawKey: rawIds.keySet()){
                 StructID key = new StructID( rawKey);
                 for(Integer rawVal: rawIds.get(rawKey)){
-                    PubchemID val = new PubchemID(rawVal.toString());
+                    AmmoliteID val = new AmmoliteID(rawVal.toString());
                     ids.add(key, val);
                 }
                 

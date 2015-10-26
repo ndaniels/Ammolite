@@ -10,13 +10,14 @@ import java.util.Set;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
+import edu.mit.csail.ammolite.utils.AmmoliteID;
 import edu.mit.csail.ammolite.utils.PubchemID;
 import edu.mit.csail.ammolite.utils.StructID;
 
 public class SDFSet implements Serializable, ISDFSet {
 
 	private static final long serialVersionUID = 7582074972607192820L;
-	protected Map<PubchemID, SDFWrapper> idToWrapper = new HashMap<PubchemID, SDFWrapper>();
+	protected Map<AmmoliteID, SDFWrapper> idToWrapper = new HashMap<AmmoliteID, SDFWrapper>();
 	protected List<SDFWrapper> sdfs = new ArrayList<SDFWrapper>();
 	protected Map<StructID,SDFWrapper> structIDToSDF = new HashMap<StructID,SDFWrapper>();
 	
@@ -50,7 +51,7 @@ public class SDFSet implements Serializable, ISDFSet {
 	
 	public void addFile(SDFWrapper wrap){
 		sdfs.add(wrap);
-		for(PubchemID id: wrap.getIDs()){
+		for(AmmoliteID id: wrap.getIDs()){
 			idToWrapper.put(id, wrap);
 		}
 	}
@@ -80,16 +81,16 @@ public class SDFSet implements Serializable, ISDFSet {
 	}
 	
 	
-	public Set<PubchemID> getMoleculeIDs(){
+	public Set<AmmoliteID> getMoleculeIDs(){
 		return idToWrapper.keySet();
 	}
 	
-	public IAtomContainer getMol(PubchemID pubID){
+	public IAtomContainer getMol(AmmoliteID pubID){
 		if(idToWrapper.containsKey(pubID)){
 			SDFWrapper wrap = idToWrapper.get(pubID);
 			return wrap.getMol(pubID);
 		}
-		throw new NullPointerException("PubchemID "+pubID+" not in this SDFset");
+		throw new NullPointerException("AmmoliteID "+pubID+" not in this SDFset");
 	}
 	
 	public String listSourceFiles(){

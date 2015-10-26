@@ -13,7 +13,19 @@ public class MolUtils {
 	}
 	
 	public static StructID getStructID(IAtomContainer mol){
-		return new StructID((String) mol.getProperty("PUBCHEM_COMPOUND_CID") + "_STRUCT");
+	    AmmoliteID ammID = getAmmoliteID(mol);
+		return new StructID(ammID.toString() + "_STRUCT");
+	}
+	
+	public static AmmoliteID getAmmoliteID(IAtomContainer mol){
+	   
+	    if(mol.getProperty("AMMOLITE_COMPOUND_CID") != null){
+	        return new AmmoliteID((String) mol.getProperty("AMMOLITE_COMPOUND_CID"));
+	    } else if(mol.getProperty("PUBCHEM_COMPOUND_CID") != null){
+	        return new AmmoliteID((String) mol.getProperty("PUBCHEM_COMPOUND_CID") + "_AMMOLITE");
+	    } else {
+	        return new AmmoliteID(String.valueOf(mol.hashCode()) + "_AMMOLITE");
+	    }
 	}
 	
 	public static ID getUnknownOrID(IAtomContainer mol){

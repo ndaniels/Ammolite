@@ -19,8 +19,8 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.io.SDFWriter;
 
 import edu.mit.csail.ammolite.IteratingSDFReader;
-import edu.mit.csail.ammolite.compression.CyclicStruct;
 import edu.mit.csail.ammolite.compression.IMolStruct;
+import edu.mit.csail.ammolite.compression.LabeledCyclicStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory;
 
 public class SDFUtils {
@@ -172,7 +172,7 @@ public class SDFUtils {
 	    while( mols.hasNext()){
 	        IAtomContainer mol = mols.next();
 	        if(struct){ 
-	            mol = new CyclicStruct(mol);
+	            mol = new LabeledCyclicStruct(mol);
 	        }
 	        ID id = null;
 	        if( struct){

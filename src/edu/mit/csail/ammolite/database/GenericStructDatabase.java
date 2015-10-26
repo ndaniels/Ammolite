@@ -12,6 +12,7 @@ import edu.mit.csail.ammolite.KeyListMap;
 import edu.mit.csail.ammolite.compression.IMolStruct;
 import edu.mit.csail.ammolite.compression.MolStruct;
 import edu.mit.csail.ammolite.compression.MoleculeStructFactory;
+import edu.mit.csail.ammolite.utils.AmmoliteID;
 import edu.mit.csail.ammolite.utils.MolUtils;
 import edu.mit.csail.ammolite.utils.PubchemID;
 import edu.mit.csail.ammolite.utils.SDFMultiParser;
@@ -26,7 +27,7 @@ public class GenericStructDatabase implements IStructDatabase {
     MoleculeStructFactory sFactory;
     List<IMolStruct> structs = null;
     List<String> structFiles;
-    Map<StructID, List<PubchemID>> idMap;
+    Map<StructID, List<AmmoliteID>> idMap;
     ISDFSet sourceFiles;
     int numMols = -1;
     int numReps = -1;
@@ -34,7 +35,7 @@ public class GenericStructDatabase implements IStructDatabase {
     
     
     public GenericStructDatabase(String name, String version, String compression, boolean organized,
-            Map<StructID, List<PubchemID>> idMap, List<String> structFiles, List<String> sourceFiles) {
+            Map<StructID, List<AmmoliteID>> idMap, List<String> structFiles, List<String> sourceFiles) {
         
         this.name = name;
         this.version = version;
@@ -61,9 +62,9 @@ public class GenericStructDatabase implements IStructDatabase {
         while( structParser.hasNext()){
             IMolStruct struct = structParser.next();
             StructID key = MolUtils.getStructID(struct);
-            List<PubchemID> pIDs = idMap.get(key);
+            List<AmmoliteID> pIDs = idMap.get(key);
             if(pIDs != null){
-                for(PubchemID pID: pIDs){
+                for(AmmoliteID pID: pIDs){
                     struct.addID(pID);
                 }
             }
@@ -79,8 +80,8 @@ public class GenericStructDatabase implements IStructDatabase {
     }
 
     @Override
-    public IAtomContainer getMolecule(PubchemID pubchemID) {
-        return this.sourceFiles.getMol(pubchemID);
+    public IAtomContainer getMolecule(AmmoliteID ammID) {
+        return this.sourceFiles.getMol(ammID);
     }
 
     @Override
@@ -143,7 +144,7 @@ public class GenericStructDatabase implements IStructDatabase {
         for(IMolStruct struct: getStructs()){
             sb.append(MolUtils.getPubID(struct));
             sb.append(", ");
-            for(PubchemID id: struct.getIDNums()){
+            for(AmmoliteID id: struct.getIDNums()){
                 sb.append(id.toString());
                 sb.append(", ");
             }
@@ -235,7 +236,7 @@ public class GenericStructDatabase implements IStructDatabase {
     }
 
     @Override
-    public Map<StructID, List<PubchemID>> getIDMap() {
+    public Map<StructID, List<AmmoliteID>> getIDMap() {
         return this.idMap;
     }
 

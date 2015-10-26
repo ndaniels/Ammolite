@@ -60,7 +60,7 @@ public class Ammolite{
     
     private void fineSearch(IAtomContainer query, Collection<StructID> coarseHits, IStructDatabase db, double thresh){
         ExecutorService ecs = ParallelUtils.buildNewExecutorService(NUM_THREADS);
-        CommandLineProgressBar bar = new CommandLineProgressBar(MolUtils.getPubID(query).toString(), db.countFineHits(coarseHits));
+        CommandLineProgressBar bar = new CommandLineProgressBar(MolUtils.getAmmoliteID(query).toString(), db.countFineHits(coarseHits));
         
         BlockingQueue<IAtomContainer> queue = new ArrayBlockingQueue<IAtomContainer>(FINE_QUEUE_SIZE,false);
         Mediator<IAtomContainer> mediator = new Mediator<IAtomContainer>( queue);
@@ -91,7 +91,7 @@ public class Ammolite{
     
     private Collection<StructID> coarseSearch(IMolStruct cQuery, IAtomContainer query, Iterator<IMolStruct> sTargets, int numReps, double thresh){
         ExecutorService ecs = ParallelUtils.buildNewExecutorService(NUM_THREADS);
-        CommandLineProgressBar bar = new CommandLineProgressBar(MolUtils.getPubID(query).toString() + "_COARSE", numReps);
+        CommandLineProgressBar bar = new CommandLineProgressBar(MolUtils.getAmmoliteID(query).toString() + "_COARSE", numReps);
 
         BlockingQueue<IMolStruct> queue = new ArrayBlockingQueue<IMolStruct>(COARSE_QUEUE_SIZE,false);
         Mediator<IMolStruct> mediator = new Mediator<IMolStruct>(queue);
