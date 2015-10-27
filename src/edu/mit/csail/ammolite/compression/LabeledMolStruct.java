@@ -52,9 +52,9 @@ public class LabeledMolStruct extends AtomContainer implements IMolStruct {
 
         setFingerprint();
         
-        AmmoliteID pubID = MolUtils.getAmmoliteID(base);
-        this.mol_ids.add( pubID);
-        this.setProperty("PUBCHEM_COMPOUND_CID", pubID.toString());
+        AmmoliteID ammID = MolUtils.getAmmoliteID(base);
+        this.mol_ids.add( ammID);
+        this.setProperty("AMMOLITE_COMPOUND_CID", ammID.toString());
     }
     
     @Override

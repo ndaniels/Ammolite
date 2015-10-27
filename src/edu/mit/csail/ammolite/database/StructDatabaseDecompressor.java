@@ -89,13 +89,13 @@ public class StructDatabaseDecompressor {
     	    BufferedReader  idStream = new BufferedReader(new FileReader(idTable));
     	    
     	    System.out.print("Building map...");
-            Map<String,List<Integer>> rawIds = (Map<String,List<Integer>>) yaml.load(idStream);
+            Map<String,List<String>> rawIds = (Map<String,List<String>>) yaml.load(idStream);
             
             KeyListMap<StructID, AmmoliteID> ids = new KeyListMap<StructID, AmmoliteID>(10);
             for(String rawKey: rawIds.keySet()){
                 StructID key = new StructID( rawKey);
-                for(Integer rawVal: rawIds.get(rawKey)){
-                    AmmoliteID val = new AmmoliteID(rawVal.toString());
+                for(String rawVal: rawIds.get(rawKey)){
+                    AmmoliteID val = new AmmoliteID(rawVal);
                     ids.add(key, val);
                 }
                 

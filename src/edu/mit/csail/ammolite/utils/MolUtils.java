@@ -8,6 +8,7 @@ import edu.mit.csail.ammolite.compression.MolStruct;
 
 public class MolUtils {
 	
+    @Deprecated
 	public static PubchemID getPubID(IAtomContainer mol){
 		return new PubchemID((String) mol.getProperty("PUBCHEM_COMPOUND_CID"));
 	}
@@ -34,7 +35,7 @@ public class MolUtils {
             if( mol instanceof IMolStruct){
                 out = getStructID(mol);
             } else {
-               out = getPubID(mol);
+               out = getAmmoliteID(mol);
             }
         } catch(NullPointerException ignore){
             out = new UnknownID();
